@@ -84,30 +84,45 @@ class SalesOrderOnlineController extends Controller
         $validated = $request->validated();
 
         $validated = $request->validated();
+        // if ($request->hasFile('image')) {
+        //     $validated['image'] = $request->file('image')->store('public');
+        // }
+
+        // if ($request->hasFile('image_sent')) {
+        //     $validated['image_sent'] = $request
+        //         ->file('image_sent')
+        //         ->store('public');
+        // }
+
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('public');
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileimage = rand() . time() . '.' . $extension;
+            $file->move('storage/', $fileimage);
+            Image::make('storage/' . $fileimage)
+                ->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save();
+
+            $validated['image'] = $fileimage;
         }
 
         if ($request->hasFile('image_sent')) {
-            $validated['image_sent'] = $request
-                ->file('image_sent')
-                ->store('public');
+            $file = $request->file('image_sent');
+            $extension = $file->getClientOriginalExtension();
+            $fileimage_sent = rand() . time() . '.' . $extension;
+            $file->move('storage/', $fileimage_sent);
+            Image::make('storage/' . $fileimage_sent)
+                ->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save();
+
+            $validated['image_sent'] = $fileimage_sent;
         }
-
-        // if ($request->hasFile('image')) {
-        //     $file = $request->file('image');
-        //     $extension = $file->getClientOriginalExtension();
-        //     $fileimage = rand() . time() . '.' . $extension;
-        //     $file->move('storage/', $fileimage);
-        //     Image::make('storage/' . $fileimage)
-        //         ->resize(800, 800, function ($constraint) {
-        //             $constraint->aspectRatio();
-        //             $constraint->upsize();
-        //         })
-        //         ->save();
-
-        //     $validated['image'] = $fileimage;
-        // }
 
         $validated['created_by_id'] = auth()->user()->id;
         $validated['status'] = '1';
