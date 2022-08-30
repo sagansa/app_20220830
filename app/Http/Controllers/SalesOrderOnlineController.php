@@ -200,40 +200,56 @@ class SalesOrderOnlineController extends Controller
         $this->authorize('update', $salesOrderOnline);
 
         $validated = $request->validated();
-        if ($request->hasFile('image')) {
-            if ($salesOrderOnline->image) {
-                Storage::delete($salesOrderOnline->image);
-            }
+        // if ($request->hasFile('image')) {
+        //     if ($salesOrderOnline->image) {
+        //         Storage::delete($salesOrderOnline->image);
+        //     }
 
-            $validated['image'] = $request->file('image')->store('public');
+        //     $validated['image'] = $request->file('image')->store('public');
+        // }
+
+        // if ($request->hasFile('image_sent')) {
+        //     if ($salesOrderOnline->image_sent) {
+        //         Storage::delete($salesOrderOnline->image_sent);
+        //     }
+
+        //     $validated['image_sent'] = $request
+        //         ->file('image_sent')
+        //         ->store('public');
+        // }
+
+        $validated = $request->validated();
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $salesOrderOnline->delete_image();
+            $extension = $file->getClientOriginalExtension();
+            $file_image = rand() . time() . '.' . $extension;
+            $file->move('storage/', $file_image);
+            Image::make('storage/' . $file_image)
+                ->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save();
+
+            $validated['image'] = $file_image;
         }
 
         if ($request->hasFile('image_sent')) {
-            if ($salesOrderOnline->image_sent) {
-                Storage::delete($salesOrderOnline->image_sent);
-            }
+            $file = $request->file('image_sent');
+            $salesOrderOnline->delete_image_sent();
+            $extension = $file->getClientOriginalExtension();
+            $file_image_sent = rand() . time() . '.' . $extension;
+            $file->move('storage/', $file_image_sent);
+            Image::make('storage/' . $file_image_sent)
+                ->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save();
 
-            $validated['image_sent'] = $request
-                ->file('image_sent')
-                ->store('public');
+            $validated['image_sent'] = $file_image_sent;
         }
-
-        // $validated = $request->validated();
-        // if ($request->hasFile('image')) {
-        //     $file = $request->file('image');
-        //     $salesOrderOnline->delete_image();
-        //     $extension = $file->getClientOriginalExtension();
-        //     $file_image = rand() . time() . '.' . $extension;
-        //     $file->move('storage/', $file_image);
-        //     Image::make('storage/' . $file_image)
-        //         ->resize(400, 400, function ($constraint) {
-        //             $constraint->aspectRatio();
-        //             $constraint->upsize();
-        //         })
-        //         ->save();
-
-        //     $validated['image'] = $file_image;
-        // }
 
         if (
             auth()
