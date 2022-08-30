@@ -68,7 +68,7 @@ class SalesOrderOnlineProductsDetail extends Component
     {
         $this->validate();
 
-        $this->authorize('update', SalesOrderOnline::class);
+        // $this->authorize('update', SalesOrderOnline::class);
 
         $this->salesOrderOnline->products()->attach($this->product_id, [
             'quantity' => $this->quantity,
@@ -80,7 +80,7 @@ class SalesOrderOnlineProductsDetail extends Component
 
     public function detach($product)
     {
-        $this->authorize('update', SalesOrderOnline::class);
+        // $this->authorize('update', SalesOrderOnline::class);
 
         $this->salesOrderOnline->products()->detach($product);
 
