@@ -56,7 +56,7 @@
                 @forelse($selfConsumptions as $selfConsumption)
                     <tr class="hover:bg-gray-50">
                         <x-tables.td-left-main>
-                            <x-slot name="main">{{ optional($selfConsumption->store)->name ?? '-' }}</x-slot>
+                            <x-slot name="main">{{ optional($selfConsumption->store)->nickname ?? '-' }}</x-slot>
                             <x-slot name="sub">
                                 <p>{{ $selfConsumption->date->toFormattedDate() ?? '-' }}</p>
                                 <x-spans.status-valid class="{{ $selfConsumption->status_badge }}">

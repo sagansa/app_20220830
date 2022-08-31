@@ -57,7 +57,7 @@ class UserSalesOrderOnlinesController extends Controller
             ],
             'receipt_no' => ['nullable', 'max:255', 'string'],
             'date' => ['required', 'date'],
-            'status' => ['required', 'in:1,2,3,4'],
+            'status' => ['required', 'in:1,2,3,4,5'],
             'notes' => ['nullable', 'max:255', 'string'],
             'image_sent' => ['image', 'nullable'],
         ]);
