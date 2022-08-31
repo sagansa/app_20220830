@@ -76,15 +76,15 @@
                             @foreach ($selfConsumption->products as $key => $products)
                                 <table>
                                     <tr>
-                                        <td>{{ $products->name }}</td>
-                                        <td>=
-                                            @if ($products->pivot->quantity != null)
+                                        @if ($products->pivot->quantity != null)
+                                            <td>{{ $products->name }}</td>
+                                            <td>=</td>
+                                            <td>
                                                 <x-spans.text-black>{{ $products->pivot->quantity }}
                                                     {{ $products->unit->unit }}
                                                 </x-spans.text-black>
-                                            @endif
-
-                                        </td>
+                                            </td>
+                                        @endif
                                     </tr>
                                 </table>
                             @endforeach
