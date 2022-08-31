@@ -226,7 +226,7 @@ class SalesOrderOnlineController extends Controller
             $file_image = rand() . time() . '.' . $extension;
             $file->move('storage/', $file_image);
             Image::make('storage/' . $file_image)
-                ->resize(400, 400, function ($constraint) {
+                ->resize(800, 800, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })
@@ -242,7 +242,7 @@ class SalesOrderOnlineController extends Controller
             $file_image_sent = rand() . time() . '.' . $extension;
             $file->move('storage/', $file_image_sent);
             Image::make('storage/' . $file_image_sent)
-                ->resize(400, 400, function ($constraint) {
+                ->resize(800, 800, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })
