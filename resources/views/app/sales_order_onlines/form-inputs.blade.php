@@ -75,8 +75,10 @@
             <option value="2" {{ $selected == '2' ? 'selected' : '' }}>valid</option>
         @endrole
         <option value="3" {{ $selected == '3' ? 'selected' : '' }}>sudah dikirim</option>
-        <option value="3" {{ $selected == '5' ? 'selected' : '' }}>siap dikirim</option>
-        <option value="4" {{ $selected == '4' ? 'selected' : '' }}>dikembalikan</option>
+        <option value="5" {{ $selected == '5' ? 'selected' : '' }}>siap dikirim</option>
+        <option value="4" {{ $selected == '4' ? 'selected' : '' }}>perbaiki</option>
+        <option value="6" {{ $selected == '6' ? 'selected' : '' }}>dikembalikan</option>
+
     </x-input.select>
 
     <x-input.image name="image_sent" label="Image Sent">
