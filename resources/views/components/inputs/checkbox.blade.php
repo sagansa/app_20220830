@@ -16,7 +16,7 @@ $checked = !!$checked;
         {{ $attributes->merge(['class' => 'h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500']) }}>
 
     @if ($label ?? null)
-        <label class="pl-2 text-gray-700" for="{{ $id ?? $name }}">
+        <label class="pl-2 text-xs text-gray-700" for="{{ $id ?? $name }}">
             {{ $label }}
         </label>
     @endif
