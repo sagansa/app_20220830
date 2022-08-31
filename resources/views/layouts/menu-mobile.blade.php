@@ -129,6 +129,22 @@
                           Utility Bills
                       </x-sidebars.dropdown-link>
                   @endcan
+                  @can('view-any', App\Models\FuelService::class)
+                      <x-sidebars.dropdown-link href="{{ route('fuel-services.index') }}">
+                          Fuel Services
+                      </x-sidebars.dropdown-link>
+                  @endcan
+                  @can('view-any', App\Models\TransferFuelService::class)
+                      <div class="ml-6">
+                          <x-sidebars.dropdown-link href="{{ route('transfer-fuel-services.index') }}">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-2" fill="none"
+                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                              </svg> Transfer Fuel Services
+                          </x-sidebars.dropdown-link>
+                      </div>
+                  @endcan
+
                   {{-- @can('view-any', App\Models\Receipts::class)
                         <x-sidebars.dropdown-link href="{{ route('all-receipts.index') }}">
                             Receipt Loyverse
@@ -288,6 +304,16 @@
                           Presences
                       </x-sidebars.dropdown-link>
                   @endcan
+                  @can('view-any', App\Models\TransferDailySalary::class)
+                      <div class="ml-6">
+                          <x-sidebars.dropdown-link href="{{ route('transfer-daily-salaries.index') }}">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-2" fill="none"
+                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                              </svg> Transfer Daily Salaries
+                          </x-sidebars.dropdown-link>
+                      </div>
+                  @endcan
                   @can('view-any', App\Models\Sop::class)
                       <x-sidebars.dropdown-link href="{{ route('sops.index') }}">
                           SOP
@@ -298,11 +324,7 @@
                           Monthly Salaries
                       </x-sidebars.dropdown-link>
                   @endcan
-                  @can('view-any', App\Models\TransferDailySalary::class)
-                      <x-sidebars.dropdown-link href="{{ route('transfer-daily-salaries.index') }}">
-                          Transfer Daily Salaries
-                      </x-sidebars.dropdown-link>
-                  @endcan
+
               </x-sidebars.nav-dropdown-mobile>
           @endif
 

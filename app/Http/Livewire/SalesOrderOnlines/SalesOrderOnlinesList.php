@@ -86,7 +86,7 @@ class SalesOrderOnlinesList extends Component
         //     ->join('online_shop_providers', 'online_shop_providers.id', '=', 'sales_order_onlines.online_shop_provider_id')
         //     ->join('delivery_services', 'delivery_services.id', '=', 'sales_order_onlines.delivery_service_id');
 
-        $salesOrderOnlines = SalesOrderOnline::query();
+        $salesOrderOnlines = SalesOrderOnline::query()->latest();
 
         foreach ($this->filters as $filter => $value) {
                 if (!empty($value)) {
