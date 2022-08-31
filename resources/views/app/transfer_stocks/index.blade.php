@@ -55,9 +55,9 @@
                     <tr class="hover:bg-gray-50">
                         <x-tables.td-left-hide>{{ $transferStock->date->toFormattedDate() ?? '-' }}
                         </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>{{ optional($transferStock->from_store)->name ?? '-' }}
+                        <x-tables.td-left-hide>{{ optional($transferStock->from_store)->nickname ?? '-' }}
                         </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>{{ optional($transferStock->to_store)->name ?? '-' }}
+                        <x-tables.td-left-hide>{{ optional($transferStock->to_store)->nickname ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             @foreach ($transferStock->products as $product)

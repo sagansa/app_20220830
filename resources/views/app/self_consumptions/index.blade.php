@@ -78,13 +78,12 @@
                                     <tr>
                                         <td>{{ $products->name }}</td>
                                         <td>=
-                                            @if ($products->pivot->quantity == null)
-                                                <x-spans.text-red>0</x-spans.text-red>
-                                            @else
+                                            @if ($products->pivot->quantity != null)
                                                 <x-spans.text-black>{{ $products->pivot->quantity }}
+                                                    {{ $products->unit->unit }}
                                                 </x-spans.text-black>
                                             @endif
-                                            {{ $products->unit->unit }}
+
                                         </td>
                                     </tr>
                                 </table>
