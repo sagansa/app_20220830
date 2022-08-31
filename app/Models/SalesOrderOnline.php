@@ -18,6 +18,8 @@ class SalesOrderOnline extends Model
         '2' => 'valid',
         '3' => 'sudah dikirim',
         '4' => 'dikembalikan',
+        '5' => 'siap dikirim',
+        '6' => 'dikembalikan',
     ];
 
     protected $fillable = [

@@ -142,7 +142,27 @@ class SalesOrderOnlinesList extends Component
     public function markAllAsDikembalikan()
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
+            'status' => '6',
+            'approved_by_id' => Auth::user()->id,
+        ]);
+
+        $this->reset(['selectedRows']);
+    }
+
+    public function markAllAsPerbaiki()
+    {
+        SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
             'status' => '4',
+            'approved_by_id' => Auth::user()->id,
+        ]);
+
+        $this->reset(['selectedRows']);
+    }
+
+    public function markAllAsSiapDikirim()
+    {
+        SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
+            'status' => '6',
             'approved_by_id' => Auth::user()->id,
         ]);
 

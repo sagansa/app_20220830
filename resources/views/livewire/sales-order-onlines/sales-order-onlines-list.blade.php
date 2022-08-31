@@ -62,11 +62,9 @@
         <x-slot name="action">
             <div class="flex flex-wrap justify-between mt-1">
                 <div class="mt-1 md:w-1/2">
-                    @role('super-admin')
-                        <x-buttons.green wire:click.prevent="markAllAsBelumDikirim">Belum Dikirim</x-buttons.green>
-                        <x-buttons.yellow wire:click.prevent="markAllAsValid">Valid</x-buttons.yellow>
-                        <x-buttons.red wire:click.prevent="markAllAsSudahDikirim">Sudah Dikirim</x-buttons.red>
-                        <x-buttons.gray wire:click.prevent="markAllAsDikembalikan">Dikembalikan</x-buttons.gray>
+                    @role('super-admin|manager')
+                        <x-buttons.green wire:click.prevent="markAllAsValid">Valid</x-buttons.green>
+                        <x-buttons.red wire:click.prevent="markAllAsPerbaiki">Perbaiki</x-buttons.red>
                     @endrole
                 </div>
                 <div class="mt-1 text-right md:w-1/2">
