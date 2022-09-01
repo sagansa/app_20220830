@@ -24,6 +24,7 @@ class SalesOrderOnline extends Model
 
     protected $fillable = [
         'image',
+        'image_sent',
         'store_id',
         'online_shop_provider_id',
         'delivery_service_id',
