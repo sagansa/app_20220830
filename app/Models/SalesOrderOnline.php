@@ -92,4 +92,11 @@ class SalesOrderOnline extends Model
             unlink('storage/' . $this->image);
         }
     }
+
+    public function delete_image_sent()
+    {
+        if ($this->image_sent && file_exists('storage/' . $this->image_sent)) {
+            unlink('storage/' . $this->image_sent);
+        }
+    }
 }
