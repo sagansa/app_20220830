@@ -53,9 +53,14 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             $this->detailRequestsForSelect = DetailRequest::get()
                 ->pluck('id', 'detail_request_name');
 
-        $this->detailRequestsForSelect = DetailRequest::get()
-                ->pluck('id', 'detail_request_name');
+        // $this->detailRequestsForSelect = DetailRequest::get()
+        //         ->pluck('id', 'detail_request_name');
 
+        // $result = MyModel::join('contacts', function ($join) {
+        //     $join->on('users.id', '=', 'contacts.user_id')
+        //          ->where('contacts.user_id', '>', 5);
+        // })
+        // ->get();
 
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
