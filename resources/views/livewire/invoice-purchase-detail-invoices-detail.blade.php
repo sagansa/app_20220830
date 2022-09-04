@@ -39,7 +39,7 @@
                 <x-input.select name="detailInvoice.unit_invoice_id" label="Unit Invoice"
                     wire:model="detailInvoice.unit_invoice_id">
                     <option value="null" disabled>-- select --</option>
-                    @foreach ($unitsForSelect as $value => $label)
+                    @foreach ($unitsForSelect as $label => $value)
                         <option value="{{ $value }}">{{ $label }}</option>
                     @endforeach
                 </x-input.select>

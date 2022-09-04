@@ -54,15 +54,16 @@
                             <x-slot name="main">{{ optional($requestPurchase->store)->nickname ?? '-' }}</x-slot>
                             <x-slot name="sub">{{ $requestPurchase->date->toFormattedDate() ?? '-' }}
                                 @foreach ($requestPurchase->detailRequests as $detailRequest)
-                                    {{ $detailRequest->product->name }} - {{ $detailRequest->quantity_plan }}
-                                    {{ $detailRequest->product->unit->unit }} -
-                                    @if ($detailRequest->status == 1)
-                                        <x-spans.yellow>belum disetujui</x-spans.yellow>
-                                    @elseif($detailRequest->status == 2)
-                                        <x-spans.green>disetujui</x-spans.green>
-                                    @elseif($detailRequest->status == 3)
-                                        <x-spans.red>tidak disetujui</x-spans.red>
-                                    @endif
+                                    <p> {{ $detailRequest->product->name }} - {{ $detailRequest->quantity_plan }}
+                                        {{ $detailRequest->product->unit->unit }} -
+                                        @if ($detailRequest->status == 1)
+                                            <x-spans.yellow>belum disetujui</x-spans.yellow>
+                                        @elseif($detailRequest->status == 2)
+                                            <x-spans.green>disetujui</x-spans.green>
+                                        @elseif($detailRequest->status == 3)
+                                            <x-spans.red>tidak disetujui</x-spans.red>
+                                        @endif
+                                    </p>
                                 @endforeach
                             </x-slot>
                         </x-tables.td-left-main>
