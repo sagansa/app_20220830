@@ -49,6 +49,7 @@ class SupplierInvoicePurchasesController extends Controller
             'payment_status' => ['required', 'in:1,2,3,4'],
             'order_status' => ['required', 'in:1,2,3'],
             'notes' => ['required', 'max:255', 'string'],
+            'created_by_id' => ['nullable', 'exists:users,id'],
         ]);
 
         if ($request->hasFile('image')) {

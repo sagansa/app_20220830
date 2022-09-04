@@ -68,7 +68,6 @@ class InvoicePurchaseControllerTest extends TestCase
 
         $response = $this->post(route('invoice-purchases.store'), $data);
 
-        unset($data['created_by_id']);
         unset($data['approved_id']);
 
         $this->assertDatabaseHas('invoice_purchases', $data);
@@ -146,7 +145,6 @@ class InvoicePurchaseControllerTest extends TestCase
             $data
         );
 
-        unset($data['created_by_id']);
         unset($data['approved_id']);
 
         $data['id'] = $invoicePurchase->id;

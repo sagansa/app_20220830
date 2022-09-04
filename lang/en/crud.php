@@ -1459,6 +1459,7 @@ return [
             'payment_status' => 'Payment Status',
             'order_status' => 'Order Status',
             'notes' => 'Notes',
+            'created_by_id' => 'Created By',
         ],
     ],
 

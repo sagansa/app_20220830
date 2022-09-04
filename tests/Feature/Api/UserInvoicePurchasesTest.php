@@ -63,7 +63,6 @@ class UserInvoicePurchasesTest extends TestCase
             $data
         );
 
-        unset($data['created_by_id']);
         unset($data['approved_id']);
 
         $this->assertDatabaseHas('invoice_purchases', $data);
