@@ -60,8 +60,8 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             ->where('invoice_purchases.store_id', '=', 'request_purchases.store_id')
             ->where('products.payment_type_id', '=', '2')
             ->where('status', '=', '2')
-            ->get()
-            ->pluck('id', 'status');
+            ->get();
+            // ->pluck('id', 'status');
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
