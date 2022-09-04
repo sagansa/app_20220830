@@ -15,10 +15,9 @@ return new class extends Migration {
         Schema::create('purchase_order_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('purchase_order_id');
-            $table->bigInteger('quantity_product');
+            $table->decimal('quantity_product');
             $table->unsignedBigInteger('unit_id');
-            $table->string('quantity_invoice');
+            $table->decimal('quantity_invoice');
             $table->bigInteger('subtotal_invoice');
             $table->tinyInteger('status');
 

@@ -65,6 +65,11 @@ class Production extends Model
         return $this->hasMany(ProductionSupportFrom::class);
     }
 
+    public function productionMainForms()
+    {
+        return $this->hasMany(ProductionMainForm::class);
+    }
+
     public function delete_image()
     {
         if ($this->image && file_exists('storage/' . $this->image)) {

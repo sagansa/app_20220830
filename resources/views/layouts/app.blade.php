@@ -59,7 +59,7 @@
         
         @if (session()->has('success')) 
         <script>
-            const notyf = new Notyf({dismissible: true})
+            var notyf = new Notyf({dismissible: true})
             notyf.success('{{ session('success') }}')
         </script> 
         @endif

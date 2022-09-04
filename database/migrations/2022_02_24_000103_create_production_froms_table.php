@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create('production_froms', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('purchase_order_product_id');
+            $table->unsignedBigInteger('purchase_order_product_id')->nullable();
             $table->unsignedBigInteger('production_id');
 
             $table->timestamps();

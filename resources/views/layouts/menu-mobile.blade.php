@@ -56,15 +56,8 @@
 
           @if (Auth::user()->can('view-any', App\Models\Customer::class) ||
               Auth::user()->can('view-any', App\Models\SalesOrderEmployee::class) ||
-              Auth::user()->can('view-any', App\Models\SalesOrderOnline::class) ||
-              Auth::user()->can('view-any', App\Models\Supplier::class) ||
-              Auth::user()->can('view-any', App\Models\PurchaseOrder::class) ||
-              Auth::user()->can('view-any', App\Models\PurchaseReceipt::class) ||
-              Auth::user()->can('view-any', App\Models\ClosingStore::class) ||
-              Auth::user()->can('view-any', App\Models\ClosingCourier::class) ||
-              Auth::user()->can('view-any', App\Models\Refund::class) ||
-              Auth::user()->can('view-any', App\Models\Receipts::class))
-              <x-sidebars.nav-dropdown-mobile control="transactions" title="Transactions">
+              Auth::user()->can('view-any', App\Models\SalesOrderOnline::class))
+              <x-sidebars.nav-dropdown-mobile control="sales-transactions" title="Sales Transactions">
                   <x-slot name="content">
                       <svg x-data="{ isOn: false }" @click="isOn = !isOn" :aria-checked="isOn"
                           :class="{ 'text-gray-500': isOn, 'text-gray-400 group-hover:text-gray-500': !isOn }"
@@ -89,6 +82,47 @@
                           Sales Order Onlines
                       </x-sidebars.dropdown-link>
                   @endcan
+
+                  {{-- @can('view-any', App\Models\Receipts::class)
+                        <x-sidebars.dropdown-link href="{{ route('all-receipts.index') }}">
+                            Receipt Loyverse
+                        </x-sidebars.dropdown-link>
+                        @endcan --}}
+              </x-sidebars.nav-dropdown-mobile>
+          @endif
+
+          @if (Auth::user()->can('view-any', App\Models\Supplier::class) ||
+              Auth::user()->can('view-any', App\Models\PurchaseOrder::class) ||
+              Auth::user()->can('view-any', App\Models\PurchaseReceipt::class) ||
+              Auth::user()->can('view-any', App\Models\ClosingStore::class) ||
+              Auth::user()->can('view-any', App\Models\ClosingCourier::class) ||
+              Auth::user()->can('view-any', App\Models\Refund::class) ||
+              Auth::user()->can('view-any', App\Models\Receipts::class))
+              <x-sidebars.nav-dropdown-mobile control="purchase-transactions" title="Purchase Transactions">
+                  <x-slot name="content">
+                      <svg x-data="{ isOn: false }" @click="isOn = !isOn" :aria-checked="isOn"
+                          :class="{ 'text-gray-500': isOn, 'text-gray-400 group-hover:text-gray-500': !isOn }"
+                          xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                  </x-slot>
+                  {{-- @can('view-any', App\Models\Customer::class)
+                      <x-sidebars.dropdown-link href="{{ route('customers.index') }}">
+                          Customers
+                      </x-sidebars.dropdown-link>
+                  @endcan
+                  @can('view-any', App\Models\SalesOrderEmployee::class)
+                      <x-sidebars.dropdown-link href="{{ route('sales-order-employees.index') }}">
+                          Sales Order Employees
+                      </x-sidebars.dropdown-link>
+                  @endcan
+                  @can('view-any', App\Models\SalesOrderOnline::class)
+                      <x-sidebars.dropdown-link href="{{ route('sales-order-onlines.index') }}">
+                          Sales Order Onlines
+                      </x-sidebars.dropdown-link>
+                  @endcan --}}
                   @can('view-any', App\Models\Supplier::class)
                       <x-sidebars.dropdown-link href="{{ route('suppliers.index') }}">
                           Suppliers
@@ -134,7 +168,7 @@
                           Fuel Services
                       </x-sidebars.dropdown-link>
                   @endcan
-                  @can('view-any', App\Models\TransferFuelService::class)
+                  {{-- @can('view-any', App\Models\TransferFuelService::class)
                       <div class="ml-6">
                           <x-sidebars.dropdown-link href="{{ route('transfer-fuel-services.index') }}">
                               <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-2" fill="none"
@@ -143,6 +177,22 @@
                               </svg> Transfer Fuel Services
                           </x-sidebars.dropdown-link>
                       </div>
+                  @endcan --}}
+
+                  @can('view-any', App\Models\RequestPurchase::class)
+                      <x-sidebars.dropdown-link href="{{ route('request-purchases.index') }}">
+                          Request Purchases
+                      </x-sidebars.dropdown-link>
+                  @endcan
+                  @can('view-any', App\Models\InvoicePurchase::class)
+                      <x-sidebars.dropdown-link href="{{ route('invoice-purchases.index') }}">
+                          Invoice Purchases
+                      </x-sidebars.dropdown-link>
+                  @endcan
+                  @can('view-any', App\Models\PaymentReceipt::class)
+                      <x-sidebars.dropdown-link href="{{ route('payment-receipts.index') }}">
+                          Payment Receipts
+                      </x-sidebars.dropdown-link>
                   @endcan
 
                   {{-- @can('view-any', App\Models\Receipts::class)

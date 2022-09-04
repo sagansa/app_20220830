@@ -25,17 +25,18 @@ class SupplierStoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255', 'string'],
-            'no_telp' => ['nullable', 'max:255', 'string'],
+            'no_telp' => ['nullable', 'string'],
             'address' => ['nullable', 'max:255', 'string'],
             'province_id' => ['nullable', 'exists:provinces,id'],
             'regency_id' => ['nullable', 'exists:regencies,id'],
             'village_id' => ['nullable', 'exists:villages,id'],
             'district_id' => ['nullable', 'exists:districts,id'],
-            'codepos' => ['nullable', 'numeric'],
+            'codepos' => ['nullable', 'numeric', 'digits:5'],
             'bank_id' => ['nullable', 'exists:banks,id'],
             'bank_account_name' => ['nullable', 'max:255', 'string'],
-            'bank_account_no' => ['nullable', 'max:255', 'string'],
-            'status' => ['required', 'max:255'],
+            'bank_account_no' => ['nullable', 'string', 'numeric'],
+            'status' => ['required', 'in:1,2,3,4'],
+            'image' => ['image', 'nullable'],
         ];
     }
 }

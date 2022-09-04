@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\RefundController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\EProductController;
 use App\Http\Controllers\StockCardController;
 use App\Http\Controllers\ShiftStoreController;
 use App\Http\Controllers\ProductionController;
@@ -28,7 +30,6 @@ use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\UtilityBillController;
 use App\Http\Controllers\FuelServiceController;
 use App\Http\Controllers\ProductGroupController;
-use App\Http\Controllers\RequestStockController;
 use App\Http\Controllers\CleanAndNeatController;
 use App\Http\Controllers\OutInProductController;
 use App\Http\Controllers\UtilityUsageController;
@@ -45,12 +46,15 @@ use App\Http\Controllers\FranchiseGroupController;
 use App\Http\Controllers\OnlineCategoryController;
 use App\Http\Controllers\PermitEmployeeController;
 use App\Http\Controllers\EmployeeStatusController;
+use App\Http\Controllers\PaymentReceiptController;
 use App\Http\Controllers\ReceiptLoyverseController;
 use App\Http\Controllers\UtilityProviderController;
 use App\Http\Controllers\SelfConsumptionController;
 use App\Http\Controllers\PurchaseReceiptController;
 use App\Http\Controllers\AccountCashlessController;
 use App\Http\Controllers\DeliveryServiceController;
+use App\Http\Controllers\RequestPurchaseController;
+use App\Http\Controllers\InvoicePurchaseController;
 use App\Http\Controllers\CashlessProviderController;
 use App\Http\Controllers\SalesOrderOnlineController;
 use App\Http\Controllers\OnlineShopProviderController;
@@ -59,7 +63,6 @@ use App\Http\Controllers\SalesOrderEmployeeController;
 use App\Http\Controllers\VehicleCertificateController;
 use App\Http\Controllers\MovementAssetResultController;
 use App\Http\Controllers\TransferDailySalaryController;
-use App\Http\Controllers\TransferFuelServiceController;
 use App\Http\Controllers\ReceiptByItemLoyverseController;
 
 /*
@@ -131,7 +134,6 @@ Route::prefix('/')
         Route::resource('products', ProductController::class);
         Route::resource('banks', BankController::class);
         Route::resource('productions', ProductionController::class);
-        Route::resource('request-stocks', RequestStockController::class);
         Route::resource('purchase-orders', PurchaseOrderController::class);
         Route::resource('utilities', UtilityController::class);
         Route::resource('units', UnitController::class);
@@ -172,8 +174,9 @@ Route::prefix('/')
         Route::resource('delivery-services', DeliveryServiceController::class);
         Route::resource('utility-bills', UtilityBillController::class);
         Route::resource('fuel-services', FuelServiceController::class);
-        Route::resource(
-            'transfer-fuel-services',
-            TransferFuelServiceController::class
-        );
+        Route::resource('e-products', EProductController::class);
+        Route::resource('carts', CartController::class);
+        Route::resource('payment-receipts', PaymentReceiptController::class);
+        Route::resource('request-purchases', RequestPurchaseController::class);
+        Route::resource('invoice-purchases', InvoicePurchaseController::class);
     });

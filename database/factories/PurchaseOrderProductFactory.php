@@ -23,12 +23,11 @@ class PurchaseOrderProductFactory extends Factory
     public function definition()
     {
         return [
-            'quantity_product' => $this->faker->randomNumber,
-            'quantity_invoice' => $this->faker->randomNumber,
+            'quantity_product' => $this->faker->randomNumber(1),
+            'quantity_invoice' => $this->faker->randomNumber(1),
             'subtotal_invoice' => $this->faker->randomNumber,
             'status' => $this->faker->numberBetween(1, 3),
             'product_id' => \App\Models\Product::factory(),
-            'purchase_order_id' => \App\Models\PurchaseOrder::factory(),
             'unit_id' => \App\Models\Unit::factory(),
         ];
     }

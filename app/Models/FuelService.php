@@ -63,9 +63,9 @@ class FuelService extends Model
         return $this->belongsTo(User::class, 'approved_by_id');
     }
 
-    public function transferFuelServices()
+    public function paymentReceipts()
     {
-        return $this->belongsToMany(TransferFuelService::class);
+        return $this->belongsToMany(PaymentReceipt::class);
     }
 
     public function delete_image()
@@ -73,5 +73,10 @@ class FuelService extends Model
         if ($this->image && file_exists('storage/' . $this->image)) {
             unlink('storage/' . $this->image);
         }
+    }
+
+    public function getFuelServiceNameAttribute()
+    {
+        return $this->vehicle->no_register . '-' . $this->amount;
     }
 }

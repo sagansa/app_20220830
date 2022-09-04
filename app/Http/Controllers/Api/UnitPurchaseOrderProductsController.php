@@ -41,10 +41,10 @@ class UnitPurchaseOrderProductsController extends Controller
 
         $validated = $request->validate([
             'product_id' => ['required', 'exists:products,id'],
-            'quantity_product' => ['required', 'numeric', 'gt:0'],
-            'quantity_invoice' => ['required', 'numeric', 'gt:0'],
-            'subtotal_invoice' => ['required', 'numeric', 'gt:0'],
-            'status' => ['required'],
+            'quantity_product' => ['required', 'numeric'],
+            'quantity_invoice' => ['required', 'numeric'],
+            'subtotal_invoice' => ['required', 'max:255'],
+            'status' => ['required', 'max:255'],
         ]);
 
         $purchaseOrderProduct = $unit

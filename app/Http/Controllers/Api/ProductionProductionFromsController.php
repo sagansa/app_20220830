@@ -41,7 +41,7 @@ class ProductionProductionFromsController extends Controller
 
         $validated = $request->validate([
             'purchase_order_product_id' => [
-                'required',
+                'nullable',
                 'exists:purchase_order_products,id',
             ],
         ]);

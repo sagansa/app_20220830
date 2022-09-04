@@ -39,6 +39,11 @@ class Unit extends Model
         return $this->hasMany(PurchaseOrderProduct::class);
     }
 
+    public function detailInvoices()
+    {
+        return $this->hasMany(DetailInvoice::class, 'unit_invoice_id');
+    }
+
     public function delete_image()
     {
         if ($this->image && file_exists('storage/' . $this->image)) {

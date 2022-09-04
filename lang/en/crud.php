@@ -148,6 +148,7 @@ return [
             'bank_account_name' => 'Bank Account Name',
             'bank_account_no' => 'Bank Account No',
             'status' => 'Status',
+            'image' => 'Image',
         ],
     ],
 
@@ -490,23 +491,6 @@ return [
         ],
     ],
 
-    'purchase_order_products' => [
-        'name' => 'Purchase Order Products',
-        'index_title' => 'Purchase Order Products List',
-        'new_title' => 'New Purchase Order Product',
-        'create_title' => 'Create Purchase Order Product',
-        'edit_title' => 'Edit Purchase Order Product',
-        'show_title' => 'Show Purchase Order Product',
-        'inputs' => [
-            'product_id' => 'Product',
-            'quantity_product' => 'Quantity Product',
-            'unit_id' => 'Unit Invoice',
-            'quantity_invoice' => 'Quantity Invoice',
-            'subtotal_invoice' => 'Subtotal Invoice',
-            'status' => 'Status',
-        ],
-    ],
-
     'productions' => [
         'name' => 'Productions',
         'index_title' => 'Productions List',
@@ -521,23 +505,6 @@ return [
             'status' => 'Status',
             'created_by_id' => 'Created By',
             'approved_by_id' => 'Updated By',
-        ],
-    ],
-
-    'request_stocks' => [
-        'name' => 'Request Stocks',
-        'index_title' => 'Request Stocks List',
-        'new_title' => 'New Request Stock',
-        'create_title' => 'Create Request Stock',
-        'edit_title' => 'Edit Request Stock',
-        'show_title' => 'Show Request Stock',
-        'inputs' => [
-            'date' => 'Date',
-            'store_id' => 'Store',
-            'status' => 'Status',
-            'notes' => 'Notes',
-            'created_by_id' => 'Created By',
-            'approved_by_id' => 'Approved By',
         ],
     ],
 
@@ -1128,7 +1095,7 @@ return [
         'edit_title' => 'Edit ProductionFrom',
         'show_title' => 'Show ProductionFrom',
         'inputs' => [
-            'purchase_order_product_id' => 'Purchase Order',
+            'purchase_order_product_id' => 'Purchase Order Product',
         ],
     ],
 
@@ -1180,18 +1147,6 @@ return [
         'inputs' => [
             'image' => 'Image',
             'nominal_transfer' => 'Nominal Transfer',
-        ],
-    ],
-
-    'closing_store_purchase_orders' => [
-        'name' => 'ClosingStore Purchase Orders',
-        'index_title' => ' List',
-        'new_title' => 'New Closing store purchase order',
-        'create_title' => 'Create closing_store_purchase_order',
-        'edit_title' => 'Edit closing_store_purchase_order',
-        'show_title' => 'Show closing_store_purchase_order',
-        'inputs' => [
-            'purchase_order_id' => 'Purchase Order',
         ],
     ],
 
@@ -1385,28 +1340,177 @@ return [
         ],
     ],
 
-    'transfer_fuel_services' => [
-        'name' => 'Transfer Fuel Services',
-        'index_title' => 'Transfer Fuel Services List',
-        'new_title' => 'New Transfer Fuel Service',
-        'create_title' => 'Create Transfer Fuel Service',
-        'edit_title' => 'Edit Transfer Fuel Service',
-        'show_title' => 'Show Transfer Fuel Service',
+    'e_products' => [
+        'name' => 'E Products',
+        'index_title' => 'EProducts List',
+        'new_title' => 'New E product',
+        'create_title' => 'Create EProduct',
+        'edit_title' => 'Edit EProduct',
+        'show_title' => 'Show EProduct',
         'inputs' => [
             'image' => 'Image',
-            'amount' => 'Amount',
+            'product_id' => 'Product',
+            'online_category_id' => 'Online Category',
+            'store_id' => 'Store',
+            'quantity_stock' => 'Quantity Stock',
+            'price' => 'Price',
+            'status' => 'Status',
         ],
     ],
 
-    'transfer_fuel_service' => [
-        'name' => 'Transfer Fuel Service',
+    'carts' => [
+        'name' => 'Carts',
+        'index_title' => 'Carts List',
+        'new_title' => 'New Cart',
+        'create_title' => 'Create Cart',
+        'edit_title' => 'Edit Cart',
+        'show_title' => 'Show Cart',
+        'inputs' => [
+            'e_product_id' => 'Product',
+            'quantity' => 'Quantity',
+            'user_id' => 'User',
+        ],
+    ],
+
+    'payment_receipts' => [
+        'name' => 'Payment Receipts',
+        'index_title' => 'Payment Receipts List',
+        'new_title' => 'New Payment Receipt',
+        'create_title' => 'Create Payment Receipt',
+        'edit_title' => 'Edit Payment Receipt',
+        'show_title' => 'Show Payment Receipt',
+        'inputs' => [
+            'image' => 'Image',
+            'amount' => 'Amount',
+            'payment_for' => 'Payment For',
+        ],
+    ],
+
+    'payment_receipt_presences' => [
+        'name' => 'Payment Receipt Presences',
         'index_title' => ' List',
-        'new_title' => 'New Transfer Fuel Service',
-        'create_title' => 'Create Transfer Fuel Service',
-        'edit_title' => 'Edit Transfer Fuel Service',
-        'show_title' => 'Show Transfer Fuel Service',
+        'new_title' => 'New Payment Receipt Presence',
+        'create_title' => 'Create Payment Receipt Presence',
+        'edit_title' => 'Edit Payment Receipt Presence',
+        'show_title' => 'Show Payment Receipt Presence',
+        'inputs' => [
+            'presence_id' => 'Presence',
+        ],
+    ],
+
+    'payment_receipt_invoice_purchases' => [
+        'name' => 'Payment Receipt Invoice Purchases',
+        'index_title' => ' Payment Receipt Invoice Purchases List',
+        'new_title' => 'New Payment Receipt Invoice Purchase',
+        'create_title' => 'Create Payment Receipt Invoice Purchase',
+        'edit_title' => 'Edit Payment Receipt Invoice Purchase',
+        'show_title' => 'Show Payment Receipt Invoice Purchase',
+        'inputs' => [
+            'invoice_purchase_id' => 'Invoice Purchase',
+        ],
+    ],
+
+    'request_purchases' => [
+        'name' => 'Request Purchases',
+        'index_title' => 'Request Purchases List',
+        'new_title' => 'New Request Purchase',
+        'create_title' => 'Create Request Purchase',
+        'edit_title' => 'Edit Request Purchase',
+        'show_title' => 'Show Request Purchase',
+        'inputs' => [
+            'store_id' => 'Store',
+            'date' => 'Date',
+            'status' => 'Status',
+            'user_id' => 'User',
+        ],
+    ],
+
+    'request_purchase_detail_requests' => [
+        'name' => 'Request Purchase Detail Requests',
+        'index_title' => 'Detail Requests List',
+        'new_title' => 'New Detail Request',
+        'create_title' => 'Create Detail Request',
+        'edit_title' => 'Edit Detail Request',
+        'show_title' => 'Show Detail Request',
+        'inputs' => [
+            'product_id' => 'Product',
+            'quantity_plan' => 'Quantity Plan',
+            'status' => 'Status',
+            'notes' => 'Notes',
+            'status' => 'Status',
+        ],
+    ],
+
+    'invoice_purchases' => [
+        'name' => 'Invoice Purchases',
+        'index_title' => 'Invoice Purchases List',
+        'new_title' => 'New Invoice Purchase',
+        'create_title' => 'Create Invoice Purchase',
+        'edit_title' => 'Edit Invoice Purchase',
+        'show_title' => 'Show Invoice Purchase',
+        'inputs' => [
+            'image' => 'Image',
+            'payment_type_id' => 'Payment Type',
+            'store_id' => 'Store',
+            'supplier_id' => 'Supplier',
+            'date' => 'Date',
+            'payment_status' => 'Payment Status',
+            'order_status' => 'Order Status',
+            'created_by_id' => 'Created By',
+            'approved_id' => 'Approved By',
+        ],
+    ],
+
+    'invoice_purchase_detail_invoices' => [
+        'name' => 'Invoice Purchase Detail Invoices',
+        'index_title' => 'Detail Invoices List',
+        'new_title' => 'New Detail Invoice',
+        'create_title' => 'Create Detail Invoice',
+        'edit_title' => 'Edit Detail Invoice',
+        'show_title' => 'Show Detail Invoice',
+        'inputs' => [
+            'detail_request_id' => 'Detail Request',
+            'quantity_product' => 'Quantity Product',
+            'quantity_invoice' => 'Quantity Invoice',
+            'unit_invoice_id' => 'Unit Invoice',
+            'subtotal_invoice' => 'Subtotal Invoice',
+            'status' => 'Status',
+        ],
+    ],
+
+    'payment_receipt_fuel_services' => [
+        'name' => 'Payment Receipt Fuel Services',
+        'index_title' => ' List',
+        'new_title' => 'New Fuel Service Payment Receipt',
+        'create_title' => 'Create Payment Receipt Fuel Service',
+        'edit_title' => 'Edit Payment Receipt Fuel Service',
+        'show_title' => 'Show Payment Receipt Fuel Service',
         'inputs' => [
             'fuel_service_id' => 'Fuel Service',
+        ],
+    ],
+
+    'closing_store_purchase_orders' => [
+        'name' => 'Closing Store Purchase Orders',
+        'index_title' => ' List',
+        'new_title' => 'New Closing store purchase order',
+        'create_title' => 'Create closing_store_purchase_order',
+        'edit_title' => 'Edit closing_store_purchase_order',
+        'show_title' => 'Show closing_store_purchase_order',
+        'inputs' => [
+            'purchase_order_id' => 'Purchase Order',
+        ],
+    ],
+
+    'closing_store_invoice_purchases' => [
+        'name' => 'Closing Store Invoice Purchases',
+        'index_title' => ' List',
+        'new_title' => 'New Closing Store Invoice Purchase',
+        'create_title' => 'Create Closing Store Invoice Purchase',
+        'edit_title' => 'Edit Closing Store Invoice Purchase',
+        'show_title' => 'Show Closing Store Invoice Purchase',
+        'inputs' => [
+            'invoice_purchase_id' => 'Invoice Purchase',
         ],
     ],
 

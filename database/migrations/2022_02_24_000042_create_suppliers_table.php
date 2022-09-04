@@ -27,6 +27,7 @@ return new class extends Migration {
             $table->string('bank_account_no')->nullable();
             $table->tinyInteger('status');
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('image')->nullable();
 
             $table->timestamps();
         });

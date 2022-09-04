@@ -153,11 +153,6 @@
                         Productions
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\RequestStock::class)
-                        <x-dropdown-link href="{{ route('request-stocks.index') }}">
-                        Request Stocks
-                        </x-dropdown-link>
-                        @endcan
                         @can('view-any', App\Models\PurchaseOrder::class)
                         <x-dropdown-link href="{{ route('purchase-orders.index') }}">
                         Purchase Orders
@@ -298,9 +293,29 @@
                         Fuel Services
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\TransferFuelService::class)
-                        <x-dropdown-link href="{{ route('transfer-fuel-services.index') }}">
-                        Transfer Fuel Services
+                        @can('view-any', App\Models\EProduct::class)
+                        <x-dropdown-link href="{{ route('e-products.index') }}">
+                        E Products
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\Cart::class)
+                        <x-dropdown-link href="{{ route('carts.index') }}">
+                        Carts
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\PaymentReceipt::class)
+                        <x-dropdown-link href="{{ route('payment-receipts.index') }}">
+                        Payment Receipts
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\RequestPurchase::class)
+                        <x-dropdown-link href="{{ route('request-purchases.index') }}">
+                        Request Purchases
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\InvoicePurchase::class)
+                        <x-dropdown-link href="{{ route('invoice-purchases.index') }}">
+                        Invoice Purchases
                         </x-dropdown-link>
                         @endcan
                 </x-nav-dropdown>
@@ -580,11 +595,6 @@
                 Productions
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\RequestStock::class)
-                <x-jet-responsive-nav-link href="{{ route('request-stocks.index') }}">
-                Request Stocks
-                </x-jet-responsive-nav-link>
-                @endcan
                 @can('view-any', App\Models\PurchaseOrder::class)
                 <x-jet-responsive-nav-link href="{{ route('purchase-orders.index') }}">
                 Purchase Orders
@@ -725,9 +735,29 @@
                 Fuel Services
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\TransferFuelService::class)
-                <x-jet-responsive-nav-link href="{{ route('transfer-fuel-services.index') }}">
-                Transfer Fuel Services
+                @can('view-any', App\Models\EProduct::class)
+                <x-jet-responsive-nav-link href="{{ route('e-products.index') }}">
+                E Products
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\Cart::class)
+                <x-jet-responsive-nav-link href="{{ route('carts.index') }}">
+                Carts
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\PaymentReceipt::class)
+                <x-jet-responsive-nav-link href="{{ route('payment-receipts.index') }}">
+                Payment Receipts
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\RequestPurchase::class)
+                <x-jet-responsive-nav-link href="{{ route('request-purchases.index') }}">
+                Request Purchases
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\InvoicePurchase::class)
+                <x-jet-responsive-nav-link href="{{ route('invoice-purchases.index') }}">
+                Invoice Purchases
                 </x-jet-responsive-nav-link>
                 @endcan
 

@@ -33,6 +33,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update banks']);
         Permission::create(['name' => 'delete banks']);
 
+        Permission::create(['name' => 'list carts']);
+        Permission::create(['name' => 'view carts']);
+        Permission::create(['name' => 'create carts']);
+        Permission::create(['name' => 'update carts']);
+        Permission::create(['name' => 'delete carts']);
+
         Permission::create(['name' => 'list cashlesses']);
         Permission::create(['name' => 'view cashlesses']);
         Permission::create(['name' => 'create cashlesses']);
@@ -93,6 +99,18 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update deliveryservices']);
         Permission::create(['name' => 'delete deliveryservices']);
 
+        Permission::create(['name' => 'list detailinvoices']);
+        Permission::create(['name' => 'view detailinvoices']);
+        Permission::create(['name' => 'create detailinvoices']);
+        Permission::create(['name' => 'update detailinvoices']);
+        Permission::create(['name' => 'delete detailinvoices']);
+
+        Permission::create(['name' => 'list detailrequests']);
+        Permission::create(['name' => 'view detailrequests']);
+        Permission::create(['name' => 'create detailrequests']);
+        Permission::create(['name' => 'update detailrequests']);
+        Permission::create(['name' => 'delete detailrequests']);
+
         Permission::create(['name' => 'list districts']);
         Permission::create(['name' => 'view districts']);
         Permission::create(['name' => 'create districts']);
@@ -110,6 +128,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create employeestatuses']);
         Permission::create(['name' => 'update employeestatuses']);
         Permission::create(['name' => 'delete employeestatuses']);
+
+        Permission::create(['name' => 'list eproducts']);
+        Permission::create(['name' => 'view eproducts']);
+        Permission::create(['name' => 'create eproducts']);
+        Permission::create(['name' => 'update eproducts']);
+        Permission::create(['name' => 'delete eproducts']);
 
         Permission::create(['name' => 'list franchisegroups']);
         Permission::create(['name' => 'view franchisegroups']);
@@ -134,6 +158,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create hygieneofrooms']);
         Permission::create(['name' => 'update hygieneofrooms']);
         Permission::create(['name' => 'delete hygieneofrooms']);
+
+        Permission::create(['name' => 'list invoicepurchases']);
+        Permission::create(['name' => 'view invoicepurchases']);
+        Permission::create(['name' => 'create invoicepurchases']);
+        Permission::create(['name' => 'update invoicepurchases']);
+        Permission::create(['name' => 'delete invoicepurchases']);
 
         Permission::create(['name' => 'list materialgroups']);
         Permission::create(['name' => 'view materialgroups']);
@@ -183,6 +213,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update outinproducts']);
         Permission::create(['name' => 'delete outinproducts']);
 
+        Permission::create(['name' => 'list paymentreceipts']);
+        Permission::create(['name' => 'view paymentreceipts']);
+        Permission::create(['name' => 'create paymentreceipts']);
+        Permission::create(['name' => 'update paymentreceipts']);
+        Permission::create(['name' => 'delete paymentreceipts']);
+
         Permission::create(['name' => 'list paymenttypes']);
         Permission::create(['name' => 'view paymenttypes']);
         Permission::create(['name' => 'create paymenttypes']);
@@ -224,6 +260,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create productionfroms']);
         Permission::create(['name' => 'update productionfroms']);
         Permission::create(['name' => 'delete productionfroms']);
+
+        Permission::create(['name' => 'list productionmainforms']);
+        Permission::create(['name' => 'view productionmainforms']);
+        Permission::create(['name' => 'create productionmainforms']);
+        Permission::create(['name' => 'update productionmainforms']);
+        Permission::create(['name' => 'delete productionmainforms']);
 
         Permission::create(['name' => 'list productionsupportfroms']);
         Permission::create(['name' => 'view productionsupportfroms']);
@@ -291,11 +333,11 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update remainingstocks']);
         Permission::create(['name' => 'delete remainingstocks']);
 
-        Permission::create(['name' => 'list requeststocks']);
-        Permission::create(['name' => 'view requeststocks']);
-        Permission::create(['name' => 'create requeststocks']);
-        Permission::create(['name' => 'update requeststocks']);
-        Permission::create(['name' => 'delete requeststocks']);
+        Permission::create(['name' => 'list requestpurchases']);
+        Permission::create(['name' => 'view requestpurchases']);
+        Permission::create(['name' => 'create requestpurchases']);
+        Permission::create(['name' => 'update requestpurchases']);
+        Permission::create(['name' => 'delete requestpurchases']);
 
         Permission::create(['name' => 'list restaurantcategories']);
         Permission::create(['name' => 'view restaurantcategories']);
@@ -380,12 +422,6 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create transferdailysalaries']);
         Permission::create(['name' => 'update transferdailysalaries']);
         Permission::create(['name' => 'delete transferdailysalaries']);
-
-        Permission::create(['name' => 'list transferfuelservices']);
-        Permission::create(['name' => 'view transferfuelservices']);
-        Permission::create(['name' => 'create transferfuelservices']);
-        Permission::create(['name' => 'update transferfuelservices']);
-        Permission::create(['name' => 'delete transferfuelservices']);
 
         Permission::create(['name' => 'list transferstocks']);
         Permission::create(['name' => 'view transferstocks']);

@@ -108,6 +108,21 @@
                         <x-shows.dd>{{ $supplier->status ?? '-' }}</x-shows.dd>
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
+                        <x-shows.dt
+                            >@lang('crud.suppliers.inputs.image')</x-shows.dt
+                        >
+                        @if ($supplier->image != null)
+                        <x-partials.thumbnail src="" size="150" />
+                        @else
+                        <a href="{{ \Storage::url($supplier->image) }}">
+                            <x-partials.thumbnail
+                                src="{{ $supplier->image ? \Storage::url($supplier->image) : '' }}"
+                                size="150"
+                            />
+                        </a>
+                        @endif
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
                         <x-shows.dt>Created Date</x-shows.dt>
                         <x-shows.dd
                             >{{ $supplier->created_at ?? '-' }}</x-shows.dd

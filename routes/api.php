@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\BankController;
 use App\Http\Controllers\Api\UnitController;
 use App\Http\Controllers\Api\RoomController;
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\StoreController;
@@ -21,6 +22,8 @@ use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\PresenceController;
 use App\Http\Controllers\Api\CashlessController;
+use App\Http\Controllers\Api\EProductController;
+use App\Http\Controllers\Api\UserCartsController;
 use App\Http\Controllers\Api\StockCardController;
 use App\Http\Controllers\Api\UserStoresController;
 use App\Http\Controllers\Api\ShiftStoreController;
@@ -36,7 +39,6 @@ use App\Http\Controllers\Api\UserVehiclesController;
 use App\Http\Controllers\Api\UserProductsController;
 use App\Http\Controllers\Api\UserHygienesController;
 use App\Http\Controllers\Api\ProductGroupController;
-use App\Http\Controllers\Api\RequestStockController;
 use App\Http\Controllers\Api\UnitProductsController;
 use App\Http\Controllers\Api\CleanAndNeatController;
 use App\Http\Controllers\Api\OutInProductController;
@@ -60,8 +62,12 @@ use App\Http\Controllers\Api\MovementAssetController;
 use App\Http\Controllers\Api\HygieneOfRoomController;
 use App\Http\Controllers\Api\AdminCashlessController;
 use App\Http\Controllers\Api\StoreCashlessController;
+use App\Http\Controllers\Api\EProductCartsController;
+use App\Http\Controllers\Api\DetailRequestController;
+use App\Http\Controllers\Api\DetailInvoiceController;
 use App\Http\Controllers\Api\UserStockCardsController;
 use App\Http\Controllers\Api\StoreUtilitiesController;
+use App\Http\Controllers\Api\StoreEProductsController;
 use App\Http\Controllers\Api\ClosingCourierController;
 use App\Http\Controllers\Api\RemainingStockController;
 use App\Http\Controllers\Api\FranchiseGroupController;
@@ -69,6 +75,7 @@ use App\Http\Controllers\Api\OnlineCategoryController;
 use App\Http\Controllers\Api\PermitEmployeeController;
 use App\Http\Controllers\Api\EmployeeStatusController;
 use App\Http\Controllers\Api\ProductionFromController;
+use App\Http\Controllers\Api\PaymentReceiptController;
 use App\Http\Controllers\Api\EmployeeSavingsController;
 use App\Http\Controllers\Api\UserProductionsController;
 use App\Http\Controllers\Api\StoreStockCardsController;
@@ -79,16 +86,18 @@ use App\Http\Controllers\Api\SelfConsumptionController;
 use App\Http\Controllers\Api\PurchaseReceiptController;
 use App\Http\Controllers\Api\AccountCashlessController;
 use App\Http\Controllers\Api\DeliveryServiceController;
+use App\Http\Controllers\Api\RequestPurchaseController;
+use App\Http\Controllers\Api\InvoicePurchaseController;
 use App\Http\Controllers\Api\UserVehicleTaxesController;
 use App\Http\Controllers\Api\UserFuelServicesController;
 use App\Http\Controllers\Api\StoreProductionsController;
 use App\Http\Controllers\Api\StoreStoreAssetsController;
 use App\Http\Controllers\Api\CashlessProviderController;
 use App\Http\Controllers\Api\SalesOrderOnlineController;
+use App\Http\Controllers\Api\ProductEProductsController;
 use App\Http\Controllers\Api\ContractEmployeeController;
 use App\Http\Controllers\Api\ContractLocationController;
 use App\Http\Controllers\Api\UserClosingStoresController;
-use App\Http\Controllers\Api\UserRequestStocksController;
 use App\Http\Controllers\Api\UserCleanAndNeatsController;
 use App\Http\Controllers\Api\UserUtilityUsagesController;
 use App\Http\Controllers\Api\UserOutInProductsController;
@@ -97,10 +106,10 @@ use App\Http\Controllers\Api\UserMaterialGroupsController;
 use App\Http\Controllers\Api\UserPurchaseOrdersController;
 use App\Http\Controllers\Api\UserTransferStocksController;
 use App\Http\Controllers\Api\StoreClosingStoresController;
-use App\Http\Controllers\Api\StoreRequestStocksController;
 use App\Http\Controllers\Api\OnlineShopProviderController;
 use App\Http\Controllers\Api\RestaurantCategoryController;
 use App\Http\Controllers\Api\SalesOrderEmployeeController;
+use App\Http\Controllers\Api\UnitDetailInvoicesController;
 use App\Http\Controllers\Api\RoomHygieneOfRoomsController;
 use App\Http\Controllers\Api\VehicleCertificateController;
 use App\Http\Controllers\Api\MovementAssetAuditController;
@@ -117,24 +126,25 @@ use App\Http\Controllers\Api\BankClosingCouriersController;
 use App\Http\Controllers\Api\UtilityUtilityBillsController;
 use App\Http\Controllers\Api\MovementAssetResultController;
 use App\Http\Controllers\Api\TransferDailySalaryController;
-use App\Http\Controllers\Api\TransferFuelServiceController;
 use App\Http\Controllers\Api\UserPurchaseReceiptsController;
 use App\Http\Controllers\Api\UserSelfConsumptionsController;
+use App\Http\Controllers\Api\UserRequestPurchasesController;
+use App\Http\Controllers\Api\UserInvoicePurchasesController;
 use App\Http\Controllers\Api\StoreRemainingStocksController;
 use App\Http\Controllers\Api\PaymentTypePresencesController;
 use App\Http\Controllers\Api\ProductGroupProductsController;
 use App\Http\Controllers\Api\ProductProductionTosController;
-use App\Http\Controllers\Api\ProductRequestStocksController;
 use App\Http\Controllers\Api\ProductOutInProductsController;
-use App\Http\Controllers\Api\PurchaseOrderProductController;
-use App\Http\Controllers\Api\RequestStockProductsController;
 use App\Http\Controllers\Api\UtilityUtilityUsagesController;
 use App\Http\Controllers\Api\OutInProductProductsController;
 use App\Http\Controllers\Api\UserSalesOrderOnlinesController;
 use App\Http\Controllers\Api\StoreSelfConsumptionsController;
+use App\Http\Controllers\Api\StoreRequestPurchasesController;
+use App\Http\Controllers\Api\StoreInvoicePurchasesController;
 use App\Http\Controllers\Api\MaterialGroupProductsController;
 use App\Http\Controllers\Api\TransferStockProductsController;
 use App\Http\Controllers\Api\ProductMovementAssetsController;
+use App\Http\Controllers\Api\ProductDetailRequestsController;
 use App\Http\Controllers\Api\ProductTransferStocksController;
 use App\Http\Controllers\Api\ReceiptByItemLoyverseController;
 use App\Http\Controllers\Api\HygieneHygieneOfRoomsController;
@@ -153,21 +163,26 @@ use App\Http\Controllers\Api\out_in_product_productController;
 use App\Http\Controllers\Api\StockCardOutInProductsController;
 use App\Http\Controllers\Api\ClosingStoreCashlessesController;
 use App\Http\Controllers\Api\UserSalesOrderEmployeesController;
+use App\Http\Controllers\Api\OnlineCategoryEProductsController;
 use App\Http\Controllers\Api\PaymentTypeFuelServicesController;
 use App\Http\Controllers\Api\ShiftStoreClosingStoresController;
+use App\Http\Controllers\Api\PresencePaymentReceiptsController;
 use App\Http\Controllers\Api\ProductSelfConsumptionsController;
 use App\Http\Controllers\Api\ProductionProductionTosController;
 use App\Http\Controllers\Api\product_remaining_stockController;
 use App\Http\Controllers\Api\SelfConsumptionProductsController;
 use App\Http\Controllers\Api\EmployeeStatusEmployeesController;
+use App\Http\Controllers\Api\PaymentReceiptPresencesController;
 use App\Http\Controllers\Api\UserRestaurantCategoriesController;
 use App\Http\Controllers\Api\UserMovementAssetResultsController;
 use App\Http\Controllers\Api\StoreSalesOrderEmployeesController;
+use App\Http\Controllers\Api\SupplierInvoicePurchasesController;
 use App\Http\Controllers\Api\SalesOrderOnlineProductsController;
 use App\Http\Controllers\Api\ProductSalesOrderOnlinesController;
 use App\Http\Controllers\Api\UtilityProviderUtilitiesController;
 use App\Http\Controllers\Api\StoreAssetMovementAssetsController;
 use App\Http\Controllers\Api\ClosingStoreFuelServicesController;
+use App\Http\Controllers\Api\payment_receipt_presenceController;
 use App\Http\Controllers\Api\CustomerSalesOrderOnlinesController;
 use App\Http\Controllers\Api\CustomerDeliveryAddressesController;
 use App\Http\Controllers\Api\EmployeeContractEmployeesController;
@@ -183,37 +198,46 @@ use App\Http\Controllers\Api\ProductSalesOrderEmployeesController;
 use App\Http\Controllers\Api\product_sales_order_onlineController;
 use App\Http\Controllers\Api\PurchaseOrderClosingStoresController;
 use App\Http\Controllers\Api\ClosingStorePurchaseOrdersController;
+use App\Http\Controllers\Api\FuelServicePaymentReceiptsController;
+use App\Http\Controllers\Api\PaymentReceiptFuelServicesController;
 use App\Http\Controllers\Api\CustomerSalesOrderEmployeesController;
 use App\Http\Controllers\Api\ClosingCourierClosingStoresController;
+use App\Http\Controllers\Api\PaymentTypeInvoicePurchasesController;
 use App\Http\Controllers\Api\ClosingStoreClosingCouriersController;
 use App\Http\Controllers\Api\ProductPurchaseOrderProductsController;
 use App\Http\Controllers\Api\product_sales_order_employeeController;
-use App\Http\Controllers\Api\closing_store_purchase_orderController;
+use App\Http\Controllers\Api\ClosingStoreInvoicePurchasesController;
 use App\Http\Controllers\Api\TransferDailySalaryPresencesController;
 use App\Http\Controllers\Api\DeliveryServiceOutInProductsController;
+use App\Http\Controllers\Api\InvoicePurchaseClosingStoresController;
+use App\Http\Controllers\Api\fuel_service_payment_receiptController;
+use App\Http\Controllers\Api\closing_store_purchase_orderController;
 use App\Http\Controllers\Api\PresenceTransferDailySalariesController;
 use App\Http\Controllers\Api\ProductProductionSupportFromsController;
+use App\Http\Controllers\Api\ProductionProductionMainFormsController;
 use App\Http\Controllers\Api\PurchaseOrderPurchaseReceiptsController;
 use App\Http\Controllers\Api\closing_courier_closing_storeController;
 use App\Http\Controllers\Api\PurchaseReceiptPurchaseOrdersController;
+use App\Http\Controllers\Api\RequestPurchaseDetailRequestsController;
+use App\Http\Controllers\Api\InvoicePurchaseDetailInvoicesController;
 use App\Http\Controllers\Api\AdminCashlessAccountCashlessesController;
 use App\Http\Controllers\Api\presence_transfer_daily_salaryController;
 use App\Http\Controllers\Api\StoreCashlessAccountCashlessesController;
 use App\Http\Controllers\Api\AccountCashlessAdminCashlessesController;
+use App\Http\Controllers\Api\PaymentReceiptInvoicePurchasesController;
+use App\Http\Controllers\Api\InvoicePurchasePaymentReceiptsController;
+use App\Http\Controllers\Api\closing_store_invoice_purchaseController;
 use App\Http\Controllers\Api\CashlessProviderAdminCashlessesController;
 use App\Http\Controllers\Api\purchase_order_purchase_receiptController;
-use App\Http\Controllers\Api\FuelServiceTransferFuelServicesController;
 use App\Http\Controllers\Api\account_cashless_admin_cashlessController;
-use App\Http\Controllers\Api\TransferFuelServiceFuelServicesController;
 use App\Http\Controllers\Api\ProductionProductionSupportFromsController;
 use App\Http\Controllers\Api\DeliveryAddressSalesOrderOnlinesController;
 use App\Http\Controllers\Api\MovementAssetMovementAssetAuditsController;
 use App\Http\Controllers\Api\DeliveryServiceSalesOrderOnlinesController;
+use App\Http\Controllers\Api\invoice_purchase_payment_receiptController;
+use App\Http\Controllers\Api\DetailInvoiceProductionMainFormsController;
 use App\Http\Controllers\Api\CashlessProviderAccountCashlessesController;
-use App\Http\Controllers\Api\PurchaseOrderPurchaseOrderProductsController;
-use App\Http\Controllers\Api\fuel_service_transfer_fuel_serviceController;
 use App\Http\Controllers\Api\OnlineShopProviderSalesOrderOnlinesController;
-use App\Http\Controllers\Api\PurchaseOrderProductProductionFromsController;
 use App\Http\Controllers\Api\MovementAssetResultMovementAssetAuditsController;
 
 /*
@@ -457,16 +481,6 @@ Route::name('api.')
             'store',
         ])->name('users.productions.store');
 
-        // User Request Stocks Created
-        Route::get('/users/{user}/request-stocks', [
-            UserRequestStocksController::class,
-            'index',
-        ])->name('users.request-stocks.index');
-        Route::post('/users/{user}/request-stocks', [
-            UserRequestStocksController::class,
-            'store',
-        ])->name('users.request-stocks.store');
-
         // User Remaining Stocks Created
         Route::get('/users/{user}/remaining-stocks', [
             UserRemainingStocksController::class,
@@ -596,16 +610,6 @@ Route::name('api.')
             UserProductionsController::class,
             'store',
         ])->name('users.productions.store');
-
-        // User Request Stocks Approved
-        Route::get('/users/{user}/request-stocks', [
-            UserRequestStocksController::class,
-            'index',
-        ])->name('users.request-stocks.index');
-        Route::post('/users/{user}/request-stocks', [
-            UserRequestStocksController::class,
-            'store',
-        ])->name('users.request-stocks.store');
 
         // User Remaining Stocks Approved
         Route::get('/users/{user}/remaining-stocks', [
@@ -807,6 +811,46 @@ Route::name('api.')
             'store',
         ])->name('users.fuel-services.store');
 
+        // User Carts
+        Route::get('/users/{user}/carts', [
+            UserCartsController::class,
+            'index',
+        ])->name('users.carts.index');
+        Route::post('/users/{user}/carts', [
+            UserCartsController::class,
+            'store',
+        ])->name('users.carts.store');
+
+        // User Request Purchases
+        Route::get('/users/{user}/request-purchases', [
+            UserRequestPurchasesController::class,
+            'index',
+        ])->name('users.request-purchases.index');
+        Route::post('/users/{user}/request-purchases', [
+            UserRequestPurchasesController::class,
+            'store',
+        ])->name('users.request-purchases.store');
+
+        // User Invoice Purchases
+        Route::get('/users/{user}/invoice-purchases', [
+            UserInvoicePurchasesController::class,
+            'index',
+        ])->name('users.invoice-purchases.index');
+        Route::post('/users/{user}/invoice-purchases', [
+            UserInvoicePurchasesController::class,
+            'store',
+        ])->name('users.invoice-purchases.store');
+
+        // User Invoice Purchases2
+        Route::get('/users/{user}/invoice-purchases', [
+            UserInvoicePurchasesController::class,
+            'index',
+        ])->name('users.invoice-purchases.index');
+        Route::post('/users/{user}/invoice-purchases', [
+            UserInvoicePurchasesController::class,
+            'store',
+        ])->name('users.invoice-purchases.store');
+
         Route::apiResource('vehicles', VehicleController::class);
 
         // Vehicle Vehicle Taxes
@@ -890,16 +934,6 @@ Route::name('api.')
             StoreRemainingStocksController::class,
             'store',
         ])->name('stores.remaining-stocks.store');
-
-        // Store Request Stocks
-        Route::get('/stores/{store}/request-stocks', [
-            StoreRequestStocksController::class,
-            'index',
-        ])->name('stores.request-stocks.index');
-        Route::post('/stores/{store}/request-stocks', [
-            StoreRequestStocksController::class,
-            'store',
-        ])->name('stores.request-stocks.store');
 
         // Store Productions
         Route::get('/stores/{store}/productions', [
@@ -1011,6 +1045,36 @@ Route::name('api.')
             'store',
         ])->name('stores.account-cashlesses.store');
 
+        // Store E Products
+        Route::get('/stores/{store}/e-products', [
+            StoreEProductsController::class,
+            'index',
+        ])->name('stores.e-products.index');
+        Route::post('/stores/{store}/e-products', [
+            StoreEProductsController::class,
+            'store',
+        ])->name('stores.e-products.store');
+
+        // Store Request Purchases
+        Route::get('/stores/{store}/request-purchases', [
+            StoreRequestPurchasesController::class,
+            'index',
+        ])->name('stores.request-purchases.index');
+        Route::post('/stores/{store}/request-purchases', [
+            StoreRequestPurchasesController::class,
+            'store',
+        ])->name('stores.request-purchases.store');
+
+        // Store Invoice Purchases
+        Route::get('/stores/{store}/invoice-purchases', [
+            StoreInvoicePurchasesController::class,
+            'index',
+        ])->name('stores.invoice-purchases.index');
+        Route::post('/stores/{store}/invoice-purchases', [
+            StoreInvoicePurchasesController::class,
+            'store',
+        ])->name('stores.invoice-purchases.store');
+
         Route::apiResource('suppliers', SupplierController::class);
 
         // Supplier Purchase Orders
@@ -1022,6 +1086,16 @@ Route::name('api.')
             SupplierPurchaseOrdersController::class,
             'store',
         ])->name('suppliers.purchase-orders.store');
+
+        // Supplier Invoice Purchases
+        Route::get('/suppliers/{supplier}/invoice-purchases', [
+            SupplierInvoicePurchasesController::class,
+            'index',
+        ])->name('suppliers.invoice-purchases.index');
+        Route::post('/suppliers/{supplier}/invoice-purchases', [
+            SupplierInvoicePurchasesController::class,
+            'store',
+        ])->name('suppliers.invoice-purchases.store');
 
         Route::apiResource('closing-couriers', ClosingCourierController::class);
 
@@ -1121,6 +1195,16 @@ Route::name('api.')
             'store',
         ])->name('online-categories.products.store');
 
+        // OnlineCategory E Products
+        Route::get('/online-categories/{onlineCategory}/e-products', [
+            OnlineCategoryEProductsController::class,
+            'index',
+        ])->name('online-categories.e-products.index');
+        Route::post('/online-categories/{onlineCategory}/e-products', [
+            OnlineCategoryEProductsController::class,
+            'store',
+        ])->name('online-categories.e-products.store');
+
         Route::apiResource(
             'online-shop-providers',
             OnlineShopProviderController::class
@@ -1177,6 +1261,16 @@ Route::name('api.')
             PaymentTypeFuelServicesController::class,
             'store',
         ])->name('payment-types.fuel-services.store');
+
+        // PaymentType Invoice Purchases
+        Route::get('/payment-types/{paymentType}/invoice-purchases', [
+            PaymentTypeInvoicePurchasesController::class,
+            'index',
+        ])->name('payment-types.invoice-purchases.index');
+        Route::post('/payment-types/{paymentType}/invoice-purchases', [
+            PaymentTypeInvoicePurchasesController::class,
+            'store',
+        ])->name('payment-types.invoice-purchases.store');
 
         Route::apiResource('permit-employees', PermitEmployeeController::class);
 
@@ -1291,6 +1385,20 @@ Route::name('api.')
             [PresenceTransferDailySalariesController::class, 'destroy']
         )->name('presences.transfer-daily-salaries.destroy');
 
+        // Presence Payment Receipts
+        Route::get('/presences/{presence}/payment-receipts', [
+            PresencePaymentReceiptsController::class,
+            'index',
+        ])->name('presences.payment-receipts.index');
+        Route::post('/presences/{presence}/payment-receipts/{paymentReceipt}', [
+            PresencePaymentReceiptsController::class,
+            'store',
+        ])->name('presences.payment-receipts.store');
+        Route::delete(
+            '/presences/{presence}/payment-receipts/{paymentReceipt}',
+            [PresencePaymentReceiptsController::class, 'destroy']
+        )->name('presences.payment-receipts.destroy');
+
         Route::apiResource('products', ProductController::class);
 
         // Product Movement Assets
@@ -1332,6 +1440,26 @@ Route::name('api.')
             ProductProductionSupportFromsController::class,
             'store',
         ])->name('products.production-support-froms.store');
+
+        // Product E Products
+        Route::get('/products/{product}/e-products', [
+            ProductEProductsController::class,
+            'index',
+        ])->name('products.e-products.index');
+        Route::post('/products/{product}/e-products', [
+            ProductEProductsController::class,
+            'store',
+        ])->name('products.e-products.store');
+
+        // Product Detail Requests
+        Route::get('/products/{product}/detail-requests', [
+            ProductDetailRequestsController::class,
+            'index',
+        ])->name('products.detail-requests.index');
+        Route::post('/products/{product}/detail-requests', [
+            ProductDetailRequestsController::class,
+            'store',
+        ])->name('products.detail-requests.store');
 
         // Product Remaining Stocks
         Route::get('/products/{product}/remaining-stocks', [
@@ -1388,20 +1516,6 @@ Route::name('api.')
             '/products/{product}/sales-order-onlines/{salesOrderOnline}',
             [ProductSalesOrderOnlinesController::class, 'destroy']
         )->name('products.sales-order-onlines.destroy');
-
-        // Product Request Stocks
-        Route::get('/products/{product}/request-stocks', [
-            ProductRequestStocksController::class,
-            'index',
-        ])->name('products.request-stocks.index');
-        Route::post('/products/{product}/request-stocks/{requestStock}', [
-            ProductRequestStocksController::class,
-            'store',
-        ])->name('products.request-stocks.store');
-        Route::delete('/products/{product}/request-stocks/{requestStock}', [
-            ProductRequestStocksController::class,
-            'destroy',
-        ])->name('products.request-stocks.destroy');
 
         // Product Self Consumptions
         Route::get('/products/{product}/self-consumptions', [
@@ -1495,33 +1609,17 @@ Route::name('api.')
             'store',
         ])->name('productions.production-support-froms.store');
 
-        Route::apiResource('request-stocks', RequestStockController::class);
-
-        // RequestStock Products
-        Route::get('/request-stocks/{requestStock}/products', [
-            RequestStockProductsController::class,
+        // Production Production Main Forms
+        Route::get('/productions/{production}/production-main-forms', [
+            ProductionProductionMainFormsController::class,
             'index',
-        ])->name('request-stocks.products.index');
-        Route::post('/request-stocks/{requestStock}/products/{product}', [
-            RequestStockProductsController::class,
+        ])->name('productions.production-main-forms.index');
+        Route::post('/productions/{production}/production-main-forms', [
+            ProductionProductionMainFormsController::class,
             'store',
-        ])->name('request-stocks.products.store');
-        Route::delete('/request-stocks/{requestStock}/products/{product}', [
-            RequestStockProductsController::class,
-            'destroy',
-        ])->name('request-stocks.products.destroy');
+        ])->name('productions.production-main-forms.store');
 
         Route::apiResource('purchase-orders', PurchaseOrderController::class);
-
-        // PurchaseOrder Purchase Order Products
-        Route::get('/purchase-orders/{purchaseOrder}/purchase-order-products', [
-            PurchaseOrderPurchaseOrderProductsController::class,
-            'index',
-        ])->name('purchase-orders.purchase-order-products.index');
-        Route::post(
-            '/purchase-orders/{purchaseOrder}/purchase-order-products',
-            [PurchaseOrderPurchaseOrderProductsController::class, 'store']
-        )->name('purchase-orders.purchase-order-products.store');
 
         // PurchaseOrder Closing Stores
         Route::get('/purchase-orders/{purchaseOrder}/closing-stores', [
@@ -1604,6 +1702,16 @@ Route::name('api.')
             UnitPurchaseOrderProductsController::class,
             'store',
         ])->name('units.purchase-order-products.store');
+
+        // Unit Detail Invoices
+        Route::get('/units/{unit}/detail-invoices', [
+            UnitDetailInvoicesController::class,
+            'index',
+        ])->name('units.detail-invoices.index');
+        Route::post('/units/{unit}/detail-invoices', [
+            UnitDetailInvoicesController::class,
+            'store',
+        ])->name('units.detail-invoices.store');
 
         Route::apiResource(
             'receipt-by-item-loyverses',
@@ -1851,6 +1959,20 @@ Route::name('api.')
             [ClosingStorePurchaseOrdersController::class, 'destroy']
         )->name('closing-stores.purchase-orders.destroy');
 
+        // ClosingStore Invoice Purchases
+        Route::get('/closing-stores/{closingStore}/invoice-purchases', [
+            ClosingStoreInvoicePurchasesController::class,
+            'index',
+        ])->name('closing-stores.invoice-purchases.index');
+        Route::post(
+            '/closing-stores/{closingStore}/invoice-purchases/{invoicePurchase}',
+            [ClosingStoreInvoicePurchasesController::class, 'store']
+        )->name('closing-stores.invoice-purchases.store');
+        Route::delete(
+            '/closing-stores/{closingStore}/invoice-purchases/{invoicePurchase}',
+            [ClosingStoreInvoicePurchasesController::class, 'destroy']
+        )->name('closing-stores.invoice-purchases.destroy');
+
         Route::apiResource(
             'transfer-daily-salaries',
             TransferDailySalaryController::class
@@ -1940,36 +2062,133 @@ Route::name('api.')
 
         Route::apiResource('fuel-services', FuelServiceController::class);
 
-        // FuelService Transfer Fuel Services
-        Route::get('/fuel-services/{fuelService}/transfer-fuel-services', [
-            FuelServiceTransferFuelServicesController::class,
+        // FuelService Payment Receipts
+        Route::get('/fuel-services/{fuelService}/payment-receipts', [
+            FuelServicePaymentReceiptsController::class,
             'index',
-        ])->name('fuel-services.transfer-fuel-services.index');
+        ])->name('fuel-services.payment-receipts.index');
         Route::post(
-            '/fuel-services/{fuelService}/transfer-fuel-services/{transferFuelService}',
-            [FuelServiceTransferFuelServicesController::class, 'store']
-        )->name('fuel-services.transfer-fuel-services.store');
+            '/fuel-services/{fuelService}/payment-receipts/{paymentReceipt}',
+            [FuelServicePaymentReceiptsController::class, 'store']
+        )->name('fuel-services.payment-receipts.store');
         Route::delete(
-            '/fuel-services/{fuelService}/transfer-fuel-services/{transferFuelService}',
-            [FuelServiceTransferFuelServicesController::class, 'destroy']
-        )->name('fuel-services.transfer-fuel-services.destroy');
+            '/fuel-services/{fuelService}/payment-receipts/{paymentReceipt}',
+            [FuelServicePaymentReceiptsController::class, 'destroy']
+        )->name('fuel-services.payment-receipts.destroy');
+
+        Route::apiResource('e-products', EProductController::class);
+
+        // EProduct Carts
+        Route::get('/e-products/{eProduct}/carts', [
+            EProductCartsController::class,
+            'index',
+        ])->name('e-products.carts.index');
+        Route::post('/e-products/{eProduct}/carts', [
+            EProductCartsController::class,
+            'store',
+        ])->name('e-products.carts.store');
+
+        Route::apiResource('carts', CartController::class);
+
+        Route::apiResource('payment-receipts', PaymentReceiptController::class);
+
+        // PaymentReceipt Fuel Services
+        Route::get('/payment-receipts/{paymentReceipt}/fuel-services', [
+            PaymentReceiptFuelServicesController::class,
+            'index',
+        ])->name('payment-receipts.fuel-services.index');
+        Route::post(
+            '/payment-receipts/{paymentReceipt}/fuel-services/{fuelService}',
+            [PaymentReceiptFuelServicesController::class, 'store']
+        )->name('payment-receipts.fuel-services.store');
+        Route::delete(
+            '/payment-receipts/{paymentReceipt}/fuel-services/{fuelService}',
+            [PaymentReceiptFuelServicesController::class, 'destroy']
+        )->name('payment-receipts.fuel-services.destroy');
+
+        // PaymentReceipt Invoice Purchases
+        Route::get('/payment-receipts/{paymentReceipt}/invoice-purchases', [
+            PaymentReceiptInvoicePurchasesController::class,
+            'index',
+        ])->name('payment-receipts.invoice-purchases.index');
+        Route::post(
+            '/payment-receipts/{paymentReceipt}/invoice-purchases/{invoicePurchase}',
+            [PaymentReceiptInvoicePurchasesController::class, 'store']
+        )->name('payment-receipts.invoice-purchases.store');
+        Route::delete(
+            '/payment-receipts/{paymentReceipt}/invoice-purchases/{invoicePurchase}',
+            [PaymentReceiptInvoicePurchasesController::class, 'destroy']
+        )->name('payment-receipts.invoice-purchases.destroy');
+
+        // PaymentReceipt Presences
+        Route::get('/payment-receipts/{paymentReceipt}/presences', [
+            PaymentReceiptPresencesController::class,
+            'index',
+        ])->name('payment-receipts.presences.index');
+        Route::post('/payment-receipts/{paymentReceipt}/presences/{presence}', [
+            PaymentReceiptPresencesController::class,
+            'store',
+        ])->name('payment-receipts.presences.store');
+        Route::delete(
+            '/payment-receipts/{paymentReceipt}/presences/{presence}',
+            [PaymentReceiptPresencesController::class, 'destroy']
+        )->name('payment-receipts.presences.destroy');
 
         Route::apiResource(
-            'transfer-fuel-services',
-            TransferFuelServiceController::class
+            'request-purchases',
+            RequestPurchaseController::class
         );
 
-        // TransferFuelService Fuel Services
-        Route::get(
-            '/transfer-fuel-services/{transferFuelService}/fuel-services',
-            [TransferFuelServiceFuelServicesController::class, 'index']
-        )->name('transfer-fuel-services.fuel-services.index');
+        // RequestPurchase Detail Requests
+        Route::get('/request-purchases/{requestPurchase}/detail-requests', [
+            RequestPurchaseDetailRequestsController::class,
+            'index',
+        ])->name('request-purchases.detail-requests.index');
+        Route::post('/request-purchases/{requestPurchase}/detail-requests', [
+            RequestPurchaseDetailRequestsController::class,
+            'store',
+        ])->name('request-purchases.detail-requests.store');
+
+        Route::apiResource(
+            'invoice-purchases',
+            InvoicePurchaseController::class
+        );
+
+        // InvoicePurchase Detail Invoices
+        Route::get('/invoice-purchases/{invoicePurchase}/detail-invoices', [
+            InvoicePurchaseDetailInvoicesController::class,
+            'index',
+        ])->name('invoice-purchases.detail-invoices.index');
+        Route::post('/invoice-purchases/{invoicePurchase}/detail-invoices', [
+            InvoicePurchaseDetailInvoicesController::class,
+            'store',
+        ])->name('invoice-purchases.detail-invoices.store');
+
+        // InvoicePurchase Payment Receipts
+        Route::get('/invoice-purchases/{invoicePurchase}/payment-receipts', [
+            InvoicePurchasePaymentReceiptsController::class,
+            'index',
+        ])->name('invoice-purchases.payment-receipts.index');
         Route::post(
-            '/transfer-fuel-services/{transferFuelService}/fuel-services/{fuelService}',
-            [TransferFuelServiceFuelServicesController::class, 'store']
-        )->name('transfer-fuel-services.fuel-services.store');
+            '/invoice-purchases/{invoicePurchase}/payment-receipts/{paymentReceipt}',
+            [InvoicePurchasePaymentReceiptsController::class, 'store']
+        )->name('invoice-purchases.payment-receipts.store');
         Route::delete(
-            '/transfer-fuel-services/{transferFuelService}/fuel-services/{fuelService}',
-            [TransferFuelServiceFuelServicesController::class, 'destroy']
-        )->name('transfer-fuel-services.fuel-services.destroy');
+            '/invoice-purchases/{invoicePurchase}/payment-receipts/{paymentReceipt}',
+            [InvoicePurchasePaymentReceiptsController::class, 'destroy']
+        )->name('invoice-purchases.payment-receipts.destroy');
+
+        // InvoicePurchase Closing Stores
+        Route::get('/invoice-purchases/{invoicePurchase}/closing-stores', [
+            InvoicePurchaseClosingStoresController::class,
+            'index',
+        ])->name('invoice-purchases.closing-stores.index');
+        Route::post(
+            '/invoice-purchases/{invoicePurchase}/closing-stores/{closingStore}',
+            [InvoicePurchaseClosingStoresController::class, 'store']
+        )->name('invoice-purchases.closing-stores.store');
+        Route::delete(
+            '/invoice-purchases/{invoicePurchase}/closing-stores/{closingStore}',
+            [InvoicePurchaseClosingStoresController::class, 'destroy']
+        )->name('invoice-purchases.closing-stores.destroy');
     });

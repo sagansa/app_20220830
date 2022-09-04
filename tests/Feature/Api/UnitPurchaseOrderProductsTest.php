@@ -44,9 +44,7 @@ class UnitPurchaseOrderProductsTest extends TestCase
             route('api.units.purchase-order-products.index', $unit)
         );
 
-        $response
-            ->assertOk()
-            ->assertSee($purchaseOrderProducts[0]->quantity_invoice);
+        $response->assertOk()->assertSee($purchaseOrderProducts[0]->id);
     }
 
     /**
@@ -66,7 +64,12 @@ class UnitPurchaseOrderProductsTest extends TestCase
             $data
         );
 
-        unset($data['purchase_order_id']);
+        unset($data['product_id']);
+        unset($data['quantity_product']);
+        unset($data['unit_id']);
+        unset($data['quantity_invoice']);
+        unset($data['subtotal_invoice']);
+        unset($data['status']);
 
         $this->assertDatabaseHas('purchase_order_products', $data);
 

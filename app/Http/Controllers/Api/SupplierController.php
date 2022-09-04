@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\SupplierResource;
 use App\Http\Resources\SupplierCollection;
 use App\Http\Requests\SupplierStoreRequest;
@@ -38,6 +39,9 @@ class SupplierController extends Controller
         $this->authorize('create', Supplier::class);
 
         $validated = $request->validated();
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('public');
+        }
 
         $supplier = Supplier::create($validated);
 
@@ -67,6 +71,14 @@ class SupplierController extends Controller
 
         $validated = $request->validated();
 
+        if ($request->hasFile('image')) {
+            if ($supplier->image) {
+                Storage::delete($supplier->image);
+            }
+
+            $validated['image'] = $request->file('image')->store('public');
+        }
+
         $supplier->update($validated);
 
         return new SupplierResource($supplier);
@@ -80,6 +92,10 @@ class SupplierController extends Controller
     public function destroy(Request $request, Supplier $supplier)
     {
         $this->authorize('delete', $supplier);
+
+        if ($supplier->image) {
+            Storage::delete($supplier->image);
+        }
 
         $supplier->delete();
 

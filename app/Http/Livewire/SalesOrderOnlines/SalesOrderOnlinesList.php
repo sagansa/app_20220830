@@ -86,7 +86,16 @@ class SalesOrderOnlinesList extends Component
         //     ->join('online_shop_providers', 'online_shop_providers.id', '=', 'sales_order_onlines.online_shop_provider_id')
         //     ->join('delivery_services', 'delivery_services.id', '=', 'sales_order_onlines.delivery_service_id');
 
-        $salesOrderOnlines = SalesOrderOnline::query()->latest();
+        $salesOrderOnlines = SalesOrderOnline::with('products')->query()->latest()
+            ->map(function (SalesOrderOnline $products) {
+                return (object)[
+                    'id' => $products->product_id,
+                    'name' => $products->products->name,
+                    'price' => $products->products->price,
+                    'quantity' => $products->quantity,
+                    'subtotal' => ($products->quantity * $products->price),
+                ];
+            });;
 
         foreach ($this->filters as $filter => $value) {
                 if (!empty($value)) {
@@ -98,6 +107,9 @@ class SalesOrderOnlinesList extends Component
                         ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
                 }
             }
+
+        $this->subtotals = $salesOrderOnlines->sum('subtotal');
+        $this->totals = $this->subtotals - 0;
 
         return $this->applySorting($salesOrderOnlines);
     }

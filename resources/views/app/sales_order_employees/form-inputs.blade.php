@@ -106,7 +106,7 @@
 
     <x-inputs.hidden
         name="status"
-        value="{{ old('status', ($editing ? $salesOrderEmployee->status : '')) }}"
+        :value="old('status', ($editing ? $salesOrderEmployee->status : ''))"
     ></x-inputs.hidden>
 
     @if ($editing)

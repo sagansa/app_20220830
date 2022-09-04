@@ -92,6 +92,11 @@ class ClosingStore extends Model
         return $this->belongsToMany(PurchaseOrder::class);
     }
 
+    public function invoicePurchases()
+    {
+        return $this->belongsToMany(InvoicePurchase::class);
+    }
+
     public function delete_image()
     {
         if ($this->image && file_exists('storage/' . $this->image)) {

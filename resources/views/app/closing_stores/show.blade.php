@@ -114,6 +114,14 @@
 
             @can('view-any', App\Models\ClosingStore::class)
                 <x-partials.card class="mt-5">
+                    <x-slot name="title"> Invoice Purchase </x-slot>
+
+                    <livewire:closing-store-invoice-purchases-detail :closingStore="$closingStore" />
+                </x-partials.card>
+            @endcan
+
+            @can('view-any', App\Models\ClosingStore::class)
+                <x-partials.card class="mt-5">
                     <x-slot name="title"> Purchase Orders </x-slot>
 
                     <livewire:closing-store-purchase-orders-detail :closingStore="$closingStore" />
