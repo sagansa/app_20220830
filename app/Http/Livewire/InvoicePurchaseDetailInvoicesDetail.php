@@ -36,15 +36,28 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         'detailInvoice.quantity_invoice' => ['required', 'numeric'],
         'detailInvoice.unit_invoice_id' => ['required', 'exists:units,id'],
         'detailInvoice.subtotal_invoice' => ['required', 'numeric', 'gt:0'],
-        'detailInvoice.status' => ['required', 'max:255'],
+        'detailInvoice.status' => ['required', 'in:1,2'],
     ];
 
     public function mount(InvoicePurchase $invoicePurchase)
     {
         $this->invoicePurchase = $invoicePurchase;
-        $this->detailRequestsForSelect = DetailRequest::pluck('notes', 'id');
-        $this->unitsForSelect = Unit::pluck('name', 'id');
+
+        if($this->invoicePurchase->payment_type_id == '2')
+            $this->detailRequestsForSelect = DetailRequest::whereIn('payment_type_id', ['2'])
+                ->get()
+                ->pluck('id', 'detail_request_name');
+        else
+            $this->detailRequestsForSelect = DetailRequest::get()
+                ->pluck('id', 'detail_request_name');
+
+        // $this->detailRequestsForSelect = DetailRequest::get()
+        //         ->pluck('id', 'detail_request_name');
+
+        $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
+
+
     }
 
     public function resetDetailInvoiceData()

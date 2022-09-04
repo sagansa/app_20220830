@@ -210,7 +210,7 @@
                                         {{ $detailInvoice->quantity_product }}
                                         {{ $detailInvoice->detailRequest->product->unit->unit }} -
                                         @if ($detailInvoice->subtotal_invoice != 0 || $detailInvoice->quantity_invoice != 0)
-                                            @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
+                                            @currency($detailInvoice->subtotal_invoice - $detailInvoice->quantity_product)
                                         @endif
                                     </p>
                                 @endforeach

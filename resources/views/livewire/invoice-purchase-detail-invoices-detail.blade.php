@@ -1,201 +1,165 @@
 <div>
     <div>
-        @can('create', App\Models\DetailInvoice::class)
-        <button class="button" wire:click="newDetailInvoice">
-            <i class="mr-1 icon ion-md-add text-primary"></i>
-            @lang('crud.common.new')
-        </button>
-        @endcan @can('delete-any', App\Models\DetailInvoice::class)
-        <button
-            class="button button-danger"
-             {{ empty($selected) ? 'disabled' : '' }} 
-            onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
-            wire:click="destroySelected"
-        >
-            <i class="mr-1 icon ion-md-trash text-primary"></i>
-            @lang('crud.common.delete_selected')
-        </button>
-        @endcan
+        @if ($invoicePurchase->payment_status != 2 || $invoicePurchase->order_status != 2)
+            @can('create', App\Models\DetailInvoice::class)
+                <button class="button" wire:click="newDetailInvoice">
+                    <i class="mr-1 icon ion-md-add text-primary"></i>
+                    @lang('crud.common.new')
+                </button>
+                @endcan @can('delete-any', App\Models\DetailInvoice::class)
+                <button class="button button-danger" {{ empty($selected) ? 'disabled' : '' }}
+                    onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="destroySelected">
+                    <i class="mr-1 icon ion-md-trash text-primary"></i>
+                    @lang('crud.common.delete_selected')
+                </button>
+            @endcan
+        @endif
     </div>
 
     <x-modal wire:model="showingModal">
         <div class="px-6 py-4">
             <div class="text-lg font-bold">{{ $modalTitle }}</div>
 
-            <div class="mt-5">
-                <div>
-                    <x-input.select
-                        name="detailInvoice.detail_request_id"
-                        label="Detail Request"
-                        wire:model="detailInvoice.detail_request_id"
-                    >
-                        <option value="null" disabled>-- select --</option>
-                        @foreach($detailRequestsForSelect as $value => $label)
-                        <option value="{{ $value }}"  >{{ $label }}</option>
-                        @endforeach
+            <div class="mt-1 sm:space-y-5">
+
+                <x-input.select name="detailInvoice.detail_request_id" label="Detail Request"
+                    wire:model="detailInvoice.detail_request_id">
+                    <option value="null" disabled>-- select --</option>
+                    @foreach ($detailRequestsForSelect as $label => $value)
+                        <option value="{{ $value }}">{{ $label }}</option>
+                    @endforeach
+                </x-input.select>
+
+                <x-input.number name="detailInvoice.quantity_product" label="Quantity Product"
+                    wire:model="detailInvoice.quantity_product"></x-input.number>
+
+                <x-input.number name="detailInvoice.quantity_invoice" label="Quantity Invoice"
+                    wire:model="detailInvoice.quantity_invoice"></x-input.number>
+
+                <x-input.select name="detailInvoice.unit_invoice_id" label="Unit Invoice"
+                    wire:model="detailInvoice.unit_invoice_id">
+                    <option value="null" disabled>-- select --</option>
+                    @foreach ($unitsForSelect as $value => $label)
+                        <option value="{{ $value }}">{{ $label }}</option>
+                    @endforeach
+                </x-input.select>
+
+                <x-input.currency name="detailInvoice.subtotal_invoice" label="Subtotal Invoice"
+                    wire:model="detailInvoice.subtotal_invoice"></x-input.currency>
+
+                @role('staff|supervisor')
+                    <x-input.select name="detailInvoice.status" label="Status" wire:model="detailInvoice.status">
+                        @if ($detailInvoice->product_id == null)
+                            <option value="" {{ $selected == '1' ? 'selected' : '' }}></option>
+                        @elseif ($detailInvoice->invoicePurchase->product->material_group_id == 3)
+                            <option value="1" {{ $selected == '1' ? 'selected' : '' }}>process</option>
+                        @elseif ($detailInvoice->invoicePurchase > product->material_group_id != 3)
+                            <option value="3" {{ $selected == '3' ? 'selected' : '' }}>no need</option>
+                        @endif
                     </x-input.select>
-
-                    <x-input.number
-                        name="detailInvoice.quantity_product"
-                        label="Quantity Product"
-                        wire:model="detailInvoice.quantity_product"
-                        max="255"
-                        step="0.01"
-                        placeholder="Quantity Product"
-                    ></x-input.number>
-
-                    <x-input.number
-                        name="detailInvoice.quantity_invoice"
-                        label="Quantity Invoice"
-                        wire:model="detailInvoice.quantity_invoice"
-                        max="255"
-                        step="0.01"
-                        placeholder="Quantity Invoice"
-                    ></x-input.number>
-
-                    <x-input.select
-                        name="detailInvoice.unit_invoice_id"
-                        label="Unit Invoice"
-                        wire:model="detailInvoice.unit_invoice_id"
-                    >
-                        <option value="null" disabled>-- select --</option>
-                        @foreach($unitsForSelect as $value => $label)
-                        <option value="{{ $value }}"  >{{ $label }}</option>
-                        @endforeach
+                @endrole
+                @role('super-admin|manager')
+                    <x-input.select name="detailInvoice.status" label="Status" wire:model="detailInvoice.status">
+                        <option value="1" {{ $selected == '1' ? 'selected' : '' }}>process</option>
+                        <option value="2" {{ $selected == '2' ? 'selected' : '' }}>done</option>
+                        <option value="3" {{ $selected == '3' ? 'selected' : '' }}>no need</option>
                     </x-input.select>
+                @endrole
 
-                    <x-input.number
-                        name="detailInvoice.subtotal_invoice"
-                        label="Subtotal Invoice"
-                        wire:model="detailInvoice.subtotal_invoice"
-                    ></x-input.number>
-
-                    <x-input.select
-                        name="detailInvoice.status"
-                        label="Status"
-                        wire:model="detailInvoice.status"
-                    >
-                        <option value="1" {{ $selected == '1' ? 'selected' : '' }} >process</option>
-                        <option value="2" {{ $selected == '2' ? 'selected' : '' }} >done</option>
-                        <option value="3" {{ $selected == '3' ? 'selected' : '' }} >no need</option>
-                    </x-input.select>
-                </div>
             </div>
         </div>
 
-        <div class="px-6 py-4 bg-gray-50 flex justify-between">
-            <button
-                type="button"
-                class="button"
-                wire:click="$toggle('showingModal')"
-            >
-                <i class="mr-1 icon ion-md-close"></i>
-                @lang('crud.common.cancel')
-            </button>
-
-            <button
-                type="button"
-                class="button button-primary"
-                wire:click="save"
-            >
-                <i class="mr-1 icon ion-md-save"></i>
-                @lang('crud.common.save')
-            </button>
+        <div class="flex justify-between px-6 py-4 bg-gray-50">
+            <x-buttons.secondary wire:click="$toggle('showingModal')">Cancel</x-buttons.secondary>
+            <x-jet-button wire:click="save">Save</x-jet-button>
         </div>
     </x-modal>
 
-    <div class="block w-full overflow-auto scrolling-touch mt-4">
-        <table class="w-full max-w-full mb-4 bg-transparent">
-            <thead class="text-gray-700">
+    <x-tables.card-overflow>
+        <x-table>
+            <x-slot name="head">
                 <tr>
-                    <th class="px-4 py-3 text-left w-1">
-                        <input
-                            type="checkbox"
-                            wire:model="allSelected"
-                            wire:click="toggleFullSelection"
-                            title="{{ trans('crud.common.select_all') }}"
-                        />
-                    </th>
-                    <th class="px-4 py-3 text-left">
+                    <x-tables.th-left>
+                        <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
+                            title="{{ trans('crud.common.select_all') }}" />
+                    </x-tables.th-left>
+                    <x-tables.th-left>
                         @lang('crud.invoice_purchase_detail_invoices.inputs.detail_request_id')
-                    </th>
-                    <th class="px-4 py-3 text-right">
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        Quantity
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        Unit Price
+                    </x-tables.th-left>
+                    {{-- <x-tables.th-left>
                         @lang('crud.invoice_purchase_detail_invoices.inputs.quantity_product')
-                    </th>
-                    <th class="px-4 py-3 text-right">
+                    </x-tables.th-left> --}}
+                    {{-- <x-tables.th-left>
                         @lang('crud.invoice_purchase_detail_invoices.inputs.quantity_invoice')
-                    </th>
-                    <th class="px-4 py-3 text-left">
+                    </x-tables.th-left> --}}
+                    {{-- <x-tables.th-left>
                         @lang('crud.invoice_purchase_detail_invoices.inputs.unit_invoice_id')
-                    </th>
-                    <th class="px-4 py-3 text-right">
+                    </x-tables.th-left> --}}
+                    <x-tables.th-left>
                         @lang('crud.invoice_purchase_detail_invoices.inputs.subtotal_invoice')
-                    </th>
-                    <th class="px-4 py-3 text-left">
+                    </x-tables.th-left>
+                    {{-- <x-tables.th-left>
                         @lang('crud.invoice_purchase_detail_invoices.inputs.status')
-                    </th>
+                    </x-tables.th-left> --}}
                     <th></th>
                 </tr>
-            </thead>
-            <tbody class="text-gray-600">
+            </x-slot>
+            <x-slot name="body">
                 @foreach ($detailInvoices as $detailInvoice)
-                <tr class="hover:bg-gray-100">
-                    <td class="px-4 py-3 text-left">
-                        <input
-                            type="checkbox"
-                            value="{{ $detailInvoice->id }}"
-                            wire:model="selected"
-                        />
-                    </td>
-                    <td class="px-4 py-3 text-left">
-                        {{ optional($detailInvoice->detailRequest)->notes ?? '-'
-                        }}
-                    </td>
-                    <td class="px-4 py-3 text-right">
-                        {{ $detailInvoice->quantity_product ?? '-' }}
-                    </td>
-                    <td class="px-4 py-3 text-right">
-                        {{ $detailInvoice->quantity_invoice ?? '-' }}
-                    </td>
-                    <td class="px-4 py-3 text-left">
-                        {{ optional($detailInvoice->unit_invoice)->name ?? '-'
-                        }}
-                    </td>
-                    <td class="px-4 py-3 text-right">
-                        {{ $detailInvoice->subtotal_invoice ?? '-' }}
-                    </td>
-                    <td class="px-4 py-3 text-left">
-                        {{ $detailInvoice->status ?? '-' }}
-                    </td>
-                    <td class="px-4 py-3 text-right" style="width: 134px;">
-                        <div
-                            role="group"
-                            aria-label="Row Actions"
-                            class="relative inline-flex align-middle"
-                        >
-                            @can('update', $detailInvoice)
-                            <button
-                                type="button"
-                                class="button"
-                                wire:click="editDetailInvoice({{ $detailInvoice->id }})"
-                            >
-                                <i class="icon ion-md-create"></i>
-                            </button>
-                            @endcan
-                        </div>
-                    </td>
-                </tr>
+                    <tr class="hover:bg-gray-100">
+                        <x-tables.td-left>
+                            <input type="checkbox" value="{{ $detailInvoice->id }}" wire:model="selected" />
+                        </x-tables.td-left>
+                        <x-tables.td-left>
+                            @if ($detailInvoice->detailRequest->product->payment_type_id != $this->invoicePurchase->payment_type_id)
+                                <x-spans.text-red>{{ optional($detailInvoice->product)->name ?? '-' }}
+                                </x-spans.text-red>
+                            @elseif ($detailInvoice->detailRequest->product->payment_type_id == $this->invoicePurchase->payment_type_id)
+                                <x-spans.text-black>{{ optional($detailInvoice->product)->name ?? '-' }}
+                                </x-spans.text-black>
+                            @endif
+                        </x-tables.td-left>
+                        <x-tables.td-right>
+                            <p>Prod: {{ $detailInvoice->quantity_product ?? '-' }}
+                                {{ $detailInvoice->detailRequest->product->unit->unit }}</p>
+                            <p>Inv: {{ $detailInvoice->quantity_invoice ?? '-' }}
+                                {{ $detailInvoice->unit->unit ?? '-' }}</p>
+                        </x-tables.td-right>
+
+                        <x-tables.td-right>
+                            @currency($detailInvoice->subtotal_invoice - $detailInvoice->quantity_product)
+                        </x-tables.td-right>
+                        <x-tables.td-right>
+                            @currency($detailInvoice->subtotal_invoice)
+                        </x-tables.td-right>
+                        <td class="px-4 py-3 text-right" style="width: 134px;">
+                            <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
+                                @can('update', $detailInvoice)
+                                    <button type="button" class="button"
+                                        wire:click="editDetailInvoice({{ $detailInvoice->id }})">
+                                        <i class="icon ion-md-create"></i>
+                                    </button>
+                                @endcan
+                            </div>
+                        </td>
+                    </tr>
                 @endforeach
-            </tbody>
-            <tfoot>
+            </x-slot>
+            <x-slot name="foot">
                 <tr>
                     <td colspan="7">
-                        <div class="mt-10 px-4">
+                        <div class="px-4 mt-10">
                             {{ $detailInvoices->render() }}
                         </div>
                     </td>
                 </tr>
-            </tfoot>
-        </table>
-    </div>
+            </x-slot>
+        </x-table>
+    </x-tables.card-overflow>
 </div>

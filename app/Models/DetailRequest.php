@@ -53,4 +53,9 @@ class DetailRequest extends Model
             unlink('storage/' . $this->image);
         }
     }
+
+    public function getDetailRequestNameAttribute()
+    {
+        return $this->product->name . ' - ' . $this->product->unit->unit . ' - ' . $this->requestPurchase->date->toFormattedDate();
+    }
 }

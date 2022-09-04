@@ -25,10 +25,30 @@ class InvoicePurchaseController extends Controller
 
         $search = $request->get('search', '');
 
-        $invoicePurchases = InvoicePurchase::search($search)
-            ->latest()
-            ->paginate(10)
-            ->withQueryString();
+        // $invoicePurchases = InvoicePurchase::search($search)
+        //     ->latest()
+        //     ->paginate(10)
+        //     ->withQueryString();
+
+        if(Auth::user()->hasRole('supervisor')) {
+            $invoicePurchases = InvoicePurchase::search($search)
+                ->where('approved_by_id', '=', Auth::user()->id)
+                ->orWhere('approved_by_id', '=', NULL)
+                ->latest()
+                ->paginate(10)
+                ->withQueryString();
+        } elseif (Auth::user()->hasRole('super-admin|manager')) {
+            $invoicePurchases = InvoicePurchase::search($search)
+                ->latest()
+                ->paginate(10)
+                ->withQueryString();
+        } else if (Auth::user()->hasRole('staff')) {
+            $invoicePurchases = InvoicePurchase::search($search)
+                ->where('created_by_id', '=', Auth::user()->id)
+                ->latest()
+                ->paginate(10)
+                ->withQueryString();
+        }
 
         return view(
             'app.invoice_purchases.index',
@@ -45,11 +65,11 @@ class InvoicePurchaseController extends Controller
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $stores = Store::orderBy('name', 'asc')
+        $stores = Store::orderBy('nickname', 'asc')
             ->whereNotIn('status', ['8'])
             ->pluck('name', 'id');
         $suppliers = Supplier::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
         return view(
@@ -85,6 +105,8 @@ class InvoicePurchaseController extends Controller
 
         $validated['created_by_id'] = auth()->user()->id;
         $validated['status'] = '1';
+        $validated['discounts'] = '0';
+        $validated['taxes'] = '0';
 
         $invoicePurchase = InvoicePurchase::create($validated);
 
@@ -117,11 +139,11 @@ class InvoicePurchaseController extends Controller
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $stores = Store::orderBy('name', 'asc')
+        $stores = Store::orderBy('nickname', 'asc')
             ->whereNotIn('status', ['8'])
             ->pluck('name', 'id');
         $suppliers = Supplier::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
         return view(
