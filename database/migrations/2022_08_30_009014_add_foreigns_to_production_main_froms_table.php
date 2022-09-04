@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('production_main_forms', function (Blueprint $table) {
+        Schema::table('production_main_froms', function (Blueprint $table) {
             $table
                 ->foreign('production_id')
                 ->references('id')
@@ -36,7 +36,7 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('production_main_forms', function (Blueprint $table) {
+        Schema::table('production_main_froms', function (Blueprint $table) {
             $table->dropForeign(['production_id']);
             $table->dropForeign(['detail_invoice_id']);
         });

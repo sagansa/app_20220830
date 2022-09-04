@@ -1,11 +1,11 @@
 <div>
     <div>
-        @can('create', App\Models\ProductionMainForm::class)
-        <button class="button" wire:click="newProductionMainForm">
+        @can('create', App\Models\ProductionMainFrom::class)
+        <button class="button" wire:click="newProductionMainFrom">
             <i class="mr-1 icon ion-md-add text-primary"></i>
             @lang('crud.common.new')
         </button>
-        @endcan @can('delete-any', App\Models\ProductionMainForm::class)
+        @endcan @can('delete-any', App\Models\ProductionMainFrom::class)
         <button
             class="button button-danger"
              {{ empty($selected) ? 'disabled' : '' }} 
@@ -25,9 +25,9 @@
             <div class="mt-5">
                 <div>
                     <x-input.select
-                        name="productionMainForm.detail_invoice_id"
+                        name="productionMainFrom.detail_invoice_id"
                         label="Detail Invoice"
-                        wire:model="productionMainForm.detail_invoice_id"
+                        wire:model="productionMainFrom.detail_invoice_id"
                     >
                         <option value="null" disabled>-- select --</option>
                         @foreach($detailInvoicesForSelect as $value => $label)
@@ -72,23 +72,23 @@
                         />
                     </th>
                     <th class="px-4 py-3 text-left">
-                        @lang('crud.production_production_main_forms.inputs.detail_invoice_id')
+                        @lang('crud.production_production_main_froms.inputs.detail_invoice_id')
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody class="text-gray-600">
-                @foreach ($productionMainForms as $productionMainForm)
+                @foreach ($productionMainFroms as $productionMainFrom)
                 <tr class="hover:bg-gray-100">
                     <td class="px-4 py-3 text-left">
                         <input
                             type="checkbox"
-                            value="{{ $productionMainForm->id }}"
+                            value="{{ $productionMainFrom->id }}"
                             wire:model="selected"
                         />
                     </td>
                     <td class="px-4 py-3 text-left">
-                        {{ optional($productionMainForm->detailInvoice)->id ??
+                        {{ optional($productionMainFrom->detailInvoice)->id ??
                         '-' }}
                     </td>
                     <td class="px-4 py-3 text-right" style="width: 134px;">
@@ -97,11 +97,11 @@
                             aria-label="Row Actions"
                             class="relative inline-flex align-middle"
                         >
-                            @can('update', $productionMainForm)
+                            @can('update', $productionMainFrom)
                             <button
                                 type="button"
                                 class="button"
-                                wire:click="editProductionMainForm({{ $productionMainForm->id }})"
+                                wire:click="editProductionMainFrom({{ $productionMainFrom->id }})"
                             >
                                 <i class="icon ion-md-create"></i>
                             </button>
@@ -115,7 +115,7 @@
                 <tr>
                     <td colspan="2">
                         <div class="mt-10 px-4">
-                            {{ $productionMainForms->render() }}
+                            {{ $productionMainFroms->render() }}
                         </div>
                     </td>
                 </tr>

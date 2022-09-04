@@ -113,7 +113,7 @@ use App\Http\Controllers\Api\UnitDetailInvoicesController;
 use App\Http\Controllers\Api\RoomHygieneOfRoomsController;
 use App\Http\Controllers\Api\VehicleCertificateController;
 use App\Http\Controllers\Api\MovementAssetAuditController;
-use App\Http\Controllers\Api\ProductionMainFormController;
+use App\Http\Controllers\Api\ProductionMainFromController;
 use App\Http\Controllers\Api\UserFranchiseGroupsController;
 use App\Http\Controllers\Api\UserRemainingStocksController;
 use App\Http\Controllers\Api\UserClosingCouriersController;
@@ -215,7 +215,7 @@ use App\Http\Controllers\Api\fuel_service_payment_receiptController;
 use App\Http\Controllers\Api\closing_store_purchase_orderController;
 use App\Http\Controllers\Api\PresenceTransferDailySalariesController;
 use App\Http\Controllers\Api\ProductProductionSupportFromsController;
-use App\Http\Controllers\Api\ProductionProductionMainFormsController;
+use App\Http\Controllers\Api\ProductionProductionMainFromsController;
 use App\Http\Controllers\Api\PurchaseOrderPurchaseReceiptsController;
 use App\Http\Controllers\Api\closing_courier_closing_storeController;
 use App\Http\Controllers\Api\PurchaseReceiptPurchaseOrdersController;
@@ -236,7 +236,7 @@ use App\Http\Controllers\Api\DeliveryAddressSalesOrderOnlinesController;
 use App\Http\Controllers\Api\MovementAssetMovementAssetAuditsController;
 use App\Http\Controllers\Api\DeliveryServiceSalesOrderOnlinesController;
 use App\Http\Controllers\Api\invoice_purchase_payment_receiptController;
-use App\Http\Controllers\Api\DetailInvoiceProductionMainFormsController;
+use App\Http\Controllers\Api\DetailInvoiceProductionMainFromsController;
 use App\Http\Controllers\Api\CashlessProviderAccountCashlessesController;
 use App\Http\Controllers\Api\OnlineShopProviderSalesOrderOnlinesController;
 use App\Http\Controllers\Api\MovementAssetResultMovementAssetAuditsController;
@@ -1610,15 +1610,15 @@ Route::name('api.')
             'store',
         ])->name('productions.production-support-froms.store');
 
-        // Production Production Main Forms
-        Route::get('/productions/{production}/production-main-forms', [
-            ProductionProductionMainFormsController::class,
+        // Production Production Main Froms
+        Route::get('/productions/{production}/production-main-froms', [
+            ProductionProductionMainFromsController::class,
             'index',
-        ])->name('productions.production-main-forms.index');
-        Route::post('/productions/{production}/production-main-forms', [
-            ProductionProductionMainFormsController::class,
+        ])->name('productions.production-main-froms.index');
+        Route::post('/productions/{production}/production-main-froms', [
+            ProductionProductionMainFromsController::class,
             'store',
-        ])->name('productions.production-main-forms.store');
+        ])->name('productions.production-main-froms.store');
 
         Route::apiResource('purchase-orders', PurchaseOrderController::class);
 

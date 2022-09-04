@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('production_main_forms', function (Blueprint $table) {
+        Schema::create('production_main_froms', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('production_id');
             $table->unsignedBigInteger('detail_invoice_id');
@@ -28,6 +28,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('production_main_forms');
+        Schema::dropIfExists('production_main_froms');
     }
 };

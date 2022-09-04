@@ -49,9 +49,9 @@ class DetailInvoice extends Model
         return $this->belongsTo(Unit::class, 'unit_invoice_id');
     }
 
-    public function productionMainForms()
+    public function productionMainFroms()
     {
-        return $this->hasMany(ProductionMainForm::class);
+        return $this->hasMany(ProductionMainFrom::class);
     }
 
     public function delete_image()

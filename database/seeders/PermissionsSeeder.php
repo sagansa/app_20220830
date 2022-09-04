@@ -261,11 +261,11 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update productionfroms']);
         Permission::create(['name' => 'delete productionfroms']);
 
-        Permission::create(['name' => 'list productionmainforms']);
-        Permission::create(['name' => 'view productionmainforms']);
-        Permission::create(['name' => 'create productionmainforms']);
-        Permission::create(['name' => 'update productionmainforms']);
-        Permission::create(['name' => 'delete productionmainforms']);
+        Permission::create(['name' => 'list productionmainfroms']);
+        Permission::create(['name' => 'view productionmainfroms']);
+        Permission::create(['name' => 'create productionmainfroms']);
+        Permission::create(['name' => 'update productionmainfroms']);
+        Permission::create(['name' => 'delete productionmainfroms']);
 
         Permission::create(['name' => 'list productionsupportfroms']);
         Permission::create(['name' => 'view productionsupportfroms']);

@@ -6,16 +6,16 @@ use Livewire\Component;
 use App\Models\Production;
 use Livewire\WithPagination;
 use App\Models\DetailInvoice;
-use App\Models\ProductionMainForm;
+use App\Models\ProductionMainFrom;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class ProductionProductionMainFormsDetail extends Component
+class ProductionProductionMainFromsDetail extends Component
 {
     use WithPagination;
     use AuthorizesRequests;
 
     public Production $production;
-    public ProductionMainForm $productionMainForm;
+    public ProductionMainFrom $productionMainFrom;
     public $detailInvoicesForSelect = [];
 
     public $selected = [];
@@ -23,10 +23,10 @@ class ProductionProductionMainFormsDetail extends Component
     public $allSelected = false;
     public $showingModal = false;
 
-    public $modalTitle = 'New ProductionMainForm';
+    public $modalTitle = 'New ProductionMainFrom';
 
     protected $rules = [
-        'productionMainForm.detail_invoice_id' => [
+        'productionMainFrom.detail_invoice_id' => [
             'required',
             'exists:detail_invoices,id',
         ],
@@ -36,37 +36,37 @@ class ProductionProductionMainFormsDetail extends Component
     {
         $this->production = $production;
         $this->detailInvoicesForSelect = DetailInvoice::pluck('id', 'id');
-        $this->resetProductionMainFormData();
+        $this->resetProductionMainFromData();
     }
 
-    public function resetProductionMainFormData()
+    public function resetProductionMainFromData()
     {
-        $this->productionMainForm = new ProductionMainForm();
+        $this->productionMainFrom = new ProductionMainFrom();
 
-        $this->productionMainForm->detail_invoice_id = null;
+        $this->productionMainFrom->detail_invoice_id = null;
 
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newProductionMainForm()
+    public function newProductionMainFrom()
     {
         $this->editing = false;
         $this->modalTitle = trans(
-            'crud.production_production_main_forms.new_title'
+            'crud.production_production_main_froms.new_title'
         );
-        $this->resetProductionMainFormData();
+        $this->resetProductionMainFromData();
 
         $this->showModal();
     }
 
-    public function editProductionMainForm(
-        ProductionMainForm $productionMainForm
+    public function editProductionMainFrom(
+        ProductionMainFrom $productionMainFrom
     ) {
         $this->editing = true;
         $this->modalTitle = trans(
-            'crud.production_production_main_forms.edit_title'
+            'crud.production_production_main_froms.edit_title'
         );
-        $this->productionMainForm = $productionMainForm;
+        $this->productionMainFrom = $productionMainFrom;
 
         $this->dispatchBrowserEvent('refresh');
 
@@ -88,29 +88,29 @@ class ProductionProductionMainFormsDetail extends Component
     {
         $this->validate();
 
-        if (!$this->productionMainForm->production_id) {
-            $this->authorize('create', ProductionMainForm::class);
+        if (!$this->productionMainFrom->production_id) {
+            $this->authorize('create', ProductionMainFrom::class);
 
-            $this->productionMainForm->production_id = $this->production->id;
+            $this->productionMainFrom->production_id = $this->production->id;
         } else {
-            $this->authorize('update', $this->productionMainForm);
+            $this->authorize('update', $this->productionMainFrom);
         }
 
-        $this->productionMainForm->save();
+        $this->productionMainFrom->save();
 
         $this->hideModal();
     }
 
     public function destroySelected()
     {
-        $this->authorize('delete-any', ProductionMainForm::class);
+        $this->authorize('delete-any', ProductionMainFrom::class);
 
-        ProductionMainForm::whereIn('id', $this->selected)->delete();
+        ProductionMainFrom::whereIn('id', $this->selected)->delete();
 
         $this->selected = [];
         $this->allSelected = false;
 
-        $this->resetProductionMainFormData();
+        $this->resetProductionMainFromData();
     }
 
     public function toggleFullSelection()
@@ -121,18 +121,18 @@ class ProductionProductionMainFormsDetail extends Component
         }
 
         foreach (
-            $this->production->productionMainForms
-            as $productionMainForm
+            $this->production->productionMainFroms
+            as $productionMainFrom
         ) {
-            array_push($this->selected, $productionMainForm->id);
+            array_push($this->selected, $productionMainFrom->id);
         }
     }
 
     public function render()
     {
-        return view('livewire.production-production-main-forms-detail', [
-            'productionMainForms' => $this->production
-                ->productionMainForms()
+        return view('livewire.production-production-main-froms-detail', [
+            'productionMainFroms' => $this->production
+                ->productionMainFroms()
                 ->paginate(20),
         ]);
     }

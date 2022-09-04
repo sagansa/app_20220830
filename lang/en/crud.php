@@ -1515,13 +1515,13 @@ return [
         ],
     ],
 
-    'production_production_main_forms' => [
-        'name' => 'Production Production Main Forms',
-        'index_title' => 'ProductionMainForms List',
-        'new_title' => 'New Production main form',
-        'create_title' => 'Create ProductionMainForm',
-        'edit_title' => 'Edit ProductionMainForm',
-        'show_title' => 'Show ProductionMainForm',
+    'production_production_main_froms' => [
+        'name' => 'Production Production Main Froms',
+        'index_title' => 'ProductionMainFroms List',
+        'new_title' => 'New Production main from',
+        'create_title' => 'Create ProductionMainFrom',
+        'edit_title' => 'Edit ProductionMainFrom',
+        'show_title' => 'Show ProductionMainFrom',
         'inputs' => [
             'detail_invoice_id' => 'Detail Invoice',
         ],

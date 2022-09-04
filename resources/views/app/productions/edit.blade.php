@@ -31,6 +31,14 @@
                     </x-form>
                 </x-partials.card>
 
+                @can('view-any', App\Models\ProductionMainFrom::class)
+                    <x-partials.card class="mt-5">
+                        <x-slot name="title"> Production Main Froms </x-slot>
+
+                        <livewire:production-production-main-froms-detail :production="$production" />
+                    </x-partials.card>
+                @endcan
+
                 @can('view-any', App\Models\ProductionFrom::class)
                     <x-partials.card class="mt-5">
                         <x-slot name="title"> Production Froms </x-slot>

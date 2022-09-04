@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductGroupSeeder::class);
         $this->call(ProductionSeeder::class);
         $this->call(ProductionFromSeeder::class);
-        $this->call(ProductionMainFormSeeder::class);
+        $this->call(ProductionMainFromSeeder::class);
         $this->call(ProductionSupportFromSeeder::class);
         $this->call(ProductionToSeeder::class);
         $this->call(ProvinceSeeder::class);
