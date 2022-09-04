@@ -34,9 +34,11 @@
                     wire:model="detailRequest.quantity_plan"></x-input.number>
                 @role('super-admin|manager')
                     <x-input.select name="detailRequest.status" label="Status" wire:model="detailRequest.status">
-                        <option value="1" {{ $selected == '1' ? 'selected' : '' }}>belum disetujui</option>
-                        <option value="2" {{ $selected == '2' ? 'selected' : '' }}>disetujui</option>
-                        <option value="3" {{ $selected == '3' ? 'selected' : '' }}>tidak disetujui</option>
+                        <option value="1" {{ $selected == '1' ? 'selected' : '' }}>process</option>
+                        <option value="2" {{ $selected == '2' ? 'selected' : '' }}>done</option>
+                        <option value="3" {{ $selected == '3' ? 'selected' : '' }}>reject</option>
+                        <option value="4" {{ $selected == '4' ? 'selected' : '' }}>approved</option>
+                        <option value="5" {{ $selected == '5' ? 'selected' : '' }}>not valid</option>
                     </x-input.select>
                 @endrole
                 @role('supervisor|staff')
@@ -89,11 +91,15 @@
                         </x-tables.td-left>
                         <x-tables.td-left>
                             @if ($detailRequest->status == 1)
-                                <x-spans.yellow>belum disetujui</x-spans.yellow>
+                                <x-spans.yellow>process</x-spans.yellow>
                             @elseif ($detailRequest->status == 2)
-                                <x-spans.green>disetujui</x-spans.green>
+                                <x-spans.green>done</x-spans.green>
                             @elseif ($detailRequest->status == 3)
-                                <x-spans.red>tidak disetujui</x-spans.red>
+                                <x-spans.red>reject</x-spans.red>
+                            @elseif ($detailRequest->status == 4)
+                                <x-spans.green>approved</x-spans.green>
+                            @elseif ($detailRequest->status == 5)
+                                <x-spans.red>not valid</x-spans.red>
                             @endif
                         </x-tables.td-left>
                         <x-tables.td-left>

@@ -46,10 +46,13 @@
                       </svg>
                   </x-slot>
                   <x-sidebars.dropdown-link href="{{ route('check-productions') }}">
-                      Productions
+                      Check Productions
                   </x-sidebars.dropdown-link>
                   <x-sidebars.dropdown-link href="{{ route('unit-price-purchases') }}">
                       Unit Price Purchase Order
+                  </x-sidebars.dropdown-link>
+                  <x-sidebars.dropdown-link href="{{ route('check-product-requests') }}">
+                      Check Product Requests
                   </x-sidebars.dropdown-link>
               </x-sidebars.nav-dropdown-mobile>
           @endrole

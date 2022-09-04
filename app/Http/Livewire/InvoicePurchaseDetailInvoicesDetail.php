@@ -47,7 +47,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             $this->detailRequestsForSelect = DetailRequest::join('products', 'products.id', '=', 'detail_requests.product_id')
                 ->where('products.payment_type_id', '=', '2')
                 ->where('store_id', '=', $this->invoicePurchase->store_id)
-                ->where('status', '=', '2')
+                ->whereIn('status', '=', '4', '5')
                 ->get()->pluck('id', 'detail_request_name');
         else
             $this->detailRequestsForSelect = DetailRequest::get()->where('status', '=', '2')
@@ -117,6 +117,10 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             $this->authorize('update', $this->detailInvoice);
         }
 
+        DetailRequest::whereIn('id', $this->detailInvoice)->update([
+            'status' => '2',
+        ]);
+
         $this->detailInvoice->save();
 
         $this->hideModal();
@@ -127,6 +131,10 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         $this->authorize('delete-any', DetailInvoice::class);
 
         DetailInvoice::whereIn('id', $this->selected)->delete();
+
+        DetailRequest::whereIn('id', $this->detailInvoice)->update([
+            'status' => '4',
+        ]);
 
         $this->selected = [];
         $this->allSelected = false;

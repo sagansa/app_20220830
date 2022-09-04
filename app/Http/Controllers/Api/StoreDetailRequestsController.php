@@ -42,7 +42,7 @@ class StoreDetailRequestsController extends Controller
         $validated = $request->validate([
             'product_id' => ['required', 'exists:products,id'],
             'quantity_plan' => ['required', 'numeric', 'min:0'],
-            'status' => ['required', 'in:1,2,3,4'],
+            'status' => ['required', 'in:1,2,3,4,5'],
             'notes' => ['nullable', 'max:255', 'string'],
         ]);
 

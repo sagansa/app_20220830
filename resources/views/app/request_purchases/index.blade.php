@@ -54,14 +54,19 @@
                             <x-slot name="main">{{ optional($requestPurchase->store)->nickname ?? '-' }}</x-slot>
                             <x-slot name="sub">{{ $requestPurchase->date->toFormattedDate() ?? '-' }}
                                 @foreach ($requestPurchase->detailRequests as $detailRequest)
-                                    <p> {{ $detailRequest->product->name }} - {{ $detailRequest->quantity_plan }}
+                                    <p>
+                                        {{ $detailRequest->product->name }} - {{ $detailRequest->quantity_plan }}
                                         {{ $detailRequest->product->unit->unit }} -
                                         @if ($detailRequest->status == 1)
-                                            <x-spans.yellow>belum disetujui</x-spans.yellow>
+                                            <x-spans.yellow>process</x-spans.yellow>
                                         @elseif($detailRequest->status == 2)
-                                            <x-spans.green>disetujui</x-spans.green>
+                                            <x-spans.green>done</x-spans.green>
                                         @elseif($detailRequest->status == 3)
-                                            <x-spans.red>tidak disetujui</x-spans.red>
+                                            <x-spans.red>reject</x-spans.red>
+                                        @elseif($detailRequest->status == 4)
+                                            <x-spans.green>approved</x-spans.green>
+                                        @elseif($detailRequest->status == 5)
+                                            <x-spans.red>not valid</x-spans.red>
                                         @endif
                                     </p>
                                 @endforeach
@@ -78,11 +83,15 @@
                                 {{ $detailRequest->product->name }} - {{ $detailRequest->quantity_plan }}
                                 {{ $detailRequest->product->unit->unit }} -
                                 @if ($detailRequest->status == 1)
-                                    <x-spans.yellow>belum disetujui</x-spans.yellow>
+                                    <x-spans.yellow>process</x-spans.yellow>
                                 @elseif($detailRequest->status == 2)
-                                    <x-spans.green>disetujui</x-spans.green>
+                                    <x-spans.green>done</x-spans.green>
                                 @elseif($detailRequest->status == 3)
-                                    <x-spans.red>tidak disetujui</x-spans.red>
+                                    <x-spans.red>reject</x-spans.red>
+                                @elseif($detailRequest->status == 4)
+                                    <x-spans.green>approved</x-spans.green>
+                                @elseif($detailRequest->status == 5)
+                                    <x-spans.red>not valid</x-spans.red>
                                 @endif
                             @endforeach
                         </x-tables.td-left-hide>
