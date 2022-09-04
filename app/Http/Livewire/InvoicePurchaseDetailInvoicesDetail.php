@@ -60,7 +60,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             // ->where('status', '=', '2')
             ->join('products', 'products.id', '=', 'detail_requests.product_id')
             ->join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
-            ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
+            ->where('detail_requests.request_purchases.store_id', '=', $this->invoicePurchase->store_id)
             ->where('products.payment_type_id', '=', '2')
             ->get()
             ->pluck('id', 'detail_request_name');
