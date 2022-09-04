@@ -94,6 +94,9 @@ class RequestPurchaseDetailRequestsDetail extends Component
 
             $this->detailRequest->request_purchase_id =
                 $this->requestPurchase->id;
+
+            $this->detailRequest->store_id = $this->requestPurchase->store_id;
+
         } else {
             $this->authorize('update', $this->detailRequest);
         }

@@ -47,6 +47,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             $this->detailRequestsForSelect = DetailRequest::query()
                 ->join('products', 'products.id', '=', 'detail_requests.product_id')
                 ->where('products.payment_type_id', '=', '2')
+                ->where('store_id', '=', $this->invoicePurchase->store_id)
                 ->where('status', '=', '2')
                 ->get()->pluck('id', 'detail_request_name');
         else

@@ -3,15 +3,15 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
+use App\Models\Store;
 use App\Models\DetailRequest;
-use App\Models\RequestPurchase;
 
 use Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class RequestPurchaseDetailRequestsTest extends TestCase
+class StoreDetailRequestsTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,20 +31,17 @@ class RequestPurchaseDetailRequestsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_request_purchase_detail_requests()
+    public function it_gets_store_detail_requests()
     {
-        $requestPurchase = RequestPurchase::factory()->create();
+        $store = Store::factory()->create();
         $detailRequests = DetailRequest::factory()
             ->count(2)
             ->create([
-                'request_purchase_id' => $requestPurchase->id,
+                'store_id' => $store->id,
             ]);
 
         $response = $this->getJson(
-            route(
-                'api.request-purchases.detail-requests.index',
-                $requestPurchase
-            )
+            route('api.stores.detail-requests.index', $store)
         );
 
         $response->assertOk()->assertSee($detailRequests[0]->notes);
@@ -53,20 +50,17 @@ class RequestPurchaseDetailRequestsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_request_purchase_detail_requests()
+    public function it_stores_the_store_detail_requests()
     {
-        $requestPurchase = RequestPurchase::factory()->create();
+        $store = Store::factory()->create();
         $data = DetailRequest::factory()
             ->make([
-                'request_purchase_id' => $requestPurchase->id,
+                'store_id' => $store->id,
             ])
             ->toArray();
 
         $response = $this->postJson(
-            route(
-                'api.request-purchases.detail-requests.store',
-                $requestPurchase
-            ),
+            route('api.stores.detail-requests.store', $store),
             $data
         );
 
@@ -79,9 +73,6 @@ class RequestPurchaseDetailRequestsTest extends TestCase
 
         $detailRequest = DetailRequest::latest('id')->first();
 
-        $this->assertEquals(
-            $requestPurchase->id,
-            $detailRequest->request_purchase_id
-        );
+        $this->assertEquals($store->id, $detailRequest->store_id);
     }
 }
