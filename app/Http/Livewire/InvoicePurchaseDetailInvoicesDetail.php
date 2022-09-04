@@ -43,25 +43,24 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
     {
         $this->invoicePurchase = $invoicePurchase;
 
-        if($this->invoicePurchase->payment_type_id == '2')
-            $this->detailRequestsForSelect = DetailRequest::query()
-                ->join('products', 'products.id', '=', 'detail_requests.product_id')
-                ->where('products.payment_type_id', '=', '2')
-                ->where('status', '=', '2')
-                ->get()->pluck('id', 'detail_request_name');
-        else
-            $this->detailRequestsForSelect = DetailRequest::get()->where('status', '=', '2')
-                ->pluck('id', 'detail_request_name');
-
-        // $this->detailRequestsForSelect = DetailRequest::get()
+        // if($this->invoicePurchase->payment_type_id == '2')
+        //     $this->detailRequestsForSelect = DetailRequest::query()
+        //         ->join('products', 'products.id', '=', 'detail_requests.product_id')
+        //         ->where('products.payment_type_id', '=', '2')
+        //         ->where('status', '=', '2')
+        //         ->get()->pluck('id', 'detail_request_name');
+        // else
+        //     $this->detailRequestsForSelect = DetailRequest::get()->where('status', '=', '2')
         //         ->pluck('id', 'detail_request_name');
 
-        // $result = MyModel::join('contacts', function ($join) {
-        //     $join->on('users.id', '=', 'contacts.user_id')
-        //          ->where('contacts.user_id', '>', 5);
-        // })
-        // ->get();
-
+        $this->detailRequestsForSelect = DetailRequest::query()
+            ->join('invoice_purchases', 'invoice_purchases.id', '=', 'detail_invoices.invoice_purchase_id')
+            ->join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
+            ->join('products', 'products.id', '=', 'detail_requests.product_id')
+            ->where('invoice_purchases.store_id', '=', 'request_purchases.store_id')
+            ->where('products.payment_type_id', '=', '2')
+            ->where('status', '=', '2')
+            ->get()->pluck('id', 'detail_request_name');
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
