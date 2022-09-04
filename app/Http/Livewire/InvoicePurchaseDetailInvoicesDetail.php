@@ -47,10 +47,10 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             $this->detailRequestsForSelect = DetailRequest::query()
                 ->join('products', 'products.id', '=', 'detail_requests.product_id')
                 ->where('products.payment_type_id', '=', '2')
-                ->whereIn('status', ['2'])
+                ->where('status', '=', '2')
                 ->get()->pluck('id', 'detail_request_name');
         else
-            $this->detailRequestsForSelect = DetailRequest::get()
+            $this->detailRequestsForSelect = DetailRequest::get()->where('status', '=', '2')
                 ->pluck('id', 'detail_request_name');
 
         // $this->detailRequestsForSelect = DetailRequest::get()
@@ -61,6 +61,10 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         //          ->where('contacts.user_id', '>', 5);
         // })
         // ->get();
+
+        $this->detailRequestsForSelect = DetailRequest::join('products', function ($join) {
+            $join->on()
+        })->get();
 
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
