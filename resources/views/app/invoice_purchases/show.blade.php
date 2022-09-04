@@ -86,24 +86,6 @@
                         >
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
-                        <x-shows.dt
-                            >@lang('crud.invoice_purchases.inputs.created_by_id')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ optional($invoicePurchase->created_by)->name ??
-                            '-' }}</x-shows.dd
-                        >
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
-                            >@lang('crud.invoice_purchases.inputs.approved_id')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ optional($invoicePurchase->approved_by)->name ??
-                            '-' }}</x-shows.dd
-                        >
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
                         <x-shows.dt>Created Date</x-shows.dt>
                         <x-shows.dd
                             >{{ $invoicePurchase->created_at ?? '-'

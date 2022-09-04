@@ -62,6 +62,8 @@ class InvoicePurchaseTest extends TestCase
         unset($data['taxes']);
         unset($data['discounts']);
         unset($data['notes']);
+        unset($data['created_by_id']);
+        unset($data['approved_id']);
 
         $this->assertDatabaseHas('invoice_purchases', $data);
 
@@ -103,6 +105,8 @@ class InvoicePurchaseTest extends TestCase
         unset($data['taxes']);
         unset($data['discounts']);
         unset($data['notes']);
+        unset($data['created_by_id']);
+        unset($data['approved_id']);
 
         $data['id'] = $invoicePurchase->id;
 

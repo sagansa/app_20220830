@@ -84,22 +84,6 @@
         <option value="3" {{ $selected == '3' ? 'selected' : '' }} >dikembalikan</option>
     </x-input.select>
 
-    <x-input.select name="created_by_id" label="Created By">
-        @php $selected = old('created_by_id', ($editing ? $invoicePurchase->created_by_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach($users as $value => $label)
-        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
-        @endforeach
-    </x-input.select>
-
-    <x-input.select name="approved_id" label="Approved By">
-        @php $selected = old('approved_id', ($editing ? $invoicePurchase->approved_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach($users as $value => $label)
-        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
-        @endforeach
-    </x-input.select>
-
     @if ($editing)
     <x-shows.dl>
         <x-shows.sub-dl>

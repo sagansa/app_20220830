@@ -1456,8 +1456,6 @@ return [
             'date' => 'Date',
             'payment_status' => 'Payment Status',
             'order_status' => 'Order Status',
-            'created_by_id' => 'Created By',
-            'approved_id' => 'Approved By',
         ],
     ],
 
@@ -1511,6 +1509,18 @@ return [
         'show_title' => 'Show Closing Store Invoice Purchase',
         'inputs' => [
             'invoice_purchase_id' => 'Invoice Purchase',
+        ],
+    ],
+
+    'production_production_main_forms' => [
+        'name' => 'Production Production Main Forms',
+        'index_title' => 'ProductionMainForms List',
+        'new_title' => 'New Production main form',
+        'create_title' => 'Create ProductionMainForm',
+        'edit_title' => 'Edit ProductionMainForm',
+        'show_title' => 'Show ProductionMainForm',
+        'inputs' => [
+            'detail_invoice_id' => 'Detail Invoice',
         ],
     ],
 

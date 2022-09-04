@@ -65,7 +65,6 @@ class ProductionProductionMainFormsTest extends TestCase
         );
 
         unset($data['production_id']);
-        unset($data['detail_invoice_id']);
 
         $this->assertDatabaseHas('production_main_forms', $data);
 

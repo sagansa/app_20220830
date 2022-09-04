@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Image;
-use App\Models\User;
 use App\Models\Store;
 use App\Models\Supplier;
 use App\Models\PaymentType;
@@ -52,13 +51,10 @@ class InvoicePurchaseController extends Controller
         $suppliers = Supplier::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $users = User::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
 
         return view(
             'app.invoice_purchases.create',
-            compact('paymentTypes', 'stores', 'suppliers', 'users', 'users')
+            compact('paymentTypes', 'stores', 'suppliers')
         );
     }
 
@@ -127,20 +123,10 @@ class InvoicePurchaseController extends Controller
         $suppliers = Supplier::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $users = User::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
 
         return view(
             'app.invoice_purchases.edit',
-            compact(
-                'invoicePurchase',
-                'paymentTypes',
-                'stores',
-                'suppliers',
-                'users',
-                'users'
-            )
+            compact('invoicePurchase', 'paymentTypes', 'stores', 'suppliers')
         );
     }
 

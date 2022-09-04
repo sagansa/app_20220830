@@ -46,8 +46,6 @@ class PaymentTypeInvoicePurchasesController extends Controller
             'date' => ['required', 'date'],
             'payment_status' => ['required'],
             'order_status' => ['required'],
-            'created_by_id' => ['nullable', 'exists:users,id'],
-            'approved_id' => ['nullable', 'exists:users,id'],
         ]);
 
         if ($request->hasFile('image')) {
