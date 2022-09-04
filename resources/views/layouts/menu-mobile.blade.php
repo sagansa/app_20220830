@@ -207,7 +207,6 @@
               Auth::user()->can('view-any', App\Models\TransferStock::class) ||
               Auth::user()->can('view-any', App\Models\RemainingStock::class) ||
               Auth::user()->can('view-any', App\Models\UtilityUsage::class) ||
-              Auth::user()->can('view-any', App\Models\RequestStock::class) ||
               Auth::user()->can('view-any', App\Models\OutInProduct::class) ||
               Auth::user()->can('view-any', App\Models\StockCard::class) ||
               Auth::user()->can('view-any', App\Models\SelfConsumption::class))
@@ -251,11 +250,7 @@
                           Self Consumptions
                       </x-sidebars.dropdown-link>
                   @endcan
-                  @can('view-any', App\Models\RequestStock::class)
-                      <x-sidebars.dropdown-link href="{{ route('request-stocks.index') }}">
-                          Request Stocks
-                      </x-sidebars.dropdown-link>
-                  @endcan
+
                   @can('view-any', App\Models\UtilityUsage::class)
                       <x-sidebars.dropdown-link href="{{ route('utility-usages.index') }}">
                           Utility Usages
