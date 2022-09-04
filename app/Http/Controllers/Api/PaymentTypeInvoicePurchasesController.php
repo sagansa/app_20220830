@@ -44,8 +44,11 @@ class PaymentTypeInvoicePurchasesController extends Controller
             'store_id' => ['required', 'exists:stores,id'],
             'supplier_id' => ['required', 'exists:suppliers,id'],
             'date' => ['required', 'date'],
-            'payment_status' => ['required'],
-            'order_status' => ['required'],
+            'discounts' => ['required', 'numeric', 'min:0'],
+            'taxes' => ['required', 'numeric', 'min:0'],
+            'payment_status' => ['required', 'in:1,2,3,4'],
+            'order_status' => ['required', 'in:1,2,3'],
+            'notes' => ['required', 'max:255', 'string'],
         ]);
 
         if ($request->hasFile('image')) {

@@ -63,9 +63,6 @@ class UserInvoicePurchasesTest extends TestCase
             $data
         );
 
-        unset($data['taxes']);
-        unset($data['discounts']);
-        unset($data['notes']);
         unset($data['created_by_id']);
         unset($data['approved_id']);
 

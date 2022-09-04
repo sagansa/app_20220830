@@ -69,6 +69,23 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
+                            >@lang('crud.invoice_purchases.inputs.discounts')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ $invoicePurchase->discounts ?? '-'
+                            }}</x-shows.dd
+                        >
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
+                            >@lang('crud.invoice_purchases.inputs.taxes')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ $invoicePurchase->taxes ?? '-' }}</x-shows.dd
+                        >
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
                             >@lang('crud.invoice_purchases.inputs.payment_status')</x-shows.dt
                         >
                         <x-shows.dd
@@ -83,6 +100,14 @@
                         <x-shows.dd
                             >{{ $invoicePurchase->order_status ?? '-'
                             }}</x-shows.dd
+                        >
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
+                            >@lang('crud.invoice_purchases.inputs.notes')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ $invoicePurchase->notes ?? '-' }}</x-shows.dd
                         >
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>

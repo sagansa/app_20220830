@@ -69,6 +69,16 @@
         required
     ></x-input.date>
 
+    <x-inputs.hidden
+        name="discounts"
+        :value="old('discounts', ($editing ? $invoicePurchase->discounts : '0'))"
+    ></x-inputs.hidden>
+
+    <x-inputs.hidden
+        name="taxes"
+        :value="old('taxes', ($editing ? $invoicePurchase->taxes : '0'))"
+    ></x-inputs.hidden>
+
     <x-input.select name="payment_status" label="Payment Status">
         @php $selected = old('payment_status', ($editing ? $invoicePurchase->payment_status : '1')) @endphp
         <option value="1" {{ $selected == '1' ? 'selected' : '' }} >belum dibayar</option>
@@ -83,6 +93,11 @@
         <option value="2" {{ $selected == '2' ? 'selected' : '' }} >sudah diterima</option>
         <option value="3" {{ $selected == '3' ? 'selected' : '' }} >dikembalikan</option>
     </x-input.select>
+
+    <x-input.textarea name="notes" label="Notes" maxlength="255" required
+        >{{ old('notes', ($editing ? $invoicePurchase->notes : ''))
+        }}</x-input.textarea
+    >
 
     @if ($editing)
     <x-shows.dl>

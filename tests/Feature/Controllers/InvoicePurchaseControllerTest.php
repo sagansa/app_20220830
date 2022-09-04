@@ -68,9 +68,6 @@ class InvoicePurchaseControllerTest extends TestCase
 
         $response = $this->post(route('invoice-purchases.store'), $data);
 
-        unset($data['taxes']);
-        unset($data['discounts']);
-        unset($data['notes']);
         unset($data['created_by_id']);
         unset($data['approved_id']);
 
@@ -149,9 +146,6 @@ class InvoicePurchaseControllerTest extends TestCase
             $data
         );
 
-        unset($data['taxes']);
-        unset($data['discounts']);
-        unset($data['notes']);
         unset($data['created_by_id']);
         unset($data['approved_id']);
 

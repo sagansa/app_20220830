@@ -1454,8 +1454,11 @@ return [
             'store_id' => 'Store',
             'supplier_id' => 'Supplier',
             'date' => 'Date',
+            'discounts' => 'Discounts',
+            'taxes' => 'Taxes',
             'payment_status' => 'Payment Status',
             'order_status' => 'Order Status',
+            'notes' => 'Notes',
         ],
     ],
 

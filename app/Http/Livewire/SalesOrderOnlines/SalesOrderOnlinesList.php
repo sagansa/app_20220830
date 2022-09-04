@@ -79,23 +79,23 @@ class SalesOrderOnlinesList extends Component
 
     public function getRowsQueryProperty()
     {
-        // $salesOrderOnlines = SalesOrderOnline::query()
-        //     ->select(['sales_order_onlines.*', 'stores.name as storename'])
-        //     ->join('stores', 'stores.id', '=', 'sales_order_onlines.store_id')
-        //     ->join('customers', 'customers.id', '=', 'sales_order_onlines.customer_id')
-        //     ->join('online_shop_providers', 'online_shop_providers.id', '=', 'sales_order_onlines.online_shop_provider_id')
-        //     ->join('delivery_services', 'delivery_services.id', '=', 'sales_order_onlines.delivery_service_id');
+        $salesOrderOnlines = SalesOrderOnline::query()
+            ->select(['sales_order_onlines.*', 'stores.name as storename'])
+            ->join('stores', 'stores.id', '=', 'sales_order_onlines.store_id')
+            ->join('customers', 'customers.id', '=', 'sales_order_onlines.customer_id')
+            ->join('online_shop_providers', 'online_shop_providers.id', '=', 'sales_order_onlines.online_shop_provider_id')
+            ->join('delivery_services', 'delivery_services.id', '=', 'sales_order_onlines.delivery_service_id');
 
-        $salesOrderOnlines = SalesOrderOnline::with('products')->query()->latest()
-            ->map(function (SalesOrderOnline $products) {
-                return (object)[
-                    'id' => $products->product_id,
-                    'name' => $products->products->name,
-                    'price' => $products->products->price,
-                    'quantity' => $products->quantity,
-                    'subtotal' => ($products->quantity * $products->price),
-                ];
-            });;
+        // $salesOrderOnlines = SalesOrderOnline::with('products')->query()->latest()
+        //     ->map(function (SalesOrderOnline $products) {
+        //         return (object)[
+        //             'id' => $products->product_id,
+        //             'name' => $products->products->name,
+        //             'price' => $products->products->price,
+        //             'quantity' => $products->quantity,
+        //             'subtotal' => ($products->quantity * $products->price),
+        //         ];
+        //     });;
 
         foreach ($this->filters as $filter => $value) {
                 if (!empty($value)) {
