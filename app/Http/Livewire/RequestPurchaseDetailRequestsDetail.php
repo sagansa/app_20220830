@@ -35,7 +35,8 @@ class RequestPurchaseDetailRequestsDetail extends Component
     public function mount(RequestPurchase $requestPurchase)
     {
         $this->requestPurchase = $requestPurchase;
-        $this->productsForSelect = Product::get()->pluck('id', 'product_name');
+        $this->productsForSelect = Product::orderBy('name', 'asc')
+            ->get()->pluck('id', 'product_name');
         $this->resetDetailRequestData();
     }
 
