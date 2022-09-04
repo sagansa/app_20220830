@@ -62,10 +62,6 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         // })
         // ->get();
 
-        $this->detailRequestsForSelect = DetailRequest::join('products', function ($join) {
-            $join->on()
-        })->get();
-
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
