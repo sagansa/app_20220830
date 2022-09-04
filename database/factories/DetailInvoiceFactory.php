@@ -28,8 +28,8 @@ class DetailInvoiceFactory extends Factory
             'subtotal_invoice' => $this->faker->randomNumber,
             'status' => $this->faker->numberBetween(1, 3),
             'invoice_purchase_id' => \App\Models\InvoicePurchase::factory(),
-            'detail_request_id' => \App\Models\DetailRequest::factory(),
             'unit_invoice_id' => \App\Models\Unit::factory(),
+            'detail_request_id' => \App\Models\DetailRequest::factory(),
         ];
     }
 }

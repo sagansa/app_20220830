@@ -39,11 +39,6 @@ class DetailInvoice extends Model
         return $this->belongsTo(InvoicePurchase::class);
     }
 
-    public function detailRequest()
-    {
-        return $this->belongsTo(DetailRequest::class);
-    }
-
     public function unit_invoice()
     {
         return $this->belongsTo(Unit::class, 'unit_invoice_id');
@@ -52,6 +47,11 @@ class DetailInvoice extends Model
     public function productionMainFroms()
     {
         return $this->hasMany(ProductionMainFrom::class);
+    }
+
+    public function detailRequest()
+    {
+        return $this->belongsTo(DetailRequest::class);
     }
 
     public function delete_image()

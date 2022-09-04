@@ -1437,7 +1437,6 @@ return [
             'quantity_plan' => 'Quantity Plan',
             'status' => 'Status',
             'notes' => 'Notes',
-            'status' => 'Status',
         ],
     ],
 
@@ -1471,7 +1470,6 @@ return [
         'edit_title' => 'Edit Detail Invoice',
         'show_title' => 'Show Detail Invoice',
         'inputs' => [
-            'detail_request_id' => 'Detail Request',
             'quantity_product' => 'Quantity Product',
             'quantity_invoice' => 'Quantity Invoice',
             'unit_invoice_id' => 'Unit Invoice',

@@ -40,11 +40,10 @@ class InvoicePurchaseDetailInvoicesController extends Controller
         $this->authorize('create', DetailInvoice::class);
 
         $validated = $request->validate([
-            'detail_request_id' => ['required', 'exists:detail_requests,id'],
             'quantity_product' => ['required', 'numeric'],
             'quantity_invoice' => ['required', 'numeric'],
             'unit_invoice_id' => ['required', 'exists:units,id'],
-            'subtotal_invoice' => ['required', 'numeric', 'gt:0'],
+            'subtotal_invoice' => ['required', 'max:255'],
             'status' => ['required', 'max:255'],
         ]);
 

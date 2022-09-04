@@ -65,6 +65,7 @@ class UnitDetailInvoicesTest extends TestCase
         );
 
         unset($data['invoice_purchase_id']);
+        unset($data['detail_request_id']);
 
         $this->assertDatabaseHas('detail_invoices', $data);
 

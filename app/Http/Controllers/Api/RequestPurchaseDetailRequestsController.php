@@ -42,9 +42,8 @@ class RequestPurchaseDetailRequestsController extends Controller
         $validated = $request->validate([
             'product_id' => ['required', 'exists:products,id'],
             'quantity_plan' => ['required', 'numeric', 'min:0'],
-            'status' => ['required', 'max:255'],
+            'status' => ['required', 'in:1,2,3,4'],
             'notes' => ['nullable', 'max:255', 'string'],
-            'status' => ['required', 'max:255'],
         ]);
 
         $detailRequest = $requestPurchase->detailRequests()->create($validated);
