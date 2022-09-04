@@ -108,8 +108,8 @@ class SalesOrderOnlinesList extends Component
                 }
             }
 
-        $this->subtotals = $salesOrderOnlines->sum('subtotal');
-        $this->totals = $this->subtotals - 0;
+        // $this->subtotals = $salesOrderOnlines->sum('subtotal');
+        // $this->totals = $this->subtotals - 0;
 
         return $this->applySorting($salesOrderOnlines);
     }
