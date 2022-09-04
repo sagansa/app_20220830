@@ -22,6 +22,7 @@ class DetailRequest extends Model
 
     protected $fillable = [
         'product_id',
+        'store_id',
         'quantity_plan',
         'status',
         'notes',
