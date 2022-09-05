@@ -31,8 +31,8 @@ class PaymentReceiptPresencesDetail extends Component
         $this->presencesForSelect = Presence::
             // ->join('closing_stores', 'presences.closing_store_id', '=', 'closing_stores.id')
             // ->orderBy('closing_stores.date', 'asc')
-
-            where('payment_type_id', '=', '1')
+            orderBy('created_by_id', 'asc')
+            ->where('payment_type_id', '=', '1')
             ->where('status', '=', '1')
             ->get()
             ->pluck('id', 'presence_name');
