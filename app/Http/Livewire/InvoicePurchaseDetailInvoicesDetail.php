@@ -30,13 +30,13 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
     protected $rules = [
         'detailInvoice.detail_request_id' => [
             'required',
-            'exists:detail_requests,id',
+            // 'exists:detail_requests,id',
         ],
-        'detailInvoice.quantity_product' => ['required', 'numeric'],
-        'detailInvoice.quantity_invoice' => ['required', 'numeric'],
+        'detailInvoice.quantity_product' => ['required', 'numeric', 'gt:0'],
+        'detailInvoice.quantity_invoice' => ['required', 'numeric', 'gt:0'],
         'detailInvoice.unit_invoice_id' => ['required', 'exists:units,id'],
         'detailInvoice.subtotal_invoice' => ['required', 'numeric', 'gt:0'],
-        'detailInvoice.status' => ['required', 'in:1,2'],
+        'detailInvoice.status' => ['required', 'in:1,2,3'],
     ];
 
     public function mount(InvoicePurchase $invoicePurchase)
