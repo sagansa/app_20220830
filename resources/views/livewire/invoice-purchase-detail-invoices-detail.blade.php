@@ -118,12 +118,14 @@
                         </x-tables.td-left>
                         <x-tables.td-left>
                             @if ($detailInvoice->detailRequest->product->payment_type_id != $this->invoicePurchase->payment_type_id)
-                                <x-spans.text-red>{{ optional($detailInvoice->product)->name ?? '-' }}
+                                <x-spans.text-red>{{ optional($detailInvoice->detailRequest)->product->name ?? '-' }}
                                 </x-spans.text-red>
                             @elseif ($detailInvoice->detailRequest->product->payment_type_id == $this->invoicePurchase->payment_type_id)
-                                <x-spans.text-black>{{ optional($detailInvoice->product)->name ?? '-' }}
+                                <x-spans.text-black>{{ optional($detailInvoice->detailRequest)->product->name ?? '-' }}
                                 </x-spans.text-black>
                             @endif
+
+
                         </x-tables.td-left>
                         <x-tables.td-right>
                             <p>Prod: {{ $detailInvoice->quantity_product ?? '-' }}
