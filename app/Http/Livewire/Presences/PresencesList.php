@@ -47,7 +47,9 @@ class PresencesList extends Component
     {
         $presences = Presence::query()
             ->select('*')
-            ->join('payment_types', 'payment_types.id', '=', 'presences.payment_type_id');
+            ->join('payment_types', 'payment_types.id', '=', 'presences.payment_type_id')
+            ->join('closing_stores', 'closing_stores.id', '=', 'presences.closing_store_id')
+            ->orderBy('closing_stores.date', 'desc');
 
             if (Auth::user()->hasRole('staff|supervisor|manager')) {
 
