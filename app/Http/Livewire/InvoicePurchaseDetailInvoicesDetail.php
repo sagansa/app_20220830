@@ -121,16 +121,8 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
             $this->detailInvoice->invoice_purchase_id =
                 $this->invoicePurchase->id;
-
-            DetailRequest::whereIn('id', $this->detailInvoice)->update([
-            'status' => '2',
-            ]);
         } else {
             $this->authorize('update', $this->detailInvoice);
-
-            DetailRequest::whereIn('id', $this->detailInvoice)->update([
-            'status' => '2',
-             ]);
         }
 
         // dd($this->detailInvoice);
