@@ -32,9 +32,9 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
     protected $rules = [
         'detailInvoice.detail_request_id' => [
-            'nullable'
-            // 'required',
-            // 'exists:detail_requests,id',
+            // 'nullable'
+            'required',
+            'exists:detail_requests,id',
         ],
         'detailInvoice.quantity_product' => ['required', 'numeric', 'gt:0'],
         'detailInvoice.quantity_invoice' => ['required', 'numeric', 'gt:0'],
@@ -127,7 +127,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             $this->authorize('update', $this->detailInvoice);
         }
 
-        // dd($this->detailInvoice);
+        dd($this->detailInvoice);
 
         $this->detailInvoice->save();
 
