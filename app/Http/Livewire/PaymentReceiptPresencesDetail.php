@@ -32,6 +32,7 @@ class PaymentReceiptPresencesDetail extends Component
             // ->join('closing_stores', 'presences.closing_store_id', '=', 'closing_stores.id')
             // ->orderBy('closing_stores.date', 'asc')
             orderBy('created_by_id', 'asc')
+            ->latest()
             ->where('payment_type_id', '=', '1')
             ->where('status', '=', '1')
             ->get()
