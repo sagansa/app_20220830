@@ -32,7 +32,7 @@ class PaymentReceiptPresencesDetail extends Component
             // ->join('users', 'users.id', '=', 'presences.created_by_id')
             // ->orderBy('users.name', 'asc')
             ->get()
-            ->where('payment_type_id', '=', '2')
+            ->where('payment_type_id', '=', '1')
             ->where('status', '=', '1')
             ->pluck('id', 'presence_name');
         $this->resetPresenceData();
