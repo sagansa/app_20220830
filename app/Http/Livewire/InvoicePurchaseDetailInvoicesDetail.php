@@ -30,7 +30,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
     protected $rules = [
         'detailInvoice.detail_request_id' => [
             'required',
-            // 'exists:detail_requests,id',
+            'exists:products,id',
         ],
         'detailInvoice.quantity_product' => ['required', 'numeric', 'gt:0'],
         'detailInvoice.quantity_invoice' => ['required', 'numeric', 'gt:0'],
@@ -49,7 +49,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
                 ->where('products.payment_type_id', '=', '2')
                 ->whereIn('detail_requests.status', ['4', '5'])
                 ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
-                ->get()->pluck('detail_requests.id', 'detail_request_name');
+                ->get()->pluck('id', 'detail_request_name');
         else
             $this->detailRequestsForSelect = DetailRequest::join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
                 ->whereIn('detail_requests.status', ['4', '5'])
@@ -128,7 +128,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
              ]);
         }
 
-        dd($this->detailInvoice);
+        // dd($this->detailInvoice);
 
         $this->detailInvoice->save();
 
