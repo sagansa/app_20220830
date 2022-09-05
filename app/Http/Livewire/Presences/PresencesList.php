@@ -49,6 +49,7 @@ class PresencesList extends Component
             ->select('*')
             ->join('payment_types', 'payment_types.id', '=', 'presences.payment_type_id')
             ->join('closing_stores', 'closing_stores.id', '=', 'presences.closing_store_id')
+            ->join('users', 'users.id', '=', 'presences.created_by_id')
             ->orderBy('closing_stores.date', 'desc');
 
             if (Auth::user()->hasRole('staff|supervisor|manager')) {
@@ -67,7 +68,7 @@ class PresencesList extends Component
                     if (!empty($value)) {
                         $presences
                             ->when($filter == 'payment_type_id', fn($presences) => $presences->whereRelation('paymentType', 'id', $value))
-                            ->when($filter == 'created_by_id', fn($presences) => $presences->whereRelation('created_by', 'id', $value))
+                            ->when($filter == 'created_by_id', fn($presences) => $presences->whereRelation('created_by_id', 'id', $value))
                             ->when($filter == 'status', fn($presences) => $presences->where('presences.' . $filter, 'LIKE', '%' . $value . '%'));
                     }
                 }
