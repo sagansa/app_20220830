@@ -122,7 +122,6 @@ use App\Http\Controllers\Api\VehicleVehicleTaxesController;
 use App\Http\Controllers\Api\VehicleFuelServicesController;
 use App\Http\Controllers\Api\StorePurchaseOrdersController;
 use App\Http\Controllers\Api\StoreTransferStocksController;
-use App\Http\Controllers\Api\StoreDetailRequestsController;
 use App\Http\Controllers\Api\PaymentTypeProductsController;
 use App\Http\Controllers\Api\BankClosingCouriersController;
 use App\Http\Controllers\Api\UtilityUtilityBillsController;
@@ -1076,16 +1075,6 @@ Route::name('api.')
             StoreInvoicePurchasesController::class,
             'store',
         ])->name('stores.invoice-purchases.store');
-
-        // Store Detail Requests
-        Route::get('/stores/{store}/detail-requests', [
-            StoreDetailRequestsController::class,
-            'index',
-        ])->name('stores.detail-requests.index');
-        Route::post('/stores/{store}/detail-requests', [
-            StoreDetailRequestsController::class,
-            'store',
-        ])->name('stores.detail-requests.store');
 
         Route::apiResource('suppliers', SupplierController::class);
 

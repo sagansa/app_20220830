@@ -26,13 +26,6 @@ return new class extends Migration {
                 ->on('request_purchases')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
-
-            $table
-                ->foreign('store_id')
-                ->references('id')
-                ->on('stores')
-                ->onUpdate('CASCADE')
-                ->onDelete('CASCADE');
         });
     }
 
@@ -46,7 +39,6 @@ return new class extends Migration {
         Schema::table('detail_requests', function (Blueprint $table) {
             $table->dropForeign(['product_id']);
             $table->dropForeign(['request_purchase_id']);
-            $table->dropForeign(['store_id']);
         });
     }
 };

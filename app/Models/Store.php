@@ -136,11 +136,6 @@ class Store extends Model
         return $this->hasMany(InvoicePurchase::class);
     }
 
-    public function detailRequests()
-    {
-        return $this->hasMany(DetailRequest::class);
-    }
-
     public function delete_image()
     {
         if ($this->image && file_exists('storage/' . $this->image)) {
