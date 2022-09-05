@@ -28,6 +28,7 @@ class SalesOrderOnlineController extends Controller
         $search = $request->get('search', '');
 
         $salesOrderOnlines = SalesOrderOnline::search($search)
+            ->orderBy('date', 'desc')
             ->latest()
             ->paginate(10)
             ->withQueryString();
