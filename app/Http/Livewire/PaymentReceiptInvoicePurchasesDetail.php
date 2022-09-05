@@ -71,7 +71,7 @@ class PaymentReceiptInvoicePurchasesDetail extends Component
 
         $this->paymentReceipt
             ->invoicePurchases()
-            ->attach($this->invoicePurchase_id, []);
+            ->attach($this->invoice_purchase_id, []);
 
         $this->hideModal();
     }
