@@ -9,9 +9,12 @@ use App\Models\DetailInvoice;
 use App\Models\DetailRequest;
 use App\Models\InvoicePurchase;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Validator;
 
 class InvoicePurchaseDetailInvoicesDetail extends Component
 {
+    public $state = [];
+
     use WithPagination;
     use AuthorizesRequests;
 
@@ -52,10 +55,11 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         //         ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
         //         ->get()->pluck('detail_request_name', 'id');
         // else
-            $this->detailRequestsForSelect = DetailRequest::join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
-                ->whereIn('detail_requests.status', ['4', '5'])
-                ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
-                ->get()->pluck('detail_request_name', 'id');
+
+        $this->detailRequestsForSelect = DetailRequest::join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
+            ->whereIn('detail_requests.status', ['4', '5'])
+            ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
+            ->get()->pluck('detail_request_name', 'id');
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
@@ -129,7 +133,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
              ]);
         }
 
-        dd($this->detailInvoice);
+        // dd($this->detailInvoice);
 
         $this->detailInvoice->save();
 
@@ -166,10 +170,31 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
     public function render()
     {
+        $this->invoicePurchase->subtotals = 0;
+
+        foreach ($this->invoicePurchase->detailInvoices as $detailInvoice) {
+            $this->detailInvoice->subtotals += $detailInvoice['subtotal_invoice'];
+        }
+
+        $this->invoicePurchase->totals = $this->invoicePurchase->subtotals - $this->invoicePurchase->discounts + $this->invoicePurchase->taxes;
+
         return view('livewire.invoice-purchase-detail-invoices-detail', [
             'detailInvoices' => $this->invoicePurchase
                 ->detailInvoices()
                 ->paginate(20),
         ]);
+    }
+
+    public function updateInvoicePurchase()
+    {
+        Validator::make(
+			$this->state,
+			[
+				'discounts' => 'required', 'numeric',
+                'taxes' => 'required', 'numeric', 'min:0',
+
+			])->validate();
+
+		$this->invoicePurchase->update($this->state);
     }
 }
