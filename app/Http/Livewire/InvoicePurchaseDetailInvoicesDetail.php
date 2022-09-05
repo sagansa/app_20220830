@@ -79,7 +79,8 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         //         ->get();
         // }
 
-        $this->detailRequestsForSelect = DetailRequest::get();
+        $this->detailRequests = DetailRequest::all();
+        // $this->detailRequestsForSelect = DetailRequest::get()->pluck( 'id', 'detail_request_name');
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
