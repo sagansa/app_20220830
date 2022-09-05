@@ -63,23 +63,23 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         //         ->get();
         // }
 
-          if($this->invoicePurchase->payment_type_id == '2') {
-            $this->detailRequests = DetailRequest::join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
-                // ->join('products', 'products.id', '=', 'detail_requests.product_id')
-                // ->where('products.payment_type_id', '=', '2')
-                ->whereIn('detail_requests.status', ['4', '5'])
-                ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
-                // ->get()->pluck('id', 'detail_request_name');
-                ->get();
-        } else {
-            $this->detailRequests = DetailRequest::join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
-                ->whereIn('detail_requests.status', ['4', '5'])
-                ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
-                // ->get()->pluck('id', 'detail_request_name');
-                ->get();
-        }
+        //   if($this->invoicePurchase->payment_type_id == '2') {
+        //     $this->detailRequests = DetailRequest::join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
+        //         // ->join('products', 'products.id', '=', 'detail_requests.product_id')
+        //         // ->where('products.payment_type_id', '=', '2')
+        //         ->whereIn('detail_requests.status', ['4', '5'])
+        //         ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
+        //         // ->get()->pluck('id', 'detail_request_name');
+        //         ->get();
+        // } else {
+        //     $this->detailRequests = DetailRequest::join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
+        //         ->whereIn('detail_requests.status', ['4', '5'])
+        //         ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
+        //         // ->get()->pluck('id', 'detail_request_name');
+        //         ->get();
+        // }
 
-        // $this->detailRequestsForSelect = DetailRequest::get()->pluck( 'id', 'detail_request_name');
+        $this->detailRequestsForSelect = DetailRequest::get();
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
