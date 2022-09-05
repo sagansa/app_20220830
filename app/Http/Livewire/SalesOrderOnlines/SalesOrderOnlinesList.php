@@ -23,6 +23,11 @@ class SalesOrderOnlinesList extends Component
 
     public SalesOrderOnline $editing;
 
+    public $selected = [];
+    public $allSelected = false;
+
+    public $salesOrderOnlineIdBeingRemoved = null;
+
     public $sortColumn = 'sales_order_onlines.date';
 
     protected $queryString = [
@@ -181,19 +186,30 @@ class SalesOrderOnlinesList extends Component
         $this->reset(['selectedRows']);
     }
 
-    public function confirmRemoval($salesOrderOnlineId)
-	{
-		$this->salesOrderOnlineIdBeingRemoved = $salesOrderOnlineId;
+    public function toggleFullSelection()
+    {
+        if (!$this->allSelected) {
+            $this->selected = [];
+            return;
+        }
 
-		$this->dispatchBrowserEvent('show-delete-modal');
-	}
+        foreach (
+            $this->purchaseOrder->purchaseOrderProducts
+            as $purchaseOrderProduct
+        ) {
+            array_push($this->selected, $salesOrderOnline->id);
+        }
+    }
 
-	public function delete()
-	{
-		$salesOrderOnline = SalesOrderOnline::findOrFail($this->salesOrderOnlineIdBeingRemoved);
+    public function destroySelected()
+    {
+        $this->authorize('delete-any', SalesOrderOnline::class);
 
-		$salesOrderOnline->delete();
+        SalesOrderOnline::whereIn('id', $this->selected)->delete();
 
-		$this->dispatchBrowserEvent('hide-delete-modal', ['message' => 'User deleted successfully!']);
-	}
+        $this->selected = [];
+        $this->allSelected = false;
+
+        $this->resetPurchaseOrderProductData();
+    }
 }

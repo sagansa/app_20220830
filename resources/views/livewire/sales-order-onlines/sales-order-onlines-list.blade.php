@@ -6,6 +6,14 @@
         <p class="mt-2 text-xs text-gray-700">Laporan penjualan untuk order dari online shop</p>
     </x-slot>
 
+    @can('delete-any', App\Models\SalesOrderOnline::class)
+        <button class="button button-danger" {{ empty($selected) ? 'disabled' : '' }}
+            onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="destroySelected">
+            <i class="mr-1 icon ion-md-trash text-primary"></i>
+            @lang('crud.common.delete_selected')
+        </button>
+    @endcan
+
     <x-tables.topbar>
         <x-slot name="search">
             <x-buttons.link wire:click.prevent="$toggle('showFilters')">
@@ -203,17 +211,13 @@
                                         <x-buttons.show></x-buttons.show>
                                     </a>
                                 @endif
-                                @can('delete', $salesOrderOnline)
+                                {{-- @can('delete', $salesOrderOnline)
                                     <form action="{{ route('sales-order-onlines.destroy', $salesOrderOnline->id) }}"
                                         method="POST" onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
                                         @csrf @method('DELETE')
                                         <x-buttons.delete></x-buttons.delete>
                                     </form>
-
-                                    <a href="" wire:click.prevent="confirmRemoval({{ $salesOrderOnline->id }})">
-                                        <x-buttons.delete></x-buttons.delete>
-                                    </a>
-                                @endcan
+                                @endcan --}}
                             </div>
                         </td>
                     </tr>
@@ -226,46 +230,4 @@
         </x-table>
     </x-tables.card>
     <div class="px-4 mt-10">{!! $salesOrderOnlines->render() !!}</div>
-
-    <!-- Delete Modal -->
-    {{-- <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true" wire:ignore.self>
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5>Delete Sales Order Online</h5>
-                </div>
-
-                <div class="modal-body">
-                    <h4>Are you sure you want to delete this sales order online?</h4>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                            class="mr-1 fa fa-times"></i> Cancel</button>
-                    <button type="button" wire:click.prevent="deleteUser" class="btn btn-danger"><i
-                            class="mr-1 fa fa-trash"></i>Delete User</button>
-
-                    <x-buttons.secondary wire:click="$toggle('showingModal')">Cancel</x-buttons.secondary>
-                    <x-jet-button wire:click.prevent="delete">Delete</x-jet-button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <x-modal wire:ignore.self>
-        <div class="px-6 py-4">
-            <div class="text-lg font-bold">{{ $modalTitle }}</div>
-            <div class="mt-1 sm:space-y-5">
-
-
-
-            </div>
-        </div>
-
-        <div class="flex justify-between px-6 py-4 bg-gray-50">
-            <x-buttons.secondary wire:click="$toggle('showingModal')">Cancel</x-buttons.secondary>
-            <x-jet-button wire:click.prevent="delete">Delete</x-jet-button>
-        </div>
-    </x-modal> --}}
 </div>

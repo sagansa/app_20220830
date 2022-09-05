@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use App\Models\DeliveryService;
 use App\Models\SalesOrderOnline;
 use App\Models\OnlineShopProvider;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SalesOrderOnlineStoreRequest;
 use App\Http\Requests\SalesOrderOnlineUpdateRequest;
