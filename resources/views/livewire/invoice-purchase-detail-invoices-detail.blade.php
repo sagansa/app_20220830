@@ -25,17 +25,17 @@
                 <x-input.select name="detailInvoice.detail_request_id" label="Detail Request"
                     wire:model="detailInvoice.detail_request_id">
                     <option value="null" disabled>-- select --</option>
-                    {{-- @foreach ($detailRequestsForSelect as $label => $value)
+                    @foreach ($detailRequestsForSelect as $label => $value)
                         <option value="{{ $value }}">{{ $label }}</option>
-                    @endforeach --}}
+                    @endforeach
 
-                    @foreach ($detailRequests as $detailRequest)
+                    {{-- @foreach ($detailRequests as $detailRequest)
                         <option value="{{ $detailRequest->id }}">{{ $detailRequest->product->name }} -
                             {{ $detailRequest->product->unit->unit }} -
                             {{ $detailRequest->requestPurchase->date->toFormattedDate() }} -
                             {{ $detailRequest->requestPurchase->store->nickname }}
                         </option>
-                    @endforeach
+                    @endforeach --}}
                 </x-input.select>
 
                 <x-input.number name="detailInvoice.quantity_product" label="Quantity Product"
