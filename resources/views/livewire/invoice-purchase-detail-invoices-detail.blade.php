@@ -139,12 +139,12 @@
                             <p>Prod: {{ $detailInvoice->quantity_product ?? '-' }}
                                 {{ $detailInvoice->detailRequest->product->unit->unit }}</p>
                             <p>Inv: {{ $detailInvoice->quantity_invoice ?? '-' }}
-                                {{ $detailInvoice->unit->unit ?? '-' }}</p>
+                                {{ $detailInvoice->detailRequest->product->unit->unit ?? '-' }}</p>
                         </x-tables.td-right>
 
                         <x-tables.td-right>
                             @if ($detailInvoice->quantity_product != null)
-                                @currency($detailInvoice->subtotal_invoice - $detailInvoice->quantity_product)
+                                @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
                             @else
                                 -
                             @endif

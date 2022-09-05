@@ -32,7 +32,6 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
     protected $rules = [
         'detailInvoice.detail_request_id' => [
-            // 'nullable'
             'required',
             'exists:detail_requests,id',
         ],
@@ -170,7 +169,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             $this->detailInvoice->subtotals += $detailInvoice['subtotal_invoice'];
         }
 
-        $this->invoicePurchase->totals = $this->invoicePurchase->subtotals - $this->invoicePurchase->discounts + $this->invoicePurchase->taxes;
+        $this->invoicePurchase->totals = $this->detailInvoice->subtotals - $this->invoicePurchase->discounts + $this->invoicePurchase->taxes;
 
         return view('livewire.invoice-purchase-detail-invoices-detail', [
             'detailInvoices' => $this->invoicePurchase
