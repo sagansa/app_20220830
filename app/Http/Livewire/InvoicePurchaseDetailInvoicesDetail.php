@@ -43,28 +43,18 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
     {
         $this->invoicePurchase = $invoicePurchase;
 
-        // if($this->invoicePurchase->payment_type_id == '2')
-            // $this->detailRequestsForSelect = DetailRequest::join('products', 'products.id', '=', 'detail_requests.product_id')
-                // ->where('products.payment_type_id', '=', '2')
-                // ->where('store_id', '=', $this->invoicePurchase->store_id)
-                // ->whereIn('status', ['4', '5'])
-                // ->get()->pluck('id', 'detail_request_name');
-        // else
-            // $this->detailRequestsForSelect = DetailRequest::get()->where('status', '=', '2')
-                // ->pluck('id', 'detail_request_name');
-
         if($this->invoicePurchase->payment_type_id == '2')
             $this->detailRequestsForSelect = DetailRequest::join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
                 ->join('products', 'products.id', '=', 'detail_requests.product_id')
                 ->where('products.payment_type_id', '=', '2')
                 ->whereIn('detail_requests.status', ['4', '5'])
                 ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
-                ->get()->pluck('id', 'detail_request_name');
+                ->get()->pluck('detail_request_name', 'id');
         else
             $this->detailRequestsForSelect = DetailRequest::join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
                 ->whereIn('detail_requests.status', ['4', '5'])
                 ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
-                ->get()->pluck('id', 'detail_request_name');
+                ->get()->pluck('detail_request_name', 'id');
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
@@ -126,13 +116,19 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
             $this->detailInvoice->invoice_purchase_id =
                 $this->invoicePurchase->id;
+
+            DetailRequest::whereIn('id', $this->detailInvoice)->update([
+            'status' => '2',
+            ]);
         } else {
             $this->authorize('update', $this->detailInvoice);
-        }
 
-        DetailRequest::whereIn('id', $this->detailInvoice)->update([
+            DetailRequest::whereIn('id', $this->detailInvoice)->update([
             'status' => '2',
         ]);
+        }
+
+
 
         $this->detailInvoice->save();
 

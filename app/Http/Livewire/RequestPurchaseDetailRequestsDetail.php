@@ -28,7 +28,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
     protected $rules = [
         'detailRequest.product_id' => ['required', 'exists:products,id'],
         'detailRequest.quantity_plan' => ['required', 'numeric', 'min:0'],
-        'detailRequest.status' => ['required', 'in:1,2,3,4,5'],
+        'detailRequest.status' => ['required', 'in:1,2,3'],
         'detailRequest.notes' => ['nullable', 'max:255', 'string'],
     ];
 
@@ -94,9 +94,6 @@ class RequestPurchaseDetailRequestsDetail extends Component
 
             $this->detailRequest->request_purchase_id =
                 $this->requestPurchase->id;
-
-            $this->detailRequest->store_id = $this->requestPurchase->store_id;
-
         } else {
             $this->authorize('update', $this->detailRequest);
         }
