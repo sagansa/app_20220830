@@ -79,7 +79,7 @@ class SalesOrderOnlinesList extends Component
 
     public function getRowsQueryProperty()
     {
-        $salesOrderOnlines = SalesOrderOnline::query()
+        $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')
             // ->select(['sales_order_onlines.*', 'stores.name as storename'])
             ->join('stores', 'stores.id', '=', 'sales_order_onlines.store_id')
             ->join('customers', 'customers.id', '=', 'sales_order_onlines.customer_id')
