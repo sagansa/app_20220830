@@ -56,10 +56,12 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         //         ->get()->pluck('detail_request_name', 'id');
         // else
 
-        $this->detailRequestsForSelect = DetailRequest::join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
-            ->whereIn('detail_requests.status', ['4', '5'])
-            ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
-            ->get()->pluck( 'id', 'detail_request_name');
+        $this->detailRequestsForSelect = DetailRequest::get()->pluck( 'id', 'detail_request_name');
+
+        // $this->detailRequestsForSelect = DetailRequest::join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
+        //     ->whereIn('detail_requests.status', ['4', '5'])
+        //     ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
+        //     ->get()->pluck( 'id', 'detail_request_name');
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
@@ -125,7 +127,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             $this->authorize('update', $this->detailInvoice);
         }
 
-        dd($this->detailInvoice);
+        // dd($this->detailInvoice);
 
         $this->detailInvoice->save();
 
