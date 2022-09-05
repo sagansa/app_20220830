@@ -75,6 +75,6 @@ class DetailRequest extends Model
 
     public function getDetailRequestNameAttribute()
     {
-        return $this->product->name . ' - ' . $this->product->unit->unit . ' - ' . $this->requestPurchase->date->toFormattedDate() . ' - ' . $this->requestPurchase->store->nickname;
+        return $this->product->name . ' - ' . $this->product->unit->unit . ' - ' . $this->requestPurchase->date->toFormattedDate();
     }
 }

@@ -92,7 +92,7 @@
                             title="{{ trans('crud.common.select_all') }}" />
                     </x-tables.th-left>
                     <x-tables.th-left>
-                        @lang('crud.invoice_purchase_detail_invoices.inputs.detail_request_id')
+                        Product
                     </x-tables.th-left>
                     <x-tables.th-left>
                         Quantity

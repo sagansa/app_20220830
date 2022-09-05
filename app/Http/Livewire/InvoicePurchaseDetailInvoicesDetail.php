@@ -134,7 +134,9 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             $this->authorize('update', $this->detailInvoice);
         }
 
-        // dd($this->detailInvoice);
+        DetailRequest::where('id', '=', $this->detailInvoice)->update([
+            'status' => '2',
+        ]);
 
         $this->detailInvoice->save();
 
@@ -147,7 +149,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
         DetailInvoice::whereIn('id', $this->selected)->delete();
 
-        DetailRequest::whereIn('id', $this->detailInvoice)->update([
+        DetailRequest::where('id', '=', $this->detailInvoice)->update([
             'status' => '4',
         ]);
 
