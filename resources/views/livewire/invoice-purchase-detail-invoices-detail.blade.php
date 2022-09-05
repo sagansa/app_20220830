@@ -31,7 +31,8 @@
 
                     @foreach ($detailRequests as $detailRequest)
                         <option value="{{ $detailRequest->id }}">{{ $detailRequest->product->name }} -
-                            {{ $detailRequest->product->unit->unit }}</option>
+                            {{ $detailRequest->product->unit->unit }} - {{ $detailRequest->requestPurchase->date }}
+                        </option>
                     @endforeach
                 </x-input.select>
 

@@ -65,8 +65,8 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
           if($this->invoicePurchase->payment_type_id == '2') {
             $this->detailRequests = DetailRequest::join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
-                ->join('products', 'products.id', '=', 'detail_requests.product_id')
-                ->where('products.payment_type_id', '=', '2')
+                // ->join('products', 'products.id', '=', 'detail_requests.product_id')
+                // ->where('products.payment_type_id', '=', '2')
                 ->whereIn('detail_requests.status', ['4', '5'])
                 ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
                 // ->get()->pluck('id', 'detail_request_name');
