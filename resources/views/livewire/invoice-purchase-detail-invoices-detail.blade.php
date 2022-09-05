@@ -31,7 +31,9 @@
 
                     @foreach ($detailRequests as $detailRequest)
                         <option value="{{ $detailRequest->id }}">{{ $detailRequest->product->name }} -
-                            {{ $detailRequest->product->unit->unit }} - {{ $detailRequest->requestPurchase->date }}
+                            {{ $detailRequest->product->unit->unit }} -
+                            {{ $detailRequest->requestPurchase->date->toFormattedDate() }} -
+                            {{ $detailRequest->requestPurchase->store->nickname }}
                         </option>
                     @endforeach
                 </x-input.select>
