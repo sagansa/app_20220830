@@ -29,7 +29,8 @@ class PaymentReceiptPresencesDetail extends Component
     {
         $this->paymentReceipt = $paymentReceipt;
         $this->presencesForSelect = Presence::orderBy('created_by_id', 'asc')
-            // ->with('closing_stores')->orderBy('closing_stores.date', 'asc')
+            ->join('closing_stores', 'presences.closing_store_id', '=', 'closing_stores.id')
+            ->orderBy('closing_stores.date', 'asc')
             // ->join('users', 'users.id', '=', 'presences.created_by_id')
             // ->orderBy('users.name', 'asc')
             ->get()
