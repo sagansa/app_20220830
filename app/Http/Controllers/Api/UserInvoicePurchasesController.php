@@ -49,7 +49,7 @@ class UserInvoicePurchasesController extends Controller
             'taxes' => ['required', 'numeric', 'min:0'],
             'payment_status' => ['required', 'in:1,2,3,4'],
             'order_status' => ['required', 'in:1,2,3'],
-            'notes' => ['required', 'max:255', 'string'],
+            'notes' => ['nullable', 'max:255', 'string'],
         ]);
 
         if ($request->hasFile('image')) {

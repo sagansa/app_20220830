@@ -47,20 +47,26 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
     {
         $this->invoicePurchase = $invoicePurchase;
 
-        if($this->invoicePurchase->payment_type_id == '2') {
-                $this->detailRequests = DetailRequest::query()
-                    ->where('payment_type_id', '=', '2')
+        // if($this->invoicePurchase->payment_type_id == '2') {
+        //         $this->detailRequests = DetailRequest::query()
+        //             ->where('payment_type_id', '=', '2')
+        //             ->whereIn('status', ['4', '5'])
+        //             ->where('store_id', '=', $this->invoicePurchase->store_id)
+        //             ->get()
+        //             ->pluck( 'id', 'detail_request_name');
+        // } elseif($this->invoicePurchase->payment_type_id == '1') {
+        //     $this->detailRequests = DetailRequest::query()
+        //             ->whereIn('status', ['4', '5'])
+        //             ->where('store_id', '=', $this->invoicePurchase->store_id)
+        //             ->get()
+        //             ->pluck( 'id', 'detail_request_name');
+        // }
+
+        $this->detailRequests = DetailRequest::query()
                     ->whereIn('status', ['4', '5'])
                     ->where('store_id', '=', $this->invoicePurchase->store_id)
                     ->get()
                     ->pluck( 'id', 'detail_request_name');
-        } elseif($this->invoicePurchase->payment_type_id == '1') {
-            $this->detailRequests = DetailRequest::query()
-                    ->whereIn('status', ['4', '5'])
-                    ->where('store_id', '=', $this->invoicePurchase->store_id)
-                    ->get()
-                    ->pluck( 'id', 'detail_request_name');
-        }
 
         // $this->detailRequestsForSelect = DetailRequest::get()->pluck( 'id', 'detail_request_name');
 
