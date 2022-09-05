@@ -125,10 +125,10 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
             DetailRequest::whereIn('id', $this->detailInvoice)->update([
             'status' => '2',
-        ]);
+             ]);
         }
 
-
+        dd($this->detailInvoice);
 
         $this->detailInvoice->save();
 
