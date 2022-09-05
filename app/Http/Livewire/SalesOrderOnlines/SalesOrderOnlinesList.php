@@ -180,4 +180,20 @@ class SalesOrderOnlinesList extends Component
 
         $this->reset(['selectedRows']);
     }
+
+    public function confirmRemoval($salesOrderOnlineId)
+	{
+		$this->salesOrderOnlineIdBeingRemoved = $salesOrderOnlineId;
+
+		$this->dispatchBrowserEvent('show-delete-modal');
+	}
+
+	public function delete()
+	{
+		$salesOrderOnline = SalesOrderOnline::findOrFail($this->salesOrderOnlineIdBeingRemoved);
+
+		$salesOrderOnline->delete();
+
+		$this->dispatchBrowserEvent('hide-delete-modal', ['message' => 'User deleted successfully!']);
+	}
 }

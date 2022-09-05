@@ -1,5 +1,5 @@
 <x-admin-layout>
-    {{-- <x-slot name="header">
+    <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             @lang('crud.sales_order_onlines.index_title')
         </h2>
@@ -48,33 +48,59 @@
     <x-tables.card>
         <x-table>
             <x-slot name="head">
-                <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.image')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.image')</x-tables.th-left-hide>
                 <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.store_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.online_shop_provider_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.delivery_service_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.customer_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.receipt_no')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.date')</x-tables.th-left>
-                <x-tables.th-left>Detail Products</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.status')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.created_by_id')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.online_shop_provider_id')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.delivery_service_id')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.customer_id')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.receipt_no')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.date')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>Detail Products</x-tables.th-left-hide>
+                <x-tables.th-left-hide>Total</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.status')</x-tables.th-left-hide>
+                {{-- <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.created_by_id')</x-tables.th-left>
                 <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.approved_by_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.notes')</x-tables.th-left>
+                <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.notes')</x-tables.th-left> --}}
                 <th></th>
             </x-slot>
             <x-slot name="body">
                 @forelse($salesOrderOnlines as $salesOrderOnline)
                     <tr class="hover:bg-gray-50">
-                        <x-tables.td-left-hide>
-                            @if ($salesOrderOnline->image == null)
-                                <x-partials.thumbnail src="" />
-                            @else
-                                <a href="{{ \Storage::url($salesOrderOnline->image) }}">
-                                    <x-partials.thumbnail
-                                        src="{{ $salesOrderOnline->image ? \Storage::url($salesOrderOnline->image) : '' }}" />
-                                </a>
-                            @endif
-                        </x-tables.td-left-hide>
+                        <x-tables.td-left-main>
+                            <x-slot name="main">
+                                <div class="relative z-0 flex -space-x-2 overflow-hidden">
+                                    <div class="mr-3">
+                                        @if ($salesOrderOnline->image == null)
+                                            <x-partials.thumbnail src="" />
+                                        @else
+                                            <a href="{{ \Storage::url($salesOrderOnline->image) }}">
+                                                <x-partials.thumbnail
+                                                    src="{{ $salesOrderOnline->image ? \Storage::url($salesOrderOnline->image) : '' }}" />
+                                            </a>
+                                        @endif
+                                    </div>
+                                    <div>
+                                        @if ($salesOrderOnline->image_sent == null)
+                                            <x-partials.thumbnail src="" />
+                                        @else
+                                            <a href="{{ \Storage::url($salesOrderOnline->image_sent) }}">
+                                                <x-partials.thumbnail
+                                                    src="{{ $salesOrderOnline->image_sent ? \Storage::url($salesOrderOnline->image_sent) : '' }}" />
+                                            </a>
+                                        @endif
+                                    </div>
+                                </div>
+                            </x-slot>
+                            <x-slot name="sub">{{ optional($salesOrderOnline->store)->nickname ?? '-' }} |
+                                {{ optional($salesOrderOnline->onlineShopProvider)->name ?? '-' }} |
+                                {{ optional($salesOrderOnline->deliveryService)->name ?? '-' }} |
+                                {{ optional($salesOrderOnline->customer)->name ?? '-' }} |
+                                {{ $salesOrderOnline->receipt_no ?? '-' }} |
+                                {{ $salesOrderOnline->date->toFormattedDate() ?? '-' }}
+                                <x-spans.status-valid class="{{ $salesOrderOnline->status_badge }}">
+                                    {{ $salesOrderOnline->status_name }}</x-spans.status-valid>
+                            </x-slot>
+                        </x-tables.td-left-main>
 
                         <x-tables.td-left-hide>{{ optional($salesOrderOnline->store)->name ?? '-' }}
                         </x-tables.td-left-hide>
@@ -99,12 +125,12 @@
                             <x-spans.status-valid class="{{ $salesOrderOnline->status_badge }}">
                                 {{ $salesOrderOnline->status_name }}</x-spans.status-valid>
                         </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>{{ optional($salesOrderOnline->created_by)->name ?? '-' }}
+                        {{-- <x-tables.td-left-hide>{{ optional($salesOrderOnline->created_by)->name ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             {{ optional($salesOrderOnline->approved_by)->name ?? '-' }}
                         </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>{{ $salesOrderOnline->notes ?? '-' }}</x-tables.td-left-hide>
+                        <x-tables.td-left-hide>{{ $salesOrderOnline->notes ?? '-' }}</x-tables.td-left-hide> --}}
                         <td class="px-4 py-3 text-center" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @if ($salesOrderOnline->status != '2')
@@ -135,7 +161,7 @@
         <x-slot name="foot"> </x-slot>
     </x-table>
 </x-tables.card>
-<div class="px-4 mt-10">{!! $salesOrderOnlines->render() !!}</div> --}}
+<div class="px-4 mt-10">{!! $salesOrderOnlines->render() !!}</div>
 
-    <livewire:sales-order-onlines.sales-order-onlines-list />
+{{-- <livewire:sales-order-onlines.sales-order-onlines-list /> --}}
 </x-admin-layout>
