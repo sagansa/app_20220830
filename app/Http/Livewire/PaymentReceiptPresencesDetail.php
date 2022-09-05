@@ -28,8 +28,7 @@ class PaymentReceiptPresencesDetail extends Component
     public function mount(PaymentReceipt $paymentReceipt)
     {
         $this->paymentReceipt = $paymentReceipt;
-        $this->presencesForSelect = Presence::orderBy('created_by_id', 'asc')
-            ->join('closing_stores', 'presences.closing_store_id', '=', 'closing_stores.id')
+        $this->presencesForSelect = Presence::join('closing_stores', 'presences.closing_store_id', '=', 'closing_stores.id')
             ->orderBy('closing_stores.date', 'asc')
             // ->join('users', 'users.id', '=', 'presences.created_by_id')
             // ->orderBy('users.name', 'asc')
