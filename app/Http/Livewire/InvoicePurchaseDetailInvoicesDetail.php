@@ -125,7 +125,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             $this->authorize('update', $this->detailInvoice);
         }
 
-        // dd($this->detailInvoice);
+        dd($this->detailInvoice);
 
         $this->detailInvoice->save();
 
