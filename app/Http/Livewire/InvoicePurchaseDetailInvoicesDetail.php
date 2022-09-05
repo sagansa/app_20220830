@@ -56,7 +56,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         $this->detailRequestsForSelect = DetailRequest::
             join('request_purchases', 'request_purchases.id', '=', 'detail_requests.request_purchase_id')
             ->where('request_purchases.store_id', '=', $this->invoicePurchase->store_id)
-            ->orWhereIn('detail_requests.status', ['4', '5'])
+            ->where('detail_requests.status', '=', '4')
             ->get()->pluck('id', 'detail_request_name');
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
