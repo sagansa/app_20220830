@@ -62,10 +62,9 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         //             ->pluck( 'id', 'detail_request_name');
         // }
 
-        $this->detailRequestsForSelect = DetailRequest::
-            whereIn('status', ['4', '5'])
+        $this->detailRequestsForSelect = DetailRequest::where('store_id', $this->invoicePurchase->store_id)
+            ->whereIn('status', ['4', '5'])
             ->where('payment_type_id', '=', '1')
-            // ->whereIn('store_id', [$this->invoicePurchase->store_id])
             ->get()
             ->pluck( 'id', 'detail_request_name');
 
