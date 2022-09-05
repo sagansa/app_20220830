@@ -143,7 +143,12 @@
                         </x-tables.td-right>
 
                         <x-tables.td-right>
-                            @currency($detailInvoice->subtotal_invoice - $detailInvoice->quantity_product)
+                            @if ($detailInvoice->quantity_product != null)
+                                @currency($detailInvoice->subtotal_invoice - $detailInvoice->quantity_product)
+                            @else
+                                -
+                            @endif
+
                         </x-tables.td-right>
                         <x-tables.td-right>
                             @currency($detailInvoice->subtotal_invoice)
