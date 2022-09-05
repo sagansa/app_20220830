@@ -125,7 +125,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             $this->authorize('update', $this->detailInvoice);
         }
 
-        dd($this->detailInvoice);
+        // dd($this->detailInvoice);
 
         $this->detailInvoice->save();
 
@@ -182,7 +182,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         Validator::make(
 			$this->state,
 			[
-				'discounts' => 'required', 'numeric',
+				'discounts' => 'required', 'numeric', 'min:0',
                 'taxes' => 'required', 'numeric', 'min:0',
 
 			])->validate();

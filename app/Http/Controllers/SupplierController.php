@@ -72,6 +72,21 @@ class SupplierController extends Controller
 
         $validated = $request->validated();
 
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileimage = rand() . time() . '.' . $extension;
+            $file->move('storage/', $fileimage);
+            Image::make('storage/' . $fileimage)
+                ->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save();
+
+            $validated['image'] = $fileimage;
+        }
+
         $validated['user_id'] = auth()->user()->id;
         $validated['status'] = '1';
 
@@ -142,6 +157,22 @@ class SupplierController extends Controller
         $this->authorize('update', $supplier);
 
         $validated = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $supplier->delete_image();
+            $extension = $file->getClientOriginalExtension();
+            $file_image = rand() . time() . '.' . $extension;
+            $file->move('storage/', $file_image);
+            Image::make('storage/' . $file_image)
+                ->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save();
+
+            $validated['image'] = $file_image;
+        }
 
         $supplier->update($validated);
 

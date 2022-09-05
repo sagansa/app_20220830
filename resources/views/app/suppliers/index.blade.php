@@ -38,6 +38,7 @@
     <x-tables.card>
         <x-table>
             <x-slot name="head">
+                <x-tables.th-left>@lang('crud.suppliers.inputs.image')</x-tables.th-left>
                 <x-tables.th-left>@lang('crud.suppliers.inputs.name')</x-tables.th-left>
                 <x-tables.th-left-hide>@lang('crud.suppliers.inputs.no_telp')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.suppliers.inputs.bank_id')</x-tables.th-left-hide>
@@ -49,6 +50,16 @@
             <x-slot name="body">
                 @forelse($suppliers as $supplier)
                     <tr class="hover:bg-gray-50">
+                        <x-tables.td-left-hide>
+                            @if ($supplier->image == null)
+                                <x-partials.thumbnail src="" />
+                            @else
+                                <a href="{{ \Storage::url($supplier->image) }}">
+                                    <x-partials.thumbnail
+                                        src="{{ $supplier->image ? \Storage::url($supplier->image) : '' }}" />
+                                </a>
+                            @endif
+                        </x-tables.td-left-hide>
                         <x-tables.td-left-main>
                             <x-slot name="main">{{ $supplier->name ?? '-' }}</x-slot>
                             <x-slot name="sub">
