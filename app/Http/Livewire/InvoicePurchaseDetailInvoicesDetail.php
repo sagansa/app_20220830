@@ -51,13 +51,13 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
                 $this->detailRequests = DetailRequest::query()
                     ->where('payment_type_id', '=', '2')
                     ->whereIn('detail_requests.status', ['4', '5'])
-                    ->where('store_id', '=', $this->invoicePurchase->store_id)
+                    // ->where('store_id', '=', $this->invoicePurchase->store_id)
                     ->get()
                     ->pluck( 'id', 'detail_request_name');
         } elseif($this->invoicePurchase->payment_type_id == '1') {
             $this->detailRequests = DetailRequest::query()
                     ->whereIn('detail_requests.status', ['4', '5'])
-                    ->where('store_id', '=', $this->invoicePurchase->store_id)
+                    // ->where('store_id', '=', $this->invoicePurchase->store_id)
                     ->get()
                     ->pluck( 'id', 'detail_request_name');
         }
