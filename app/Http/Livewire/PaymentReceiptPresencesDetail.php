@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Presence;
 use App\Models\PaymentReceipt;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class PaymentReceiptPresencesDetail extends Component
 {
@@ -26,7 +28,11 @@ class PaymentReceiptPresencesDetail extends Component
     public function mount(PaymentReceipt $paymentReceipt)
     {
         $this->paymentReceipt = $paymentReceipt;
-        $this->presencesForSelect = Presence::pluck('image_in', 'id');
+        $this->presencesForSelect = Presence::orderBy('created_at', 'desc')
+            ->get()
+            ->where('payment_type_id', '=', '2')
+            ->where('status', '=', '1')
+            ->pluck('id', 'presence_name');
         $this->resetPresenceData();
     }
 
@@ -86,5 +92,21 @@ class PaymentReceiptPresencesDetail extends Component
                 ->withPivot([])
                 ->paginate(20),
         ]);
+    }
+
+    public function changeStatus(Presence $presence, $status)
+    {
+        Validator::make(['status' => $status], [
+			'status' => [
+				'required',
+				Rule::in(Presence::STATUS_BELUM_DIBAYAR, Presence::STATUS_SUDAH_DIBAYAR, Presence::STATUS_TIDAK_VALID),
+			],
+		])->validate();
+
+		$presence->update(['status' => $status]);
+
+        $this->emit($this->presencesForSelect);
+
+		$this->dispatchBrowserEvent('updated', ['message' => "Status changed to {$status} successfully."]);
     }
 }

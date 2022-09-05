@@ -20,6 +20,10 @@ class Presence extends Model
         '4' => 'periksa ulang',
     ];
 
+    const STATUS_BELUM_DIBAYAR = '1';
+    const STATUS_SUDAH_DIBAYAR = '2';
+    const STATUS_TIDAK_VALID = '3';
+
     protected $fillable = [
         'closing_store_id',
         'amount',
