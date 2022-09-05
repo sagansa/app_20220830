@@ -29,7 +29,8 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
     protected $rules = [
         'detailInvoice.detail_request_id' => [
-            'required',
+            'nullable'
+            // 'required',
             // 'exists:detail_requests,id',
         ],
         'detailInvoice.quantity_product' => ['required', 'numeric', 'gt:0'],
