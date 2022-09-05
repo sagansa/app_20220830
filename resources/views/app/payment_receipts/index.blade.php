@@ -63,22 +63,7 @@
                             <x-slot name="sub">
                                 <p>{{ $paymentReceipt->created_at ?? '-' }}</p>
                                 <p>@currency($paymentReceipt->amount)</p>
-                                <p>
-                                    @foreach ($paymentReceipt->presences as $presence)
-                                        {{ $presence->created_by->name }} - @currency($presence->amount)
-                                    @endforeach
 
-                                    @foreach ($paymentReceipt->fuelServices as $fuelService)
-                                        {{ $fuelService->vehicle->no_register }} - {{ $fuelService->amount }}
-                                    @endforeach
-
-                                    @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
-                                        {{ $invoicePurchase->store->nickname }} -
-                                        {{ $invoicePurchase->supplier->name }} -
-                                        {{ $invoicePurchase->date->toFormattedDate() }} -
-                                        {{ $invoicePurchase->detailInvoices->sum('subtotal_invoice') }}
-                                    @endforeach
-                                </p>
                                 <p>
                                     @if ($paymentReceipt->payment_for == 1)
                                         <p>fuel service</p>
@@ -94,10 +79,12 @@
                         <x-tables.td-left-hide>{{ $paymentReceipt->created_at ?? '-' }}</x-tables.td-left-hide>
                         <x-tables.td-right-hide>@currency($paymentReceipt->amount)</x-tables.td-right-hide>
                         <x-tables.td-left-hide>
-                            @foreach ($paymentReceipt->presences as $presence)
-                                <p>{{ $presence->created_by->name }} - @currency($presence->amount)</p>
-                            @endforeach
-
+                            @role('super-admin')
+                                @foreach ($paymentReceipt->presences as $presence)
+                                    <p>{{ $presence->created_by->name }} - @currency($presence->amount) -
+                                        {{ $presence->closingStore->date }}</p>
+                                @endforeach
+                            @endrole
                             @foreach ($paymentReceipt->fuelServices as $fuelService)
                                 <p>{{ $fuelService->vehicle->no_register }} - {{ $fuelService->amount }}</p>
                             @endforeach
