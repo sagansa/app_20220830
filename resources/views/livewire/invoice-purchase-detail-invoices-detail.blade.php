@@ -25,7 +25,7 @@
                 <x-input.select name="detailInvoice.detail_request_id" label="Detail Request"
                     wire:model="detailInvoice.detail_request_id">
                     <option value="null" disabled>-- select --</option>
-                    @foreach ($detailRequestsForSelect as $value => $label)
+                    @foreach ($detailRequestsForSelect as $label => $value)
                         <option value="{{ $value }}">{{ $label }}</option>
                     @endforeach
                 </x-input.select>
