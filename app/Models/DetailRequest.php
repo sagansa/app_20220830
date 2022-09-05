@@ -34,6 +34,7 @@ class DetailRequest extends Model
         'status',
         'notes',
         'request_purchase_id',
+        'payment_type_id',
     ];
 
     protected $searchableFields = ['*'];
@@ -43,6 +44,16 @@ class DetailRequest extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    public function paymentType()
+    {
+        return $this->belongsTo(PaymentType::class);
     }
 
     public function requestPurchase()

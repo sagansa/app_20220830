@@ -122,6 +122,7 @@ use App\Http\Controllers\Api\VehicleVehicleTaxesController;
 use App\Http\Controllers\Api\VehicleFuelServicesController;
 use App\Http\Controllers\Api\StorePurchaseOrdersController;
 use App\Http\Controllers\Api\StoreTransferStocksController;
+use App\Http\Controllers\Api\StoreDetailRequestsController;
 use App\Http\Controllers\Api\PaymentTypeProductsController;
 use App\Http\Controllers\Api\BankClosingCouriersController;
 use App\Http\Controllers\Api\UtilityUtilityBillsController;
@@ -189,6 +190,7 @@ use App\Http\Controllers\Api\CustomerDeliveryAddressesController;
 use App\Http\Controllers\Api\EmployeeContractEmployeesController;
 use App\Http\Controllers\Api\StoreMovementAssetResultsController;
 use App\Http\Controllers\Api\PaymentTypePurchaseOrdersController;
+use App\Http\Controllers\Api\PaymentTypeDetailRequestsController;
 use App\Http\Controllers\Api\ProductionProductionFromsController;
 use App\Http\Controllers\Api\UnitPurchaseOrderProductsController;
 use App\Http\Controllers\Api\AccountCashlessCashlessesController;
@@ -1076,6 +1078,16 @@ Route::name('api.')
             'store',
         ])->name('stores.invoice-purchases.store');
 
+        // Store Detail Requests
+        Route::get('/stores/{store}/detail-requests', [
+            StoreDetailRequestsController::class,
+            'index',
+        ])->name('stores.detail-requests.index');
+        Route::post('/stores/{store}/detail-requests', [
+            StoreDetailRequestsController::class,
+            'store',
+        ])->name('stores.detail-requests.store');
+
         Route::apiResource('suppliers', SupplierController::class);
 
         // Supplier Purchase Orders
@@ -1272,6 +1284,16 @@ Route::name('api.')
             PaymentTypeInvoicePurchasesController::class,
             'store',
         ])->name('payment-types.invoice-purchases.store');
+
+        // PaymentType Detail Requests
+        Route::get('/payment-types/{paymentType}/detail-requests', [
+            PaymentTypeDetailRequestsController::class,
+            'index',
+        ])->name('payment-types.detail-requests.index');
+        Route::post('/payment-types/{paymentType}/detail-requests', [
+            PaymentTypeDetailRequestsController::class,
+            'store',
+        ])->name('payment-types.detail-requests.store');
 
         Route::apiResource('permit-employees', PermitEmployeeController::class);
 

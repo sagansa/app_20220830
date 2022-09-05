@@ -98,6 +98,9 @@ class RequestPurchaseDetailRequestsDetail extends Component
             $this->authorize('update', $this->detailRequest);
         }
 
+        $this->detailRequest->store_id = $this->requestPurchase->store_id;
+        $this->detailRequest->payment_type_id = $this->product->payment_type_id;
+
         $this->detailRequest->save();
 
         $this->hideModal();

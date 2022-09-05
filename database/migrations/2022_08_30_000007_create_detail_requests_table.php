@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->tinyInteger('status');
             $table->text('notes')->nullable();
             $table->unsignedBigInteger('request_purchase_id');
+            $table->unsignedBigInteger('store_id');
+            $table->unsignedBigInteger('payment_type_id');
 
             $table->timestamps();
         });

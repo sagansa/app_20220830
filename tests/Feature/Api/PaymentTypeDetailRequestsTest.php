@@ -3,7 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
-use App\Models\Product;
+use App\Models\PaymentType;
 use App\Models\DetailRequest;
 
 use Tests\TestCase;
@@ -11,7 +11,7 @@ use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ProductDetailRequestsTest extends TestCase
+class PaymentTypeDetailRequestsTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,17 +31,17 @@ class ProductDetailRequestsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_product_detail_requests()
+    public function it_gets_payment_type_detail_requests()
     {
-        $product = Product::factory()->create();
+        $paymentType = PaymentType::factory()->create();
         $detailRequests = DetailRequest::factory()
             ->count(2)
             ->create([
-                'product_id' => $product->id,
+                'payment_type_id' => $paymentType->id,
             ]);
 
         $response = $this->getJson(
-            route('api.products.detail-requests.index', $product)
+            route('api.payment-types.detail-requests.index', $paymentType)
         );
 
         $response->assertOk()->assertSee($detailRequests[0]->notes);
@@ -50,17 +50,17 @@ class ProductDetailRequestsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_product_detail_requests()
+    public function it_stores_the_payment_type_detail_requests()
     {
-        $product = Product::factory()->create();
+        $paymentType = PaymentType::factory()->create();
         $data = DetailRequest::factory()
             ->make([
-                'product_id' => $product->id,
+                'payment_type_id' => $paymentType->id,
             ])
             ->toArray();
 
         $response = $this->postJson(
-            route('api.products.detail-requests.store', $product),
+            route('api.payment-types.detail-requests.store', $paymentType),
             $data
         );
 
@@ -74,6 +74,6 @@ class ProductDetailRequestsTest extends TestCase
 
         $detailRequest = DetailRequest::latest('id')->first();
 
-        $this->assertEquals($product->id, $detailRequest->product_id);
+        $this->assertEquals($paymentType->id, $detailRequest->payment_type_id);
     }
 }

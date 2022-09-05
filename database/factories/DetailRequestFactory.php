@@ -28,6 +28,8 @@ class DetailRequestFactory extends Factory
             'notes' => $this->faker->text,
             'product_id' => \App\Models\Product::factory(),
             'request_purchase_id' => \App\Models\RequestPurchase::factory(),
+            'store_id' => \App\Models\Store::factory(),
+            'payment_type_id' => \App\Models\PaymentType::factory(),
         ];
     }
 }

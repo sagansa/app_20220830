@@ -66,6 +66,7 @@ class StoreDetailRequestsTest extends TestCase
 
         unset($data['request_purchase_id']);
         unset($data['store_id']);
+        unset($data['payment_type_id']);
 
         $this->assertDatabaseHas('detail_requests', $data);
 
