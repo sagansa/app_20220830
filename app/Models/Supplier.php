@@ -33,6 +33,7 @@ class Supplier extends Model
         'bank_account_name',
         'bank_account_no',
         'status',
+        'image',
         'user_id',
     ];
 
@@ -83,6 +84,19 @@ class Supplier extends Model
 
             return $this->name;
 
+        }
+    }
+
+    public function invoicePurchases()
+    {
+        return $this->hasMany(InvoicePurchase::class);
+    }
+
+    public function delete_image()
+    {
+        if ($this->image && file_exists('storage/' . $this->image)) {
+
+            unlink('storage/' . $this->image);
         }
     }
 }
