@@ -58,7 +58,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
                 ->whereIn('status', ['4', '5'])
                 // ->where('payment_type_id', '=', '1')
                 ->get()
-                ->pluck( 'id', 'detail_request_name');k( 'id', 'detail_request_name');
+                ->pluck( 'id', 'detail_request_name');
         }
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
