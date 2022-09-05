@@ -204,7 +204,7 @@
                                     </a>
                                 @endif
                                 @can('delete', $salesOrderOnline)
-                                    <form action="{{ route('sales-order-onlines.destroy', $salesOrderOnline) }}"
+                                    <form action="{{ route('sales-order-onlines.destroy', $salesOrderOnline->id) }}"
                                         method="POST" onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
                                         @csrf @method('DELETE')
                                         <x-buttons.delete></x-buttons.delete>
