@@ -28,10 +28,10 @@ class PaymentReceiptController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        $paymentReceipts = PaymentReceipt::search($search)
-            ->latest()
-            ->paginate(10)
-            ->withQueryString();
+        // $paymentReceipts = PaymentReceipt::search($search)
+        //     ->latest()
+        //     ->paginate(10)
+        //     ->withQueryString();
 
         return view(
             'app.payment_receipts.index',
