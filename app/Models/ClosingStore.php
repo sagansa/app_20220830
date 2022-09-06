@@ -106,6 +106,6 @@ class ClosingStore extends Model
 
     public function getClosingStoreNameAttribute()
     {
-        return $this->store->name . ' - ' . $this->date->toFormattedDate() . ' - ' . $this->shiftStore->name;
+        return $this->store->nickname . ' - ' . $this->shiftStore->name;
     }
 }
