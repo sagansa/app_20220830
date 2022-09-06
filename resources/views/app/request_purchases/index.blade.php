@@ -80,19 +80,20 @@
                         @endrole
                         <x-tables.td-left-hide>
                             @foreach ($requestPurchase->detailRequests as $detailRequest)
-                                {{ $detailRequest->product->name }} - {{ $detailRequest->quantity_plan }}
-                                {{ $detailRequest->product->unit->unit }} -
-                                @if ($detailRequest->status == 1)
-                                    <x-spans.yellow>process</x-spans.yellow>
-                                @elseif($detailRequest->status == 2)
-                                    <x-spans.green>done</x-spans.green>
-                                @elseif($detailRequest->status == 3)
-                                    <x-spans.red>reject</x-spans.red>
-                                @elseif($detailRequest->status == 4)
-                                    <x-spans.green>approved</x-spans.green>
-                                @elseif($detailRequest->status == 5)
-                                    <x-spans.red>not valid</x-spans.red>
-                                @endif
+                                <p> {{ $detailRequest->product->name }} - {{ $detailRequest->quantity_plan }}
+                                    {{ $detailRequest->product->unit->unit }} -
+                                    @if ($detailRequest->status == 1)
+                                        <x-spans.yellow>process</x-spans.yellow>
+                                    @elseif($detailRequest->status == 2)
+                                        <x-spans.green>done</x-spans.green>
+                                    @elseif($detailRequest->status == 3)
+                                        <x-spans.red>reject</x-spans.red>
+                                    @elseif($detailRequest->status == 4)
+                                        <x-spans.green>approved</x-spans.green>
+                                    @elseif($detailRequest->status == 5)
+                                        <x-spans.red>not valid</x-spans.red>
+                                    @endif
+                                </p>
                             @endforeach
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
