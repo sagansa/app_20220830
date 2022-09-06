@@ -1,9 +1,9 @@
 <div>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            Check Productions
+            Request Purchase Approvals
         </h2>
-        <p class="mt-2 text-xs text-gray-700">---</p>
+        <p class="mt-2 text-xs text-gray-700">persetujuan pembelian barang sebelum dilakukan pembelian</p>
     </x-slot>
 
     <x-tables.topbar>
@@ -42,16 +42,19 @@
                         Store
                     </x-tables.th-left>
                     <x-tables.th-left>
+                        Date
+                    </x-tables.th-left>
+                    <x-tables.th-left>
                         Product
                     </x-tables.th-left>
                     <x-tables.th-left>
-                        Quantity Product
+                        Quantity Plan
                     </x-tables.th-left>
                     <x-tables.th-left>
                         Store Production
                     </x-tables.th-left>
                     <x-tables.th-left>
-                        @lang('crud.purchase_order_products.inputs.status')
+                        Status
                     </x-tables.th-left>
 
                 </tr>
@@ -60,24 +63,23 @@
                 @foreach ($detailRequests as $detailRequest)
                     <tr class="hover:bg-gray-100">
                         <x-tables.td-left-hide>
-                            {{ $detailRequest->requestPurchase->store->nickname }} -
+                            {{ $detailRequest->requestPurchase->store->nickname }}
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+
                             {{ $detailRequest->requestPurchase->date->toFormattedDate() }}
                         </x-tables.td-left-hide>
-
                         <x-tables.td-left-hide>
                             {{ optional($detailRequest->product)->name ?? '-' }}
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            {{ $detailRequest->quantity_product ?? '-' }}
+                            {{ $detailRequest->quantity_plan ?? '-' }}
 
                             {{ $detailRequest->product->unit->unit }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
-                            {{-- @foreach ($detailRequest->productionFroms as $productionFrom)
-                                <p>{{ $productionFrom->production->store->nickname }} -
-                                    {{ $productionFrom->production->date->toFormattedDate() }}</p>
-                            @endforeach --}}
+                            {{ $detailRequest->requestPurchase->user->name }}
 
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
@@ -89,7 +91,11 @@
                                 <option value="2" {{ $detailRequest->status == '2' ? 'selected' : '' }}>
                                     Done</option>
                                 <option value="3" {{ $detailRequest->status == '3' ? 'selected' : '' }}>
-                                    No Need</option>
+                                    Reject</option>
+                                <option value="4" {{ $detailRequest->status == '4' ? 'selected' : '' }}>
+                                    Approved</option>
+                                <option value="5" {{ $detailRequest->status == '5' ? 'selected' : '' }}>
+                                    Not Valid</option>
                             </select>
                         </x-tables.td-left-hide>
                     </tr>
