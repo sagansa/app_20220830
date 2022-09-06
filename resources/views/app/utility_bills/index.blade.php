@@ -62,7 +62,7 @@
                             @endif
                         </x-tables.td-left-hide>
 
-                        <x-tables.td-left-hide>{{ optional($utilityBill->utility)->name ?? '-' }}
+                        <x-tables.td-left-hide>{{ optional($utilityBill->utility)->number ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             {{ $utilityBill->utility->store->nickname }}
