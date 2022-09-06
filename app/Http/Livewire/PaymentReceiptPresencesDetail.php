@@ -34,7 +34,7 @@ class PaymentReceiptPresencesDetail extends Component
             orderBy('created_by_id', 'asc')
             ->latest()
             ->where('payment_type_id', '=', '1')
-            ->where('status', '=', '1')
+            ->where('status', '=', '3')
             ->get()
             ->pluck('id', 'presence_name');
         $this->resetPresenceData();
@@ -103,7 +103,7 @@ class PaymentReceiptPresencesDetail extends Component
         Validator::make(['status' => $status], [
 			'status' => [
 				'required',
-				Rule::in(Presence::STATUS_BELUM_DIBAYAR, Presence::STATUS_SUDAH_DIBAYAR, Presence::STATUS_TIDAK_VALID),
+				Rule::in(Presence::STATUS_BELUM_DIBAYAR, Presence::STATUS_SUDAH_DIBAYAR, Presence::STATUS_SIAP_DIBAYAR, Presence::STATUS_TIDAK_VALID),
 			],
 		])->validate();
 

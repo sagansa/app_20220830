@@ -50,9 +50,10 @@
             <div class="flex flex-wrap justify-between mt-1">
                 <div class="mt-1 md:w-1/3">
                     @role('super-admin')
-                        <x-buttons.yellow wire:click="markAllAsBelumDiperiksa">belum diperiksa</x-buttons.yellow>
+                        <x-buttons.yellow wire:click="markAllAsBelumDiperiksa">belum dibayar</x-buttons.yellow>
                         <x-buttons.green wire:click="markAllAsSudahDibayar">sudah dibayar</x-buttons.green>
-                        <x-buttons.red wire:click="markAllAsSiapDitransfer">siap ditransfer</x-buttons.red>
+                        <x-buttons.gray wire:click="markAllAsSiapDitransfer">siap dibayar</x-buttons.gray>
+                        <x-buttons.red wire:click="markAllAsSiapDitransfer">tidak valid</x-buttons.red>
                     @endrole
                 </div>
                 <div class="mt-1 text-right md:w-1/3">

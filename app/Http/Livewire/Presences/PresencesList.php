@@ -45,12 +45,12 @@ class PresencesList extends Component
 
     public function getRowsQueryProperty()
     {
-        $presences = Presence::query()
-            ->select('*')
-            ->join('payment_types', 'payment_types.id', '=', 'presences.payment_type_id')
-            ->join('closing_stores', 'closing_stores.id', '=', 'presences.closing_store_id')
-            ->join('users', 'users.id', '=', 'presences.created_by_id')
-            ->orderBy('closing_stores.date', 'desc');
+        // $presences = Presence::query()
+        //     ->select('*')
+        //     ->join('payment_types', 'payment_types.id', '=', 'presences.payment_type_id')
+        //     ->join('closing_stores', 'closing_stores.id', '=', 'presences.closing_store_id')
+        //     ->join('users', 'users.id', '=', 'presences.created_by_id')
+        //     ->orderBy('closing_stores.date', 'desc');
 
         $presences = Presence::query()
             // ->select('*')
@@ -108,7 +108,7 @@ class PresencesList extends Component
         $this->reset(['selectedRows']);
     }
 
-    public function markAllAsBelumDiperiksa()
+    public function markAllAsBelumDibayar()
     {
         Presence::whereIn('id', $this->selectedRows)->update([
             'status' => '1',
@@ -118,10 +118,20 @@ class PresencesList extends Component
         $this->reset(['selectedRows']);
     }
 
-    public function markAllAsSiapDitransfer()
+    public function markAllAsSiapDiBayar()
     {
         Presence::whereIn('id', $this->selectedRows)->update([
             'status' => '3',
+            'approved_by_id' => Auth::user()->id,
+        ]);
+
+        $this->reset(['selectedRows']);
+    }
+
+    public function markAllAsTidakValid()
+    {
+        Presence::whereIn('id', $this->selectedRows)->update([
+            'status' => '4',
             'approved_by_id' => Auth::user()->id,
         ]);
 

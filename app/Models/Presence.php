@@ -14,15 +14,16 @@ class Presence extends Model
     use Searchable;
 
     const STATUSES = [
-        '1' => 'belum diperiksa',
-        '2' => 'valid',
-        '3' => 'diperbaiki',
-        '4' => 'periksa ulang',
+        '1' => 'belum dibayar',
+        '2' => 'sudah dibayar',
+        '3' => 'siap dibayar',
+        '4' => 'tidak valid',
     ];
 
     const STATUS_BELUM_DIBAYAR = '1';
     const STATUS_SUDAH_DIBAYAR = '2';
-    const STATUS_TIDAK_VALID = '3';
+    const STATUS_SIAP_DIBAYAR = '3';
+    const STATUS_TIDAK_VALID = '4';
 
     protected $fillable = [
         'closing_store_id',
