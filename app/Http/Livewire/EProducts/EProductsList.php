@@ -20,7 +20,7 @@ class EProductsList extends Component
 
     public function render()
     {
-        $eProducts = EProduct::paginate(16);
+        $eProducts = EProduct::paginate(16)->latest();
 
         return view('livewire.e-products.e-products-list', [
             'eProducts' => $eProducts,

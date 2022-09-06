@@ -47,7 +47,7 @@
                             </div> --}}
                             <div class="flex justify-between mt-4">
                                 <div>
-                                    <h3 class="text-sm text-gray-700 dark:text-gray-100">
+                                    <h3 class="text-sm text-gray-700 dark:text-gray-50">
                                         <a href="#">
                                             <span aria-hidden="true" class="absolute inset-0"></span>
                                             {{ $eProduct->product->name }}

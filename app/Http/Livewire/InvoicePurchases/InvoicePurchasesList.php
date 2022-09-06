@@ -77,9 +77,9 @@ class InvoicePurchasesList extends Component
     public function getRowsQueryProperty()
     {
         $invoicePurchases = InvoicePurchase::query()
-            ->select(['invoice_purchases.*', 'stores.name as storename'])
-            ->join('stores', 'stores.id', '=', 'invoice_purchases.store_id')
-            ->join('payment_types', 'payment_types.id', '=', 'invoice_purchases.payment_type_id')
+            // ->select(['invoice_purchases.*', 'stores.name as storename'])
+            // ->join('stores', 'stores.id', '=', 'invoice_purchases.store_id')
+            // ->join('payment_types', 'payment_types.id', '=', 'invoice_purchases.payment_type_id')
             ->join('suppliers', 'suppliers.id', '=', 'invoice_purchases.supplier_id');
 
         if (Auth::user()->hasRole('staff|supervisor')) {

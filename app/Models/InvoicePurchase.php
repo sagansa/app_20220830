@@ -41,7 +41,7 @@ class InvoicePurchase extends Model
         'payment_status',
         'order_status',
         'created_by_id',
-        'approved_id',
+        'approved_by_id',
     ];
 
     protected $searchableFields = ['*'];
@@ -79,7 +79,7 @@ class InvoicePurchase extends Model
 
     public function approved_by()
     {
-        return $this->belongsTo(User::class, 'approved_id');
+        return $this->belongsTo(User::class, 'approved_by_id');
     }
 
     public function paymentReceipts()
