@@ -17,7 +17,7 @@ class SalesOrderOnline extends Model
         '1' => 'belum dikirim',
         '2' => 'valid',
         '3' => 'sudah dikirim',
-        '4' => 'dikembalikan',
+        '4' => 'perbaiki',
         '5' => 'siap dikirim',
         '6' => 'dikembalikan',
     ];

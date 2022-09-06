@@ -22,16 +22,18 @@ class PaymentReceiptController extends Controller
 
         $search = $request->get('search', '');
 
-        $paymentReceipts = PaymentReceipt::search($search)
-            ->whereNotIn('payment_for', ['2'])
-            ->latest()
-            ->paginate(10)
-            ->withQueryString();
-
-        // $paymentReceipts = PaymentReceipt::search($search)
-        //     ->latest()
-        //     ->paginate(10)
-        //     ->withQueryString();
+        if (Auth::user()->hasRole('staff|supervisor')) {
+            $paymentReceipts = PaymentReceipt::search($search)
+                ->whereNotIn('payment_for', ['2'])
+                ->latest()
+                ->paginate(10)
+                ->withQueryString();
+        } elseif (Auth::user()->hasRole('super-admin|manager')) {
+            $paymentReceipts = PaymentReceipt::search($search)
+                ->latest()
+                ->paginate(10)
+                ->withQueryString();
+        }
 
         return view(
             'app.payment_receipts.index',
