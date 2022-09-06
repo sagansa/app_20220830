@@ -24,13 +24,13 @@ class EProductUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => ['nullable', 'image', 'max:1024'],
+            'image' => ['nullable', 'image'],
             'product_id' => ['required', 'exists:products,id'],
             'online_category_id' => ['required', 'exists:online_categories,id'],
             'store_id' => ['required', 'exists:stores,id'],
-            'quantity_stock' => ['required', 'max:255'],
-            'price' => ['required', 'numeric'],
-            'status' => ['required', 'max:255'],
+            'quantity_stock' => ['required', 'numeric', 'min:0'],
+            'price' => ['required', 'numeric', 'gt:0'],
+            'status' => ['required', 'in:1,2'],
         ];
     }
 }

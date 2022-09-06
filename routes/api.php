@@ -62,9 +62,9 @@ use App\Http\Controllers\Api\MovementAssetController;
 use App\Http\Controllers\Api\HygieneOfRoomController;
 use App\Http\Controllers\Api\AdminCashlessController;
 use App\Http\Controllers\Api\StoreCashlessController;
-use App\Http\Controllers\Api\EProductCartsController;
 use App\Http\Controllers\Api\DetailRequestController;
 use App\Http\Controllers\Api\DetailInvoiceController;
+use App\Http\Controllers\Api\EProductCartsController;
 use App\Http\Controllers\Api\UserStockCardsController;
 use App\Http\Controllers\Api\StoreUtilitiesController;
 use App\Http\Controllers\Api\StoreEProductsController;
@@ -2077,18 +2077,6 @@ Route::name('api.')
 
         Route::apiResource('utility-bills', UtilityBillController::class);
 
-        Route::apiResource('e-products', EProductController::class);
-
-        // EProduct Carts
-        Route::get('/e-products/{eProduct}/carts', [
-            EProductCartsController::class,
-            'index',
-        ])->name('e-products.carts.index');
-        Route::post('/e-products/{eProduct}/carts', [
-            EProductCartsController::class,
-            'store',
-        ])->name('e-products.carts.store');
-
         Route::apiResource('carts', CartController::class);
 
         Route::apiResource('payment-receipts', PaymentReceiptController::class);
@@ -2208,4 +2196,16 @@ Route::name('api.')
             '/fuel-services/{fuelService}/payment-receipts/{paymentReceipt}',
             [FuelServicePaymentReceiptsController::class, 'destroy']
         )->name('fuel-services.payment-receipts.destroy');
+
+        Route::apiResource('e-products', EProductController::class);
+
+        // EProduct Carts
+        Route::get('/e-products/{eProduct}/carts', [
+            EProductCartsController::class,
+            'index',
+        ])->name('e-products.carts.index');
+        Route::post('/e-products/{eProduct}/carts', [
+            EProductCartsController::class,
+            'store',
+        ])->name('e-products.carts.store');
     });

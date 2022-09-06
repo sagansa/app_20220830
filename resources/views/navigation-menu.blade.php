@@ -283,11 +283,6 @@
                         Utility Bills
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\EProduct::class)
-                        <x-dropdown-link href="{{ route('e-products.index') }}">
-                        E Products
-                        </x-dropdown-link>
-                        @endcan
                         @can('view-any', App\Models\Cart::class)
                         <x-dropdown-link href="{{ route('carts.index') }}">
                         Carts
@@ -311,6 +306,11 @@
                         @can('view-any', App\Models\FuelService::class)
                         <x-dropdown-link href="{{ route('fuel-services.index') }}">
                         Fuel Services
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\EProduct::class)
+                        <x-dropdown-link href="{{ route('e-products.index') }}">
+                        E Products
                         </x-dropdown-link>
                         @endcan
                 </x-nav-dropdown>
@@ -720,11 +720,6 @@
                 Utility Bills
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\EProduct::class)
-                <x-jet-responsive-nav-link href="{{ route('e-products.index') }}">
-                E Products
-                </x-jet-responsive-nav-link>
-                @endcan
                 @can('view-any', App\Models\Cart::class)
                 <x-jet-responsive-nav-link href="{{ route('carts.index') }}">
                 Carts
@@ -748,6 +743,11 @@
                 @can('view-any', App\Models\FuelService::class)
                 <x-jet-responsive-nav-link href="{{ route('fuel-services.index') }}">
                 Fuel Services
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\EProduct::class)
+                <x-jet-responsive-nav-link href="{{ route('e-products.index') }}">
+                E Products
                 </x-jet-responsive-nav-link>
                 @endcan
 

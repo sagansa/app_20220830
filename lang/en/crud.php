@@ -1295,24 +1295,6 @@ return [
         ],
     ],
 
-    'e_products' => [
-        'name' => 'E Products',
-        'index_title' => 'EProducts List',
-        'new_title' => 'New E product',
-        'create_title' => 'Create EProduct',
-        'edit_title' => 'Edit EProduct',
-        'show_title' => 'Show EProduct',
-        'inputs' => [
-            'image' => 'Image',
-            'product_id' => 'Product',
-            'online_category_id' => 'Online Category',
-            'store_id' => 'Store',
-            'quantity_stock' => 'Quantity Stock',
-            'price' => 'Price',
-            'status' => 'Status',
-        ],
-    ],
-
     'carts' => [
         'name' => 'Carts',
         'index_title' => 'Carts List',
@@ -1509,6 +1491,24 @@ return [
             'liter' => 'Liter',
             'amount' => 'Amount',
             'closing_store_id' => 'Closing Store',
+        ],
+    ],
+
+    'e_products' => [
+        'name' => 'E Products',
+        'index_title' => 'E Products List',
+        'new_title' => 'New E Product',
+        'create_title' => 'Create E Product',
+        'edit_title' => 'Edit E Product',
+        'show_title' => 'Show E Product',
+        'inputs' => [
+            'image' => 'Image',
+            'product_id' => 'Product',
+            'online_category_id' => 'Online Category',
+            'store_id' => 'Store',
+            'quantity_stock' => 'Quantity Stock',
+            'price' => 'Price',
+            'status' => 'Status',
         ],
     ],
 

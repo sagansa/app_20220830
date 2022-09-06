@@ -168,10 +168,10 @@ Route::prefix('/')
         Route::resource('account-cashlesses', AccountCashlessController::class);
         Route::resource('delivery-services', DeliveryServiceController::class);
         Route::resource('utility-bills', UtilityBillController::class);
-        Route::resource('e-products', EProductController::class);
         Route::resource('carts', CartController::class);
         Route::resource('payment-receipts', PaymentReceiptController::class);
         Route::resource('request-purchases', RequestPurchaseController::class);
         Route::resource('invoice-purchases', InvoicePurchaseController::class);
         Route::resource('fuel-services', FuelServiceController::class);
+        Route::resource('e-products', EProductController::class);
     });
