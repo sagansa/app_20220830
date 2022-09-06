@@ -36,7 +36,7 @@
                         <div class="relative group">
                             <button wire:click.prevent="newOrder({{ $eProduct->id }})"
                                 class="w-full overflow-hidden bg-gray-200 rounded-md min-h-80 aspect-w-1 aspect-h-1 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                                <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
+                                <img src="{{ $eProduct->image ? \Storage::url($eProduct->image) : '' }}"
                                     alt="Front of men&#039;s Basic Tee in black."
                                     class="object-cover object-center w-full h-full lg:h-full lg:w-full">
                             </button>
