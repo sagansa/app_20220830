@@ -53,7 +53,7 @@
                                 <p>
                                     @if (!empty($user->getRoleNames()))
                                         @foreach ($user->getRoleNames() as $role)
-                                            <label class="badge badge-success">{{ $role }}</label>
+                                            <x-spans.green>{{ $role }}</x-spans.green>
                                         @endforeach
                                     @endif
                                 </p>
@@ -64,7 +64,7 @@
                         <x-tables.td-left-hide>
                             @if (!empty($user->getRoleNames()))
                                 @foreach ($user->getRoleNames() as $role)
-                                    <label class="badge badge-success">{{ $role }}</label>
+                                    <x-spans.green>{{ $role }}</x-spans.green>
                                 @endforeach
                             @endif
                         </x-tables.td-left-hide>
