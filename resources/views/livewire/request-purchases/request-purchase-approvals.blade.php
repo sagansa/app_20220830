@@ -78,18 +78,18 @@
 
                         <x-tables.td-left-hide>
                             {{ $detailRequest->quantity_plan ?? '-' }}
-                            @if ($detailRequest->quantity_plan != null)
-                                {{ $detailRequest->product->unit->unit }}
+                            {{ $detailRequest->product->unit->unit }}
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            {{ optional($detailRequest->detailInvoice)->quantity_product ?? '-' }}
+                            @if ($detailRequest->detailInvoice->quantity_product != null)
+                                {{ optional($detailRequest->product)->unit->unit ?? '-' }}
                             @endif
-
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             {{ $detailRequest->requestPurchase->user->name }}
                         </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>
-                            {{ optional($detailRequest->detailInvoice)->quantity_product ?? '-' }}
-                            {{ optional($detailRequest->product)->unit->unit ?? '-' }}
-                        </x-tables.td-left-hide>
+
                         <x-tables.td-left-hide>
                             <select
                                 class="block w-full py-2 pl-3 pr-10 mt-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
