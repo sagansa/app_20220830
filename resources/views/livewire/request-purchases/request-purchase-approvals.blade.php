@@ -78,7 +78,10 @@
 
                         <x-tables.td-left-hide>
                             {{ $detailRequest->quantity_plan ?? '-' }}
-                            {{ $detailRequest->product->unit->unit }}
+                            @if ($detailRequest->quantity_plan != null)
+                                {{ $detailRequest->product->unit->unit }}
+                            @endif
+
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             {{ $detailRequest->requestPurchase->user->name }}

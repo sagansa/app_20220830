@@ -40,7 +40,13 @@ class RequestPurchaseApprovals extends Component
         Validator::make(['status' => $status], [
             'status' => [
                 'required',
-                Rule::in(DetailRequest::STATUS_APPROVED,)
+                Rule::in(
+                    DetailRequest::STATUS_APPROVED,
+                    DetailRequest::STATUS_DONE,
+                    DetailRequest::STATUS_NOT_VALID,
+                    DetailRequest::STATUS_PROCESS,
+                    DetailRequest::STATUS_REJECT,
+                    )
             ],
         ])->validate();
 
