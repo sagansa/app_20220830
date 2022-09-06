@@ -49,7 +49,7 @@ class FuelServiceController extends Controller
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $closingStores = ClosingStore::orderBy('closing_store_name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->get()
             ->pluck('closing_store_name', 'id');
 
@@ -122,7 +122,7 @@ class FuelServiceController extends Controller
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $closingStores = ClosingStore::orderBy('closing_store_name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->get()
             ->pluck('closing_store_name', 'id');
 
