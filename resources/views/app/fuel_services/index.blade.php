@@ -85,8 +85,8 @@
                             <x-tables.td-right-hide>@currency($fuelService->amount / $fuelService->liter)
                             </x-tables.td-right-hide>
                         @endrole
-                        <x-tables.td-left-hide>{{ $fuelService->closingStore->store->nickname }} -
-                            {{ $fuelService->closingStore->shiftStore->name }} -
+                        <x-tables.td-left-hide>{{ optional($fuelService->closingStore)->store->nickname ?? '-' }} -
+                            {{ optional($fuelService->closingStore)->shiftStore->name ?? '-' }} -
                             {{ optional($fuelService->closingStore)->date->toFormattedDate() ?? '-' }}
                         </x-tables.td-left-hide>
                         <td class="px-4 py-3 text-center" style="width: 134px;">
