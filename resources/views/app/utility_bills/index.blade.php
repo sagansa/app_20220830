@@ -73,8 +73,10 @@
                         <x-tables.td-left-hide>{{ $utilityBill->date->toFormattedDate() ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-right-hide>@currency($utilityBill->amount)</x-tables.td-right-hide>
-                        <x-tables.td-right-hide>{{ $utilityBill->initial_indicator ?? '-' }}</x-tables.td-right-hide>
-                        <x-tables.td-right-hide>{{ $utilityBill->last_indicator ?? '-' }}</x-tables.td-right-hide>
+                        <x-tables.td-right-hide>{{ $utilityBill->initial_indicator ?? '-' }}
+                            {{ $utilityBill->utility->unit->unit }}</x-tables.td-right-hide>
+                        <x-tables.td-right-hide>{{ $utilityBill->last_indicator ?? '-' }}
+                            {{ $utilityBill->utility->unit->unit }}</x-tables.td-right-hide>
                         <td class="px-4 py-3 text-center" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @if ($utilityBill->status != '2')
