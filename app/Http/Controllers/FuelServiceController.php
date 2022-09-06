@@ -123,6 +123,7 @@ class FuelServiceController extends Controller
             ->pluck('name', 'id');
         $closingStores = ClosingStore::orderBy('closing_store_name', 'asc')
             ->whereIn('status', ['1'])
+            ->get()
             ->pluck('closing_store_name', 'id');
 
         return view(
