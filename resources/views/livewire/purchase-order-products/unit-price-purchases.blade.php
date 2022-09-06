@@ -57,11 +57,11 @@
                         Supplier
                     </x-tables.th-left>
                     <x-tables.th-left>
-                        @lang('crud.purchase_order_products.inputs.product_id')
+                        Product
                     </x-tables.th-left>
 
                     <x-tables.th-left>
-                        @lang('crud.purchase_order_products.inputs.quantity_product')
+                        Quantity Product
                     </x-tables.th-left>
                     <x-tables.th-left>
                         Unit Price

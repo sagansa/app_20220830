@@ -63,7 +63,6 @@
                             <x-slot name="sub">
                                 <p>{{ $paymentReceipt->created_at ?? '-' }}</p>
                                 <p>@currency($paymentReceipt->amount)</p>
-
                                 <p>
                                     @if ($paymentReceipt->payment_for == 1)
                                         <p>fuel service</p>
@@ -74,17 +73,14 @@
                                     @endif
                                 </p>
                             </x-slot>
-
                         </x-tables.td-left-main>
                         <x-tables.td-left-hide>{{ $paymentReceipt->created_at ?? '-' }}</x-tables.td-left-hide>
                         <x-tables.td-right-hide>@currency($paymentReceipt->amount)</x-tables.td-right-hide>
                         <x-tables.td-left-hide>
-                            @role('super-admin')
-                                @foreach ($paymentReceipt->presences as $presence)
-                                    <p>{{ $presence->created_by->name }} - @currency($presence->amount) -
-                                        {{ $presence->closingStore->date->toFormattedDate() }}</p>
-                                @endforeach
-                            @endrole
+                            @foreach ($paymentReceipt->presences as $presence)
+                                <p>{{ $presence->created_by->name }} - @currency($presence->amount) -
+                                    {{ $presence->closingStore->date->toFormattedDate() }}</p>
+                            @endforeach
                             @foreach ($paymentReceipt->fuelServices as $fuelService)
                                 <p>{{ $fuelService->vehicle->no_register }} - {{ $fuelService->amount }}</p>
                             @endforeach
