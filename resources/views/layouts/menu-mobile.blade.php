@@ -89,6 +89,11 @@
                           Sales Order Onlines
                       </x-sidebars.dropdown-link>
                   @endcan
+                  @can('view-any', App\Models\EProduct::class)
+                      <x-sidebars.dropdown-link href="{{ route('e-products.index') }}">
+                          E Products
+                      </x-sidebars.dropdown-link>
+                  @endcan
 
                   {{-- @can('view-any', App\Models\Receipts::class)
                         <x-sidebars.dropdown-link href="{{ route('all-receipts.index') }}">
