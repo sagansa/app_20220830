@@ -72,7 +72,7 @@ class ClosingStoreInvoicePurchasesDetail extends Component
 
         $this->closingStore
             ->invoicePurchases()
-            ->attach($this->invoicePurchase_id, []);
+            ->attach($this->invoice_purchase_id, []);
 
         $this->hideModal();
     }
