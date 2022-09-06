@@ -114,7 +114,7 @@ class PresencesList extends Component
         $this->reset(['selectedRows']);
     }
 
-    public function markAllAsSiapDiBayar()
+    public function markAllAsSiapDibayar()
     {
         Presence::whereIn('id', $this->selectedRows)->update([
             'status' => '3',
