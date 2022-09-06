@@ -45,9 +45,9 @@ class EProductController extends Controller
         $onlineCategories = OnlineCategory::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $stores = Store::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
+        $stores = Store::orderBy('nickname', 'asc')
+            ->whereNotIn('status', ['8'])
+            ->pluck('nickname', 'id');
 
         return view(
             'app.e_products.create',
@@ -117,9 +117,9 @@ class EProductController extends Controller
         $onlineCategories = OnlineCategory::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $stores = Store::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
+        $stores = Store::orderBy('nickname', 'asc')
+            ->whereNotIn('status', ['8'])
+            ->pluck('nickname', 'id');
 
         return view(
             'app.e_products.edit',
