@@ -82,7 +82,7 @@
                             @role('super-admin')
                                 @foreach ($paymentReceipt->presences as $presence)
                                     <p>{{ $presence->created_by->name }} - @currency($presence->amount) -
-                                        {{ $presence->closingStore->date }}</p>
+                                        {{ $presence->closingStore->date->toFormattedDate() }}</p>
                                 @endforeach
                             @endrole
                             @foreach ($paymentReceipt->fuelServices as $fuelService)
