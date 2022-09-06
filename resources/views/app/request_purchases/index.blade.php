@@ -124,11 +124,18 @@
                     </td>
                 </tr>
             @empty
-                <x-tables.no-items-found colspan="4"> </x-tables.no-items-found>
+                <x-tables.no-items-found colspan="5"> </x-tables.no-items-found>
             @endforelse
         </x-slot>
-        <x-slot name="foot"> </x-slot>
+        <x-slot name="foot">
+            <tr>
+                <td colspan="7">
+                    <div class="px-4 my-2">
+                        {{ $requestPurchases->render() }}
+                    </div>
+                </td>
+            </tr>
+        </x-slot>
     </x-table>
 </x-tables.card>
-<div class="px-4 mt-10">{!! $requestPurchases->render() !!}</div>
 </x-admin-layout>
