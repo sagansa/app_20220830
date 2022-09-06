@@ -12,9 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('presence_transfer_daily_salary', function (
-            Blueprint $table
-        ) {
+        Schema::table('monthly_salary_presence', function (Blueprint $table) {
             $table
                 ->foreign('presence_id')
                 ->references('id')
@@ -23,9 +21,9 @@ return new class extends Migration {
                 ->onDelete('CASCADE');
 
             $table
-                ->foreign('transfer_daily_salary_id')
+                ->foreign('monthly_salary_id')
                 ->references('id')
-                ->on('transfer_daily_salaries')
+                ->on('salaries')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
         });
@@ -38,11 +36,9 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('presence_transfer_daily_salary', function (
-            Blueprint $table
-        ) {
+        Schema::table('monthly_salary_presence', function (Blueprint $table) {
             $table->dropForeign(['presence_id']);
-            $table->dropForeign(['transfer_daily_salary_id']);
+            $table->dropForeign(['monthly_salary_id']);
         });
     }
 };

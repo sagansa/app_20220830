@@ -12,9 +12,8 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('monthly_salaries', function (Blueprint $table) {
+        Schema::create('salaries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('presence_id');
             $table->bigInteger('amount');
 
             $table->timestamps();
@@ -28,6 +27,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('monthly_salaries');
+        Schema::dropIfExists('salaries');
     }
 };

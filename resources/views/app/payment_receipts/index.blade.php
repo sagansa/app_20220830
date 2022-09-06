@@ -39,6 +39,9 @@
         <x-table>
             <x-slot name="head">
                 <x-tables.th-left-hide>@lang('crud.payment_receipts.inputs.image')</x-tables.th-left-hide>
+
+                <x-tables.th-left>Store</x-tables.th-left>
+                <x-tables.th-left>Supplier</x-tables.th-left>
                 <x-tables.th-left>Date</x-tables.th-left>
                 <x-tables.th-left-hide>@lang('crud.payment_receipts.inputs.amount')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>Detail</x-tables.th-left-hide>
@@ -74,8 +77,24 @@
                                 </p>
                             </x-slot>
                         </x-tables.td-left-main>
-                        <x-tables.td-left-hide>{{ $paymentReceipt->created_at ?? '-' }}</x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
+                                <p>{{ $invoicePurchase->store->nickname }}</p>
+                            @endforeach
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
+                                <p>{{ $invoicePurchase->supplier->name }}</p>
+                            @endforeach
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
+                                <p>{{ $invoicePurchase->date->toFormattedDate() }}</p>
+                            @endforeach
+                        </x-tables.td-left-hide>
+
                         <x-tables.td-right-hide>@currency($paymentReceipt->amount)</x-tables.td-right-hide>
+
                         <x-tables.td-left-hide>
                             @foreach ($paymentReceipt->presences as $presence)
                                 <p>{{ $presence->created_by->name }} - @currency($presence->amount) -
@@ -92,6 +111,7 @@
                             @endforeach
 
                         </x-tables.td-left-hide>
+
                         <x-tables.td-left-hide>
                             @if ($paymentReceipt->payment_for == 1)
                                 <p>fuel service</p>

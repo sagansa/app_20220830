@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Salary;
 use Illuminate\Database\Seeder;
-use App\Models\TransferDailySalary;
 
-class TransferDailySalarySeeder extends Seeder
+class SalarySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class TransferDailySalarySeeder extends Seeder
      */
     public function run()
     {
-        TransferDailySalary::factory()
+        Salary::factory()
             ->count(5)
             ->create();
     }

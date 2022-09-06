@@ -10,6 +10,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\RefundController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\ProductController;
@@ -35,7 +36,6 @@ use App\Http\Controllers\OutInProductController;
 use App\Http\Controllers\UtilityUsageController;
 use App\Http\Controllers\ClosingStoreController;
 use App\Http\Controllers\MaterialGroupController;
-use App\Http\Controllers\MonthlySalaryController;
 use App\Http\Controllers\TransferStockController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\AdminCashlessController;
@@ -62,7 +62,6 @@ use App\Http\Controllers\RestaurantCategoryController;
 use App\Http\Controllers\SalesOrderEmployeeController;
 use App\Http\Controllers\VehicleCertificateController;
 use App\Http\Controllers\MovementAssetResultController;
-use App\Http\Controllers\TransferDailySalaryController;
 use App\Http\Controllers\ReceiptByItemLoyverseController;
 
 /*
@@ -106,7 +105,7 @@ Route::prefix('/')
         );
         Route::resource('franchise-groups', FranchiseGroupController::class);
         Route::resource('material-groups', MaterialGroupController::class);
-        Route::resource('monthly-salaries', MonthlySalaryController::class);
+        Route::resource('monthly-salaries', SalaryController::class);
         Route::resource('online-categories', OnlineCategoryController::class);
         Route::resource(
             'online-shop-providers',
@@ -165,18 +164,14 @@ Route::prefix('/')
         Route::resource('admin-cashlesses', AdminCashlessController::class);
         Route::resource('purchase-receipts', PurchaseReceiptController::class);
         Route::resource('closing-stores', ClosingStoreController::class);
-        Route::resource(
-            'transfer-daily-salaries',
-            TransferDailySalaryController::class
-        );
         Route::resource('store-cashlesses', StoreCashlessController::class);
         Route::resource('account-cashlesses', AccountCashlessController::class);
         Route::resource('delivery-services', DeliveryServiceController::class);
         Route::resource('utility-bills', UtilityBillController::class);
-        Route::resource('fuel-services', FuelServiceController::class);
         Route::resource('e-products', EProductController::class);
         Route::resource('carts', CartController::class);
         Route::resource('payment-receipts', PaymentReceiptController::class);
         Route::resource('request-purchases', RequestPurchaseController::class);
         Route::resource('invoice-purchases', InvoicePurchaseController::class);
+        Route::resource('fuel-services', FuelServiceController::class);
     });

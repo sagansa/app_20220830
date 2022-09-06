@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\PaymentReceipt;
 use App\Models\InvoicePurchase;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class PaymentReceiptInvoicePurchasesDetail extends Component
 {
@@ -26,8 +28,8 @@ class PaymentReceiptInvoicePurchasesDetail extends Component
     public function mount(PaymentReceipt $paymentReceipt)
     {
         $this->paymentReceipt = $paymentReceipt;
-        $this->invoicePurchasesForSelect = InvoicePurchase::pluck(
-            'image',
+        $this->invoicePurchasesForSelect = InvoicePurchase::get()->pluck(
+            'invoice_purchase_name',
             'id'
         );
         $this->resetInvoicePurchaseData();
@@ -87,11 +89,38 @@ class PaymentReceiptInvoicePurchasesDetail extends Component
 
     public function render()
     {
+        $this->subtotal = 0;
+        $this->totals = 0;
+
+        foreach ($this->paymentReceipt->invoicePurchases as $invoicePurchase) {
+            foreach ($invoicePurchase->detailPurchases as $detailPurchase) {
+                $this->subtotal += $detailPurchase['subtotal_invoice'];
+            }
+
+            $this->totals = $this->subtotal - $invoicePurchase['discounts'] + $invoicePurchase['taxes'];
+        }
+
+        $this->difference = $this->paymentReceipt->nominal_transfer - $this->totals;
+
         return view('livewire.payment-receipt-invoice-purchases-detail', [
             'paymentReceiptInvoicePurchases' => $this->paymentReceipt
                 ->invoicePurchases()
                 ->withPivot([])
                 ->paginate(20),
         ]);
+    }
+
+    public function changePaymentStatus(InvoicePurchase $invoicePurchase, $paymentStatus)
+    {
+        Validator::make(['payment_status' => $paymentStatus], [
+			'payment_status' => [
+				'required',
+				Rule::in(InvoicePurchase::STATUS_BELUM_DIBAYAR, InvoicePurchase::STATUS_SUDAH_DIBAYAR),
+			],
+		])->validate();
+
+		$invoicePurchase->update(['payment_status' => $paymentStatus]);
+
+		$this->dispatchBrowserEvent('updated', ['message' => "Status changed to {$paymentStatus} successfully."]);
     }
 }

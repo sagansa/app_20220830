@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Livewire\DataTables\HasValid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class TransferDailySalary extends Model
+class Salary extends Model
 {
     use HasValid;
     use HasFactory;
@@ -20,15 +20,17 @@ class TransferDailySalary extends Model
         '4' => 'periksa ulang',
     ];
 
-    protected $fillable = ['image', 'amount'];
+    protected $fillable = ['amount'];
 
     protected $searchableFields = ['*'];
 
-    protected $table = 'transfer_daily_salaries';
-
     public function presences()
     {
-        return $this->belongsToMany(Presence::class);
+        return $this->belongsToMany(
+            Presence::class,
+            'monthly_salary_presence',
+            'monthly_salary_id'
+        );
     }
 
     public function delete_image()

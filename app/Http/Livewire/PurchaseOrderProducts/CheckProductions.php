@@ -24,7 +24,7 @@ class CheckProductions extends Component
 
     protected $queryString = [
         'sortColumn' => [
-        'except' => 'purchase_order_products.date'
+        'except' => 'purchase_order_products.created_at'
         ],
         'sortDirection' => [
             'except' => 'asc',

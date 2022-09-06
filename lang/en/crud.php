@@ -233,7 +233,6 @@ return [
         'edit_title' => 'Edit Monthly Salary',
         'show_title' => 'Show Monthly Salary',
         'inputs' => [
-            'presence_id' => 'Presence',
             'amount' => 'Amount',
         ],
     ],
@@ -1172,18 +1171,6 @@ return [
         ],
     ],
 
-    'transfer_daily_salary_presences' => [
-        'name' => 'Transfer Daily Salary Presences',
-        'index_title' => 'Transfer Daily Salary Presences List',
-        'new_title' => 'New Presence Transfer Daily Salary',
-        'create_title' => 'Create Transfer Daily Salary Presences',
-        'edit_title' => 'Edit Transfer Daily Salary Presences',
-        'show_title' => 'Show Transfer Daily Salary Presences',
-        'inputs' => [
-            'presence_id' => 'Presence',
-        ],
-    ],
-
     'closing_store_fuel_services' => [
         'name' => 'Closing Store Fuel Services',
         'index_title' => 'Fuel Services List',
@@ -1197,19 +1184,6 @@ return [
             'fuel_service' => 'Fuel Service',
             'km' => 'Km',
             'liter' => 'Liter',
-            'amount' => 'Amount',
-        ],
-    ],
-
-    'transfer_daily_salaries' => [
-        'name' => 'Transfer Daily Salaries',
-        'index_title' => 'Transfer Daily Salaries List',
-        'new_title' => 'New Transfer Daily Salary',
-        'create_title' => 'Create Transfer Daily Salary',
-        'edit_title' => 'Edit Transfer Daily Salary',
-        'show_title' => 'Show Transfer Daily Salary',
-        'inputs' => [
-            'image' => 'Image',
             'amount' => 'Amount',
         ],
     ],
@@ -1318,25 +1292,6 @@ return [
             'amount' => 'Amount',
             'initial_indicator' => 'Initial Indicator',
             'last_indicator' => 'Last Indicator',
-        ],
-    ],
-
-    'fuel_services' => [
-        'name' => 'Fuel Services',
-        'index_title' => 'FuelServices List',
-        'new_title' => 'New Fuel service',
-        'create_title' => 'Create FuelService',
-        'edit_title' => 'Edit FuelService',
-        'show_title' => 'Show FuelService',
-        'inputs' => [
-            'image' => 'Image',
-            'vehicle_id' => 'Vehicle',
-            'fuel_service' => 'Fuel Service',
-            'payment_type_id' => 'Payment Type',
-            'km' => 'km',
-            'liter' => 'Liter',
-            'amount' => 'Amount',
-            'closing_store_id' => 'Closing Store',
         ],
     ],
 
@@ -1523,6 +1478,37 @@ return [
         'show_title' => 'Show ProductionMainFrom',
         'inputs' => [
             'detail_invoice_id' => 'Detail Invoice',
+        ],
+    ],
+
+    'monthly_salary_presences' => [
+        'name' => 'MonthlySalary Presences',
+        'index_title' => ' List',
+        'new_title' => 'New Monthly salary presence',
+        'create_title' => 'Create monthly_salary_presence',
+        'edit_title' => 'Edit monthly_salary_presence',
+        'show_title' => 'Show monthly_salary_presence',
+        'inputs' => [
+            'presence_id' => 'Presence',
+        ],
+    ],
+
+    'fuel_services' => [
+        'name' => 'Fuel Services',
+        'index_title' => 'Fuel Services List',
+        'new_title' => 'New Fuel Service',
+        'create_title' => 'Create Fuel Service',
+        'edit_title' => 'Edit Fuel Service',
+        'show_title' => 'Show Fuel Service',
+        'inputs' => [
+            'image' => 'Image',
+            'vehicle_id' => 'Vehicle',
+            'fuel_service' => 'Fuel Service',
+            'payment_type_id' => 'Payment Type',
+            'km' => 'km',
+            'liter' => 'Liter',
+            'amount' => 'Amount',
+            'closing_store_id' => 'Closing Store',
         ],
     ],
 

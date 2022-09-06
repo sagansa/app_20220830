@@ -171,12 +171,6 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update materialgroups']);
         Permission::create(['name' => 'delete materialgroups']);
 
-        Permission::create(['name' => 'list monthlysalaries']);
-        Permission::create(['name' => 'view monthlysalaries']);
-        Permission::create(['name' => 'create monthlysalaries']);
-        Permission::create(['name' => 'update monthlysalaries']);
-        Permission::create(['name' => 'delete monthlysalaries']);
-
         Permission::create(['name' => 'list movementassets']);
         Permission::create(['name' => 'view movementassets']);
         Permission::create(['name' => 'create movementassets']);
@@ -351,6 +345,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update rooms']);
         Permission::create(['name' => 'delete rooms']);
 
+        Permission::create(['name' => 'list salaries']);
+        Permission::create(['name' => 'view salaries']);
+        Permission::create(['name' => 'create salaries']);
+        Permission::create(['name' => 'update salaries']);
+        Permission::create(['name' => 'delete salaries']);
+
         Permission::create(['name' => 'list salesorderemployees']);
         Permission::create(['name' => 'view salesorderemployees']);
         Permission::create(['name' => 'create salesorderemployees']);
@@ -416,12 +416,6 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create suppliers']);
         Permission::create(['name' => 'update suppliers']);
         Permission::create(['name' => 'delete suppliers']);
-
-        Permission::create(['name' => 'list transferdailysalaries']);
-        Permission::create(['name' => 'view transferdailysalaries']);
-        Permission::create(['name' => 'create transferdailysalaries']);
-        Permission::create(['name' => 'update transferdailysalaries']);
-        Permission::create(['name' => 'delete transferdailysalaries']);
 
         Permission::create(['name' => 'list transferstocks']);
         Permission::create(['name' => 'view transferstocks']);

@@ -48,7 +48,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HygieneOfRoomSeeder::class);
         $this->call(InvoicePurchaseSeeder::class);
         $this->call(MaterialGroupSeeder::class);
-        $this->call(MonthlySalarySeeder::class);
         $this->call(MovementAssetSeeder::class);
         $this->call(MovementAssetAuditSeeder::class);
         $this->call(MovementAssetResultSeeder::class);
@@ -78,6 +77,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RequestPurchaseSeeder::class);
         $this->call(RestaurantCategorySeeder::class);
         $this->call(RoomSeeder::class);
+        $this->call(SalarySeeder::class);
         $this->call(SalesOrderEmployeeSeeder::class);
         $this->call(SalesOrderOnlineSeeder::class);
         $this->call(SavingSeeder::class);
@@ -89,7 +89,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StoreAssetSeeder::class);
         $this->call(StoreCashlessSeeder::class);
         $this->call(SupplierSeeder::class);
-        $this->call(TransferDailySalarySeeder::class);
         $this->call(TransferStockSeeder::class);
         $this->call(UnitSeeder::class);
         $this->call(UserSeeder::class);

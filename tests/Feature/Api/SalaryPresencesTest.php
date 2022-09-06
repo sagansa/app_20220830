@@ -3,15 +3,15 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
+use App\Models\Salary;
 use App\Models\Presence;
-use App\Models\TransferDailySalary;
 
 use Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class TransferDailySalaryPresencesTest extends TestCase
+class SalaryPresencesTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,18 +31,15 @@ class TransferDailySalaryPresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_transfer_daily_salary_presences()
+    public function it_gets_salary_presences()
     {
-        $transferDailySalary = TransferDailySalary::factory()->create();
+        $salary = Salary::factory()->create();
         $presence = Presence::factory()->create();
 
-        $transferDailySalary->presences()->attach($presence);
+        $salary->presences()->attach($presence);
 
         $response = $this->getJson(
-            route(
-                'api.transfer-daily-salaries.presences.index',
-                $transferDailySalary
-            )
+            route('api.salaries.presences.index', $salary)
         );
 
         $response->assertOk()->assertSee($presence->image_in);
@@ -51,22 +48,19 @@ class TransferDailySalaryPresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_presences_to_transfer_daily_salary()
+    public function it_can_attach_presences_to_salary()
     {
-        $transferDailySalary = TransferDailySalary::factory()->create();
+        $salary = Salary::factory()->create();
         $presence = Presence::factory()->create();
 
         $response = $this->postJson(
-            route('api.transfer-daily-salaries.presences.store', [
-                $transferDailySalary,
-                $presence,
-            ])
+            route('api.salaries.presences.store', [$salary, $presence])
         );
 
         $response->assertNoContent();
 
         $this->assertTrue(
-            $transferDailySalary
+            $salary
                 ->presences()
                 ->where('presences.id', $presence->id)
                 ->exists()
@@ -76,22 +70,19 @@ class TransferDailySalaryPresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_presences_from_transfer_daily_salary()
+    public function it_can_detach_presences_from_salary()
     {
-        $transferDailySalary = TransferDailySalary::factory()->create();
+        $salary = Salary::factory()->create();
         $presence = Presence::factory()->create();
 
         $response = $this->deleteJson(
-            route('api.transfer-daily-salaries.presences.store', [
-                $transferDailySalary,
-                $presence,
-            ])
+            route('api.salaries.presences.store', [$salary, $presence])
         );
 
         $response->assertNoContent();
 
         $this->assertFalse(
-            $transferDailySalary
+            $salary
                 ->presences()
                 ->where('presences.id', $presence->id)
                 ->exists()

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TransferDailySalaryUpdateRequest extends FormRequest
+class SalaryStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class TransferDailySalaryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => ['nullable', 'image'],
-            'amount' => ['required', 'numeric'],
+            'amount' => ['required'],
         ];
     }
 }

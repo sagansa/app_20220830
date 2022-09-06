@@ -73,8 +73,8 @@
                         Material Groups
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\MonthlySalary::class)
-                        <x-dropdown-link href="{{ route('monthly-salaries.index') }}">
+                        @can('view-any', App\Models\Salary::class)
+                        <x-dropdown-link href="{{ route('salaries.index') }}">
                         Monthly Salaries
                         </x-dropdown-link>
                         @endcan
@@ -263,11 +263,6 @@
                         Closing Stores
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\TransferDailySalary::class)
-                        <x-dropdown-link href="{{ route('transfer-daily-salaries.index') }}">
-                        Transfer Daily Salaries
-                        </x-dropdown-link>
-                        @endcan
                         @can('view-any', App\Models\StoreCashless::class)
                         <x-dropdown-link href="{{ route('store-cashlesses.index') }}">
                         Store Cashlesses
@@ -286,11 +281,6 @@
                         @can('view-any', App\Models\UtilityBill::class)
                         <x-dropdown-link href="{{ route('utility-bills.index') }}">
                         Utility Bills
-                        </x-dropdown-link>
-                        @endcan
-                        @can('view-any', App\Models\FuelService::class)
-                        <x-dropdown-link href="{{ route('fuel-services.index') }}">
-                        Fuel Services
                         </x-dropdown-link>
                         @endcan
                         @can('view-any', App\Models\EProduct::class)
@@ -316,6 +306,11 @@
                         @can('view-any', App\Models\InvoicePurchase::class)
                         <x-dropdown-link href="{{ route('invoice-purchases.index') }}">
                         Invoice Purchases
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\FuelService::class)
+                        <x-dropdown-link href="{{ route('fuel-services.index') }}">
+                        Fuel Services
                         </x-dropdown-link>
                         @endcan
                 </x-nav-dropdown>
@@ -515,8 +510,8 @@
                 Material Groups
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\MonthlySalary::class)
-                <x-jet-responsive-nav-link href="{{ route('monthly-salaries.index') }}">
+                @can('view-any', App\Models\Salary::class)
+                <x-jet-responsive-nav-link href="{{ route('salaries.index') }}">
                 Monthly Salaries
                 </x-jet-responsive-nav-link>
                 @endcan
@@ -705,11 +700,6 @@
                 Closing Stores
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\TransferDailySalary::class)
-                <x-jet-responsive-nav-link href="{{ route('transfer-daily-salaries.index') }}">
-                Transfer Daily Salaries
-                </x-jet-responsive-nav-link>
-                @endcan
                 @can('view-any', App\Models\StoreCashless::class)
                 <x-jet-responsive-nav-link href="{{ route('store-cashlesses.index') }}">
                 Store Cashlesses
@@ -728,11 +718,6 @@
                 @can('view-any', App\Models\UtilityBill::class)
                 <x-jet-responsive-nav-link href="{{ route('utility-bills.index') }}">
                 Utility Bills
-                </x-jet-responsive-nav-link>
-                @endcan
-                @can('view-any', App\Models\FuelService::class)
-                <x-jet-responsive-nav-link href="{{ route('fuel-services.index') }}">
-                Fuel Services
                 </x-jet-responsive-nav-link>
                 @endcan
                 @can('view-any', App\Models\EProduct::class)
@@ -758,6 +743,11 @@
                 @can('view-any', App\Models\InvoicePurchase::class)
                 <x-jet-responsive-nav-link href="{{ route('invoice-purchases.index') }}">
                 Invoice Purchases
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\FuelService::class)
+                <x-jet-responsive-nav-link href="{{ route('fuel-services.index') }}">
+                Fuel Services
                 </x-jet-responsive-nav-link>
                 @endcan
 

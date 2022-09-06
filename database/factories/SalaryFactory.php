@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\Salary;
 use Illuminate\Support\Str;
-use App\Models\TransferDailySalary;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TransferDailySalaryFactory extends Factory
+class SalaryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = TransferDailySalary::class;
+    protected $model = Salary::class;
 
     /**
      * Define the model's default state.
@@ -23,7 +23,6 @@ class TransferDailySalaryFactory extends Factory
     public function definition()
     {
         return [
-            'image' => $this->faker->text(255),
             'amount' => $this->faker->randomNumber,
         ];
     }
