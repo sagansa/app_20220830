@@ -47,7 +47,7 @@
                             </div> --}}
                             <div class="flex justify-between mt-4">
                                 <div>
-                                    <h3 class="text-sm text-gray-700">
+                                    <h3 class="text-sm text-gray-700 dark:text-gray-100">
                                         <a href="#">
                                             <span aria-hidden="true" class="absolute inset-0"></span>
                                             {{ $eProduct->product->name }}
@@ -57,7 +57,8 @@
                                 </div>
                                 <p class="text-sm font-medium text-gray-900 dark:text-white">@currency($eProduct->price)</p>
                             </div>
-                            <p class="mt-1 text-sm text-gray-500">{{ $eProduct->product->description }}</p>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-200">
+                                {{ $eProduct->product->description }}</p>
                         </div>
                     @endforeach
 
