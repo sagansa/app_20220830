@@ -6,14 +6,6 @@
         <p class="mt-2 text-xs text-gray-700">Laporan penjualan untuk order dari online shop</p>
     </x-slot>
 
-    @can('delete-any', App\Models\SalesOrderOnline::class)
-        <button class="button button-danger" {{ empty($selected) ? 'disabled' : '' }}
-            onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="destroySelected">
-            <i class="mr-1 icon ion-md-trash text-primary"></i>
-            @lang('crud.common.delete_selected')
-        </button>
-    @endcan
-
     <x-tables.topbar>
         <x-slot name="search">
             <x-buttons.link wire:click.prevent="$toggle('showFilters')">

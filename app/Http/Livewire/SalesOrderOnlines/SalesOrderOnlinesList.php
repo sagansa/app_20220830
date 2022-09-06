@@ -23,8 +23,6 @@ class SalesOrderOnlinesList extends Component
 
     public SalesOrderOnline $editing;
 
-    public $salesOrderOnlineIdBeingRemoved = null;
-
     public $sortColumn = 'sales_order_onlines.date';
 
     protected $queryString = [
@@ -181,17 +179,5 @@ class SalesOrderOnlinesList extends Component
         ]);
 
         $this->reset(['selectedRows']);
-    }
-
-    public function destroySelected()
-    {
-        $this->authorize('delete-any', SalesOrderOnline::class);
-
-        SalesOrderOnline::whereIn('id', $this->selected)->delete();
-
-        $this->selected = [];
-        $this->allSelected = false;
-
-        $this->resetPurchaseOrderProductData();
     }
 }
