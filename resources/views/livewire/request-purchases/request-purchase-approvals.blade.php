@@ -51,7 +51,10 @@
                         Quantity Plan
                     </x-tables.th-left>
                     <x-tables.th-left>
-                        Store Production
+                        Quantity Real
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        Diajukan Oleh
                     </x-tables.th-left>
                     <x-tables.th-left>
                         Status
@@ -75,12 +78,14 @@
 
                         <x-tables.td-left-hide>
                             {{ $detailRequest->quantity_plan ?? '-' }}
-
                             {{ $detailRequest->product->unit->unit }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             {{ $detailRequest->requestPurchase->user->name }}
-
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            {{ optional($detailRequest->detailInvoice)->quantity_product ?? '-' }}
+                            {{ optional($detailRequest->product)->unit->unit ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             <select
