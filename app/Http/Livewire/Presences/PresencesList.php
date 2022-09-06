@@ -46,7 +46,7 @@ class PresencesList extends Component
     public function getRowsQueryProperty()
     {
         $presences = Presence::query()
-            ->select('*')
+            // ->select('*')
             ->join('closing_stores', 'closing_stores.id', '=', 'presences.closing_store_id')
             ->orderBy('closing_stores.date', 'desc');
 
