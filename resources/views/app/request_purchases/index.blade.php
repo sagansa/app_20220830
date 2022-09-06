@@ -64,7 +64,7 @@
                                         @elseif($detailRequest->status == 3)
                                             <x-spans.red>reject</x-spans.red>
                                         @elseif($detailRequest->status == 4)
-                                            <x-spans.green>approved</x-spans.green>
+                                            <x-spans.gray>approved</x-spans.gray>
                                         @elseif($detailRequest->status == 5)
                                             <x-spans.red>not valid</x-spans.red>
                                         @endif
@@ -89,7 +89,7 @@
                                     @elseif($detailRequest->status == 3)
                                         <x-spans.red>reject</x-spans.red>
                                     @elseif($detailRequest->status == 4)
-                                        <x-spans.green>approved</x-spans.green>
+                                        <x-spans.gray>approved</x-spans.gray>
                                     @elseif($detailRequest->status == 5)
                                         <x-spans.red>not valid</x-spans.red>
                                     @endif
