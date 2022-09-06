@@ -121,9 +121,9 @@ class FuelServiceController extends Controller
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $closingStores = ClosingStore::orderBy('date', 'asc')
+        $closingStores = ClosingStore::orderBy('closing_store_name', 'asc')
             ->whereIn('status', ['1'])
-            ->pluck('date', 'id');
+            ->pluck('closing_store_name', 'id');
 
         return view(
             'app.fuel_services.edit',
