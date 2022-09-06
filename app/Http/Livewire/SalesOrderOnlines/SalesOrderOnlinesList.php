@@ -23,9 +23,6 @@ class SalesOrderOnlinesList extends Component
 
     public SalesOrderOnline $editing;
 
-    public $selected = [];
-    public $allSelected = false;
-
     public $salesOrderOnlineIdBeingRemoved = null;
 
     public $sortColumn = 'sales_order_onlines.date';
@@ -84,12 +81,12 @@ class SalesOrderOnlinesList extends Component
 
     public function getRowsQueryProperty()
     {
-        $salesOrderOnlines = SalesOrderOnline::get();
+        $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')
             // ->select(['sales_order_onlines.*', 'stores.name as storename'])
-            // ->join('stores', 'stores.id', '=', 'sales_order_onlines.store_id')
+            ->join('stores', 'stores.id', '=', 'sales_order_onlines.store_id')
             // ->join('customers', 'customers.id', '=', 'sales_order_onlines.customer_id')
-            // ->join('online_shop_providers', 'online_shop_providers.id', '=', 'sales_order_onlines.online_shop_provider_id')
-            // ->join('delivery_services', 'delivery_services.id', '=', 'sales_order_onlines.delivery_service_id');
+            ->join('online_shop_providers', 'online_shop_providers.id', '=', 'sales_order_onlines.online_shop_provider_id')
+            ->join('delivery_services', 'delivery_services.id', '=', 'sales_order_onlines.delivery_service_id');
 
         // $salesOrderOnlines = SalesOrderOnline::with('products')->query()->latest()
         //     ->map(function (SalesOrderOnline $products) {
@@ -186,30 +183,15 @@ class SalesOrderOnlinesList extends Component
         $this->reset(['selectedRows']);
     }
 
-    // public function toggleFullSelection()
-    // {
-    //     if (!$this->allSelected) {
-    //         $this->selected = [];
-    //         return;
-    //     }
+    public function destroySelected()
+    {
+        $this->authorize('delete-any', SalesOrderOnline::class);
 
-    //     foreach (
-    //         $this->purchaseOrder->purchaseOrderProducts
-    //         as $purchaseOrderProduct
-    //     ) {
-    //         array_push($this->selected, $salesOrderOnline->id);
-    //     }
-    // }
+        SalesOrderOnline::whereIn('id', $this->selected)->delete();
 
-    // public function destroySelected()
-    // {
-    //     $this->authorize('delete-any', SalesOrderOnline::class);
+        $this->selected = [];
+        $this->allSelected = false;
 
-    //     SalesOrderOnline::whereIn('id', $this->selected)->delete();
-
-    //     $this->selected = [];
-    //     $this->allSelected = false;
-
-    //     $this->resetPurchaseOrderProductData();
-    // }
+        $this->resetPurchaseOrderProductData();
+    }
 }
