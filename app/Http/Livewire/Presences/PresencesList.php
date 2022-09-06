@@ -45,15 +45,13 @@ class PresencesList extends Component
 
     public function getRowsQueryProperty()
     {
-        // $presences = Presence::query()
-        //     ->select('*')
-        //     ->join('payment_types', 'payment_types.id', '=', 'presences.payment_type_id')
-        //     ->join('closing_stores', 'closing_stores.id', '=', 'presences.closing_store_id')
-        //     ->join('users', 'users.id', '=', 'presences.created_by_id')
-        //     ->orderBy('closing_stores.date', 'desc');
-
         $presences = Presence::query()
-            ->orderBy('created_at', 'desc');
+            ->select('*')
+            ->join('closing_stores', 'closing_stores.id', '=', 'presences.closing_store_id')
+            ->orderBy('closing_stores.date', 'desc');
+
+        // $presences = Presence::query()
+        //     ->orderBy('created_at', 'desc');
 
             if (Auth::user()->hasRole('staff|supervisor|manager')) {
 
