@@ -57,6 +57,8 @@
 
     <x-inputs.hidden name="taxes" :value="old('taxes', $editing ? $invoicePurchase->taxes : '0')"></x-inputs.hidden>
 
+    <x-inputs.hidden name="payment_status" :value="old('payment_status', $editing ? $invoicePurchase->payment_status : '1')"></x-inputs.hidden>
+
     @role('super-admin')
         <x-input.select name="payment_status" label="Payment Status">
             @php $selected = old('payment_status', ($editing ? $invoicePurchase->payment_status : '1')) @endphp
@@ -74,7 +76,7 @@
         <option value="3" {{ $selected == '3' ? 'selected' : '' }}>dikembalikan</option>
     </x-input.select>
 
-    <x-input.textarea name="notes" label="Notes" maxlength="255" required>
+    <x-input.textarea name="notes" label="Notes" maxlength="255">
         {{ old('notes', $editing ? $invoicePurchase->notes : '') }}</x-input.textarea>
 
     @if ($editing)
