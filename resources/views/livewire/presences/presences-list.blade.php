@@ -118,11 +118,13 @@
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             @if ($presence->status == 1)
-                                <x-spans.yellow>belum diperiksa</x-spans.yellow>
+                                <x-spans.yellow>belum dibayar</x-spans.yellow>
                             @elseif ($presence->status == 2)
                                 <x-spans.green>sudah dibayar</x-spans.green>
                             @elseif ($presence->status == 3)
-                                <x-spans.red>siap ditransfer</x-spans.red>
+                                <x-spans.gray>siap dibayar</x-spans.gray>
+                            @elseif ($presence->status == 4)
+                                <x-spans.red>tidak valid</x-spans.red>
                             @endif
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>{{ optional($presence->created_by)->name ?? '-' }}
