@@ -57,7 +57,7 @@
 
                 @role('staff|supervisor')
                     <x-input.select name="detailInvoice.status" label="Status" wire:model="detailInvoice.status">
-                        @if ($detailInvoice->detailRequest->product->material_group_id != null)
+                        @if ($detailInvoice->detailRequest != null)
                             @if ($detailInvoice->detailRequest->product->material_group_id == 3)
                                 <option value="1" {{ $selected == '1' ? 'selected' : '' }}>process</option>
                             @elseif ($detailInvoice->detailRequest->product->material_group_id != 3)
