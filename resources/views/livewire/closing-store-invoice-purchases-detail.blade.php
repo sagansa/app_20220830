@@ -73,9 +73,6 @@
             <x-slot name="body">
                 @foreach ($closingStoreInvoicePurchases as $invoicePurchase)
                     <tr class="hover:bg-gray-100">
-                        <td class="px-4 py-3 text-left">
-                            {{ $invoicePurchase->image ?? '-' }}
-                        </td>
                         <x-tables.td-left>
                             {{ $invoicePurchase->store->nickname ?? '-' }}
                         </x-tables.td-left>
@@ -107,7 +104,6 @@
                                         onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
                                         wire:click="detach({{ $invoicePurchase->id }})">
                                         <i class="mr-1 icon ion-md-trash text-primary"></i>
-                                        @lang('crud.common.detach')
                                     </button>
                                     {{-- @endcan --}}
                                 @endif
