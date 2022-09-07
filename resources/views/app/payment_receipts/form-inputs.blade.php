@@ -24,8 +24,8 @@
         </div>
     </x-input.image>
 
-    <x-input.currency name="amount" label="Amount"
-        value="{{ old('amount', $editing ? $paymentReceipt->amount : '0') }}" required></x-input.currency>
+    <x-input.hidden name="amount" label="Amount" value="{{ old('amount', $editing ? $paymentReceipt->amount : '0') }}">
+    </x-input.hidden>
 
     <x-input.select name="payment_for" label="Payment For">
         @php $selected = old('payment_for', ($editing ? $paymentReceipt->payment_for : '1')) @endphp
