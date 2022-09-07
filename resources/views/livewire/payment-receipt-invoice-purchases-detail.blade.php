@@ -87,7 +87,7 @@
                         </x-tables.td-right>
                         <x-tables.td-right>
                             @foreach ($invoicePurchase->detailInvoices as $detailInvoice)
-                                <p>{{ $detailInvoice->product->name }}</p>
+                                <p>{{ $detailInvoice->detailRequest->product->name }}</p>
                             @endforeach
                         </x-tables.td-right>
                         <x-tables.td-right>
