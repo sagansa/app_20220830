@@ -50,8 +50,8 @@ class PresencesList extends Component
             ->select('*')
             ->orderBy('closing_stores.date', 'desc');
 
-        $presences = Presence::query()
-            ->orderBy('created_at', 'desc');
+        // $presences = Presence::query()
+        //     ->orderBy('created_at', 'desc');
 
             if (Auth::user()->hasRole('staff|supervisor|manager')) {
 
