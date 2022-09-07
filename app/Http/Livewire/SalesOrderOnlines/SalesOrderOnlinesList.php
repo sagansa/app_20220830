@@ -52,44 +52,7 @@ class SalesOrderOnlinesList extends Component
         $this->deliveryServices = DeliveryService::orderBy('name', 'asc')->pluck('id', 'name');
     }
 
-    // public function getRowsQueryProperty()
-    // {
-    //     $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')->latest();
-            // ->select(['sales_order_onlines.*', 'stores.name as storename'])
-            // ->join('stores', 'stores.id', '=', 'sales_order_onlines.store_id')
-            // ->join('customers', 'customers.id', '=', 'sales_order_onlines.customer_id')
-            // ->join('online_shop_providers', 'online_shop_providers.id', '=', 'sales_order_onlines.online_shop_provider_id')
-            // ->join('delivery_services', 'delivery_services.id', '=', 'sales_order_onlines.delivery_service_id');
-
-        // $salesOrderOnlines = SalesOrderOnline::with('products')->query()->latest()
-        //     ->map(function (SalesOrderOnline $products) {
-        //         return (object)[
-        //             'id' => $products->product_id,
-        //             'name' => $products->products->name,
-        //             'price' => $products->products->price,
-        //             'quantity' => $products->quantity,
-        //             'subtotal' => ($products->quantity * $products->price),
-        //         ];
-        //     });;
-
-        // foreach ($this->filters as $filter => $value) {
-        //         if (!empty($value)) {
-        //             $salesOrderOnlines
-        //                 ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
-        //                 // ->when($filter == 'customer_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('customer', 'id', $value))
-        //                 ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
-        //                 ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
-        //                 ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
-        //         }
-        //     }
-
-        // $this->subtotals = $salesOrderOnlines->sum('subtotal');
-        // $this->totals = $this->subtotals - 0;
-
-    //     return $this->applySorting($salesOrderOnlines);
-    // }
-
-    public function render()
+    public function getRowsQueryProperty()
     {
         $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')->latest();
 
@@ -97,6 +60,7 @@ class SalesOrderOnlinesList extends Component
                 if (!empty($value)) {
                     $salesOrderOnlines
                         ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
+                        // ->when($filter == 'customer_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('customer', 'id', $value))
                         ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
                         ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
                         ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
@@ -107,19 +71,39 @@ class SalesOrderOnlinesList extends Component
         // $this->totals = $this->subtotals - 0;
 
         return $this->applySorting($salesOrderOnlines);
-
-        return view('livewire.sales-order-onlines.sales-order-onlines-list', [
-            'salesOrderOnlines' => $salesOrderOnlines->paginate(10),
-        ]);
     }
 
-    //  public function render()
+    // public function render()
     // {
+    //     $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc');
+
+    //     foreach ($this->filters as $filter => $value) {
+    //             if (!empty($value)) {
+    //                 $salesOrderOnlines
+    //                     ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
+    //                     ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
+    //                     ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
+    //                     ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
+    //             }
+    //         }
+
+    //     // $this->subtotals = $salesOrderOnlines->sum('subtotal');
+    //     // $this->totals = $this->subtotals - 0;
+
+    //     return $this->applySorting($salesOrderOnlines);
 
     //     return view('livewire.sales-order-onlines.sales-order-onlines-list', [
-    //         'salesOrderOnlines' => $this->rows,
+    //         'salesOrderOnlines' => $salesOrderOnlines,
     //     ]);
     // }
+
+     public function render()
+    {
+
+        return view('livewire.sales-order-onlines.sales-order-onlines-list', [
+            'salesOrderOnlines' => $this->rows,
+        ]);
+    }
 
     public function markAllAsBelumDikirim()
     {
