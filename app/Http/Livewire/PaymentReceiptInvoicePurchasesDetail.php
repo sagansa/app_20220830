@@ -30,7 +30,9 @@ class PaymentReceiptInvoicePurchasesDetail extends Component
     public function mount(PaymentReceipt $paymentReceipt)
     {
         $this->paymentReceipt = $paymentReceipt;
-        $this->invoicePurchasesForSelect = InvoicePurchase::where('payment_type_id', '=', '1')
+        $this->invoicePurchasesForSelect = InvoicePurchase::orderBy('date', 'desc')
+            ->where('payment_status', '=', '1')
+            ->where('payment_type_id', '=', '1')
             ->get()
             ->pluck('id', 'invoice_purchase_name');
         $this->resetInvoicePurchaseData();
