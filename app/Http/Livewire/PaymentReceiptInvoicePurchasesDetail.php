@@ -11,6 +11,8 @@ use Illuminate\Validation\Rule;
 
 class PaymentReceiptInvoicePurchasesDetail extends Component
 {
+    public $state = [];
+
     use AuthorizesRequests;
 
     public PaymentReceipt $paymentReceipt;
@@ -99,7 +101,7 @@ class PaymentReceiptInvoicePurchasesDetail extends Component
             $this->totals = $this->subtotal - $invoicePurchase['discounts'] + $invoicePurchase['taxes'];
         }
 
-        $this->difference = $this->paymentReceipt->nominal_transfer - $this->totals;
+        $this->difference = $this->paymentReceipt->amount - $this->totals;
 
         return view('livewire.payment-receipt-invoice-purchases-detail', [
             'paymentReceiptInvoicePurchases' => $this->paymentReceipt
@@ -121,5 +123,17 @@ class PaymentReceiptInvoicePurchasesDetail extends Component
 		$invoicePurchase->update(['payment_status' => $paymentStatus]);
 
 		$this->dispatchBrowserEvent('updated', ['message' => "Status changed to {$paymentStatus} successfully."]);
+    }
+
+    public function updatePaymentReceipt()
+    {
+        Validator::make(
+            $this->state,
+            [
+                'amount' => 'required', 'numeric', 'min:0'
+            ]
+        )->validate();
+
+        $this->paymentReceipt->update($this->state);
     }
 }
