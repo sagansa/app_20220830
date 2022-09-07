@@ -1,5 +1,5 @@
 <x-admin-layout>
-    @role('staff|supervisor|manager')
+    {{-- @role('staff|supervisor|manager')
         <x-slot name="header">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 @lang('crud.sales_order_onlines.index_title')
@@ -59,9 +59,9 @@
                     <x-tables.th-left-hide>Detail Products</x-tables.th-left-hide>
                     <x-tables.th-left-hide>Total</x-tables.th-left-hide>
                     <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.status')</x-tables.th-left-hide>
-                    {{-- <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.created_by_id')</x-tables.th-left>
+                    <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.created_by_id')</x-tables.th-left>
                 <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.approved_by_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.notes')</x-tables.th-left> --}}
+                <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.notes')</x-tables.th-left>
                     <th></th>
                 </x-slot>
                 <x-slot name="body">
@@ -126,12 +126,12 @@
                                 <x-spans.status-valid class="{{ $salesOrderOnline->status_badge }}">
                                     {{ $salesOrderOnline->status_name }}</x-spans.status-valid>
                             </x-tables.td-left-hide>
-                            {{-- <x-tables.td-left-hide>{{ optional($salesOrderOnline->created_by)->name ?? '-' }}
-                        </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>
-                            {{ optional($salesOrderOnline->approved_by)->name ?? '-' }}
-                        </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>{{ $salesOrderOnline->notes ?? '-' }}</x-tables.td-left-hide> --}}
+                            <x-tables.td-left-hide>{{ optional($salesOrderOnline->created_by)->name ?? '-' }}
+                            </x-tables.td-left-hide>
+                            <x-tables.td-left-hide>
+                                {{ optional($salesOrderOnline->approved_by)->name ?? '-' }}
+                            </x-tables.td-left-hide>
+                            <x-tables.td-left-hide>{{ $salesOrderOnline->notes ?? '-' }}</x-tables.td-left-hide>
                             <td class="px-4 py-3 text-center" style="width: 134px;">
                                 <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                     @if ($salesOrderOnline->status != '2')
@@ -164,8 +164,8 @@
             </x-table>
         </x-tables.card>
         <div class="px-4 mt-10">{!! $salesOrderOnlines->render() !!}</div>
-    @endrole
-    @role('super-admin')
-        <livewire:sales-order-onlines.sales-order-onlines-list />
-    @endrole
+    @endrole --}}
+    {{-- @role('super-admin') --}}
+    <livewire:sales-order-onlines.sales-order-onlines-list />
+    {{-- @endrole --}}
 </x-admin-layout>

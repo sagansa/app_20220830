@@ -218,8 +218,14 @@
                     </x-tables.no-items-found>
                 @endforelse
             </x-slot>
-            <x-slot name="foot"> </x-slot>
+            <x-slot name="foot">
+                <tr>
+                    <td colspan="12">
+                        <div class="px-4 mt-10">{!! $salesOrderOnlines->render() !!}</div>
+                    </td>
+                </tr>
+            </x-slot>
         </x-table>
     </x-tables.card>
-    <div class="px-4 mt-10">{!! $salesOrderOnlines->render() !!}</div>
+
 </div>
