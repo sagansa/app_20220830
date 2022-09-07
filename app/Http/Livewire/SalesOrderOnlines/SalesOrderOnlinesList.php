@@ -22,7 +22,7 @@ class SalesOrderOnlinesList extends Component
 
     use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
 
-    public SalesOrderOnline $salesOrderOnline;
+    // public SalesOrderOnline $salesOrderOnline;
     use WithPagination;
     public SalesOrderOnline $editing;
 
@@ -68,41 +68,8 @@ class SalesOrderOnlinesList extends Component
                 }
             }
 
-        // $this->salesOrderOnline->totals = 0;
-
-        foreach ($this->productSalesOrderOnlines as $productSalesOrderOnline) {
-
-                $this->salesOrderOnline->totals += $productSalesOrderOnline['quantity'] * $productSalesOrderOnline['price'];
-
-        }
-
-
         return $this->applySorting($salesOrderOnlines);
     }
-
-    // public function render()
-    // {
-    //     $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc');
-
-    //     foreach ($this->filters as $filter => $value) {
-    //             if (!empty($value)) {
-    //                 $salesOrderOnlines
-    //                     ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
-    //                     ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
-    //                     ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
-    //                     ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
-    //             }
-    //         }
-
-    //     // $this->subtotals = $salesOrderOnlines->sum('subtotal');
-    //     // $this->totals = $this->subtotals - 0;
-
-    //     return $this->applySorting($salesOrderOnlines);
-
-    //     return view('livewire.sales-order-onlines.sales-order-onlines-list', [
-    //         'salesOrderOnlines' => $salesOrderOnlines,
-    //     ]);
-    // }
 
      public function render()
     {
