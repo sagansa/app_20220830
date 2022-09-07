@@ -41,8 +41,8 @@
                 <x-tables.th-left-hide>@lang('crud.payment_receipts.inputs.image')</x-tables.th-left-hide>
 
                 <x-tables.th-left>Store</x-tables.th-left>
-                <x-tables.th-left>Supplier</x-tables.th-left>
-                <x-tables.th-left>Date</x-tables.th-left>
+                <x-tables.th-left-hide>Supplier</x-tables.th-left-hide>
+                <x-tables.th-left-hide>Date</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.payment_receipts.inputs.amount')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>Detail</x-tables.th-left-hide>
 
