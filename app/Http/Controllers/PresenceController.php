@@ -53,7 +53,7 @@ class PresenceController extends Controller
 
         $closingStores = ClosingStore::
             where('date', '<', Carbon::now()->subDays(5)->toDateString())
-            ->get()
+            // ->get()
             ->pluck('date', 'id');
 
         return view(
