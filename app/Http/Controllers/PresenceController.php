@@ -57,16 +57,10 @@ class PresenceController extends Controller
             // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
-        if(Auth::user()->hasRole('supervisor|staff|manager')) {
-            $closingStores = ClosingStore::orderBy('date', 'desc')
-                ->where('date', '<', Carbon::now()->subDays(3)->toDateString())
-                ->get()
-                ->pluck('closing_store_name', 'id');
-        } else if(Auth::user()->hasRole('super-admin')) {
-            $closingStores = ClosingStore::orderBy('date', 'asc')
-                ->get()
-                ->pluck('closing_store_name', 'id');
-        }
+        $closingStores = ClosingStore::orderBy('date', 'desc')
+            ->where('date', '>', Carbon::now()->subDays(3)->toDateString())
+            ->get()
+            ->pluck('closing_store_name', 'id');
 
         return view(
             'app.presences.create',
@@ -125,16 +119,10 @@ class PresenceController extends Controller
             // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
-        if(Auth::user()->hasRole('supervisor|staff|manager')) {
-            $closingStores = ClosingStore::orderBy('date', 'desc')
-                ->where('date', '<', Carbon::now()->subDays(3)->toDateString())
-                ->get()
-                ->pluck('closing_store_name', 'id');
-        } else if(Auth::user()->hasRole('super-admin')) {
-            $closingStores = ClosingStore::orderBy('date', 'asc')
-                ->get()
-                ->pluck('closing_store_name', 'id');
-        }
+        $closingStores = ClosingStore::orderBy('date', 'desc')
+            ->where('date', '>', Carbon::now()->subDays(3)->toDateString())
+            ->get()
+            ->pluck('closing_store_name', 'id');
 
         return view(
             'app.presences.edit',
