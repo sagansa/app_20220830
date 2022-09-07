@@ -129,7 +129,7 @@
                         <x-tables.td-total>@currency($this->totals)</x-tables.td-total>
                     </tr>
                     <tr>
-                        <x-tables.th-total colspan="5">Nominal Transfer</x-tables.th-total>
+                        <x-tables.th-total colspan="5">Amount</x-tables.th-total>
                         @role('supervisor|manager|staff')
                             <x-tables.td-total>@currency($this->purchaseReceipt->nominal_transfer)</x-tables.td-total>
                         @endrole

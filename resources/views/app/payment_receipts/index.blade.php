@@ -97,17 +97,17 @@
 
                         <x-tables.td-left-hide>
                             @foreach ($paymentReceipt->presences as $presence)
-                                <p>{{ $presence->created_by->name }} - @currency($presence->amount) -
-                                    {{ $presence->closingStore->date->toFormattedDate() }}</p>
+                                <p>{{ $presence->created_by->name }} -
+                                    {{ $presence->closingStore->date->toFormattedDate() }} - @currency($presence->amount)</p>
                             @endforeach
                             @foreach ($paymentReceipt->fuelServices as $fuelService)
-                                <p>{{ $fuelService->vehicle->no_register }} - {{ $fuelService->amount }}</p>
+                                <p>{{ $fuelService->vehicle->no_register }} - @currency($fuelService->amount)</p>
                             @endforeach
 
                             @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
                                 <p>{{ $invoicePurchase->store->nickname }} - {{ $invoicePurchase->supplier->name }} -
                                     {{ $invoicePurchase->date->toFormattedDate() }} -
-                                    {{ $invoicePurchase->detailInvoices->sum('subtotal_invoice') }}</p>
+                                    @currency($invoicePurchase->detailInvoices->sum('subtotal_invoice'))</p>
                             @endforeach
 
                         </x-tables.td-left-hide>
