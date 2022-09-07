@@ -47,14 +47,8 @@ class PresenceController extends Controller
      */
     public function create(Request $request)
     {
-        // $closingStores = ClosingStore::orderBy('date', 'asc')
-        //     ->whereIn('status', ['1'])
-        //     ->pluck('date', 'id');
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
-        $users = User::orderBy('name', 'asc')
-            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
         $closingStores = ClosingStore::orderBy('date', 'desc')
@@ -64,7 +58,7 @@ class PresenceController extends Controller
 
         return view(
             'app.presences.create',
-            compact('closingStores', 'paymentTypes', 'users', 'users')
+            compact('closingStores', 'paymentTypes')
         );
     }
 
@@ -109,14 +103,8 @@ class PresenceController extends Controller
     {
         $this->authorize('update', $presence);
 
-        // $closingStores = ClosingStore::orderBy('date', 'asc')
-        //     ->whereIn('status', ['1'])
-        //     ->pluck('date', 'id');
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
-        $users = User::orderBy('name', 'asc')
-            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
         $closingStores = ClosingStore::orderBy('date', 'desc')
@@ -130,8 +118,7 @@ class PresenceController extends Controller
                 'presence',
                 'closingStores',
                 'paymentTypes',
-                'users',
-                'users'
+
             )
         );
     }
