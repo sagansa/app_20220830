@@ -35,39 +35,12 @@ class SalesOrderOnlinesList extends Component
     ];
 
     public $filters = [
-        'storename' => '',
         'payment_status' => '',
         'order_status' => '',
         'store_id' => null,
         'supplier_id' => null,
         'payment_type_id' => null,
     ];
-
-    public function rules()
-    {
-        return [
-            'editing.notes' => 'nullable',
-            'editing.status' => 'required|in:1,2,3,4',
-        ];
-    }
-
-    public function edit(SalesOrderOnline $salesOrderOnline)
-    {
-        $this->editing = $salesOrderOnline;
-
-        $this->showEditModal = true;
-    }
-
-    public function save()
-    {
-        $this->validate();
-
-        $this->editing['approved_by_id'] = Auth::user()->id;
-
-        $this->editing->save();
-
-        $this->showEditModal = false;
-    }
 
     public function mount()
     {
@@ -77,9 +50,9 @@ class SalesOrderOnlinesList extends Component
         $this->deliveryServices = DeliveryService::orderBy('name', 'asc')->pluck('id', 'name');
     }
 
-    public function getRowsQueryProperty()
-    {
-        $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')->latest();
+    // public function getRowsQueryProperty()
+    // {
+    //     $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')->latest();
             // ->select(['sales_order_onlines.*', 'stores.name as storename'])
             // ->join('stores', 'stores.id', '=', 'sales_order_onlines.store_id')
             // ->join('customers', 'customers.id', '=', 'sales_order_onlines.customer_id')
@@ -97,11 +70,32 @@ class SalesOrderOnlinesList extends Component
         //         ];
         //     });;
 
+        // foreach ($this->filters as $filter => $value) {
+        //         if (!empty($value)) {
+        //             $salesOrderOnlines
+        //                 ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
+        //                 // ->when($filter == 'customer_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('customer', 'id', $value))
+        //                 ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
+        //                 ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
+        //                 ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
+        //         }
+        //     }
+
+        // $this->subtotals = $salesOrderOnlines->sum('subtotal');
+        // $this->totals = $this->subtotals - 0;
+
+    //     return $this->applySorting($salesOrderOnlines);
+    // }
+
+    public function render()
+    {
+        $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')->latest();
+
+
         foreach ($this->filters as $filter => $value) {
                 if (!empty($value)) {
                     $salesOrderOnlines
                         ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
-                        // ->when($filter == 'customer_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('customer', 'id', $value))
                         ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
                         ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
                         ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
@@ -112,14 +106,19 @@ class SalesOrderOnlinesList extends Component
         // $this->totals = $this->subtotals - 0;
 
         return $this->applySorting($salesOrderOnlines);
-    }
 
-    public function render()
-    {
         return view('livewire.sales-order-onlines.sales-order-onlines-list', [
-            'salesOrderOnlines' => $this->rows,
+            'salesOrderOnlines' => $salesOrderOnlines,
         ]);
     }
+
+    //  public function render()
+    // {
+
+    //     return view('livewire.sales-order-onlines.sales-order-onlines-list', [
+    //         'salesOrderOnlines' => $this->rows,
+    //     ]);
+    // }
 
     public function markAllAsBelumDikirim()
     {
@@ -127,6 +126,8 @@ class SalesOrderOnlinesList extends Component
             'status' => '1',
             'approved_by_id' => Auth::user()->id,
         ]);
+
+        $this->dispatchBrowserEvent('updated', ['message' => 'Sales Order Online marked as belum dikirim']);
 
         $this->reset(['selectedRows']);
     }
