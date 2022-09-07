@@ -15,12 +15,14 @@ use App\Models\SalesOrderOnline;
 use App\Models\Store;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class SalesOrderOnlinesList extends Component
 {
 
     use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
 
+    use WithPagination;
     public SalesOrderOnline $editing;
 
     public $sortColumn = 'sales_order_onlines.date';
@@ -107,7 +109,7 @@ class SalesOrderOnlinesList extends Component
         return $this->applySorting($salesOrderOnlines);
 
         return view('livewire.sales-order-onlines.sales-order-onlines-list', [
-            'salesOrderOnlines' => $salesOrderOnlines,
+            'salesOrderOnlines' => $salesOrderOnlines->paginate(10),
         ]);
     }
 
