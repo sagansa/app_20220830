@@ -52,7 +52,8 @@ class PresenceController extends Controller
             ->pluck('name', 'id');
 
         $closingStores = ClosingStore::orderBy('date', 'desc')
-            ->where('date', '<', Carbon::now()->subDays(5)->toDateString())
+            ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
+
             ->get()
             ->pluck('closing_store_name', 'id');
 
@@ -108,7 +109,7 @@ class PresenceController extends Controller
             ->pluck('name', 'id');
 
         $closingStores = ClosingStore::orderBy('date', 'desc')
-            ->where('date', '<', Carbon::now()->subDays(5)->toDateString())
+            ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
             ->get()
             ->pluck('closing_store_name', 'id');
 
@@ -137,7 +138,7 @@ class PresenceController extends Controller
         if (
             auth()
                 ->user()
-                ->hasRole('supervisor|manager|super-admin')
+                ->hasRole('manager|super-admin')
         ) {
             $validated['approved_by_id'] = auth()->user()->id;
         }
