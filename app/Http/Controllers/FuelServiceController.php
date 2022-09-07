@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\FuelServiceStoreRequest;
 use App\Http\Requests\FuelServiceUpdateRequest;
+use Illuminate\Support\Carbon;
 
 class FuelServiceController extends Controller
 {
@@ -48,10 +49,11 @@ class FuelServiceController extends Controller
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $closingStores = ClosingStore::orderBy('store_id', 'asc')
+        $closingStores = ClosingStore::orderBy('closing_store_name', 'asc')
+            ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
             // ->whereIn('status', ['1'])
             // ->get()
-            ->pluck('store_id', 'id');
+            ->pluck('closing_store_name', 'id');
 
         return view(
             'app.fuel_services.create',
@@ -121,10 +123,11 @@ class FuelServiceController extends Controller
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $closingStores = ClosingStore::orderBy('store_id', 'asc')
+        $closingStores = ClosingStore::orderBy('closing_store_name', 'asc')
+            ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
             // ->whereIn('status', ['1'])
             ->get()
-            ->pluck('store_id', 'id');
+            ->pluck('closing_store_name', 'id');
 
         return view(
             'app.fuel_services.edit',

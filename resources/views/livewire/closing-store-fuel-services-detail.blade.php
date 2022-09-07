@@ -22,10 +22,7 @@
 
             <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
 
-                <x-input.filepond name="fuelServiceImage" label="Room" wire:model="fuelServiceImage">
-                </x-input.filepond>
-
-                {{-- <x-input.image name="fuelServiceImage" label="Image">
+                <x-input.image name="fuelServiceImage" label="Image">
                     <div image-url="{{ $editing && $fuelService->image ? \Storage::url($fuelService->image) : '' }}"
                         x-data="imageViewer()" @refresh.window="refreshUrl()" class="mt-1 sm:mt-0 sm:col-span-2">
                         <!-- Show the image -->
@@ -49,7 +46,7 @@
                             @include('components.inputs.partials.error')
                         @enderror
                     </div>
-                </x-input.image> --}}
+                </x-input.image>
 
                 <x-input.select name="fuelService.vehicle_id" label="Vehicle" wire:model="fuelService.vehicle_id">
                     <option value="null" disabled>-- select --</option>

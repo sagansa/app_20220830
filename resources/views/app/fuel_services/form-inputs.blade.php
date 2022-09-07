@@ -53,8 +53,8 @@
     <x-input.number name="liter" label="Liter" value="{{ old('liter', $editing ? $fuelService->liter : '') }}"
         required></x-input.number>
 
-    <x-input.number name="amount" label="Amount" value="{{ old('amount', $editing ? $fuelService->amount : '') }}"
-        required></x-input.number>
+    <x-input.currency name="amount" label="Amount" value="{{ old('amount', $editing ? $fuelService->amount : '') }}"
+        required></x-input.currency>
 
     <x-input.select name="closing_store_id" label="Closing Store" required>
         @php $selected = old('closing_store_id', ($editing ? $fuelService->closing_store_id : '')) @endphp

@@ -25,24 +25,12 @@ class PresenceController extends Controller
 
         $search = $request->get('search', '');
 
-        // $presences = Presence::search($search)
-        //     ->latest()
-        //     ->paginate(10)
-        //     ->withQueryString();
-
-        if(Auth::user()->hasRole('supervisor')) {
-            $presences = Presence::search($search)
-                ->where('approved_by_id', '=', Auth::user()->id)
-                ->orWhere('approved_by_id', '=', NULL)
-                ->latest()
-                ->paginate(10)
-                ->withQueryString();
-        } elseif (Auth::user()->hasRole('super-admin|manager')) {
+       if (Auth::user()->hasRole('super-admin|manager')) {
             $presences = Presence::search($search)
                 ->latest()
                 ->paginate(10)
                 ->withQueryString();
-        } else if (Auth::user()->hasRole('staff')) {
+        } else if (Auth::user()->hasRole('staff|supervisor')) {
             $presences = Presence::search($search)
                 ->where('created_by_id', '=', Auth::user()->id)
                 ->latest()
@@ -71,7 +59,7 @@ class PresenceController extends Controller
 
         if(Auth::user()->hasRole('supervisor|staff|manager')) {
             $closingStores = ClosingStore::orderBy('date', 'asc')
-                ->where('date', '>', Carbon::now()->subDays(7)->toDateString())
+                ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
                 ->get()
                 ->pluck('closing_store_name', 'id');
         } else if(Auth::user()->hasRole('super-admin')) {
@@ -139,7 +127,7 @@ class PresenceController extends Controller
 
         if(Auth::user()->hasRole('supervisor|staff|manager')) {
             $closingStores = ClosingStore::orderBy('date', 'asc')
-                ->where('date', '>', Carbon::now()->subDays(7)->toDateString())
+                ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
                 ->get()
                 ->pluck('closing_store_name', 'id');
         } else if(Auth::user()->hasRole('super-admin')) {
