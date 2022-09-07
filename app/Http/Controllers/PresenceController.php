@@ -52,8 +52,8 @@ class PresenceController extends Controller
             ->pluck('name', 'id');
 
         $closingStores = ClosingStore::orderBy('date', 'desc')
-            ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
-
+            // ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
+            ->whereDate('date', '>', Carbon::now()->subDays(5)->toDateString())
             ->get()
             ->pluck('closing_store_name', 'id');
 
