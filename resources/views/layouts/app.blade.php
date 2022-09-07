@@ -20,10 +20,6 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         
-        <script type="module">
-            import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
-        </script>
-        
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
@@ -50,8 +46,6 @@
         @stack('modals')
         
         @livewireScripts
-        
-        <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
         
         @stack('scripts')
         

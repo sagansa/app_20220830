@@ -27,10 +27,7 @@
                     @endforeach
                 </x-input.select>
 
-                <x-input.filepond name="hygieneOfRoomImage" label="Room" wire:model="hygieneOfRoomImage">
-                </x-input.filepond>
-
-                {{-- <x-input.image name="hygieneOfRoomImage" label="Image">
+                <x-input.image name="hygieneOfRoomImage" label="Image">
                     <div image-url="{{ $editing && $hygieneOfRoom->image ? \Storage::url('images/hygienes' . '/' . $hygieneOfRoom->image) : '' }}"
                         x-data="imageViewer()" @refresh.window="refreshUrl()" class="mt-1 sm:mt-0 sm:col-span-2">
                         <!-- Show the image -->
@@ -55,7 +52,7 @@
                             @include('components.inputs.partials.error')
                         @enderror
                     </div>
-                </x-input.image> --}}
+                </x-input.image>
 
             </div>
         </div>

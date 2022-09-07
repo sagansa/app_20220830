@@ -13,11 +13,11 @@
             <template x-if="!imageUrl">
                 <div class="bg-gray-100 border border-gray-200 rounded" style="width: 100px; height: 100px;"></div>
             </template>
-            @role('staff|super-admin')
-                <div class="mt-2">
-                    <input type="file" name="image" id="image" @change="fileChosen" />
-                </div>
-            @endrole
+
+            <div class="mt-2">
+                <input type="file" name="image" id="image" @change="fileChosen" />
+            </div>
+
             @error('image')
                 @include('components.inputs.partials.error')
             @enderror
