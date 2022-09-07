@@ -22,6 +22,7 @@ class SalesOrderOnlinesList extends Component
 
     use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
 
+    public SalesOrderOnline $salesOrderOnline;
     use WithPagination;
     public SalesOrderOnline $editing;
 
@@ -67,8 +68,14 @@ class SalesOrderOnlinesList extends Component
                 }
             }
 
-        // $this->subtotals = $salesOrderOnlines->sum('subtotal');
-        // $this->totals = $this->subtotals - 0;
+        // $this->salesOrderOnline->totals = 0;
+
+        foreach ($this->productSalesOrderOnlines as $productSalesOrderOnline) {
+
+                $this->salesOrderOnline->totals += $productSalesOrderOnline['quantity'] * $productSalesOrderOnline['price'];
+
+        }
+
 
         return $this->applySorting($salesOrderOnlines);
     }

@@ -105,7 +105,7 @@
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.receipt_no')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.date')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>Detail Products</x-tables.th-left-hide>
-                <x-tables.th-left-hide>Total</x-tables.th-left-hide>
+                <x-tables.th-left-hide>Totals</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.status')</x-tables.th-left-hide>
                 {{-- <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.created_by_id')</x-tables.th-left> --}}
                 {{-- <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.approved_by_id')</x-tables.th-left> --}}
@@ -177,7 +177,7 @@
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            {{-- @currency($salesOrderOnline->pivot->products->sum('price')) --}}
+                            {{-- {{ $this->salesOrderOnline->totals }} --}}
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
@@ -221,7 +221,7 @@
             <x-slot name="foot">
                 <tr>
                     <td colspan="12">
-                        <div class="px-4 mt-10">{{ $salesOrderOnlines->render() }}</div>
+                        <div class="px-4 mt-10">{!! $salesOrderOnlines->render() !!}</div>
                     </td>
                 </tr>
             </x-slot>
