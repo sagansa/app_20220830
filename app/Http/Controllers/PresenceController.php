@@ -58,8 +58,8 @@ class PresenceController extends Controller
             ->pluck('name', 'id');
 
         if(Auth::user()->hasRole('supervisor|staff|manager')) {
-            $closingStores = ClosingStore::orderBy('date', 'asc')
-                ->where('date', '>', Carbon::now()->subDays(3)->toDateString())
+            $closingStores = ClosingStore::orderBy('date', 'desc')
+                ->where('date', '<', Carbon::now()->subDays(3)->toDateString())
                 ->get()
                 ->pluck('closing_store_name', 'id');
         } else if(Auth::user()->hasRole('super-admin')) {
@@ -126,8 +126,8 @@ class PresenceController extends Controller
             ->pluck('name', 'id');
 
         if(Auth::user()->hasRole('supervisor|staff|manager')) {
-            $closingStores = ClosingStore::orderBy('date', 'asc')
-                ->where('date', '>', Carbon::now()->subDays(3)->toDateString())
+            $closingStores = ClosingStore::orderBy('date', 'desc')
+                ->where('date', '<', Carbon::now()->subDays(3)->toDateString())
                 ->get()
                 ->pluck('closing_store_name', 'id');
         } else if(Auth::user()->hasRole('super-admin')) {
