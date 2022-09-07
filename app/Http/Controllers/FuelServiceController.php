@@ -42,9 +42,9 @@ class FuelServiceController extends Controller
      */
     public function create(Request $request)
     {
-        $vehicles = Vehicle::orderBy('image', 'asc')
+        $vehicles = Vehicle::orderBy('no_register', 'asc')
             ->whereIn('status', ['1'])
-            ->pluck('image', 'id');
+            ->pluck('no_register', 'id');
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
