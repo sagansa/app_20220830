@@ -59,7 +59,7 @@ class PresenceController extends Controller
 
         if(Auth::user()->hasRole('supervisor|staff|manager')) {
             $closingStores = ClosingStore::orderBy('date', 'asc')
-                ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
+                ->where('date', '>', Carbon::now()->subDays(3)->toDateString())
                 ->get()
                 ->pluck('closing_store_name', 'id');
         } else if(Auth::user()->hasRole('super-admin')) {
@@ -127,7 +127,7 @@ class PresenceController extends Controller
 
         if(Auth::user()->hasRole('supervisor|staff|manager')) {
             $closingStores = ClosingStore::orderBy('date', 'asc')
-                ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
+                ->where('date', '>', Carbon::now()->subDays(3)->toDateString())
                 ->get()
                 ->pluck('closing_store_name', 'id');
         } else if(Auth::user()->hasRole('super-admin')) {
