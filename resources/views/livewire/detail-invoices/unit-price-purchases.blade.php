@@ -85,17 +85,16 @@
                             {{ $detailInvoice->invoicePurchase->supplier->name }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
-                            {{ optional($detailInvoice->requestInvoice)->product->name ?? '-' }}
+                            {{ optional($detailInvoice->detailRequest)->product->name ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-right-hide>
                             {{ $detailInvoice->quantity_product ?? '-' }}
-                            {{ $detailInvoice->detailRequest->product->unit_id }}
                             {{ optional($detailInvoice->detailRequest)->product->unit->unit ?? '-' }}
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
-                            @if ($detailInvoice->subtotal_invoice != 0 || $detailInvoice->quantity_invoice != 0)
-                                @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
-                            @endif
+
+                            @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
+
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
                             @currency($detailInvoice->subtotal_invoice)

@@ -2,6 +2,16 @@
 
 namespace App\Http\Livewire\DetailInvoices;
 
+use App\Http\Livewire\DataTables\WithBulkAction;
+use App\Http\Livewire\DataTables\WithCachedRows;
+use App\Http\Livewire\DataTables\WithFilter;
+use App\Http\Livewire\DataTables\WithModal;
+use App\Http\Livewire\DataTables\WithSimpleTablePagination;
+use App\Http\Livewire\DataTables\WithSorting;
+use App\Models\DetailInvoice;
+use App\Models\Product;
+use App\Models\Store;
+use App\Models\Supplier;
 use Livewire\Component;
 
 class UnitPricePurchases extends Component
@@ -47,6 +57,9 @@ class UnitPricePurchases extends Component
                         ->when($filter == 'product_id', fn($detailInvoices) => $detailInvoices->whereRelation('product', 'id', $value));
                 }
             }
+
+        // $this->detailInvoice->unit_price = 0;
+        // $this->detailInvoice->uni_price = $this->detailInvoice['subtotal_invoice'] / $this->detailInvoice['quantity_product'];
 
         return $this->applySorting($detailInvoices);
     }
