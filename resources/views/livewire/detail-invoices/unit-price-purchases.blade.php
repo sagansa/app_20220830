@@ -89,7 +89,7 @@
                         </x-tables.td-left-hide>
                         <x-tables.td-right-hide>
                             {{ $detailInvoice->quantity_product ?? '-' }}
-                            {{ $detailInvoice->requestInvoice->product->unit->unit }}
+                            {{ $detailInvoice->detailRequest->product->unit->unit }}
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
                             @if ($detailInvoice->subtotal_invoice != 0 || $detailInvoice->quantity_invoice != 0)
