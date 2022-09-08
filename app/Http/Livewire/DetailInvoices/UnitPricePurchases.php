@@ -1,17 +1,7 @@
 <?php
 
-namespace App\Http\Livewire\PurchaseOrderProducts;
+namespace App\Http\Livewire\DetailInvoices;
 
-use App\Http\Livewire\DataTables\WithBulkAction;
-use App\Http\Livewire\DataTables\WithCachedRows;
-use App\Http\Livewire\DataTables\WithFilter;
-use App\Http\Livewire\DataTables\WithModal;
-use App\Http\Livewire\DataTables\WithSimpleTablePagination;
-use App\Http\Livewire\DataTables\WithSorting;
-use App\Models\DetailInvoice;
-use App\Models\Product;
-use App\Models\Store;
-use App\Models\Supplier;
 use Livewire\Component;
 
 class UnitPricePurchases extends Component
@@ -68,9 +58,16 @@ class UnitPricePurchases extends Component
         });
     }
 
+    // public function render()
+    // {
+    //     return view('livewire.purchase-order-products.unit-price-purchases', [
+    //         'deti$detailInvoices' => $this->rows,
+    //     ]);
+    // }
+
     public function render()
     {
-        return view('livewire.purchase-order-products.unit-price-purchases', [
+        return view('livewire.detail-invoices.unit-price-purchases', [
             'detailInvoices' => $this->rows,
         ]);
     }

@@ -49,7 +49,7 @@
                       Check Productions
                   </x-sidebars.dropdown-link>
                   <x-sidebars.dropdown-link href="{{ route('unit-price-purchases') }}">
-                      Unit Price Purchase Order
+                      Unit Price Purchase
                   </x-sidebars.dropdown-link>
                   <x-sidebars.dropdown-link href="{{ route('check-product-requests') }}">
                       Check Product Requests
