@@ -50,39 +50,40 @@
         <x-table>
             <x-slot name="head">
                 <tr>
-                    <x-tables.th-left>
+                    <x-tables.th-left-hide>
                         Store
-                    </x-tables.th-left>
-                    <x-tables.th-left>
-                        Date
-                    </x-tables.th-left>
-                    <x-tables.th-left>
+                    </x-tables.th-left-hide>
+
+                    <x-tables.th-left-hide>
                         Supplier
-                    </x-tables.th-left>
+                    </x-tables.th-left-hide>
                     <x-tables.th-left>
                         Product
                     </x-tables.th-left>
 
-                    <x-tables.th-left>
+                    <x-tables.th-left-hide>
                         Quantity Product
-                    </x-tables.th-left>
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
+                        Subtotal Invoice
+                    </x-tables.th-left-hide>
                     <x-tables.th-left>
                         Unit Price
-                    </x-tables.th-left>
-                    <x-tables.th-left>
-                        Subtotal Invoice
                     </x-tables.th-left>
                 </tr>
             </x-slot>
             <x-slot name="body">
                 @foreach ($detailInvoices as $detailInvoice)
                     <tr class="hover:bg-gray-100">
-                        <x-tables.td-left-hide>
-                            {{ $detailInvoice->invoicePurchase->store->nickname }}
-                        </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>
-                            {{ $detailInvoice->invoicePurchase->date->toFormattedDate() }}
-                        </x-tables.td-left-hide>
+                        <x-tables.td-left-main>
+                            <x-slot name="main"> {{ $detailInvoice->invoicePurchase->store->nickname }} -
+                                {{ $detailInvoice->invoicePurchase->date->toFormattedDate() }}</x-slot>
+                            <x-slot name="sub">
+                                <p> {{ $detailInvoice->invoicePurchase->supplier->name }}</p>
+                                <p> {{ optional($detailInvoice->detailRequest)->product->name ?? '-' }}</p>
+                            </x-slot>
+                        </x-tables.td-left-main>
+
                         <x-tables.td-left-hide>
                             {{ $detailInvoice->invoicePurchase->supplier->name }}
                         </x-tables.td-left-hide>
@@ -90,15 +91,18 @@
                             {{ optional($detailInvoice->detailRequest)->product->name ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-right-hide>
-                            {{ $detailInvoice->quantity_product ?? '-' }}
-                            {{ optional($detailInvoice->detailRequest)->product->unit->unit ?? '-' }}
-                        </x-tables.td-right-hide>
-                        <x-tables.td-right-hide>
                             @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
-                            @currency($detailInvoice->subtotal_invoice)
+                            {{ $detailInvoice->quantity_product ?? '-' }}
+                            {{ optional($detailInvoice->detailRequest)->product->unit->unit ?? '-' }}
                         </x-tables.td-right-hide>
+
+                        <td class="px-4 py-3 text-xs text-right" style="width: 134px;">
+                            <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
+                                @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </x-slot>

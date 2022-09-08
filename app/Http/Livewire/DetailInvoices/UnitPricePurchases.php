@@ -9,7 +9,6 @@ use App\Http\Livewire\DataTables\WithModal;
 use App\Http\Livewire\DataTables\WithSimpleTablePagination;
 use App\Http\Livewire\DataTables\WithSorting;
 use App\Models\DetailInvoice;
-use App\Models\DetailRequest;
 use App\Models\Product;
 use App\Models\Store;
 use App\Models\Supplier;
@@ -71,25 +70,6 @@ class UnitPricePurchases extends Component
 
     public function render()
     {
-        // $detailInvoices = DetailInvoice::query()
-        //     ->join('invoice_purchases', 'invoice_purchases.id', '=', 'detail_invoices.invoice_purchase_id')
-        //     ->join('detail_requests', 'detail_requests.id', '=', 'detail_invoices.detail_request_id')
-        //     ->join('suppliers', 'suppliers.id', '=', 'invoice_purchase_id')
-        //     ->select('detail_invoices.*', 'invoice_purchases.store_id', 'invoice_purchases.supplier_id', 'detail_requests.product_id')
-        //     ->get();
-
-        $detailInvoices = DetailInvoice::query();
-
-            foreach ($this->filters as $filter => $value) {
-                if (!empty($value)) {
-                    $detailInvoices
-                        ->when($filter == 'invoice_purchases.store_id', fn($detailInvoices) => $detailInvoices->whereRelation('store', 'id', $value))
-                        ->when($filter == 'invoice_purchases.supplier_id', fn($detailInvoices) => $detailInvoices->whereRelation('supplier', 'id', $value))
-                        // ->when($filter == 'detail_requests.product_id', fn($detailInvoices) => $detailInvoices->whereRelation('product', 'id', $value))
-                        ->when($filter == 'detail_requests.product_id', fn($detailInvoices) => $detailInvoices->whereRelation('detail_requests', 'product_id', '=', $value));
-                }
-            }
-
         return view('livewire.detail-invoices.unit-price-purchases', [
             'detailInvoices' => $this->rows,
         ]);
