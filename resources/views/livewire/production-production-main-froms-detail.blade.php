@@ -46,8 +46,17 @@
                             title="{{ trans('crud.common.select_all') }}" />
                     </x-tables.th-left>
                     <x-tables.th-left>
-                        @lang('crud.production_production_main_froms.inputs.detail_invoice_id')
+                        date
                     </x-tables.th-left>
+                    <x-tables.th-left>
+                        product
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        quantity
+                    </x-tables.th-left>
+                    {{-- <x-tables.th-left>
+                        @lang('crud.production_production_main_froms.inputs.detail_invoice_id')
+                    </x-tables.th-left> --}}
                     <th></th>
                 </tr>
             </x-slot>
@@ -58,9 +67,12 @@
                             <input type="checkbox" value="{{ $productionMainFrom->id }}" wire:model="selected" />
                         </x-tables.td-left>
                         <x-tables.td-left>
-
                             {{ $productionMainFrom->detailInvoice->invoicePurchase->date }}
+                        </x-tables.td-left>
+                        <x-tables.td-left>
                             {{ $productionMainFrom->detailInvoice->detailRequest->product->name }}
+                        </x-tables.td-left>
+                        <x-tables.td-left>
                             {{ $productionMainFrom->detailInvoice->quantity_product }}
                             {{ $productionMainFrom->detailInvoice->detailRequest->product->unit->unit }}
                         </x-tables.td-left>
