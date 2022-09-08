@@ -89,6 +89,7 @@
                         </x-tables.td-left-hide>
                         <x-tables.td-right-hide>
                             {{ $detailInvoice->quantity_product ?? '-' }}
+                            {{ $detailInvoice->detailRequest->product->unit_id }}
                             {{ optional($detailInvoice->detailRequest)->product->unit->unit ?? '-' }}
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
