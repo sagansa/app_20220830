@@ -75,7 +75,7 @@
                 </tr>
             </x-slot>
             <x-slot name="body">
-                {{-- @foreach ($detailInvoices as $detailInvoice)
+                @foreach ($detailInvoices as $detailInvoice)
                     <tr class="hover:bg-gray-100">
                         <x-tables.td-left-hide>
                             {{ $detailInvoice->invoicePurchase->store->nickname }}
@@ -100,42 +100,13 @@
                             @currency($detailInvoice->subtotal_invoice)
                         </x-tables.td-right-hide>
                     </tr>
-                @endforeach --}}
-
-                @foreach ($detailRequests as $detailRequest)
-                    <tr class="hover:bg-gray-100">
-                        <x-tables.td-left-hide>
-                            {{ optional($detailRequest->detailInvoice)->invoicePurchase->store->nickname ?? '-' }}
-                        </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>
-                            {{ optional($detailRequest->detailInvoice)->invoicePurchase->date ?? '-' }}
-                        </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>
-                            {{ optional($detailRequest->detailInvoice)->invoicePurchase->supplier->name ?? '-' }}
-                        </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>
-                            {{ optional($detailRequest->product)->name ?? '-' }}
-                        </x-tables.td-left-hide>
-                        <x-tables.td-right-hide>
-                            {{ $detailRequest->detailInvoice->quantity_product ?? '-' }}
-                            {{ optional($detailRequest->product)->unit->unit ?? '-' }}
-                        </x-tables.td-right-hide>
-                        <x-tables.td-right-hide>
-                            @if ($detailRequest->status == 2)
-                                @currency(optional($detailRequest->detailInvoice)->subtotal_invoice / optional($detailRequest->detailInvoice)->quantity_product)
-                            @endif
-                        </x-tables.td-right-hide>
-                        <x-tables.td-right-hide>
-                            @currency(optional($detailRequest->detailInvoice)->subtotal_invoice)
-                        </x-tables.td-right-hide>
-                    </tr>
                 @endforeach
             </x-slot>
             <x-slot name="foot">
                 <tr>
                     <td colspan="7">
                         <div class="px-4 my-2">
-                            {{-- {{ $detailRequests->render() }} --}}
+                            {{ $detailInvoices->render() }}
                         </div>
                     </td>
                 </tr>
