@@ -52,11 +52,11 @@ class PresenceController extends Controller
             ->pluck('name', 'id');
 
         $closingStores = ClosingStore::
-            join('stores', 'stores.id', '=', 'closing_stores.store_id')
-            ->join('shift_stores', 'shift_stores.id', '=', 'closing_stores.shift_store_id')
-            ->select('stores.nickname', 'shift_stores.name', 'closing_stores.date')
-            ->orderBy('closing_stores.date', 'desc')
-            ->where('closing_stores.date', '>=', Carbon::now()->subDays(3)->toDateString())
+            // join('stores', 'stores.id', '=', 'closing_stores.store_id')
+            // ->join('shift_stores', 'shift_stores.id', '=', 'closing_stores.shift_store_id')
+            // ->select('stores.nickname', 'shift_stores.name', 'closing_stores.date')
+            // ->orderBy('closing_stores.date', 'desc')
+            where('closing_stores.date', '>=', Carbon::now()->subDays(3)->toDateString())
             ->get()
             ->pluck('closing_store_name', 'id');
 
