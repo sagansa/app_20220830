@@ -55,7 +55,7 @@ class UnitPricePurchases extends Component
                     $detailInvoices
                         ->when($filter == 'store_id', fn($detailInvoices) => $detailInvoices->whereRelation('store', 'id', $value))
                         ->when($filter == 'supplier_id', fn($detailInvoices) => $detailInvoices->whereRelation('supplier', 'id', $value))
-                        ->when($filter == 'product_id', fn($detailInvoices) => $detailInvoices->whereRelation('product', 'id', $value));
+                        ->when($filter == 'product_id', fn($detailInvoices) => $detailInvoices->whereRelation('detailRequest.product', 'id', $value));
                 }
             }
 
