@@ -14,7 +14,7 @@
                 @endif Advanced Search...
             </x-buttons.link>
             @if ($showFilters)
-                {{-- <x-filters.group>
+                <x-filters.group>
                     <x-filters.label>Store</x-filters.label>
                     <x-filters.select wire:model="filters.store_id">
                         @foreach ($stores as $label => $value)
@@ -29,7 +29,7 @@
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </x-filters.select>
-                </x-filters.group> --}}
+                </x-filters.group>
                 <x-filters.group>
                     <x-filters.label>Product</x-filters.label>
                     <x-filters.select wire:model="filters.product_id">
@@ -51,7 +51,10 @@
             <x-slot name="head">
                 <tr>
                     <x-tables.th-left>
-                        Store Purchase Order
+                        Store
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        Date
                     </x-tables.th-left>
                     <x-tables.th-left>
                         Supplier
@@ -69,16 +72,15 @@
                     <x-tables.th-left>
                         Subtotal Invoice
                     </x-tables.th-left>
-
-
-
                 </tr>
             </x-slot>
             <x-slot name="body">
-                @foreach ($detailInvoices as $detailInvoice)
+                {{-- @foreach ($detailInvoices as $detailInvoice)
                     <tr class="hover:bg-gray-100">
                         <x-tables.td-left-hide>
-                            {{ $detailInvoice->invoicePurchase->store->nickname }} -
+                            {{ $detailInvoice->invoicePurchase->store->nickname }}
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
                             {{ $detailInvoice->invoicePurchase->date->toFormattedDate() }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
@@ -92,15 +94,38 @@
                             {{ optional($detailInvoice->detailRequest)->product->unit->unit ?? '-' }}
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
-
                             @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
-
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
                             @currency($detailInvoice->subtotal_invoice)
                         </x-tables.td-right-hide>
+                    </tr>
+                @endforeach --}}
 
-
+                @foreach ($detailRequests as $detailRequest)
+                    <tr class="hover:bg-gray-100">
+                        <x-tables.td-left-hide>
+                            {{-- {{ optional($detailRequest->detailInvoice)->invoicePurchase->store->nickname }} --}}
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            {{-- {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }} --}}
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            {{-- {{ optional($detailRequest->detailInvoice)->invoicePurchase->supplier->name ?? '-' }} --}}
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            {{ optional($detailRequest->product)->name ?? '-' }}
+                        </x-tables.td-left-hide>
+                        <x-tables.td-right-hide>
+                            {{ $detailRequest->detailInvoice->quantity_product ?? '-' }}
+                            {{ optional($detailRequest->product)->unit->unit ?? '-' }}
+                        </x-tables.td-right-hide>
+                        <x-tables.td-right-hide>
+                            {{-- @currency(optional($detailRequest->detailInvoice)->subtotal_invoice / optional($detailRequest->detailInvoice)->quantity_product) --}}
+                        </x-tables.td-right-hide>
+                        <x-tables.td-right-hide>
+                            @currency(optional($detailRequest->detailInvoice)->subtotal_invoice)
+                        </x-tables.td-right-hide>
                     </tr>
                 @endforeach
             </x-slot>
@@ -108,7 +133,7 @@
                 <tr>
                     <td colspan="7">
                         <div class="px-4 my-2">
-                            {{ $detailInvoices->render() }}
+                            {{ $detailRequests->render() }}
                         </div>
                     </td>
                 </tr>
