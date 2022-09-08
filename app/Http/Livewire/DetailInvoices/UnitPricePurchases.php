@@ -41,7 +41,7 @@ class UnitPricePurchases extends Component
     public function render()
     {
         return view('livewire.detail-invoices.unit-price-purchases', [
-            'detailRequests' => $this->rows,
+            'detailRequests' => DetailRequest::query(),
         ]);
     }
 
@@ -54,13 +54,6 @@ class UnitPricePurchases extends Component
 
     public function getRowsQueryProperty()
     {
-        // $detailInvoices = DetailInvoice::query()
-        //     ->join('invoice_purchases', 'invoice_purchases.id', '=', 'detail_invoices.invoice_purchase_id')
-        //     ->join('detail_requests', 'detail_requests.id', '=', 'detail_invoices.detail_request_id')
-        //     ->join('suppliers', 'suppliers.id', '=', 'invoice_purchase_id')
-        //     ->select('detail_invoices.*', 'invoice_purchases.store_id', 'invoice_purchases.supplier_id', 'detail_requests.product_id')
-        //     ->get();
-
         $detailRequests = DetailRequest::query();
 
             foreach ($this->filters as $filter => $value) {
