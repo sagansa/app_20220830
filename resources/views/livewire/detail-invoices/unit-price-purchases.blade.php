@@ -121,7 +121,9 @@
                             {{ optional($detailRequest->product)->unit->unit ?? '-' }}
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
-                            {{-- @currency(optional($detailRequest->detailInvoice)->subtotal_invoice / optional($detailRequest->detailInvoice)->quantity_product) --}}
+                            @if ($detailRequest->status == 2)
+                                @currency(optional($detailRequest->detailInvoice)->subtotal_invoice / optional($detailRequest->detailInvoice)->quantity_product)
+                            @endif
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
                             @currency(optional($detailRequest->detailInvoice)->subtotal_invoice)
