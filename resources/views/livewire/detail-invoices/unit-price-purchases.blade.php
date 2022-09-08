@@ -133,7 +133,7 @@
                 <tr>
                     <td colspan="7">
                         <div class="px-4 my-2">
-                            {{ $detailRequests->render() }}
+                            {{-- {{ $detailRequests->render() }} --}}
                         </div>
                     </td>
                 </tr>
