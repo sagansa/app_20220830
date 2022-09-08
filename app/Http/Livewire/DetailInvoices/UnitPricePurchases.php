@@ -41,7 +41,7 @@ class UnitPricePurchases extends Component
     public function render()
     {
         return view('livewire.detail-invoices.unit-price-purchases', [
-            'detailRequests' => DetailRequest::query(),
+            'detailRequests' => DetailRequest::all(),
         ]);
     }
 
