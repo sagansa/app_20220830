@@ -18,29 +18,22 @@
         <div class="px-6 py-4">
             <div class="text-lg font-bold">{{ $modalTitle }}</div>
 
-            <div class="mt-5">
-                <div>
-                    <x-input.select name="productionMainFrom.detail_invoice_id" label="Detail Invoice"
-                        wire:model="productionMainFrom.detail_invoice_id">
-                        <option value="null" disabled>-- select --</option>
-                        @foreach ($detailInvoicesForSelect as $label => $value)
-                            <option value="{{ $value }}">{{ $label }}</option>
-                        @endforeach
-                    </x-input.select>
-                </div>
+            <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
+
+                <x-input.select name="productionMainFrom.detail_invoice_id" label="Detail Invoice"
+                    wire:model="productionMainFrom.detail_invoice_id">
+                    <option value="null" disabled>-- select --</option>
+                    @foreach ($detailInvoicesForSelect as $label => $value)
+                        <option value="{{ $value }}">{{ $label }}</option>
+                    @endforeach
+                </x-input.select>
+
             </div>
         </div>
 
         <div class="flex justify-between px-6 py-4 bg-gray-50">
-            <button type="button" class="button" wire:click="$toggle('showingModal')">
-                <i class="mr-1 icon ion-md-close"></i>
-                @lang('crud.common.cancel')
-            </button>
-
-            <button type="button" class="button button-primary" wire:click="save">
-                <i class="mr-1 icon ion-md-save"></i>
-                @lang('crud.common.save')
-            </button>
+            <x-buttons.secondary wire:click="$toggle('showingModal')">Cancel</x-buttons.secondary>
+            <x-jet-button wire:click="save">Save</x-jet-button>
         </div>
     </x-modal>
 
@@ -65,9 +58,11 @@
                             <input type="checkbox" value="{{ $productionMainFrom->id }}" wire:model="selected" />
                         </x-tables.td-left>
                         <x-tables.td-left>
-                            {{ optional($productionMainFrom->detailInvoice)->id ?? '-' }}
 
+                            {{ $productionMainFrom->detailInvoice->invoicePurchase->date }}
                             {{ $productionMainFrom->detailInvoice->detailRequest->product->name }}
+                            {{ $productionMainFrom->detailInvoice->quantity_product }}
+                            {{ $productionMainFrom->detailInvoice->detailRequest->product->unit->unit }}
                         </x-tables.td-left>
                         <td class="px-4 py-3 text-right" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">

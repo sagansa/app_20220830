@@ -63,6 +63,6 @@ class DetailInvoice extends Model
 
     public function getDetailInvoiceNameAttribute()
     {
-        return $this->detailRequest->product->name . ' - ' . $this->detailRequest->product->unit->unit;
+        return $this->detailRequest->product->name . ' - ' . $this->detailRequest->product->unit->unit . ' - ' . $this->invoicePurchase->store->nickname;
     }
 }

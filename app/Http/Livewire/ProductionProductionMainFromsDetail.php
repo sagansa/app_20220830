@@ -35,7 +35,10 @@ class ProductionProductionMainFromsDetail extends Component
     public function mount(Production $production)
     {
         $this->production = $production;
-        $this->detailInvoicesForSelect = DetailInvoice::whereIn('status', ['1'])
+        $this->detailInvoicesForSelect = DetailInvoice::join('invoice_purchases', 'invoice_purchases.id', '=', 'detail_invoices.invoice_purchase_id')
+            ->select('invoice_purchases.store_id', 'detail_invoices.*')
+            ->where('invoice_purchases.store_id', '=', $this->production->store_id)
+            ->whereIn('status', ['1'])
             ->get()
             ->pluck('id', 'detail_invoice_name');
         $this->resetProductionMainFromData();
