@@ -46,15 +46,11 @@ class PresencesList extends Component
     public function getRowsQueryProperty()
     {
 
-        $presences = Presence::query()
-            ->orderBy('created_at', 'desc');
-
-        // $presences = Presence::join('closing_stores', function ($join) {
-        //     $join->on('closing_stores.id', '=', 'presences.closing_store_id')
-        //         ->orderBy('closing_stores.date', 'desc');
-        //     })->get();
-
-
+        $presences = Presence::
+            join('closing_stores', 'closing_stores.id', '=', 'presences.closing_store_id')
+            ->select('closing_stores.date', 'presences.*')
+            ->orderBy('closing_stores.date', 'desc')
+            ->get();
 
             if (Auth::user()->hasRole('staff|supervisor|manager')) {
 
@@ -90,15 +86,9 @@ class PresencesList extends Component
 
     public function render()
     {
-        $presences = Presence::
-            join('closing_stores', 'closing_stores.id', '=', 'presences.closing_store_id')
-            ->select('closing_stores.date', 'presences.*')
-            ->orderBy('closing_stores.date', 'desc')
-            ->get();
-
         return view('livewire.presences.presences-list', [
-            // 'presences' => $this->rows,
-            'presences' => $presences,
+            'presences' => $this->rows,
+            // 'presences' => $presences,
         ]);
     }
 
