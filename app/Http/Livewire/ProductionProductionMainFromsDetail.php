@@ -23,7 +23,7 @@ class ProductionProductionMainFromsDetail extends Component
     public $allSelected = false;
     public $showingModal = false;
 
-    public $modalTitle = 'New ProductionMainFrom';
+    public $modalTitle = 'New Production Main From';
 
     protected $rules = [
         'productionMainFrom.detail_invoice_id' => [
@@ -35,7 +35,9 @@ class ProductionProductionMainFromsDetail extends Component
     public function mount(Production $production)
     {
         $this->production = $production;
-        $this->detailInvoicesForSelect = DetailInvoice::pluck('id', 'id');
+        $this->detailInvoicesForSelect = DetailInvoice::whereIn('status', ['1'])
+            ->get()
+            ->pluck('id', 'detail_invoice_name');
         $this->resetProductionMainFromData();
     }
 

@@ -60,4 +60,9 @@ class DetailInvoice extends Model
             unlink('storage/' . $this->image);
         }
     }
+
+    public function getDetailInvoiceNameAttribute()
+    {
+        return $this->detailRequest->product->name . ' - ' . $this->detailRequest->product->unit->unit;
+    }
 }
