@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\deti$detailInvoices;
+namespace App\Http\Livewire\UnitPricePurchases;
 
 use App\Http\Livewire\DataTables\WithBulkAction;
 use App\Http\Livewire\DataTables\WithCachedRows;
@@ -10,7 +10,6 @@ use App\Http\Livewire\DataTables\WithSimpleTablePagination;
 use App\Http\Livewire\DataTables\WithSorting;
 use App\Models\DetailInvoice;
 use App\Models\Product;
-use App\Models\PurchaseOrderProduct;
 use App\Models\Store;
 use App\Models\Supplier;
 use Livewire\Component;
