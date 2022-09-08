@@ -105,13 +105,13 @@
                 @foreach ($detailRequests as $detailRequest)
                     <tr class="hover:bg-gray-100">
                         <x-tables.td-left-hide>
-                            {{-- {{ optional($detailRequest->detailInvoice)->invoicePurchase->store->nickname }} --}}
+                            {{ optional($detailRequest->detailInvoice)->invoicePurchase->store->nickname ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
-                            {{-- {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }} --}}
+                            {{ optional($detailRequest->detailInvoice)->invoicePurchase->date ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
-                            {{-- {{ optional($detailRequest->detailInvoice)->invoicePurchase->supplier->name ?? '-' }} --}}
+                            {{ optional($detailRequest->detailInvoice)->invoicePurchase->supplier->name ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             {{ optional($detailRequest->product)->name ?? '-' }}

@@ -54,7 +54,7 @@ class UnitPricePurchases extends Component
 
     public function getRowsQueryProperty()
     {
-        $detailRequests = DetailRequest::query();
+        $detailRequests = DetailRequest::whereRelation('detail_invoices', 'subtotal_invoice', '!=', null)->get();
 
             foreach ($this->filters as $filter => $value) {
                 if (!empty($value)) {
