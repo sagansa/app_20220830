@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            Check Productions
+            Product Requests
         </h2>
         <p class="mt-2 text-xs text-gray-700">---</p>
     </x-slot>

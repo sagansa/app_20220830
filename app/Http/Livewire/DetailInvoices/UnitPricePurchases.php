@@ -12,6 +12,8 @@ use App\Models\DetailInvoice;
 use App\Models\Product;
 use App\Models\Store;
 use App\Models\Supplier;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class UnitPricePurchases extends Component
@@ -73,5 +75,19 @@ class UnitPricePurchases extends Component
         return view('livewire.detail-invoices.unit-price-purchases', [
             'detailInvoices' => $this->rows,
         ]);
+    }
+
+     public function changeStatus(DetailInvoice $detailInvoice, $status)
+    {
+        Validator::make(['status' => $status], [
+			'status' => [
+				'required',
+				Rule::in(DetailInvoice::STATUS_PROCESS, DetailInvoice::STATUS_DONE, DetailInvoice::STATUS_NO_NEED),
+			],
+		])->validate();
+
+		$detailInvoice->update(['status' => $status]);
+
+		$this->dispatchBrowserEvent('updated', ['message' => "Status changed to {$status} successfully."]);
     }
 }

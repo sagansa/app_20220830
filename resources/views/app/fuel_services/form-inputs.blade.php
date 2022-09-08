@@ -58,7 +58,7 @@
 
     <x-input.select name="closing_store_id" label="Closing Store" required>
         @php $selected = old('closing_store_id', ($editing ? $fuelService->closing_store_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Closing Store</option>
+        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
         @foreach ($closingStores as $value => $label)
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
             </option>

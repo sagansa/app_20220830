@@ -49,10 +49,13 @@ class FuelServiceController extends Controller
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $closingStores = ClosingStore::orderBy('closing_store_name', 'asc')
+        $closingStores = ClosingStore::join('stores', 'stores.id', '=', 'closing_stores.store_id')
+            ->join('shift_stores', 'shift_stores.id', '=', 'closing_stores.shift_store_id')
             ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
             // ->whereIn('status', ['1'])
-            // ->get()
+            ->select('closing_stores.*', 'stores.nickname', 'shift_stores.name')
+            ->orderBy('stores.nickname', 'asc')
+            ->get()
             ->pluck('closing_store_name', 'id');
 
         return view(

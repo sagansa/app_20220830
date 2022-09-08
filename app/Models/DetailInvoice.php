@@ -13,11 +13,14 @@ class DetailInvoice extends Model
     use HasFactory;
     use Searchable;
 
+    const STATUS_PROCESS = '1';
+    const STATUS_DONE = '2';
+    const STATUS_NO_NEED = '3';
+
     const STATUSES = [
-        '1' => 'belum diperiksa',
-        '2' => 'valid',
-        '3' => 'diperbaiki',
-        '4' => 'periksa ulang',
+        '1' => 'process',
+        '2' => 'done',
+        '3' => 'no need',
     ];
 
     protected $fillable = [
