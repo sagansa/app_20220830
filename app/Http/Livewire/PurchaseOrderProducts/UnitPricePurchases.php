@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\DetailInvoices;
+namespace App\Http\Livewire\PurchaseOrderProducts;
 
 use App\Http\Livewire\DataTables\WithBulkAction;
 use App\Http\Livewire\DataTables\WithCachedRows;
