@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\PurchaseOrderProducts;
+namespace App\Http\Livewire\deti$detailInvoices;
 
 use App\Http\Livewire\DataTables\WithBulkAction;
 use App\Http\Livewire\DataTables\WithCachedRows;
@@ -8,6 +8,7 @@ use App\Http\Livewire\DataTables\WithFilter;
 use App\Http\Livewire\DataTables\WithModal;
 use App\Http\Livewire\DataTables\WithSimpleTablePagination;
 use App\Http\Livewire\DataTables\WithSorting;
+use App\Models\DetailInvoice;
 use App\Models\Product;
 use App\Models\PurchaseOrderProduct;
 use App\Models\Store;
@@ -18,13 +19,13 @@ class UnitPricePurchases extends Component
 {
     use WithSimpleTablePagination, WithSorting, WithModal, WithBulkAction, WithCachedRows, WithFilter;
 
-    public PurchaseOrderProduct $editing;
+    public DetailInvoice $editing;
 
-    public $sortColumn = 'purchase_order_products.created_at';
+    public $sortColumn = 'detail_invoices.created_at';
 
     protected $queryString = [
         'sortColumn' => [
-        'except' => 'purchase_order_products.date'
+        'except' => 'detail_invoices.date'
         ],
         'sortDirection' => [
             'except' => 'asc',
@@ -47,18 +48,18 @@ class UnitPricePurchases extends Component
 
     public function getRowsQueryProperty()
     {
-        $purchaseOrderProducts = PurchaseOrderProduct::query();
+        $detailInvoices = DetailInvoice::query();
 
             foreach ($this->filters as $filter => $value) {
                 if (!empty($value)) {
-                    $purchaseOrderProducts
-                        // ->when($filter == 'store_id', fn($purchaseOrderProducts) => $purchaseOrderProducts->whereRelation('store', 'id', $value))
-                        // ->when($filter == 'supplier_id', fn($purchaseOrderProducts) => $purchaseOrderProducts->whereRelation('supplier', 'id', $value))
-                        ->when($filter == 'product_id', fn($purchaseOrderProducts) => $purchaseOrderProducts->whereRelation('product', 'id', $value));
+                    $detailInvoices
+                        // ->when($filter == 'store_id', fn($detailInvoices) => $detailInvoices->whereRelation('store', 'id', $value))
+                        // ->when($filter == 'supplier_id', fn($detailInvoices) => $detailInvoices->whereRelation('supplier', 'id', $value))
+                        ->when($filter == 'product_id', fn($detailInvoices) => $detailInvoices->whereRelation('product', 'id', $value));
                 }
             }
 
-        return $this->applySorting($purchaseOrderProducts);
+        return $this->applySorting($detailInvoices);
     }
 
     public function getRowsProperty()
@@ -71,7 +72,7 @@ class UnitPricePurchases extends Component
     public function render()
     {
         return view('livewire.purchase-order-products.unit-price-purchases', [
-            'purchaseOrderProducts' => $this->rows,
+            'deti$detailInvoices' => $this->rows,
         ]);
     }
 }
