@@ -67,7 +67,7 @@
                             <input type="checkbox" value="{{ $productionMainFrom->id }}" wire:model="selected" />
                         </x-tables.td-left>
                         <x-tables.td-left>
-                            {{ $productionMainFrom->detailInvoice->invoicePurchase->date }}
+                            {{ $productionMainFrom->detailInvoice->invoicePurchase->date->toFormattedDate() }}
                         </x-tables.td-left>
                         <x-tables.td-left>
                             {{ $productionMainFrom->detailInvoice->detailRequest->product->name }}
