@@ -44,29 +44,31 @@
         </div>
     </x-modal>
 
-    <div class="block w-full mt-4 overflow-auto scrolling-touch">
-        <table class="w-full max-w-full mb-4 bg-transparent">
-            <thead class="text-gray-700">
+    <x-tables.card-overflow>
+        <x-table>
+            <x-slot name="head">
                 <tr>
-                    <th class="w-1 px-4 py-3 text-left">
+                    <x-tables.th-left>
                         <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
                             title="{{ trans('crud.common.select_all') }}" />
-                    </th>
-                    <th class="px-4 py-3 text-left">
+                    </x-tables.th-left>
+                    <x-tables.th-left>
                         @lang('crud.production_production_main_froms.inputs.detail_invoice_id')
-                    </th>
+                    </x-tables.th-left>
                     <th></th>
                 </tr>
-            </thead>
-            <tbody class="text-gray-600">
+            </x-slot>
+            <x-slot name="body">
                 @foreach ($productionMainFroms as $productionMainFrom)
                     <tr class="hover:bg-gray-100">
-                        <td class="px-4 py-3 text-left">
+                        <x-tables.td-left>
                             <input type="checkbox" value="{{ $productionMainFrom->id }}" wire:model="selected" />
-                        </td>
-                        <td class="px-4 py-3 text-left">
+                        </x-tables.td-left>
+                        <x-tables.td-left>
                             {{ optional($productionMainFrom->detailInvoice)->id ?? '-' }}
-                        </td>
+
+                            {{ $productionMainFrom->detailInvoice->detailRequest->product->name }}
+                        </x-tables.td-left>
                         <td class="px-4 py-3 text-right" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @can('update', $productionMainFrom)
@@ -79,8 +81,8 @@
                         </td>
                     </tr>
                 @endforeach
-            </tbody>
-            <tfoot>
+            </x-slot>
+            <x-slot name="foot">
                 <tr>
                     <td colspan="2">
                         <div class="px-4 mt-10">
@@ -88,7 +90,7 @@
                         </div>
                     </td>
                 </tr>
-            </tfoot>
-        </table>
-    </div>
+            </x-slot>
+        </x-table>
+    </x-tables.card-overflow>
 </div>
