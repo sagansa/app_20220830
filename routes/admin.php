@@ -2,9 +2,9 @@
 
 // use App\Http\Livewire\EProducts\EProductShow;
 
+use App\Http\Livewire\DetailInvoices\CheckProductions;
 use App\Http\Livewire\DetailInvoices\UnitPricePurchases;
 use App\Http\Livewire\DetailRequests\CheckProductRequests;
-use App\Http\Livewire\PurchaseOrderProducts\CheckProductions;
 use App\Http\Livewire\RequestPurchases\RequestPurchaseApprovals;
 use Illuminate\Support\Facades\Route;
 
