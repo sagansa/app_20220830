@@ -3,7 +3,7 @@
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             Unit Price Purchase
         </h2>
-        <p class="mt-2 text-xs text-gray-700">---</p>
+        <p class="mt-2 text-xs text-gray-700">cek harga satuan produk</p>
     </x-slot>
 
     <x-tables.topbar>
@@ -70,9 +70,7 @@
                     <x-tables.th-left>
                         Unit Price
                     </x-tables.th-left>
-                    <x-tables.th-left>
-                        Status
-                    </x-tables.th-left>
+
                 </tr>
             </x-slot>
             <x-slot name="body">
@@ -106,19 +104,6 @@
                                 @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
                             </div>
                         </td>
-
-                        <x-tables.td-left-hide>
-                            <select
-                                class="block w-full py-2 pl-3 pr-10 mt-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                                wire:change="changeStatus({{ $detailInvoice }}, $event.target.value)">
-                                <option value="1" {{ $detailInvoice->status == '1' ? 'selected' : '' }}>
-                                    Process</option>
-                                <option value="2" {{ $detailInvoice->status == '2' ? 'selected' : '' }}>
-                                    Done</option>
-                                <option value="3" {{ $detailInvoice->status == '3' ? 'selected' : '' }}>
-                                    No Need</option>
-                            </select>
-                        </x-tables.td-left-hide>
 
                     </tr>
                 @endforeach

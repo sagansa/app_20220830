@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('closing_store_id');
             $table->unsignedBigInteger('created_by_id')->nullable();
             $table->unsignedBigInteger('approved_by_id')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->text('notes')->nullable();
 
             $table->timestamps();

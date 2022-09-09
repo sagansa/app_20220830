@@ -1490,6 +1490,7 @@ return [
             'km' => 'km',
             'liter' => 'Liter',
             'amount' => 'Amount',
+            'status' => 'Status',
             'closing_store_id' => 'Closing Store',
         ],
     ],

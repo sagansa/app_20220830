@@ -27,6 +27,7 @@ class FuelServiceFactory extends Factory
             'km' => $this->faker->randomNumber(2),
             'liter' => $this->faker->randomNumber(2),
             'amount' => $this->faker->randomNumber,
+            'status' => $this->faker->numberBetween(1, 3),
             'notes' => $this->faker->text,
             'closing_store_id' => \App\Models\ClosingStore::factory(),
             'vehicle_id' => \App\Models\Vehicle::factory(),

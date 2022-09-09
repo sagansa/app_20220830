@@ -80,6 +80,14 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
+                            >@lang('crud.fuel_services.inputs.status')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ $fuelService->status ?? '-' }}</x-shows.dd
+                        >
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
                             >@lang('crud.fuel_services.inputs.closing_store_id')</x-shows.dt
                         >
                         <x-shows.dd

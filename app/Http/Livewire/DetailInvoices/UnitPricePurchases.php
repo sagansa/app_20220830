@@ -76,18 +76,4 @@ class UnitPricePurchases extends Component
             'detailInvoices' => $this->rows,
         ]);
     }
-
-     public function changeStatus(DetailInvoice $detailInvoice, $status)
-    {
-        Validator::make(['status' => $status], [
-			'status' => [
-				'required',
-				Rule::in(DetailInvoice::STATUS_PROCESS, DetailInvoice::STATUS_DONE, DetailInvoice::STATUS_NO_NEED),
-			],
-		])->validate();
-
-		$detailInvoice->update(['status' => $status]);
-
-		$this->dispatchBrowserEvent('updated', ['message' => "Status changed to {$status} successfully."]);
-    }
 }

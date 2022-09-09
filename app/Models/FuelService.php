@@ -32,6 +32,7 @@ class FuelService extends Model
         'created_by_id',
         'approved_by_id',
         'notes',
+        'status',
     ];
 
     protected $searchableFields = ['*'];

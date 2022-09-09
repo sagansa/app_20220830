@@ -127,6 +127,7 @@ class FuelServiceControllerTest extends TestCase
             'km' => $this->faker->randomNumber(2),
             'liter' => $this->faker->randomNumber(2),
             'amount' => $this->faker->randomNumber,
+            'status' => $this->faker->numberBetween(1, 3),
             'notes' => $this->faker->text,
             'closing_store_id' => $closingStore->id,
             'vehicle_id' => $vehicle->id,
