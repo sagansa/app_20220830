@@ -91,7 +91,7 @@ class CheckClosingStore extends Component
         $this->cashless_totals = 0;
 
         foreach ($this->closingStore->presences as $presence) {
-            $this->presence_totals += $presence['amount']->where('payment_type_id','=','2');
+            $this->presence_totals += $presence['amount'];
         }
 
         foreach ($this->closingStore->purchaseOrders as $purchaseOrder) {
