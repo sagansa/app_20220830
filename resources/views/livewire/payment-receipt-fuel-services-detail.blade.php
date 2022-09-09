@@ -25,50 +25,81 @@
         </div>
 
         <div class="flex justify-between px-6 py-4 bg-gray-50">
-            <button type="button" class="button" wire:click="$toggle('showingModal')">
-                <i class="mr-1 icon ion-md-close"></i>
-                @lang('crud.common.cancel')
-            </button>
-
-            <button type="button" class="button button-primary" wire:click="save">
-                <i class="mr-1 icon ion-md-save"></i>
-                @lang('crud.common.save')
-            </button>
+            <x-buttons.secondary wire:click="$toggle('showingModal')">Cancel</x-buttons.secondary>
+            <x-jet-button wire:click="save">Save</x-jet-button>
         </div>
     </x-modal>
 
-    <div class="block w-full mt-4 overflow-auto scrolling-touch">
-        <table class="w-full max-w-full mb-4 bg-transparent">
-            <thead class="text-gray-700">
+    <x-tables.card-overflow>
+        <x-table>
+            <x-slot name="head">
                 <tr>
-                    <th class="px-4 py-3 text-left">
-                        @lang('crud.payment_receipt_fuel_services.inputs.fuel_service_id')
-                    </th>
+                    <x-tables.th-left>
+                        No Register
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        fuel / Service
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        liter
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        amount
+                    </x-tables.th-left>
                     <th></th>
                 </tr>
-            </thead>
-            <tbody class="text-gray-600">
+            </x-slot>
+            <x-slot name="body">
                 @foreach ($paymentReceiptFuelServices as $fuelService)
                     <tr class="hover:bg-gray-100">
-                        <td class="px-4 py-3 text-left">
-                            {{ $fuelService->image ?? '-' }}
-                        </td>
+                        <x-tables.td-left>
+                            {{ $fuelService->vehicle->no_register ?? '-' }}
+                        </x-tables.td-left>
+                        <x-tables.td-left>
+
+                            @if ($fuelService->fuel_service == 1)
+                                fuel
+                            @elseif ($fuelService->fuel_service == 2)
+                                service
+                            @endif
+                            {{ $fuelService->fuel_service ?? '-' }}
+                        </x-tables.td-left>
+                        <x-tables.td-right>
+                            @number($fuelService->liter)
+                        </x-tables.td-right>
+                        <x-tables.td-right>
+                            @currency($fuelService->amount)
+                        </x-tables.td-right>
+                        <x-tables.td-right>
+                            <select
+                                class="block w-full py-2 pl-3 pr-10 mt-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                wire:change="changeStatus({{ $fuelService }}, $event.target.value)">
+                                <option value="1" {{ $fuelService->status == '1' ? 'selected' : '' }}>
+                                    belum dibayar</option>
+                                <option value="2" {{ $fuelService->status == '2' ? 'selected' : '' }}>
+                                    sudah dibayar</option>
+                                <option value="3" {{ $fuelService->status == '3' ? 'selected' : '' }}>
+                                    siap dibayar</option>
+                                <option value="4" {{ $fuelService->status == '4' ? 'selected' : '' }}>
+                                    tidak valid</option>
+                            </select>
+                        </x-tables.td-right>
                         <td class="px-4 py-3 text-right" style="width: 70px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @can('delete-any', App\Models\FuelService::class)
                                     <button class="button button-danger"
                                         onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
                                         wire:click="detach({{ $fuelService->id }})">
-                                        <i class="mr-1 icon ion-md-trash text-primary"></i>
-                                        @lang('crud.common.detach')
+                                        <i class="icon ion-md-trash text-primary"></i>
+
                                     </button>
                                 @endcan
                             </div>
                         </td>
                     </tr>
                 @endforeach
-            </tbody>
-            <tfoot>
+            </x-slot>
+            <x-slot name="foot">
                 <tr>
                     <td colspan="2">
                         <div class="px-4 mt-10">
@@ -76,7 +107,7 @@
                         </div>
                     </td>
                 </tr>
-            </tfoot>
-        </table>
-    </div>
+            </x-slot>
+        </x-table>
+    </x-tables.card-overflow>
 </div>

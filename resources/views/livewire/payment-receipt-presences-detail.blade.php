@@ -82,6 +82,8 @@
                                 <option value="2" {{ $presence->status == '2' ? 'selected' : '' }}>
                                     sudah dibayar</option>
                                 <option value="3" {{ $presence->status == '3' ? 'selected' : '' }}>
+                                    siap valid</option>
+                                <option value="4" {{ $presence->status == '4' ? 'selected' : '' }}>
                                     tidak valid</option>
                             </select>
                         </x-tables.td-right>

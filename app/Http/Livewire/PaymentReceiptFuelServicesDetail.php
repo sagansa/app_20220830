@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\FuelService;
 use App\Models\PaymentReceipt;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class PaymentReceiptFuelServicesDetail extends Component
 {
@@ -90,5 +92,21 @@ class PaymentReceiptFuelServicesDetail extends Component
                 ->withPivot([])
                 ->paginate(20),
         ]);
+    }
+
+    public function changeStatus(FuelService $fuelService, $status)
+    {
+        Validator::make(['status' => $status], [
+			'status' => [
+				'required',
+				Rule::in(FuelService::STATUS_BELUM_DIBAYAR, FuelService::STATUS_SUDAH_DIBAYAR, FuelService::STATUS_SIAP_DIBAYAR, FuelService::STATUS_TIDAK_VALID),
+			],
+		])->validate();
+
+		$fuelService->update(['status' => $status]);
+
+        $this->emit($this->fuelServicesForSelect);
+
+		$this->dispatchBrowserEvent('updated', ['message' => "Status changed to {$status} successfully."]);
     }
 }

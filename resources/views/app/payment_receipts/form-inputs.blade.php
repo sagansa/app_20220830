@@ -28,10 +28,11 @@
     </x-input.hidden>
 
     <x-input.select name="payment_for" label="Payment For">
-        @php $selected = old('payment_for', ($editing ? $paymentReceipt->payment_for : '1')) @endphp
+        @php $selected = old('payment_for', ($editing ? $paymentReceipt->payment_for : '3')) @endphp
+        <option value="3" {{ $selected == '3' ? 'selected' : '' }}>invoice purchase</option>
         <option value="1" {{ $selected == '1' ? 'selected' : '' }}>fuel service</option>
         <option value="2" {{ $selected == '2' ? 'selected' : '' }}>presence</option>
-        <option value="3" {{ $selected == '3' ? 'selected' : '' }}>invoice purchase</option>
+
     </x-input.select>
 
     @if ($editing)
