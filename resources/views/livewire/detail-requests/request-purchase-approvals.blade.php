@@ -78,7 +78,9 @@
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            {{ optional($detailRequest->detailInvoice)->invoicePurchase->date ?? '-' }}
+                            @if ($detailRequest->status == 2)
+                                {{ optional($detailRequest->detailInvoice)->invoicePurchase->date ?? '-' }}
+                            @endif
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
