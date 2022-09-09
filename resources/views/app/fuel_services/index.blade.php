@@ -86,11 +86,18 @@
                             </x-tables.td-right-hide>
                         @endrole
                         <x-tables.td-left-hide>
-                            @foreach ($fuelService->closingStores as $closingStore)
-                                {{ optional($fuelService->closingStore)->store->nickname ?? '-' }} |
-                                {{ optional($fuelService->closingStore)->shiftStore->name ?? '-' }} |
-                                {{ optional($closingStore->date)->toFormattedDate() ?? '-' }}
-                            @endforeach
+                            @if ($fuelService->payment_type_id == 2)
+                                @foreach ($fuelService->closingStores as $closingStore)
+                                    {{ optional($closingStore)->store->nickname ?? '-' }} |
+                                    {{ optional($closingStore)->shiftStore->name ?? '-' }} |
+                                    {{ optional($closingStore->date)->toFormattedDate() ?? '-' }}
+                                @endforeach
+                            @elseif($fuelService->payment_type_id == 1)
+                                @foreach ($fuelService->paymentReceipts as $paymentReceipt)
+                                    {{ $paymentReceipt->created_at->toFormattedDate() }}
+                                @endforeach
+                            @endif
+
 
                         </x-tables.td-left-hide>
                         <td class="px-4 py-3 text-center" style="width: 134px;">

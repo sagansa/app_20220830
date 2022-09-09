@@ -55,6 +55,10 @@
                     </x-tables.th-left-hide>
 
                     <x-tables.th-left-hide>
+                        Date
+                    </x-tables.th-left-hide>
+
+                    <x-tables.th-left-hide>
                         Supplier
                     </x-tables.th-left-hide>
                     <x-tables.th-left>
@@ -78,12 +82,17 @@
                     <tr class="hover:bg-gray-100">
                         <x-tables.td-left-main>
                             <x-slot name="main"> {{ $detailInvoice->invoicePurchase->store->nickname }} -
-                                {{ $detailInvoice->invoicePurchase->date->toFormattedDate() }}</x-slot>
+                            </x-slot>
                             <x-slot name="sub">
-                                <p> {{ $detailInvoice->invoicePurchase->supplier->name }}</p>
+                                <p> {{ $detailInvoice->invoicePurchase->supplier->name }} -
+                                    {{ $detailInvoice->invoicePurchase->date->toFormattedDate() }}</p>
                                 <p> {{ optional($detailInvoice->detailRequest)->product->name ?? '-' }}</p>
                             </x-slot>
                         </x-tables.td-left-main>
+
+                        <x-tables.td-left-hide>
+                            {{ $detailInvoice->invoicePurchase->date->toFormattedDate() }}
+                        </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
                             {{ $detailInvoice->invoicePurchase->supplier->name }}
