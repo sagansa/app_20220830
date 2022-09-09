@@ -8,6 +8,9 @@ use App\Http\Livewire\DataTables\WithFilter;
 use App\Http\Livewire\DataTables\WithModal;
 use App\Http\Livewire\DataTables\WithPerPagePagination;
 use App\Http\Livewire\DataTables\WithSortingDate;
+use App\Models\DetailRequest;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class RequestPurchaseApprovals extends Component
