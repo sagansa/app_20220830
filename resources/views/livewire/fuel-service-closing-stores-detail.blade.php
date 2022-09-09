@@ -35,7 +35,13 @@
             <x-slot name="head">
                 <tr>
                     <x-tables.th-left>
-                        @lang('crud.fuel_service_closing_stores.inputs.closing_store_id')
+                        Store
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        Shift Store
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        Date
                     </x-tables.th-left>
                     <th></th>
                 </tr>
@@ -43,17 +49,23 @@
             <x-slot name="body">
                 @foreach ($fuelServiceClosingStores as $closingStore)
                     <tr class="hover:bg-gray-100">
-                        <td class="px-4 py-3 text-left">
-                            {{ $closingStore->date ?? '-' }}
-                        </td>
+                        <x-tables.td-left>
+                            {{ $closingStore->store->nickname ?? '-' }}
+                        </x-tables.td-left>
+                        <x-tables.td-left>
+                            {{ $closingStore->shiftStore->name ?? '-' }}
+                        </x-tables.td-left>
+                        <x-tables.td-left>
+                            {{ $closingStore->date->toFormattedDate() ?? '-' }}
+                        </x-tables.td-left>
                         <td class="px-4 py-3 text-right" style="width: 70px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @can('delete-any', App\Models\ClosingStore::class)
                                     <button class="button button-danger"
                                         onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
                                         wire:click="detach({{ $closingStore->id }})">
-                                        <i class="mr-1 icon ion-md-trash text-primary"></i>
-                                        @lang('crud.common.detach')
+                                        <i class="icon ion-md-trash text-primary"></i>
+
                                     </button>
                                 @endcan
                             </div>

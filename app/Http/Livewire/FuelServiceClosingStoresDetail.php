@@ -35,7 +35,7 @@ class FuelServiceClosingStoresDetail extends Component
             ->where('date', '>=', Carbon::now()->subDays(5)->toDateString())
             ->orderBy('date', 'desc')
             ->get()
-            ->pluck('closing_store_name', 'id');
+            ->pluck('id', 'closing_store_name');
         $this->resetClosingStoreData();
     }
 
