@@ -24,7 +24,7 @@
         </div>
     </x-input.image>
 
-    <x-input.select name="vehicle_id" label="Vehicle" required>
+    <x-input.select name="vehicle_id" label="Vehicle">
         @php $selected = old('vehicle_id', ($editing ? $fuelService->vehicle_id : '')) @endphp
         <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
         @foreach ($vehicles as $value => $label)
@@ -38,7 +38,7 @@
         <option value="2" {{ $selected == '2' ? 'selected' : '' }}>service</option>
     </x-input.select>
 
-    <x-input.select name="payment_type_id" label="Payment Type" required>
+    <x-input.select name="payment_type_id" label="Payment Type">
         @php $selected = old('payment_type_id', ($editing ? $fuelService->payment_type_id : '')) @endphp
         <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
         @foreach ($paymentTypes as $value => $label)
@@ -47,16 +47,16 @@
         @endforeach
     </x-input.select>
 
-    <x-input.number name="km" label="km" value="{{ old('km', $editing ? $fuelService->km : '') }}" required>
+    <x-input.number name="km" label="km" value="{{ old('km', $editing ? $fuelService->km : '') }}">
     </x-input.number>
 
-    <x-input.number name="liter" label="Liter" value="{{ old('liter', $editing ? $fuelService->liter : '') }}"
-        required></x-input.number>
+    <x-input.number name="liter" label="Liter" value="{{ old('liter', $editing ? $fuelService->liter : '') }}">
+    </x-input.number>
 
-    <x-input.currency name="amount" label="Amount" value="{{ old('amount', $editing ? $fuelService->amount : '') }}"
-        required></x-input.currency>
+    <x-input.currency name="amount" label="Amount" value="{{ old('amount', $editing ? $fuelService->amount : '') }}">
+    </x-input.currency>
 
-    <x-input.select name="closing_store_id" label="Closing Store" required>
+    <x-input.select name="closing_store_id" label="Closing Store">
         @php $selected = old('closing_store_id', ($editing ? $fuelService->closing_store_id : '')) @endphp
         <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
         @foreach ($closingStores as $value => $label)
