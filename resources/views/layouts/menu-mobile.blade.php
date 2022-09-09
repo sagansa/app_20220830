@@ -51,12 +51,12 @@
                   <x-sidebars.dropdown-link href="{{ route('unit-price-purchases') }}">
                       Unit Price Purchase
                   </x-sidebars.dropdown-link>
-                  <x-sidebars.dropdown-link href="{{ route('check-product-requests') }}">
+                  {{-- <x-sidebars.dropdown-link href="{{ route('check-product-requests') }}">
                       Check Product Requests
-                  </x-sidebars.dropdown-link>
-                  {{-- <x-sidebars.dropdown-link href="{{ route('request-purchase-approvals') }}">
-                      Request Purchase Approvals
                   </x-sidebars.dropdown-link> --}}
+                  <x-sidebars.dropdown-link href="{{ route('request-purchase-approvals') }}">
+                      Request Purchase Approvals
+                  </x-sidebars.dropdown-link>
 
               </x-sidebars.nav-dropdown-mobile>
           @endrole
