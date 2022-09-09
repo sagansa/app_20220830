@@ -1185,6 +1185,8 @@ return [
             'km' => 'Km',
             'liter' => 'Liter',
             'amount' => 'Amount',
+            'payment_type_id' => 'Payment Type',
+            'status' => 'Status',
         ],
     ],
 

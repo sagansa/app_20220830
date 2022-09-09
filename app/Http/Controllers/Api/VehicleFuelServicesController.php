@@ -40,11 +40,13 @@ class VehicleFuelServicesController extends Controller
         $this->authorize('create', FuelService::class);
 
         $validated = $request->validate([
-            'image' => ['nullable', 'image', 'max:1024'],
-            'fuel_service' => ['required', 'max:255'],
-            'km' => ['required', 'numeric'],
-            'liter' => ['required', 'numeric'],
-            'amount' => ['required', 'max:255'],
+            'image' => ['nullable', 'image'],
+            'fuel_service' => ['required', 'in:1,2'],
+            'km' => ['required', 'numeric', 'gt:0'],
+            'liter' => ['required', 'numeric', 'gt:0'],
+            'amount' => ['required', 'numeric', 'gt:0'],
+            'payment_type_id' => ['required', 'exists:payment_types,id'],
+            'status' => ['required', 'max:255'],
         ]);
 
         if ($request->hasFile('image')) {

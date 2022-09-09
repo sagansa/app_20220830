@@ -38,14 +38,20 @@
         <option value="2" {{ $selected == '2' ? 'selected' : '' }}>service</option>
     </x-input.select>
 
-    <x-input.select name="payment_type_id" label="Payment Type">
-        @php $selected = old('payment_type_id', ($editing ? $fuelService->payment_type_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach ($paymentTypes as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
-            </option>
-        @endforeach
-    </x-input.select>
+    @role('super-admin|manager')
+        <x-input.select name="payment_type_id" label="Payment Type">
+            @php $selected = old('payment_type_id', ($editing ? $fuelService->payment_type_id : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
+            @foreach ($paymentTypes as $value => $label)
+                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
+                </option>
+            @endforeach
+        </x-input.select>
+    @endrole
+
+    @role('supervisor|staff')
+        <x-input.hidden name="status" value="{{ old('status', $editing ? $fuelService->status : '1') }}"></x-input.hidden>
+    @endrole
 
     <x-input.number name="km" label="km" value="{{ old('km', $editing ? $fuelService->km : '') }}">
     </x-input.number>

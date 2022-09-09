@@ -61,6 +61,8 @@
                     <option value="2" {{ $selected == '2' ? 'selected' : '' }}>service</option>
                 </x-input.select>
 
+                <x-input.hidden name="fuelService.status" wire:model="fuelService.status"></x-input.hidden>
+
                 <x-input.number name="fuelService.km" label="km" wire:model="fuelService.km"></x-input.number>
 
                 <x-input.number name="fuelService.liter" label="Liter" wire:model="fuelService.liter"></x-input.number>

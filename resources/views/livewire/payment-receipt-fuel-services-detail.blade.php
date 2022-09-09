@@ -71,6 +71,9 @@
                             @currency($fuelService->amount)
                         </x-tables.td-right>
                         <x-tables.td-right>
+                            {{ $fuelService->created_by->name }}
+                        </x-tables.td-right>
+                        <x-tables.td-right>
                             <select
                                 class="block w-full py-2 pl-3 pr-10 mt-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                                 wire:change="changeStatus({{ $fuelService }}, $event.target.value)">

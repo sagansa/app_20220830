@@ -28,7 +28,9 @@ class PaymentReceiptFuelServicesDetail extends Component
     public function mount(PaymentReceipt $paymentReceipt)
     {
         $this->paymentReceipt = $paymentReceipt;
-        $this->fuelServicesForSelect = FuelService::get()->pluck('id', 'fuel_service_name');
+        $this->fuelServicesForSelect = FuelService::where('payment_type_id', '=', '1')
+            ->get()
+            ->pluck('id', 'fuel_service_name');
         $this->resetFuelServiceData();
     }
 
