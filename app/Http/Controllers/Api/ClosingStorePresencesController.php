@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Http\Controllers\Api;
 
-use App\Models\ClosingStore;
+use App\Models\Presence;
 use Illuminate\Http\Request;
+use App\Models\ClosingStore;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PresenceResource;
 use App\Http\Resources\PresenceCollection;
 
 class ClosingStorePresencesController extends Controller
@@ -33,21 +32,36 @@ class ClosingStorePresencesController extends Controller
     /**
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\ClosingStore $closingStore
+     * @param \App\Models\Presence $presence
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, ClosingStore $closingStore)
-    {
-        $this->authorize('create', Presence::class);
+    public function store(
+        Request $request,
+        ClosingStore $closingStore,
+        Presence $presence
+    ) {
+        $this->authorize('update', $closingStore);
 
-        $validated = $request->validate([
-            'amount' => ['required', 'numeric', 'min:0'],
-            'payment_type_id' => ['required', 'exists:payment_types,id'],
-            'status' => ['required'],
-            'created_by_id' => ['nullable', 'exists:users,id'],
-        ]);
+        $closingStore->presences()->syncWithoutDetaching([$presence->id]);
 
-        $presence = $closingStore->presences()->create($validated);
+        return response()->noContent();
+    }
 
-        return new PresenceResource($presence);
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\ClosingStore $closingStore
+     * @param \App\Models\Presence $presence
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(
+        Request $request,
+        ClosingStore $closingStore,
+        Presence $presence
+    ) {
+        $this->authorize('update', $closingStore);
+
+        $closingStore->presences()->detach($presence);
+
+        return response()->noContent();
     }
 }

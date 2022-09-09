@@ -7,12 +7,12 @@ use App\Models\Vehicle;
 use App\Models\FuelService;
 use App\Models\PaymentType;
 use Illuminate\Http\Request;
-use App\Models\ClosingStore;
-use Illuminate\Support\Facades\Auth;
+// use App\Models\ClosingStore;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\FuelServiceStoreRequest;
 use App\Http\Requests\FuelServiceUpdateRequest;
-use Illuminate\Support\Carbon;
+// use Illuminate\Support\Carbon;
 
 class FuelServiceController extends Controller
 {
@@ -49,19 +49,23 @@ class FuelServiceController extends Controller
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $closingStores = ClosingStore::join('stores', 'stores.id', '=', 'closing_stores.store_id')
-            ->join('shift_stores', 'shift_stores.id', '=', 'closing_stores.shift_store_id')
-            ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
-            // ->whereIn('status', ['1'])
-            ->select('closing_stores.*', 'stores.nickname', 'shift_stores.name')
-            ->orderBy('stores.nickname', 'asc')
-            ->orderBy('closing_stores.date', 'desc')
-            ->get()
-            ->pluck('closing_store_name', 'id');
+        // $closingStores = ClosingStore::join('stores', 'stores.id', '=', 'closing_stores.store_id')
+        //     ->join('shift_stores', 'shift_stores.id', '=', 'closing_stores.shift_store_id')
+        //     ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
+        //     // ->whereIn('status', ['1'])
+        //     ->select('closing_stores.*', 'stores.nickname', 'shift_stores.name')
+        //     ->orderBy('stores.nickname', 'asc')
+        //     ->orderBy('closing_stores.date', 'desc')
+        //     ->get()
+        //     ->pluck('closing_store_name', 'id');
 
         return view(
             'app.fuel_services.create',
-            compact('vehicles', 'paymentTypes', 'closingStores')
+            compact(
+                'vehicles',
+                'paymentTypes',
+                // 'closingStores',
+            )
         );
     }
 
@@ -127,19 +131,24 @@ class FuelServiceController extends Controller
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $closingStores = ClosingStore::join('stores', 'stores.id', '=', 'closing_stores.store_id')
-            ->join('shift_stores', 'shift_stores.id', '=', 'closing_stores.shift_store_id')
-            ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
-            // ->whereIn('status', ['1'])
-            ->select('closing_stores.*', 'stores.nickname', 'shift_stores.name')
-            ->orderBy('stores.nickname', 'asc')
-            ->orderBy('closing_stores.date', 'desc')
-            ->get()
-            ->pluck('closing_store_name', 'id');
+        // $closingStores = ClosingStore::join('stores', 'stores.id', '=', 'closing_stores.store_id')
+        //     ->join('shift_stores', 'shift_stores.id', '=', 'closing_stores.shift_store_id')
+        //     ->where('date', '>', Carbon::now()->subDays(5)->toDateString())
+        //     // ->whereIn('status', ['1'])
+        //     ->select('closing_stores.*', 'stores.nickname', 'shift_stores.name')
+        //     ->orderBy('stores.nickname', 'asc')
+        //     ->orderBy('closing_stores.date', 'desc')
+        //     ->get()
+        //     ->pluck('closing_store_name', 'id');
 
         return view(
             'app.fuel_services.edit',
-            compact('fuelService', 'vehicles', 'paymentTypes', 'closingStores')
+            compact(
+                'fuelService',
+                'vehicles',
+                'paymentTypes',
+                // 'closingStores',
+                )
         );
     }
 

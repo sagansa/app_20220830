@@ -33,25 +33,24 @@ class FuelService extends Model
         'km',
         'liter',
         'amount',
-        'closing_store_id',
+        'status',
+        'notes',
         'created_by_id',
         'approved_by_id',
-        'notes',
-        'status',
     ];
 
     protected $searchableFields = ['*'];
 
     protected $table = 'fuel_services';
 
-    public function closingStore()
-    {
-        return $this->belongsTo(ClosingStore::class);
-    }
-
     public function vehicle()
     {
         return $this->belongsTo(Vehicle::class);
+    }
+
+    public function closingStores()
+    {
+        return $this->belongsToMany(ClosingStore::class);
     }
 
     public function paymentType()

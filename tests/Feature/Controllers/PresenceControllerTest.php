@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Presence;
 
 use App\Models\PaymentType;
-use App\Models\ClosingStore;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -117,7 +116,6 @@ class PresenceControllerTest extends TestCase
     {
         $presence = Presence::factory()->create();
 
-        $closingStore = ClosingStore::factory()->create();
         $user = User::factory()->create();
         $user = User::factory()->create();
         $paymentType = PaymentType::factory()->create();
@@ -129,7 +127,6 @@ class PresenceControllerTest extends TestCase
             'image_out' => $this->faker->text(255),
             'lat_long_in' => $this->faker->text(255),
             'lat_long_out' => $this->faker->text(255),
-            'closing_store_id' => $closingStore->id,
             'created_by_id' => $user->id,
             'approved_by_id' => $user->id,
             'payment_type_id' => $paymentType->id,

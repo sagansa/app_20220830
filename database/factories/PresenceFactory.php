@@ -29,7 +29,6 @@ class PresenceFactory extends Factory
             'image_out' => $this->faker->text(255),
             'lat_long_in' => $this->faker->text(255),
             'lat_long_out' => $this->faker->text(255),
-            'closing_store_id' => \App\Models\ClosingStore::factory(),
             'created_by_id' => \App\Models\User::factory(),
             'approved_by_id' => \App\Models\User::factory(),
             'payment_type_id' => \App\Models\PaymentType::factory(),

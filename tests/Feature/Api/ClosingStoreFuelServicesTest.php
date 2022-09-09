@@ -34,45 +34,64 @@ class ClosingStoreFuelServicesTest extends TestCase
     public function it_gets_closing_store_fuel_services()
     {
         $closingStore = ClosingStore::factory()->create();
-        $fuelServices = FuelService::factory()
-            ->count(2)
-            ->create([
-                'closing_store_id' => $closingStore->id,
-            ]);
+        $fuelService = FuelService::factory()->create();
+
+        $closingStore->fuelServices()->attach($fuelService);
 
         $response = $this->getJson(
             route('api.closing-stores.fuel-services.index', $closingStore)
         );
 
-        $response->assertOk()->assertSee($fuelServices[0]->image);
+        $response->assertOk()->assertSee($fuelService->image);
     }
 
     /**
      * @test
      */
-    public function it_stores_the_closing_store_fuel_services()
+    public function it_can_attach_fuel_services_to_closing_store()
     {
         $closingStore = ClosingStore::factory()->create();
-        $data = FuelService::factory()
-            ->make([
-                'closing_store_id' => $closingStore->id,
-            ])
-            ->toArray();
+        $fuelService = FuelService::factory()->create();
 
         $response = $this->postJson(
-            route('api.closing-stores.fuel-services.store', $closingStore),
-            $data
+            route('api.closing-stores.fuel-services.store', [
+                $closingStore,
+                $fuelService,
+            ])
         );
 
-        unset($data['created_by_id']);
-        unset($data['approved_by_id']);
+        $response->assertNoContent();
 
-        $this->assertDatabaseHas('fuel_services', $data);
+        $this->assertTrue(
+            $closingStore
+                ->fuelServices()
+                ->where('fuel_services.id', $fuelService->id)
+                ->exists()
+        );
+    }
 
-        $response->assertStatus(201)->assertJsonFragment($data);
+    /**
+     * @test
+     */
+    public function it_can_detach_fuel_services_from_closing_store()
+    {
+        $closingStore = ClosingStore::factory()->create();
+        $fuelService = FuelService::factory()->create();
 
-        $fuelService = FuelService::latest('id')->first();
+        $response = $this->deleteJson(
+            route('api.closing-stores.fuel-services.store', [
+                $closingStore,
+                $fuelService,
+            ])
+        );
 
-        $this->assertEquals($closingStore->id, $fuelService->closing_store_id);
+        $response->assertNoContent();
+
+        $this->assertFalse(
+            $closingStore
+                ->fuelServices()
+                ->where('fuel_services.id', $fuelService->id)
+                ->exists()
+        );
     }
 }

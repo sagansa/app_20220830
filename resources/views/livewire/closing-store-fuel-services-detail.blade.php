@@ -74,15 +74,6 @@
         </div>
 
         <div class="flex justify-between px-6 py-4 bg-gray-50">
-            {{-- <button type="button" class="button" wire:click="$toggle('showingModal')">
-                <i class="mr-1 icon ion-md-close"></i>
-                @lang('crud.common.cancel')
-            </button>
-
-            <button type="button" class="button button-primary" wire:click="save">
-                <i class="mr-1 icon ion-md-save"></i>
-                @lang('crud.common.save')
-            </button> --}}
 
             <x-buttons.secondary wire:click="$toggle('showingModal')">@lang('crud.common.cancel')</x-buttons.secondary>
             <x-jet-button wire:click="save">@lang('crud.common.save')</x-jet-button>
@@ -93,12 +84,6 @@
         <x-table>
             <x-slot name="head">
                 <tr>
-                    @if ($closingStore->transfer_status != 2 || $closingStore->closing_status != 2)
-                        <x-tables.th-left>
-                            <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
-                                title="{{ trans('crud.common.select_all') }}" />
-                        </x-tables.th-left>
-                    @endif
                     <x-tables.th-left>
                         @lang('crud.closing_store_fuel_services.inputs.image')
                     </x-tables.th-left>
@@ -123,11 +108,6 @@
             <x-slot name="body">
                 @foreach ($fuelServices as $fuelService)
                     <tr class="hover:bg-gray-100">
-                        @if ($closingStore->transfer_status != 2 || $closingStore->closing_status != 2)
-                            <x-tables.td-left>
-                                <input type="checkbox" value="{{ $fuelService->id }}" wire:model="selected" />
-                            </x-tables.td-left>
-                        @endif
                         <x-tables.td-left>
                             <x-partials.thumbnail
                                 src="{{ $fuelService->image ? \Storage::url($fuelService->image) : '' }}" />

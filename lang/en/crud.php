@@ -415,7 +415,6 @@ return [
         'edit_title' => 'Edit Presence',
         'show_title' => 'Show Presence',
         'inputs' => [
-            'closing_store_id' => 'Closing Store',
             'amount' => 'Amount',
             'payment_type_id' => 'Payment Type',
             'status' => 'Status',
@@ -1171,25 +1170,6 @@ return [
         ],
     ],
 
-    'closing_store_fuel_services' => [
-        'name' => 'Closing Store Fuel Services',
-        'index_title' => 'Fuel Services List',
-        'new_title' => 'New Fuel Service',
-        'create_title' => 'Create Fuel Service',
-        'edit_title' => 'Edit Fuel Service',
-        'show_title' => 'Show Fuel Service',
-        'inputs' => [
-            'image' => 'Image',
-            'vehicle_id' => 'Vehicle',
-            'fuel_service' => 'Fuel Service',
-            'km' => 'Km',
-            'liter' => 'Liter',
-            'amount' => 'Amount',
-            'payment_type_id' => 'Payment Type',
-            'status' => 'Status',
-        ],
-    ],
-
     'store_cashlesses' => [
         'name' => 'Store Cashlesses',
         'index_title' => 'Store Cashlesses List',
@@ -1200,19 +1180,6 @@ return [
         'inputs' => [
             'name' => 'Name',
             'status' => 'Status',
-        ],
-    ],
-
-    'closing_store_presences' => [
-        'name' => 'Closing Store Presences',
-        'index_title' => 'Presences List',
-        'new_title' => 'New Presence',
-        'create_title' => 'Create Presence',
-        'edit_title' => 'Edit Presence',
-        'show_title' => 'Show Presence',
-        'inputs' => [
-            'created_by_id' => 'Created By',
-            'amount' => 'Amount',
         ],
     ],
 
@@ -1492,7 +1459,6 @@ return [
             'km' => 'km',
             'liter' => 'Liter',
             'amount' => 'Amount',
-            'closing_store_id' => 'Closing Store',
             'status' => 'Status',
             'notes' => 'Notes',
         ],
@@ -1513,6 +1479,30 @@ return [
             'quantity_stock' => 'Quantity Stock',
             'price' => 'Price',
             'status' => 'Status',
+        ],
+    ],
+
+    'presence_closing_stores' => [
+        'name' => 'Presence Closing Stores',
+        'index_title' => ' List',
+        'new_title' => 'New Closing store presence',
+        'create_title' => 'Create closing_store_presence',
+        'edit_title' => 'Edit closing_store_presence',
+        'show_title' => 'Show closing_store_presence',
+        'inputs' => [
+            'closing_store_id' => 'Closing Store',
+        ],
+    ],
+
+    'fuel_service_closing_stores' => [
+        'name' => 'Fuel Service Closing Stores',
+        'index_title' => ' List',
+        'new_title' => 'New Closing Store Fuel Service',
+        'create_title' => 'Create Closing Store Fuel Service',
+        'edit_title' => 'Edit Closing Store Fuel Service',
+        'show_title' => 'Show Closing Store Fuel Service',
+        'inputs' => [
+            'closing_store_id' => 'Closing Store',
         ],
     ],
 

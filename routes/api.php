@@ -34,8 +34,8 @@ use App\Http\Controllers\Api\StoreAssetController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\UserRefundsController;
 use App\Http\Controllers\Api\PaymentTypeController;
-use App\Http\Controllers\Api\FuelServiceController;
 use App\Http\Controllers\Api\UtilityBillController;
+use App\Http\Controllers\Api\FuelServiceController;
 use App\Http\Controllers\Api\UserVehiclesController;
 use App\Http\Controllers\Api\UserProductsController;
 use App\Http\Controllers\Api\UserHygienesController;
@@ -146,6 +146,7 @@ use App\Http\Controllers\Api\StoreRequestPurchasesController;
 use App\Http\Controllers\Api\StoreInvoicePurchasesController;
 use App\Http\Controllers\Api\MaterialGroupProductsController;
 use App\Http\Controllers\Api\TransferStockProductsController;
+use App\Http\Controllers\Api\PresenceClosingStoresController;
 use App\Http\Controllers\Api\ProductMovementAssetsController;
 use App\Http\Controllers\Api\ProductDetailRequestsController;
 use App\Http\Controllers\Api\ProductTransferStocksController;
@@ -165,6 +166,7 @@ use App\Http\Controllers\Api\product_transfer_stockController;
 use App\Http\Controllers\Api\out_in_product_productController;
 use App\Http\Controllers\Api\StockCardOutInProductsController;
 use App\Http\Controllers\Api\ClosingStoreCashlessesController;
+use App\Http\Controllers\Api\closing_store_presenceController;
 use App\Http\Controllers\Api\UserSalesOrderEmployeesController;
 use App\Http\Controllers\Api\OnlineCategoryEProductsController;
 use App\Http\Controllers\Api\PaymentTypeFuelServicesController;
@@ -187,6 +189,7 @@ use App\Http\Controllers\Api\UtilityProviderUtilitiesController;
 use App\Http\Controllers\Api\StoreAssetMovementAssetsController;
 use App\Http\Controllers\Api\ClosingStoreFuelServicesController;
 use App\Http\Controllers\Api\payment_receipt_presenceController;
+use App\Http\Controllers\Api\FuelServiceClosingStoresController;
 use App\Http\Controllers\Api\CustomerSalesOrderOnlinesController;
 use App\Http\Controllers\Api\CustomerDeliveryAddressesController;
 use App\Http\Controllers\Api\EmployeeContractEmployeesController;
@@ -203,8 +206,9 @@ use App\Http\Controllers\Api\ProductSalesOrderEmployeesController;
 use App\Http\Controllers\Api\product_sales_order_onlineController;
 use App\Http\Controllers\Api\PurchaseOrderClosingStoresController;
 use App\Http\Controllers\Api\ClosingStorePurchaseOrdersController;
-use App\Http\Controllers\Api\FuelServicePaymentReceiptsController;
 use App\Http\Controllers\Api\PaymentReceiptFuelServicesController;
+use App\Http\Controllers\Api\FuelServicePaymentReceiptsController;
+use App\Http\Controllers\Api\closing_store_fuel_serviceController;
 use App\Http\Controllers\Api\CustomerSalesOrderEmployeesController;
 use App\Http\Controllers\Api\ClosingCourierClosingStoresController;
 use App\Http\Controllers\Api\PaymentTypeInvoicePurchasesController;
@@ -1435,6 +1439,20 @@ Route::name('api.')
             'destroy',
         ])->name('presences.salaries.destroy');
 
+        // Presence Closing Stores
+        Route::get('/presences/{presence}/closing-stores', [
+            PresenceClosingStoresController::class,
+            'index',
+        ])->name('presences.closing-stores.index');
+        Route::post('/presences/{presence}/closing-stores/{closingStore}', [
+            PresenceClosingStoresController::class,
+            'store',
+        ])->name('presences.closing-stores.store');
+        Route::delete('/presences/{presence}/closing-stores/{closingStore}', [
+            PresenceClosingStoresController::class,
+            'destroy',
+        ])->name('presences.closing-stores.destroy');
+
         Route::apiResource('products', ProductController::class);
 
         // Product Movement Assets
@@ -1937,26 +1955,6 @@ Route::name('api.')
 
         Route::apiResource('closing-stores', ClosingStoreController::class);
 
-        // ClosingStore Presences
-        Route::get('/closing-stores/{closingStore}/presences', [
-            ClosingStorePresencesController::class,
-            'index',
-        ])->name('closing-stores.presences.index');
-        Route::post('/closing-stores/{closingStore}/presences', [
-            ClosingStorePresencesController::class,
-            'store',
-        ])->name('closing-stores.presences.store');
-
-        // ClosingStore Fuel Services
-        Route::get('/closing-stores/{closingStore}/fuel-services', [
-            ClosingStoreFuelServicesController::class,
-            'index',
-        ])->name('closing-stores.fuel-services.index');
-        Route::post('/closing-stores/{closingStore}/fuel-services', [
-            ClosingStoreFuelServicesController::class,
-            'store',
-        ])->name('closing-stores.fuel-services.store');
-
         // ClosingStore Cashlesses
         Route::get('/closing-stores/{closingStore}/cashlesses', [
             ClosingStoreCashlessesController::class,
@@ -2008,6 +2006,34 @@ Route::name('api.')
             '/closing-stores/{closingStore}/invoice-purchases/{invoicePurchase}',
             [ClosingStoreInvoicePurchasesController::class, 'destroy']
         )->name('closing-stores.invoice-purchases.destroy');
+
+        // ClosingStore Fuel Services
+        Route::get('/closing-stores/{closingStore}/fuel-services', [
+            ClosingStoreFuelServicesController::class,
+            'index',
+        ])->name('closing-stores.fuel-services.index');
+        Route::post(
+            '/closing-stores/{closingStore}/fuel-services/{fuelService}',
+            [ClosingStoreFuelServicesController::class, 'store']
+        )->name('closing-stores.fuel-services.store');
+        Route::delete(
+            '/closing-stores/{closingStore}/fuel-services/{fuelService}',
+            [ClosingStoreFuelServicesController::class, 'destroy']
+        )->name('closing-stores.fuel-services.destroy');
+
+        // ClosingStore Presences
+        Route::get('/closing-stores/{closingStore}/presences', [
+            ClosingStorePresencesController::class,
+            'index',
+        ])->name('closing-stores.presences.index');
+        Route::post('/closing-stores/{closingStore}/presences/{presence}', [
+            ClosingStorePresencesController::class,
+            'store',
+        ])->name('closing-stores.presences.store');
+        Route::delete('/closing-stores/{closingStore}/presences/{presence}', [
+            ClosingStorePresencesController::class,
+            'destroy',
+        ])->name('closing-stores.presences.destroy');
 
         Route::apiResource('store-cashlesses', StoreCashlessController::class);
 
@@ -2196,6 +2222,20 @@ Route::name('api.')
             '/fuel-services/{fuelService}/payment-receipts/{paymentReceipt}',
             [FuelServicePaymentReceiptsController::class, 'destroy']
         )->name('fuel-services.payment-receipts.destroy');
+
+        // FuelService Closing Stores
+        Route::get('/fuel-services/{fuelService}/closing-stores', [
+            FuelServiceClosingStoresController::class,
+            'index',
+        ])->name('fuel-services.closing-stores.index');
+        Route::post(
+            '/fuel-services/{fuelService}/closing-stores/{closingStore}',
+            [FuelServiceClosingStoresController::class, 'store']
+        )->name('fuel-services.closing-stores.store');
+        Route::delete(
+            '/fuel-services/{fuelService}/closing-stores/{closingStore}',
+            [FuelServiceClosingStoresController::class, 'destroy']
+        )->name('fuel-services.closing-stores.destroy');
 
         Route::apiResource('e-products', EProductController::class);
 

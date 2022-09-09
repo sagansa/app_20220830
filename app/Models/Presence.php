@@ -40,16 +40,6 @@ class Presence extends Model
 
     protected $searchableFields = ['*'];
 
-    public function monthlySalary()
-    {
-        return $this->hasOne(MonthlySalary::class);
-    }
-
-    public function closingStore()
-    {
-        return $this->belongsTo(ClosingStore::class);
-    }
-
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by_id');
@@ -65,9 +55,24 @@ class Presence extends Model
         return $this->belongsTo(PaymentType::class);
     }
 
-    public function transferDailySalaries()
+    public function paymentReceipts()
     {
-        return $this->belongsToMany(TransferDailySalary::class);
+        return $this->belongsToMany(PaymentReceipt::class);
+    }
+
+    public function salaries()
+    {
+        return $this->belongsToMany(
+            Salary::class,
+            'monthly_salary_presence',
+            'presence_id',
+            'monthly_salary_id'
+        );
+    }
+
+    public function closingStores()
+    {
+        return $this->belongsToMany(ClosingStore::class);
     }
 
     public function delete_image()

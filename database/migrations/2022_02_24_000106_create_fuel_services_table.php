@@ -21,11 +21,10 @@ return new class extends Migration {
             $table->decimal('km');
             $table->decimal('liter');
             $table->bigInteger('amount');
-            $table->unsignedBigInteger('closing_store_id');
-            $table->unsignedBigInteger('created_by_id')->nullable();
-            $table->unsignedBigInteger('approved_by_id')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->text('notes')->nullable();
+            $table->unsignedBigInteger('created_by_id')->nullable();
+            $table->unsignedBigInteger('approved_by_id')->nullable();
 
             $table->timestamps();
         });

@@ -7,7 +7,6 @@ use App\Models\FuelService;
 
 use App\Models\Vehicle;
 use App\Models\PaymentType;
-use App\Models\ClosingStore;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -115,7 +114,6 @@ class FuelServiceControllerTest extends TestCase
     {
         $fuelService = FuelService::factory()->create();
 
-        $closingStore = ClosingStore::factory()->create();
         $vehicle = Vehicle::factory()->create();
         $paymentType = PaymentType::factory()->create();
         $user = User::factory()->create();
@@ -128,7 +126,6 @@ class FuelServiceControllerTest extends TestCase
             'amount' => $this->faker->randomNumber,
             'status' => $this->faker->numberBetween(1, 3),
             'notes' => $this->faker->text,
-            'closing_store_id' => $closingStore->id,
             'vehicle_id' => $vehicle->id,
             'payment_type_id' => $paymentType->id,
             'created_by_id' => $user->id,

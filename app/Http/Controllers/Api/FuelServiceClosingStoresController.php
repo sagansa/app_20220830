@@ -5,62 +5,64 @@ use App\Models\FuelService;
 use Illuminate\Http\Request;
 use App\Models\ClosingStore;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\FuelServiceCollection;
+use App\Http\Resources\ClosingStoreCollection;
 
-class ClosingStoreFuelServicesController extends Controller
+class FuelServiceClosingStoresController extends Controller
 {
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
+     * @param \App\Models\FuelService $fuelService
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, ClosingStore $closingStore)
+    public function index(Request $request, FuelService $fuelService)
     {
-        $this->authorize('view', $closingStore);
+        $this->authorize('view', $fuelService);
 
         $search = $request->get('search', '');
 
-        $fuelServices = $closingStore
-            ->fuelServices()
+        $closingStores = $fuelService
+            ->closingStores()
             ->search($search)
             ->latest()
             ->paginate();
 
-        return new FuelServiceCollection($fuelServices);
+        return new ClosingStoreCollection($closingStores);
     }
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
      * @param \App\Models\FuelService $fuelService
+     * @param \App\Models\ClosingStore $closingStore
      * @return \Illuminate\Http\Response
      */
     public function store(
         Request $request,
-        ClosingStore $closingStore,
-        FuelService $fuelService
+        FuelService $fuelService,
+        ClosingStore $closingStore
     ) {
-        $this->authorize('update', $closingStore);
+        $this->authorize('update', $fuelService);
 
-        $closingStore->fuelServices()->syncWithoutDetaching([$fuelService->id]);
+        $fuelService
+            ->closingStores()
+            ->syncWithoutDetaching([$closingStore->id]);
 
         return response()->noContent();
     }
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
      * @param \App\Models\FuelService $fuelService
+     * @param \App\Models\ClosingStore $closingStore
      * @return \Illuminate\Http\Response
      */
     public function destroy(
         Request $request,
-        ClosingStore $closingStore,
-        FuelService $fuelService
+        FuelService $fuelService,
+        ClosingStore $closingStore
     ) {
-        $this->authorize('update', $closingStore);
+        $this->authorize('update', $fuelService);
 
-        $closingStore->fuelServices()->detach($fuelService);
+        $fuelService->closingStores()->detach($closingStore);
 
         return response()->noContent();
     }

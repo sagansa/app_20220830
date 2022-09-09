@@ -57,11 +57,6 @@ class ClosingStore extends Model
         return $this->belongsTo(User::class, 'transfer_by_id');
     }
 
-    public function presences()
-    {
-        return $this->hasMany(Presence::class);
-    }
-
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by_id');
@@ -70,11 +65,6 @@ class ClosingStore extends Model
     public function approved_by()
     {
         return $this->belongsTo(User::class, 'approved_by_id');
-    }
-
-    public function fuelServices()
-    {
-        return $this->hasMany(FuelService::class);
     }
 
     public function cashlesses()
@@ -95,6 +85,16 @@ class ClosingStore extends Model
     public function invoicePurchases()
     {
         return $this->belongsToMany(InvoicePurchase::class);
+    }
+
+    public function fuelServices()
+    {
+        return $this->belongsToMany(FuelService::class);
+    }
+
+    public function presences()
+    {
+        return $this->belongsToMany(Presence::class);
     }
 
     public function delete_image()

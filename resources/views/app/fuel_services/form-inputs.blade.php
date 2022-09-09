@@ -62,15 +62,6 @@
     <x-input.currency name="amount" label="Amount" value="{{ old('amount', $editing ? $fuelService->amount : '') }}">
     </x-input.currency>
 
-    <x-input.select name="closing_store_id" label="Closing Store">
-        @php $selected = old('closing_store_id', ($editing ? $fuelService->closing_store_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach ($closingStores as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
-            </option>
-        @endforeach
-    </x-input.select>
-
     @role('super-admin|manager')
         <x-input.select name="status" label="Status">
             @php $selected = old('status', ($editing ? $fuelService->status : '1')) @endphp

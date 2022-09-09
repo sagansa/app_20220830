@@ -11,7 +11,7 @@ use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ClosingStorePresencesTest extends TestCase
+class PresenceClosingStoresTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,41 +31,41 @@ class ClosingStorePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_closing_store_presences()
+    public function it_gets_presence_closing_stores()
     {
-        $closingStore = ClosingStore::factory()->create();
         $presence = Presence::factory()->create();
+        $closingStore = ClosingStore::factory()->create();
 
-        $closingStore->presences()->attach($presence);
+        $presence->closingStores()->attach($closingStore);
 
         $response = $this->getJson(
-            route('api.closing-stores.presences.index', $closingStore)
+            route('api.presences.closing-stores.index', $presence)
         );
 
-        $response->assertOk()->assertSee($presence->image_in);
+        $response->assertOk()->assertSee($closingStore->date);
     }
 
     /**
      * @test
      */
-    public function it_can_attach_presences_to_closing_store()
+    public function it_can_attach_closing_stores_to_presence()
     {
-        $closingStore = ClosingStore::factory()->create();
         $presence = Presence::factory()->create();
+        $closingStore = ClosingStore::factory()->create();
 
         $response = $this->postJson(
-            route('api.closing-stores.presences.store', [
-                $closingStore,
+            route('api.presences.closing-stores.store', [
                 $presence,
+                $closingStore,
             ])
         );
 
         $response->assertNoContent();
 
         $this->assertTrue(
-            $closingStore
-                ->presences()
-                ->where('presences.id', $presence->id)
+            $presence
+                ->closingStores()
+                ->where('closing_stores.id', $closingStore->id)
                 ->exists()
         );
     }
@@ -73,24 +73,24 @@ class ClosingStorePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_presences_from_closing_store()
+    public function it_can_detach_closing_stores_from_presence()
     {
-        $closingStore = ClosingStore::factory()->create();
         $presence = Presence::factory()->create();
+        $closingStore = ClosingStore::factory()->create();
 
         $response = $this->deleteJson(
-            route('api.closing-stores.presences.store', [
-                $closingStore,
+            route('api.presences.closing-stores.store', [
                 $presence,
+                $closingStore,
             ])
         );
 
         $response->assertNoContent();
 
         $this->assertFalse(
-            $closingStore
-                ->presences()
-                ->where('presences.id', $presence->id)
+            $presence
+                ->closingStores()
+                ->where('closing_stores.id', $closingStore->id)
                 ->exists()
         );
     }

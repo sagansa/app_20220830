@@ -50,21 +50,21 @@ class PresenceController extends Controller
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
+        $users = User::orderBy('name', 'asc')
+            // ->whereIn('status', ['1'])
+            ->pluck('name', 'id');
 
-        $closingStores = ClosingStore::
+        // $closingStores = ClosingStore::
             // join('stores', 'stores.id', '=', 'closing_stores.store_id')
             // ->join('shift_stores', 'shift_stores.id', '=', 'closing_stores.shift_store_id')
             // ->select('stores.nickname', 'shift_stores.name', 'closing_stores.date')
             // ->orderBy('closing_stores.date', 'desc')
-            where('date', '>=', Carbon::now()->subDays(3)->toDateString())
-            ->orderBy('date', 'desc')
-            ->get()
-            ->pluck('closing_store_name', 'id');
+            // where('date', '>=', Carbon::now()->subDays(3)->toDateString())
+            // ->orderBy('date', 'desc')
+            // ->get()
+            // ->pluck('closing_store_name', 'id');
 
-        return view(
-            'app.presences.create',
-            compact('closingStores', 'paymentTypes')
-        );
+        return view('app.presences.create', compact('paymentTypes', 'users'));
     }
 
     /**
@@ -111,21 +111,17 @@ class PresenceController extends Controller
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
+        $users = User::orderBy('name', 'asc')
+            // ->whereIn('status', ['1'])
+            ->pluck('name', 'id');
 
-        $closingStores = ClosingStore::orderBy('date', 'desc')
-            ->where('date', '>=', Carbon::now()->subDays(3)->toDateString())
-            ->get()
-            ->pluck('closing_store_name', 'id');
+        // $closingStores = ClosingStore::orderBy('date', 'desc')
+        //     ->where('date', '>=', Carbon::now()->subDays(3)->toDateString())
+        //     ->get()
+        //     ->pluck('closing_store_name', 'id');
 
         return view(
-            'app.presences.edit',
-            compact(
-                'presence',
-                'closingStores',
-                'paymentTypes',
-
-            )
-        );
+            'app.presences.edit', compact('presence', 'paymentTypes', 'users'));
     }
 
     /**

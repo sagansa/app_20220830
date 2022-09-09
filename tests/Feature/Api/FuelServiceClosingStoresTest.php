@@ -3,7 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
-use App\Models\Presence;
+use App\Models\FuelService;
 use App\Models\ClosingStore;
 
 use Tests\TestCase;
@@ -11,7 +11,7 @@ use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ClosingStorePresencesTest extends TestCase
+class FuelServiceClosingStoresTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,41 +31,41 @@ class ClosingStorePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_closing_store_presences()
+    public function it_gets_fuel_service_closing_stores()
     {
+        $fuelService = FuelService::factory()->create();
         $closingStore = ClosingStore::factory()->create();
-        $presence = Presence::factory()->create();
 
-        $closingStore->presences()->attach($presence);
+        $fuelService->closingStores()->attach($closingStore);
 
         $response = $this->getJson(
-            route('api.closing-stores.presences.index', $closingStore)
+            route('api.fuel-services.closing-stores.index', $fuelService)
         );
 
-        $response->assertOk()->assertSee($presence->image_in);
+        $response->assertOk()->assertSee($closingStore->date);
     }
 
     /**
      * @test
      */
-    public function it_can_attach_presences_to_closing_store()
+    public function it_can_attach_closing_stores_to_fuel_service()
     {
+        $fuelService = FuelService::factory()->create();
         $closingStore = ClosingStore::factory()->create();
-        $presence = Presence::factory()->create();
 
         $response = $this->postJson(
-            route('api.closing-stores.presences.store', [
+            route('api.fuel-services.closing-stores.store', [
+                $fuelService,
                 $closingStore,
-                $presence,
             ])
         );
 
         $response->assertNoContent();
 
         $this->assertTrue(
-            $closingStore
-                ->presences()
-                ->where('presences.id', $presence->id)
+            $fuelService
+                ->closingStores()
+                ->where('closing_stores.id', $closingStore->id)
                 ->exists()
         );
     }
@@ -73,24 +73,24 @@ class ClosingStorePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_presences_from_closing_store()
+    public function it_can_detach_closing_stores_from_fuel_service()
     {
+        $fuelService = FuelService::factory()->create();
         $closingStore = ClosingStore::factory()->create();
-        $presence = Presence::factory()->create();
 
         $response = $this->deleteJson(
-            route('api.closing-stores.presences.store', [
+            route('api.fuel-services.closing-stores.store', [
+                $fuelService,
                 $closingStore,
-                $presence,
             ])
         );
 
         $response->assertNoContent();
 
         $this->assertFalse(
-            $closingStore
-                ->presences()
-                ->where('presences.id', $presence->id)
+            $fuelService
+                ->closingStores()
+                ->where('closing_stores.id', $closingStore->id)
                 ->exists()
         );
     }
