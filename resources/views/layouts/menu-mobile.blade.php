@@ -54,9 +54,9 @@
                   <x-sidebars.dropdown-link href="{{ route('check-product-requests') }}">
                       Check Product Requests
                   </x-sidebars.dropdown-link>
-                  <x-sidebars.dropdown-link href="{{ route('request-purchase-approvals') }}">
+                  {{-- <x-sidebars.dropdown-link href="{{ route('request-purchase-approvals') }}">
                       Request Purchase Approvals
-                  </x-sidebars.dropdown-link>
+                  </x-sidebars.dropdown-link> --}}
 
               </x-sidebars.nav-dropdown-mobile>
           @endrole
