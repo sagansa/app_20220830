@@ -49,10 +49,7 @@
                         Purchase Date
                     </x-tables.th-left>
                     <x-tables.th-left>
-                        Store Request
-                    </x-tables.th-left>
-                    <x-tables.th-left>
-                        Store Invoice
+                        Store
                     </x-tables.th-left>
                     <x-tables.th-left>
                         Quantity Plan
@@ -79,7 +76,9 @@
 
                         <x-tables.td-left-hide>
                             @if ($detailRequest->status == 2)
-                                {{ optional($detailRequest->detailInvoice)->invoicePurchase->date ?? '-' }}
+                                {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }}
+                            @else
+                                -
                             @endif
                         </x-tables.td-left-hide>
 
@@ -88,17 +87,17 @@
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            {{ optional($detailRequest->detailInvoice)->invoicePurchase->store->nickname ?? '-' }}
-                        </x-tables.td-left-hide>
-
-                        <x-tables.td-left-hide>
                             {{ $detailRequest->quantity_plan }}
                             {{ optional($detailRequest->product)->unit->unit ?? '-' }}
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            {{ optional($detailRequest->detailInvoice)->quantity_product ?? '-' }}
-                            {{ optional($detailRequest->product)->unit->unit ?? '-' }}
+                            @if ($detailRequest->status == 2)
+                                {{ optional($detailRequest->detailInvoice)->quantity_product ?? '-' }}
+                                {{ optional($detailRequest->product)->unit->unit ?? '-' }}
+                            @else
+                                -
+                            @endif
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
