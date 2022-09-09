@@ -80,6 +80,15 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
+                            >@lang('crud.fuel_services.inputs.closing_store_id')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ optional($fuelService->closingStore)->date ??
+                            '-' }}</x-shows.dd
+                        >
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
                             >@lang('crud.fuel_services.inputs.status')</x-shows.dt
                         >
                         <x-shows.dd
@@ -88,11 +97,10 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
-                            >@lang('crud.fuel_services.inputs.closing_store_id')</x-shows.dt
+                            >@lang('crud.fuel_services.inputs.notes')</x-shows.dt
                         >
                         <x-shows.dd
-                            >{{ optional($fuelService->closingStore)->date ??
-                            '-' }}</x-shows.dd
+                            >{{ $fuelService->notes ?? '-' }}</x-shows.dd
                         >
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>

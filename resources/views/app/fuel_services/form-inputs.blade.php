@@ -33,7 +33,7 @@
     </x-input.select>
 
     <x-input.select name="fuel_service" label="Fuel Service">
-        @php $selected = old('fuel_service', ($editing ? $fuelService->fuel_service : '')) @endphp
+        @php $selected = old('fuel_service', ($editing ? $fuelService->fuel_service : '1')) @endphp
         <option value="1" {{ $selected == '1' ? 'selected' : '' }}>fuel</option>
         <option value="2" {{ $selected == '2' ? 'selected' : '' }}>service</option>
     </x-input.select>
@@ -64,6 +64,23 @@
             </option>
         @endforeach
     </x-input.select>
+
+    @role('super-admin|manager')
+        <x-input.select name="status" label="Status">
+            @php $selected = old('status', ($editing ? $fuelService->status : '1')) @endphp
+            <option value="1" {{ $selected == '1' ? 'selected' : '' }}>belum dibayar</option>
+            <option value="2" {{ $selected == '2' ? 'selected' : '' }}>sudah dibayar</option>
+            <option value="3" {{ $selected == '3' ? 'selected' : '' }}>siap dibayar</option>
+            <option value="4" {{ $selected == '4' ? 'selected' : '' }}>tidak valid</option>
+        </x-input.select>
+    @endrole
+
+    @role('supervisor|staff')
+        <x-input.hidden name="status" value="{{ old('status', $editing ? $fuelService->status : '1') }}"></x-input.hidden>
+    @endrole
+
+    <x-input.textarea name="notes" label="Notes" maxlength="255">
+        {{ old('notes', $editing ? $fuelService->notes : '') }}</x-input.textarea>
 
     @if ($editing)
         <x-shows.dl>

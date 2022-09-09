@@ -66,7 +66,6 @@ class ClosingStoreFuelServicesTest extends TestCase
 
         unset($data['created_by_id']);
         unset($data['approved_by_id']);
-        unset($data['notes']);
 
         $this->assertDatabaseHas('fuel_services', $data);
 

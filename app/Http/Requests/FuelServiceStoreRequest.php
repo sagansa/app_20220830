@@ -31,8 +31,9 @@ class FuelServiceStoreRequest extends FormRequest
             'km' => ['required', 'numeric', 'gt:0'],
             'liter' => ['required', 'numeric', 'gt:0'],
             'amount' => ['required', 'numeric', 'gt:0'],
-            'status' => ['required', 'in:1,2,3,4'],
             'closing_store_id' => ['required', 'exists:closing_stores,id'],
+            'status' => ['required', 'in:1,2,3,4'],
+            'notes' => ['nullable', 'max:255', 'string'],
         ];
     }
 }
