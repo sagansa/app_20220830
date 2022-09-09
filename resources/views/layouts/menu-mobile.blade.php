@@ -109,8 +109,7 @@
               Auth::user()->can('view-any', App\Models\ClosingStore::class) ||
               Auth::user()->can('view-any', App\Models\ClosingCourier::class) ||
               Auth::user()->can('view-any', App\Models\Refund::class) ||
-              Auth::user()->can('view-any', App\Models\PaymentReceipt::class) ||
-              Auth::user()->can('view-any', App\Models\Receipts::class))
+              Auth::user()->can('view-any', App\Models\PaymentReceipt::class))
               <x-sidebars.nav-dropdown-mobile control="purchase-transactions" title="Purchase Transactions">
                   <x-slot name="content">
                       <svg x-data="{ isOn: false }" @click="isOn = !isOn" :aria-checked="isOn"
