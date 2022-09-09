@@ -121,7 +121,10 @@ class ClosingStorePresencesDetail extends Component
     public function render()
     {
         return view('livewire.closing-store-presences-detail', [
-            'presences' => $this->closingStore->presences()->paginate(20),
+            'presences' => $this->closingStore
+                ->presences()
+                ->where('payment_type_id', '=', '2')
+                ->paginate(20),
         ]);
     }
 }
