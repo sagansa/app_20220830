@@ -1506,6 +1506,30 @@ return [
         ],
     ],
 
+    'closing_store_presences' => [
+        'name' => 'Closing Store Presences',
+        'index_title' => ' List',
+        'new_title' => 'New Closing Store Presences',
+        'create_title' => 'Create Closing Store Presences',
+        'edit_title' => 'Edit Closing Store Presences',
+        'show_title' => 'Show Closing Store Presences',
+        'inputs' => [
+            'presence_id' => 'Presence',
+        ],
+    ],
+
+    'closing_store_fuel_services' => [
+        'name' => 'Closing Store Fuel Services',
+        'index_title' => ' List',
+        'new_title' => 'New Closing Store Fuel Services',
+        'create_title' => 'Create Closing Store Fuel Services',
+        'edit_title' => 'Edit Closing Store Fuel Services',
+        'show_title' => 'Show Closing Store Fuel Services',
+        'inputs' => [
+            'fuel_service_id' => 'Fuel Service',
+        ],
+    ],
+
     'roles' => [
         'name' => 'Roles',
         'index_title' => 'Roles List',

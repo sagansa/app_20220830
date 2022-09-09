@@ -2,38 +2,31 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\User;
 use Livewire\Component;
 use App\Models\Presence;
-use Livewire\WithPagination;
 use App\Models\ClosingStore;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ClosingStorePresencesDetail extends Component
 {
-    use WithPagination;
     use AuthorizesRequests;
 
     public ClosingStore $closingStore;
     public Presence $presence;
-    public $usersForSelect = [];
+    public $presencesForSelect = [];
+    public $presence_id = null;
 
-    public $selected = [];
-    public $editing = false;
-    public $allSelected = false;
     public $showingModal = false;
-
     public $modalTitle = 'New Presence';
 
     protected $rules = [
-        'presence.created_by_id' => ['nullable', 'exists:users,id'],
-        'presence.amount' => ['required'],
+        'presence_id' => ['required', 'exists:presences,id'],
     ];
 
     public function mount(ClosingStore $closingStore)
     {
         $this->closingStore = $closingStore;
-        $this->usersForSelect = User::pluck('name', 'id');
+        $this->presencesForSelect = Presence::pluck('image_in', 'id');
         $this->resetPresenceData();
     }
 
@@ -41,27 +34,15 @@ class ClosingStorePresencesDetail extends Component
     {
         $this->presence = new Presence();
 
-        $this->presence->created_by_id = null;
+        $this->presence_id = null;
 
         $this->dispatchBrowserEvent('refresh');
     }
 
     public function newPresence()
     {
-        $this->editing = false;
         $this->modalTitle = trans('crud.closing_store_presences.new_title');
         $this->resetPresenceData();
-
-        $this->showModal();
-    }
-
-    public function editPresence(Presence $presence)
-    {
-        $this->editing = true;
-        $this->modalTitle = trans('crud.closing_store_presences.edit_title');
-        $this->presence = $presence;
-
-        $this->dispatchBrowserEvent('refresh');
 
         $this->showModal();
     }
@@ -81,48 +62,34 @@ class ClosingStorePresencesDetail extends Component
     {
         $this->validate();
 
-        if (!$this->presence->closing_store_id) {
-            $this->authorize('create', Presence::class);
+        $this->authorize('create', Presence::class);
 
-            $this->presence->closing_store_id = $this->closingStore->id;
-        } else {
-            $this->authorize('update', $this->presence);
-        }
-
-        $this->presence->save();
+        $this->closingStore->presences()->attach($this->presence_id, []);
 
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function detach($presence)
     {
         $this->authorize('delete-any', Presence::class);
 
-        Presence::whereIn('id', $this->selected)->delete();
-
-        $this->selected = [];
-        $this->allSelected = false;
+        $this->closingStore->presences()->detach($presence);
 
         $this->resetPresenceData();
     }
 
-    public function toggleFullSelection()
-    {
-        if (!$this->allSelected) {
-            $this->selected = [];
-            return;
-        }
-
-        foreach ($this->closingStore->presences as $presence) {
-            array_push($this->selected, $presence->id);
-        }
-    }
-
     public function render()
     {
+        $this->presence->totals = 0;
+
+        foreach ($this->closingStore->presences as $presence) {
+            $this->presence->totals += $presence['amount'];
+        }
+
         return view('livewire.closing-store-presences-detail', [
-            'presences' => $this->closingStore
-                ->presences()->where('payment_type_id', '=', '2')
+            'closingStorePresences' => $this->closingStore
+                ->presences()
+                ->withPivot([])
                 ->paginate(20),
         ]);
     }

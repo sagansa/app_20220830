@@ -15,12 +15,6 @@
         <x-table>
             <x-slot name="head">
                 <tr>
-                    @if ($closingStore->transfer_status != 2 || $closingStore->closing_status != 2)
-                        <th class="w-1 px-4 py-3 text-left">
-                            <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
-                                title="{{ trans('crud.common.select_all') }}" />
-                        </th>
-                    @endif
                     <x-tables.th-left>
                         Name
                     </x-tables.th-left>
@@ -33,11 +27,6 @@
             <x-slot name="body">
                 @foreach ($presences as $presence)
                     <tr class="hover:bg-gray-100">
-                        @if ($closingStore->transfer_status != 2 || $closingStore->closing_status != 2)
-                            <x-tables.td-left>
-                                <input type="checkbox" value="{{ $presence->id }}" wire:model="selected" />
-                            </x-tables.td-left>
-                        @endif
                         <x-tables.td-left>
                             {{ $presence->created_by->name }}
                         </x-tables.td-left>

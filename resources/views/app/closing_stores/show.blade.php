@@ -117,31 +117,20 @@
                     <x-slot name="title"> Invoice Purchase </x-slot>
                     <livewire:closing-store-invoice-purchases-detail :closingStore="$closingStore" />
                 </x-partials.card>
-            @endcan
 
-            @can('view-any', App\Models\ClosingStore::class)
                 <x-partials.card class="mt-5">
                     <x-slot name="title"> Purchase Orders </x-slot>
                     <livewire:closing-store-purchase-orders-detail :closingStore="$closingStore" />
                 </x-partials.card>
-            @endcan
 
-            @can('view-any', App\Models\ClosingStore::class)
                 <x-partials.card class="mt-5">
                     <x-slot name="title"> Presences </x-slot>
-                    <livewire:closing-store-presences :closingStore="$closingStore" />
+                    <livewire:closing-store-presences-detail :closingStore="$closingStore" />
                 </x-partials.card>
-            @endcan
-            @can('view-any', App\Models\ClosingStore::class)
+
                 <x-partials.card class="mt-5">
                     <x-slot name="title"> Fuel Services </x-slot>
                     <livewire:closing-store-fuel-services-detail :closingStore="$closingStore" />
-                </x-partials.card>
-            @endcan
-            @can('view-any', App\Models\ClosingStore::class)
-                <x-partials.card class="mt-5">
-                    <x-slot name="title"> Cashlesses </x-slot>
-                    <livewire:closing-store-cashlesses-detail :closingStore="$closingStore" />
                 </x-partials.card>
             @endcan
 

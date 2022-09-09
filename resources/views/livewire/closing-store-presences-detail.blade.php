@@ -1,17 +1,13 @@
 <div>
     <div>
-        @can('create', App\Models\Presence::class)
-            <button class="button" wire:click="newPresence">
-                <i class="mr-1 icon ion-md-add text-primary"></i>
-                @lang('crud.common.new')
-            </button>
-            @endcan @can('delete-any', App\Models\Presence::class)
-            <button class="button button-danger" {{ empty($selected) ? 'disabled' : '' }}
-                onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="destroySelected">
-                <i class="mr-1 icon ion-md-trash text-primary"></i>
-                @lang('crud.common.delete_selected')
-            </button>
-        @endcan
+        @role('super-admin')
+            @can('create', App\Models\Presence::class)
+                <button class="button" wire:click="newPresence">
+                    <i class="mr-1 icon ion-md-add text-primary"></i>
+                    @lang('crud.common.attach')
+                </button>
+            @endcan
+        @endrole
     </div>
 
     <x-modal wire:model="showingModal">
@@ -20,81 +16,73 @@
 
             <div class="mt-5">
                 <div>
-                    <x-input.select name="presence.created_by_id" label="Created By"
-                        wire:model="presence.created_by_id">
-                        <option value="null" disabled>Please select the User</option>
-                        @foreach ($usersForSelect as $value => $label)
+                    <x-input.select name="presence_id" label="Presence" wire:model="presence_id">
+                        <option value="null" disabled>-- select --</option>
+                        @foreach ($presencesForSelect as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </x-input.select>
-
-                    <x-input.currency name="presence.amount" label="Amount" wire:model="presence.amount" max="255"
-                        placeholder="Amount"></x-input.currency>
                 </div>
             </div>
         </div>
 
         <div class="flex justify-between px-6 py-4 bg-gray-50">
-            <button type="button" class="button" wire:click="$toggle('showingModal')">
-                <i class="mr-1 icon ion-md-close"></i>
-                @lang('crud.common.cancel')
-            </button>
-
-            <button type="button" class="button button-primary" wire:click="save">
-                <i class="mr-1 icon ion-md-save"></i>
-                @lang('crud.common.save')
-            </button>
+            <x-buttons.secondary wire:click="$toggle('showingModal')">@lang('crud.common.cancel')</x-buttons.secondary>
+            <x-jet-button wire:click="save">@lang('crud.common.save')</x-jet-button>
         </div>
     </x-modal>
 
-    <div class="block w-full mt-4 overflow-auto scrolling-touch">
-        <table class="w-full max-w-full mb-4 bg-transparent">
-            <thead class="text-gray-700">
+    <x-tables.card-overflow>
+        <x-table>
+            <x-slot name="head">
                 <tr>
-                    <th class="w-1 px-4 py-3 text-left">
-                        <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
-                            title="{{ trans('crud.common.select_all') }}" />
-                    </th>
-                    <th class="px-4 py-3 text-left">
-                        @lang('crud.closing_store_presences.inputs.created_by_id')
-                    </th>
-                    <th class="px-4 py-3 text-right">
-                        @lang('crud.closing_store_presences.inputs.amount')
-                    </th>
+                    <x-tables.th-left>
+                        Employee
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        Amount
+                    </x-tables.th-left>
                     <th></th>
                 </tr>
-            </thead>
-            <tbody class="text-gray-600">
-                @foreach ($presences as $presence)
+            </x-slot>
+            <x-slot name="body">
+                @foreach ($closingStorePresences as $presence)
                     <tr class="hover:bg-gray-100">
-                        <td class="px-4 py-3 text-left">
-                            <input type="checkbox" value="{{ $presence->id }}" wire:model="selected" />
-                        </td>
-                        <td class="px-4 py-3 text-left">
+                        <x-tables.td-left>
                             {{ optional($presence->created_by)->name ?? '-' }}
-                        </td>
-                        <td class="px-4 py-3 text-right">
+                        </x-tables.td-left>
+                        <x-tables.td-left>
                             {{ $presence->amount ?? '-' }}
-                        </td>
-                        <td class="px-4 py-3 text-right" style="width: 134px;">
+                        </x-tables.td-left>
+                        <td class="px-4 py-3 text-right" style="width: 70px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
-                                @can('update', $presence)
-                                    <button type="button" class="button" wire:click="editPresence({{ $presence->id }})">
-                                        <i class="icon ion-md-create"></i>
-                                    </button>
-                                @endcan
+                                @if ($closingStore->transfer_status != '2' || $closingStore->closing_status != '2')
+                                    @can('delete-any', App\Models\Presence::class)
+                                        <button class="button button-danger"
+                                            onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
+                                            wire:click="detach({{ $presence->id }})">
+                                            <i class="icon ion-md-trash text-primary"></i>
+                                        </button>
+                                    @endcan
+                                @endif
                             </div>
                         </td>
                     </tr>
                 @endforeach
-            </tbody>
-            <tfoot>
+            </x-slot>
+            <x-slot name="foot">
+                <tr>
+                    <x-tables.th-total colspan="1">Totals</x-tables.th-total>
+                    <x-tables.td-total>@currency($this->presence->totals)</x-tables.td-total>
+                </tr>
                 <tr>
                     <td colspan="3">
-                        <div class="px-4 mt-10">{{ $presences->render() }}</div>
+                        <div class="px-4 mt-10">
+                            {{ $closingStorePresences->render() }}
+                        </div>
                     </td>
                 </tr>
-            </tfoot>
-        </table>
-    </div>
+            </x-slot>
+        </x-table>
+    </x-tables.card-overflow>
 </div>
