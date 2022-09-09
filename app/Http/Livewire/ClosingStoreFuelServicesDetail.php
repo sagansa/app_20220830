@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\FuelService;
 use App\Models\ClosingStore;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Carbon;
 
 class ClosingStoreFuelServicesDetail extends Component
 {
@@ -26,7 +27,9 @@ class ClosingStoreFuelServicesDetail extends Component
     public function mount(ClosingStore $closingStore)
     {
         $this->closingStore = $closingStore;
-        $this->fuelServicesForSelect = FuelService::get()->pluck('fuel_service_name', 'id');
+        $this->fuelServicesForSelect = FuelService::where('created_at', '>=', Carbon::now()->subDays(5)->toDateString())
+            ->where('payment_type_id', '=', '2')
+            ->get()->pluck('fuel_service_name', 'id');
         $this->resetFuelServiceData();
     }
 

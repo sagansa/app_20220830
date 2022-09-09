@@ -26,7 +26,7 @@ class ClosingStorePresencesDetail extends Component
     public function mount(ClosingStore $closingStore)
     {
         $this->closingStore = $closingStore;
-        $this->presencesForSelect = Presence::pluck('image_in', 'id');
+        $this->presencesForSelect = Presence::get()->pluck('presence_name', 'id');
         $this->resetPresenceData();
     }
 

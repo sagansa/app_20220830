@@ -18,7 +18,7 @@
 
                 <x-input.select name="fuel_service_id" label="Fuel Service" wire:model="fuel_service_id">
                     <option value="null" disabled>-- select --</option>
-                    @foreach ($fuelServicesForSelect as $value => $label)
+                    @foreach ($fuelServicesForSelect as $label => $value)
                         <option value="{{ $value }}">{{ $label }}</option>
                     @endforeach
                 </x-input.select>
@@ -52,7 +52,7 @@
                             {{ $fuelService->vehicle->no_register }}
                         </x-tables.td-left>
                         <x-tables.td-left>
-                            {{ $fuelService->amount }}
+                            @currency($fuelService->amount)
                         </x-tables.td-left>
                         <td class="px-4 py-3 text-right" style="width: 70px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
