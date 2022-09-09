@@ -78,8 +78,8 @@
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>{{ optional($fuelService->paymentType)->name ?? '-' }}
                         </x-tables.td-left-hide>
-                        <x-tables.td-right-hide>{{ $fuelService->km ?? '-' }}</x-tables.td-right-hide>
-                        <x-tables.td-right-hide>{{ $fuelService->liter ?? '-' }}</x-tables.td-right-hide>
+                        <x-tables.td-right-hide>@currency($fuelService->km)</x-tables.td-right-hide>
+                        <x-tables.td-right-hide>@number($fuelService->liter)</x-tables.td-right-hide>
                         <x-tables.td-right-hide>@currency($fuelService->amount)</x-tables.td-right-hide>
                         @role('super-admin')
                             <x-tables.td-right-hide>@currency($fuelService->amount / $fuelService->liter)

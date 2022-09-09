@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Carbon::macro('toFormattedDate', function () {
-            return $this->format('Y / m / d');
+            return $this->format('Y - m - d');
         });
 
         config(['app.locale' => 'id']);
