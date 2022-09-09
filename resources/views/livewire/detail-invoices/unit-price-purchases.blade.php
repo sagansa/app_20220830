@@ -91,14 +91,14 @@
                         <x-tables.td-left-hide>
                             {{ optional($detailInvoice->detailRequest)->product->name ?? '-' }}
                         </x-tables.td-left-hide>
-                        <x-tables.td-right-hide>
-                            @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
-                        </x-tables.td-right-hide>
+
                         <x-tables.td-right-hide>
                             {{ $detailInvoice->quantity_product ?? '-' }}
                             {{ optional($detailInvoice->detailRequest)->product->unit->unit ?? '-' }}
                         </x-tables.td-right-hide>
-
+                        <x-tables.td-right-hide>
+                            @currency($detailInvoice->subtotal_invoice)
+                        </x-tables.td-right-hide>
                         <td class="px-4 py-3 text-xs text-right" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
