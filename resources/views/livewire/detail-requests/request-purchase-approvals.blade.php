@@ -78,7 +78,7 @@
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }}
+                            {{ optional($detailRequest->detailInvoice)->invoicePurchase->date ?? '-' }}
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
