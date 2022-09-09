@@ -26,7 +26,7 @@ class ClosingStoreFuelServicesDetail extends Component
     public function mount(ClosingStore $closingStore)
     {
         $this->closingStore = $closingStore;
-        $this->fuelServicesForSelect = FuelService::pluck('image', 'id');
+        $this->fuelServicesForSelect = FuelService::get()->pluck('fuel_service_name', 'id');
         $this->resetFuelServiceData();
     }
 
