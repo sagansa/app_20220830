@@ -55,7 +55,7 @@ class FuelServiceController extends Controller
             // ->whereIn('status', ['1'])
             ->select('closing_stores.*', 'stores.nickname', 'shift_stores.name')
             ->orderBy('stores.nickname', 'asc')
-            ->orderBy('closing_store.date', 'desc')
+            ->orderBy('closing_stores.date', 'desc')
             ->get()
             ->pluck('closing_store_name', 'id');
 
@@ -133,7 +133,7 @@ class FuelServiceController extends Controller
             // ->whereIn('status', ['1'])
             ->select('closing_stores.*', 'stores.nickname', 'shift_stores.name')
             ->orderBy('stores.nickname', 'asc')
-            ->orderBy('closing_store.date', 'desc')
+            ->orderBy('closing_stores.date', 'desc')
             ->get()
             ->pluck('closing_store_name', 'id');
 
