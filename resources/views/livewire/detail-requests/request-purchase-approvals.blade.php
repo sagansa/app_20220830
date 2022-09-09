@@ -43,7 +43,10 @@
                         Product
                     </x-tables.th-left>
                     <x-tables.th-left>
-                        Date
+                        Request Date
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        Purchase Date
                     </x-tables.th-left>
                     <x-tables.th-left>
                         Store Request
@@ -52,7 +55,10 @@
                         Store Invoice
                     </x-tables.th-left>
                     <x-tables.th-left>
-                        Quantity
+                        Quantity Plan
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        Quantity Purchase
                     </x-tables.th-left>
                     <x-tables.th-left>
                         Status
@@ -72,11 +78,20 @@
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
+                            {{ $detailRequest->detailInvoice->invoicePurchase->date->toFormattedDate() }}
+                        </x-tables.td-left-hide>
+
+                        <x-tables.td-left-hide>
                             {{ optional($detailRequest->store)->nickname ?? '-' }}
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
                             {{ optional($detailRequest->detailInvoice)->invoicePurchase->store->nickname ?? '-' }}
+                        </x-tables.td-left-hide>
+
+                        <x-tables.td-left-hide>
+                            {{ $detailRequest->quantity_plan }}
+                            {{ optional($detailRequest->product)->unit->unit ?? '-' }}
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
