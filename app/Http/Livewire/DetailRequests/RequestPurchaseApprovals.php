@@ -61,7 +61,7 @@ class RequestPurchaseApprovals extends Component
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
                 $detailRequests
-                    ->when($filter == 'status', fn($detailRequests) => $detailRequests->where('purchase_order_products.' . $filter, 'LIKE', '%' . $value . '%'));
+                    ->when($filter == 'status', fn($detailRequests) => $detailRequests->where('detail_requests.' . $filter, 'LIKE', '%' . $value . '%'));
             }
         }
 
