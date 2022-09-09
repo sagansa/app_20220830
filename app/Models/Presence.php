@@ -26,7 +26,6 @@ class Presence extends Model
     const STATUS_TIDAK_VALID = '4';
 
     protected $fillable = [
-        'closing_store_id',
         'amount',
         'payment_type_id',
         'status',
