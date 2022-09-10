@@ -168,13 +168,13 @@
                     </tr>
 
                 @empty
-                    <x-tables.no-items-found colspan="7"> </x-tables.no-items-found>
+                    <x-tables.no-items-found colspan="8"> </x-tables.no-items-found>
                 @endforelse
             </x-slot>
             <x-slot name="foot">
                 <tr>
-                    <td colspan="7">
-                        <div class="px-4 mt-10">{!! $presences->render() !!}</div>
+                    <td colspan="8">
+                        <div class="px-4 my-2">{!! $presences->render() !!}</div>
                     </td>
                 </tr>
             </x-slot>
