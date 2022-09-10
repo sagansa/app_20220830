@@ -101,10 +101,14 @@
                                 @endforeach
                             </x-slot>
                             <x-slot name="sub">
-                                @foreach ($presence->closingStores as $closingStore)
-                                    <p> {{ optional($closingStore)->date->toFormattedDate() ?? '-' }} -
-                                        @currency($presence->amount)</p>
-                                @endforeach
+
+                                <p>
+                                    @foreach ($presence->closingStores as $closingStore)
+                                        {{ optional($closingStore)->date->toFormattedDate() ?? '-' }}
+                                    @endforeach
+                                    - @currency($presence->amount)
+                                </p>
+
                                 <p>{{ optional($presence->paymentType)->name ?? '-' }}
                                     @if ($presence->status == 1)
                                         <x-spans.yellow>belum dibayar</x-spans.yellow>
