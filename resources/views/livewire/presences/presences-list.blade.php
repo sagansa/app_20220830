@@ -76,7 +76,6 @@
                 @role('super-admin')
                     <th></th>
                 @endrole
-                {{-- <x-tables.th-left>@lang('crud.presences.inputs.closing_store_id')</x-tables.th-left> --}}
                 <x-tables.th-left>Store</x-tables.th-left>
                 <x-tables.th-left>Shift</x-tables.th-left>
                 <x-tables.th-left-hide>Date</x-tables.th-left-hide>
@@ -84,7 +83,6 @@
                 <x-tables.th-left-hide>@lang('crud.presences.inputs.payment_type_id')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.presences.inputs.status')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.presences.inputs.created_by_id')</x-tables.th-left-hide>
-                {{-- <x-tables.th-left-hide>Payment Date</x-tables.th-left-hide> --}}
                 <th></th>
             </x-slot>
             <x-slot name="body">
@@ -101,14 +99,12 @@
                                 @endforeach
                             </x-slot>
                             <x-slot name="sub">
-
                                 <p>
                                     @foreach ($presence->closingStores as $closingStore)
                                         {{ optional($closingStore)->date->toFormattedDate() ?? '-' }}
                                     @endforeach
                                     - @currency($presence->amount)
                                 </p>
-
                                 <p>{{ optional($presence->paymentType)->name ?? '-' }}
                                     @if ($presence->status == 1)
                                         <x-spans.yellow>belum dibayar</x-spans.yellow>
@@ -189,5 +185,5 @@
             <x-slot name="foot"> </x-slot>
         </x-table>
     </x-tables.card>
-    {{-- <div class="px-4 mt-10">{!! $presences->render() !!}</div> --}}
+    <div class="px-4 mt-10">{!! $presences->render() !!}</div>
 </div>

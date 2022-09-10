@@ -46,7 +46,7 @@ class PresencesList extends Component
     public function getRowsQueryProperty()
     {
 
-        $presences = Presence::query()->latest();
+        $presences = Presence::query();
 
             if (Auth::user()->hasRole('staff|supervisor|manager')) {
 
@@ -84,7 +84,6 @@ class PresencesList extends Component
     {
         return view('livewire.presences.presences-list', [
             'presences' => $this->rows,
-            // 'presences' => $presences,
         ]);
     }
 
