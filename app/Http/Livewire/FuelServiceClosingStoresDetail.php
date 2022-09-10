@@ -30,7 +30,7 @@ class FuelServiceClosingStoresDetail extends Component
         $this->closingStoresForSelect = ClosingStore::
             join('stores', 'stores.id', '=', 'closing_stores.store_id')
             ->join('shift_stores', 'shift_stores.id', '=', 'closing_stores.shift_store_id')
-            ->select('stores.nickname', 'shift_stores.name', 'closing_stores.date')
+            ->select('stores.nickname', 'shift_stores.name', 'closing_stores.*')
             ->orderBy('closing_stores.date', 'desc')
             ->where('date', '>=', Carbon::now()->subDays(5)->toDateString())
             ->get()

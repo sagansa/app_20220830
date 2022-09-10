@@ -3,7 +3,7 @@
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             @lang('crud.fuel_services.index_title')
         </h2>
-        <p class="mt-2 text-xs text-gray-700">---</p>
+        <p class="mt-2 text-xs text-gray-700">laporan bahan bakar atau service kendaraan</p>
     </x-slot>
 
     <div class="mt-4 mb-5">
@@ -49,7 +49,7 @@
                 @role('super-admin')
                     <x-tables.th-left>per liter</x-tables.th-left>
                 @endrole
-                <x-tables.th-left>@lang('crud.fuel_services.inputs.closing_store_id')</x-tables.th-left>
+                <x-tables.th-left>Payment</x-tables.th-left>
                 <th></th>
             </x-slot>
             <x-slot name="body">
