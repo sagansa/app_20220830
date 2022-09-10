@@ -114,6 +114,10 @@ class PresenceController extends Controller
     {
         $this->authorize('update', $presence);
 
+        $stores = Store::orderBy('nickname', 'asc')
+            ->whereNotIn('status', ['8'])
+            ->pluck('nickname', 'id');
+        $shiftStores = ShiftStore::orderBy('name', 'asc')->pluck('name', 'id');
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
