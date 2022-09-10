@@ -37,7 +37,13 @@
             <x-slot name="head">
                 <tr>
                     <x-tables.th-left>
-                        @lang('crud.closing_store_daily_salaries.inputs.daily_salary_id')
+                        name
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        date
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        amount
                     </x-tables.th-left>
                     <th></th>
                 </tr>
@@ -47,13 +53,13 @@
                     <tr class="hover:bg-gray-100">
 
                         <x-tables.td-left>
-                            {{ $dailySalary->store->nickname ?? '-' }}
-                        </x-tables.td-left>
-                        <x-tables.td-left>
-                            {{ $dailySalary->shiftStore->name ?? '-' }}
+                            {{ $dailySalary->created_by->name ?? '-' }}
                         </x-tables.td-left>
                         <x-tables.td-left>
                             {{ $dailySalary->date ?? '-' }}
+                        </x-tables.td-left>
+                        <x-tables.td-left>
+                            {{ $dailySalary->amount ?? '-' }}
                         </x-tables.td-left>
                         <td class="px-4 py-3 text-right" style="width: 70px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
@@ -71,6 +77,10 @@
                 @endforeach
             </x-slot>
             <x-slot name="foot">
+                <tr>
+                    <x-tables.th-total colspan="2">Totals</x-tables.th-total>
+                    <x-tables.td-total>@currency($this->dailySalary->totals)</x-tables.td-total>
+                </tr>
                 <tr>
                     <td colspan="2">
                         <div class="px-4 mt-10">
