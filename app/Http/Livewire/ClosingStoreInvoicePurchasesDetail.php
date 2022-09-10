@@ -32,7 +32,7 @@ class ClosingStoreInvoicePurchasesDetail extends Component
             ->whereIn('invoice_purchases.payment_type_id', ['2'])
             ->whereIn('invoice_purchases.payment_status', ['1', '3'])
             ->get()
-            ->pluck('invoice_purchase_name','id');
+            ->pluck('supplier_id','id');
         $this->resetInvoicePurchaseData();
     }
 
