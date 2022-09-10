@@ -4,16 +4,14 @@ namespace App\Http\Controllers;
 
 use Image;
 use App\Models\User;
+use App\Models\Store;
 use App\Models\Presence;
+use App\Models\ShiftStore;
 use App\Models\PaymentType;
 use Illuminate\Http\Request;
-use App\Models\ClosingStore;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PresenceStoreRequest;
 use App\Http\Requests\PresenceUpdateRequest;
-use App\Models\ShiftStore;
-use App\Models\Store;
-use Carbon\Carbon;
 
 class PresenceController extends Controller
 {
@@ -27,18 +25,10 @@ class PresenceController extends Controller
 
         $search = $request->get('search', '');
 
-       if (Auth::user()->hasRole('super-admin|manager')) {
-            $presences = Presence::search($search)
-                ->latest()
-                ->paginate(10)
-                ->withQueryString();
-        } else if (Auth::user()->hasRole('staff|supervisor')) {
-            $presences = Presence::search($search)
-                ->where('created_by_id', '=', Auth::user()->id)
-                ->latest()
-                ->paginate(10)
-                ->withQueryString();
-        }
+        $presences = Presence::search($search)
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
 
         return view('app.presences.index', compact('presences', 'search'));
     }
@@ -49,10 +39,12 @@ class PresenceController extends Controller
      */
     public function create(Request $request)
     {
-        $stores = Store::orderBy('nickname', 'asc')
+        $stores = Store::orderBy('name', 'asc')
             ->whereNotIn('status', ['8'])
-            ->pluck('nickname', 'id');
-        $shiftStores = ShiftStore::orderBy('name', 'asc')->pluck('name', 'id');
+            ->pluck('name', 'id');
+        $shiftStores = ShiftStore::orderBy('name', 'asc')
+            // ->whereIn('status', ['1'])
+            ->pluck('name', 'id');
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
@@ -110,7 +102,9 @@ class PresenceController extends Controller
         $stores = Store::orderBy('nickname', 'asc')
             ->whereNotIn('status', ['8'])
             ->pluck('nickname', 'id');
-        $shiftStores = ShiftStore::orderBy('name', 'asc')->pluck('name', 'id');
+        $shiftStores = ShiftStore::orderBy('name', 'asc')
+            // ->whereIn('status', ['1'])
+            ->pluck('name', 'id');
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
@@ -119,7 +113,15 @@ class PresenceController extends Controller
             ->pluck('name', 'id');
 
         return view(
-            'app.presences.edit', compact('presence', 'paymentTypes', 'users', 'stores', 'shiftStores'));
+            'app.presences.edit',
+            compact(
+                'presence',
+                'stores',
+                'shiftStores',
+                'paymentTypes',
+                'users'
+            )
+        );
     }
 
     /**
@@ -136,7 +138,7 @@ class PresenceController extends Controller
         if (
             auth()
                 ->user()
-                ->hasRole('manager|super-admin')
+                ->hasRole('supervisor|manager|super-admin')
         ) {
             $validated['approved_by_id'] = auth()->user()->id;
         }
