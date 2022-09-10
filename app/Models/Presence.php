@@ -42,15 +42,9 @@ class Presence extends Model
 
     protected $searchableFields = ['*'];
 
-    public function store()
-    {
-        return $this->belongsTo(Store::class);
-    }
-
-    public function shiftStore()
-    {
-        return $this->belongsTo(ShiftStore::class);
-    }
+    protected $casts = [
+        'date' => 'date',
+    ];
 
     public function created_by()
     {
@@ -65,6 +59,16 @@ class Presence extends Model
     public function paymentType()
     {
         return $this->belongsTo(PaymentType::class);
+    }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    public function shiftStore()
+    {
+        return $this->belongsTo(ShiftStore::class);
     }
 
     public function paymentReceipts()
