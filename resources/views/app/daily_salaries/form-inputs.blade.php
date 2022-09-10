@@ -21,8 +21,8 @@
         value="{{ old('date', $editing ? optional($dailySalary->date)->format('Y-m-d') : '') }}" required>
     </x-input.date>
 
-    <x-input.number name="amount" label="Amount" value="{{ old('amount', $editing ? $dailySalary->amount : '') }}"
-        required></x-input.number>
+    <x-input.currency name="amount" label="Amount" value="{{ old('amount', $editing ? $dailySalary->amount : '') }}"
+        required></x-input.currency>
 
     <x-input.select name="payment_type_id" label="Payment Type" required>
         @php $selected = old('payment_type_id', ($editing ? $dailySalary->payment_type_id : '')) @endphp
