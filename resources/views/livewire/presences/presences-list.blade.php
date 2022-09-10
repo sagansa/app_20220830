@@ -145,20 +145,9 @@
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>{{ optional($presence->created_by)->name ?? '-' }}
                         </x-tables.td-left-hide>
-                        {{-- <x-tables.td-left-hide>
-                            @if ($presence->payment_type_id == 1)
-                                @foreach ($presence->transferDailySalaries as $transferDailySalary)
-                                    {{ $transferDailySalary->created_at }}
-                                @endforeach
-                            @else
-                                @foreach ($presence->closingStore as $closingStore)
-                                    {{ $closingStore->created_at }}
-                                @endforeach
-                            @endif
-                        </x-tables.td-left-hide> --}}
                         <td class="px-4 py-3 text-center" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
-                                {{-- @if ($presence->status != '2')
+                                @if ($presence->status != '2')
                                     <a href="{{ route('presences.edit', $presence) }}" class="mr-1">
                                         <x-buttons.edit></x-buttons.edit>
                                     </a>
@@ -173,7 +162,7 @@
                                         @csrf @method('DELETE')
                                         <x-buttons.delete></x-buttons.delete>
                                     </form>
-                                @endcan --}}
+                                @endcan
                             </div>
                         </td>
                     </tr>
@@ -182,8 +171,14 @@
                     <x-tables.no-items-found colspan="7"> </x-tables.no-items-found>
                 @endforelse
             </x-slot>
-            <x-slot name="foot"> </x-slot>
+            <x-slot name="foot">
+                <tr>
+                    <td colspan="7">
+                        <div class="px-4 mt-10">{!! $presences->render() !!}</div>
+                    </td>
+                </tr>
+            </x-slot>
         </x-table>
     </x-tables.card>
-    <div class="px-4 mt-10">{!! $presences->render() !!}</div>
+
 </div>
