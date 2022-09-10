@@ -356,11 +356,11 @@
                           Permit Employees
                       </x-sidebars.dropdown-link>
                   @endcan
-                  @can('view-any', App\Models\Presence::class)
+                  {{-- @can('view-any', App\Models\Presence::class)
                       <x-sidebars.dropdown-link href="{{ route('presences.index') }}">
                           Presences
                       </x-sidebars.dropdown-link>
-                  @endcan
+                  @endcan --}}
                   @can('view-any', App\Models\DailySalary::class)
                       <x-sidebars.dropdown-link href="{{ route('daily-salaries.index') }}">
                           Daily Salaries
