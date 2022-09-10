@@ -102,7 +102,7 @@
                             </x-slot>
                             <x-slot name="sub">
                                 @foreach ($presence->closingStores as $closingStore)
-                                    <p> {{ optional($presence->closingStore)->date->toFormattedDate() ?? '-' }} -
+                                    <p> {{ optional($presence->closingStore)->date ?? '-' }} -
                                         @currency($presence->amount)</p>
                                 @endforeach
                                 <p>{{ optional($presence->paymentType)->name ?? '-' }}
