@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PresenceStoreRequest extends FormRequest
+class DailySalaryUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +30,7 @@ class PresenceStoreRequest extends FormRequest
             'amount' => ['required', 'numeric', 'gt:0'],
             'payment_type_id' => ['required', 'exists:payment_types,id'],
             'status' => ['required', 'in:1,2,3,4'],
-            'created_by_id' => ['nullable', 'exists:users,id'],
+            'presence_id' => ['nullable', 'exists:presences,id'],
         ];
     }
 }

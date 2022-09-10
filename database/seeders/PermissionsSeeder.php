@@ -87,6 +87,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update customers']);
         Permission::create(['name' => 'delete customers']);
 
+        Permission::create(['name' => 'list dailysalaries']);
+        Permission::create(['name' => 'view dailysalaries']);
+        Permission::create(['name' => 'create dailysalaries']);
+        Permission::create(['name' => 'update dailysalaries']);
+        Permission::create(['name' => 'delete dailysalaries']);
+
         Permission::create(['name' => 'list deliveryaddresses']);
         Permission::create(['name' => 'view deliveryaddresses']);
         Permission::create(['name' => 'create deliveryaddresses']);

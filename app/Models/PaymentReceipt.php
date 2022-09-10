@@ -36,9 +36,9 @@ class PaymentReceipt extends Model
         return $this->belongsToMany(InvoicePurchase::class);
     }
 
-    public function presences()
+    public function dailySalaries()
     {
-        return $this->belongsToMany(Presence::class);
+        return $this->belongsToMany(DailySalary::class);
     }
 
     public function delete_image()

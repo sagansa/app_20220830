@@ -12,18 +12,20 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('payment_receipt_presence', function (Blueprint $table) {
+        Schema::table('closing_store_daily_salary', function (
+            Blueprint $table
+        ) {
             $table
-                ->foreign('presence_id')
+                ->foreign('closing_store_id')
                 ->references('id')
-                ->on('presences')
+                ->on('closing_stores')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
 
             $table
-                ->foreign('payment_receipt_id')
+                ->foreign('daily_salary_id')
                 ->references('id')
-                ->on('payment_receipts')
+                ->on('daily_salaries')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
         });
@@ -36,9 +38,11 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('payment_receipt_presence', function (Blueprint $table) {
-            $table->dropForeign(['presence_id']);
-            $table->dropForeign(['payment_receipt_id']);
+        Schema::table('closing_store_daily_salary', function (
+            Blueprint $table
+        ) {
+            $table->dropForeign(['closing_store_id']);
+            $table->dropForeign(['daily_salary_id']);
         });
     }
 };

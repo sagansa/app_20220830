@@ -41,7 +41,7 @@ class UserPresencesTest extends TestCase
 
         $response = $this->getJson(route('api.users.presences.index', $user));
 
-        $response->assertOk()->assertSee($presences[0]->date);
+        $response->assertOk()->assertSee($presences[0]->image_in);
     }
 
     /**
@@ -61,10 +61,14 @@ class UserPresencesTest extends TestCase
             $data
         );
 
+        unset($data['store_id']);
+        unset($data['shift_store_id']);
+        unset($data['status']);
         unset($data['image_in']);
         unset($data['image_out']);
         unset($data['lat_long_in']);
         unset($data['lat_long_out']);
+        unset($data['created_by_id']);
         unset($data['approved_by_id']);
 
         $this->assertDatabaseHas('presences', $data);

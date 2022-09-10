@@ -146,6 +146,11 @@ class Store extends Model
         return $this->hasMany(Presence::class);
     }
 
+    public function dailySalaries()
+    {
+        return $this->hasMany(DailySalary::class);
+    }
+
     public function delete_image()
     {
         if ($this->image && file_exists('storage/' . $this->image)) {

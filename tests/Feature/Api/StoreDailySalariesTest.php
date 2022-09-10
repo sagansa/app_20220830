@@ -4,14 +4,14 @@ namespace Tests\Feature\Api;
 
 use App\Models\User;
 use App\Models\Store;
-use App\Models\Presence;
+use App\Models\DailySalary;
 
 use Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class StorePresencesTest extends TestCase
+class StoreDailySalariesTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,53 +31,45 @@ class StorePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_presences()
+    public function it_gets_store_daily_salaries()
     {
         $store = Store::factory()->create();
-        $presences = Presence::factory()
+        $dailySalaries = DailySalary::factory()
             ->count(2)
             ->create([
                 'store_id' => $store->id,
             ]);
 
-        $response = $this->getJson(route('api.stores.presences.index', $store));
+        $response = $this->getJson(
+            route('api.stores.daily-salaries.index', $store)
+        );
 
-        $response->assertOk()->assertSee($presences[0]->image_in);
+        $response->assertOk()->assertSee($dailySalaries[0]->date);
     }
 
     /**
      * @test
      */
-    public function it_stores_the_store_presences()
+    public function it_stores_the_store_daily_salaries()
     {
         $store = Store::factory()->create();
-        $data = Presence::factory()
+        $data = DailySalary::factory()
             ->make([
                 'store_id' => $store->id,
             ])
             ->toArray();
 
         $response = $this->postJson(
-            route('api.stores.presences.store', $store),
+            route('api.stores.daily-salaries.store', $store),
             $data
         );
 
-        unset($data['store_id']);
-        unset($data['shift_store_id']);
-        unset($data['status']);
-        unset($data['image_in']);
-        unset($data['image_out']);
-        unset($data['lat_long_in']);
-        unset($data['lat_long_out']);
-        unset($data['created_by_id']);
-        unset($data['approved_by_id']);
-
-        $this->assertDatabaseHas('presences', $data);
+        $this->assertDatabaseHas('daily_salaries', $data);
 
         $response->assertStatus(201)->assertJsonFragment($data);
 
-        $presence = Presence::latest('id')->first();
+        $dailySalary = DailySalary::latest('id')->first();
 
-        $this->assertEquals($store->id, $presence->store_id);
+        $this->assertEquals($store->id, $dailySalary->store_id);
     }
 }

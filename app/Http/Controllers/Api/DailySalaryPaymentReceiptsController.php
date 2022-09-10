@@ -1,26 +1,26 @@
 <?php
 namespace App\Http\Controllers\Api;
 
-use App\Models\Presence;
+use App\Models\DailySalary;
 use Illuminate\Http\Request;
 use App\Models\PaymentReceipt;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PaymentReceiptCollection;
 
-class PresencePaymentReceiptsController extends Controller
+class DailySalaryPaymentReceiptsController extends Controller
 {
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Presence $presence
+     * @param \App\Models\DailySalary $dailySalary
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Presence $presence)
+    public function index(Request $request, DailySalary $dailySalary)
     {
-        $this->authorize('view', $presence);
+        $this->authorize('view', $dailySalary);
 
         $search = $request->get('search', '');
 
-        $paymentReceipts = $presence
+        $paymentReceipts = $dailySalary
             ->paymentReceipts()
             ->search($search)
             ->latest()
@@ -31,18 +31,18 @@ class PresencePaymentReceiptsController extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Presence $presence
+     * @param \App\Models\DailySalary $dailySalary
      * @param \App\Models\PaymentReceipt $paymentReceipt
      * @return \Illuminate\Http\Response
      */
     public function store(
         Request $request,
-        Presence $presence,
+        DailySalary $dailySalary,
         PaymentReceipt $paymentReceipt
     ) {
-        $this->authorize('update', $presence);
+        $this->authorize('update', $dailySalary);
 
-        $presence
+        $dailySalary
             ->paymentReceipts()
             ->syncWithoutDetaching([$paymentReceipt->id]);
 
@@ -51,18 +51,18 @@ class PresencePaymentReceiptsController extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Presence $presence
+     * @param \App\Models\DailySalary $dailySalary
      * @param \App\Models\PaymentReceipt $paymentReceipt
      * @return \Illuminate\Http\Response
      */
     public function destroy(
         Request $request,
-        Presence $presence,
+        DailySalary $dailySalary,
         PaymentReceipt $paymentReceipt
     ) {
-        $this->authorize('update', $presence);
+        $this->authorize('update', $dailySalary);
 
-        $presence->paymentReceipts()->detach($paymentReceipt);
+        $dailySalary->paymentReceipts()->detach($paymentReceipt);
 
         return response()->noContent();
     }

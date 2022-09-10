@@ -123,9 +123,14 @@
                     <livewire:closing-store-purchase-orders-detail :closingStore="$closingStore" />
                 </x-partials.card> --}}
 
-                <x-partials.card class="mt-5">
+                {{-- <x-partials.card class="mt-5">
                     <x-slot name="title"> Presences </x-slot>
                     <livewire:closing-store-presences-detail :closingStore="$closingStore" />
+                </x-partials.card> --}}
+
+                <x-partials.card class="mt-5">
+                    <x-slot name="title"> Presences </x-slot>
+                    <livewire:closing-store-daily-salaries-detail :closingStore="$closingStore" />
                 </x-partials.card>
 
                 <x-partials.card class="mt-5">

@@ -12,17 +12,15 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('presences', function (Blueprint $table) {
+        Schema::create('daily_salaries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('store_id');
             $table->unsignedBigInteger('shift_store_id');
-            $table->tinyInteger('status');
-            $table->string('image_in')->nullable();
-            $table->string('image_out')->nullable();
-            $table->string('lat_long_in')->nullable();
-            $table->string('lat_long_out')->nullable();
-            $table->unsignedBigInteger('created_by_id')->nullable();
-            $table->unsignedBigInteger('approved_by_id')->nullable();
+            $table->date('date');
+            $table->bigInteger('amount');
+            $table->unsignedBigInteger('payment_type_id');
+            $table->tinyInteger('status')->default(1);
+            $table->unsignedBigInteger('presence_id')->nullable();
 
             $table->timestamps();
         });
@@ -35,6 +33,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('presences');
+        Schema::dropIfExists('daily_salaries');
     }
 };

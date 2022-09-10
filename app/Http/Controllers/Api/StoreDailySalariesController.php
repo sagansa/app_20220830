@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Models\Store;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PresenceResource;
-use App\Http\Resources\PresenceCollection;
+use App\Http\Resources\DailySalaryResource;
+use App\Http\Resources\DailySalaryCollection;
 
-class StorePresencesController extends Controller
+class StoreDailySalariesController extends Controller
 {
     /**
      * @param \Illuminate\Http\Request $request
@@ -21,13 +21,13 @@ class StorePresencesController extends Controller
 
         $search = $request->get('search', '');
 
-        $presences = $store
-            ->presences()
+        $dailySalaries = $store
+            ->dailySalaries()
             ->search($search)
             ->latest()
             ->paginate();
 
-        return new PresenceCollection($presences);
+        return new DailySalaryCollection($dailySalaries);
     }
 
     /**
@@ -37,21 +37,19 @@ class StorePresencesController extends Controller
      */
     public function store(Request $request, Store $store)
     {
-        $this->authorize('create', Presence::class);
+        $this->authorize('create', DailySalary::class);
 
         $validated = $request->validate([
             'shift_store_id' => ['required', 'exists:shift_stores,id'],
-            'status' => ['required', 'max:255'],
-            'image_in' => ['nullable', 'max:255', 'string'],
-            'image_out' => ['nullable', 'max:255', 'string'],
-            'lat_long_in' => ['nullable', 'max:255', 'string'],
-            'lat_long_out' => ['nullable', 'max:255', 'string'],
-            'created_by_id' => ['nullable', 'exists:users,id'],
-            'approved_by_id' => ['nullable', 'exists:users,id'],
+            'date' => ['required', 'date'],
+            'amount' => ['required', 'numeric', 'gt:0'],
+            'payment_type_id' => ['required', 'exists:payment_types,id'],
+            'status' => ['required', 'in:1,2,3,4'],
+            'presence_id' => ['nullable', 'exists:presences,id'],
         ]);
 
-        $presence = $store->presences()->create($validated);
+        $dailySalary = $store->dailySalaries()->create($validated);
 
-        return new PresenceResource($presence);
+        return new DailySalaryResource($dailySalary);
     }
 }

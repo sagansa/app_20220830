@@ -3,7 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
-use App\Models\Presence;
+use App\Models\DailySalary;
 use App\Models\PaymentReceipt;
 
 use Tests\TestCase;
@@ -11,7 +11,7 @@ use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PresencePaymentReceiptsTest extends TestCase
+class PaymentReceiptDailySalariesTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,41 +31,41 @@ class PresencePaymentReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_presence_payment_receipts()
+    public function it_gets_payment_receipt_daily_salaries()
     {
-        $presence = Presence::factory()->create();
         $paymentReceipt = PaymentReceipt::factory()->create();
+        $dailySalary = DailySalary::factory()->create();
 
-        $presence->paymentReceipts()->attach($paymentReceipt);
+        $paymentReceipt->dailySalaries()->attach($dailySalary);
 
         $response = $this->getJson(
-            route('api.presences.payment-receipts.index', $presence)
+            route('api.payment-receipts.daily-salaries.index', $paymentReceipt)
         );
 
-        $response->assertOk()->assertSee($paymentReceipt->image);
+        $response->assertOk()->assertSee($dailySalary->date);
     }
 
     /**
      * @test
      */
-    public function it_can_attach_payment_receipts_to_presence()
+    public function it_can_attach_daily_salaries_to_payment_receipt()
     {
-        $presence = Presence::factory()->create();
         $paymentReceipt = PaymentReceipt::factory()->create();
+        $dailySalary = DailySalary::factory()->create();
 
         $response = $this->postJson(
-            route('api.presences.payment-receipts.store', [
-                $presence,
+            route('api.payment-receipts.daily-salaries.store', [
                 $paymentReceipt,
+                $dailySalary,
             ])
         );
 
         $response->assertNoContent();
 
         $this->assertTrue(
-            $presence
-                ->paymentReceipts()
-                ->where('payment_receipts.id', $paymentReceipt->id)
+            $paymentReceipt
+                ->dailySalaries()
+                ->where('daily_salaries.id', $dailySalary->id)
                 ->exists()
         );
     }
@@ -73,24 +73,24 @@ class PresencePaymentReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_payment_receipts_from_presence()
+    public function it_can_detach_daily_salaries_from_payment_receipt()
     {
-        $presence = Presence::factory()->create();
         $paymentReceipt = PaymentReceipt::factory()->create();
+        $dailySalary = DailySalary::factory()->create();
 
         $response = $this->deleteJson(
-            route('api.presences.payment-receipts.store', [
-                $presence,
+            route('api.payment-receipts.daily-salaries.store', [
                 $paymentReceipt,
+                $dailySalary,
             ])
         );
 
         $response->assertNoContent();
 
         $this->assertFalse(
-            $presence
-                ->paymentReceipts()
-                ->where('payment_receipts.id', $paymentReceipt->id)
+            $paymentReceipt
+                ->dailySalaries()
+                ->where('daily_salaries.id', $dailySalary->id)
                 ->exists()
         );
     }

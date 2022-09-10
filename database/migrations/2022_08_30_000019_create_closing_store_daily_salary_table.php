@@ -12,9 +12,11 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('closing_store_presence', function (Blueprint $table) {
+        Schema::create('closing_store_daily_salary', function (
+            Blueprint $table
+        ) {
             $table->unsignedBigInteger('closing_store_id');
-            $table->unsignedBigInteger('presence_id');
+            $table->unsignedBigInteger('daily_salary_id');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('closing_store_presence');
+        Schema::dropIfExists('closing_store_daily_salary');
     }
 };

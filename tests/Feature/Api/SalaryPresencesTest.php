@@ -42,7 +42,7 @@ class SalaryPresencesTest extends TestCase
             route('api.salaries.presences.index', $salary)
         );
 
-        $response->assertOk()->assertSee($presence->date);
+        $response->assertOk()->assertSee($presence->image_in);
     }
 
     /**

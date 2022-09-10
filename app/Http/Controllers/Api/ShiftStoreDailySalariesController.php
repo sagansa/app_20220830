@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Models\ShiftStore;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PresenceResource;
-use App\Http\Resources\PresenceCollection;
+use App\Http\Resources\DailySalaryResource;
+use App\Http\Resources\DailySalaryCollection;
 
-class ShiftStorePresencesController extends Controller
+class ShiftStoreDailySalariesController extends Controller
 {
     /**
      * @param \Illuminate\Http\Request $request
@@ -21,13 +21,13 @@ class ShiftStorePresencesController extends Controller
 
         $search = $request->get('search', '');
 
-        $presences = $shiftStore
-            ->presences()
+        $dailySalaries = $shiftStore
+            ->dailySalaries()
             ->search($search)
             ->latest()
             ->paginate();
 
-        return new PresenceCollection($presences);
+        return new DailySalaryCollection($dailySalaries);
     }
 
     /**
@@ -37,21 +37,19 @@ class ShiftStorePresencesController extends Controller
      */
     public function store(Request $request, ShiftStore $shiftStore)
     {
-        $this->authorize('create', Presence::class);
+        $this->authorize('create', DailySalary::class);
 
         $validated = $request->validate([
             'store_id' => ['required', 'exists:stores,id'],
-            'status' => ['required', 'max:255'],
-            'image_in' => ['nullable', 'max:255', 'string'],
-            'image_out' => ['nullable', 'max:255', 'string'],
-            'lat_long_in' => ['nullable', 'max:255', 'string'],
-            'lat_long_out' => ['nullable', 'max:255', 'string'],
-            'created_by_id' => ['nullable', 'exists:users,id'],
-            'approved_by_id' => ['nullable', 'exists:users,id'],
+            'date' => ['required', 'date'],
+            'amount' => ['required', 'numeric', 'gt:0'],
+            'payment_type_id' => ['required', 'exists:payment_types,id'],
+            'status' => ['required', 'in:1,2,3,4'],
+            'presence_id' => ['nullable', 'exists:presences,id'],
         ]);
 
-        $presence = $shiftStore->presences()->create($validated);
+        $dailySalary = $shiftStore->dailySalaries()->create($validated);
 
-        return new PresenceResource($presence);
+        return new DailySalaryResource($dailySalary);
     }
 }

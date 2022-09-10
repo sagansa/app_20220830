@@ -42,14 +42,6 @@
                     </a>
                 </div>
             </x-partials.card>
-
-            @can('view-any', App\Models\monthly_salary_presence::class)
-            <x-partials.card class="mt-5">
-                <x-slot name="title"> Presences </x-slot>
-
-                <livewire:monthly-salary-presences-detail :salary="$salary" />
-            </x-partials.card>
-            @endcan
         </div>
     </div>
 </x-admin-layout>

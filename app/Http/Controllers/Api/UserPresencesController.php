@@ -42,10 +42,11 @@ class UserPresencesController extends Controller
         $validated = $request->validate([
             'store_id' => ['required', 'exists:stores,id'],
             'shift_store_id' => ['required', 'exists:shift_stores,id'],
-            'date' => ['required', 'date'],
-            'amount' => ['required', 'numeric', 'gt:0'],
-            'payment_type_id' => ['required', 'exists:payment_types,id'],
-            'status' => ['required', 'in:1,2,3,4'],
+            'status' => ['required', 'max:255'],
+            'image_in' => ['nullable', 'max:255', 'string'],
+            'image_out' => ['nullable', 'max:255', 'string'],
+            'lat_long_in' => ['nullable', 'max:255', 'string'],
+            'lat_long_out' => ['nullable', 'max:255', 'string'],
         ]);
 
         $presence = $user->presencesApproved()->create($validated);

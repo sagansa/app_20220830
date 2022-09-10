@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('presences', function (Blueprint $table) {
+        Schema::table('daily_salaries', function (Blueprint $table) {
             $table
                 ->foreign('store_id')
                 ->references('id')
@@ -28,16 +28,16 @@ return new class extends Migration {
                 ->onDelete('CASCADE');
 
             $table
-                ->foreign('created_by_id')
+                ->foreign('payment_type_id')
                 ->references('id')
-                ->on('users')
+                ->on('payment_types')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
 
             $table
-                ->foreign('approved_by_id')
+                ->foreign('presence_id')
                 ->references('id')
-                ->on('users')
+                ->on('presences')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
         });
@@ -50,11 +50,11 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('presences', function (Blueprint $table) {
+        Schema::table('daily_salaries', function (Blueprint $table) {
             $table->dropForeign(['store_id']);
             $table->dropForeign(['shift_store_id']);
-            $table->dropForeign(['created_by_id']);
-            $table->dropForeign(['approved_by_id']);
+            $table->dropForeign(['payment_type_id']);
+            $table->dropForeign(['presence_id']);
         });
     }
 };

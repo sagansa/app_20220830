@@ -407,24 +407,6 @@ return [
         ],
     ],
 
-    'presences' => [
-        'name' => 'Presences',
-        'index_title' => 'Presences List',
-        'new_title' => 'New Presence',
-        'create_title' => 'Create Presence',
-        'edit_title' => 'Edit Presence',
-        'show_title' => 'Show Presence',
-        'inputs' => [
-            'store_id' => 'Store',
-            'shift_store_id' => 'Shift Store',
-            'date' => 'Date',
-            'amount' => 'Amount',
-            'payment_type_id' => 'Payment Type',
-            'status' => 'Status',
-            'created_by_id' => 'Created By',
-        ],
-    ],
-
     'products' => [
         'name' => 'Products',
         'index_title' => 'Products List',
@@ -1295,18 +1277,6 @@ return [
         ],
     ],
 
-    'payment_receipt_presences' => [
-        'name' => 'Payment Receipt Presences',
-        'index_title' => ' List',
-        'new_title' => 'New Payment Receipt Presence',
-        'create_title' => 'Create Payment Receipt Presence',
-        'edit_title' => 'Edit Payment Receipt Presence',
-        'show_title' => 'Show Payment Receipt Presence',
-        'inputs' => [
-            'presence_id' => 'Presence',
-        ],
-    ],
-
     'payment_receipt_invoice_purchases' => [
         'name' => 'Payment Receipt Invoice Purchases',
         'index_title' => ' Payment Receipt Invoice Purchases List',
@@ -1399,18 +1369,6 @@ return [
         ],
     ],
 
-    'closing_store_purchase_orders' => [
-        'name' => 'Closing Store Purchase Orders',
-        'index_title' => ' List',
-        'new_title' => 'New Closing store purchase order',
-        'create_title' => 'Create closing_store_purchase_order',
-        'edit_title' => 'Edit closing_store_purchase_order',
-        'show_title' => 'Show closing_store_purchase_order',
-        'inputs' => [
-            'purchase_order_id' => 'Purchase Order',
-        ],
-    ],
-
     'closing_store_invoice_purchases' => [
         'name' => 'Closing Store Invoice Purchases',
         'index_title' => ' List',
@@ -1432,18 +1390,6 @@ return [
         'show_title' => 'Show ProductionMainFrom',
         'inputs' => [
             'detail_invoice_id' => 'Detail Invoice',
-        ],
-    ],
-
-    'monthly_salary_presences' => [
-        'name' => 'MonthlySalary Presences',
-        'index_title' => ' List',
-        'new_title' => 'New Monthly salary presence',
-        'create_title' => 'Create monthly_salary_presence',
-        'edit_title' => 'Edit monthly_salary_presence',
-        'show_title' => 'Show monthly_salary_presence',
-        'inputs' => [
-            'presence_id' => 'Presence',
         ],
     ],
 
@@ -1485,18 +1431,6 @@ return [
         ],
     ],
 
-    'presence_closing_stores' => [
-        'name' => 'Presence Closing Stores',
-        'index_title' => ' List',
-        'new_title' => 'New Closing store presence',
-        'create_title' => 'Create closing_store_presence',
-        'edit_title' => 'Edit closing_store_presence',
-        'show_title' => 'Show closing_store_presence',
-        'inputs' => [
-            'closing_store_id' => 'Closing Store',
-        ],
-    ],
-
     'fuel_service_closing_stores' => [
         'name' => 'Fuel Service Closing Stores',
         'index_title' => ' List',
@@ -1506,18 +1440,6 @@ return [
         'show_title' => 'Show Closing Store Fuel Service',
         'inputs' => [
             'closing_store_id' => 'Closing Store',
-        ],
-    ],
-
-    'closing_store_presences' => [
-        'name' => 'Closing Store Presences',
-        'index_title' => ' List',
-        'new_title' => 'New Closing Store Presences',
-        'create_title' => 'Create Closing Store Presences',
-        'edit_title' => 'Edit Closing Store Presences',
-        'show_title' => 'Show Closing Store Presences',
-        'inputs' => [
-            'presence_id' => 'Presence',
         ],
     ],
 
@@ -1542,6 +1464,60 @@ return [
         'show_title' => 'Show closing_store_invoice_purchase',
         'inputs' => [
             'closing_store_id' => 'Closing Store',
+        ],
+    ],
+
+    'closing_store_daily_salaries' => [
+        'name' => 'ClosingStore Daily Salaries',
+        'index_title' => ' List',
+        'new_title' => 'New Closing store daily salary',
+        'create_title' => 'Create closing_store_daily_salary',
+        'edit_title' => 'Edit closing_store_daily_salary',
+        'show_title' => 'Show closing_store_daily_salary',
+        'inputs' => [
+            'daily_salary_id' => 'Daily Salary',
+        ],
+    ],
+
+    'daily_salaries' => [
+        'name' => 'Daily Salaries',
+        'index_title' => 'Daily Salaries List',
+        'new_title' => 'New Daily Salary',
+        'create_title' => 'Create Daily Salary',
+        'edit_title' => 'Edit Daily Salary',
+        'show_title' => 'Show Daily Salary',
+        'inputs' => [
+            'store_id' => 'Store',
+            'shift_store_id' => 'Shift Store',
+            'date' => 'Date',
+            'amount' => 'Amount',
+            'payment_type_id' => 'Payment Type',
+            'status' => 'Status',
+            'presence_id' => 'Presence',
+        ],
+    ],
+
+    'daily_salary_closing_stores' => [
+        'name' => 'DailySalary Closing Stores',
+        'index_title' => ' List',
+        'new_title' => 'New Closing store daily salary',
+        'create_title' => 'Create closing_store_daily_salary',
+        'edit_title' => 'Edit closing_store_daily_salary',
+        'show_title' => 'Show closing_store_daily_salary',
+        'inputs' => [
+            'closing_store_id' => 'Closing Store',
+        ],
+    ],
+
+    'daily_salary_payment_receipts' => [
+        'name' => 'DailySalary Payment Receipts',
+        'index_title' => ' List',
+        'new_title' => 'New Daily salary payment receipt',
+        'create_title' => 'Create daily_salary_payment_receipt',
+        'edit_title' => 'Edit daily_salary_payment_receipt',
+        'show_title' => 'Show daily_salary_payment_receipt',
+        'inputs' => [
+            'payment_receipt_id' => 'Payment Receipt',
         ],
     ],
 

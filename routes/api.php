@@ -21,7 +21,6 @@ use App\Http\Controllers\Api\HygieneController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\SupplierController;
-use App\Http\Controllers\Api\PresenceController;
 use App\Http\Controllers\Api\CashlessController;
 use App\Http\Controllers\Api\EProductController;
 use App\Http\Controllers\Api\UserCartsController;
@@ -36,6 +35,7 @@ use App\Http\Controllers\Api\UserRefundsController;
 use App\Http\Controllers\Api\PaymentTypeController;
 use App\Http\Controllers\Api\UtilityBillController;
 use App\Http\Controllers\Api\FuelServiceController;
+use App\Http\Controllers\Api\DailySalaryController;
 use App\Http\Controllers\Api\UserVehiclesController;
 use App\Http\Controllers\Api\UserProductsController;
 use App\Http\Controllers\Api\UserHygienesController;
@@ -96,7 +96,6 @@ use App\Http\Controllers\Api\StoreProductionsController;
 use App\Http\Controllers\Api\StoreStoreAssetsController;
 use App\Http\Controllers\Api\CashlessProviderController;
 use App\Http\Controllers\Api\SalesOrderOnlineController;
-use App\Http\Controllers\Api\PresenceSalariesController;
 use App\Http\Controllers\Api\ProductEProductsController;
 use App\Http\Controllers\Api\ContractEmployeeController;
 use App\Http\Controllers\Api\ContractLocationController;
@@ -109,6 +108,7 @@ use App\Http\Controllers\Api\UserMaterialGroupsController;
 use App\Http\Controllers\Api\UserPurchaseOrdersController;
 use App\Http\Controllers\Api\UserTransferStocksController;
 use App\Http\Controllers\Api\StoreClosingStoresController;
+use App\Http\Controllers\Api\StoreDailySalariesController;
 use App\Http\Controllers\Api\OnlineShopProviderController;
 use App\Http\Controllers\Api\RestaurantCategoryController;
 use App\Http\Controllers\Api\SalesOrderEmployeeController;
@@ -136,7 +136,6 @@ use App\Http\Controllers\Api\UserSelfConsumptionsController;
 use App\Http\Controllers\Api\UserRequestPurchasesController;
 use App\Http\Controllers\Api\UserInvoicePurchasesController;
 use App\Http\Controllers\Api\StoreRemainingStocksController;
-use App\Http\Controllers\Api\PaymentTypePresencesController;
 use App\Http\Controllers\Api\ProductGroupProductsController;
 use App\Http\Controllers\Api\ProductProductionTosController;
 use App\Http\Controllers\Api\ProductOutInProductsController;
@@ -148,14 +147,12 @@ use App\Http\Controllers\Api\StoreRequestPurchasesController;
 use App\Http\Controllers\Api\StoreInvoicePurchasesController;
 use App\Http\Controllers\Api\MaterialGroupProductsController;
 use App\Http\Controllers\Api\TransferStockProductsController;
-use App\Http\Controllers\Api\PresenceClosingStoresController;
 use App\Http\Controllers\Api\ProductMovementAssetsController;
 use App\Http\Controllers\Api\ProductDetailRequestsController;
 use App\Http\Controllers\Api\ProductTransferStocksController;
 use App\Http\Controllers\Api\ReceiptByItemLoyverseController;
 use App\Http\Controllers\Api\HygieneHygieneOfRoomsController;
 use App\Http\Controllers\Api\ProductionSupportFromController;
-use App\Http\Controllers\Api\ClosingStorePresencesController;
 use App\Http\Controllers\Api\StoreContractLocationsController;
 use App\Http\Controllers\Api\StoreSalesOrderOnlinesController;
 use App\Http\Controllers\Api\StoreAccountCashlessesController;
@@ -168,30 +165,28 @@ use App\Http\Controllers\Api\product_transfer_stockController;
 use App\Http\Controllers\Api\out_in_product_productController;
 use App\Http\Controllers\Api\StockCardOutInProductsController;
 use App\Http\Controllers\Api\ClosingStoreCashlessesController;
-use App\Http\Controllers\Api\closing_store_presenceController;
 use App\Http\Controllers\Api\UserSalesOrderEmployeesController;
 use App\Http\Controllers\Api\OnlineCategoryEProductsController;
 use App\Http\Controllers\Api\PaymentTypeFuelServicesController;
 use App\Http\Controllers\Api\ShiftStoreClosingStoresController;
-use App\Http\Controllers\Api\PresencePaymentReceiptsController;
+use App\Http\Controllers\Api\ShiftStoreDailySalariesController;
 use App\Http\Controllers\Api\ProductSelfConsumptionsController;
 use App\Http\Controllers\Api\ProductionProductionTosController;
 use App\Http\Controllers\Api\product_remaining_stockController;
 use App\Http\Controllers\Api\SelfConsumptionProductsController;
 use App\Http\Controllers\Api\EmployeeStatusEmployeesController;
-use App\Http\Controllers\Api\PaymentReceiptPresencesController;
-use App\Http\Controllers\Api\monthly_salary_presenceController;
 use App\Http\Controllers\Api\UserRestaurantCategoriesController;
 use App\Http\Controllers\Api\UserMovementAssetResultsController;
 use App\Http\Controllers\Api\StoreSalesOrderEmployeesController;
 use App\Http\Controllers\Api\SupplierInvoicePurchasesController;
+use App\Http\Controllers\Api\PaymentTypeDailySalariesController;
 use App\Http\Controllers\Api\SalesOrderOnlineProductsController;
 use App\Http\Controllers\Api\ProductSalesOrderOnlinesController;
 use App\Http\Controllers\Api\UtilityProviderUtilitiesController;
 use App\Http\Controllers\Api\StoreAssetMovementAssetsController;
 use App\Http\Controllers\Api\ClosingStoreFuelServicesController;
-use App\Http\Controllers\Api\payment_receipt_presenceController;
 use App\Http\Controllers\Api\FuelServiceClosingStoresController;
+use App\Http\Controllers\Api\DailySalaryClosingStoresController;
 use App\Http\Controllers\Api\CustomerSalesOrderOnlinesController;
 use App\Http\Controllers\Api\CustomerDeliveryAddressesController;
 use App\Http\Controllers\Api\EmployeeContractEmployeesController;
@@ -200,6 +195,7 @@ use App\Http\Controllers\Api\PaymentTypePurchaseOrdersController;
 use App\Http\Controllers\Api\PaymentTypeDetailRequestsController;
 use App\Http\Controllers\Api\ProductionProductionFromsController;
 use App\Http\Controllers\Api\UnitPurchaseOrderProductsController;
+use App\Http\Controllers\Api\ClosingStoreDailySalariesController;
 use App\Http\Controllers\Api\AccountCashlessCashlessesController;
 use App\Http\Controllers\Api\EmployeeWorkingExperiencesController;
 use App\Http\Controllers\Api\RestaurantCategoryProductsController;
@@ -211,17 +207,20 @@ use App\Http\Controllers\Api\ClosingStorePurchaseOrdersController;
 use App\Http\Controllers\Api\PaymentReceiptFuelServicesController;
 use App\Http\Controllers\Api\FuelServicePaymentReceiptsController;
 use App\Http\Controllers\Api\closing_store_fuel_serviceController;
+use App\Http\Controllers\Api\closing_store_daily_salaryController;
+use App\Http\Controllers\Api\DailySalaryPaymentReceiptsController;
 use App\Http\Controllers\Api\CustomerSalesOrderEmployeesController;
 use App\Http\Controllers\Api\ClosingCourierClosingStoresController;
 use App\Http\Controllers\Api\PaymentTypeInvoicePurchasesController;
 use App\Http\Controllers\Api\ClosingStoreClosingCouriersController;
+use App\Http\Controllers\Api\PaymentReceiptDailySalariesController;
 use App\Http\Controllers\Api\ProductPurchaseOrderProductsController;
 use App\Http\Controllers\Api\product_sales_order_employeeController;
 use App\Http\Controllers\Api\ClosingStoreInvoicePurchasesController;
 use App\Http\Controllers\Api\DeliveryServiceOutInProductsController;
 use App\Http\Controllers\Api\InvoicePurchaseClosingStoresController;
 use App\Http\Controllers\Api\fuel_service_payment_receiptController;
-use App\Http\Controllers\Api\closing_store_purchase_orderController;
+use App\Http\Controllers\Api\daily_salary_payment_receiptController;
 use App\Http\Controllers\Api\ProductProductionSupportFromsController;
 use App\Http\Controllers\Api\ProductionProductionMainFromsController;
 use App\Http\Controllers\Api\PurchaseOrderPurchaseReceiptsController;
@@ -1103,6 +1102,16 @@ Route::name('api.')
             'store',
         ])->name('stores.presences.store');
 
+        // Store Daily Salaries
+        Route::get('/stores/{store}/daily-salaries', [
+            StoreDailySalariesController::class,
+            'index',
+        ])->name('stores.daily-salaries.index');
+        Route::post('/stores/{store}/daily-salaries', [
+            StoreDailySalariesController::class,
+            'store',
+        ])->name('stores.daily-salaries.store');
+
         Route::apiResource('suppliers', SupplierController::class);
 
         // Supplier Purchase Orders
@@ -1284,16 +1293,6 @@ Route::name('api.')
             'store',
         ])->name('payment-types.products.store');
 
-        // PaymentType Presences
-        Route::get('/payment-types/{paymentType}/presences', [
-            PaymentTypePresencesController::class,
-            'index',
-        ])->name('payment-types.presences.index');
-        Route::post('/payment-types/{paymentType}/presences', [
-            PaymentTypePresencesController::class,
-            'store',
-        ])->name('payment-types.presences.store');
-
         // PaymentType Fuel Services
         Route::get('/payment-types/{paymentType}/fuel-services', [
             PaymentTypeFuelServicesController::class,
@@ -1323,6 +1322,16 @@ Route::name('api.')
             PaymentTypeDetailRequestsController::class,
             'store',
         ])->name('payment-types.detail-requests.store');
+
+        // PaymentType Daily Salaries
+        Route::get('/payment-types/{paymentType}/daily-salaries', [
+            PaymentTypeDailySalariesController::class,
+            'index',
+        ])->name('payment-types.daily-salaries.index');
+        Route::post('/payment-types/{paymentType}/daily-salaries', [
+            PaymentTypeDailySalariesController::class,
+            'store',
+        ])->name('payment-types.daily-salaries.store');
 
         Route::apiResource('permit-employees', PermitEmployeeController::class);
 
@@ -1429,51 +1438,17 @@ Route::name('api.')
             'store',
         ])->name('shift-stores.presences.store');
 
+        // ShiftStore Daily Salaries
+        Route::get('/shift-stores/{shiftStore}/daily-salaries', [
+            ShiftStoreDailySalariesController::class,
+            'index',
+        ])->name('shift-stores.daily-salaries.index');
+        Route::post('/shift-stores/{shiftStore}/daily-salaries', [
+            ShiftStoreDailySalariesController::class,
+            'store',
+        ])->name('shift-stores.daily-salaries.store');
+
         Route::apiResource('sops', SopController::class);
-
-        Route::apiResource('presences', PresenceController::class);
-
-        // Presence Payment Receipts
-        Route::get('/presences/{presence}/payment-receipts', [
-            PresencePaymentReceiptsController::class,
-            'index',
-        ])->name('presences.payment-receipts.index');
-        Route::post('/presences/{presence}/payment-receipts/{paymentReceipt}', [
-            PresencePaymentReceiptsController::class,
-            'store',
-        ])->name('presences.payment-receipts.store');
-        Route::delete(
-            '/presences/{presence}/payment-receipts/{paymentReceipt}',
-            [PresencePaymentReceiptsController::class, 'destroy']
-        )->name('presences.payment-receipts.destroy');
-
-        // Presence Salaries
-        Route::get('/presences/{presence}/salaries', [
-            PresenceSalariesController::class,
-            'index',
-        ])->name('presences.salaries.index');
-        Route::post('/presences/{presence}/salaries/{salary}', [
-            PresenceSalariesController::class,
-            'store',
-        ])->name('presences.salaries.store');
-        Route::delete('/presences/{presence}/salaries/{salary}', [
-            PresenceSalariesController::class,
-            'destroy',
-        ])->name('presences.salaries.destroy');
-
-        // Presence Closing Stores
-        Route::get('/presences/{presence}/closing-stores', [
-            PresenceClosingStoresController::class,
-            'index',
-        ])->name('presences.closing-stores.index');
-        Route::post('/presences/{presence}/closing-stores/{closingStore}', [
-            PresenceClosingStoresController::class,
-            'store',
-        ])->name('presences.closing-stores.store');
-        Route::delete('/presences/{presence}/closing-stores/{closingStore}', [
-            PresenceClosingStoresController::class,
-            'destroy',
-        ])->name('presences.closing-stores.destroy');
 
         Route::apiResource('products', ProductController::class);
 
@@ -2043,19 +2018,19 @@ Route::name('api.')
             [ClosingStoreFuelServicesController::class, 'destroy']
         )->name('closing-stores.fuel-services.destroy');
 
-        // ClosingStore Presences
-        Route::get('/closing-stores/{closingStore}/presences', [
-            ClosingStorePresencesController::class,
+        // ClosingStore Daily Salaries
+        Route::get('/closing-stores/{closingStore}/daily-salaries', [
+            ClosingStoreDailySalariesController::class,
             'index',
-        ])->name('closing-stores.presences.index');
-        Route::post('/closing-stores/{closingStore}/presences/{presence}', [
-            ClosingStorePresencesController::class,
-            'store',
-        ])->name('closing-stores.presences.store');
-        Route::delete('/closing-stores/{closingStore}/presences/{presence}', [
-            ClosingStorePresencesController::class,
-            'destroy',
-        ])->name('closing-stores.presences.destroy');
+        ])->name('closing-stores.daily-salaries.index');
+        Route::post(
+            '/closing-stores/{closingStore}/daily-salaries/{dailySalary}',
+            [ClosingStoreDailySalariesController::class, 'store']
+        )->name('closing-stores.daily-salaries.store');
+        Route::delete(
+            '/closing-stores/{closingStore}/daily-salaries/{dailySalary}',
+            [ClosingStoreDailySalariesController::class, 'destroy']
+        )->name('closing-stores.daily-salaries.destroy');
 
         Route::apiResource('store-cashlesses', StoreCashlessController::class);
 
@@ -2157,19 +2132,19 @@ Route::name('api.')
             [PaymentReceiptInvoicePurchasesController::class, 'destroy']
         )->name('payment-receipts.invoice-purchases.destroy');
 
-        // PaymentReceipt Presences
-        Route::get('/payment-receipts/{paymentReceipt}/presences', [
-            PaymentReceiptPresencesController::class,
+        // PaymentReceipt Daily Salaries
+        Route::get('/payment-receipts/{paymentReceipt}/daily-salaries', [
+            PaymentReceiptDailySalariesController::class,
             'index',
-        ])->name('payment-receipts.presences.index');
-        Route::post('/payment-receipts/{paymentReceipt}/presences/{presence}', [
-            PaymentReceiptPresencesController::class,
-            'store',
-        ])->name('payment-receipts.presences.store');
+        ])->name('payment-receipts.daily-salaries.index');
+        Route::post(
+            '/payment-receipts/{paymentReceipt}/daily-salaries/{dailySalary}',
+            [PaymentReceiptDailySalariesController::class, 'store']
+        )->name('payment-receipts.daily-salaries.store');
         Route::delete(
-            '/payment-receipts/{paymentReceipt}/presences/{presence}',
-            [PaymentReceiptPresencesController::class, 'destroy']
-        )->name('payment-receipts.presences.destroy');
+            '/payment-receipts/{paymentReceipt}/daily-salaries/{dailySalary}',
+            [PaymentReceiptDailySalariesController::class, 'destroy']
+        )->name('payment-receipts.daily-salaries.destroy');
 
         Route::apiResource(
             'request-purchases',
@@ -2270,4 +2245,34 @@ Route::name('api.')
             EProductCartsController::class,
             'store',
         ])->name('e-products.carts.store');
+
+        Route::apiResource('daily-salaries', DailySalaryController::class);
+
+        // DailySalary Closing Stores
+        Route::get('/daily-salaries/{dailySalary}/closing-stores', [
+            DailySalaryClosingStoresController::class,
+            'index',
+        ])->name('daily-salaries.closing-stores.index');
+        Route::post(
+            '/daily-salaries/{dailySalary}/closing-stores/{closingStore}',
+            [DailySalaryClosingStoresController::class, 'store']
+        )->name('daily-salaries.closing-stores.store');
+        Route::delete(
+            '/daily-salaries/{dailySalary}/closing-stores/{closingStore}',
+            [DailySalaryClosingStoresController::class, 'destroy']
+        )->name('daily-salaries.closing-stores.destroy');
+
+        // DailySalary Payment Receipts
+        Route::get('/daily-salaries/{dailySalary}/payment-receipts', [
+            DailySalaryPaymentReceiptsController::class,
+            'index',
+        ])->name('daily-salaries.payment-receipts.index');
+        Route::post(
+            '/daily-salaries/{dailySalary}/payment-receipts/{paymentReceipt}',
+            [DailySalaryPaymentReceiptsController::class, 'store']
+        )->name('daily-salaries.payment-receipts.store');
+        Route::delete(
+            '/daily-salaries/{dailySalary}/payment-receipts/{paymentReceipt}',
+            [DailySalaryPaymentReceiptsController::class, 'destroy']
+        )->name('daily-salaries.payment-receipts.destroy');
     });

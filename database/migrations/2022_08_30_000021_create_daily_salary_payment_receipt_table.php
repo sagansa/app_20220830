@@ -12,9 +12,11 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('payment_receipt_presence', function (Blueprint $table) {
-            $table->unsignedBigInteger('presence_id');
+        Schema::create('daily_salary_payment_receipt', function (
+            Blueprint $table
+        ) {
             $table->unsignedBigInteger('payment_receipt_id');
+            $table->unsignedBigInteger('daily_salary_id');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('payment_receipt_presence');
+        Schema::dropIfExists('daily_salary_payment_receipt');
     }
 };

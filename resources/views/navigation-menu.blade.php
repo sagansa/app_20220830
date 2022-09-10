@@ -133,11 +133,6 @@
                         Standard Operation Procedures
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\Presence::class)
-                        <x-dropdown-link href="{{ route('presences.index') }}">
-                        Presences
-                        </x-dropdown-link>
-                        @endcan
                         @can('view-any', App\Models\Product::class)
                         <x-dropdown-link href="{{ route('products.index') }}">
                         Products
@@ -311,6 +306,11 @@
                         @can('view-any', App\Models\EProduct::class)
                         <x-dropdown-link href="{{ route('e-products.index') }}">
                         E Products
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\DailySalary::class)
+                        <x-dropdown-link href="{{ route('daily-salaries.index') }}">
+                        Daily Salaries
                         </x-dropdown-link>
                         @endcan
                 </x-nav-dropdown>
@@ -570,11 +570,6 @@
                 Standard Operation Procedures
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\Presence::class)
-                <x-jet-responsive-nav-link href="{{ route('presences.index') }}">
-                Presences
-                </x-jet-responsive-nav-link>
-                @endcan
                 @can('view-any', App\Models\Product::class)
                 <x-jet-responsive-nav-link href="{{ route('products.index') }}">
                 Products
@@ -748,6 +743,11 @@
                 @can('view-any', App\Models\EProduct::class)
                 <x-jet-responsive-nav-link href="{{ route('e-products.index') }}">
                 E Products
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\DailySalary::class)
+                <x-jet-responsive-nav-link href="{{ route('daily-salaries.index') }}">
+                Daily Salaries
                 </x-jet-responsive-nav-link>
                 @endcan
 

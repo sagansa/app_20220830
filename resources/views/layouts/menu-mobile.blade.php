@@ -361,6 +361,11 @@
                           Presences
                       </x-sidebars.dropdown-link>
                   @endcan
+                  @can('view-any', App\Models\DailySalary::class)
+                      <x-sidebars.dropdown-link href="{{ route('daily-salaries.index') }}">
+                          Daily Salaries
+                      </x-sidebars.dropdown-link>
+                  @endcan
                   @can('view-any', App\Models\Sop::class)
                       <x-sidebars.dropdown-link href="{{ route('sops.index') }}">
                           SOP

@@ -3,7 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
-use App\Models\Presence;
+use App\Models\DailySalary;
 use App\Models\ClosingStore;
 
 use Tests\TestCase;
@@ -11,7 +11,7 @@ use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PresenceClosingStoresTest extends TestCase
+class ClosingStoreDailySalariesTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,41 +31,41 @@ class PresenceClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_presence_closing_stores()
+    public function it_gets_closing_store_daily_salaries()
     {
-        $presence = Presence::factory()->create();
         $closingStore = ClosingStore::factory()->create();
+        $dailySalary = DailySalary::factory()->create();
 
-        $presence->closingStores()->attach($closingStore);
+        $closingStore->dailySalaries()->attach($dailySalary);
 
         $response = $this->getJson(
-            route('api.presences.closing-stores.index', $presence)
+            route('api.closing-stores.daily-salaries.index', $closingStore)
         );
 
-        $response->assertOk()->assertSee($closingStore->date);
+        $response->assertOk()->assertSee($dailySalary->date);
     }
 
     /**
      * @test
      */
-    public function it_can_attach_closing_stores_to_presence()
+    public function it_can_attach_daily_salaries_to_closing_store()
     {
-        $presence = Presence::factory()->create();
         $closingStore = ClosingStore::factory()->create();
+        $dailySalary = DailySalary::factory()->create();
 
         $response = $this->postJson(
-            route('api.presences.closing-stores.store', [
-                $presence,
+            route('api.closing-stores.daily-salaries.store', [
                 $closingStore,
+                $dailySalary,
             ])
         );
 
         $response->assertNoContent();
 
         $this->assertTrue(
-            $presence
-                ->closingStores()
-                ->where('closing_stores.id', $closingStore->id)
+            $closingStore
+                ->dailySalaries()
+                ->where('daily_salaries.id', $dailySalary->id)
                 ->exists()
         );
     }
@@ -73,24 +73,24 @@ class PresenceClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_closing_stores_from_presence()
+    public function it_can_detach_daily_salaries_from_closing_store()
     {
-        $presence = Presence::factory()->create();
         $closingStore = ClosingStore::factory()->create();
+        $dailySalary = DailySalary::factory()->create();
 
         $response = $this->deleteJson(
-            route('api.presences.closing-stores.store', [
-                $presence,
+            route('api.closing-stores.daily-salaries.store', [
                 $closingStore,
+                $dailySalary,
             ])
         );
 
         $response->assertNoContent();
 
         $this->assertFalse(
-            $presence
-                ->closingStores()
-                ->where('closing_stores.id', $closingStore->id)
+            $closingStore
+                ->dailySalaries()
+                ->where('daily_salaries.id', $dailySalary->id)
                 ->exists()
         );
     }

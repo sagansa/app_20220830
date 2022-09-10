@@ -1,7 +1,7 @@
 <div>
     <div>
-        @can('create', App\Models\Presence::class)
-        <button class="button" wire:click="newPresence">
+        @can('create', App\Models\ClosingStore::class)
+        <button class="button" wire:click="newClosingStore">
             <i class="mr-1 icon ion-md-add text-primary"></i>
             @lang('crud.common.attach')
         </button>
@@ -15,12 +15,12 @@
             <div class="mt-5">
                 <div>
                     <x-input.select
-                        name="presence_id"
-                        label="Presence"
-                        wire:model="presence_id"
+                        name="closing_store_id"
+                        label="Closing Store"
+                        wire:model="closing_store_id"
                     >
                         <option value="null" disabled>-- select --</option>
-                        @foreach($presencesForSelect as $value => $label)
+                        @foreach($closingStoresForSelect as $value => $label)
                         <option value="{{ $value }}"  >{{ $label }}</option>
                         @endforeach
                     </x-input.select>
@@ -54,16 +54,16 @@
             <thead class="text-gray-700">
                 <tr>
                     <th class="px-4 py-3 text-left">
-                        @lang('crud.monthly_salary_presences.inputs.presence_id')
+                        @lang('crud.daily_salary_closing_stores.inputs.closing_store_id')
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody class="text-gray-600">
-                @foreach ($monthlySalaryPresences as $presence)
+                @foreach ($dailySalaryClosingStores as $closingStore)
                 <tr class="hover:bg-gray-100">
                     <td class="px-4 py-3 text-left">
-                        {{ $presence->date ?? '-' }}
+                        {{ $closingStore->date ?? '-' }}
                     </td>
                     <td class="px-4 py-3 text-right" style="width: 70px;">
                         <div
@@ -71,11 +71,11 @@
                             aria-label="Row Actions"
                             class="relative inline-flex align-middle"
                         >
-                            @can('delete-any', App\Models\Presence::class)
+                            @can('delete-any', App\Models\ClosingStore::class)
                             <button
                                 class="button button-danger"
                                 onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
-                                wire:click="detach({{ $presence->id }})"
+                                wire:click="detach({{ $closingStore->id }})"
                             >
                                 <i
                                     class="mr-1 icon ion-md-trash text-primary"
@@ -92,7 +92,7 @@
                 <tr>
                     <td colspan="2">
                         <div class="mt-10 px-4">
-                            {{ $monthlySalaryPresences->render() }}
+                            {{ $dailySalaryClosingStores->render() }}
                         </div>
                     </td>
                 </tr>
