@@ -120,21 +120,6 @@
                               d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                   </x-slot>
-                  {{-- @can('view-any', App\Models\Customer::class)
-                      <x-sidebars.dropdown-link href="{{ route('customers.index') }}">
-                          Customers
-                      </x-sidebars.dropdown-link>
-                  @endcan
-                  @can('view-any', App\Models\SalesOrderEmployee::class)
-                      <x-sidebars.dropdown-link href="{{ route('sales-order-employees.index') }}">
-                          Sales Order Employees
-                      </x-sidebars.dropdown-link>
-                  @endcan
-                  @can('view-any', App\Models\SalesOrderOnline::class)
-                      <x-sidebars.dropdown-link href="{{ route('sales-order-onlines.index') }}">
-                          Sales Order Onlines
-                      </x-sidebars.dropdown-link>
-                  @endcan --}}
                   @can('view-any', App\Models\Supplier::class)
                       <x-sidebars.dropdown-link href="{{ route('suppliers.index') }}">
                           Suppliers
@@ -150,11 +135,52 @@
                           Purchase Receipts
                       </x-sidebars.dropdown-link>
                   @endcan
+
                   @can('view-any', App\Models\ClosingStore::class)
                       <x-sidebars.dropdown-link href="{{ route('closing-stores.index') }}">
                           Closing Stores
                       </x-sidebars.dropdown-link>
                   @endcan
+
+                  @can('view-any', App\Models\RequestPurchase::class)
+                      <div class="ml-6">
+                          <x-sidebars.dropdown-link href="{{ route('request-purchases.index') }}">
+                              @include('svg.chevron-double-right') Request Purchases
+                          </x-sidebars.dropdown-link>
+                      </div>
+                  @endcan
+                  @can('view-any', App\Models\InvoicePurchase::class)
+                      <div class="ml-6">
+                          <x-sidebars.dropdown-link href="{{ route('invoice-purchases.index') }}">
+                              @include('svg.chevron-double-right') Invoice Purchases
+                          </x-sidebars.dropdown-link>
+                      </div>
+                  @endcan
+                  @can('view-any', App\Models\DailySalary::class)
+                      <div class="ml-6">
+                          <x-sidebars.dropdown-link href="{{ route('daily-salaries.index') }}">
+                              @include('svg.chevron-double-right') Daily Salaries
+                          </x-sidebars.dropdown-link>
+                      </div>
+                  @endcan
+                  @can('view-any', App\Models\FuelService::class)
+                      <div class="ml-6">
+                          <x-sidebars.dropdown-link href="{{ route('fuel-services.index') }}">
+                              @include('svg.chevron-double-right') Fuel Services
+                          </x-sidebars.dropdown-link>
+                      </div>
+                  @endcan
+                  @can('view-any', App\Models\PaymentReceipt::class)
+                      <x-sidebars.dropdown-link href="{{ route('payment-receipts.index') }}">
+                          Payment Receipts
+                      </x-sidebars.dropdown-link>
+                  @endcan
+                  @can('view-any', App\Models\UtilityBill::class)
+                      <x-sidebars.dropdown-link href="{{ route('utility-bills.index') }}">
+                          Utility Bills
+                      </x-sidebars.dropdown-link>
+                  @endcan
+
                   @can('view-any', App\Models\ClosingCourier::class)
                       <x-sidebars.dropdown-link href="{{ route('closing-couriers.index') }}">
                           Closing Couriers
@@ -168,42 +194,6 @@
                   @can('view-any', App\Models\AccountCashless::class)
                       <x-sidebars.dropdown-link href="{{ route('account-cashlesses.index') }}">
                           Account Cashlesses
-                      </x-sidebars.dropdown-link>
-                  @endcan
-                  @can('view-any', App\Models\UtilityBill::class)
-                      <x-sidebars.dropdown-link href="{{ route('utility-bills.index') }}">
-                          Utility Bills
-                      </x-sidebars.dropdown-link>
-                  @endcan
-                  @can('view-any', App\Models\FuelService::class)
-                      <x-sidebars.dropdown-link href="{{ route('fuel-services.index') }}">
-                          Fuel Services
-                      </x-sidebars.dropdown-link>
-                  @endcan
-                  {{-- @can('view-any', App\Models\TransferFuelService::class)
-                      <div class="ml-6">
-                          <x-sidebars.dropdown-link href="{{ route('transfer-fuel-services.index') }}">
-                              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-2" fill="none"
-                                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-                              </svg> Transfer Fuel Services
-                          </x-sidebars.dropdown-link>
-                      </div>
-                  @endcan --}}
-
-                  @can('view-any', App\Models\RequestPurchase::class)
-                      <x-sidebars.dropdown-link href="{{ route('request-purchases.index') }}">
-                          Request Purchases
-                      </x-sidebars.dropdown-link>
-                  @endcan
-                  @can('view-any', App\Models\InvoicePurchase::class)
-                      <x-sidebars.dropdown-link href="{{ route('invoice-purchases.index') }}">
-                          Invoice Purchases
-                      </x-sidebars.dropdown-link>
-                  @endcan
-                  @can('view-any', App\Models\PaymentReceipt::class)
-                      <x-sidebars.dropdown-link href="{{ route('payment-receipts.index') }}">
-                          Payment Receipts
                       </x-sidebars.dropdown-link>
                   @endcan
 
@@ -361,11 +351,7 @@
                           Presences
                       </x-sidebars.dropdown-link>
                   @endcan --}}
-                  @can('view-any', App\Models\DailySalary::class)
-                      <x-sidebars.dropdown-link href="{{ route('daily-salaries.index') }}">
-                          Daily Salaries
-                      </x-sidebars.dropdown-link>
-                  @endcan
+
                   @can('view-any', App\Models\Sop::class)
                       <x-sidebars.dropdown-link href="{{ route('sops.index') }}">
                           SOP
