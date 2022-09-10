@@ -60,7 +60,10 @@ class PresenceController extends Controller
             // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
-        return view('app.presences.create', compact('paymentTypes', 'users', 'stores', 'shiftStores'));
+        return view(
+            'app.presences.create',
+            compact('stores', 'shiftStores', 'paymentTypes', 'users')
+        );
     }
 
     /**

@@ -26,6 +26,9 @@ class Presence extends Model
     const STATUS_TIDAK_VALID = '4';
 
     protected $fillable = [
+        'store_id',
+        'shift_store_id',
+        'date',
         'amount',
         'payment_type_id',
         'status',
@@ -38,6 +41,16 @@ class Presence extends Model
     ];
 
     protected $searchableFields = ['*'];
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    public function shiftStore()
+    {
+        return $this->belongsTo(ShiftStore::class);
+    }
 
     public function created_by()
     {
