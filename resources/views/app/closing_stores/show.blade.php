@@ -129,13 +129,18 @@
                 </x-partials.card> --}}
 
                 <x-partials.card class="mt-5">
-                    <x-slot name="title"> Presences </x-slot>
+                    <x-slot name="title"> Daily Salaries </x-slot>
                     <livewire:closing-store-daily-salaries-detail :closingStore="$closingStore" />
                 </x-partials.card>
 
                 <x-partials.card class="mt-5">
                     <x-slot name="title"> Fuel Services </x-slot>
                     <livewire:closing-store-fuel-services-detail :closingStore="$closingStore" />
+                </x-partials.card>
+
+                <x-partials.card class="mt-5">
+                    <x-slot name="title"> Cashlesses </x-slot>
+                    <livewire:cashlesses-detail :closingStore="$closingStore" />
                 </x-partials.card>
             @endcan
 

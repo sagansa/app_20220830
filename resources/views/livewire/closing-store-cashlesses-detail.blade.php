@@ -22,8 +22,6 @@
 
             <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
 
-                {{-- <x-input.filepond name="cashlessImage" label="Image" wire:model="cashlessImage"></x-input.filepond> --}}
-
                 <x-input.image name="cashlessImage" label="Image">
                     <div image-url="{{ $editing && $cashless->image ? \Storage::url($cashless->image) : '' }}"
                         x-data="imageViewer()" @refresh.window="refreshUrl()" class="mt-1 sm:mt-0 sm:col-span-2">
@@ -64,10 +62,7 @@
                 <x-input.currency name="cashless.netto_apl" label="Netto Application" wire:model="cashless.netto_apl">
                 </x-input.currency>
 
-                <x-input.filepond name="cashlessImageCanceled" label="Image Canceled"
-                    wire:model="cashlessImageCanceled"></x-input.filepond>
-
-                {{-- <x-input.image name="cashlessImageCanceled" label="Image Canceled">
+                <x-input.image name="cashlessImageCanceled" label="Image Canceled">
                     <div image-url="{{ $editing && $cashless->image_canceled ? \Storage::url($cashless->image_canceled) : '' }}"
                         x-data="imageViewer()" @refresh.window="refreshUrl()" class="mt-1 sm:mt-0 sm:col-span-2">
                         <!-- Show the image -->
@@ -92,7 +87,7 @@
                             @include('components.inputs.partials.error')
                         @enderror
                     </div>
-                </x-input.image> --}}
+                </x-input.image>
 
                 <x-input.number name="cashless.canceled" label="Canceled" wire:model="cashless.canceled">
                 </x-input.number>
@@ -107,16 +102,6 @@
         </div>
 
         <div class="flex justify-between px-6 py-4 bg-gray-50">
-            {{-- <button type="button" class="button" wire:click="$toggle('showingModal')">
-                <i class="mr-1 icon ion-md-close"></i>
-                @lang('crud.common.cancel')
-            </button>
-
-            <button type="button" class="button button-primary" wire:click="save">
-                <i class="mr-1 icon ion-md-save"></i>
-                @lang('crud.common.save')
-            </button> --}}
-
             <x-buttons.secondary wire:click="$toggle('showingModal')">@lang('crud.common.cancel')</x-buttons.secondary>
             <x-jet-button wire:click="save">@lang('crud.common.save')</x-jet-button>
         </div>
@@ -219,7 +204,6 @@
                 @endforeach
             </x-slot>
             <x-slot name="foot">
-
                 </tr>
                 <tr>
                     <td colspan="9">
