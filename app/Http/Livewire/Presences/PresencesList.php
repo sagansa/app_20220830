@@ -46,7 +46,7 @@ class PresencesList extends Component
     public function getRowsQueryProperty()
     {
 
-        $presences = Presence::query()->get();
+        $presences = Presence::query()->latest();
 
             if (Auth::user()->hasRole('staff|supervisor|manager')) {
 
