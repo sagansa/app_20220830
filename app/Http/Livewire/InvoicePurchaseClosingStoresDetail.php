@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\ClosingStore;
 use App\Models\InvoicePurchase;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Carbon;
 
 class InvoicePurchaseClosingStoresDetail extends Component
 {
@@ -26,8 +27,9 @@ class InvoicePurchaseClosingStoresDetail extends Component
     public function mount(InvoicePurchase $invoicePurchase)
     {
         $this->invoicePurchase = $invoicePurchase;
-        $this->closingStoresForSelect = ClosingStore::
-            get()
+        $this->closingStoresForSelect = ClosingStore::where('date', '>=', Carbon::now()->subDays(5)->toDateString())
+            ->where('store_id', $this->invoicePurchase->store_id)
+            ->get()
             ->pluck('id', 'closing_store_name');
         $this->resetClosingStoreData();
     }
