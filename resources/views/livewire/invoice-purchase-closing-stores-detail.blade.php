@@ -16,7 +16,7 @@
                 <div>
                     <x-input.select name="closing_store_id" label="Closing Store" wire:model="closing_store_id">
                         <option value="null" disabled>-- select --</option>
-                        @foreach ($closingStoresForSelect as $value => $label)
+                        @foreach ($closingStoresForSelect as $label => $value)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </x-input.select>

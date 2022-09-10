@@ -116,13 +116,15 @@
                 </x-partials.card>
             @endcan
 
-            @can('view-any', App\Models\closing_store_invoice_purchase::class)
-                <x-partials.card class="mt-5">
-                    <x-slot name="title"> Closing Stores </x-slot>
+            @if ($invoicePurchase->payment_type_id == 2)
+                @can('view-any', App\Models\closing_store_invoice_purchase::class)
+                    <x-partials.card class="mt-5">
+                        <x-slot name="title"> Closing Stores </x-slot>
 
-                    <livewire:invoice-purchase-closing-stores-detail :invoicePurchase="$invoicePurchase" />
-                </x-partials.card>
-            @endcan
+                        <livewire:invoice-purchase-closing-stores-detail :invoicePurchase="$invoicePurchase" />
+                    </x-partials.card>
+                @endcan
+            @endif
         </div>
     </div>
 </x-admin-layout>

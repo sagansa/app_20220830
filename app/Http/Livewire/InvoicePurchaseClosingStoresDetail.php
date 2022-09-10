@@ -26,7 +26,9 @@ class InvoicePurchaseClosingStoresDetail extends Component
     public function mount(InvoicePurchase $invoicePurchase)
     {
         $this->invoicePurchase = $invoicePurchase;
-        $this->closingStoresForSelect = ClosingStore::pluck('date', 'id');
+        $this->closingStoresForSelect = ClosingStore::
+            get()
+            ->pluck('id', 'closing_store_name');
         $this->resetClosingStoreData();
     }
 
