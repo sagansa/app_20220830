@@ -121,7 +121,7 @@
                         </x-tables.td-left-main>
                         <x-tables.td-left-hide>
                             @foreach ($presence->closingStores as $closingStore)
-                                {{ optional($presence->closingStore)->date->toFormattedDate() ?? '-' }}
+                                {{ optional($presence->closingStore)->date ?? '-' }}
                             @endforeach
                         </x-tables.td-left-hide>
 
