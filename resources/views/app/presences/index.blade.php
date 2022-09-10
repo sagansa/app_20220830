@@ -1,5 +1,5 @@
 <x-admin-layout>
-    @role('staff|manager|supervisor')
+    {{-- @role('staff|manager|supervisor')
         <x-slot name="header">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 @lang('crud.presences.index_title')
@@ -115,8 +115,6 @@
         </x-table>
     </x-tables.card>
     <div class="px-4 mt-10">{!! $presences->render() !!}</div>
-@endrole
-@role('super-admin')
+@endrole --}}
     <livewire:presences.presences-list />
-@endrole
 </x-admin-layout>
