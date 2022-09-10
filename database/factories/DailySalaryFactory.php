@@ -30,6 +30,8 @@ class DailySalaryFactory extends Factory
             'shift_store_id' => \App\Models\ShiftStore::factory(),
             'payment_type_id' => \App\Models\PaymentType::factory(),
             'presence_id' => \App\Models\Presence::factory(),
+            'created_by_id' => \App\Models\User::factory(),
+            'approved_by_id' => \App\Models\User::factory(),
         ];
     }
 }

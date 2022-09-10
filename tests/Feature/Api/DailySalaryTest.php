@@ -57,6 +57,9 @@ class DailySalaryTest extends TestCase
 
         $response = $this->postJson(route('api.daily-salaries.store'), $data);
 
+        unset($data['created_by_id']);
+        unset($data['approved_by_id']);
+
         $this->assertDatabaseHas('daily_salaries', $data);
 
         $response->assertStatus(201)->assertJsonFragment($data);
@@ -73,6 +76,8 @@ class DailySalaryTest extends TestCase
         $shiftStore = ShiftStore::factory()->create();
         $paymentType = PaymentType::factory()->create();
         $presence = Presence::factory()->create();
+        $user = User::factory()->create();
+        $user = User::factory()->create();
 
         $data = [
             'date' => $this->faker->date,
@@ -82,12 +87,17 @@ class DailySalaryTest extends TestCase
             'shift_store_id' => $shiftStore->id,
             'payment_type_id' => $paymentType->id,
             'presence_id' => $presence->id,
+            'created_by_id' => $user->id,
+            'approved_by_id' => $user->id,
         ];
 
         $response = $this->putJson(
             route('api.daily-salaries.update', $dailySalary),
             $data
         );
+
+        unset($data['created_by_id']);
+        unset($data['approved_by_id']);
 
         $data['id'] = $dailySalary->id;
 

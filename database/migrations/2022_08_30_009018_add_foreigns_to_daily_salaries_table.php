@@ -40,6 +40,20 @@ return new class extends Migration {
                 ->on('presences')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
+
+            $table
+                ->foreign('created_by_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
+
+            $table
+                ->foreign('approved_by_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
         });
     }
 
@@ -55,6 +69,8 @@ return new class extends Migration {
             $table->dropForeign(['shift_store_id']);
             $table->dropForeign(['payment_type_id']);
             $table->dropForeign(['presence_id']);
+            $table->dropForeign(['created_by_id']);
+            $table->dropForeign(['approved_by_id']);
         });
     }
 };

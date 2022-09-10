@@ -21,6 +21,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('payment_type_id');
             $table->tinyInteger('status')->default(1);
             $table->unsignedBigInteger('presence_id')->nullable();
+            $table->unsignedBigInteger('created_by_id')->nullable();
+            $table->unsignedBigInteger('approved_by_id')->nullable();
 
             $table->timestamps();
         });

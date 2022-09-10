@@ -3,7 +3,6 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
-use App\Models\PaymentType;
 use App\Models\DailySalary;
 
 use Tests\TestCase;
@@ -11,7 +10,7 @@ use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PaymentTypeDailySalariesTest extends TestCase
+class UserDailySalariesTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,17 +30,17 @@ class PaymentTypeDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_payment_type_daily_salaries()
+    public function it_gets_user_daily_salaries()
     {
-        $paymentType = PaymentType::factory()->create();
+        $user = User::factory()->create();
         $dailySalaries = DailySalary::factory()
             ->count(2)
             ->create([
-                'payment_type_id' => $paymentType->id,
+                'approved_by_id' => $user->id,
             ]);
 
         $response = $this->getJson(
-            route('api.payment-types.daily-salaries.index', $paymentType)
+            route('api.users.daily-salaries.index', $user)
         );
 
         $response->assertOk()->assertSee($dailySalaries[0]->date);
@@ -50,17 +49,17 @@ class PaymentTypeDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_payment_type_daily_salaries()
+    public function it_stores_the_user_daily_salaries()
     {
-        $paymentType = PaymentType::factory()->create();
+        $user = User::factory()->create();
         $data = DailySalary::factory()
             ->make([
-                'payment_type_id' => $paymentType->id,
+                'approved_by_id' => $user->id,
             ])
             ->toArray();
 
         $response = $this->postJson(
-            route('api.payment-types.daily-salaries.store', $paymentType),
+            route('api.users.daily-salaries.store', $user),
             $data
         );
 
@@ -73,6 +72,6 @@ class PaymentTypeDailySalariesTest extends TestCase
 
         $dailySalary = DailySalary::latest('id')->first();
 
-        $this->assertEquals($paymentType->id, $dailySalary->payment_type_id);
+        $this->assertEquals($user->id, $dailySalary->approved_by_id);
     }
 }

@@ -64,6 +64,9 @@ class StoreDailySalariesTest extends TestCase
             $data
         );
 
+        unset($data['created_by_id']);
+        unset($data['approved_by_id']);
+
         $this->assertDatabaseHas('daily_salaries', $data);
 
         $response->assertStatus(201)->assertJsonFragment($data);

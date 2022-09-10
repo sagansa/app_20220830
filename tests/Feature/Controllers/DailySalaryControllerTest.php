@@ -69,6 +69,9 @@ class DailySalaryControllerTest extends TestCase
 
         $response = $this->post(route('daily-salaries.store'), $data);
 
+        unset($data['created_by_id']);
+        unset($data['approved_by_id']);
+
         $this->assertDatabaseHas('daily_salaries', $data);
 
         $dailySalary = DailySalary::latest('id')->first();
@@ -117,6 +120,8 @@ class DailySalaryControllerTest extends TestCase
         $shiftStore = ShiftStore::factory()->create();
         $paymentType = PaymentType::factory()->create();
         $presence = Presence::factory()->create();
+        $user = User::factory()->create();
+        $user = User::factory()->create();
 
         $data = [
             'date' => $this->faker->date,
@@ -126,12 +131,17 @@ class DailySalaryControllerTest extends TestCase
             'shift_store_id' => $shiftStore->id,
             'payment_type_id' => $paymentType->id,
             'presence_id' => $presence->id,
+            'created_by_id' => $user->id,
+            'approved_by_id' => $user->id,
         ];
 
         $response = $this->put(
             route('daily-salaries.update', $dailySalary),
             $data
         );
+
+        unset($data['created_by_id']);
+        unset($data['approved_by_id']);
 
         $data['id'] = $dailySalary->id;
 

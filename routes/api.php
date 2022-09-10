@@ -103,6 +103,7 @@ use App\Http\Controllers\Api\UserClosingStoresController;
 use App\Http\Controllers\Api\UserCleanAndNeatsController;
 use App\Http\Controllers\Api\UserUtilityUsagesController;
 use App\Http\Controllers\Api\UserOutInProductsController;
+use App\Http\Controllers\Api\UserDailySalariesController;
 use App\Http\Controllers\Api\WorkingExperienceController;
 use App\Http\Controllers\Api\UserMaterialGroupsController;
 use App\Http\Controllers\Api\UserPurchaseOrdersController;
@@ -857,6 +858,26 @@ Route::name('api.')
             UserInvoicePurchasesController::class,
             'store',
         ])->name('users.invoice-purchases.store');
+
+        // User Daily Salaries
+        Route::get('/users/{user}/daily-salaries', [
+            UserDailySalariesController::class,
+            'index',
+        ])->name('users.daily-salaries.index');
+        Route::post('/users/{user}/daily-salaries', [
+            UserDailySalariesController::class,
+            'store',
+        ])->name('users.daily-salaries.store');
+
+        // User Daily Salaries2
+        Route::get('/users/{user}/daily-salaries', [
+            UserDailySalariesController::class,
+            'index',
+        ])->name('users.daily-salaries.index');
+        Route::post('/users/{user}/daily-salaries', [
+            UserDailySalariesController::class,
+            'store',
+        ])->name('users.daily-salaries.store');
 
         Route::apiResource('vehicles', VehicleController::class);
 
