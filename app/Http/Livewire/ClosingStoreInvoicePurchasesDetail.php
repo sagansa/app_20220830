@@ -27,8 +27,10 @@ class ClosingStoreInvoicePurchasesDetail extends Component
     {
         $this->closingStore = $closingStore;
         $this->invoicePurchasesForSelect = InvoicePurchase::where('store_id', $this->closingStore->store_id)
-            ->whereIn('payment_type_id', ['2'])
-            ->whereIn('payment_status', ['1', '3'])
+            ->join('suppliers', 'suppliers.id', '=', 'invoice_purchases.supplier_id')
+            ->select('invoice_purchases.*', 'suppliers.*')
+            ->whereIn('invoice_purchases.payment_type_id', ['2'])
+            ->whereIn('invoice_purchases.payment_status', ['1', '3'])
             ->get()
             ->pluck('invoice_purchase_name','id');
         $this->resetInvoicePurchaseData();
