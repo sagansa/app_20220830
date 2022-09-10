@@ -46,10 +46,7 @@ class PresencesList extends Component
     public function getRowsQueryProperty()
     {
 
-        $presences = Presence::with('closing_stores')
-            ->select('closing_stores.date', 'presences.*')
-            ->orderBy('closing_stores.date', 'desc')
-            ->get();
+        $presences = Presence::query();
 
             if (Auth::user()->hasRole('staff|supervisor|manager')) {
 

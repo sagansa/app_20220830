@@ -93,11 +93,18 @@
                             <x-tables.td-checkbox id="{{ $presence->id }}"></x-tables.td-checkbox>
                         @endrole
                         <x-tables.td-left-main>
-                            <x-slot name="main"> {{ $presence->closingStore->store->nickname }} -
-                                {{ $presence->closingStore->shiftStore->name }}</x-slot>
+
+                            <x-slot name="main">
+                                @foreach ($presence->closingStores as $closingStore)
+                                    {{ $presence->closingStore->store->nickname }} -
+                                    {{ $presence->closingStore->shiftStore->name }}
+                                @endforeach
+                            </x-slot>
                             <x-slot name="sub">
-                                <p> {{ optional($presence->closingStore)->date->toFormattedDate() ?? '-' }} -
-                                    @currency($presence->amount)</p>
+                                @foreach ($presence->closingStores as $closingStore)
+                                    <p> {{ optional($presence->closingStore)->date->toFormattedDate() ?? '-' }} -
+                                        @currency($presence->amount)</p>
+                                @endforeach
                                 <p>{{ optional($presence->paymentType)->name ?? '-' }}
                                     @if ($presence->status == 1)
                                         <x-spans.yellow>belum dibayar</x-spans.yellow>
@@ -112,7 +119,10 @@
                             </x-slot>
 
                         </x-tables.td-left-main>
-                        <x-tables.td-left-hide>{{ optional($presence->closingStore)->date->toFormattedDate() ?? '-' }}
+                        <x-tables.td-left-hide>
+                            @foreach ($presence->closingStores as $closingStore)
+                                {{ optional($presence->closingStore)->date->toFormattedDate() ?? '-' }}
+                            @endforeach
                         </x-tables.td-left-hide>
 
                         <x-tables.td-right-hide>@currency($presence->amount)</x-tables.td-right-hide>
@@ -163,6 +173,7 @@
                             </div>
                         </td>
                     </tr>
+
                 @empty
                     <x-tables.no-items-found colspan="7"> </x-tables.no-items-found>
                 @endforelse
