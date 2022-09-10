@@ -31,6 +31,11 @@ class ShiftStore extends Model
         return $this->hasMany(ClosingStore::class);
     }
 
+    public function presences()
+    {
+        return $this->hasMany(Presence::class);
+    }
+
     public function delete_image()
     {
         if ($this->image && file_exists('storage/' . $this->image)) {

@@ -14,6 +14,20 @@ return new class extends Migration {
     {
         Schema::table('presences', function (Blueprint $table) {
             $table
+                ->foreign('store_id')
+                ->references('id')
+                ->on('stores')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
+
+            $table
+                ->foreign('shift_store_id')
+                ->references('id')
+                ->on('shift_stores')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
+
+            $table
                 ->foreign('payment_type_id')
                 ->references('id')
                 ->on('payment_types')
@@ -44,6 +58,8 @@ return new class extends Migration {
     public function down()
     {
         Schema::table('presences', function (Blueprint $table) {
+            $table->dropForeign(['store_id']);
+            $table->dropForeign(['shift_store_id']);
             $table->dropForeign(['payment_type_id']);
             $table->dropForeign(['created_by_id']);
             $table->dropForeign(['approved_by_id']);

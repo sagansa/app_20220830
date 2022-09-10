@@ -42,7 +42,7 @@ class ClosingStorePresencesTest extends TestCase
             route('api.closing-stores.presences.index', $closingStore)
         );
 
-        $response->assertOk()->assertSee($presence->image_in);
+        $response->assertOk()->assertSee($presence->date);
     }
 
     /**

@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\PaymentType;
+use App\Models\ShiftStore;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PresenceResource;
 use App\Http\Resources\PresenceCollection;
 
-class PaymentTypePresencesController extends Controller
+class ShiftStorePresencesController extends Controller
 {
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
+     * @param \App\Models\ShiftStore $shiftStore
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, PaymentType $paymentType)
+    public function index(Request $request, ShiftStore $shiftStore)
     {
-        $this->authorize('view', $paymentType);
+        $this->authorize('view', $shiftStore);
 
         $search = $request->get('search', '');
 
-        $presences = $paymentType
+        $presences = $shiftStore
             ->presences()
             ->search($search)
             ->latest()
@@ -32,23 +32,23 @@ class PaymentTypePresencesController extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
+     * @param \App\Models\ShiftStore $shiftStore
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, PaymentType $paymentType)
+    public function store(Request $request, ShiftStore $shiftStore)
     {
         $this->authorize('create', Presence::class);
 
         $validated = $request->validate([
             'store_id' => ['required', 'exists:stores,id'],
-            'shift_store_id' => ['required', 'exists:shift_stores,id'],
             'date' => ['required', 'date'],
             'amount' => ['required', 'numeric', 'gt:0'],
+            'payment_type_id' => ['required', 'exists:payment_types,id'],
             'status' => ['required', 'in:1,2,3,4'],
             'created_by_id' => ['nullable', 'exists:users,id'],
         ]);
 
-        $presence = $paymentType->presences()->create($validated);
+        $presence = $shiftStore->presences()->create($validated);
 
         return new PresenceResource($presence);
     }

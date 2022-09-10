@@ -40,7 +40,10 @@ class UserPresencesController extends Controller
         $this->authorize('create', Presence::class);
 
         $validated = $request->validate([
-            'amount' => ['required', 'numeric', 'min:0'],
+            'store_id' => ['required', 'exists:stores,id'],
+            'shift_store_id' => ['required', 'exists:shift_stores,id'],
+            'date' => ['required', 'date'],
+            'amount' => ['required', 'numeric', 'gt:0'],
             'payment_type_id' => ['required', 'exists:payment_types,id'],
             'status' => ['required', 'in:1,2,3,4'],
         ]);

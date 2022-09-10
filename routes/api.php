@@ -68,6 +68,7 @@ use App\Http\Controllers\Api\EProductCartsController;
 use App\Http\Controllers\Api\UserStockCardsController;
 use App\Http\Controllers\Api\StoreUtilitiesController;
 use App\Http\Controllers\Api\StoreEProductsController;
+use App\Http\Controllers\Api\StorePresencesController;
 use App\Http\Controllers\Api\ClosingCourierController;
 use App\Http\Controllers\Api\RemainingStockController;
 use App\Http\Controllers\Api\FranchiseGroupController;
@@ -126,6 +127,7 @@ use App\Http\Controllers\Api\StorePurchaseOrdersController;
 use App\Http\Controllers\Api\StoreTransferStocksController;
 use App\Http\Controllers\Api\StoreDetailRequestsController;
 use App\Http\Controllers\Api\PaymentTypeProductsController;
+use App\Http\Controllers\Api\ShiftStorePresencesController;
 use App\Http\Controllers\Api\BankClosingCouriersController;
 use App\Http\Controllers\Api\UtilityUtilityBillsController;
 use App\Http\Controllers\Api\MovementAssetResultController;
@@ -1091,6 +1093,16 @@ Route::name('api.')
             'store',
         ])->name('stores.detail-requests.store');
 
+        // Store Presences
+        Route::get('/stores/{store}/presences', [
+            StorePresencesController::class,
+            'index',
+        ])->name('stores.presences.index');
+        Route::post('/stores/{store}/presences', [
+            StorePresencesController::class,
+            'store',
+        ])->name('stores.presences.store');
+
         Route::apiResource('suppliers', SupplierController::class);
 
         // Supplier Purchase Orders
@@ -1406,6 +1418,16 @@ Route::name('api.')
             ShiftStoreClosingStoresController::class,
             'store',
         ])->name('shift-stores.closing-stores.store');
+
+        // ShiftStore Presences
+        Route::get('/shift-stores/{shiftStore}/presences', [
+            ShiftStorePresencesController::class,
+            'index',
+        ])->name('shift-stores.presences.index');
+        Route::post('/shift-stores/{shiftStore}/presences', [
+            ShiftStorePresencesController::class,
+            'store',
+        ])->name('shift-stores.presences.store');
 
         Route::apiResource('sops', SopController::class);
 

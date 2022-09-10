@@ -41,7 +41,7 @@ class UserPresencesTest extends TestCase
 
         $response = $this->getJson(route('api.users.presences.index', $user));
 
-        $response->assertOk()->assertSee($presences[0]->image_in);
+        $response->assertOk()->assertSee($presences[0]->date);
     }
 
     /**

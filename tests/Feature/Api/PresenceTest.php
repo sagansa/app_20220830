@@ -5,6 +5,8 @@ namespace Tests\Feature\Api;
 use App\Models\User;
 use App\Models\Presence;
 
+use App\Models\Store;
+use App\Models\ShiftStore;
 use App\Models\PaymentType;
 
 use Tests\TestCase;
@@ -40,7 +42,7 @@ class PresenceTest extends TestCase
 
         $response = $this->getJson(route('api.presences.index'));
 
-        $response->assertOk()->assertSee($presences[0]->image_in);
+        $response->assertOk()->assertSee($presences[0]->date);
     }
 
     /**
@@ -75,8 +77,11 @@ class PresenceTest extends TestCase
         $user = User::factory()->create();
         $user = User::factory()->create();
         $paymentType = PaymentType::factory()->create();
+        $store = Store::factory()->create();
+        $shiftStore = ShiftStore::factory()->create();
 
         $data = [
+            'date' => $this->faker->date,
             'amount' => $this->faker->randomNumber,
             'status' => $this->faker->numberBetween(1, 2),
             'image_in' => $this->faker->text(255),
@@ -86,6 +91,8 @@ class PresenceTest extends TestCase
             'created_by_id' => $user->id,
             'approved_by_id' => $user->id,
             'payment_type_id' => $paymentType->id,
+            'store_id' => $store->id,
+            'shift_store_id' => $shiftStore->id,
         ];
 
         $response = $this->putJson(

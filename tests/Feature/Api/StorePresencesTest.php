@@ -3,15 +3,15 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
+use App\Models\Store;
 use App\Models\Presence;
-use App\Models\PaymentType;
 
 use Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PaymentTypePresencesTest extends TestCase
+class StorePresencesTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,18 +31,16 @@ class PaymentTypePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_payment_type_presences()
+    public function it_gets_store_presences()
     {
-        $paymentType = PaymentType::factory()->create();
+        $store = Store::factory()->create();
         $presences = Presence::factory()
             ->count(2)
             ->create([
-                'payment_type_id' => $paymentType->id,
+                'store_id' => $store->id,
             ]);
 
-        $response = $this->getJson(
-            route('api.payment-types.presences.index', $paymentType)
-        );
+        $response = $this->getJson(route('api.stores.presences.index', $store));
 
         $response->assertOk()->assertSee($presences[0]->date);
     }
@@ -50,17 +48,17 @@ class PaymentTypePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_payment_type_presences()
+    public function it_stores_the_store_presences()
     {
-        $paymentType = PaymentType::factory()->create();
+        $store = Store::factory()->create();
         $data = Presence::factory()
             ->make([
-                'payment_type_id' => $paymentType->id,
+                'store_id' => $store->id,
             ])
             ->toArray();
 
         $response = $this->postJson(
-            route('api.payment-types.presences.store', $paymentType),
+            route('api.stores.presences.store', $store),
             $data
         );
 
@@ -76,6 +74,6 @@ class PaymentTypePresencesTest extends TestCase
 
         $presence = Presence::latest('id')->first();
 
-        $this->assertEquals($paymentType->id, $presence->payment_type_id);
+        $this->assertEquals($store->id, $presence->store_id);
     }
 }

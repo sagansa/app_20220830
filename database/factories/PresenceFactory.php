@@ -23,6 +23,7 @@ class PresenceFactory extends Factory
     public function definition()
     {
         return [
+            'date' => $this->faker->date,
             'amount' => $this->faker->randomNumber,
             'status' => $this->faker->numberBetween(1, 2),
             'image_in' => $this->faker->text(255),
@@ -32,6 +33,8 @@ class PresenceFactory extends Factory
             'created_by_id' => \App\Models\User::factory(),
             'approved_by_id' => \App\Models\User::factory(),
             'payment_type_id' => \App\Models\PaymentType::factory(),
+            'store_id' => \App\Models\Store::factory(),
+            'shift_store_id' => \App\Models\ShiftStore::factory(),
         ];
     }
 }

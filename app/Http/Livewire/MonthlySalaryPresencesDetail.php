@@ -26,7 +26,7 @@ class MonthlySalaryPresencesDetail extends Component
     public function mount(Salary $salary)
     {
         $this->salary = $salary;
-        $this->presencesForSelect = Presence::pluck('image_in', 'id');
+        $this->presencesForSelect = Presence::pluck('date', 'id');
         $this->resetPresenceData();
     }
 

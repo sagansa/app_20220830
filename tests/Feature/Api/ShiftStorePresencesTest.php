@@ -4,14 +4,14 @@ namespace Tests\Feature\Api;
 
 use App\Models\User;
 use App\Models\Presence;
-use App\Models\PaymentType;
+use App\Models\ShiftStore;
 
 use Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PaymentTypePresencesTest extends TestCase
+class ShiftStorePresencesTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,17 +31,17 @@ class PaymentTypePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_payment_type_presences()
+    public function it_gets_shift_store_presences()
     {
-        $paymentType = PaymentType::factory()->create();
+        $shiftStore = ShiftStore::factory()->create();
         $presences = Presence::factory()
             ->count(2)
             ->create([
-                'payment_type_id' => $paymentType->id,
+                'shift_store_id' => $shiftStore->id,
             ]);
 
         $response = $this->getJson(
-            route('api.payment-types.presences.index', $paymentType)
+            route('api.shift-stores.presences.index', $shiftStore)
         );
 
         $response->assertOk()->assertSee($presences[0]->date);
@@ -50,17 +50,17 @@ class PaymentTypePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_payment_type_presences()
+    public function it_stores_the_shift_store_presences()
     {
-        $paymentType = PaymentType::factory()->create();
+        $shiftStore = ShiftStore::factory()->create();
         $data = Presence::factory()
             ->make([
-                'payment_type_id' => $paymentType->id,
+                'shift_store_id' => $shiftStore->id,
             ])
             ->toArray();
 
         $response = $this->postJson(
-            route('api.payment-types.presences.store', $paymentType),
+            route('api.shift-stores.presences.store', $shiftStore),
             $data
         );
 
@@ -76,6 +76,6 @@ class PaymentTypePresencesTest extends TestCase
 
         $presence = Presence::latest('id')->first();
 
-        $this->assertEquals($paymentType->id, $presence->payment_type_id);
+        $this->assertEquals($shiftStore->id, $presence->shift_store_id);
     }
 }

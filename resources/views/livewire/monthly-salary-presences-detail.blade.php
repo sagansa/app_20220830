@@ -63,7 +63,7 @@
                 @foreach ($monthlySalaryPresences as $presence)
                 <tr class="hover:bg-gray-100">
                     <td class="px-4 py-3 text-left">
-                        {{ $presence->image_in ?? '-' }}
+                        {{ $presence->date ?? '-' }}
                     </td>
                     <td class="px-4 py-3 text-right" style="width: 70px;">
                         <div

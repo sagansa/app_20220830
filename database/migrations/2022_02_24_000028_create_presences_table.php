@@ -14,6 +14,9 @@ return new class extends Migration {
     {
         Schema::create('presences', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('store_id');
+            $table->unsignedBigInteger('shift_store_id');
+            $table->date('date');
             $table->bigInteger('amount');
             $table->unsignedBigInteger('payment_type_id');
             $table->tinyInteger('status');

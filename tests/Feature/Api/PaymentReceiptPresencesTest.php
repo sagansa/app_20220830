@@ -42,7 +42,7 @@ class PaymentReceiptPresencesTest extends TestCase
             route('api.payment-receipts.presences.index', $paymentReceipt)
         );
 
-        $response->assertOk()->assertSee($presence->image_in);
+        $response->assertOk()->assertSee($presence->date);
     }
 
     /**

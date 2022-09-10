@@ -2,11 +2,30 @@
 
 <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
 
+    <x-input.select name="store_id" label="Store" required>
+        @php $selected = old('store_id', ($editing ? $presence->store_id : '1')) @endphp
+        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
+        @foreach ($stores as $value => $label)
+            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}</option>
+        @endforeach
+    </x-input.select>
+    <x-input.select name="shift_store_id" label="Shift Store" required>
+        @php $selected = old('shift_store_id', ($editing ? $presence->shift_store_id : '1')) @endphp
+        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
+        @foreach ($shiftStores as $value => $label)
+            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}</option>
+        @endforeach
+    </x-input.select>
+    <x-input.date name="date" label="Date"
+        value="{{ old('date', $editing ? optional($presence->date)->format('Y-m-d') : '') }}" required>
+    </x-input.date>
+
     <x-input.select name="payment_type_id" label="Payment Type" required>
         @php $selected = old('payment_type_id', ($editing ? $presence->payment_type_id : '1')) @endphp
         <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
         @foreach ($paymentTypes as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}</option>
+            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
+            </option>
         @endforeach
     </x-input.select>
 
@@ -24,6 +43,7 @@
             <option value="1" {{ $selected == '1' ? 'selected' : '' }}>belum diperiksa</option>
             <option value="2" {{ $selected == '2' ? 'selected' : '' }}>sudah dibayar</option>
             <option value="3" {{ $selected == '3' ? 'selected' : '' }}>siap ditransfer</option>
+            <option value="3" {{ $selected == '3' ? 'selected' : '' }}>perbaiki</option>
         </x-input.select>
 
         <x-input.select name="created_by_id" label="Created By">

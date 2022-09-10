@@ -42,11 +42,12 @@
                         Store
                     </x-tables.th-left>
                     <x-tables.th-left>
-                        Product
+                        From Product
                     </x-tables.th-left>
                     <x-tables.th-left>
                         Quantity Product
                     </x-tables.th-left>
+
                     <x-tables.th-left>
                         Store Production
                     </x-tables.th-left>
@@ -73,6 +74,7 @@
 
                             {{ $detailInvoice->detailRequest->product->unit->unit }}
                         </x-tables.td-left-hide>
+
                         <x-tables.td-left-hide>
                             @foreach ($detailInvoice->productionMainFroms as $productionMainFrom)
                                 <p>{{ $productionMainFrom->production->store->nickname }} -

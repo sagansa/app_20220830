@@ -415,6 +415,9 @@ return [
         'edit_title' => 'Edit Presence',
         'show_title' => 'Show Presence',
         'inputs' => [
+            'store_id' => 'Store',
+            'shift_store_id' => 'Shift Store',
+            'date' => 'Date',
             'amount' => 'Amount',
             'payment_type_id' => 'Payment Type',
             'status' => 'Status',

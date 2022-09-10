@@ -11,6 +11,8 @@ use App\Models\ClosingStore;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PresenceStoreRequest;
 use App\Http\Requests\PresenceUpdateRequest;
+use App\Models\ShiftStore;
+use App\Models\Store;
 use Carbon\Carbon;
 
 class PresenceController extends Controller
@@ -47,6 +49,10 @@ class PresenceController extends Controller
      */
     public function create(Request $request)
     {
+        $stores = Store::orderBy('nickname', 'asc')
+            ->whereNotIn('status', ['8'])
+            ->pluck('nickname', 'id');
+        $shiftStores = ShiftStore::orderBy('name', 'asc')->pluck('name', 'id');
         $paymentTypes = PaymentType::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
