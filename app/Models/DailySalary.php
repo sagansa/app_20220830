@@ -28,6 +28,8 @@ class DailySalary extends Model
         'payment_type_id',
         'status',
         'presence_id',
+        'created_by_id',
+        'approved_by_id',
     ];
 
     protected $searchableFields = ['*'];
@@ -56,6 +58,16 @@ class DailySalary extends Model
     public function presence()
     {
         return $this->belongsTo(Presence::class);
+    }
+
+    public function created_by()
+    {
+        return $this->belongsTo(User::class, 'created_by_id');
+    }
+
+    public function approved_by()
+    {
+        return $this->belongsTo(User::class, 'approved_by_id');
     }
 
     public function closingStores()
