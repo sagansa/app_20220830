@@ -25,15 +25,8 @@
         </div>
 
         <div class="flex justify-between px-6 py-4 bg-gray-50">
-            <button type="button" class="button" wire:click="$toggle('showingModal')">
-                <i class="mr-1 icon ion-md-close"></i>
-                @lang('crud.common.cancel')
-            </button>
-
-            <button type="button" class="button button-primary" wire:click="save">
-                <i class="mr-1 icon ion-md-save"></i>
-                @lang('crud.common.save')
-            </button>
+            <x-buttons.secondary wire:click="$toggle('showingModal')">@lang('crud.common.cancel')</x-buttons.secondary>
+            <x-jet-button wire:click="save">@lang('crud.common.save')</x-jet-button>
         </div>
     </x-modal>
 
@@ -71,8 +64,8 @@
                                     <button class="button button-danger"
                                         onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
                                         wire:click="detach({{ $closingStore->id }})">
-                                        <i class="mr-1 icon ion-md-trash text-primary"></i>
-                                        @lang('crud.common.detach')
+                                        <i class="icon ion-md-trash text-primary"></i>
+
                                     </button>
                                 @endcan
                             </div>
