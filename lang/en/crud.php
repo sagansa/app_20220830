@@ -1530,6 +1530,18 @@ return [
         ],
     ],
 
+    'invoice_purchase_closing_stores' => [
+        'name' => 'InvoicePurchase Closing Stores',
+        'index_title' => ' List',
+        'new_title' => 'New Closing store invoice purchase',
+        'create_title' => 'Create closing_store_invoice_purchase',
+        'edit_title' => 'Edit closing_store_invoice_purchase',
+        'show_title' => 'Show closing_store_invoice_purchase',
+        'inputs' => [
+            'closing_store_id' => 'Closing Store',
+        ],
+    ],
+
     'roles' => [
         'name' => 'Roles',
         'index_title' => 'Roles List',

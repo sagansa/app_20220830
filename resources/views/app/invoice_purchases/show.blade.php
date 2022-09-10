@@ -115,6 +115,14 @@
                     <livewire:invoice-purchase-detail-invoices-detail :invoicePurchase="$invoicePurchase" />
                 </x-partials.card>
             @endcan
+
+            @can('view-any', App\Models\closing_store_invoice_purchase::class)
+                <x-partials.card class="mt-5">
+                    <x-slot name="title"> Closing Stores </x-slot>
+
+                    <livewire:invoice-purchase-closing-stores-detail :invoicePurchase="$invoicePurchase" />
+                </x-partials.card>
+            @endcan
         </div>
     </div>
 </x-admin-layout>

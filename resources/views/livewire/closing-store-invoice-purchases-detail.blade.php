@@ -1,13 +1,15 @@
 <div>
     <div>
-        @if ($closingStore->transfer_status != 2 || $closingStore->closing_status != 2)
-            @can('create', App\Models\InvoicePurchase::class)
-                <button class="button" wire:click="newInvoicePurchase">
-                    <i class="mr-1 icon ion-md-add text-primary"></i>
-                    @lang('crud.common.attach')
-                </button>
-            @endcan
-        @endif
+        @role('super-admin')
+            @if ($closingStore->transfer_status != 2 || $closingStore->closing_status != 2)
+                @can('create', App\Models\InvoicePurchase::class)
+                    <button class="button" wire:click="newInvoicePurchase">
+                        <i class="mr-1 icon ion-md-add text-primary"></i>
+                        @lang('crud.common.attach')
+                    </button>
+                @endcan
+            @endif
+        @endrole
     </div>
 
     <x-modal wire:model="showingModal">
