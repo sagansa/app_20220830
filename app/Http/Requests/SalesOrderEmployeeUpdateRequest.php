@@ -27,17 +27,14 @@ class SalesOrderEmployeeUpdateRequest extends FormRequest
             'store_id' => ['required', 'exists:stores,id'],
             'customer_id' => ['required', 'exists:customers,id'],
             'delivery_address_id' => [
-                'required',
+                'nullable',
                 'exists:delivery_addresses,id',
             ],
             'date' => ['required', 'date'],
-            'total' => ['required', 'max:255'],
-            'image' => ['nullable', 'image', 'max:1024'],
-            'status' => ['required', 'max:255'],
+            'image' => ['nullable', 'image'],
+            'status' => ['required', 'in:1,2,3,4'],
             'notes' => ['nullable', 'max:255', 'string'],
-            'created_by_id' => ['nullable', 'exists:users,id'],
-            'approved_by_id' => ['nullable', 'exists:users,id'],
-            'status' => ['required', 'max:255'],
+            'user_id' => ['required', 'exists:users,id'],
         ];
     }
 }

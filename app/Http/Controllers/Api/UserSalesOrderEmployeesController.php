@@ -22,7 +22,7 @@ class UserSalesOrderEmployeesController extends Controller
         $search = $request->get('search', '');
 
         $salesOrderEmployees = $user
-            ->salesOrderEmployeesApproved()
+            ->salesOrderEmployees()
             ->search($search)
             ->latest()
             ->paginate();
@@ -43,24 +43,20 @@ class UserSalesOrderEmployeesController extends Controller
             'store_id' => ['required', 'exists:stores,id'],
             'customer_id' => ['required', 'exists:customers,id'],
             'delivery_address_id' => [
-                'required',
+                'nullable',
                 'exists:delivery_addresses,id',
             ],
             'date' => ['required', 'date'],
-            'total' => ['required', 'max:255'],
-            'image' => ['nullable', 'image', 'max:1024'],
-            'status' => ['required', 'max:255'],
+            'image' => ['nullable', 'image'],
+            'status' => ['required', 'in:1,2,3,4'],
             'notes' => ['nullable', 'max:255', 'string'],
-            'status' => ['required', 'max:255'],
         ]);
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('public');
         }
 
-        $salesOrderEmployee = $user
-            ->salesOrderEmployeesApproved()
-            ->create($validated);
+        $salesOrderEmployee = $user->salesOrderEmployees()->create($validated);
 
         return new SalesOrderEmployeeResource($salesOrderEmployee);
     }

@@ -75,18 +75,15 @@ class SalesOrderEmployeeTest extends TestCase
         $deliveryAddress = DeliveryAddress::factory()->create();
         $store = Store::factory()->create();
         $user = User::factory()->create();
-        $user = User::factory()->create();
 
         $data = [
             'date' => $this->faker->date,
-            'total' => $this->faker->randomNumber,
             'status' => $this->faker->numberBetween(1, 4),
             'notes' => $this->faker->text,
             'customer_id' => $customer->id,
             'delivery_address_id' => $deliveryAddress->id,
             'store_id' => $store->id,
-            'created_by_id' => $user->id,
-            'approved_by_id' => $user->id,
+            'user_id' => $user->id,
         ];
 
         $response = $this->putJson(

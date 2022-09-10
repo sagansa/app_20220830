@@ -79,14 +79,15 @@
                           Customers
                       </x-sidebars.dropdown-link>
                   @endcan
-                  @can('view-any', App\Models\SalesOrderEmployee::class)
-                      <x-sidebars.dropdown-link href="{{ route('sales-order-employees.index') }}">
-                          Sales Order Employees
-                      </x-sidebars.dropdown-link>
-                  @endcan
+
                   @can('view-any', App\Models\SalesOrderOnline::class)
                       <x-sidebars.dropdown-link href="{{ route('sales-order-onlines.index') }}">
                           Sales Order Onlines
+                      </x-sidebars.dropdown-link>
+                  @endcan
+                  @can('view-any', App\Models\SalesOrderEmployee::class)
+                      <x-sidebars.dropdown-link href="{{ route('sales-order-employees.index') }}">
+                          Sales Order Employees
                       </x-sidebars.dropdown-link>
                   @endcan
                   @can('view-any', App\Models\EProduct::class)

@@ -16,14 +16,12 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('store_id');
             $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('delivery_address_id');
+            $table->unsignedBigInteger('delivery_address_id')->nullable();
             $table->date('date');
-            $table->bigInteger('total');
             $table->string('image')->nullable();
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(1);
             $table->text('notes')->nullable();
-            $table->unsignedBigInteger('created_by_id')->nullable();
-            $table->unsignedBigInteger('approved_by_id')->nullable();
+            $table->unsignedBigInteger('user_id');
 
             $table->timestamps();
         });

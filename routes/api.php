@@ -111,12 +111,12 @@ use App\Http\Controllers\Api\StoreClosingStoresController;
 use App\Http\Controllers\Api\StoreDailySalariesController;
 use App\Http\Controllers\Api\OnlineShopProviderController;
 use App\Http\Controllers\Api\RestaurantCategoryController;
-use App\Http\Controllers\Api\SalesOrderEmployeeController;
 use App\Http\Controllers\Api\UnitDetailInvoicesController;
 use App\Http\Controllers\Api\RoomHygieneOfRoomsController;
 use App\Http\Controllers\Api\VehicleCertificateController;
 use App\Http\Controllers\Api\MovementAssetAuditController;
 use App\Http\Controllers\Api\ProductionMainFromController;
+use App\Http\Controllers\Api\SalesOrderEmployeeController;
 use App\Http\Controllers\Api\UserFranchiseGroupsController;
 use App\Http\Controllers\Api\UserRemainingStocksController;
 use App\Http\Controllers\Api\UserClosingCouriersController;
@@ -200,7 +200,6 @@ use App\Http\Controllers\Api\ClosingStoreDailySalariesController;
 use App\Http\Controllers\Api\AccountCashlessCashlessesController;
 use App\Http\Controllers\Api\EmployeeWorkingExperiencesController;
 use App\Http\Controllers\Api\RestaurantCategoryProductsController;
-use App\Http\Controllers\Api\SalesOrderEmployeeProductsController;
 use App\Http\Controllers\Api\ProductSalesOrderEmployeesController;
 use App\Http\Controllers\Api\product_sales_order_onlineController;
 use App\Http\Controllers\Api\PurchaseOrderClosingStoresController;
@@ -210,6 +209,7 @@ use App\Http\Controllers\Api\FuelServicePaymentReceiptsController;
 use App\Http\Controllers\Api\closing_store_fuel_serviceController;
 use App\Http\Controllers\Api\closing_store_daily_salaryController;
 use App\Http\Controllers\Api\DailySalaryPaymentReceiptsController;
+use App\Http\Controllers\Api\SalesOrderEmployeeProductsController;
 use App\Http\Controllers\Api\CustomerSalesOrderEmployeesController;
 use App\Http\Controllers\Api\ClosingCourierClosingStoresController;
 use App\Http\Controllers\Api\PaymentTypeInvoicePurchasesController;
@@ -469,16 +469,6 @@ Route::name('api.')
             'store',
         ])->name('users.sales-order-onlines.store');
 
-        // User Sales Order Employees Created
-        Route::get('/users/{user}/sales-order-employees', [
-            UserSalesOrderEmployeesController::class,
-            'index',
-        ])->name('users.sales-order-employees.index');
-        Route::post('/users/{user}/sales-order-employees', [
-            UserSalesOrderEmployeesController::class,
-            'store',
-        ])->name('users.sales-order-employees.store');
-
         // User Productions Created
         Route::get('/users/{user}/productions', [
             UserProductionsController::class,
@@ -588,16 +578,6 @@ Route::name('api.')
             UserSalesOrderOnlinesController::class,
             'store',
         ])->name('users.sales-order-onlines.store');
-
-        // User Sales Order Employees Approved
-        Route::get('/users/{user}/sales-order-employees', [
-            UserSalesOrderEmployeesController::class,
-            'index',
-        ])->name('users.sales-order-employees.index');
-        Route::post('/users/{user}/sales-order-employees', [
-            UserSalesOrderEmployeesController::class,
-            'store',
-        ])->name('users.sales-order-employees.store');
 
         // User Transfer Stocks Approved
         Route::get('/users/{user}/transfer-stocks', [
@@ -779,46 +759,6 @@ Route::name('api.')
             'store',
         ])->name('users.out-in-products.store');
 
-        // User Transfer Stocks2
-        Route::get('/users/{user}/transfer-stocks', [
-            UserTransferStocksController::class,
-            'index',
-        ])->name('users.transfer-stocks.index');
-        Route::post('/users/{user}/transfer-stocks', [
-            UserTransferStocksController::class,
-            'store',
-        ])->name('users.transfer-stocks.store');
-
-        // User Transfer Stocks3
-        Route::get('/users/{user}/transfer-stocks', [
-            UserTransferStocksController::class,
-            'index',
-        ])->name('users.transfer-stocks.index');
-        Route::post('/users/{user}/transfer-stocks', [
-            UserTransferStocksController::class,
-            'store',
-        ])->name('users.transfer-stocks.store');
-
-        // User Fuel Services
-        Route::get('/users/{user}/fuel-services', [
-            UserFuelServicesController::class,
-            'index',
-        ])->name('users.fuel-services.index');
-        Route::post('/users/{user}/fuel-services', [
-            UserFuelServicesController::class,
-            'store',
-        ])->name('users.fuel-services.store');
-
-        // User Fuel Services2
-        Route::get('/users/{user}/fuel-services', [
-            UserFuelServicesController::class,
-            'index',
-        ])->name('users.fuel-services.index');
-        Route::post('/users/{user}/fuel-services', [
-            UserFuelServicesController::class,
-            'store',
-        ])->name('users.fuel-services.store');
-
         // User Carts
         Route::get('/users/{user}/carts', [
             UserCartsController::class,
@@ -839,27 +779,37 @@ Route::name('api.')
             'store',
         ])->name('users.request-purchases.store');
 
-        // User Invoice Purchases
-        Route::get('/users/{user}/invoice-purchases', [
-            UserInvoicePurchasesController::class,
+        // User Sales Order Employees
+        Route::get('/users/{user}/sales-order-employees', [
+            UserSalesOrderEmployeesController::class,
             'index',
-        ])->name('users.invoice-purchases.index');
-        Route::post('/users/{user}/invoice-purchases', [
-            UserInvoicePurchasesController::class,
+        ])->name('users.sales-order-employees.index');
+        Route::post('/users/{user}/sales-order-employees', [
+            UserSalesOrderEmployeesController::class,
             'store',
-        ])->name('users.invoice-purchases.store');
+        ])->name('users.sales-order-employees.store');
 
-        // User Invoice Purchases2
-        Route::get('/users/{user}/invoice-purchases', [
-            UserInvoicePurchasesController::class,
+        // User Fuel Services Approved
+        Route::get('/users/{user}/fuel-services', [
+            UserFuelServicesController::class,
             'index',
-        ])->name('users.invoice-purchases.index');
-        Route::post('/users/{user}/invoice-purchases', [
-            UserInvoicePurchasesController::class,
+        ])->name('users.fuel-services.index');
+        Route::post('/users/{user}/fuel-services', [
+            UserFuelServicesController::class,
             'store',
-        ])->name('users.invoice-purchases.store');
+        ])->name('users.fuel-services.store');
 
-        // User Daily Salaries
+        // User Transfer Stocks Sent
+        Route::get('/users/{user}/transfer-stocks', [
+            UserTransferStocksController::class,
+            'index',
+        ])->name('users.transfer-stocks.index');
+        Route::post('/users/{user}/transfer-stocks', [
+            UserTransferStocksController::class,
+            'store',
+        ])->name('users.transfer-stocks.store');
+
+        // User Daily Salaries Created
         Route::get('/users/{user}/daily-salaries', [
             UserDailySalariesController::class,
             'index',
@@ -869,7 +819,7 @@ Route::name('api.')
             'store',
         ])->name('users.daily-salaries.store');
 
-        // User Daily Salaries2
+        // User Daily Salaries Approved
         Route::get('/users/{user}/daily-salaries', [
             UserDailySalariesController::class,
             'index',
@@ -878,6 +828,46 @@ Route::name('api.')
             UserDailySalariesController::class,
             'store',
         ])->name('users.daily-salaries.store');
+
+        // User Invoice Purchases Approved
+        Route::get('/users/{user}/invoice-purchases', [
+            UserInvoicePurchasesController::class,
+            'index',
+        ])->name('users.invoice-purchases.index');
+        Route::post('/users/{user}/invoice-purchases', [
+            UserInvoicePurchasesController::class,
+            'store',
+        ])->name('users.invoice-purchases.store');
+
+        // User Invoice Purchases Created
+        Route::get('/users/{user}/invoice-purchases', [
+            UserInvoicePurchasesController::class,
+            'index',
+        ])->name('users.invoice-purchases.index');
+        Route::post('/users/{user}/invoice-purchases', [
+            UserInvoicePurchasesController::class,
+            'store',
+        ])->name('users.invoice-purchases.store');
+
+        // User Fuel Services Created
+        Route::get('/users/{user}/fuel-services', [
+            UserFuelServicesController::class,
+            'index',
+        ])->name('users.fuel-services.index');
+        Route::post('/users/{user}/fuel-services', [
+            UserFuelServicesController::class,
+            'store',
+        ])->name('users.fuel-services.store');
+
+        // User Transfer Stocks Received
+        Route::get('/users/{user}/transfer-stocks', [
+            UserTransferStocksController::class,
+            'index',
+        ])->name('users.transfer-stocks.index');
+        Route::post('/users/{user}/transfer-stocks', [
+            UserTransferStocksController::class,
+            'store',
+        ])->name('users.transfer-stocks.store');
 
         Route::apiResource('vehicles', VehicleController::class);
 
@@ -1398,25 +1388,6 @@ Route::name('api.')
             RestaurantCategoryProductsController::class,
             'store',
         ])->name('restaurant-categories.products.store');
-
-        Route::apiResource(
-            'sales-order-employees',
-            SalesOrderEmployeeController::class
-        );
-
-        // SalesOrderEmployee Products
-        Route::get('/sales-order-employees/{salesOrderEmployee}/products', [
-            SalesOrderEmployeeProductsController::class,
-            'index',
-        ])->name('sales-order-employees.products.index');
-        Route::post(
-            '/sales-order-employees/{salesOrderEmployee}/products/{product}',
-            [SalesOrderEmployeeProductsController::class, 'store']
-        )->name('sales-order-employees.products.store');
-        Route::delete(
-            '/sales-order-employees/{salesOrderEmployee}/products/{product}',
-            [SalesOrderEmployeeProductsController::class, 'destroy']
-        )->name('sales-order-employees.products.destroy');
 
         Route::apiResource(
             'sales-order-onlines',
@@ -2296,4 +2267,23 @@ Route::name('api.')
             '/daily-salaries/{dailySalary}/payment-receipts/{paymentReceipt}',
             [DailySalaryPaymentReceiptsController::class, 'destroy']
         )->name('daily-salaries.payment-receipts.destroy');
+
+        Route::apiResource(
+            'sales-order-employees',
+            SalesOrderEmployeeController::class
+        );
+
+        // SalesOrderEmployee Products
+        Route::get('/sales-order-employees/{salesOrderEmployee}/products', [
+            SalesOrderEmployeeProductsController::class,
+            'index',
+        ])->name('sales-order-employees.products.index');
+        Route::post(
+            '/sales-order-employees/{salesOrderEmployee}/products/{product}',
+            [SalesOrderEmployeeProductsController::class, 'store']
+        )->name('sales-order-employees.products.store');
+        Route::delete(
+            '/sales-order-employees/{salesOrderEmployee}/products/{product}',
+            [SalesOrderEmployeeProductsController::class, 'destroy']
+        )->name('sales-order-employees.products.destroy');
     });

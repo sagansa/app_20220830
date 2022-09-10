@@ -35,14 +35,7 @@ return new class extends Migration {
                 ->onDelete('CASCADE');
 
             $table
-                ->foreign('created_by_id')
-                ->references('id')
-                ->on('users')
-                ->onUpdate('CASCADE')
-                ->onDelete('CASCADE');
-
-            $table
-                ->foreign('approved_by_id')
+                ->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onUpdate('CASCADE')
@@ -61,8 +54,7 @@ return new class extends Migration {
             $table->dropForeign(['store_id']);
             $table->dropForeign(['customer_id']);
             $table->dropForeign(['delivery_address_id']);
-            $table->dropForeign(['created_by_id']);
-            $table->dropForeign(['approved_by_id']);
+            $table->dropForeign(['user_id']);
         });
     }
 };

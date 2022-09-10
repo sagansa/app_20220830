@@ -335,28 +335,6 @@ return [
         ],
     ],
 
-    'sales_order_employees' => [
-        'name' => 'Sales Order Employees',
-        'index_title' => 'Sales Order Employees List',
-        'new_title' => 'New Sales order employee',
-        'create_title' => 'Create Sales Order Employee',
-        'edit_title' => 'Edit Sales Order Employee',
-        'show_title' => 'Show Sales Order Employee',
-        'inputs' => [
-            'store_id' => 'Store',
-            'customer_id' => 'Customer',
-            'delivery_address_id' => 'Delivery Address',
-            'date' => 'Date',
-            'total' => 'Total',
-            'image' => 'Image',
-            'status' => 'Status',
-            'notes' => 'Notes',
-            'created_by_id' => 'Created By',
-            'approved_by_id' => 'Updated By',
-            'status' => 'Status',
-        ],
-    ],
-
     'sales_order_onlines' => [
         'name' => 'Sales Order Onlines',
         'index_title' => 'Sales Order Onlines List',
@@ -1518,6 +1496,25 @@ return [
         'show_title' => 'Show daily_salary_payment_receipt',
         'inputs' => [
             'payment_receipt_id' => 'Payment Receipt',
+        ],
+    ],
+
+    'sales_order_employees' => [
+        'name' => 'Sales Order Employees',
+        'index_title' => 'Sales Order Employees List',
+        'new_title' => 'New Sales Order Employee',
+        'create_title' => 'Create Sales Order Employee',
+        'edit_title' => 'Edit Sales Order Employee',
+        'show_title' => 'Show Sales Order Employee',
+        'inputs' => [
+            'store_id' => 'Store',
+            'customer_id' => 'Customer',
+            'delivery_address_id' => 'Delivery Address',
+            'date' => 'Date',
+            'image' => 'Image',
+            'status' => 'Status',
+            'notes' => 'Notes',
+            'user_id' => 'User',
         ],
     ],
 

@@ -36,7 +36,7 @@ class UserTransferStocksTest extends TestCase
         $transferStocks = TransferStock::factory()
             ->count(2)
             ->create([
-                'sent_by_id' => $user->id,
+                'received_by_id' => $user->id,
             ]);
 
         $response = $this->getJson(
@@ -54,7 +54,7 @@ class UserTransferStocksTest extends TestCase
         $user = User::factory()->create();
         $data = TransferStock::factory()
             ->make([
-                'sent_by_id' => $user->id,
+                'received_by_id' => $user->id,
             ])
             ->toArray();
 
@@ -71,6 +71,6 @@ class UserTransferStocksTest extends TestCase
 
         $transferStock = TransferStock::latest('id')->first();
 
-        $this->assertEquals($user->id, $transferStock->sent_by_id);
+        $this->assertEquals($user->id, $transferStock->received_by_id);
     }
 }

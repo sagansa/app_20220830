@@ -33,7 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
         '4' => 'periksa ulang',
     ];
 
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'status'];
 
     protected $searchableFields = ['*'];
 
@@ -73,11 +73,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Vehicle::class);
     }
 
-    public function movementAssets()
-    {
-        return $this->hasMany(MovementAsset::class);
-    }
-
     public function closingStores()
     {
         return $this->hasMany(ClosingStore::class, 'transfer_by_id');
@@ -113,24 +108,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(SalesOrderOnline::class, 'created_by_id');
     }
 
-    public function salesOrderEmployeesCreated()
-    {
-        return $this->hasMany(SalesOrderEmployee::class, 'created_by_id');
-    }
-
-    public function transferStocksCreated()
-    {
-        return $this->hasMany(TransferStock::class, 'created_by_id');
-    }
-
     public function productionsCreated()
     {
         return $this->hasMany(Production::class, 'created_by_id');
-    }
-
-    public function requestStocksCreated()
-    {
-        return $this->hasMany(RequestStock::class, 'created_by_id');
     }
 
     public function remainingStocksCreated()
@@ -183,11 +163,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(SalesOrderOnline::class, 'approved_by_id');
     }
 
-    public function salesOrderEmployeesApproved()
-    {
-        return $this->hasMany(SalesOrderEmployee::class, 'approved_by_id');
-    }
-
     public function transferStocksApproved()
     {
         return $this->hasMany(TransferStock::class, 'approved_by_id');
@@ -196,11 +171,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function productionsApproved()
     {
         return $this->hasMany(Production::class, 'approved_by_id');
-    }
-
-    public function requestStocksApproved()
-    {
-        return $this->hasMany(RequestStock::class, 'approved_by_id');
     }
 
     public function remainingStocksApproved()
@@ -263,16 +233,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(StockCard::class);
     }
 
-    public function outInProducts()
-    {
-        return $this->hasMany(OutInProduct::class, 'created_by_id');
-    }
-
-    public function outInProducts2()
-    {
-        return $this->hasMany(OutInProduct::class, 'approved_by_id');
-    }
-
     public function vehicleTaxes()
     {
         return $this->hasMany(VehicleTax::class);
@@ -281,6 +241,71 @@ class User extends Authenticatable implements MustVerifyEmail
     public function refunds()
     {
         return $this->hasMany(Refund::class);
+    }
+
+    public function outInProductsCreated()
+    {
+        return $this->hasMany(OutInProduct::class, 'created_by_id');
+    }
+
+    public function outInProductsApproved()
+    {
+        return $this->hasMany(OutInProduct::class, 'approved_by_id');
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function requestPurchases()
+    {
+        return $this->hasMany(RequestPurchase::class);
+    }
+
+    public function salesOrderEmployees()
+    {
+        return $this->hasMany(SalesOrderEmployee::class);
+    }
+
+    public function fuelServicesApproved()
+    {
+        return $this->hasMany(FuelService::class, 'approved_by_id');
+    }
+
+    public function transferStocksSent()
+    {
+        return $this->hasMany(TransferStock::class, 'sent_by_id');
+    }
+
+    public function dailySalariesCreated()
+    {
+        return $this->hasMany(DailySalary::class, 'created_by_id');
+    }
+
+    public function dailySalariesApproved()
+    {
+        return $this->hasMany(DailySalary::class, 'approved_by_id');
+    }
+
+    public function invoicePurchasesApproved()
+    {
+        return $this->hasMany(InvoicePurchase::class, 'approved_id');
+    }
+
+    public function invoicePurchasesCreated()
+    {
+        return $this->hasMany(InvoicePurchase::class, 'created_by_id');
+    }
+
+    public function fuelServicesCreated()
+    {
+        return $this->hasMany(FuelService::class, 'created_by_id');
+    }
+
+    public function transferStocksReceived()
+    {
+        return $this->hasMany(TransferStock::class, 'received_by_id');
     }
 
     public function isSuperAdmin()

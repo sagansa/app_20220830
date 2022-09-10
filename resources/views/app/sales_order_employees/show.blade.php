@@ -55,14 +55,6 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
-                            >@lang('crud.sales_order_employees.inputs.total')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ $salesOrderEmployee->total ?? '-' }}</x-shows.dd
-                        >
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
                             >@lang('crud.sales_order_employees.inputs.image')</x-shows.dt
                         >
                         @if ($salesOrderEmployee->image != null)
@@ -97,20 +89,11 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
-                            >@lang('crud.sales_order_employees.inputs.created_by_id')</x-shows.dt
+                            >@lang('crud.sales_order_employees.inputs.user_id')</x-shows.dt
                         >
                         <x-shows.dd
-                            >{{ optional($salesOrderEmployee->created_by)->name
-                            ?? '-' }}</x-shows.dd
-                        >
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
-                            >@lang('crud.sales_order_employees.inputs.approved_by_id')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ optional($salesOrderEmployee->approved_by)->name
-                            ?? '-' }}</x-shows.dd
+                            >{{ optional($salesOrderEmployee->user)->name ?? '-'
+                            }}</x-shows.dd
                         >
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>

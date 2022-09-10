@@ -59,8 +59,8 @@ use App\Http\Controllers\CashlessProviderController;
 use App\Http\Controllers\SalesOrderOnlineController;
 use App\Http\Controllers\OnlineShopProviderController;
 use App\Http\Controllers\RestaurantCategoryController;
-use App\Http\Controllers\SalesOrderEmployeeController;
 use App\Http\Controllers\VehicleCertificateController;
+use App\Http\Controllers\SalesOrderEmployeeController;
 use App\Http\Controllers\MovementAssetResultController;
 use App\Http\Controllers\ReceiptByItemLoyverseController;
 
@@ -120,10 +120,6 @@ Route::prefix('/')
             RestaurantCategoryController::class
         );
         Route::resource(
-            'sales-order-employees',
-            SalesOrderEmployeeController::class
-        );
-        Route::resource(
             'sales-order-onlines',
             SalesOrderOnlineController::class
         );
@@ -174,4 +170,8 @@ Route::prefix('/')
         Route::resource('fuel-services', FuelServiceController::class);
         Route::resource('e-products', EProductController::class);
         Route::resource('daily-salaries', DailySalaryController::class);
+        Route::resource(
+            'sales-order-employees',
+            SalesOrderEmployeeController::class
+        );
     });

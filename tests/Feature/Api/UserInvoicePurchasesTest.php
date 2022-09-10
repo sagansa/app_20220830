@@ -36,7 +36,7 @@ class UserInvoicePurchasesTest extends TestCase
         $invoicePurchases = InvoicePurchase::factory()
             ->count(2)
             ->create([
-                'approved_id' => $user->id,
+                'created_by_id' => $user->id,
             ]);
 
         $response = $this->getJson(
@@ -54,7 +54,7 @@ class UserInvoicePurchasesTest extends TestCase
         $user = User::factory()->create();
         $data = InvoicePurchase::factory()
             ->make([
-                'approved_id' => $user->id,
+                'created_by_id' => $user->id,
             ])
             ->toArray();
 
@@ -71,6 +71,6 @@ class UserInvoicePurchasesTest extends TestCase
 
         $invoicePurchase = InvoicePurchase::latest('id')->first();
 
-        $this->assertEquals($user->id, $invoicePurchase->approved_id);
+        $this->assertEquals($user->id, $invoicePurchase->created_by_id);
     }
 }

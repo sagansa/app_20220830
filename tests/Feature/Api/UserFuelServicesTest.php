@@ -36,7 +36,7 @@ class UserFuelServicesTest extends TestCase
         $fuelServices = FuelService::factory()
             ->count(2)
             ->create([
-                'approved_by_id' => $user->id,
+                'created_by_id' => $user->id,
             ]);
 
         $response = $this->getJson(
@@ -54,7 +54,7 @@ class UserFuelServicesTest extends TestCase
         $user = User::factory()->create();
         $data = FuelService::factory()
             ->make([
-                'approved_by_id' => $user->id,
+                'created_by_id' => $user->id,
             ])
             ->toArray();
 
@@ -72,6 +72,6 @@ class UserFuelServicesTest extends TestCase
 
         $fuelService = FuelService::latest('id')->first();
 
-        $this->assertEquals($user->id, $fuelService->approved_by_id);
+        $this->assertEquals($user->id, $fuelService->created_by_id);
     }
 }

@@ -25,12 +25,10 @@ class SalesOrderEmployee extends Model
         'customer_id',
         'delivery_address_id',
         'date',
-        'total',
         'image',
         'status',
         'notes',
-        'created_by_id',
-        'approved_by_id',
+        'user_id',
     ];
 
     protected $searchableFields = ['*'];
@@ -56,19 +54,14 @@ class SalesOrderEmployee extends Model
         return $this->belongsTo(Store::class);
     }
 
-    public function created_by()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'created_by_id');
-    }
-
-    public function approved_by()
-    {
-        return $this->belongsTo(User::class, 'approved_by_id');
+        return $this->belongsTo(User::class);
     }
 
     public function products()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class)->withPivot((['quantity', 'unit_price']));
     }
 
     public function delete_image()

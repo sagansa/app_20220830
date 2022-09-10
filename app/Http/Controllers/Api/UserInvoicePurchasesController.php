@@ -22,7 +22,7 @@ class UserInvoicePurchasesController extends Controller
         $search = $request->get('search', '');
 
         $invoicePurchases = $user
-            ->invoicePurchases2()
+            ->invoicePurchasesCreated()
             ->search($search)
             ->latest()
             ->paginate();
@@ -56,7 +56,7 @@ class UserInvoicePurchasesController extends Controller
             $validated['image'] = $request->file('image')->store('public');
         }
 
-        $invoicePurchase = $user->invoicePurchases2()->create($validated);
+        $invoicePurchase = $user->invoicePurchasesCreated()->create($validated);
 
         return new InvoicePurchaseResource($invoicePurchase);
     }

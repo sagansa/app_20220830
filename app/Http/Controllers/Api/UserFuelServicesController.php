@@ -22,7 +22,7 @@ class UserFuelServicesController extends Controller
         $search = $request->get('search', '');
 
         $fuelServices = $user
-            ->fuelServices2()
+            ->fuelServicesCreated()
             ->search($search)
             ->latest()
             ->paginate();
@@ -55,7 +55,7 @@ class UserFuelServicesController extends Controller
             $validated['image'] = $request->file('image')->store('public');
         }
 
-        $fuelService = $user->fuelServices2()->create($validated);
+        $fuelService = $user->fuelServicesCreated()->create($validated);
 
         return new FuelServiceResource($fuelService);
     }

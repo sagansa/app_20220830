@@ -36,7 +36,7 @@ class UserSalesOrderEmployeesTest extends TestCase
         $salesOrderEmployees = SalesOrderEmployee::factory()
             ->count(2)
             ->create([
-                'approved_by_id' => $user->id,
+                'user_id' => $user->id,
             ]);
 
         $response = $this->getJson(
@@ -54,7 +54,7 @@ class UserSalesOrderEmployeesTest extends TestCase
         $user = User::factory()->create();
         $data = SalesOrderEmployee::factory()
             ->make([
-                'approved_by_id' => $user->id,
+                'user_id' => $user->id,
             ])
             ->toArray();
 
@@ -69,6 +69,6 @@ class UserSalesOrderEmployeesTest extends TestCase
 
         $salesOrderEmployee = SalesOrderEmployee::latest('id')->first();
 
-        $this->assertEquals($user->id, $salesOrderEmployee->approved_by_id);
+        $this->assertEquals($user->id, $salesOrderEmployee->user_id);
     }
 }

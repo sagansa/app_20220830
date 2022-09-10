@@ -113,11 +113,6 @@
                         Restaurant Categories
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\SalesOrderEmployee::class)
-                        <x-dropdown-link href="{{ route('sales-order-employees.index') }}">
-                        Sales Order Employees
-                        </x-dropdown-link>
-                        @endcan
                         @can('view-any', App\Models\SalesOrderOnline::class)
                         <x-dropdown-link href="{{ route('sales-order-onlines.index') }}">
                         Sales Order Onlines
@@ -311,6 +306,11 @@
                         @can('view-any', App\Models\DailySalary::class)
                         <x-dropdown-link href="{{ route('daily-salaries.index') }}">
                         Daily Salaries
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\SalesOrderEmployee::class)
+                        <x-dropdown-link href="{{ route('sales-order-employees.index') }}">
+                        Sales Order Employees
                         </x-dropdown-link>
                         @endcan
                 </x-nav-dropdown>
@@ -550,11 +550,6 @@
                 Restaurant Categories
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\SalesOrderEmployee::class)
-                <x-jet-responsive-nav-link href="{{ route('sales-order-employees.index') }}">
-                Sales Order Employees
-                </x-jet-responsive-nav-link>
-                @endcan
                 @can('view-any', App\Models\SalesOrderOnline::class)
                 <x-jet-responsive-nav-link href="{{ route('sales-order-onlines.index') }}">
                 Sales Order Onlines
@@ -748,6 +743,11 @@
                 @can('view-any', App\Models\DailySalary::class)
                 <x-jet-responsive-nav-link href="{{ route('daily-salaries.index') }}">
                 Daily Salaries
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\SalesOrderEmployee::class)
+                <x-jet-responsive-nav-link href="{{ route('sales-order-employees.index') }}">
+                Sales Order Employees
                 </x-jet-responsive-nav-link>
                 @endcan
 

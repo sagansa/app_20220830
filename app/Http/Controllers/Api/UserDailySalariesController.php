@@ -22,7 +22,7 @@ class UserDailySalariesController extends Controller
         $search = $request->get('search', '');
 
         $dailySalaries = $user
-            ->dailySalaries2()
+            ->dailySalariesApproved()
             ->search($search)
             ->latest()
             ->paginate();
@@ -49,7 +49,7 @@ class UserDailySalariesController extends Controller
             'presence_id' => ['nullable', 'exists:presences,id'],
         ]);
 
-        $dailySalary = $user->dailySalaries2()->create($validated);
+        $dailySalary = $user->dailySalariesApproved()->create($validated);
 
         return new DailySalaryResource($dailySalary);
     }

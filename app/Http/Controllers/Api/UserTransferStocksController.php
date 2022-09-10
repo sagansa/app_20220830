@@ -22,7 +22,7 @@ class UserTransferStocksController extends Controller
         $search = $request->get('search', '');
 
         $transferStocks = $user
-            ->transferStocks3()
+            ->transferStocksReceived()
             ->search($search)
             ->latest()
             ->paginate();
@@ -47,7 +47,7 @@ class UserTransferStocksController extends Controller
             'notes' => ['nullable', 'max:255', 'string'],
         ]);
 
-        $transferStock = $user->transferStocks3()->create($validated);
+        $transferStock = $user->transferStocksReceived()->create($validated);
 
         return new TransferStockResource($transferStock);
     }
