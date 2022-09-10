@@ -96,8 +96,8 @@
 
                             <x-slot name="main">
                                 @foreach ($presence->closingStores as $closingStore)
-                                    {{ $presence->closingStore->store->nickname }} -
-                                    {{ $presence->closingStore->shiftStore->name }}
+                                    {{ optional($presence->closingStore)->store->nickname }} -
+                                    {{ optional($presence->closingStore)->shiftStore->name }}
                                 @endforeach
                             </x-slot>
                             <x-slot name="sub">
