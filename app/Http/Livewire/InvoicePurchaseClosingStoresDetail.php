@@ -28,7 +28,9 @@ class InvoicePurchaseClosingStoresDetail extends Component
     {
         $this->invoicePurchase = $invoicePurchase;
         $this->closingStoresForSelect = ClosingStore::where('date', '>=', Carbon::now()->subDays(5)->toDateString())
+            ->whereNotIn('status', ['2'])
             ->where('store_id', $this->invoicePurchase->store_id)
+            ->orderBy('date', 'desc')
             ->get()
             ->pluck('id', 'closing_store_name');
         $this->resetClosingStoreData();

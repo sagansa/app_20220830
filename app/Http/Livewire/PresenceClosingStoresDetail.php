@@ -28,6 +28,7 @@ class PresenceClosingStoresDetail extends Component
     {
         $this->presence = $presence;
         $this->closingStoresForSelect = ClosingStore::where('date', '>=', Carbon::now()->subDays(3)->toDateString())
+            ->whereNotIn('status', ['2'])
             ->orderBy('date', 'desc')
             ->get()
             ->pluck('id', 'closing_store_name');

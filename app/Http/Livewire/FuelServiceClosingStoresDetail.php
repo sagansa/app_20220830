@@ -27,12 +27,9 @@ class FuelServiceClosingStoresDetail extends Component
     public function mount(FuelService $fuelService)
     {
         $this->fuelService = $fuelService;
-        $this->closingStoresForSelect = ClosingStore::
-            join('stores', 'stores.id', '=', 'closing_stores.store_id')
-            ->join('shift_stores', 'shift_stores.id', '=', 'closing_stores.shift_store_id')
-            ->select('stores.nickname', 'shift_stores.name', 'closing_stores.*')
+        $this->closingStoresForSelect = ClosingStore::where('date', '>=', Carbon::now()->subDays(5)->toDateString())
+            ->whereNotIn('status', '2')
             ->orderBy('closing_stores.date', 'desc')
-            ->where('date', '>=', Carbon::now()->subDays(5)->toDateString())
             ->get()
             ->pluck('id', 'closing_store_name');
         $this->resetClosingStoreData();
