@@ -168,12 +168,12 @@
                     </tr>
 
                 @empty
-                    <x-tables.no-items-found colspan="8"> </x-tables.no-items-found>
+                    <x-tables.no-items-found colspan="9"> </x-tables.no-items-found>
                 @endforelse
             </x-slot>
             <x-slot name="foot">
                 <tr>
-                    <td colspan="8">
+                    <td colspan="9">
                         <div class="px-4 my-2">{!! $presences->render() !!}</div>
                     </td>
                 </tr>
