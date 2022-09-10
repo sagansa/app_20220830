@@ -54,7 +54,7 @@
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>{{ optional($dailySalary->shiftStore)->name ?? '-' }}
                         </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>{{ $dailySalary->date->toFormattedDate() ?? '-' }}
+                        <x-tables.td-left-hide>{{ optional($dailySalary->date) ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-right-hide>@currency($dailySalary->amount)</x-tables.td-right-hide>
                         <x-tables.td-left-hide>{{ optional($dailySalary->paymentType)->name ?? '-' }}
