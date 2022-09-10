@@ -24,8 +24,7 @@ class MonthlySalaryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'presence_id' => ['required', 'exists:presences,id'],
-            'amount' => ['required', 'min:0', 'numeric'],
+            'amount' => ['required'],
         ];
     }
 }

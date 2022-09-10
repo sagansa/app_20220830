@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('salaries', function (Blueprint $table) {
+        Schema::create('monthly_salaries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('amount');
 
@@ -27,6 +27,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('salaries');
+        Schema::dropIfExists('monthly_salaries');
     }
 };

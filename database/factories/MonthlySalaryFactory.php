@@ -24,7 +24,6 @@ class MonthlySalaryFactory extends Factory
     {
         return [
             'amount' => $this->faker->randomNumber,
-            'presence_id' => \App\Models\Presence::factory(),
         ];
     }
 }

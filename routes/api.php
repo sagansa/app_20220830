@@ -11,7 +11,6 @@ use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\StoreController;
-use App\Http\Controllers\Api\SalaryController;
 use App\Http\Controllers\Api\SavingController;
 use App\Http\Controllers\Api\RefundController;
 use App\Http\Controllers\Api\VehicleController;
@@ -53,6 +52,7 @@ use App\Http\Controllers\Api\UserPresencesController;
 use App\Http\Controllers\Api\StoreVehiclesController;
 use App\Http\Controllers\Api\StoreHygienesController;
 use App\Http\Controllers\Api\MaterialGroupController;
+use App\Http\Controllers\Api\MonthlySalaryController;
 use App\Http\Controllers\Api\TransferStockController;
 use App\Http\Controllers\Api\BankEmployeesController;
 use App\Http\Controllers\Api\BankSuppliersController;
@@ -80,7 +80,6 @@ use App\Http\Controllers\Api\PaymentReceiptController;
 use App\Http\Controllers\Api\EmployeeSavingsController;
 use App\Http\Controllers\Api\UserProductionsController;
 use App\Http\Controllers\Api\StoreStockCardsController;
-use App\Http\Controllers\Api\SalaryPresencesController;
 use App\Http\Controllers\Api\DeliveryAddressController;
 use App\Http\Controllers\Api\ReceiptLoyverseController;
 use App\Http\Controllers\Api\UtilityProviderController;
@@ -160,6 +159,7 @@ use App\Http\Controllers\Api\StoreAccountCashlessesController;
 use App\Http\Controllers\Api\SupplierPurchaseOrdersController;
 use App\Http\Controllers\Api\RemainingStockProductsController;
 use App\Http\Controllers\Api\FranchiseGroupProductsController;
+use App\Http\Controllers\Api\MonthlySalaryPresencesController;
 use App\Http\Controllers\Api\OnlineCategoryProductsController;
 use App\Http\Controllers\Api\ProductRemainingStocksController;
 use App\Http\Controllers\Api\product_transfer_stockController;
@@ -1236,21 +1236,21 @@ Route::name('api.')
             'store',
         ])->name('material-groups.products.store');
 
-        Route::apiResource('monthly-salaries', SalaryController::class);
+        Route::apiResource('monthly-salaries', MonthlySalaryController::class);
 
-        // Salary Presences
-        Route::get('/salaries/{salary}/presences', [
-            SalaryPresencesController::class,
+        // MonthlySalary Presences
+        Route::get('/monthly-salaries/{monthlySalary}/presences', [
+            MonthlySalaryPresencesController::class,
             'index',
-        ])->name('salaries.presences.index');
-        Route::post('/salaries/{salary}/presences/{presence}', [
-            SalaryPresencesController::class,
+        ])->name('monthly-salaries.presences.index');
+        Route::post('/monthly-salaries/{monthlySalary}/presences/{presence}', [
+            MonthlySalaryPresencesController::class,
             'store',
-        ])->name('salaries.presences.store');
-        Route::delete('/salaries/{salary}/presences/{presence}', [
-            SalaryPresencesController::class,
-            'destroy',
-        ])->name('salaries.presences.destroy');
+        ])->name('monthly-salaries.presences.store');
+        Route::delete(
+            '/monthly-salaries/{monthlySalary}/presences/{presence}',
+            [MonthlySalaryPresencesController::class, 'destroy']
+        )->name('monthly-salaries.presences.destroy');
 
         Route::apiResource(
             'online-categories',

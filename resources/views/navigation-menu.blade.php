@@ -73,8 +73,8 @@
                         Material Groups
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\Salary::class)
-                        <x-dropdown-link href="{{ route('salaries.index') }}">
+                        @can('view-any', App\Models\MonthlySalary::class)
+                        <x-dropdown-link href="{{ route('monthly-salaries.index') }}">
                         Monthly Salaries
                         </x-dropdown-link>
                         @endcan
@@ -510,8 +510,8 @@
                 Material Groups
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\Salary::class)
-                <x-jet-responsive-nav-link href="{{ route('salaries.index') }}">
+                @can('view-any', App\Models\MonthlySalary::class)
+                <x-jet-responsive-nav-link href="{{ route('monthly-salaries.index') }}">
                 Monthly Salaries
                 </x-jet-responsive-nav-link>
                 @endcan

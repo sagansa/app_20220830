@@ -17,15 +17,6 @@
                 <x-shows.dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
-                            >@lang('crud.monthly_salaries.inputs.presence_id')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ optional($monthlySalary->presence)->image_in ??
-                            '-' }}</x-shows.dd
-                        >
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
                             >@lang('crud.monthly_salaries.inputs.amount')</x-shows.dt
                         >
                         <x-shows.dd

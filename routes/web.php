@@ -10,7 +10,6 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StoreController;
-use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\RefundController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\ProductController;
@@ -36,6 +35,7 @@ use App\Http\Controllers\OutInProductController;
 use App\Http\Controllers\UtilityUsageController;
 use App\Http\Controllers\ClosingStoreController;
 use App\Http\Controllers\MaterialGroupController;
+use App\Http\Controllers\MonthlySalaryController;
 use App\Http\Controllers\TransferStockController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\AdminCashlessController;
@@ -105,7 +105,7 @@ Route::prefix('/')
         );
         Route::resource('franchise-groups', FranchiseGroupController::class);
         Route::resource('material-groups', MaterialGroupController::class);
-        Route::resource('monthly-salaries', SalaryController::class);
+        Route::resource('monthly-salaries', MonthlySalaryController::class);
         Route::resource('online-categories', OnlineCategoryController::class);
         Route::resource(
             'online-shop-providers',

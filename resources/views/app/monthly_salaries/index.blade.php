@@ -43,9 +43,6 @@
         <x-table>
             <x-slot name="head">
                 <x-tables.th-left
-                    >@lang('crud.monthly_salaries.inputs.presence_id')</x-tables.th-left
-                >
-                <x-tables.th-left
                     >@lang('crud.monthly_salaries.inputs.amount')</x-tables.th-left
                 >
                 <th></th>
@@ -53,10 +50,6 @@
             <x-slot name="body">
                 @forelse($monthlySalaries as $monthlySalary)
                 <tr class="hover:bg-gray-50">
-                    <x-tables.td-left-hide
-                        >{{ optional($monthlySalary->presence)->image_in ?? '-'
-                        }}</x-tables.td-left-hide
-                    >
                     <x-tables.td-right-hide
                         >{{ $monthlySalary->amount ?? '-'
                         }}</x-tables.td-right-hide
@@ -95,7 +88,7 @@
                     </td>
                 </tr>
                 @empty
-                <x-tables.no-items-found colspan="3"> </x-tables.no-items-found>
+                <x-tables.no-items-found colspan="2"> </x-tables.no-items-found>
                 @endforelse
             </x-slot>
             <x-slot name="foot"> </x-slot>

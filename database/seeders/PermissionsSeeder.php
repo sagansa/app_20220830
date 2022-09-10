@@ -177,6 +177,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update materialgroups']);
         Permission::create(['name' => 'delete materialgroups']);
 
+        Permission::create(['name' => 'list monthlysalaries']);
+        Permission::create(['name' => 'view monthlysalaries']);
+        Permission::create(['name' => 'create monthlysalaries']);
+        Permission::create(['name' => 'update monthlysalaries']);
+        Permission::create(['name' => 'delete monthlysalaries']);
+
         Permission::create(['name' => 'list movementassets']);
         Permission::create(['name' => 'view movementassets']);
         Permission::create(['name' => 'create movementassets']);
@@ -350,12 +356,6 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create rooms']);
         Permission::create(['name' => 'update rooms']);
         Permission::create(['name' => 'delete rooms']);
-
-        Permission::create(['name' => 'list salaries']);
-        Permission::create(['name' => 'view salaries']);
-        Permission::create(['name' => 'create salaries']);
-        Permission::create(['name' => 'update salaries']);
-        Permission::create(['name' => 'delete salaries']);
 
         Permission::create(['name' => 'list salesorderemployees']);
         Permission::create(['name' => 'view salesorderemployees']);

@@ -23,7 +23,7 @@ return new class extends Migration {
             $table
                 ->foreign('monthly_salary_id')
                 ->references('id')
-                ->on('salaries')
+                ->on('monthly_salaries')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
         });

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Image;
-use App\Models\Presence;
 use Illuminate\Http\Request;
 use App\Models\MonthlySalary;
 use Illuminate\Support\Facades\Auth;
@@ -39,11 +38,7 @@ class MonthlySalaryController extends Controller
      */
     public function create(Request $request)
     {
-        $presences = Presence::orderBy('image_in', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('image_in', 'id');
-
-        return view('app.monthly_salaries.create', compact('presences'));
+        return view('app.monthly_salaries.create');
     }
 
     /**
@@ -87,14 +82,7 @@ class MonthlySalaryController extends Controller
     {
         $this->authorize('update', $monthlySalary);
 
-        $presences = Presence::orderBy('image_in', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('image_in', 'id');
-
-        return view(
-            'app.monthly_salaries.edit',
-            compact('monthlySalary', 'presences')
-        );
+        return view('app.monthly_salaries.edit', compact('monthlySalary'));
     }
 
     /**

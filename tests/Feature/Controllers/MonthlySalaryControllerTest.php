@@ -5,8 +5,6 @@ namespace Tests\Feature\Controllers;
 use App\Models\User;
 use App\Models\MonthlySalary;
 
-use App\Models\Presence;
-
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -112,11 +110,8 @@ class MonthlySalaryControllerTest extends TestCase
     {
         $monthlySalary = MonthlySalary::factory()->create();
 
-        $presence = Presence::factory()->create();
-
         $data = [
             'amount' => $this->faker->randomNumber,
-            'presence_id' => $presence->id,
         ];
 
         $response = $this->put(

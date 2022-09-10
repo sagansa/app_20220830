@@ -5,8 +5,6 @@ namespace Tests\Feature\Api;
 use App\Models\User;
 use App\Models\MonthlySalary;
 
-use App\Models\Presence;
-
 use Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -66,11 +64,8 @@ class MonthlySalaryTest extends TestCase
     {
         $monthlySalary = MonthlySalary::factory()->create();
 
-        $presence = Presence::factory()->create();
-
         $data = [
             'amount' => $this->faker->randomNumber,
-            'presence_id' => $presence->id,
         ];
 
         $response = $this->putJson(

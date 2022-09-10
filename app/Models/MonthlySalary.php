@@ -20,15 +20,15 @@ class MonthlySalary extends Model
         '4' => 'periksa ulang',
     ];
 
-    protected $fillable = ['presence_id', 'amount'];
+    protected $fillable = ['amount'];
 
     protected $searchableFields = ['*'];
 
     protected $table = 'monthly_salaries';
 
-    public function presence()
+    public function presences()
     {
-        return $this->belongsTo(Presence::class);
+        return $this->belongsToMany(Presence::class);
     }
 
     public function delete_image()
