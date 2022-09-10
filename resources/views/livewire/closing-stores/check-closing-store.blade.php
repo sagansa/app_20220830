@@ -54,8 +54,8 @@
             <x-shows.dd>@currency($closingStore->total_cash_transfer)</x-shows.dd>
         </x-shows.sub-dl>
         <x-shows.sub-dl>
-            <x-shows.dt>presence</x-shows.dt>
-            <x-shows.dd>@currency($this->presence_totals)</x-shows.dd>
+            <x-shows.dt>daily salary</x-shows.dt>
+            <x-shows.dd>@currency($this->daily_salary_totals)</x-shows.dd>
         </x-shows.sub-dl>
         <x-shows.sub-dl>
             <x-shows.dt>purchase order</x-shows.dt>
