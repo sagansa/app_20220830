@@ -12,15 +12,15 @@
         <div class="px-6 py-4">
             <div class="text-lg font-bold">{{ $modalTitle }}</div>
 
-            <div class="mt-5">
-                <div>
-                    <x-input.select name="closing_store_id" label="Closing Store" wire:model="closing_store_id">
-                        <option value="null" disabled>-- select --</option>
-                        @foreach ($closingStoresForSelect as $label => $value)
-                            <option value="{{ $value }}">{{ $label }}</option>
-                        @endforeach
-                    </x-input.select>
-                </div>
+            <div class="mt-1 sm:space-y-5">
+
+                <x-input.select name="closing_store_id" label="Closing Store" wire:model="closing_store_id">
+                    <option value="null" disabled>-- select --</option>
+                    @foreach ($closingStoresForSelect as $label => $value)
+                        <option value="{{ $value }}">{{ $label }}</option>
+                    @endforeach
+                </x-input.select>
+
             </div>
         </div>
 

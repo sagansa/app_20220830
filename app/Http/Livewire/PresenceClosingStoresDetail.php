@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Presence;
 use App\Models\ClosingStore;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Carbon;
 
 class PresenceClosingStoresDetail extends Component
 {
@@ -26,7 +27,10 @@ class PresenceClosingStoresDetail extends Component
     public function mount(Presence $presence)
     {
         $this->presence = $presence;
-        $this->closingStoresForSelect = ClosingStore::pluck('date', 'id');
+        $this->closingStoresForSelect = ClosingStore::where('date', '>=', Carbon::now()->subDays(3)->toDateString())
+            ->orderBy('date', 'desc')
+            ->get()
+            ->pluck('id', 'closing_store_name');
         $this->resetClosingStoreData();
     }
 
@@ -64,7 +68,7 @@ class PresenceClosingStoresDetail extends Component
 
         $this->authorize('create', ClosingStore::class);
 
-        $this->presence->closingStores()->attach($this->closingStore_id, []);
+        $this->presence->closingStores()->attach($this->closing_store_id, []);
 
         $this->hideModal();
     }
