@@ -140,7 +140,7 @@
 
                 <x-partials.card class="mt-5">
                     <x-slot name="title"> Cashlesses </x-slot>
-                    <livewire:cashlesses-detail :closingStore="$closingStore" />
+                    <livewire:closing-store-cashlesses-detail :closingStore="$closingStore" />
                 </x-partials.card>
             @endcan
 
