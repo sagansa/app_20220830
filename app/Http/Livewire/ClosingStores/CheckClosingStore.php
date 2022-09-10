@@ -84,14 +84,14 @@ class CheckClosingStore extends Component
     {
         $users = User::orderBy('name', 'asc')->pluck('name', 'id');
 
-        $this->presence_totals = 0;
+        $this->daily_salary_totals = 0;
         $this->purchase_order_subtotals = 0;
         $this->purchase_order_totals = 0;
         $this->fuel_service_totals = 0;
         $this->cashless_totals = 0;
 
-        foreach ($this->closingStore->presences as $presence) {
-            $this->presence_totals += $presence['amount'];
+        foreach ($this->closingStore->dailySalaries as $dailySalary) {
+            $this->pdaily_salary_totals += $dailySalary['amount'];
         }
 
         foreach ($this->closingStore->purchaseOrders as $purchaseOrder) {
@@ -105,7 +105,7 @@ class CheckClosingStore extends Component
             $this->fuel_service_totals += $fuelService['amount'];
         }
 
-        $this->spending_cash_totals = $this->presence_totals + $this->purchase_order_totals + $this->fuel_service_totals;
+        $this->spending_cash_totals = $this->daily_salary_totals + $this->purchase_order_totals + $this->fuel_service_totals;
 
         $this->non_cashless_totals = $this->closingStore['cash_for_tomorrow'] - $this->closingStore['cash_from_yesterday'] + $this->spending_cash_totals + $this->closingStore['total_cash_transfer'];
 
