@@ -96,13 +96,13 @@
 
                             <x-slot name="main">
                                 @foreach ($presence->closingStores as $closingStore)
-                                    {{ optional($presence->closingStore)->store->nickname ?? '-' }} -
-                                    {{ optional($presence->closingStore)->shiftStore->name ?? '-' }}
+                                    {{ optional($closingStore)->store->nickname ?? '-' }} -
+                                    {{ optional($closingStore)->shiftStore->name ?? '-' }}
                                 @endforeach
                             </x-slot>
                             <x-slot name="sub">
                                 @foreach ($presence->closingStores as $closingStore)
-                                    <p> {{ optional($presence->closingStore)->date ?? '-' }} -
+                                    <p> {{ optional($closingStore)->date ?? '-' }} -
                                         @currency($presence->amount)</p>
                                 @endforeach
                                 <p>{{ optional($presence->paymentType)->name ?? '-' }}
@@ -121,7 +121,7 @@
                         </x-tables.td-left-main>
                         <x-tables.td-left-hide>
                             @foreach ($presence->closingStores as $closingStore)
-                                {{ optional($presence->closingStore)->date ?? '-' }}
+                                {{ optional($closingStore)->date ?? '-' }}
                             @endforeach
                         </x-tables.td-left-hide>
 
