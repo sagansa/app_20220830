@@ -92,9 +92,9 @@ class ClosingStore extends Model
         return $this->belongsToMany(FuelService::class);
     }
 
-    public function presences()
+    public function dailySalaries()
     {
-        return $this->belongsToMany(Presence::class);
+        return $this->belongsToMany(DailySalary::class);
     }
 
     public function delete_image()
