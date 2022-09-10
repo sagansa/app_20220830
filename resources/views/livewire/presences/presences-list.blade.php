@@ -78,6 +78,7 @@
                 @endrole
                 {{-- <x-tables.th-left>@lang('crud.presences.inputs.closing_store_id')</x-tables.th-left> --}}
                 <x-tables.th-left>Store</x-tables.th-left>
+                <x-tables.th-left>Shift</x-tables.th-left>
                 <x-tables.th-left-hide>Date</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.presences.inputs.amount')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.presences.inputs.payment_type_id')</x-tables.th-left-hide>
@@ -96,8 +97,7 @@
 
                             <x-slot name="main">
                                 @foreach ($presence->closingStores as $closingStore)
-                                    {{ optional($closingStore)->store->nickname ?? '-' }} -
-                                    {{ optional($closingStore)->shiftStore->name ?? '-' }}
+                                    {{ optional($closingStore)->store->nickname ?? '-' }}
                                 @endforeach
                             </x-slot>
                             <x-slot name="sub">
@@ -125,10 +125,14 @@
                         </x-tables.td-left-main>
                         <x-tables.td-left-hide>
                             @foreach ($presence->closingStores as $closingStore)
+                                {{ optional($closingStore)->shiftStore->name ?? '-' }}
+                            @endforeach
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            @foreach ($presence->closingStores as $closingStore)
                                 {{ optional($closingStore)->date->toFormattedDate() ?? '-' }}
                             @endforeach
                         </x-tables.td-left-hide>
-
                         <x-tables.td-right-hide>@currency($presence->amount)</x-tables.td-right-hide>
                         <x-tables.td-left-hide>{{ optional($presence->paymentType)->name ?? '-' }}
                         </x-tables.td-left-hide>

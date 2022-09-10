@@ -7,7 +7,7 @@ use App\Http\Livewire\DataTables\WithCachedRows;
 use App\Http\Livewire\DataTables\WithFilter;
 use App\Http\Livewire\DataTables\WithModal;
 use App\Http\Livewire\DataTables\WithPerPagePagination;
-use App\Http\Livewire\DataTables\WithSortingDate;
+use App\Http\Livewire\DataTables\WithSorting;
 use App\Models\PaymentType;
 use App\Models\Presence;
 use App\Models\User;
@@ -16,7 +16,7 @@ use Livewire\Component;
 
 class PresencesList extends Component
 {
-    use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
+    use WithPerPagePagination, WithSorting, WithModal, WithBulkAction, WithCachedRows, WithFilter;
 
     public Presence $editing;
 
