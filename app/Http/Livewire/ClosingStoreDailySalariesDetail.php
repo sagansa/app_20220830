@@ -26,7 +26,9 @@ class ClosingStoreDailySalariesDetail extends Component
     public function mount(ClosingStore $closingStore)
     {
         $this->closingStore = $closingStore;
-        $this->dailySalariesForSelect = DailySalary::pluck('id', 'date');
+        $this->dailySalariesForSelect = DailySalary::where('store_id', $this->closingStore->store_id)
+            ->orderBy('date', 'desc')
+            ->get()->pluck('id', 'daily_salary_name');
         $this->resetDailySalaryData();
     }
 
