@@ -53,7 +53,8 @@
                     <tr class="hover:bg-gray-50">
                         <x-tables.td-left-hide>{{ optional($dailySalary->created_by)->name ?? '-' }}
                         </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>{{ optional($dailySalary->store)->nickname ?? '-' }}
+                        <x-tables.td-left-hide>
+                            {{-- {{ optional($dailySalary->store)->nickname ?? '-' }} --}}
                             @foreach ($dailySalary->closingStores as $closingStore)
                                 {{ optional($closingStore->store)->nickname }}
                             @endforeach
