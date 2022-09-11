@@ -151,7 +151,7 @@
         <x-slot name="foot">
             <tr>
                 <td colspan="8">
-                    <div class="px-4 mt-10">{!! $dailySalaries->render() !!}</div>
+                    <div class="px-4 my-2">{!! $dailySalaries->render() !!}</div>
                 </td>
             </tr>
         </x-slot>
