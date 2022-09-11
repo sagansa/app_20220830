@@ -38,6 +38,12 @@
                     <x-tables.th-left>
                         @lang('crud.daily_salary_payment_receipts.inputs.payment_receipt_id')
                     </x-tables.th-left>
+                    <x-tables.th-left>
+                        date
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        amount
+                    </x-tables.th-left>
                     <th></th>
                 </tr>
             </x-slot>
@@ -45,7 +51,20 @@
                 @foreach ($dailySalaryPaymentReceipts as $paymentReceipt)
                     <tr class="hover:bg-gray-100">
                         <x-tables.td-left>
-                            {{ $paymentReceipt->image ?? '-' }}
+                            @if ($paymentReceipt->image == null)
+                                <x-partials.thumbnail src="" />
+                            @else
+                                <a href="{{ \Storage::url($paymentReceipt->image) }}">
+                                    <x-partials.thumbnail
+                                        src="{{ $paymentReceipt->image ? \Storage::url($paymentReceipt->image) : '' }}" />
+                                </a>
+                            @endif
+                        </x-tables.td-left>
+                        <x-tables.td-left>
+                            {{ $paymentReceipt->created_at ?? '-' }}
+                        </x-tables.td-left>
+                        <x-tables.td-left>
+                            @currency($paymentReceipt->amount)
                         </x-tables.td-left>
                         <td class="px-4 py-3 text-right" style="width: 70px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
