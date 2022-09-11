@@ -27,7 +27,7 @@ class DailySalaryPaymentReceiptsDetail extends Component
     public function mount(DailySalary $dailySalary)
     {
         $this->dailySalary = $dailySalary;
-        $this->paymentReceiptsForSelect = PaymentReceipt::where('date', '>=', Carbon::now()->subDays(5)->toDateString())
+        $this->paymentReceiptsForSelect = PaymentReceipt::where('created_at', '>=', Carbon::now()->subDays(5)->toDateString())
             ->where('created_at','desc')
             ->get()
             ->pluck('id', 'payment_receipt_name');
