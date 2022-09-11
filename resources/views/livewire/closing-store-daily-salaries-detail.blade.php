@@ -58,9 +58,9 @@
                         <x-tables.td-left>
                             {{ $dailySalary->date->toFormattedDate() ?? '-' }}
                         </x-tables.td-left>
-                        <x-tables.td-left>
+                        <x-tables.td-right>
                             @currency($dailySalary->amount)
-                        </x-tables.td-left>
+                        </x-tables.td-right>
                         <td class="px-4 py-3 text-right" style="width: 70px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @can('delete-any', App\Models\DailySalary::class)
