@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\DailySalary;
 use App\Models\ClosingStore;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Carbon;
 
 class DailySalaryClosingStoresDetail extends Component
 {
@@ -26,7 +27,10 @@ class DailySalaryClosingStoresDetail extends Component
     public function mount(DailySalary $dailySalary)
     {
         $this->dailySalary = $dailySalary;
-        $this->closingStoresForSelect = ClosingStore::pluck('date', 'id');
+        $this->closingStoresForSelect = ClosingStore::where('date', '>=', Carbon::now()->subDays(5)->toDateString())
+            ->orderBy('date', 'desc')
+            ->get()
+            ->pluck('id', 'closing_store_name');
         $this->resetClosingStoreData();
     }
 
