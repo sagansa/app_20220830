@@ -184,19 +184,15 @@
                     <x-input.date name="date" label="Date" wire:model.defer="editing.date" id="date">
                     </x-input.date>
 
-                    <x-inputs.group for="status" label="Status">
-                        <x-inputs.select name="status" label="status" wire:model.defer="editing.status" id="status">
-                            <option value="1">belum diperiksa</option>
-                            <option value="2">sudah dibayar</option>
-                            <option value="3">siap dibayar</option>
-                            <option value="4">perbaiki</option>
-                        </x-inputs.select>
-                    </x-inputs.group>
+                    <x-input.select name="status" label="status" wire:model.defer="editing.status" id="status">
+                        <option value="1">belum diperiksa</option>
+                        <option value="2">sudah dibayar</option>
+                        <option value="3">siap dibayar</option>
+                        <option value="4">perbaiki</option>
+                    </x-input.select>
 
-                    <x-inputs.group for="notes" label="Notes">
-                        <x-inputs.textarea name="notes" label="notes" wire:model.defer="editing.notes"
-                            id="notes" />
-                    </x-inputs.group>
+                    <x-input.textarea name="notes" label="notes" wire:model.defer="editing.notes" id="notes" />
+
                 </x-slot>
 
                 <x-slot name="footer">
