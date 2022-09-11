@@ -36,7 +36,11 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt>@lang('crud.daily_salaries.inputs.status')</x-shows.dt>
-                        <x-shows.dd>{{ $dailySalary->status ?? '-' }}</x-shows.dd>
+                        <x-shows.dd>
+                            <x-spans.status-valid class="{{ $dailySalary->status_badge }}">
+                                {{ $dailySalary->status_name }}
+                            </x-spans.status-valid>
+                        </x-shows.dd>
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt>@lang('crud.daily_salaries.inputs.presence_id')</x-shows.dt>
