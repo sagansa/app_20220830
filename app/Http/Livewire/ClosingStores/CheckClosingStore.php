@@ -91,7 +91,7 @@ class CheckClosingStore extends Component
         $this->cashless_totals = 0;
 
         foreach ($this->closingStore->dailySalaries as $dailySalary) {
-            $this->pdaily_salary_totals += $dailySalary['amount'];
+            $this->daily_salary_totals += $dailySalary['amount'];
         }
 
         foreach ($this->closingStore->purchaseOrders as $purchaseOrder) {
