@@ -51,21 +51,17 @@
                 @endrole
 
                 @role('manager|super-admin')
-                    @can('view-any', App\Models\ClosingStore::class)
-                        <x-partials.card class="mt-5">
-                            <x-slot name="title"> Closing Stores </x-slot>
+                    <x-partials.card class="mt-5">
+                        <x-slot name="title"> Closing Stores </x-slot>
 
-                            <livewire:daily-salary-closing-stores-detail :dailySalary="$dailySalary" />
-                        </x-partials.card>
-                    @endcan
-                @elseif ($dailySalary->payment_type_id == 1)
-                    @can('view-any', App\Models\PaymentReceipt::class)
-                        <x-partials.card class="mt-5">
-                            <x-slot name="title"> Payment Receipts </x-slot>
+                        <livewire:daily-salary-closing-stores-detail :dailySalary="$dailySalary" />
+                    </x-partials.card>
 
-                            <livewire:daily-salary-payment-receipts-detail :dailySalary="$dailySalary" />
-                        </x-partials.card>
-                    @endcan
+                    <x-partials.card class="mt-5">
+                        <x-slot name="title"> Payment Receipts </x-slot>
+
+                        <livewire:daily-salary-payment-receipts-detail :dailySalary="$dailySalary" />
+                    </x-partials.card>
                 @endrole
             </div>
         </div>
