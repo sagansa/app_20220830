@@ -43,9 +43,9 @@ class DailySalaryController extends Controller
      */
     public function create(Request $request)
     {
-        $stores = Store::orderBy('name', 'asc')
+        $stores = Store::orderBy('nickname', 'asc')
             ->whereNotIn('status', ['8'])
-            ->pluck('name', 'id');
+            ->pluck('nickname', 'id');
         $shiftStores = ShiftStore::orderBy('name', 'asc')
             // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
@@ -103,9 +103,9 @@ class DailySalaryController extends Controller
     {
         $this->authorize('update', $dailySalary);
 
-        $stores = Store::orderBy('name', 'asc')
+        $stores = Store::orderBy('nickname', 'asc')
             ->whereNotIn('status', ['8'])
-            ->pluck('name', 'id');
+            ->pluck('nickname', 'id');
         $shiftStores = ShiftStore::orderBy('name', 'asc')
             // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
