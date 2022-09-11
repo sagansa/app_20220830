@@ -104,16 +104,16 @@
                             @endforeach
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
-                            <p>{{ optional($dailySalary->date)->toFormattedDate() }}</p>
-                            <p>
-                                @foreach ($dailySalary->closingStores as $closingStore)
-                                    {{ optional($closingStore->date)->toFormattedDate() }}
-                                @endforeach
+                            {{ optional($dailySalary->date)->toFormattedDate() }} -
 
-                                @foreach ($dailySalary->paymentReceipts as $paymentReceipt)
-                                    {{ optional($paymentReceipt->date)->toFormattedDate() }}
-                                @endforeach
-                            </p>
+                            @foreach ($dailySalary->closingStores as $closingStore)
+                                {{ optional($closingStore->date)->toFormattedDate() }}
+                            @endforeach
+
+                            @foreach ($dailySalary->paymentReceipts as $paymentReceipt)
+                                {{ optional($paymentReceipt->date)->toFormattedDate() }}
+                            @endforeach
+
                         </x-tables.td-left-hide>
                         <x-tables.td-right-hide>@currency($dailySalary->amount)</x-tables.td-right-hide>
                         <x-tables.td-left-hide>{{ optional($dailySalary->paymentType)->name ?? '-' }}
