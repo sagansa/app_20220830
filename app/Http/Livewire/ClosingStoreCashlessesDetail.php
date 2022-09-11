@@ -51,7 +51,9 @@ class ClosingStoreCashlessesDetail extends Component
     public function mount(ClosingStore $closingStore)
     {
         $this->closingStore = $closingStore;
-        $this->accountCashlessesForSelect = AccountCashless::query()->orderBy('store_id', 'asc')
+        $this->accountCashlessesForSelect = AccountCashless::join('stores', 'stores.id', '=', 'account_cashlesses.store_id')
+            ->select('account_cashlesses.*', 'stores.nickname')
+            ->orderBy('stores.nickname', 'asc')
             // ->where('store_id', $this->closingStore->store_id)
         //     ->whereIn('status',['2'])
             ->get()
