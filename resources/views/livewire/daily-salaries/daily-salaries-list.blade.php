@@ -162,18 +162,19 @@
                                     <a href="{{ route('daily-salaries.edit', $dailySalary) }}" class="mr-1">
                                         <x-buttons.edit></x-buttons.edit>
                                     </a>
+                                    @can('delete', $dailySalary)
+                                        <form action="{{ route('daily-salaries.destroy', $dailySalary) }}" method="POST"
+                                            onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
+                                            @csrf @method('DELETE')
+                                            <x-buttons.delete></x-buttons.delete>
+                                        </form>
+                                    @endcan
                                 @elseif($dailySalary->status == '2')
                                     <a href="{{ route('daily-salaries.show', $dailySalary) }}" class="mr-1">
                                         <x-buttons.show></x-buttons.show>
                                     </a>
                                 @endif
-                                @can('delete', $dailySalary)
-                                    <form action="{{ route('daily-salaries.destroy', $dailySalary) }}" method="POST"
-                                        onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
-                                        @csrf @method('DELETE')
-                                        <x-buttons.delete></x-buttons.delete>
-                                    </form>
-                                @endcan
+
                             </div>
                         </td>
                     </tr>
