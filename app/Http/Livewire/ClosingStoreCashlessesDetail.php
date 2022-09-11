@@ -52,7 +52,7 @@ class ClosingStoreCashlessesDetail extends Component
     {
         $this->closingStore = $closingStore;
         $this->accountCashlessesForSelect = AccountCashless::query()
-            // ->where('store_id', $this->closingStore->store_id)
+            ->where('store_id', '=', $this->closingStore->store_id)
             ->get()
             ->pluck('id', 'account_cashless_name');
         $this->resetCashlessData();
