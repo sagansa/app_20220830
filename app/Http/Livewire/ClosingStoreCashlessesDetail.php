@@ -2,17 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AccountCashless;
-use Image;
-use Illuminate\Support\Str;
 use Livewire\Component;
 use App\Models\Cashless;
 use Livewire\WithPagination;
 use App\Models\ClosingStore;
-use App\Models\UserCashless;
 use Livewire\WithFileUploads;
+use App\Models\AccountCashless;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Image;
+use Illuminate\Support\Str;
 
 class ClosingStoreCashlessesDetail extends Component
 {
@@ -22,7 +21,7 @@ class ClosingStoreCashlessesDetail extends Component
 
     public ClosingStore $closingStore;
     public Cashless $cashless;
-    public $userCashlessesForSelect = [];
+    public $accountCashlessesForSelect = [];
     public $cashlessImage;
     public $cashlessImageCanceled;
     public $uploadIteration = 0;
@@ -36,26 +35,22 @@ class ClosingStoreCashlessesDetail extends Component
 
     protected $rules = [
         'cashlessImage' => ['nullable', 'image'],
-        'cashless.user_cashless_id' => [
+        'cashless.account_cashless_id' => [
             'required',
-            'exists:user_cashlesses,id',
+            'exists:account_cashlesses,id',
         ],
+        'cashless.bruto_apl' => ['required', 'numeric', 'min:0'],
+        'cashless.netto_apl' => ['nullable', 'numeric', 'min:0'],
         'cashlessImageCanceled' => ['image', 'nullable'],
-        'cashless.canceled' => ['required', 'numeric'],
-        'cashless.bruto_apl' => ['required', 'numeric'],
-        'cashless.netto_apl' => ['nullable', 'numeric'],
-        'cashless.bruto_real' => ['nullable', 'numeric'],
-        'cashless.netto_real' => ['nullable', 'numeric'],
+        'cashless.canceled' => ['required', 'numeric', 'min:0'],
+        'cashless.bruto_real' => ['nullable', 'numeric', 'min:0'],
+        'cashless.netto_real' => ['nullable', 'numeric', 'min:0'],
     ];
 
     public function mount(ClosingStore $closingStore)
     {
         $this->closingStore = $closingStore;
-        $this->accountCashlessesForSelect = AccountCashless::join('stores', 'stores.id', '=', 'account_cashlesses.store_id')
-            ->select('account_cashlesses.*', 'stores.nickname')
-            ->orderBy('stores.nickname', 'asc')
-            // ->where('store_id', $this->closingStore->store_id)
-        //     ->whereIn('status',['2'])
+        $this->accountCashlessesForSelect = AccountCashless::where('store_id', $this->closingStore->store_id)
             ->get()
             ->pluck('id', 'account_cashless_name');
         $this->resetCashlessData();
@@ -67,7 +62,7 @@ class ClosingStoreCashlessesDetail extends Component
 
         $this->cashlessImage = null;
         $this->cashlessImageCanceled = null;
-        $this->cashless->user_cashless_id = null;
+        $this->cashless->account_cashless_id = null;
 
         $this->dispatchBrowserEvent('refresh');
     }
