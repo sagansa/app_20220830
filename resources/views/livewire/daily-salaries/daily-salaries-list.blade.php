@@ -134,7 +134,7 @@
                             @endforeach
 
                             @foreach ($dailySalary->paymentReceipts as $paymentReceipt)
-                                {{ optional($paymentReceipt->created_at) }}
+                                {{ $paymentReceipt->created_at }}
                             @endforeach
 
                         </x-tables.td-left-hide>
