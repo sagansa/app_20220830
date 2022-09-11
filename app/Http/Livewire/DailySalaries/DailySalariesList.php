@@ -118,4 +118,34 @@ class DailySalariesList extends Component
             'dailySalaries' => $this->rows,
         ]);
     }
+
+    public function markAllAsSudahDibayar()
+    {
+        DailySalary::whereIn('id', $this->selectedRows)->update([
+            'status' => '2',
+            'approved_by_id' => Auth::user()->id,
+        ]);
+
+        $this->reset(['selectedRows']);
+    }
+
+    public function markAllAsSiapDibayar()
+    {
+        DailySalary::whereIn('id', $this->selectedRows)->update([
+            'status' => '3',
+            'approved_by_id' => Auth::user()->id,
+        ]);
+
+        $this->reset(['selectedRows']);
+    }
+
+    public function markAllAsPerbaiki()
+    {
+        DailySalary::whereIn('id', $this->selectedRows)->update([
+            'status' => '4',
+            'approved_by_id' => Auth::user()->id,
+        ]);
+
+        $this->reset(['selectedRows']);
+    }
 }

@@ -50,10 +50,9 @@
             <div class="flex flex-wrap justify-between mt-1">
                 <div class="mt-1 md:w-1/3">
                     @role('super-admin')
-                        <x-buttons.yellow wire:click="markAllAsBelumDibayar">belum dibayar</x-buttons.yellow>
                         <x-buttons.green wire:click="markAllAsSudahDibayar">sudah dibayar</x-buttons.green>
                         <x-buttons.gray wire:click="markAllAsSiapDibayar">siap dibayar</x-buttons.gray>
-                        <x-buttons.red wire:click="markAllAsTidakValid">tidak valid</x-buttons.red>
+                        <x-buttons.red wire:click="markAllAsTidakValid">perbaiki</x-buttons.red>
                     @endrole
                 </div>
                 <div class="mt-1 text-right md:w-1/3">
@@ -78,12 +77,10 @@
                 @endrole
                 <x-tables.th-left>name</x-tables.th-left>
                 <x-tables.th-left-hide>@lang('crud.daily_salaries.inputs.store_id')</x-tables.th-left-hide>
-                {{-- <x-tables.th-left-hide>@lang('crud.daily_salaries.inputs.shift_store_id')</x-tables.th-left-hide> --}}
                 <x-tables.th-left-hide>@lang('crud.daily_salaries.inputs.date')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.daily_salaries.inputs.amount')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.daily_salaries.inputs.payment_type_id')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.daily_salaries.inputs.status')</x-tables.th-left-hide>
-                {{-- <x-tables.th-left>@lang('crud.daily_salaries.inputs.presence_id')</x-tables.th-left> --}}
                 <th></th>
             </x-slot>
             <x-slot name="body">

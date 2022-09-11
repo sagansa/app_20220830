@@ -43,19 +43,10 @@
         </x-input.select>
     @endrole
 
-    @role('staff')
+    @role('staff|supervisor')
         <x-input.hidden name="status" value="{{ old('status', $editing ? $dailySalary->status : '1') }}">
         </x-input.hidden>
     @endrole
-
-    {{-- <x-input.select name="presence_id" label="Presence">
-        @php $selected = old('presence_id', ($editing ? $dailySalary->presence_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach ($presences as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
-            </option>
-        @endforeach
-    </x-input.select> --}}
 
     @if ($editing)
         <x-shows.dl>
