@@ -52,7 +52,7 @@ class ClosingStoreCashlessesDetail extends Component
         $this->closingStore = $closingStore;
         $this->accountCashlessesForSelect = AccountCashless::orderBy('cashless_provider_id', 'asc')
             ->get()
-            ->pluck('id', 'email');
+            ->pluck('id', 'account_cashless_name');
         $this->resetCashlessData();
     }
 
