@@ -91,4 +91,9 @@ class DailySalary extends Model
             unlink('storage/' . $this->image);
         }
     }
+
+    public function getDailySalaryNameAttribute()
+    {
+        return $this->created_by->name . ' - ' . $this->date . ' - ' . $this->store->nickname;
+    }
 }
