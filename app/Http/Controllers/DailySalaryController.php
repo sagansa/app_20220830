@@ -26,6 +26,7 @@ class DailySalaryController extends Controller
         $search = $request->get('search', '');
 
         $dailySalaries = DailySalary::search($search)
+            ->orderBy('date', 'desc')
             ->latest()
             ->paginate(10)
             ->withQueryString();
