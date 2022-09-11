@@ -24,7 +24,7 @@ class FuelServiceStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => ['nullable', 'image', 'max:1024'],
+            'image' => ['nullable', 'image'],
             'vehicle_id' => ['required', 'exists:vehicles,id'],
             'fuel_service' => ['required', 'in:1,2'],
             'payment_type_id' => ['required', 'exists:payment_types,id'],

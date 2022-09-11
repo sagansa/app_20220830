@@ -40,7 +40,7 @@ class PaymentTypeFuelServicesController extends Controller
         $this->authorize('create', FuelService::class);
 
         $validated = $request->validate([
-            'image' => ['nullable', 'image', 'max:1024'],
+            'image' => ['nullable', 'image'],
             'vehicle_id' => ['required', 'exists:vehicles,id'],
             'fuel_service' => ['required', 'in:1,2'],
             'km' => ['required', 'numeric', 'gt:0'],
