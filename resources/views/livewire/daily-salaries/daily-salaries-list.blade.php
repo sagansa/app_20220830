@@ -77,12 +77,12 @@
                     <th></th>
                 @endrole
                 <x-tables.th-left>name</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.daily_salaries.inputs.store_id')</x-tables.th-left>
-                {{-- <x-tables.th-left>@lang('crud.daily_salaries.inputs.shift_store_id')</x-tables.th-left> --}}
-                <x-tables.th-left>@lang('crud.daily_salaries.inputs.date')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.daily_salaries.inputs.amount')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.daily_salaries.inputs.payment_type_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.daily_salaries.inputs.status')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.daily_salaries.inputs.store_id')</x-tables.th-left-hide>
+                {{-- <x-tables.th-left-hide>@lang('crud.daily_salaries.inputs.shift_store_id')</x-tables.th-left-hide> --}}
+                <x-tables.th-left-hide>@lang('crud.daily_salaries.inputs.date')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.daily_salaries.inputs.amount')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.daily_salaries.inputs.payment_type_id')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.daily_salaries.inputs.status')</x-tables.th-left-hide>
                 {{-- <x-tables.th-left>@lang('crud.daily_salaries.inputs.presence_id')</x-tables.th-left> --}}
                 <th></th>
             </x-slot>
@@ -92,8 +92,16 @@
                         @role('super-admin|manager')
                             <x-tables.td-checkbox id="{{ $dailySalary->id }}"></x-tables.td-checkbox>
                         @endrole
-                        <x-tables.td-left-hide>{{ optional($dailySalary->created_by)->name ?? '-' }}
-                        </x-tables.td-left-hide>
+                        <x-tables.td-left-main>
+                            <x-slot name="main">
+                                @role('supervisor|manager|super-admin')
+                                    <x-buttons.notes wire:click="edit({{ $dailySalary->id }})">
+                                    </x-buttons.notes>
+                                @endrole
+                                {{ optional($dailySalary->created_by)->name ?? '-' }}
+                            </x-slot>
+                            <x-slot name="sub"></x-slot>
+                        </x-tables.td-left-main>
                         <x-tables.td-left-hide>
                             @foreach ($dailySalary->closingStores as $closingStore)
                                 {{ optional($closingStore->store)->nickname }}
@@ -129,8 +137,6 @@
                                 <x-spans.red>perbaiki</x-spans.red>
                             @endif
                         </x-tables.td-left-hide>
-                        {{-- <x-tables.td-left-hide>{{ optional($dailySalary->presence)->image_in ?? '-' }}
-                        </x-tables.td-left-hide> --}}
                         <td class="px-4 py-3 text-center" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @if ($dailySalary->status != '2')
@@ -141,27 +147,63 @@
                                     <a href="{{ route('daily-salaries.show', $dailySalary) }}" class="mr-1">
                                         <x-buttons.show></x-buttons.show>
                                     </a>
-                                @endif @can('delete', $dailySalary)
-                                <form action="{{ route('daily-salaries.destroy', $dailySalary) }}" method="POST"
-                                    onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
-                                    @csrf @method('DELETE')
-                                    <x-buttons.delete></x-buttons.delete>
-                                </form>
-                            @endcan
-                        </div>
+                                @endif
+                                @can('delete', $dailySalary)
+                                    <form action="{{ route('daily-salaries.destroy', $dailySalary) }}" method="POST"
+                                        onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
+                                        @csrf @method('DELETE')
+                                        <x-buttons.delete></x-buttons.delete>
+                                    </form>
+                                @endcan
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <x-tables.no-items-found colspan="8"> </x-tables.no-items-found>
+                @endforelse
+            </x-slot>
+            <x-slot name="foot">
+                <tr>
+                    <td colspan="8">
+                        <div class="px-4 my-2">{!! $dailySalaries->render() !!}</div>
                     </td>
                 </tr>
-            @empty
-                <x-tables.no-items-found colspan="8"> </x-tables.no-items-found>
-            @endforelse
-        </x-slot>
-        <x-slot name="foot">
-            <tr>
-                <td colspan="8">
-                    <div class="px-4 my-2">{!! $dailySalaries->render() !!}</div>
-                </td>
-            </tr>
-        </x-slot>
-    </x-table>
-</x-tables.card>
+            </x-slot>
+        </x-table>
+    </x-tables.card>
+
+    <!-- Save Purchase Order Modal -->
+    <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" wire:ignore.self>
+        <form wire:submit.prevent="save">
+            <x-modals.dialog wire:model.defer="showEditModal">
+                <x-slot name="title">Daily Salary </x-slot>
+
+                <x-slot name="content">
+
+                    <x-input.date name="date" label="Date" wire:model.defer="editing.date" id="date">
+                    </x-input.date>
+
+                    <x-inputs.group for="status" label="Status">
+                        <x-inputs.select name="status" label="status" wire:model.defer="editing.status" id="status">
+                            <option value="1">belum diperiksa</option>
+                            <option value="2">sudah dibayar</option>
+                            <option value="3">siap dibayar</option>
+                            <option value="4">perbaiki</option>
+                        </x-inputs.select>
+                    </x-inputs.group>
+
+                    <x-inputs.group for="notes" label="Notes">
+                        <x-inputs.textarea name="notes" label="notes" wire:model.defer="editing.notes"
+                            id="notes" />
+                    </x-inputs.group>
+                </x-slot>
+
+                <x-slot name="footer">
+                    <x-buttons.secondary wire:click="$set('showEditModal', false)">Cancel</x-buttons.secondary>
+                    <x-jet-button type="submit">Save</x-jet-button>
+                </x-slot>
+            </x-modals.dialog>
+        </form>
+    </div>
 </div>

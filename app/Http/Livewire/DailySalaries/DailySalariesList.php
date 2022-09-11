@@ -32,20 +32,36 @@ class DailySalariesList extends Component
     ];
 
     public $filters = [
-        'storename' => '',
-        'payment_status' => '',
-        'order_status' => '',
-        'store_id' => null,
-        'supplier_id' => null,
+        'created_by_id' => null,
+        'status' => '',
         'payment_type_id' => null,
     ];
 
     public function rules()
     {
         return [
+            'editing.date' => 'required',
             'editing.notes' => 'nullable',
             'editing.status' => 'required|in:1,2,3,4',
         ];
+    }
+
+    public function edit(DailySalary $dailySalary)
+    {
+        $this->editing = $dailySalary;
+
+        $this->showEditModal = true;
+    }
+
+    public function save()
+    {
+        $this->validate();
+
+        $this->editing['approved_by_id'] = Auth::user()->id;
+
+        $this->editing->save();
+
+        $this->showEditModal = false;
     }
 
     public function mount()
