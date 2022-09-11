@@ -24,14 +24,27 @@
     <x-input.currency name="amount" label="Amount" value="{{ old('amount', $editing ? $dailySalary->amount : '') }}"
         required></x-input.currency>
 
-    <x-input.select name="payment_type_id" label="Payment Type" required>
-        @php $selected = old('payment_type_id', ($editing ? $dailySalary->payment_type_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach ($paymentTypes as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
-            </option>
-        @endforeach
-    </x-input.select>
+    @if (!$editing)
+        <x-input.select name="payment_type_id" label="Payment Type" required>
+            @php $selected = old('payment_type_id', ($editing ? $dailySalary->payment_type_id : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
+            @foreach ($paymentTypes as $value => $label)
+                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
+                </option>
+            @endforeach
+        </x-input.select>
+    @endif
+
+    @if ($editing)
+        <x-input.select readonly name="payment_type_id" label="Payment Type" required>
+            @php $selected = old('payment_type_id', ($editing ? $dailySalary->payment_type_id : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
+            @foreach ($paymentTypes as $value => $label)
+                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
+                </option>
+            @endforeach
+        </x-input.select>
+    @endif
 
     @role('super-admin|manager')
         <x-input.select name="status" label="Status">
