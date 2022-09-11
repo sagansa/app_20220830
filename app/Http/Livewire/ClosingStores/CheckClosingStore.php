@@ -94,11 +94,11 @@ class CheckClosingStore extends Component
             $this->daily_salary_totals += $dailySalary['amount'];
         }
 
-        foreach ($this->closingStore->purchaseOrders as $purchaseOrder) {
-            foreach ($purchaseOrder->purchaseOrderProducts as $purchaseOrderProduct) {
-                $this->purchase_order_subtotals += $purchaseOrderProduct['subtotal_invoice'];
+        foreach ($this->closingStore->invoicePurchases as $invoicePurchase) {
+            foreach ($invoicePurchase->detailInvoices as $detailInvoice) {
+                $this->purchase_order_subtotals += $detailInvoice['subtotal_invoice'];
             }
-            $this->purchase_order_totals = $this->purchase_order_subtotals - $purchaseOrder['discounts'] + $purchaseOrder['taxes'];
+            $this->purchase_order_totals = $this->purchase_order_subtotals - $detailInvoice['discounts'] + $detailInvoice['taxes'];
         }
 
         foreach ($this->closingStore->fuelServices as $fuelService) {
