@@ -20,6 +20,11 @@ class DailySalary extends Model
         '4' => 'perbaiki',
     ];
 
+    const STATUS_BELUM_DIPERIKSA = '1';
+    const STATUS_SUDAH_DIBAYAR = '2';
+    const STATUS_SIAP_DIBAYAR = '3';
+    const STATUS_TIDAK_VALID = '4';
+
     protected $fillable = [
         'store_id',
         'shift_store_id',
