@@ -100,7 +100,25 @@
                                 @endrole
                                 {{ optional($dailySalary->created_by)->name ?? '-' }}
                             </x-slot>
-                            <x-slot name="sub"></x-slot>
+                            <x-slot name="sub">
+                                @foreach ($dailySalary->closingStores as $closingStore)
+                                    {{ optional($closingStore->store)->nickname }}
+                                @endforeach
+
+                                @foreach ($dailySalary->paymentReceipts as $paymentReceipt)
+                                    {{ optional($paymentReceipt->store)->nickname }}
+                                @endforeach
+                                -
+                                {{ optional($dailySalary->date)->toFormattedDate() }} -
+
+                                @foreach ($dailySalary->closingStores as $closingStore)
+                                    {{ optional($closingStore->date)->toFormattedDate() }}
+                                @endforeach
+
+                                @foreach ($dailySalary->paymentReceipts as $paymentReceipt)
+                                    {{ optional($paymentReceipt->date)->toFormattedDate() }}
+                                @endforeach
+                            </x-slot>
                         </x-tables.td-left-main>
                         <x-tables.td-left-hide>
                             @foreach ($dailySalary->closingStores as $closingStore)
@@ -127,7 +145,11 @@
                         <x-tables.td-left-hide>{{ optional($dailySalary->paymentType)->name ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
-                            @if ($dailySalary->status == 1)
+                            <x-spans.status-valid class="{{ $dailySalary->status_badge }}">
+                                {{ $dailySalary->status_name }}
+                            </x-spans.status-valid>
+
+                            {{-- @if ($dailySalary->status == 1)
                                 <x-spans.yellow>belum diperiksa</x-spans.yellow>
                             @elseif ($dailySalary->status == 2)
                                 <x-spans.green>sudah dibayar</x-spans.green>
@@ -135,7 +157,7 @@
                                 <x-spans.gray>siap dibayar</x-spans.gray>
                             @elseif ($dailySalary->status == 4)
                                 <x-spans.red>perbaiki</x-spans.red>
-                            @endif
+                            @endif --}}
                         </x-tables.td-left-hide>
                         <td class="px-4 py-3 text-center" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
@@ -181,7 +203,8 @@
 
                 <x-slot name="content">
                     <div class="mt-1 sm:space-y-5">
-                        <x-input.date name="date" label="Date" wire:model.defer="editing.date" id="date">
+
+                        <x-input.date name="dailySalaryDate" label="Date" wire:model.defer="dailySalaryDate">
                         </x-input.date>
 
                         <x-input.select name="status" label="status" wire:model.defer="editing.status" id="status">
@@ -191,8 +214,6 @@
                             <option value="4">perbaiki</option>
                         </x-input.select>
 
-                        <x-input.textarea name="notes" label="notes" wire:model.defer="editing.notes"
-                            id="notes" />
                     </div>
                 </x-slot>
 

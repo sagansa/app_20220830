@@ -11,6 +11,7 @@ use App\Http\Livewire\DataTables\WithSortingDate;
 use App\Models\DailySalary;
 use App\Models\PaymentType;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -18,7 +19,9 @@ class DailySalariesList extends Component
 {
     use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
 
-    public DailySalary $editing;
+    public DailySalary $dailySalary;
+
+    public $dailySalaryDate;
 
     public $sortColumn = 'daily_salaries.date';
 
@@ -37,18 +40,18 @@ class DailySalariesList extends Component
         'payment_type_id' => null,
     ];
 
-    public function rules()
-    {
-        return [
-            'editing.date' => 'required',
-            'editing.notes' => 'nullable',
-            'editing.status' => 'required|in:1,2,3,4',
-        ];
-    }
+    protected $rules = [
+        'dailySalary.status' => 'required|in:1,2,3,4',
+        'dailySalaryDate' => 'required',
+    ];
 
     public function edit(DailySalary $dailySalary)
     {
-        $this->editing = $dailySalary;
+        $this->dailySalary = $dailySalary;
+
+        $this->dailySalary = $dailySalary;
+
+        $this->dailySalaryDate = $this->dailySalary->date->format('Y-m-d');
 
         $this->showEditModal = true;
     }
@@ -57,9 +60,13 @@ class DailySalariesList extends Component
     {
         $this->validate();
 
-        $this->editing['approved_by_id'] = Auth::user()->id;
+        $this->dailySalary['approved_by_id'] = Auth::user()->id;
 
-        $this->editing->save();
+        $this->dailySalary->date = Carbon::parse(
+            $this->dailySalaryDate
+        );
+
+        $this->dailySalary->save();
 
         $this->showEditModal = false;
     }

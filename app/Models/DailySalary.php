@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\DataTables\HasPayment;
 use App\Models\Scopes\Searchable;
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Livewire\DataTables\HasValid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DailySalary extends Model
 {
-    use HasValid;
+    use HasPayment;
     use HasFactory;
     use Searchable;
 
