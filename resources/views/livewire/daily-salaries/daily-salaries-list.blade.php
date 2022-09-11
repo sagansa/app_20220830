@@ -211,6 +211,7 @@
                             <option value="4">perbaiki</option>
                         </x-input.select>
 
+                        <livewire:daily-salary-payment-receipts-detail :dailySalary="$dailySalary" />
                     </div>
                 </x-slot>
 
