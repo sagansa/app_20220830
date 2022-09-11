@@ -42,6 +42,9 @@
                         Store
                     </x-tables.th-left>
                     <x-tables.th-left>
+                        Date
+                    </x-tables.th-left>
+                    <x-tables.th-left>
                         From Product
                     </x-tables.th-left>
                     <x-tables.th-left>
@@ -61,7 +64,10 @@
                 @foreach ($detailInvoices as $detailInvoice)
                     <tr class="hover:bg-gray-100">
                         <x-tables.td-left-hide>
-                            {{ $detailInvoice->invoicePurchase->store->nickname }} -
+                            {{ $detailInvoice->invoicePurchase->store->nickname }}
+                        </x-tables.td-left-hide>
+
+                        <x-tables.td-left-hide>
                             {{ $detailInvoice->invoicePurchase->date->toFormattedDate() }}
                         </x-tables.td-left-hide>
 
