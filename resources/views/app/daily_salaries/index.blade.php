@@ -38,6 +38,7 @@
     <x-tables.card>
         <x-table>
             <x-slot name="head">
+                <x-tables.th-left>name</x-tables.th-left>
                 <x-tables.th-left>@lang('crud.daily_salaries.inputs.store_id')</x-tables.th-left>
                 <x-tables.th-left>@lang('crud.daily_salaries.inputs.shift_store_id')</x-tables.th-left>
                 <x-tables.th-left>@lang('crud.daily_salaries.inputs.date')</x-tables.th-left>
@@ -50,6 +51,8 @@
             <x-slot name="body">
                 @forelse($dailySalaries as $dailySalary)
                     <tr class="hover:bg-gray-50">
+                        <x-tables.td-left-hide>{{ optional($dailySalary->created_by)->name ?? '-' }}
+                        </x-tables.td-left-hide>
                         <x-tables.td-left-hide>{{ optional($dailySalary->store)->nickname ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>{{ optional($dailySalary->shiftStore)->name ?? '-' }}
