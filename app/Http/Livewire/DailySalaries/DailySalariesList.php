@@ -57,7 +57,8 @@ class DailySalariesList extends Component
     public function getRowsQueryProperty()
     {
 
-        $dailySalaries = DailySalary::query();
+        $dailySalaries = DailySalary::query()
+            ->orderBy('date', 'desc');
 
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {

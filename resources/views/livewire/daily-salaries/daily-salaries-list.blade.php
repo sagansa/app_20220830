@@ -78,7 +78,7 @@
                 @endrole
                 <x-tables.th-left>name</x-tables.th-left>
                 <x-tables.th-left>@lang('crud.daily_salaries.inputs.store_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.daily_salaries.inputs.shift_store_id')</x-tables.th-left>
+                {{-- <x-tables.th-left>@lang('crud.daily_salaries.inputs.shift_store_id')</x-tables.th-left> --}}
                 <x-tables.th-left>@lang('crud.daily_salaries.inputs.date')</x-tables.th-left>
                 <x-tables.th-left>@lang('crud.daily_salaries.inputs.amount')</x-tables.th-left>
                 <x-tables.th-left>@lang('crud.daily_salaries.inputs.payment_type_id')</x-tables.th-left>
@@ -95,7 +95,6 @@
                         <x-tables.td-left-hide>{{ optional($dailySalary->created_by)->name ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
-                            {{-- {{ optional($dailySalary->store)->nickname ?? '-' }} --}}
                             @foreach ($dailySalary->closingStores as $closingStore)
                                 {{ optional($closingStore->store)->nickname }}
                             @endforeach
@@ -104,18 +103,17 @@
                                 {{ optional($paymentReceipt->store)->nickname }}
                             @endforeach
                         </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>{{ optional($dailySalary->shiftStore)->name ?? '-' }}
-                        </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
+                            <p>{{ $dailySalary->date->toFormattedDate() }}</p>
+                            <p>
+                                @foreach ($dailySalary->closingStores as $closingStore)
+                                    {{ optional($closingStore->date)->toFormattedDate() }}
+                                @endforeach
 
-                            @foreach ($dailySalary->closingStores as $closingStore)
-                                {{ optional($closingStore->date)->toFormattedDate() }}
-                            @endforeach
-
-                            @foreach ($dailySalary->paymentReceipts as $paymentReceipt)
-                                {{ optional($paymentReceipt->date)->toFormattedDate() }}
-                            @endforeach
-
+                                @foreach ($dailySalary->paymentReceipts as $paymentReceipt)
+                                    {{ optional($paymentReceipt->date)->toFormattedDate() }}
+                                @endforeach
+                            </p>
                         </x-tables.td-left-hide>
                         <x-tables.td-right-hide>@currency($dailySalary->amount)</x-tables.td-right-hide>
                         <x-tables.td-left-hide>{{ optional($dailySalary->paymentType)->name ?? '-' }}
@@ -154,12 +152,12 @@
                     </td>
                 </tr>
             @empty
-                <x-tables.no-items-found colspan="9"> </x-tables.no-items-found>
+                <x-tables.no-items-found colspan="8"> </x-tables.no-items-found>
             @endforelse
         </x-slot>
         <x-slot name="foot">
             <tr>
-                <td colspan="9">
+                <td colspan="8">
                     <div class="px-4 my-2">{!! $dailySalaries->render() !!}</div>
                 </td>
             </tr>
