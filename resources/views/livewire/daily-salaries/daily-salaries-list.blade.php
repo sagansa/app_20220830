@@ -107,7 +107,6 @@
                         <x-tables.td-left-hide>{{ optional($dailySalary->shiftStore)->name ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
-                            {{-- {{ optional($dailySalary->date)->toFormattedDate() ?? '-' }} --}}
 
                             @foreach ($dailySalary->closingStores as $closingStore)
                                 {{ optional($closingStore->date)->toFormattedDate() }}
@@ -116,6 +115,7 @@
                             @foreach ($dailySalary->paymentReceipts as $paymentReceipt)
                                 {{ optional($paymentReceipt->date)->toFormattedDate() }}
                             @endforeach
+
                         </x-tables.td-left-hide>
                         <x-tables.td-right-hide>@currency($dailySalary->amount)</x-tables.td-right-hide>
                         <x-tables.td-left-hide>{{ optional($dailySalary->paymentType)->name ?? '-' }}
@@ -154,12 +154,12 @@
                     </td>
                 </tr>
             @empty
-                <x-tables.no-items-found colspan="8"> </x-tables.no-items-found>
+                <x-tables.no-items-found colspan="9"> </x-tables.no-items-found>
             @endforelse
         </x-slot>
         <x-slot name="foot">
             <tr>
-                <td colspan="8">
+                <td colspan="9">
                     <div class="px-4 my-2">{!! $dailySalaries->render() !!}</div>
                 </td>
             </tr>
