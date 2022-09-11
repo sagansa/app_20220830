@@ -165,7 +165,9 @@
                             @endif
                         </x-tables.td-left>
                         <x-tables.td-left>
-                            {{ optional($cashless->accountCashless)->email ?? '-' }}
+                            {{ optional($cashless->accountCashless)->cashlessProvider->name ?? '-' }}
+
+                            {{-- {{ $cashless->accountCashless->cashlessProvider->name }} --}}
                         </x-tables.td-left>
                         <x-tables.td-right>
                             <p>Bruto: @currency($cashless->bruto_apl)</p>
