@@ -31,7 +31,7 @@
         @php $selected = old('payment_for', ($editing ? $paymentReceipt->payment_for : '3')) @endphp
         <option value="3" {{ $selected == '3' ? 'selected' : '' }}>invoice purchase</option>
         <option value="1" {{ $selected == '1' ? 'selected' : '' }}>fuel service</option>
-        <option value="2" {{ $selected == '2' ? 'selected' : '' }}>presence</option>
+        <option value="2" {{ $selected == '2' ? 'selected' : '' }}>daily salary</option>
 
     </x-input.select>
 

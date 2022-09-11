@@ -70,7 +70,7 @@
                                     @if ($paymentReceipt->payment_for == 1)
                                         <p>fuel service</p>
                                     @elseif ($paymentReceipt->payment_for == 2)
-                                        <p>presence</p>
+                                        <p>dailySalary</p>
                                     @elseif ($paymentReceipt->payment_for == 3)
                                         <p>invoice purchase</p>
                                     @endif
@@ -96,9 +96,9 @@
                         <x-tables.td-right-hide>@currency($paymentReceipt->amount)</x-tables.td-right-hide>
 
                         <x-tables.td-left-hide>
-                            @foreach ($paymentReceipt->presences as $presence)
-                                <p>{{ $presence->created_by->name }} -
-                                    {{ $presence->closingStore->date->toFormattedDate() }} - @currency($presence->amount)</p>
+                            @foreach ($paymentReceipt->dailySalaries as $dailySalary)
+                                <p>{{ $dailySalary->created_by->name }} -
+                                    {{ $dailySalary->closingStore->date->toFormattedDate() }} - @currency($dailySalary->amount)</p>
                             @endforeach
                             @foreach ($paymentReceipt->fuelServices as $fuelService)
                                 <p>{{ $fuelService->vehicle->no_register }} - @currency($fuelService->amount)</p>
@@ -116,7 +116,7 @@
                             @if ($paymentReceipt->payment_for == 1)
                                 <p>fuel service</p>
                             @elseif ($paymentReceipt->payment_for == 2)
-                                <p>presence</p>
+                                <p>Daily Salary</p>
                             @elseif ($paymentReceipt->payment_for == 3)
                                 <p>invoice purchase</p>
                             @endif
