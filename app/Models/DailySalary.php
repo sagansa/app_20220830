@@ -94,6 +94,6 @@ class DailySalary extends Model
 
     public function getDailySalaryNameAttribute()
     {
-        return $this->created_by->name . ' - ' . $this->date . ' - ' . $this->store->nickname;
+        return $this->created_by->name . ' | ' . $this->date->toFormattedDate() . ' | ' . $this->store->nickname;
     }
 }
