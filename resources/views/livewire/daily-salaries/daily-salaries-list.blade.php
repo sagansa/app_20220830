@@ -180,19 +180,20 @@
                 <x-slot name="title">Daily Salary </x-slot>
 
                 <x-slot name="content">
+                    <div class="mt-1 sm:space-y-5">
+                        <x-input.date name="date" label="Date" wire:model.defer="editing.date" id="date">
+                        </x-input.date>
 
-                    <x-input.date name="date" label="Date" wire:model.defer="editing.date" id="date">
-                    </x-input.date>
+                        <x-input.select name="status" label="status" wire:model.defer="editing.status" id="status">
+                            <option value="1">belum diperiksa</option>
+                            <option value="2">sudah dibayar</option>
+                            <option value="3">siap dibayar</option>
+                            <option value="4">perbaiki</option>
+                        </x-input.select>
 
-                    <x-input.select name="status" label="status" wire:model.defer="editing.status" id="status">
-                        <option value="1">belum diperiksa</option>
-                        <option value="2">sudah dibayar</option>
-                        <option value="3">siap dibayar</option>
-                        <option value="4">perbaiki</option>
-                    </x-input.select>
-
-                    <x-input.textarea name="notes" label="notes" wire:model.defer="editing.notes" id="notes" />
-
+                        <x-input.textarea name="notes" label="notes" wire:model.defer="editing.notes"
+                            id="notes" />
+                    </div>
                 </x-slot>
 
                 <x-slot name="footer">
