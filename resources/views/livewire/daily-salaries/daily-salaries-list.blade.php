@@ -104,7 +104,7 @@
                             @endforeach
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
-                            <p>{{ $dailySalary->date->toFormattedDate() }}</p>
+                            <p>{{ optional($dailySalary->date)->toFormattedDate() }}</p>
                             <p>
                                 @foreach ($dailySalary->closingStores as $closingStore)
                                     {{ optional($closingStore->date)->toFormattedDate() }}
