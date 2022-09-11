@@ -121,6 +121,9 @@
                         @lang('crud.closing_store_cashlesses.inputs.image')
                     </x-tables.th-left>
                     <x-tables.th-left>
+                        Store
+                    </x-tables.th-left>
+                    <x-tables.th-left>
                         @lang('crud.closing_store_cashlesses.inputs.account_cashless_id')
                     </x-tables.th-left>
                     <x-tables.th-left>
@@ -165,9 +168,10 @@
                             @endif
                         </x-tables.td-left>
                         <x-tables.td-left>
+                            {{ optional($cashless->accountCashless)->store->nickname ?? '-' }}
+                        </x-tables.td-left>
+                        <x-tables.td-left>
                             {{ optional($cashless->accountCashless)->cashlessProvider->name ?? '-' }}
-
-                            {{-- {{ $cashless->accountCashless->cashlessProvider->name }} --}}
                         </x-tables.td-left>
                         <x-tables.td-right>
                             <p>Bruto: @currency($cashless->bruto_apl)</p>
