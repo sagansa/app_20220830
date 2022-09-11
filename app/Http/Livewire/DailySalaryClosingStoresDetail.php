@@ -70,7 +70,7 @@ class DailySalaryClosingStoresDetail extends Component
 
         $this->authorize('create', ClosingStore::class);
 
-        $this->dailySalary->closingStores()->attach($this->closingStore_id, []);
+        $this->dailySalary->closingStores()->attach($this->closing_store_id, []);
 
         $this->hideModal();
     }

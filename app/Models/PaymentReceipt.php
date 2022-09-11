@@ -47,4 +47,9 @@ class PaymentReceipt extends Model
             unlink('storage/' . $this->image);
         }
     }
+
+    public function getPaymentReceiptNameAttribute()
+    {
+        return $this->amount . ' | ' . $this->created_at->toFormattedDate();
+    }
 }

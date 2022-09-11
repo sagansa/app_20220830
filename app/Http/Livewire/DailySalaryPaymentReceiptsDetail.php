@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\DailySalary;
 use App\Models\PaymentReceipt;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Carbon;
 
 class DailySalaryPaymentReceiptsDetail extends Component
 {
@@ -26,7 +27,10 @@ class DailySalaryPaymentReceiptsDetail extends Component
     public function mount(DailySalary $dailySalary)
     {
         $this->dailySalary = $dailySalary;
-        $this->paymentReceiptsForSelect = PaymentReceipt::pluck('image', 'id');
+        $this->paymentReceiptsForSelect = PaymentReceipt::where('date', '>=', Carbon::now()->subDays(5)->toDateString())
+            ->where('created_at','desc')
+            ->get()
+            ->pluck('id', 'payment_receipt_name');
         $this->resetPaymentReceiptData();
     }
 
