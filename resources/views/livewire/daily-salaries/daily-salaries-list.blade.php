@@ -3,7 +3,7 @@
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             @lang('crud.daily_salaries.index_title')
         </h2>
-        <p class="mt-2 text-xs text-gray-700">absensi harian pegawai</p>
+        <p class="mt-2 text-xs text-gray-700">seluruh pembayaran gaji harian pegawai</p>
     </x-slot>
 
     <x-tables.topbar>
