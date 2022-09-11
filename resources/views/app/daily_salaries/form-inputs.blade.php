@@ -36,11 +36,12 @@
     @endif
 
     @if ($editing)
-        <x-input.select readonly name="payment_type_id" label="Payment Type" required>
+        <x-input.select name="payment_type_id" label="Payment Type" required>
             @php $selected = old('payment_type_id', ($editing ? $dailySalary->payment_type_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
             @foreach ($paymentTypes as $value => $label)
-                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
+                <option readonly value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>
+                    {{ $label }}
                 </option>
             @endforeach
         </x-input.select>
