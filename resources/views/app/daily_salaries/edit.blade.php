@@ -30,6 +30,7 @@
                         </div>
                     </x-form>
                 </x-partials.card>
+
                 @role('supervisor|staff')
                     @if ($dailySalary->payment_type_id == 2)
                         @can('view-any', App\Models\ClosingStore::class)
