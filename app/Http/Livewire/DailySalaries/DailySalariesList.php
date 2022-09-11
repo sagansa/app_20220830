@@ -51,7 +51,11 @@ class DailySalariesList extends Component
 
         $this->dailySalary = $dailySalary;
 
-        $this->dailySalaryDate = $this->dailySalary->date->format('Y-m-d');
+        if(!$this->dailySalary) {
+
+            $this->dailySalaryDate = $this->dailySalary->date->format('Y-m-d');
+
+        }
 
         $this->showEditModal = true;
     }
