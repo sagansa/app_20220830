@@ -47,7 +47,7 @@
                             </div> --}}
                             <div class="flex justify-between mt-4">
                                 <div>
-                                    <h3 class="text-sm text-gray-700 text-blod dark:text-gray-50">
+                                    <h3 class="text-sm font-bold text-gray-700 dark:text-gray-50">
                                         <a href="{{ route('e-products.detail', $eProduct) }}">
                                             <span aria-hidden="true" class="absolute inset-0"></span>
                                             {{ $eProduct->product->name }}
