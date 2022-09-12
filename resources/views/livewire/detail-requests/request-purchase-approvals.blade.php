@@ -101,19 +101,30 @@
 
                         <x-tables.td-left-hide>
 
-                            {{-- <x-input.select-table wire="changeStatus({{ $detailRequest }}, $event.target.value)">
+                            <x-input.select-table wire="changeStatus({{ $detailRequest }}, $event.target.value)">
                                 @foreach (App\Models\DetailRequest::STATUSES as $value => $label)
-                                    <option value="{{ $value }}">{{ $label }}</option>
-                                @endforeach
-                            </x-input.select-table> --}}
+                                    {{-- <option value="{{ $value }}">{{ $label }}</option> --}}
 
-                            <select
+                                    <option value="{{ $value }}"
+                                        {{ $detailRequest->status == '$value' ? 'selected' : '' }}>
+                                        {{ $label }}</option>
+                                @endforeach
+                            </x-input.select-table>
+
+                            {{-- <select
                                 class="block w-full py-1 pl-3 pr-10 my-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                                 wire:change="changeStatus({{ $detailRequest }}, $event.target.value)">
-                                @foreach (App\Models\DetailRequest::STATUSES as $value => $label)
-                                    <option value="{{ $value }}">{{ $label }}</option>
-                                @endforeach
-                            </select>
+                                <option value="1" {{ $detailRequest->status == '1' ? 'selected' : '' }}>
+                                    Process</option>
+                                <option value="2" {{ $detailRequest->status == '2' ? 'selected' : '' }}>
+                                    Done</option>
+                                <option value="3" {{ $detailRequest->status == '3' ? 'selected' : '' }}>
+                                    Reject</option>
+                                <option value="4" {{ $detailRequest->status == '4' ? 'selected' : '' }}>
+                                    Approved</option>
+                                <option value="5" {{ $detailRequest->status == '5' ? 'selected' : '' }}>
+                                    Not Valid</option>
+                            </select> --}}
                         </x-tables.td-left-hide>
                     </tr>
                 @endforeach
