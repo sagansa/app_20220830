@@ -14,10 +14,9 @@ class RequestPurchase extends Model
     use Searchable;
 
     const STATUSES = [
-        '1' => 'belum diperiksa',
-        '2' => 'valid',
-        '3' => 'diperbaiki',
-        '4' => 'periksa ulang',
+        '1' => 'process',
+        '2' => 'done',
+
     ];
 
     protected $fillable = ['store_id', 'date', 'user_id', 'status'];
