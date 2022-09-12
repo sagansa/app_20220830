@@ -49,6 +49,13 @@
                         <i class="mr-1 icon ion-md-return-left"></i>
                         @lang('crud.common.back')
                     </a>
+
+                    <a href="{{ route('payment-receipts.edit', $paymentReceipt) }}" class="mr-1">
+                        <x-jet-button>
+                            <i class="mr-1 icon ion-md-create"></i>@lang('crud.common.edit')
+                        </x-jet-button>
+                    </a>
+
                 </div>
             </x-partials.card>
 

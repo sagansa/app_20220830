@@ -1,11 +1,13 @@
 <div>
     <div>
-        @can('create', App\Models\InvoicePurchase::class)
-            <button class="button" wire:click="newInvoicePurchase">
-                <i class="mr-1 icon ion-md-add text-primary"></i>
-                @lang('crud.common.attach')
-            </button>
-        @endcan
+        @role('super-admin|manager')
+            @can('create', App\Models\InvoicePurchase::class)
+                <button class="button" wire:click="newInvoicePurchase">
+                    <i class="mr-1 icon ion-md-add text-primary"></i>
+                    @lang('crud.common.attach')
+                </button>
+            @endcan
+        @endrole
     </div>
 
     <x-modal wire:model="showingModal">
@@ -109,14 +111,16 @@
                         @endrole
                         <td class="px-4 py-3 text-right" style="width: 70px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
-                                @can('delete-any', App\Models\InvoicePurchase::class)
-                                    <button class="button button-danger"
-                                        onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
-                                        wire:click="detach({{ $invoicePurchase->id }})">
-                                        <i class="mr-1 icon ion-md-trash text-primary"></i>
-                                        @lang('crud.common.detach')
-                                    </button>
-                                @endcan
+                                @role('super-admin|manager')
+                                    @can('delete-any', App\Models\InvoicePurchase::class)
+                                        <button class="button button-danger"
+                                            onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
+                                            wire:click="detach({{ $invoicePurchase->id }})">
+                                            <i class="mr-1 icon ion-md-trash text-primary"></i>
+                                            @lang('crud.common.detach')
+                                        </button>
+                                    @endcan
+                                @endrole
                             </div>
                         </td>
                     </tr>

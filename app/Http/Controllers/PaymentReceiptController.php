@@ -75,13 +75,10 @@ class PaymentReceiptController extends Controller
             $validated['image'] = $fileimage;
         }
 
-        $validated['created_by_id'] = auth()->user()->id;
-        $validated['status'] = '1';
-
         $paymentReceipt = PaymentReceipt::create($validated);
 
         return redirect()
-            ->route('payment-receipts.edit', $paymentReceipt)
+            ->route('payment-receipts.show', $paymentReceipt)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -137,18 +134,10 @@ class PaymentReceiptController extends Controller
             $validated['image'] = $file_image;
         }
 
-        if (
-            auth()
-                ->user()
-                ->hasRole('supervisor|manager|super-admin')
-        ) {
-            $validated['approved_by_id'] = auth()->user()->id;
-        }
-
         $paymentReceipt->update($validated);
 
         return redirect()
-            ->route('payment-receipts.index')
+            ->route('payment-receipts.show', $paymentReceipt)
             ->withSuccess(__('crud.common.saved'));
     }
 
