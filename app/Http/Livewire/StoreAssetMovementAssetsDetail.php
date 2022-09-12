@@ -47,6 +47,7 @@ class StoreAssetMovementAssetsDetail extends Component
     {
         $this->storeAsset = $storeAsset;
         $this->productsForSelect = Product::where('material_group_id', '=', '8')
+            ->orderBy('name', 'asc')
             ->get()
             ->pluck( 'id', 'product_name');
         $this->usersForSelect = User::pluck('name', 'id');
