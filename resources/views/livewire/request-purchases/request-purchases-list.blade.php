@@ -61,6 +61,9 @@
     <x-tables.card>
         <x-table>
             <x-slot name="head">
+                @role('super-admin')
+                    <th></th>
+                @endrole
                 <x-tables.th-left>@lang('crud.request_purchases.inputs.store_id')</x-tables.th-left>
                 <x-tables.th-left-hide>@lang('crud.request_purchases.inputs.date')</x-tables.th-left-hide>
                 @role('super-admin')
@@ -73,6 +76,9 @@
             <x-slot name="body">
                 @forelse($requestPurchases as $requestPurchase)
                     <tr class="hover:bg-gray-50">
+                        @role('super-admin')
+                            <x-tables.td-checkbox id="{{ $requestPurchase->id }}"></x-tables.td-checkbox>
+                        @endrole
                         <x-tables.td-left-main>
                             <x-slot name="main">{{ optional($requestPurchase->store)->nickname ?? '-' }}</x-slot>
                             <x-slot name="sub">{{ $requestPurchase->date->toFormattedDate() ?? '-' }}
