@@ -6,13 +6,9 @@ use App\Models\Scopes\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Livewire\DataTables\HasValid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\HasMedia;
 
-class MovementAsset extends Model implements HasMedia
+class MovementAsset extends Model
 {
-    use InteractsWithMedia;
 
     use HasValid;
     use HasFactory;
@@ -58,12 +54,5 @@ class MovementAsset extends Model implements HasMedia
         if ($this->image && file_exists('storage/' . $this->image)) {
             unlink('storage/' . $this->image);
         }
-    }
-
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('thumbnail')
-            ->width(50)
-            ->height(50);
     }
 }
