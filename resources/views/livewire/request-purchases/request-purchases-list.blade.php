@@ -1,39 +1,62 @@
-<x-admin-layout>
-    {{-- <x-slot name="header">
+<div>
+    <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             @lang('crud.request_purchases.index_title')
         </h2>
         <p class="mt-2 text-xs text-gray-700">permintaan bahan baku</p>
     </x-slot>
 
-    <div class="mt-4 mb-5">
-        <div class="flex flex-wrap justify-between mt-1">
-            <div class="mt-1 md:w-1/3">
-                <form>
-                    <div class="flex items-center w-full">
-                        <x-inputs.text name="search" value="{{ $search ?? '' }}"
-                            placeholder="{{ __('crud.common.search') }}" autocomplete="off"></x-inputs.text>
+    <x-tables.topbar>
+        <x-slot name="search">
+            <x-buttons.link wire:click.prevent="$toggle('showFilters')">
+                @if ($showFilters)
+                    Hide
+                @endif Advanced Search...
+            </x-buttons.link>
+            @if ($showFilters)
+                <x-filters.group>
+                    <x-filters.label>Store</x-filters.label>
+                    <x-filters.select wire:model="filters.store_id">
+                        @foreach ($stores as $label => $value)
+                            <option value="{{ $value }}">{{ $label }}</option>
+                        @endforeach
+                    </x-filters.select>
+                </x-filters.group>
 
-                        <div class="ml-1">
+                <x-filters.group>
+                    <x-filters.label>Status</x-filters.label>
+                    <x-filters.select wire:model="filters.status">
+                        @foreach (App\Models\RequestPurchase::STATUSES as $value => $label)
+                            <option value="{{ $value }}">{{ $label }}</option>
+                        @endforeach
+                    </x-filters.select>
+                </x-filters.group>
+
+                <x-buttons.link wire:click.prevent="resetFilters">Reset Filter
+                </x-buttons.link>
+            @endif
+        </x-slot>
+        <x-slot name="action">
+            <div class="flex flex-wrap justify-between mt-1">
+                <div class="mt-1 md:w-1/3">
+                    @role('super-admin')
+                        <x-buttons.green wire:click.prevent="markAllAsProcess">Process</x-buttons.green>
+                        <x-buttons.yellow wire:click.prevent="markAllAsDone">Done</x-buttons.yellow>
+                    @endrole
+                </div>
+                <div class="mt-1 text-right md:w-1/3">
+                    @can('create', App\Models\RequestPurchase::class)
+                        <a href="{{ route('request-purchases.create') }}">
                             <x-jet-button>
-                                <i class="icon ion-md-search"></i>
+                                <i class="mr-1 icon ion-md-add"></i>
+                                @lang('crud.common.create')
                             </x-jet-button>
-                        </div>
-                    </div>
-                </form>
+                        </a>
+                    @endcan
+                </div>
             </div>
-            <div class="mt-1 text-right md:w-1/3">
-                @can('create', App\Models\RequestPurchase::class)
-                    <a href="{{ route('request-purchases.create') }}">
-                        <x-jet-button>
-                            <i class="mr-1 icon ion-md-add"></i>
-                            @lang('crud.common.create')
-                        </x-jet-button>
-                    </a>
-                @endcan
-            </div>
-        </div>
-    </div>
+        </x-slot>
+    </x-tables.topbar>
 
     <x-tables.card>
         <x-table>
@@ -113,31 +136,30 @@
                                     <a href="{{ route('request-purchases.show', $requestPurchase) }}" class="mr-1">
                                         <x-buttons.show></x-buttons.show>
                                     </a>
-                                @endif @can('delete', $requestPurchase)
-                                <form action="{{ route('request-purchases.destroy', $requestPurchase) }}"
-                                    method="POST" onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
-                                    @csrf @method('DELETE')
-                                    <x-buttons.delete></x-buttons.delete>
-                                </form>
-                            @endcan
+                                @endif
+                                @can('delete', $requestPurchase)
+                                    <form action="{{ route('request-purchases.destroy', $requestPurchase) }}"
+                                        method="POST" onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
+                                        @csrf @method('DELETE')
+                                        <x-buttons.delete></x-buttons.delete>
+                                    </form>
+                                @endcan
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <x-tables.no-items-found colspan="5"> </x-tables.no-items-found>
+                @endforelse
+            </x-slot>
+            <x-slot name="foot">
+                <tr>
+                    <td colspan="7">
+                        <div class="px-4 my-2">
+                            {{ $requestPurchases->render() }}
                         </div>
                     </td>
                 </tr>
-            @empty
-                <x-tables.no-items-found colspan="5"> </x-tables.no-items-found>
-            @endforelse
-        </x-slot>
-        <x-slot name="foot">
-            <tr>
-                <td colspan="7">
-                    <div class="px-4 my-2">
-                        {{ $requestPurchases->render() }}
-                    </div>
-                </td>
-            </tr>
-        </x-slot>
-    </x-table>
-</x-tables.card> --}}
-
-    <livewire:request-purchases.request-purchases-list />
-</x-admin-layout>
+            </x-slot>
+        </x-table>
+    </x-tables.card>
+</div>

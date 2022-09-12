@@ -42,7 +42,7 @@
                 <x-filters.group>
                     <x-filters.label>Payment Status</x-filters.label>
                     <x-filters.select wire:model="filters.payment_status">
-                        @foreach (App\Models\invoicePurchase::PAYMENT_STATUSES as $value => $label)
+                        @foreach (App\Models\InvoicePurchase::PAYMENT_STATUSES as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </x-filters.select>
@@ -50,7 +50,7 @@
                 <x-filters.group>
                     <x-filters.label>Order Status</x-filters.label>
                     <x-filters.select wire:model="filters.order_status">
-                        @foreach (App\Models\invoicePurchase::ORDER_STATUSES as $value => $label)
+                        @foreach (App\Models\InvoicePurchase::ORDER_STATUSES as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </x-filters.select>
