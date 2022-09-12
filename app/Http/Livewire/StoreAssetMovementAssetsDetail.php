@@ -46,7 +46,9 @@ class StoreAssetMovementAssetsDetail extends Component
     public function mount(StoreAsset $storeAsset)
     {
         $this->storeAsset = $storeAsset;
-        $this->productsForSelect = Product::pluck('name', 'id');
+        $this->productsForSelect = Product::where('material_group_id', '=', '8')
+            ->get()
+            ->pluck( 'id', 'product_name');
         $this->usersForSelect = User::pluck('name', 'id');
         $this->resetMovementAssetData();
     }
