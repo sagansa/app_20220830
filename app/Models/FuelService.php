@@ -82,6 +82,6 @@ class FuelService extends Model
 
     public function getFuelServiceNameAttribute()
     {
-        return $this->vehicle->no_register . '-' . $this->amount;
+        return $this->vehicle->no_register . ' | ' . $this->amount;
     }
 }

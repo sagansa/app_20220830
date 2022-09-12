@@ -157,6 +157,6 @@ class Product extends Model
 
     public function getProductNameAttribute()
     {
-        return $this->name . ' - ' . $this->unit->unit;
+        return $this->name . ' | ' . $this->unit->unit;
     }
 }
