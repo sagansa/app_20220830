@@ -59,8 +59,11 @@
                 <x-tables.th-left-hide>Detail</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.closing_couriers.inputs.total_cash_to_transfer')</x-tables.th-left-hide>
                 @role('super-admin|manager')
-                    <x-tables.th-left-hide>TransferBy</x-tables.th-left-hide>
+                    <x-tables.th-left-hide>Transfer By</x-tables.th-left-hide>
                 @endrole
+
+                <x-tables.th-left-hide>Created At</x-tables.th-left-hide>
+
                 <x-tables.th-left-hide>@lang('crud.closing_couriers.inputs.status')</x-tables.th-left-hide>
                 <th></th>
             </x-slot>
@@ -111,6 +114,9 @@
                                 {{ $closingCourier->created_by->name }}
                             </x-tables.td-left-hide>
                         @endrole
+                        <x-tables.td-left-hide>
+                            {{ $closingCourier->created_at }}
+                        </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             @role('staff|supervisor')
                                 <x-spans.status-valid class="{{ $closingCourier->status_badge }}">
