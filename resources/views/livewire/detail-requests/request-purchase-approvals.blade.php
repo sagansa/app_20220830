@@ -92,12 +92,10 @@
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            @if ($detailRequest->status == 2)
-                                {{ optional($detailRequest->detailInvoice)->quantity_product ?? '-' }}
-                                {{ optional($detailRequest->product)->unit->unit ?? '-' }}
-                            @else
-                                -
-                            @endif
+
+                            {{ optional($detailRequest->detailInvoice)->quantity_product ?? '-' }}
+                            {{ optional($detailRequest->product)->unit->unit ?? '-' }}
+
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
