@@ -6,7 +6,7 @@ use App\Http\Livewire\DataTables\WithBulkAction;
 use App\Http\Livewire\DataTables\WithCachedRows;
 use App\Http\Livewire\DataTables\WithFilter;
 use App\Http\Livewire\DataTables\WithModal;
-use App\Http\Livewire\DataTables\WithPerPagePagination;
+use App\Http\Livewire\DataTables\WithSimpleTablePagination;
 use App\Http\Livewire\DataTables\WithSortingDate;
 use App\Models\DetailRequest;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +15,7 @@ use Livewire\Component;
 
 class RequestPurchaseApprovals extends Component
 {
-     use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
+     use WithSimpleTablePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
 
     public DetailRequest $editing;
 
