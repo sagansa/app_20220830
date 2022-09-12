@@ -2,27 +2,20 @@
 
 <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
 
-    @role('staff|super-admin|manager')
-        <x-input.select name="store_id" label="Store" required>
-            @php $selected = old('store_id', ($editing ? $hygiene->store_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-            @foreach ($stores as $value => $label)
-                @role('staff|super-admin|manager')
-                    <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
-                    </option>
-                @else
-                    <option disabled value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>
-                        {{ $label }}
-                    </option>
-                @endrole
-            @endforeach
-        </x-input.select>
-    @endrole
-
-    @role('supervisor')
-        <x-input.hidden name="store_id" value="{{ old('result', $editing ? $hygiene->store_id : '') }}">
-        </x-input.hidden>
-    @endrole
+    <x-input.select name="store_id" label="Store" required>
+        @php $selected = old('store_id', ($editing ? $hygiene->store_id : '')) @endphp
+        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
+        @foreach ($stores as $value => $label)
+            @role('staff|super-admin|manager')
+                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
+                </option>
+            @else
+                <option disabled value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>
+                    {{ $label }}
+                </option>
+            @endrole
+        @endforeach
+    </x-input.select>
 
     @if ($editing)
         @role('manager|supervisor|super-admin')
