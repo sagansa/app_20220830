@@ -13,7 +13,9 @@
         Not Valid</option>
 </select> --}}
 
-<select
+@props(['wire'])
+
+<select wire:change="{{ $wire }}"
     {{ $attributes->merge([
         'class' =>
             'block w-full py-1 pl-3 pr-10 my-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500',

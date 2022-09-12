@@ -101,8 +101,7 @@
 
                         <x-tables.td-left-hide>
 
-                            <x-input.select-table
-                                wire:change="changeStatus({{ $detailRequest }}, $event.target.value)">
+                            <x-input.select-table wire="changeStatus({{ $detailRequest }}, $event.target.value)">
                                 @foreach (App\Models\DetailRequest::STATUSES as $value => $label)
                                     <option value="{{ $value }}">{{ $label }}</option>
                                 @endforeach
