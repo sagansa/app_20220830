@@ -58,6 +58,9 @@
                 <x-tables.th-left-hide>Nominal Transfer</x-tables.th-left-hide>
                 <x-tables.th-left-hide>Detail</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.closing_couriers.inputs.total_cash_to_transfer')</x-tables.th-left-hide>
+                @role('super-admin|manager')
+                    <x-tables.th-left-hide>TransferBy</x-tables.th-left-hide>
+                @endrole
                 <x-tables.th-left-hide>@lang('crud.closing_couriers.inputs.status')</x-tables.th-left-hide>
                 <th></th>
             </x-slot>
@@ -103,13 +106,18 @@
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
                             @currency($closingCourier->closingStores->sum('total_cash_transfer'))</x-tables.td-right-hide>
+                        @role('manager|superadmin')
+                            <x-tables.td-left-hide>
+                                {{ $closingCourier->created_by->name }}
+                            </x-tables.td-left-hide>
+                        @endrole
                         <x-tables.td-left-hide>
-                            @role('staff|manager|supervisor')
+                            @role('staff|supervisor')
                                 <x-spans.status-valid class="{{ $closingCourier->status_badge }}">
                                     {{ $closingCourier->status_name }}
                                 </x-spans.status-valid>
                             @endrole
-                            @role('super-admin')
+                            @role('super-admin|manager')
                                 <select
                                     class="block w-full py-2 pl-3 pr-10 mt-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                                     wire:change="changeStatus({{ $closingCourier }}, $event.target.value)">
@@ -122,6 +130,7 @@
                                 </select>
                             @endrole
                         </x-tables.td-left-hide>
+
                         <td class="px-4 py-3 text-center" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @if ($closingCourier->status != '2')
