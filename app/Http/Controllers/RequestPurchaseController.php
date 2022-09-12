@@ -119,14 +119,6 @@ class RequestPurchaseController extends Controller
 
         $validated = $request->validated();
 
-        if (
-            auth()
-                ->user()
-                ->hasRole('supervisor|manager|super-admin')
-        ) {
-            $validated['approved_by_id'] = auth()->user()->id;
-        }
-
         $requestPurchase->update($validated);
 
         return redirect()

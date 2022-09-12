@@ -19,6 +19,7 @@ class EProductShow extends Component
 
     public function render()
     {
+        $this->eProduct->subtotals = $this->eProduct->price * $this->eProduct->quantity;
 
         return view('livewire.e-products.e-product-show');
     }
