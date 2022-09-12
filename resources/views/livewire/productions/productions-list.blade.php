@@ -106,64 +106,69 @@
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             <div class="font-bold">Main</div>
-                            @foreach ($production->productionFroms as $productionFrom)
-                                <p> {{ optional($productionFrom->purchaseOrderProduct)->product->name ?? '-' }} =
-                                    {{ optional($productionFrom->purchaseOrderProduct)->quantity_product ?? '-' }}
-                                    {{ optional($productionFrom->purchaseOrderProduct)->product->unit->unit ?? '-' }}
-                                </p>
-                            @endforeach
-                            <div class="font-bold">Support</div>
-                            @foreach ($production->productionSupportFroms as $productionSupportFrom)
-                                <p>{{ $productionSupportFrom->product->name }} =
-                                    {{ $productionSupportFrom->quantity }}
-                                    {{ $productionSupportFrom->product->unit->unit }}</p>
-                            @endforeach
+                            @foreach ($production->productionMainFroms as $productionMainFrom)
+                                <p>{{ optional($productionMainFrom->detailInvoice)->detailRequest->product->name }} =
+                                    {{ optional($productionMainFrom->detailInvoice)->quantity_product }}
+                                    {{ optional($productionMainFrom->detailInvoice)->detailRequest->product->unit->unit }}
+                                @endauth
+                            </p>
+                            {{-- <p> {{ optional($productionFrom->purchaseOrderProduct)->product->name ?? '-' }} =
+                                {{ optional($productionFrom->purchaseOrderProduct)->quantity_product ?? '-' }}
+                                {{ optional($productionFrom->purchaseOrderProduct)->product->unit->unit ?? '-' }}
+                            </p> --}}
+                        @endforeach
+                        <div class="font-bold">Support</div>
+                        @foreach ($production->productionSupportFroms as $productionSupportFrom)
+                            <p>{{ $productionSupportFrom->product->name }} =
+                                {{ $productionSupportFrom->quantity }}
+                                {{ $productionSupportFrom->product->unit->unit }}</p>
+                        @endforeach
 
-                        </x-tables.td-left-hide>
+                    </x-tables.td-left-hide>
+                    <x-tables.td-left-hide>
+
+                        @foreach ($production->productionTos as $productionTo)
+                            <p>{{ $productionTo->product->name }} = {{ $productionTo->quantity }}
+                                {{ $productionTo->product->unit->unit }}</p>
+                        @endforeach
+
+                    </x-tables.td-left-hide>
+                    <x-tables.td-left-hide>
+                        <x-spans.status-valid class="{{ $production->status_badge }}">
+                            {{ $production->status_name }}
+                        </x-spans.status-valid>
+                    </x-tables.td-left-hide>
+                    @role('super-admin|manager|supervisor')
                         <x-tables.td-left-hide>
-
-                            @foreach ($production->productionTos as $productionTo)
-                                <p>{{ $productionTo->product->name }} = {{ $productionTo->quantity }}
-                                    {{ $productionTo->product->unit->unit }}</p>
-                            @endforeach
-
+                            {{ optional($production->created_by)->name ?? '-' }}
                         </x-tables.td-left-hide>
+                    @endrole
+                    @role('staff|super-admin|manager')
                         <x-tables.td-left-hide>
-                            <x-spans.status-valid class="{{ $production->status_badge }}">
-                                {{ $production->status_name }}
-                            </x-spans.status-valid>
+                            {{ optional($production->approved_by)->name ?? '-' }}
                         </x-tables.td-left-hide>
-                        @role('super-admin|manager|supervisor')
-                            <x-tables.td-left-hide>
-                                {{ optional($production->created_by)->name ?? '-' }}
-                            </x-tables.td-left-hide>
-                        @endrole
-                        @role('staff|super-admin|manager')
-                            <x-tables.td-left-hide>
-                                {{ optional($production->approved_by)->name ?? '-' }}
-                            </x-tables.td-left-hide>
-                        @endrole
-                        <td class="px-4 py-3 text-center" style="width: 134px;">
-                            <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
-                                @if ($production->status != '2')
-                                    <a href="{{ route('productions.edit', $production) }}" class="mr-1">
-                                        <x-buttons.edit></x-buttons.edit>
-                                    </a>
-                                @elseif($production->status == '2')
-                                    <a href="{{ route('productions.show', $production) }}" class="mr-1">
-                                        <x-buttons.show></x-buttons.show>
-                                    </a>
-                                @endif
-                                @can('delete', $production)
-                                    <form action="{{ route('productions.destroy', $production) }}" method="POST"
-                                        onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
-                                        @csrf @method('DELETE')
-                                        <x-buttons.delete></x-buttons.delete>
-                                    </form>
-                                @endcan
-                            </div>
-                        </td>
-                    </tr>
+                    @endrole
+                    <td class="px-4 py-3 text-center" style="width: 134px;">
+                        <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
+                            @if ($production->status != '2')
+                                <a href="{{ route('productions.edit', $production) }}" class="mr-1">
+                                    <x-buttons.edit></x-buttons.edit>
+                                </a>
+                            @elseif($production->status == '2')
+                                <a href="{{ route('productions.show', $production) }}" class="mr-1">
+                                    <x-buttons.show></x-buttons.show>
+                                </a>
+                            @endif
+                            @can('delete', $production)
+                                <form action="{{ route('productions.destroy', $production) }}" method="POST"
+                                    onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
+                                    @csrf @method('DELETE')
+                                    <x-buttons.delete></x-buttons.delete>
+                                </form>
+                            @endcan
+                        </div>
+                    </td>
+                </tr>
                 @empty
                     <x-tables.no-items-found colspan="8"> </x-tables.no-items-found>
                 @endforelse
