@@ -27,7 +27,7 @@ class RequestPurchaseController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        if(Auth::user()->hosRole('supervisor|staff')) {
+        if(Auth::user()->hasRole('supervisor|staff')) {
             $requestPurchases->where('user_id', '=', Auth::user()->id);
         }
 
