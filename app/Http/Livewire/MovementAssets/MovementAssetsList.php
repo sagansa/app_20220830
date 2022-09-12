@@ -9,7 +9,7 @@ class MovementAssetsList extends Component
 {
     public function render()
     {
-        $movementAssets = MovementAsset::query();
+        $movementAssets = MovementAsset::all();
 
         return view('livewire.movement-assets.movement-assets-list', [
             'movementAssets' => $movementAssets,
