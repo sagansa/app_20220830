@@ -100,11 +100,13 @@
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            <x-select-table wire:change="changeStatus({{ $detailRequest }}, $event.target.value)">
+
+                            <x-input.select-table
+                                wire:change="changeStatus({{ $detailRequest }}, $event.target.value)">
                                 @foreach (App\Models\DetailRequest::STATUSES as $value => $label)
                                     <option value="{{ $value }}">{{ $label }}</option>
                                 @endforeach
-                            </x-select-table>
+                            </x-input.select-table>
 
                             {{-- <select
                                 class="block w-full py-1 pl-3 pr-10 my-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
