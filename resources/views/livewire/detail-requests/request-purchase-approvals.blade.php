@@ -92,12 +92,10 @@
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            @if ($detailRequest->detailInvoice->quantity_product != null)
-                                {{ optional($detailRequest->detailInvoice)->quantity_product ?? '-' }}
 
-                                {{ optional($detailRequest->product)->unit->unit ?? '-' }}
-                            @endif
+                            {{ optional($detailRequest->detailInvoice)->quantity_product ?? '-' }}
 
+                            {{ optional($detailRequest->product)->unit->unit ?? '-' }}
 
                         </x-tables.td-left-hide>
 
