@@ -37,7 +37,7 @@ class StoreAssetController extends Controller
     public function create(Request $request)
     {
         $stores = Store::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            ->whereNotIn('status', ['8'])
             ->pluck('name', 'id');
 
         return view('app.store_assets.create', compact('stores'));
@@ -85,7 +85,7 @@ class StoreAssetController extends Controller
         $this->authorize('update', $storeAsset);
 
         $stores = Store::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            ->whereNotIn('status', ['8'])
             ->pluck('name', 'id');
 
         return view('app.store_assets.edit', compact('storeAsset', 'stores'));
