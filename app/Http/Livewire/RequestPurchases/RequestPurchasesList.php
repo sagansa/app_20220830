@@ -108,7 +108,6 @@ class RequestPurchasesList extends Component
     {
         RequestPurchase::whereIn('id', $this->selectedRows)->update([
             'status' => '1',
-            'approved_by_id' => Auth::user()->id,
         ]);
 
         $this->reset(['selectedRows']);
@@ -118,7 +117,6 @@ class RequestPurchasesList extends Component
     {
         RequestPurchase::whereIn('id', $this->selectedRows)->update([
             'status' => '2',
-            'approved_by_id' => Auth::user()->id,
         ]);
 
         $this->reset(['selectedRows']);
