@@ -75,6 +75,8 @@ class PaymentReceiptController extends Controller
             $validated['image'] = $fileimage;
         }
 
+        $validated['amount'] = 0;
+
         $paymentReceipt = PaymentReceipt::create($validated);
 
         return redirect()

@@ -24,13 +24,10 @@
         </div>
     </x-input.image>
 
-    @if (!$editing)
-        <x-input.hidden name="amount" value="{{ old('amount', $editing ? $paymentReceipt->amount : '0') }}">
-        </x-input.hidden>
-    @else
-        <x-input.hidden name="amount" value="{{ old('amount', $editing ? $paymentReceipt->amount : '') }}">
-        </x-input.hidden>
-    @endif
+
+    <x-input.hidden name="amount" value="{{ old('amount', $editing ? $paymentReceipt->amount : '') }}">
+    </x-input.hidden>
+
 
     <x-input.select name="payment_for" label="Payment For">
         @php $selected = old('payment_for', ($editing ? $paymentReceipt->payment_for : '3')) @endphp

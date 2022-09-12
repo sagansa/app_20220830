@@ -82,31 +82,20 @@ class InvoicePurchasesList extends Component
             // ->join('payment_types', 'payment_types.id', '=', 'invoice_purchases.payment_type_id')
             ->join('suppliers', 'suppliers.id', '=', 'invoice_purchases.supplier_id');
 
+        foreach ($this->filters as $filter => $value) {
+            if (!empty($value)) {
+                $invoicePurchases
+                    ->when($filter == 'store_id', fn($invoicePurchases) => $invoicePurchases->whereRelation('store', 'id', $value))
+                    ->when($filter == 'supplier_id', fn($invoicePurchases) => $invoicePurchases->whereRelation('supplier', 'id', $value))
+                    ->when($filter == 'payment_type_id', fn($invoicePurchases) => $invoicePurchases->whereRelation('paymentType', 'id', $value))
+                    ->when($filter == 'payment_status', fn($invoicePurchases) => $invoicePurchases->where('invoice_purchases.' . $filter, 'LIKE', '%' . $value . '%'))
+                    ->when($filter == 'order_status', fn($invoicePurchases) => $invoicePurchases->where('invoice_purchases.' . $filter, 'LIKE', '%' . $value . '%'));
+            }
+        }
+
         if (Auth::user()->hasRole('staff|supervisor')) {
 
                 $invoicePurchases->where('created_by_id', '=', Auth::user()->id);
-
-                foreach ($this->filters as $filter => $value) {
-                    if (!empty($value)) {
-                        $invoicePurchases
-                            ->when($filter == 'store_id', fn($invoicePurchases) => $invoicePurchases->whereRelation('store', 'id', $value))
-                            ->when($filter == 'supplier_id', fn($invoicePurchases) => $invoicePurchases->whereRelation('supplier', 'id', $value))
-                            ->when($filter == 'payment_type_id', fn($invoicePurchases) => $invoicePurchases->whereRelation('paymentType', 'id', $value))
-                            ->when($filter == 'payment_status', fn($invoicePurchases) => $invoicePurchases->where('invoice_purchases.' . $filter, 'LIKE', '%' . $value . '%'))
-                            ->when($filter == 'order_status', fn($invoicePurchases) => $invoicePurchases->where('invoice_purchases.' . $filter, 'LIKE', '%' . $value . '%'));
-                    }
-                }
-            } elseif(Auth::user()->hasRole('super-admin|manager')) {
-            foreach ($this->filters as $filter => $value) {
-                if (!empty($value)) {
-                    $invoicePurchases
-                        ->when($filter == 'store_id', fn($invoicePurchases) => $invoicePurchases->whereRelation('store', 'id', $value))
-                        ->when($filter == 'supplier_id', fn($invoicePurchases) => $invoicePurchases->whereRelation('supplier', 'id', $value))
-                        ->when($filter == 'payment_status', fn($invoicePurchases) => $invoicePurchases->where('invoice_purchases.' . $filter, 'LIKE', '%' . $value . '%'))
-                        ->when($filter == 'payment_type_id', fn($invoicePurchases) => $invoicePurchases->whereRelation('paymentType', 'id', $value))
-                        ->when($filter == 'order_status', fn($invoicePurchases) => $invoicePurchases->where('invoice_purchases.' . $filter, 'LIKE', '%' . $value . '%'));
-                }
-            }
         }
 
         $invoicePurchases->withSum('detailInvoices', 'subtotal_invoice')->get();

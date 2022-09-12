@@ -22,10 +22,18 @@ class RequestPurchaseController extends Controller
 
         $search = $request->get('search', '');
 
-        $requestPurchases = RequestPurchase::search($search)
-            ->latest()
-            ->paginate(10)
-            ->withQueryString();
+        if (Auth::user()->hasRole('super-admin|manager')) {
+            $requestPurchases = RequestPurchase::search($search)
+                ->latest()
+                ->paginate(10)
+                ->withQueryString();
+        } elseif (Auth::user()->hasRole('supervisor|staff')) {
+            $requestPurchases = RequestPurchase::search($search)
+                ->where('created_by_id', '=', Auth::user()->id)
+                ->latest()
+                ->paginate(10)
+                ->withQueryString();
+        }
 
         return view(
             'app.request_purchases.index',
