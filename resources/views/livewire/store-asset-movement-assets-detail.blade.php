@@ -144,9 +144,9 @@
                             @if ($movementAsset->image == null)
                                 <x-partials.thumbnail src="" />
                             @else
-                                <a href="{{ Storage::url('images/movement-assets/' . $movementAsset->image) }}">
+                                <a href="{{ \Storage::url('images/movement-assets' . '/' . $movementAsset->image) }}">
                                     <x-partials.thumbnail
-                                        src="{{ $movementAsset->image ? \Storage::url('images/movement-assets/' . $movementAsset->image) : '' }}" />
+                                        src="{{ $movementAsset->image ? \Storage::url('images/movement-assets' . '/' . $movementAsset->image) : '' }}" />
                                 </a>
                             @endif
                         </x-tables.td-left>
@@ -154,9 +154,10 @@
                             @if ($movementAsset->qr_code == null)
                                 <x-partials.thumbnail src="" />
                             @else
-                                <a href="{{ Storage::url('images/movement-assets') }}/{{ $movementAsset->qr_code }}">
+                                <a
+                                    href="{{ \Storage::url('images/movement-assets' . '/' . $movementAsset->qr_code) }}">
                                     <x-partials.thumbnail
-                                        src="{{ $movementAsset->qr_code ? Storage::url('images/movement-assets/' . $movementAsset->qr_code) : '' }}" />
+                                        src="{{ $movementAsset->qr_code ? Storage::url('images/movement-assets' . '/' . $movementAsset->qr_code) : '' }}" />
                                 </a>
                             @endif
                         </x-tables.td-left>
