@@ -21,7 +21,7 @@
             <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
 
                 <x-input.image name="movementAssetImage" label="Image">
-                    <div image-url="{{ $editing && $movementAsset->image ? Storage::url('images/movement-assets' . '/' . $movementAsset->image) : '' }}"
+                    <div image-url="{{ $editing && $movementAsset->image ? \Storage::url($movementAsset->image) : '' }}"
                         x-data="imageViewer()" @refresh.window="refreshUrl()" class="mt-1 sm:mt-0 sm:col-span-2">
                         <!-- Show the image -->
                         <template x-if="imageUrl">
