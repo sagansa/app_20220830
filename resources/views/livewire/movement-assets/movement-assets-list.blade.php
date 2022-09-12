@@ -28,9 +28,9 @@
                             @if ($movementAsset->image == null)
                                 <x-partials.thumbnail src="" />
                             @else
-                                <a href="{{ \Storage::url($movementAsset->image) }}">
+                                <a href="{{ Storage::url($movementAsset->image) }}">
                                     <x-partials.thumbnail
-                                        src="{{ $movementAsset->image ? \Storage::url($movementAsset->image) : '' }}" />
+                                        src="{{ $movementAsset->image ? Storage::url($movementAsset->image) : '' }}" />
                                 </a>
                             @endif
                         </x-tables.td-left>
