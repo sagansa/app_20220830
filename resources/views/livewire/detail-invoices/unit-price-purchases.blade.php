@@ -82,7 +82,7 @@
                 @foreach ($detailInvoices as $detailInvoice)
                     <tr class="hover:bg-gray-100">
                         <x-tables.td-left-main>
-                            <x-slot name="main"> {{ $detailInvoice->invoicePurchase->store->nickname }} -
+                            <x-slot name="main"> {{ $detailInvoice->invoicePurchase->store->nickname }}
                             </x-slot>
                             <x-slot name="sub">
                                 <p> {{ $detailInvoice->invoicePurchase->supplier->name }} -
