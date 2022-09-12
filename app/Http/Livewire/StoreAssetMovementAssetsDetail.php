@@ -33,6 +33,8 @@ class StoreAssetMovementAssetsDetail extends Component
     public $allSelected = false;
     public $showingModal = false;
 
+    public $image;
+
     public $modalTitle = 'New MovementAsset';
 
     protected $rules = [
@@ -121,7 +123,7 @@ class StoreAssetMovementAssetsDetail extends Component
             $imageImg = Image::make($image->getRealPath())->resize(400, 400, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
-                })->encode('jpg', 65);
+                })->encode('jpg');
             $imageImg->stream();
             Storage::disk('public')->put('images/movement-assets' . '/' . $imageName, $imageImg);
 
