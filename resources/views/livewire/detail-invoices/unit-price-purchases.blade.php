@@ -64,6 +64,9 @@
                     <x-tables.th-left>
                         Product
                     </x-tables.th-left>
+                    <x-tables.th-left>
+                        Unit Price
+                    </x-tables.th-left>
 
                     <x-tables.th-left-hide>
                         Quantity Product
@@ -71,9 +74,7 @@
                     <x-tables.th-left-hide>
                         Subtotal Invoice
                     </x-tables.th-left-hide>
-                    <x-tables.th-left>
-                        Unit Price
-                    </x-tables.th-left>
+
 
                 </tr>
             </x-slot>
@@ -100,6 +101,11 @@
                         <x-tables.td-left-hide>
                             {{ optional($detailInvoice->detailRequest)->product->name ?? '-' }}
                         </x-tables.td-left-hide>
+                        <td class="px-4 py-3 text-xs text-right" style="width: 134px;">
+                            <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
+                                @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
+                            </div>
+                        </td>
 
                         <x-tables.td-right-hide>
                             {{ $detailInvoice->quantity_product ?? '-' }}
@@ -108,11 +114,7 @@
                         <x-tables.td-right-hide>
                             @currency($detailInvoice->subtotal_invoice)
                         </x-tables.td-right-hide>
-                        <td class="px-4 py-3 text-xs text-right" style="width: 134px;">
-                            <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
-                                @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
-                            </div>
-                        </td>
+
 
                     </tr>
                 @endforeach
