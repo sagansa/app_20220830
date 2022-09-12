@@ -144,9 +144,13 @@
                             @if ($movementAsset->image == null)
                                 <x-partials.thumbnail src="" />
                             @else
-                                <a href="{{ \Storage::url('images/movement-assets' . '/' . $movementAsset->image) }}">
+                                {{-- <a href="{{ \Storage::url('images/movement-assets' . '/' . $movementAsset->image) }}">
                                     <x-partials.thumbnail
                                         src="{{ $movementAsset->image ? \Storage::url('images/movement-assets' . '/' . $movementAsset->image) : '' }}" />
+                                </a> --}}
+                                <a href="{{ \Storage::url($movementAsset->image) }}">
+                                    <x-partials.thumbnail
+                                        src="{{ $movementAsset->image ? \Storage::url($movementAsset->image) : '' }}" />
                                 </a>
                             @endif
                         </x-tables.td-left>
