@@ -56,7 +56,7 @@ class RequestPurchaseApprovals extends Component
 
     public function getRowsQueryProperty()
     {
-        $detailRequests = DetailRequest::get();
+        $detailRequests = DetailRequest::withQueryString();
 
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
