@@ -106,7 +106,7 @@
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
                             @currency($closingCourier->closingStores->sum('total_cash_transfer'))</x-tables.td-right-hide>
-                        @role('manager|superadmin')
+                        @role('manager|super-admin')
                             <x-tables.td-left-hide>
                                 {{ $closingCourier->created_by->name }}
                             </x-tables.td-left-hide>
