@@ -1,6 +1,6 @@
 <?php
 
-// use App\Http\Livewire\EProducts\EProductShow;
+use App\Http\Livewire\EProducts\EProductShow;
 
 use App\Http\Livewire\DetailInvoices\CheckProductions;
 use App\Http\Livewire\DetailInvoices\UnitPricePurchases;
@@ -15,7 +15,7 @@ Route::prefix('/')
         Route::get('unit-price-purchases', UnitPricePurchases::class)->name('unit-price-purchases');
         Route::get('request-purchase-approvals', RequestPurchaseApprovals::class)->name('request-purchase-approvals');
 
-        Route::get('e-products/{e-product}', EProductShow::class)->name('e-products.show');
+        Route::get('e-products/{e-product}', EProductShow::class)->name('e-products.detail');
     });
 
 
