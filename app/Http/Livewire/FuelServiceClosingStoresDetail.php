@@ -28,7 +28,7 @@ class FuelServiceClosingStoresDetail extends Component
     {
         $this->fuelService = $fuelService;
         $this->closingStoresForSelect = ClosingStore::where('date', '>=', Carbon::now()->subDays(5)->toDateString())
-            ->whereNotIn('status', '2')
+            ->whereNotIn('status', ['2'])
             ->orderBy('closing_stores.date', 'desc')
             ->get()
             ->pluck('id', 'closing_store_name');

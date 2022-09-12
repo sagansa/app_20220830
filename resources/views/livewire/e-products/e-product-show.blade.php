@@ -139,7 +139,7 @@
                     </div>
 
                     <div class="mt-8 lg:col-span-5">
-                        <form>
+                        <form wire:submit="addToCart" autocomplete="off">
                             <!-- Color picker -->
                             <div>
                                 <h2 class="text-sm font-medium text-gray-900">Color</h2>
@@ -148,9 +148,9 @@
                                     <legend class="sr-only">Choose a color</legend>
                                     <div class="flex items-center space-x-3">
                                         <!--
-                    Active and Checked: "ring ring-offset-1"
-                    Not Active and Checked: "ring-2"
-                  -->
+                                            Active and Checked: "ring ring-offset-1"
+                                            Not Active and Checked: "ring-2"
+                                        -->
                                         <label
                                             class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-900">
                                             <input type="radio" name="color-choice" value="Black" class="sr-only"
@@ -189,10 +189,10 @@
                                     <legend class="sr-only">Choose a size</legend>
                                     <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
                                         <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
+                                            In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
+                                            Active: "ring-2 ring-offset-2 ring-indigo-500"
+                                            Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
+                                        -->
                                         <label
                                             class="flex items-center justify-center px-3 py-3 text-sm font-medium uppercase border rounded-md cursor-pointer sm:flex-1 focus:outline-none">
                                             <input type="radio" name="size-choice" value="XXS" class="sr-only"
@@ -201,10 +201,10 @@
                                         </label>
 
                                         <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
+                                            In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
+                                            Active: "ring-2 ring-offset-2 ring-indigo-500"
+                                            Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
+                                        -->
                                         <label
                                             class="flex items-center justify-center px-3 py-3 text-sm font-medium uppercase border rounded-md cursor-pointer sm:flex-1 focus:outline-none">
                                             <input type="radio" name="size-choice" value="XS" class="sr-only"
@@ -213,10 +213,10 @@
                                         </label>
 
                                         <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
+                                            In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
+                                            Active: "ring-2 ring-offset-2 ring-indigo-500"
+                                            Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
+                                        -->
                                         <label
                                             class="flex items-center justify-center px-3 py-3 text-sm font-medium uppercase border rounded-md cursor-pointer sm:flex-1 focus:outline-none">
                                             <input type="radio" name="size-choice" value="S" class="sr-only"
@@ -225,10 +225,10 @@
                                         </label>
 
                                         <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
+                                            In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
+                                            Active: "ring-2 ring-offset-2 ring-indigo-500"
+                                            Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
+                                        -->
                                         <label
                                             class="flex items-center justify-center px-3 py-3 text-sm font-medium uppercase border rounded-md cursor-pointer sm:flex-1 focus:outline-none">
                                             <input type="radio" name="size-choice" value="M" class="sr-only"
@@ -237,10 +237,10 @@
                                         </label>
 
                                         <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
+                                            In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
+                                            Active: "ring-2 ring-offset-2 ring-indigo-500"
+                                            Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
+                                        -->
                                         <label
                                             class="flex items-center justify-center px-3 py-3 text-sm font-medium uppercase border rounded-md cursor-pointer sm:flex-1 focus:outline-none">
                                             <input type="radio" name="size-choice" value="L" class="sr-only"
@@ -249,10 +249,10 @@
                                         </label>
 
                                         <!--
-                    In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                    Active: "ring-2 ring-offset-2 ring-indigo-500"
-                    Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                  -->
+                                            In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
+                                            Active: "ring-2 ring-offset-2 ring-indigo-500"
+                                            Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
+                                        -->
                                         <label
                                             class="flex items-center justify-center px-3 py-3 text-sm font-medium uppercase border rounded-md opacity-25 cursor-not-allowed sm:flex-1">
                                             <input type="radio" name="size-choice" value="XL" disabled

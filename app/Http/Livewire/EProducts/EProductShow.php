@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\EProducts;
 
+use App\Models\Cart;
 use App\Models\EProduct;
 use Livewire\Component;
 
@@ -20,5 +21,10 @@ class EProductShow extends Component
     {
 
         return view('livewire.e-products.e-product-show');
+    }
+
+    public function addToCart()
+    {
+        Cart::create();
     }
 }
