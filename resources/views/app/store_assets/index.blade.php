@@ -39,15 +39,22 @@
         <x-table>
             <x-slot name="head">
                 <x-tables.th-left>@lang('crud.store_assets.inputs.store_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.store_assets.inputs.status')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.store_assets.inputs.notes')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.store_assets.inputs.status')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.store_assets.inputs.notes')</x-tables.th-left-hide>
                 <th></th>
             </x-slot>
             <x-slot name="body">
                 @forelse($storeAssets as $storeAsset)
                     <tr class="hover:bg-gray-50">
-                        <x-tables.td-left-hide>{{ optional($storeAsset->store)->nickname ?? '-' }}
-                        </x-tables.td-left-hide>
+                        <x-tables.td-left-main>
+                            <x-slot name="main"> {{ optional($storeAsset->store)->nickname ?? '-' }}</x-slot>
+                            <x-slot name="sub">
+                                <x-spans.status-valid class="{{ $storeAsset->status_badge }}">
+                                    {{ $storeAsset->status_name }}
+                                </x-spans.status-valid>
+                            </x-slot>
+                            {{ optional($storeAsset->store)->nickname ?? '-' }}
+                        </x-tables.td-left-main>
                         <x-tables.td-left-hide>
                             <x-spans.status-valid class="{{ $storeAsset->status_badge }}">
                                 {{ $storeAsset->status_name }}
