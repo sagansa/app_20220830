@@ -91,6 +91,7 @@
         </x-table>
     </x-tables.card>
     <div class="px-4 mt-10">{!! $storeAssets->render() !!}</div>
-
-    <livewire:movement-assets.movement-assets-list />
+    @role('super-admin')
+        <livewire:movement-assets.movement-assets-list />
+    @endrole
 </x-admin-layout>
