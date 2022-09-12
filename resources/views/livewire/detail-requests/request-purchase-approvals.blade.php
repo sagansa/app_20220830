@@ -100,7 +100,13 @@
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            <select
+                            <x-select-table wire:change="changeStatus({{ $detailRequest }}, $event.target.value)">
+                                @foreach (App\Models\DetailRequest::STATUSES as $value => $label)
+                                    <option value="{{ $value }}">{{ $label }}</option>
+                                @endforeach
+                            </x-select-table>
+
+                            {{-- <select
                                 class="block w-full py-1 pl-3 pr-10 my-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                                 wire:change="changeStatus({{ $detailRequest }}, $event.target.value)">
                                 <option value="1" {{ $detailRequest->status == '1' ? 'selected' : '' }}>
@@ -113,7 +119,7 @@
                                     Approved</option>
                                 <option value="5" {{ $detailRequest->status == '5' ? 'selected' : '' }}>
                                     Not Valid</option>
-                            </select>
+                            </select> --}}
                         </x-tables.td-left-hide>
                     </tr>
                 @endforeach
