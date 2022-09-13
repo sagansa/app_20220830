@@ -92,7 +92,9 @@ class SalesOrderOnlinesList extends Component
         $total = 0;
 
         foreach ($this->productSalesOrderOnlines as $productSalesOrderOnline) {
-            $total += $productSalesOrderOnline['quantity'] * $productSalesOrderOnline['price'];
+            if ($productSalesOrderOnline['quantity'] && $productSalesOrderOnline['price']) {
+                $total += $productSalesOrderOnline['quantity'] * $productSalesOrderOnline['price'];
+            }
         }
 
         return view('livewire.sales-order-onlines.sales-order-onlines-list', [
