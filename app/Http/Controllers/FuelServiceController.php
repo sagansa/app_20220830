@@ -33,7 +33,7 @@ class FuelServiceController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        if (Auth::hasRole('supervisor|staff')) {
+        if (Auth::user()->hasRole('supervisor|staff')) {
             $fuelServices->where('created_by_id', '=', Auth::user()->id);
         }
 
