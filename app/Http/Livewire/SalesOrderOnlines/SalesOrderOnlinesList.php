@@ -26,6 +26,8 @@ class SalesOrderOnlinesList extends Component
     use WithPagination;
     public SalesOrderOnline $editing;
 
+    public $salesOrderOnline;
+
     public $productSalesOrderOnlines = [];
 
     public $sortColumn = 'sales_order_onlines.date';
@@ -53,6 +55,16 @@ class SalesOrderOnlinesList extends Component
         $this->stores = Store::orderBy('nickname', 'asc')->pluck('id', 'nickname');
         $this->onlineShopProviders = OnlineShopProvider::orderBy('name', 'asc')->whereIn('id', ['1', '2'])->pluck('id', 'name');
         $this->deliveryServices = DeliveryService::orderBy('name', 'asc')->pluck('id', 'name');
+
+        if($this->salesOrderOnline) {
+            foreach ($this->salesOrderOnline->products as $product) {
+                $this->productSalesOrderOnlines[] = [
+                    'product_id' => $product->id,
+                    'quantity' => $product->pivot->quantity,
+                    'price' => $product->pivot->price,
+                ];
+            }
+        }
     }
 
     public function getRowsQueryProperty()
