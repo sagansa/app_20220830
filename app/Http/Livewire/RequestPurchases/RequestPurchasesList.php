@@ -84,7 +84,7 @@ class RequestPurchasesList extends Component
 
         if (Auth::user()->hasRole('staff|supervisor')) {
 
-                $requestPurchases->where('created_by_id', '=', Auth::user()->id);
+                $requestPurchases->where('user_id', '=', Auth::user()->id);
         }
 
         return $this->applySorting($requestPurchases);

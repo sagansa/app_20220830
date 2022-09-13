@@ -117,34 +117,12 @@ class StoreAssetMovementAssetsDetail extends Component
             $this->movementAsset->image = $this->movementAssetImage->store(
                 'public'
             );
-
-            // $image = $this->movementAssetImage;
-            // $imageName = Str::random() . '.' . $image->getClientOriginalExtension();
-            // $imageImg = Image::make($image->getRealPath())->resize(400, 400, function ($constraint) {
-            //         $constraint->aspectRatio();
-            //         $constraint->upsize();
-            //     })->encode('jpg');
-            // $imageImg->stream();
-            // Storage::disk('public')->put('images/movement-assets' . '/' . $imageName, $imageImg);
-
-            // $this->movementAsset->image = $imageName;
         }
 
         if ($this->movementAssetQrCode) {
             $this->movementAsset->qr_code = $this->movementAssetQrCode->store(
                 'public'
             );
-
-            // $qrCode = $this->movementAssetQrCode;
-            // $qrCodeName = Str::random() . '.' . $qrCode->getClientOriginalExtension();
-            // $qrCodeImg = Image::make($qrCode->getRealPath())->resize(400, 400, function ($constraint) {
-            //         $constraint->aspectRatio();
-            //         $constraint->upsize();
-            //     })->encode('jpg');
-            // $qrCodeImg->stream();
-            // Storage::disk('public')->put('images/movement-assets' . '/' . $qrCodeName, $qrCodeImg);
-
-            // $this->movementAsset->qr_code = $qrCodeName;
         }
 
         $this->movementAsset->save();
@@ -162,11 +140,11 @@ class StoreAssetMovementAssetsDetail extends Component
             $movementAsset = MovementAsset::findOrFail($id);
 
             if ($movementAsset->image) {
-                Storage::disk('public')->delete('images/movement-assets' . '/' . $movementAsset->image);
+                Storage::delete($movementAsset->image);
             }
 
             if ($movementAsset->qr_code) {
-                Storage::disk('public')->delete('images/movement-assets' . '/' . $movementAsset->qr_code);
+                Storage::delete($movementAsset->qr_code);
             }
 
             $movementAsset->delete();
