@@ -27,10 +27,6 @@
                         @endif
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
-                        <x-shows.dt>@lang('crud.payment_receipts.inputs.amount')</x-shows.dt>
-                        <x-shows.dd>{{ $paymentReceipt->amount ?? '-' }}</x-shows.dd>
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
                         <x-shows.dt>@lang('crud.payment_receipts.inputs.payment_for')</x-shows.dt>
                         <x-shows.dd>{{ $paymentReceipt->payment_for ?? '-' }}</x-shows.dd>
                     </x-shows.sub-dl>

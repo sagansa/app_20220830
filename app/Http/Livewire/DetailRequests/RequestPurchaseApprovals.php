@@ -41,9 +41,9 @@ class RequestPurchaseApprovals extends Component
 				'required',
 				Rule::in(
                     DetailRequest::STATUS_PROCESS,
+                    DetailRequest::STATUS_APPROVED,
                     DetailRequest::STATUS_DONE,
                     DetailRequest::STATUS_REJECT,
-                    DetailRequest::STATUS_APPROVED,
                     DetailRequest::STATUS_NOT_VALID,
                 ),
 			],
