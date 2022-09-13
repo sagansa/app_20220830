@@ -57,16 +57,49 @@
             <x-slot name="body">
                 @forelse($fuelServices as $fuelService)
                     <tr class="hover:bg-gray-50">
-                        <x-tables.td-left-hide>
-                            @if ($fuelService->image == null)
-                                <x-partials.thumbnail src="" />
-                            @else
-                                <a href="{{ \Storage::url($fuelService->image) }}">
-                                    <x-partials.thumbnail
-                                        src="{{ $fuelService->image ? \Storage::url($fuelService->image) : '' }}" />
-                                </a>
-                            @endif
-                        </x-tables.td-left-hide>
+                        <x-tables.td-left-main>
+                            <x-slot name="main">
+                                @if ($fuelService->image == null)
+                                    <x-partials.thumbnail src="" />
+                                @else
+                                    <a href="{{ \Storage::url($fuelService->image) }}">
+                                        <x-partials.thumbnail
+                                            src="{{ $fuelService->image ? \Storage::url($fuelService->image) : '' }}" />
+                                    </a>
+                                @endif
+                            </x-slot>
+                            <x-slot name="sub">
+                                <p> {{ $fuelService->vehicle->no_register }}</p>
+                                <p>
+                                    @if ($fuelService->fuel_service == 1)
+                                        fuel
+                                    @else
+                                        service
+                                    @endif
+                                    {{ optional($fuelService->paymentType)->name ?? '-' }}
+                                </p>
+                                <p>@number($fuelService->liter) - @currency($fuelService->amount)</p>
+                                <p>
+                                    @if ($fuelService->payment_type_id == 2)
+                                        @foreach ($fuelService->closingStores as $closingStore)
+                                            {{ optional($closingStore)->store->nickname ?? '-' }} |
+                                            {{ optional($closingStore)->shiftStore->name ?? '-' }} |
+                                            {{ optional($closingStore->date)->toFormattedDate() ?? '-' }}
+                                        @endforeach
+                                    @elseif($fuelService->payment_type_id == 1)
+                                        @foreach ($fuelService->paymentReceipts as $paymentReceipt)
+                                            {{ $paymentReceipt->created_at->toFormattedDate() }}
+                                        @endforeach
+                                    @endif
+                                </p>
+                                <p>
+                                    <x-spans.status-valid class="{{ $fuelService->status_badge }}">
+                                        {{ $fuelService->status_name }}
+                                    </x-spans.status-valid>
+                                </p>
+                            </x-slot>
+
+                        </x-tables.td-left-main>
 
                         <x-tables.td-left-hide>
                             {{ $fuelService->vehicle->no_register }}
