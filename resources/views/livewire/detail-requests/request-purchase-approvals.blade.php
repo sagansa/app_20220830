@@ -110,7 +110,6 @@
                                     Done</option>
                                 <option value="3" {{ $detailRequest->status == '3' ? 'selected' : '' }}>
                                     Reject</option>
-
                                 <option value="5" {{ $detailRequest->status == '5' ? 'selected' : '' }}>
                                     Not Valid</option>
                             </x-input.select-table>
