@@ -37,7 +37,6 @@ class FuelServiceController extends Controller
             $fuelServices->where('created_by_id', '=', Auth::user()->id);
         }
 
-
         return view(
             'app.fuel_services.index',
             compact('fuelServices', 'search')
