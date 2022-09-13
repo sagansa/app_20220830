@@ -7,6 +7,7 @@ use App\Models\ClosingStore;
 use App\Models\InvoicePurchase;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class InvoicePurchaseClosingStoresDetail extends Component
 {
@@ -27,12 +28,20 @@ class InvoicePurchaseClosingStoresDetail extends Component
     public function mount(InvoicePurchase $invoicePurchase)
     {
         $this->invoicePurchase = $invoicePurchase;
-        $this->closingStoresForSelect = ClosingStore::where('date', '>=', Carbon::now()->subDays(5)->toDateString())
-            ->whereNotIn('status', ['2'])
+        $this->closingStoresForSelect = ClosingStore::whereNotIn('status', ['2'])
             ->where('store_id', $this->invoicePurchase->store_id)
             ->orderBy('date', 'desc')
             ->get()
             ->pluck('id', 'closing_store_name');
+
+        if (Auth::user()->hasRole('manager|super-admin')) {
+            $this->closingStoresForSelect->where('date', '>=', Carbon::now()->subDays(30)->toDateString());
+        }
+
+        if (Auth::user()->hasRole('supervisor|staff')) {
+            $this->closingStoresForSelect->where('date', '>=', Carbon::now()->subDays(5)->toDateString());
+        }
+
         $this->resetClosingStoreData();
     }
 
