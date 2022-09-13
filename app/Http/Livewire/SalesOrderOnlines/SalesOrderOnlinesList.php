@@ -49,12 +49,14 @@ class SalesOrderOnlinesList extends Component
         'payment_type_id' => null,
     ];
 
-    public function mount()
+    public function mount(SalesOrderOnline $salesOrderOnline)
     {
         $this->customers = Customer::orderBy('name', 'asc')->pluck('id', 'name');
         $this->stores = Store::orderBy('nickname', 'asc')->pluck('id', 'nickname');
         $this->onlineShopProviders = OnlineShopProvider::orderBy('name', 'asc')->whereIn('id', ['1', '2'])->pluck('id', 'name');
         $this->deliveryServices = DeliveryService::orderBy('name', 'asc')->pluck('id', 'name');
+
+        $this->salesOrderOnline = $salesOrderOnline;
 
         if($this->salesOrderOnline) {
             foreach ($this->salesOrderOnline->products as $product) {
