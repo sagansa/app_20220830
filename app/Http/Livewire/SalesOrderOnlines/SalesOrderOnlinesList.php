@@ -58,7 +58,7 @@ class SalesOrderOnlinesList extends Component
 
         $this->salesOrderOnline = $salesOrderOnline;
 
-        if($this->salesOrderOnline) {
+        if ($this->salesOrderOnline) {
             foreach ($this->salesOrderOnline->products as $product) {
                 $this->productSalesOrderOnlines[] = [
                     'product_id' => $product->id,

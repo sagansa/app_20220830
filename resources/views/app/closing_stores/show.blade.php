@@ -1,4 +1,4 @@
-<x-guest-layout>
+<div>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             @lang('crud.closing_stores.show_title')
@@ -146,4 +146,4 @@
 
         </div>
     </div>
-</x-guest-layout>
+</div>
