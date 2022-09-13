@@ -38,18 +38,20 @@
     <x-tables.card>
         <x-table>
             <x-slot name="head">
-                <x-tables.th-left>@lang('crud.fuel_services.inputs.image')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.fuel_services.inputs.image')</x-tables.th-left-hide>
                 <x-tables.th-left>@lang('crud.fuel_services.inputs.vehicle_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.fuel_services.inputs.fuel_service')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.fuel_services.inputs.payment_type_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.fuel_services.inputs.km')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.fuel_services.inputs.liter')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.fuel_services.inputs.amount')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.fuel_services.inputs.fuel_service')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.fuel_services.inputs.payment_type_id')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.fuel_services.inputs.km')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.fuel_services.inputs.liter')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.fuel_services.inputs.amount')</x-tables.th-left-hide>
 
                 @role('super-admin')
-                    <x-tables.th-left>per liter</x-tables.th-left>
+                    <x-tables.th-left-hide>per liter</x-tables.th-left-hide>
+                    <x-tables.th-left-hide>created by</x-tables.th-left-hide>
                 @endrole
-                <x-tables.th-left>Payment</x-tables.th-left>
+                <x-tables.th-left-hide>Payment</x-tables.th-left-hide>
+                <x-tables.th-left-hide>Status</x-tables.th-left-hide>
                 <th></th>
             </x-slot>
             <x-slot name="body">
@@ -83,6 +85,9 @@
                         <x-tables.td-right-hide>@currency($fuelService->amount)</x-tables.td-right-hide>
                         @role('super-admin')
                             <x-tables.td-right-hide>@currency($fuelService->amount / $fuelService->liter)
+                            </x-tables.td-right-hide>
+                            <x-tables.td-right-hide>
+                                {{ $fuelService->created_by->name }}
                             </x-tables.td-right-hide>
                         @endrole
                         <x-tables.td-left-hide>

@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\FuelServiceStoreRequest;
 use App\Http\Requests\FuelServiceUpdateRequest;
+use Illuminate\Support\Facades\Auth;
+
 // use Illuminate\Support\Carbon;
 
 class FuelServiceController extends Controller
@@ -30,6 +32,10 @@ class FuelServiceController extends Controller
             ->latest()
             ->paginate(10)
             ->withQueryString();
+
+        if (Auth::hasRole('supervisor|staff')) {
+            $fuelServices->where('created_by_id', '=', Auth::user()->id);
+        }
 
         return view(
             'app.fuel_services.index',
