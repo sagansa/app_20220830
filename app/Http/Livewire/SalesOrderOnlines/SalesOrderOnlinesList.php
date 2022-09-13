@@ -26,6 +26,8 @@ class SalesOrderOnlinesList extends Component
     use WithPagination;
     public SalesOrderOnline $editing;
 
+    public $productSalesOrderOnlines = [];
+
     public $sortColumn = 'sales_order_onlines.date';
 
     protected $queryString = [
@@ -68,14 +70,22 @@ class SalesOrderOnlinesList extends Component
                 }
             }
 
+
+
         return $this->applySorting($salesOrderOnlines);
     }
 
      public function render()
     {
+        $total = 0;
+
+        foreach ($this->productSalesOrderOnlines as $productSalesOrderOnline) {
+            $total += $productSalesOrderOnline['quantity'] * $productSalesOrderOnline['price'];
+        }
 
         return view('livewire.sales-order-onlines.sales-order-onlines-list', [
             'salesOrderOnlines' => $this->rows,
+            'total' => $total,
         ]);
     }
 

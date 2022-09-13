@@ -169,15 +169,15 @@
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             @forelse ($salesOrderOnline->products as $product)
-                                <p> {{ $product->name }} - {{ $product->pivot->quantity }} {{ $product->unit->unit }}
-                                    - @currency($product->pivot->price)</p>
+                                <p> {{ $product->name }} | {{ $product->pivot->quantity }} {{ $product->unit->unit }}
+                                    | @currency($product->pivot->price)</p>
                             @empty
                                 -
                             @endforelse
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            {{-- {{ $this->salesOrderOnline->totals }} --}}
+                            @currency($total)
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
