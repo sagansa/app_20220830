@@ -42,6 +42,7 @@
                 <x-tables.th-left-hide>@lang('crud.payment_receipts.inputs.amount')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>Detail</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.payment_receipts.inputs.payment_for')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>created date</x-tables.th-left-hide>
                 <th></th>
             </x-slot>
             <x-slot name="body">
@@ -101,6 +102,9 @@
                             @elseif ($paymentReceipt->payment_for == 3)
                                 <p>invoice purchase</p>
                             @endif
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            {{ $paymentReceipt->created_at }}
                         </x-tables.td-left-hide>
                         <td class="px-4 py-3 text-center" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
