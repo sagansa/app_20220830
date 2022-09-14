@@ -98,7 +98,8 @@
                         <x-tables.td-left-hide>
                             @foreach ($paymentReceipt->dailySalaries as $dailySalary)
                                 <p>{{ $dailySalary->created_by->name }} -
-                                    {{ $dailySalary->closingStore->date->toFormattedDate() }} - @currency($dailySalary->amount)</p>
+                                    {{ optional($dailySalary->closingStore)->date->toFormattedDate() }} -
+                                    @currency($dailySalary->amount)</p>
                             @endforeach
                             @foreach ($paymentReceipt->fuelServices as $fuelService)
                                 <p>{{ $fuelService->vehicle->no_register }} - @currency($fuelService->amount)</p>
