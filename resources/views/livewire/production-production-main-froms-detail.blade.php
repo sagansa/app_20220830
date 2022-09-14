@@ -54,9 +54,7 @@
                     <x-tables.th-left>
                         quantity
                     </x-tables.th-left>
-                    {{-- <x-tables.th-left>
-                        @lang('crud.production_production_main_froms.inputs.detail_invoice_id')
-                    </x-tables.th-left> --}}
+
                     <th></th>
                 </tr>
             </x-slot>

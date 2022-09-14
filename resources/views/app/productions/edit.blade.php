@@ -39,13 +39,14 @@
                     </x-partials.card>
                 @endcan
 
-                @can('view-any', App\Models\ProductionFrom::class)
+                {{-- @can('view-any', App\Models\ProductionFrom::class)
                     <x-partials.card class="mt-5">
                         <x-slot name="title"> Production Froms </x-slot>
 
                         <livewire:production-production-froms-detail :production="$production" />
                     </x-partials.card>
-                @endcan
+                @endcan --}}
+
                 @can('view-any', App\Models\ProductionSupportFrom::class)
                     <x-partials.card class="mt-5">
                         <x-slot name="title"> Production Support Froms </x-slot>
@@ -53,6 +54,7 @@
                         <livewire:production-production-support-froms-detail :production="$production" />
                     </x-partials.card>
                 @endcan
+
                 @can('view-any', App\Models\ProductionTo::class)
                     <x-partials.card class="mt-5">
                         <x-slot name="title"> Production Tos </x-slot>

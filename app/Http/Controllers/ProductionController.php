@@ -22,32 +22,17 @@ class ProductionController extends Controller
 
         $search = $request->get('search', '');
 
-        // $productions = Production::search($search)
-        //     ->latest()
-        //     ->paginate(10)
-        //     ->withQueryString();
+        $productions = Production::search($search)
+            ->orderBy('date', 'desc')
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
 
         if(Auth::user()->hasRole('supervisor')) {
-            $productions = Production::search($search)
-                ->where('approved_by_id', '=', Auth::user()->id)
-                ->orWhere('approved_by_id', '=', NULL)
-                ->orderBy('date', 'desc')
-                ->latest()
-                ->paginate(10)
-                ->withQueryString();
-        } elseif (Auth::user()->hasRole('super-admin|manager')) {
-            $productions = Production::search($search)
-                ->orderBy('date', 'desc')
-                ->latest()
-                ->paginate(10)
-                ->withQueryString();
+            $productions->where('approved_by_id', '=', Auth::user()->id)
+                ->orWhere('approved_by_id', '=', NULL);
         } else if (Auth::user()->hasRole('staff')) {
-            $productions = Production::search($search)
-                ->where('created_by_id', '=', Auth::user()->id)
-                ->orderBy('date', 'desc')
-                ->latest()
-                ->paginate(10)
-                ->withQueryString();
+            $productions->where('created_by_id', '=', Auth::user()->id);
         }
 
         return view('app.productions.index', compact('productions', 'search'));
@@ -59,9 +44,9 @@ class ProductionController extends Controller
      */
     public function create(Request $request)
     {
-        $stores = Store::orderBy('name', 'asc')
+        $stores = Store::orderBy('nickname', 'asc')
             ->whereIn('status', ['3', '5', '6', '7'])
-            ->pluck('name', 'id');
+            ->pluck('nickname', 'id');
         $users = User::orderBy('name', 'asc')
             // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
