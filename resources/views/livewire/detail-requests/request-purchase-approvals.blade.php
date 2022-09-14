@@ -77,8 +77,6 @@
                         <x-tables.td-left-hide>
                             @if ($detailRequest->status == 2)
                                 {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }}
-                            @else
-                                -
                             @endif
                         </x-tables.td-left-hide>
 

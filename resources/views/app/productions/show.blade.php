@@ -23,26 +23,33 @@
                         <x-shows.dd>{{ $production->date->toFormattedDate() ?? '-' }}</x-shows.dd>
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
-                        <x-shows.dt>To Product</x-shows.dt>
-                        <x-shows.dd>{{ optional($production->product)->name ?? '-' }} =
-                            {{ $production->quantity ?? '-' }} {{ $production->product->unit->unit }}</x-shows.dd>
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt>From Product</x-shows.dt>
+                        <x-shows.dt>From Main Product</x-shows.dt>
                         <x-shows.dd>
-                            @foreach ($production->products as $product)
-                                <div>
-                                    {{ $product->name }} = {{ $product->pivot->quantity }}
-                                    {{ $product->unit->unit }}
-                                </div>
+                            @foreach ($production->productionMainFroms as $productionMainFrom)
+                                {{ $productionMainFrom->detailInvoice->detailRequest->product->name }}
+                                {{ $productionMainFrom->detailInvoice->quantity_product }}
+                                {{ $productionMainFrom->detailInvoice->detailRequest->product->unit->unit }}
                             @endforeach
                         </x-shows.dd>
                     </x-shows.sub-dl>
-                    {{-- <x-shows.sub-dl>
-                        <x-shows.dt>@lang('crud.productions.inputs.quantity')</x-shows.dt>
-                        <x-shows.dd>{{ $production->quantity ?? '-' }} {{ $production->product->unit->unit }}
+                    <x-shows.sub-dl>
+                        <x-shows.dt>From Support Product</x-shows.dt>
+                        <x-shows.dd>
+                            @foreach ($production->productionSupportFroms as $productionSupportFrom)
+                                {{ $productionSupportFrom->product->name }} {{ $productionSupportFrom->quantity }}
+                                {{ $productionSupportFrom->product->unit->unit }}
+                            @endforeach
                         </x-shows.dd>
-                    </x-shows.sub-dl> --}}
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt>To Product</x-shows.dt>
+                        <x-shows.dd>
+                            @foreach ($production->productionTos as $productionTo)
+                                {{ $productionTo->product->name }} {{ $productionTo->quantity }}
+                                {{ $productionTo->product->unit->unit }}
+                            @endforeach
+                        </x-shows.dd>
+                    </x-shows.sub-dl>
                     <x-shows.sub-dl-notes>
                         <x-shows.dt>@lang('crud.productions.inputs.notes')</x-shows.dt>
                         <x-shows.dd>{{ $production->notes ?? '-' }}</x-shows.dd>
