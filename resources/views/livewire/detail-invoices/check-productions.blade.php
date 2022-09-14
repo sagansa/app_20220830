@@ -95,14 +95,17 @@
                             {{ $detailInvoice->created_at }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
-                            <x-input.select-table wire="changeStatus({{ $detailInvoice }}, $event.target.value)">
+
+                            <select
+                                class="block w-full py-2 pl-3 pr-10 mt-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                wire:change="changeStatus({{ $detailInvoice }}, $event.target.value)">
                                 <option value="1" {{ $detailInvoice->status == '1' ? 'selected' : '' }}>
                                     Process</option>
                                 <option value="2" {{ $detailInvoice->status == '2' ? 'selected' : '' }}>
                                     Done</option>
                                 <option value="3" {{ $detailInvoice->status == '3' ? 'selected' : '' }}>
                                     No Need</option>
-                            </x-input.select-table>
+                            </select>
                         </x-tables.td-left-hide>
                     </tr>
                 @endforeach

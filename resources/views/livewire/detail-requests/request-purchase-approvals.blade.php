@@ -101,7 +101,9 @@
 
                         <x-tables.td-left-hide>
 
-                            <x-input.select-table wire="changeStatus({{ $detailRequest }}, $event.target.value)">
+                            <select
+                                class="block w-full py-2 pl-3 pr-10 mt-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                wire:change="changeStatus({{ $detailRequest }}, $event.target.value)">
                                 <option value="1" {{ $detailRequest->status == '1' ? 'selected' : '' }}>
                                     Process</option>
                                 <option value="4" {{ $detailRequest->status == '4' ? 'selected' : '' }}>
@@ -112,7 +114,7 @@
                                     Reject</option>
                                 <option value="5" {{ $detailRequest->status == '5' ? 'selected' : '' }}>
                                     Not Valid</option>
-                            </x-input.select-table>
+                            </select>
 
                         </x-tables.td-left-hide>
                     </tr>

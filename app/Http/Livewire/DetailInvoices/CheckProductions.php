@@ -47,8 +47,6 @@ class CheckProductions extends Component
 
 		$detailInvoice->update(['status' => $status]);
 
-        $this->render();
-
 		$this->dispatchBrowserEvent('updated', ['message' => "Status changed to {$status} successfully."]);
     }
 

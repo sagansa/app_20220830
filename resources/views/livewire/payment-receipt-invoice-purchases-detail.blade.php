@@ -116,8 +116,8 @@
                                         <button class="button button-danger"
                                             onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
                                             wire:click="detach({{ $invoicePurchase->id }})">
-                                            <i class="mr-1 icon ion-md-trash text-primary"></i>
-                                            @lang('crud.common.detach')
+                                            <i class="icon ion-md-trash text-primary"></i>
+
                                         </button>
                                     @endcan
                                 @endrole
