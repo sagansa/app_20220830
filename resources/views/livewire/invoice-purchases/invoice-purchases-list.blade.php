@@ -118,6 +118,7 @@
                 <x-tables.th-left-hide>@lang('crud.invoice_purchases.inputs.order_status')</x-tables.th-left-hide>
                 @role('super-admin|supervisor|manager')
                     <x-tables.th-left-hide>@lang('crud.invoice_purchases.inputs.created_by_id')</x-tables.th-left-hide>
+                    <x-tables.th-left-hide>created date</x-tables.th-left-hide>
                 @endrole
                 {{-- @role('super-admin|staff|manager')
                     <x-tables.th-left-hide>@lang('crud.invoice_purchases.inputs.approved_by_id')</x-tables.th-left-hide>
@@ -249,6 +250,8 @@
                         </x-tables.td-left-hide>
                         @role('super-admin|supervisor|manager')
                             <x-tables.td-left-hide>{{ optional($invoicePurchase->created_by)->name ?? '-' }}
+                            </x-tables.td-left-hide>
+                            <x-tables.td-left-hide>{{ $invoicePurchase->created_at ?? '-' }}
                             </x-tables.td-left-hide>
                         @endrole
                         {{-- @role('super-admin|staff|manager')
