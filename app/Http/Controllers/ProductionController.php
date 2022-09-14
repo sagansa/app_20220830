@@ -49,7 +49,8 @@ class ProductionController extends Controller
             ->pluck('nickname', 'id');
 
         return view(
-            'app.productions.create', compact('stores')
+            'app.productions.create',
+            compact('stores')
         );
     }
 
@@ -99,7 +100,8 @@ class ProductionController extends Controller
             ->pluck('nickname', 'id');
 
         return view(
-            'app.productions.edit', compact('stores')
+            'app.productions.edit',
+            compact('production', 'stores')
         );
     }
 
