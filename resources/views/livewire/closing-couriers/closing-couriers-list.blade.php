@@ -56,7 +56,6 @@
             <x-slot name="head">
                 <x-tables.th-left>@lang('crud.closing_couriers.inputs.image') - @lang('crud.closing_couriers.inputs.bank_id')</x-tables.th-left>
                 <x-tables.th-left-hide>Nominal Transfer</x-tables.th-left-hide>
-                <x-tables.th-left-hide>Detail</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.closing_couriers.inputs.total_cash_to_transfer')</x-tables.th-left-hide>
                 @role('super-admin|manager')
                     <x-tables.th-left-hide>Transfer By</x-tables.th-left-hide>
@@ -99,20 +98,9 @@
 
                         <x-tables.td-right-hide>@currency($closingCourier->total_cash_to_transfer)
                         </x-tables.td-right-hide>
+
                         <x-tables.td-right-hide>
-                            @forelse ($closingCourier->closingStores as $closingStore)
-                                <p>{{ $closingStore->store->nickname }} - {{ $closingStore->shiftStore->name }}</p>
-                                <p>{{ $closingStore->date->toFormattedDate() }}</p>
-                            @empty
-                                -
-                            @endforelse
-                        </x-tables.td-right-hide>
-                        <x-tables.td-right-hide>
-                            @if ($closingCourier->closingStores->sum('total_cash_transfer') - $closingCourier->total_cash_to_transfer < 0)
-                                <x-spans.text-red>@currency($closingCourier->closingStores->sum('total_cash_transfer') - $closingCourier->total_cash_to_transfer < 0)</x-spans.text-red>
-                            @else
-                                @currency($closingCourier->closingStores->sum('total_cash_transfer') - $closingCourier->total_cash_to_transfer < 0)
-                            @endif
+                            @currency($closingCourier->closingStores->sum('total_cash_transfer'))
                         </x-tables.td-right-hide>
                         @role('manager|super-admin')
                             <x-tables.td-left-hide>
