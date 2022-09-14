@@ -55,6 +55,9 @@
                         Store Production
                     </x-tables.th-left>
                     <x-tables.th-left>
+                        Created Date
+                    </x-tables.th-left>
+                    <x-tables.th-left>
                         Status
                     </x-tables.th-left>
 
@@ -87,6 +90,9 @@
                                     {{ $productionMainFrom->production->date->toFormattedDate() }}</p>
                             @endforeach
 
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            {{ $detailInvoice->created_at }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             <x-input.select-table wire="changeStatus({{ $detailInvoice }}, $event.target.value)">

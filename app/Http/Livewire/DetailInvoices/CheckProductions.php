@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Illuminate\Support\Collection;
 
 class CheckProductions extends Component
 {
@@ -40,11 +41,13 @@ class CheckProductions extends Component
         Validator::make(['status' => $status], [
 			'status' => [
 				'required',
-				Rule::in(detailInvoice::STATUS_PROCESS, DetailInvoice::STATUS_DONE, DetailInvoice::STATUS_NO_NEED),
+				Rule::in(DetailInvoice::STATUS_PROCESS, DetailInvoice::STATUS_DONE, DetailInvoice::STATUS_NO_NEED),
 			],
 		])->validate();
 
 		$detailInvoice->update(['status' => $status]);
+
+        $this->render();
 
 		$this->dispatchBrowserEvent('updated', ['message' => "Status changed to {$status} successfully."]);
     }
@@ -53,16 +56,16 @@ class CheckProductions extends Component
     {
         $detailInvoices = DetailInvoice::query();
 
-            if (Auth::user()->hasRole('super-admin|manager')) {
-                foreach ($this->filters as $filter => $value) {
-                    if (!empty($value)) {
-                        $detailInvoices
-                            ->when($filter == 'status', fn($detailInvoices) => $detailInvoices->where('detail_invoices.' . $filter, 'LIKE', '%' . $value . '%'));
-                    }
+        if (Auth::user()->hasRole('super-admin|manager')) {
+            foreach ($this->filters as $filter => $value) {
+                if (!empty($value)) {
+                    $detailInvoices
+                        ->when($filter == 'status', fn($detailInvoices) => $detailInvoices->where('detail_invoices.' . $filter, 'LIKE', '%' . $value . '%'));
                 }
             }
+        }
 
-            return $this->applySorting($detailInvoices);
+        return $this->applySorting($detailInvoices);
     }
 
     public function getRowsProperty()
