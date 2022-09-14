@@ -47,13 +47,9 @@ class ProductionController extends Controller
         $stores = Store::orderBy('nickname', 'asc')
             ->whereIn('status', ['3', '5', '6', '7'])
             ->pluck('nickname', 'id');
-        $users = User::orderBy('name', 'asc')
-            // ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
 
         return view(
-            'app.productions.create',
-            compact('stores', 'users', 'users')
+            'app.productions.create', compact('stores')
         );
     }
 
@@ -98,16 +94,12 @@ class ProductionController extends Controller
     {
         $this->authorize('update', $production);
 
-        $stores = Store::orderBy('name', 'asc')
+        $stores = Store::orderBy('nickname', 'asc')
             ->whereIn('status', ['3', '5', '6', '7'])
-            ->pluck('name', 'id');
-        $users = User::orderBy('name', 'asc')
-            // ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
+            ->pluck('nickname', 'id');
 
         return view(
-            'app.productions.edit',
-            compact('production', 'stores', 'users', 'users')
+            'app.productions.edit', compact('stores')
         );
     }
 
