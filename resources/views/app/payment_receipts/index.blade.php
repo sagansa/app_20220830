@@ -77,37 +77,22 @@
                                 </p>
                             </x-slot>
                         </x-tables.td-left-main>
-                        <x-tables.td-left-hide>
-                            @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
-                                <p>{{ $invoicePurchase->store->nickname }}</p>
-                            @endforeach
-                        </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>
-                            @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
-                                <p>{{ $invoicePurchase->supplier->name }}</p>
-                            @endforeach
-                        </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>
-                            @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
-                                <p>{{ $invoicePurchase->date->toFormattedDate() }}</p>
-                            @endforeach
-                        </x-tables.td-left-hide>
 
                         <x-tables.td-right-hide>@currency($paymentReceipt->amount)</x-tables.td-right-hide>
 
                         <x-tables.td-left-hide>
                             @foreach ($paymentReceipt->dailySalaries as $dailySalary)
-                                <p>{{ $dailySalary->created_by->name }} -
-                                    {{ optional($dailySalary->closingStore)->date->toFormattedDate() }} -
+                                <p>{{ $dailySalary->created_by->name }} |
+                                    {{-- {{ optional($dailySalary->closingStore)->date->toFormattedDate() }} | --}}
                                     @currency($dailySalary->amount)</p>
                             @endforeach
                             @foreach ($paymentReceipt->fuelServices as $fuelService)
-                                <p>{{ $fuelService->vehicle->no_register }} - @currency($fuelService->amount)</p>
+                                <p>{{ $fuelService->vehicle->no_register }} | @currency($fuelService->amount)</p>
                             @endforeach
 
                             @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
-                                <p>{{ $invoicePurchase->store->nickname }} - {{ $invoicePurchase->supplier->name }} -
-                                    {{ $invoicePurchase->date->toFormattedDate() }} -
+                                <p>{{ $invoicePurchase->store->nickname }} | {{ $invoicePurchase->supplier->name }} |
+                                    {{ $invoicePurchase->date->toFormattedDate() }} |
                                     @currency($invoicePurchase->detailInvoices->sum('subtotal_invoice'))</p>
                             @endforeach
 
