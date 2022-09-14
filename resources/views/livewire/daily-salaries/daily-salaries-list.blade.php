@@ -118,13 +118,7 @@
                             </x-slot>
                         </x-tables.td-left-main>
                         <x-tables.td-left-hide>
-                            @foreach ($dailySalary->closingStores as $closingStore)
-                                {{ optional($closingStore->store)->nickname }}
-                            @endforeach
-
-                            @foreach ($dailySalary->paymentReceipts as $paymentReceipt)
-                                {{ optional($paymentReceipt->store)->nickname }}
-                            @endforeach
+                            {{ $dailySalary->store->nickname }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             {{ optional($dailySalary->date)->toFormattedDate() }} |
