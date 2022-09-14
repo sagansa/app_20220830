@@ -108,7 +108,12 @@
                             @endforelse
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
-                            @currency($closingCourier->closingStores->sum('total_cash_transfer'))</x-tables.td-right-hide>
+                            @if ($closingCourier->closingStores->sum('total_cash_transfer') - $closingCourier->total_cash_to_transfer < 0)
+                                <x-spans.text-red>@currency($closingCourier->closingStores->sum('total_cash_transfer') - $closingCourier->total_cash_to_transfer < 0)</x-spans.text-red>
+                            @else
+                                @currency($closingCourier->closingStores->sum('total_cash_transfer') - $closingCourier->total_cash_to_transfer < 0)
+                            @endif
+                        </x-tables.td-right-hide>
                         @role('manager|super-admin')
                             <x-tables.td-left-hide>
                                 {{ $closingCourier->created_by->name }}

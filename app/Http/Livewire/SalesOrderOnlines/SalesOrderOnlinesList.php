@@ -26,7 +26,7 @@ class SalesOrderOnlinesList extends Component
     use WithPagination;
     public SalesOrderOnline $editing;
 
-    public $salesOrderOnline;
+    // public $salesOrderOnline;
 
     public $productSalesOrderOnlines = [];
 
@@ -59,7 +59,7 @@ class SalesOrderOnlinesList extends Component
         $this->salesOrderOnline = $salesOrderOnline;
 
         if ($this->salesOrderOnline) {
-            foreach ($this->salesOrderOnline->products as $product) {
+            foreach ($this->salesOrderOnline->products()->get() as $product) {
                 $this->productSalesOrderOnlines[] = [
                     'product_id' => $product->id,
                     'quantity' => $product->pivot->quantity,
@@ -89,14 +89,12 @@ class SalesOrderOnlinesList extends Component
         return $this->applySorting($salesOrderOnlines);
     }
 
-     public function render()
+     public function render(SalesOrderOnline $salesOrderOnline)
     {
         $total = 0;
 
-        foreach ($this->productSalesOrderOnlines as $productSalesOrderOnline) {
-            if ($productSalesOrderOnline['quantity'] && $productSalesOrderOnline['price']) {
-                $total += $productSalesOrderOnline['quantity'] * $productSalesOrderOnline['price'];
-            }
+        foreach ($salesOrderOnline->products as $product) {
+            $total += $product->pivot->quantity;
         }
 
         return view('livewire.sales-order-onlines.sales-order-onlines-list', [

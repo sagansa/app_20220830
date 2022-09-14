@@ -177,7 +177,10 @@
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            @currency($total)
+                            {{-- @foreach ($salesOrderOnline->products as $product)
+                                {{ $product->total += $product->pivot->quantity * $product->pivot->price }}
+                            @endforeach --}}
+                            {{ $total }}
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
