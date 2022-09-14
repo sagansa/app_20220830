@@ -26,9 +26,9 @@
                         <x-shows.dt>From Main Product</x-shows.dt>
                         <x-shows.dd>
                             @foreach ($production->productionMainFroms as $productionMainFrom)
-                                {{ $productionMainFrom->detailInvoice->detailRequest->product->name }}
-                                {{ $productionMainFrom->detailInvoice->quantity_product }}
-                                {{ $productionMainFrom->detailInvoice->detailRequest->product->unit->unit }}
+                                <p> {{ $productionMainFrom->detailInvoice->detailRequest->product->name }} =
+                                    {{ $productionMainFrom->detailInvoice->quantity_product }}
+                                    {{ $productionMainFrom->detailInvoice->detailRequest->product->unit->unit }}</p>
                             @endforeach
                         </x-shows.dd>
                     </x-shows.sub-dl>
@@ -36,8 +36,8 @@
                         <x-shows.dt>From Support Product</x-shows.dt>
                         <x-shows.dd>
                             @foreach ($production->productionSupportFroms as $productionSupportFrom)
-                                {{ $productionSupportFrom->product->name }} {{ $productionSupportFrom->quantity }}
-                                {{ $productionSupportFrom->product->unit->unit }}
+                                <p> {{ $productionSupportFrom->product->name }} = {{ $productionSupportFrom->quantity }}
+                                    {{ $productionSupportFrom->product->unit->unit }}</p>
                             @endforeach
                         </x-shows.dd>
                     </x-shows.sub-dl>
@@ -45,8 +45,8 @@
                         <x-shows.dt>To Product</x-shows.dt>
                         <x-shows.dd>
                             @foreach ($production->productionTos as $productionTo)
-                                {{ $productionTo->product->name }} {{ $productionTo->quantity }}
-                                {{ $productionTo->product->unit->unit }}
+                                <p> {{ $productionTo->product->name }} = {{ $productionTo->quantity }}
+                                    {{ $productionTo->product->unit->unit }}</p>
                             @endforeach
                         </x-shows.dd>
                     </x-shows.sub-dl>
