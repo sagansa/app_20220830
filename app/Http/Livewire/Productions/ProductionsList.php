@@ -73,17 +73,15 @@ class ProductionsList extends Component
 
     public function getRowsQueryProperty()
     {
-        $productions = Production::query()
-            ->select(['productions.*', 'stores.name as storename'])
-            ->join('stores', 'stores.id', '=', 'productions.store_id');
+        $productions = Production::query();
 
-            foreach ($this->filters as $filter => $value) {
-                    if (!empty($value)) {
-                        $productions
-                            ->when($filter == 'store_id', fn($productions) => $productions->whereRelation('store', 'id', $value))
-                            ->when($filter == 'status', fn($productions) => $productions->where('productions.' . $filter, 'LIKE', '%' . $value . '%'));
-                    }
-                }
+        foreach ($this->filters as $filter => $value) {
+            if (!empty($value)) {
+                $productions
+                    ->when($filter == 'store_id', fn($productions) => $productions->whereRelation('store', 'id', $value))
+                    ->when($filter == 'status', fn($productions) => $productions->where('productions.' . $filter, 'LIKE', '%' . $value . '%'));
+            }
+        }
 
         if (Auth::user()->hasRole('staff')) {
 

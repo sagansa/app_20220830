@@ -88,13 +88,13 @@
                 </div>
             </x-partials.card>
 
-            @can('view-any', App\Models\Production::class)
+            {{-- @can('view-any', App\Models\Production::class)
                 <x-partials.card class="mt-5">
                     <x-slot name="title"> Products </x-slot>
 
                     <livewire:production-products-detail :production="$production" />
                 </x-partials.card>
-            @endcan
+            @endcan --}}
         </div>
     </div>
 </x-admin-layout>
