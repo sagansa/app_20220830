@@ -24,12 +24,7 @@
             <div class="max-w-2xl px-4 mx-auto mt-8 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div class="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
                     <div class="lg:col-span-5 lg:col-start-8">
-                        <div class="flex justify-between">
-                            <h1 class="text-xl font-medium text-gray-900">{{ $eProduct->product->name }} -
-                                {{ $eProduct->product->unit->unit }}</h1>
 
-                        </div>
-                        <p class="pr-2 text-sm font-medium text-right text-gray-900">@currency($eProduct->price)</p>
                     </div>
 
                     <!-- Image gallery -->
@@ -43,11 +38,17 @@
                     </div>
 
                     <div class="mt-2 lg:col-span-5">
-                        <form>
-
+                        <form wire:submit.prevent="addToCart">
                             <div class="flex justify-between">
-                                <label for="first-name"
-                                    class="block pt-2 text-xs font-medium text-gray-700 sm:mt-px">Quantity</label>
+                                <h1 class="text-xl font-medium text-gray-900" wire:model="e_product_id">
+                                    {{ $eProduct->product->name }} -
+                                    {{ $eProduct->product->unit->unit }}</h1>
+
+                            </div>
+                            <p class="pr-2 text-sm font-medium text-right text-gray-900">@currency($eProduct->price)</p>
+                            <div class="flex justify-between">
+                                <label for="first-name" class="block pt-2 text-xs font-medium text-gray-700 sm:mt-px"
+                                    wire:model="quantity">Quantity</label>
                                 <div class="sm:col-span-2 sm:mt-0">
                                     <input type="number"
                                         class="block w-full max-w-lg text-xs text-right border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:max-w-xs sm:text-sm">
@@ -59,7 +60,7 @@
                                 <label for="first-name"
                                     class="block text-xl font-bold text-gray-700 sm:mt-px">Subtotal</label>
                                 <div class="text-xl font-bold sm:col-span-2 sm:mt-0">
-                                    <p>@currency($eProduct->price)</p>
+                                    {{-- <p>@currency($cart->subtotal)</p> --}}
 
                                 </div>
                             </div>

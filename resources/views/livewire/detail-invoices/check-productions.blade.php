@@ -41,34 +41,57 @@
                     <x-tables.th-left>
                         Store
                     </x-tables.th-left>
-                    <x-tables.th-left>
+                    <x-tables.th-left-hide>
                         Date
-                    </x-tables.th-left>
-                    <x-tables.th-left>
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         From Product
-                    </x-tables.th-left>
-                    <x-tables.th-left>
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         Quantity Product
-                    </x-tables.th-left>
+                    </x-tables.th-left-hide>
 
-                    <x-tables.th-left>
+                    <x-tables.th-left-hide>
                         Store Production
-                    </x-tables.th-left>
-                    <x-tables.th-left>
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         Created Date
-                    </x-tables.th-left>
-                    <x-tables.th-left>
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         Status
-                    </x-tables.th-left>
+                    </x-tables.th-left-hide>
 
                 </tr>
             </x-slot>
             <x-slot name="body">
                 @foreach ($detailInvoices as $detailInvoice)
                     <tr class="hover:bg-gray-100">
-                        <x-tables.td-left-hide>
-                            {{ $detailInvoice->invoicePurchase->store->nickname }}
-                        </x-tables.td-left-hide>
+                        <x-tables.td-left-main>
+                            <x-slot name="main"> {{ $detailInvoice->invoicePurchase->store->nickname }}</x-slot>
+                            <x-slot name="sub">
+                                <p>{{ $detailInvoice->invoicePurchase->date->toFormattedDate() }}</p>
+                                <p> {{ optional($detailInvoice->detailRequest->product)->name ?? '-' }} =
+                                    {{ $detailInvoice->quantity_product ?? '-' }}
+                                    {{ $detailInvoice->detailRequest->product->unit->unit }}</p>
+                                <p>
+                                    @foreach ($detailInvoice->productionMainFroms as $productionMainFrom)
+                                        <p>{{ $productionMainFrom->production->store->nickname }} -
+                                            {{ $productionMainFrom->production->date->toFormattedDate() }}</p>
+                                    @endforeach
+                                </p>
+                                <p> <select
+                                        class="block w-full py-1 pl-3 pr-10 my-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                        wire:change="changeStatus({{ $detailInvoice }}, $event.target.value)">
+                                        <option value="1" {{ $detailInvoice->status == '1' ? 'selected' : '' }}>
+                                            Process</option>
+                                        <option value="2" {{ $detailInvoice->status == '2' ? 'selected' : '' }}>
+                                            Done</option>
+                                        <option value="3" {{ $detailInvoice->status == '3' ? 'selected' : '' }}>
+                                            No Need</option>
+                                    </select></p>
+                            </x-slot>
+
+                        </x-tables.td-left-main>
 
                         <x-tables.td-left-hide>
                             {{ $detailInvoice->invoicePurchase->date->toFormattedDate() }}

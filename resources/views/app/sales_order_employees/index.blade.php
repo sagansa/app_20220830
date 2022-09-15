@@ -82,7 +82,7 @@
                                                 <x-spans.text-black>{{ $products->pivot->quantity }}
                                                 </x-spans.text-black>
                                             @endif
-                                            {{ $products->unit->unit }} - @currency($products->pivot->unit_price)
+                                            {{ $products->unit->unit }} | @currency($products->pivot->unit_price)
                                         </td>
                                     </tr>
                                 </table>
