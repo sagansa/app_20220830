@@ -118,13 +118,13 @@
                             </x-slot>
                         </x-tables.td-left-main>
                         <x-tables.td-left-hide>
-                            {{ $dailySalary->store->nickname }}
+                            {{ optional($dailySalary->store)->nickname ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
-                            {{ optional($dailySalary->date)->toFormattedDate() }} |
+                            {{ optional($dailySalary->date)->toFormattedDate() ?? '-' }} |
 
                             @foreach ($dailySalary->closingStores as $closingStore)
-                                {{ optional($closingStore->date)->toFormattedDate() }}
+                                {{ optional($closingStore->date)->toFormattedDate() ?? '-' }}
                             @endforeach
 
                             @foreach ($dailySalary->paymentReceipts as $paymentReceipt)
@@ -139,16 +139,6 @@
                             <x-spans.status-valid class="{{ $dailySalary->status_badge }}">
                                 {{ $dailySalary->status_name }}
                             </x-spans.status-valid>
-
-                            {{-- @if ($dailySalary->status == 1)
-                                <x-spans.yellow>belum diperiksa</x-spans.yellow>
-                            @elseif ($dailySalary->status == 2)
-                                <x-spans.green>sudah dibayar</x-spans.green>
-                            @elseif ($dailySalary->status == 3)
-                                <x-spans.gray>siap dibayar</x-spans.gray>
-                            @elseif ($dailySalary->status == 4)
-                                <x-spans.red>perbaiki</x-spans.red>
-                            @endif --}}
                         </x-tables.td-left-hide>
                         <td class="px-4 py-3 text-center" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
