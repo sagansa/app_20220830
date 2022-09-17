@@ -22,14 +22,7 @@
                         @endforeach
                     </x-filters.select>
                 </x-filters.group>
-                {{-- <x-filters.group>
-                    <x-filters.label>Customer</x-filters.label>
-                    <x-filters.select wire:model="filters.customer_id">
-                        @foreach ($customers as $label => $value)
-                            <option value="{{ $value }}">{{ $label }}</option>
-                        @endforeach
-                    </x-filters.select>
-                </x-filters.group> --}}
+
                 <x-filters.group>
                     <x-filters.label>Online Shop Provider</x-filters.label>
                     <x-filters.select wire:model="filters.online_shop_provider_id">
@@ -81,7 +74,7 @@
                     @can('create', App\Models\Customer::class)
                         <a href="{{ route('customers.create') }}">
                             <x-jet-button>
-                                <i class="mr-1 icon ion-md-add"></i>
+                                <i class="mt-1 mr-1 icon ion-md-add"></i>
                                 @lang('crud.common.create') Customer
                             </x-jet-button>
                         </a>
