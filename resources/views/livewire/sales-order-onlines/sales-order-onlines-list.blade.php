@@ -60,10 +60,10 @@
                         <x-buttons.red wire:click.prevent="markAllAsPerbaiki">Perbaiki</x-buttons.red>
                     @endrole
                 </div>
-                <div class="mt-1 mb-1 text-right md:w-1/2">
+                <div class="mt-1 text-right md:w-1/2">
                     @role('super-admin|manager')
                         @can('create', App\Models\SalesOrderOnline::class)
-                            <a href="{{ route('sales-order-onlines.create') }}">
+                            <a class="mb-1" href="{{ route('sales-order-onlines.create') }}">
                                 <x-jet-button>
                                     <i class="mr-1 icon ion-md-add"></i>
                                     @lang('crud.common.create') Sales
@@ -72,7 +72,7 @@
                         @endcan
                     @endrole
                     @can('create', App\Models\Customer::class)
-                        <a href="{{ route('customers.create') }}">
+                        <a class="mt-1" href="{{ route('customers.create') }}">
                             <x-jet-button>
                                 <i class="mr-1 icon ion-md-add"></i>
                                 @lang('crud.common.create') Customer
