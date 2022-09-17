@@ -71,10 +71,10 @@ class SalesOrderOnlinesList extends Component
 
     public function render()
     {
-        $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')
+        $salesOrderOnlines = SalesOrderOnline::query()
+            ->orderBy('date', 'desc')
             ->latest()
-            ->paginate(10)
-            ->get();
+            ->paginate(10);
 
         foreach ($this->filters as $filter => $value) {
                 if (!empty($value)) {
