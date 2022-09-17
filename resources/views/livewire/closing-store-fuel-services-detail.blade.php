@@ -78,7 +78,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <div class="px-4 mt-10">
+                        <div class="px-4 my-2">
                             {{ $closingStoreFuelServices->render() }}
                         </div>
                     </td>

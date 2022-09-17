@@ -59,6 +59,9 @@
                     <x-tables.th-left>
                         @lang('crud.sales_order_online_products.inputs.price')
                     </x-tables.th-left>
+                    <x-tables.th-left>
+                        subtotal
+                    </x-tables.th-left>
                     <th></th>
                 </tr>
             </x-slot>
@@ -73,6 +76,9 @@
                         </x-tables.td-right>
                         <x-tables.td-right>
                             @currency($product->pivot->price)
+                        </x-tables.td-right>
+                        <x-tables.td-right>
+                            @currency($product->pivot->quantity * $product->pivot->price)
                         </x-tables.td-right>
                         <td class="px-4 py-3 text-right" style="width: 70px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
@@ -91,6 +97,10 @@
                 @endforeach
             </x-slot>
             <x-slot name="foot">
+                <tr>
+                    <x-tables.th-total colspan="3">Totals</x-tables.th-total>
+                    <x-tables.td-total>@currency($salesOrderOnline->totals)</x-tables.td-total>
+                </tr>
                 <tr>
                     <td colspan="4">
                         <div class="px-4 mt-10">
