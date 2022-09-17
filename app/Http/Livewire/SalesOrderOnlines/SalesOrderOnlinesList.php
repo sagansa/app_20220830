@@ -42,31 +42,30 @@ class SalesOrderOnlinesList extends Component
     ];
 
     public $filters = [
-        'payment_status' => '',
-        'order_status' => '',
         'store_id' => null,
         'supplier_id' => null,
         'payment_type_id' => null,
+        'status' => '',
     ];
 
-    public function mount(SalesOrderOnline $salesOrderOnline)
+    public function mount()
     {
         $this->customers = Customer::orderBy('name', 'asc')->pluck('id', 'name');
         $this->stores = Store::orderBy('nickname', 'asc')->pluck('id', 'nickname');
         $this->onlineShopProviders = OnlineShopProvider::orderBy('name', 'asc')->whereIn('id', ['1', '2'])->pluck('id', 'name');
         $this->deliveryServices = DeliveryService::orderBy('name', 'asc')->pluck('id', 'name');
 
-        $this->salesOrderOnline = $salesOrderOnline;
+        // $this->salesOrderOnline = $salesOrderOnline;
 
-        if ($this->salesOrderOnline) {
-            foreach ($this->salesOrderOnline->products()->get() as $product) {
-                $this->productSalesOrderOnlines[] = [
-                    'product_id' => $product->id,
-                    'quantity' => $product->pivot->quantity,
-                    'price' => $product->pivot->price,
-                ];
-            }
-        }
+        // if ($this->salesOrderOnline) {
+        //     foreach ($this->salesOrderOnline->products()->get() as $product) {
+        //         $this->productSalesOrderOnlines[] = [
+        //             'product_id' => $product->id,
+        //             'quantity' => $product->pivot->quantity,
+        //             'price' => $product->pivot->price,
+        //         ];
+        //     }
+        // }
     }
 
     public function render()
