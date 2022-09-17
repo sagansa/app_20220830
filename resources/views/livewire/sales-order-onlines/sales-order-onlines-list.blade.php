@@ -185,7 +185,7 @@
                         </x-tables.td-left-hide>
                         @role('super-admin|manager')
                             <x-tables.td-left-hide>
-                                {{ $salesOrderOnline->approved_by->name }}
+                                {{ optional($salesOrderOnline->approved_by)->name ?? '-' }}
                             </x-tables.td-left-hide>
                         @endrole
                         <x-tables.td-left-hide>
