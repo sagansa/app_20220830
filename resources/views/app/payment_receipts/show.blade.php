@@ -28,7 +28,15 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt>@lang('crud.payment_receipts.inputs.payment_for')</x-shows.dt>
-                        <x-shows.dd>{{ $paymentReceipt->payment_for ?? '-' }}</x-shows.dd>
+                        <x-shows.dd>
+                            @if ($paymentReceipt->payment_for == 1)
+                                <p>fuel service</p>
+                            @elseif ($paymentReceipt->payment_for == 2)
+                                <p>dailySalary</p>
+                            @elseif ($paymentReceipt->payment_for == 3)
+                                <p>invoice purchase</p>
+                            @endif
+                        </x-shows.dd>
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt>Created Date</x-shows.dt>

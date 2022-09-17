@@ -107,7 +107,7 @@ class SalesOrderOnlinesList extends Component
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
             'status' => '1',
-            'approved_by_id' => Auth::user()->id,
+
         ]);
 
         $this->dispatchBrowserEvent('updated', ['message' => 'Sales Order Online marked as belum dikirim']);
@@ -119,7 +119,7 @@ class SalesOrderOnlinesList extends Component
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
             'status' => '2',
-            'approved_by_id' => Auth::user()->id,
+
         ]);
 
         $this->reset(['selectedRows']);
@@ -139,7 +139,7 @@ class SalesOrderOnlinesList extends Component
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
             'status' => '6',
-            'approved_by_id' => Auth::user()->id,
+
         ]);
 
         $this->reset(['selectedRows']);
@@ -149,7 +149,7 @@ class SalesOrderOnlinesList extends Component
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
             'status' => '4',
-            'approved_by_id' => Auth::user()->id,
+
         ]);
 
         $this->reset(['selectedRows']);
@@ -159,7 +159,7 @@ class SalesOrderOnlinesList extends Component
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
             'status' => '6',
-            'approved_by_id' => Auth::user()->id,
+
         ]);
 
         $this->reset(['selectedRows']);
