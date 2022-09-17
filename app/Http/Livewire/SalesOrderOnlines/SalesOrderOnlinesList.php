@@ -23,7 +23,7 @@ class SalesOrderOnlinesList extends Component
     use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithFilter;
 
     // public SalesOrderOnline $salesOrderOnline;
-    use WithPagination;
+    // use WithPagination;
     public SalesOrderOnline $editing;
 
     // public $salesOrderOnline;
@@ -55,23 +55,11 @@ class SalesOrderOnlinesList extends Component
         $this->onlineShopProviders = OnlineShopProvider::orderBy('name', 'asc')->whereIn('id', ['1', '2'])->pluck('id', 'name');
         $this->deliveryServices = DeliveryService::orderBy('name', 'asc')->pluck('id', 'name');
 
-        // $this->salesOrderOnline = $salesOrderOnline;
-
-        // if ($this->salesOrderOnline) {
-        //     foreach ($this->salesOrderOnline->products()->get() as $product) {
-        //         $this->productSalesOrderOnlines[] = [
-        //             'product_id' => $product->id,
-        //             'quantity' => $product->pivot->quantity,
-        //             'price' => $product->pivot->price,
-        //         ];
-        //     }
-        // }
     }
 
     public function render()
     {
-        $salesOrderOnlines = SalesOrderOnline::query()
-            ->orderBy('date', 'desc')
+        $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')
             ->latest()
             ->paginate(10);
 
@@ -79,7 +67,6 @@ class SalesOrderOnlinesList extends Component
                 if (!empty($value)) {
                     $salesOrderOnlines
                         ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
-                        // ->when($filter == 'customer_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('customer', 'id', $value))
                         ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
                         ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
                         ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
