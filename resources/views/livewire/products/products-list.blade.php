@@ -127,16 +127,26 @@
                 @forelse($products as $product)
                     <tr class="hover:bg-gray-50">
                         <x-tables.td-left-main>
-                            <x-slot name="main"></x-slot>
-                            <x-slot name="sub"></x-slot>
-                            @if ($product->image == null)
-                                <x-partials.thumbnail src="" />
-                            @else
-                                <a href="{{ \Storage::url($product->image) }}">
-                                    <x-partials.thumbnail
-                                        src="{{ $product->image ? \Storage::url($product->image) : '' }}" />
-                                </a>
-                            @endif
+                            <x-slot name="main">
+                                @if ($product->image == null)
+                                    <x-partials.thumbnail src="" />
+                                @else
+                                    <a href="{{ \Storage::url($product->image) }}">
+                                        <x-partials.thumbnail
+                                            src="{{ $product->image ? \Storage::url($product->image) : '' }}" />
+                                    </a>
+                                @endif
+                            </x-slot>
+                            <x-slot name="sub">
+                                <p>{{ $product->name ?? '-' }} -
+                                    {{ optional($product->unit)->unit ?? '-' }}</p>
+                                <p>
+                                    <x-spans.status-valid class="{{ $product->remaining_badge }}">
+                                        {{ $product->remaining_name }}
+                                    </x-spans.status-valid>
+                                </p>
+                            </x-slot>
+
                         </x-tables.td-left-main>
 
                         <x-tables.td-left-hide>{{ $product->name ?? '-' }}</x-tables.td-left-hide>
