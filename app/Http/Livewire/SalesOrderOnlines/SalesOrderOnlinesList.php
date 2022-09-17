@@ -20,15 +20,12 @@ use Livewire\WithPagination;
 class SalesOrderOnlinesList extends Component
 {
 
-    use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithFilter;
+    use WithPagination;
+    // use WithPerPagePagination;
 
-    // public SalesOrderOnline $salesOrderOnline;
-    // use WithPagination;
+    use WithSortingDate, WithModal, WithBulkAction, WithFilter;
+
     public SalesOrderOnline $editing;
-
-    // public $salesOrderOnline;
-
-    public $productSalesOrderOnlines = [];
 
     public $sortColumn = 'sales_order_onlines.date';
 
@@ -50,11 +47,9 @@ class SalesOrderOnlinesList extends Component
 
     public function mount()
     {
-        $this->customers = Customer::orderBy('name', 'asc')->pluck('id', 'name');
         $this->stores = Store::orderBy('nickname', 'asc')->pluck('id', 'nickname');
         $this->onlineShopProviders = OnlineShopProvider::orderBy('name', 'asc')->whereIn('id', ['1', '2'])->pluck('id', 'name');
         $this->deliveryServices = DeliveryService::orderBy('name', 'asc')->pluck('id', 'name');
-
     }
 
     public function render()
@@ -89,10 +84,7 @@ class SalesOrderOnlinesList extends Component
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
             'status' => '1',
-
         ]);
-
-        $this->dispatchBrowserEvent('updated', ['message' => 'Sales Order Online marked as belum dikirim']);
 
         $this->reset(['selectedRows']);
     }
@@ -101,7 +93,6 @@ class SalesOrderOnlinesList extends Component
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
             'status' => '2',
-
         ]);
 
         $this->reset(['selectedRows']);
@@ -111,7 +102,6 @@ class SalesOrderOnlinesList extends Component
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
             'status' => '3',
-            'approved_by_id' => Auth::user()->id,
         ]);
 
         $this->reset(['selectedRows']);
@@ -121,7 +111,6 @@ class SalesOrderOnlinesList extends Component
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
             'status' => '6',
-
         ]);
 
         $this->reset(['selectedRows']);
@@ -131,7 +120,6 @@ class SalesOrderOnlinesList extends Component
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
             'status' => '4',
-
         ]);
 
         $this->reset(['selectedRows']);
@@ -141,7 +129,6 @@ class SalesOrderOnlinesList extends Component
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
             'status' => '6',
-
         ]);
 
         $this->reset(['selectedRows']);
