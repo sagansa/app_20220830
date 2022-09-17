@@ -74,6 +74,7 @@ class SalesOrderOnlinesList extends Component
         $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')
             ->latest()
             ->paginate(10)
+            ->select('sales_order_onlines.*')
             ->get();
 
         foreach ($this->filters as $filter => $value) {
