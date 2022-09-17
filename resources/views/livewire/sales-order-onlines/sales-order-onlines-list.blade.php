@@ -96,7 +96,7 @@
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.delivery_service_id')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.customer_id')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.receipt_no')</x-tables.th-left-hide>
-                <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.date')</x-tables.th-left-hide>
+                {{-- <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.date')</x-tables.th-left-hide> --}}
                 <x-tables.th-left-hide>Detail Products</x-tables.th-left-hide>
                 <x-tables.th-left-hide>Totals</x-tables.th-left-hide>
                 <x-tables.th-left-hide>Updated By</x-tables.th-left-hide>
@@ -148,7 +148,9 @@
                             </x-slot>
                         </x-tables.td-left-main>
 
-                        <x-tables.td-left-hide>{{ optional($salesOrderOnline->store)->nickname ?? '-' }}
+                        <x-tables.td-left-hide>
+                            <p>{{ optional($salesOrderOnline->store)->nickname ?? '-' }}</p>
+                            <p> {{ $salesOrderOnline->date->toFormattedDate() ?? '-' }}</p>
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             {{ optional($salesOrderOnline->onlineShopProvider)->name ?? '-' }}
@@ -159,8 +161,7 @@
                         <x-tables.td-left-hide>{{ optional($salesOrderOnline->customer)->name ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>{{ $salesOrderOnline->receipt_no ?? '-' }}</x-tables.td-left-hide>
-                        <x-tables.td-left-hide>{{ $salesOrderOnline->date->toFormattedDate() ?? '-' }}
-                        </x-tables.td-left-hide>
+
                         <x-tables.td-left-hide>
                             @forelse ($salesOrderOnline->products as $product)
                                 <p> {{ $product->name }} | {{ $product->pivot->quantity }} {{ $product->unit->unit }}
@@ -169,9 +170,9 @@
                                 -
                             @endforelse
                         </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>
+                        <x-tables.td-right-hide>
                             @currency($salesOrderOnline->total)
-                        </x-tables.td-left-hide>
+                        </x-tables.td-right-hide>
                         @role('super-admin|manager')
                             <x-tables.td-left-hide>
                                 {{ optional($salesOrderOnline->approved_by)->name ?? '-' }}
@@ -212,7 +213,7 @@
             <x-slot name="foot">
                 <tr>
                     <td colspan="12">
-                        {{-- <div class="px-4 mt-10">{!! $salesOrderOnlines->render() !!}</div> --}}
+                        <div class="px-4 mt-10">{!! $salesOrderOnlines->render() !!}</div>
                     </td>
                 </tr>
             </x-slot>
