@@ -63,7 +63,7 @@
                 <div class="mt-1 text-right md:w-1/2">
                     @role('super-admin|manager')
                         @can('create', App\Models\SalesOrderOnline::class)
-                            <a class="mb-1" href="{{ route('sales-order-onlines.create') }}">
+                            <a href="{{ route('sales-order-onlines.create') }}">
                                 <x-jet-button>
                                     <i class="mr-1 icon ion-md-add"></i>
                                     @lang('crud.common.create') Sales
@@ -72,8 +72,8 @@
                         @endcan
                     @endrole
                     @can('create', App\Models\Customer::class)
-                        <a class="mt-1" href="{{ route('customers.create') }}">
-                            <x-jet-button>
+                        <a href="{{ route('customers.create') }}">
+                            <x-jet-button class="mt-1">
                                 <i class="mr-1 icon ion-md-add"></i>
                                 @lang('crud.common.create') Customer
                             </x-jet-button>
@@ -169,12 +169,8 @@
                                 -
                             @endforelse
                         </x-tables.td-left-hide>
-
                         <x-tables.td-left-hide>
-                            {{-- @foreach ($salesOrderOnline->products as $product)
-                                {{ $product->total += $product->pivot->quantity * $product->pivot->price }}
-                            @endforeach --}}
-                            {{ $total }}
+                            {{ $salesOrderOnline->total }}
                         </x-tables.td-left-hide>
                         @role('super-admin|manager')
                             <x-tables.td-left-hide>
@@ -185,12 +181,6 @@
                             <x-spans.status-valid class="{{ $salesOrderOnline->status_badge }}">
                                 {{ $salesOrderOnline->status_name }}</x-spans.status-valid>
                         </x-tables.td-left-hide>
-                        {{-- <x-tables.td-left-hide>{{ optional($salesOrderOnline->created_by)->name ?? '-' }}
-                        </x-tables.td-left-hide> --}}
-                        {{-- <x-tables.td-left-hide>
-                            {{ optional($salesOrderOnline->approved_by)->name ?? '-' }}
-                        </x-tables.td-left-hide> --}}
-                        {{-- <x-tables.td-left-hide>{{ $salesOrderOnline->notes ?? '-' }}</x-tables.td-left-hide> --}}
                         <td class="px-4 py-3 text-center" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @if ($salesOrderOnline->status != '2')

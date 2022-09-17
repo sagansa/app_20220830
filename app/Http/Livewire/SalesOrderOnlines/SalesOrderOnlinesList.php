@@ -84,7 +84,12 @@ class SalesOrderOnlinesList extends Component
                 }
             }
 
-
+        foreach ($salesOrderOnlines as $salesOrderOnline) {
+            $salesOrderOnline->total = 0;
+            foreach($salesOrderOnline->products as $product) {
+                $salesOrderOnline->total += ($product->pivot->quantity * $product->pivot->price);
+            }
+        }
 
         return $this->applySorting($salesOrderOnlines);
     }

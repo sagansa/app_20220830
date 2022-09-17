@@ -70,6 +70,22 @@
                                         <p>invoice purchase</p>
                                     @endif
                                 </p>
+                                <p>
+                                    @foreach ($paymentReceipt->dailySalaries as $dailySalary)
+                                        <p>{{ $dailySalary->created_by->name }} |
+                                            {{-- {{ optional($dailySalary->closingStore)->date->toFormattedDate() }} | --}}
+                                            @currency($dailySalary->amount)</p>
+                                    @endforeach
+                                    @foreach ($paymentReceipt->fuelServices as $fuelService)
+                                        <p>{{ $fuelService->vehicle->no_register }} | @currency($fuelService->amount)</p>
+                                    @endforeach
+
+                                    @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
+                                        <p>
+                                            {{ $invoicePurchase->supplier->name }} |
+                                            @currency($invoicePurchase->detailInvoices->sum('subtotal_invoice'))</p>
+                                    @endforeach
+                                </p>
                             </x-slot>
                         </x-tables.td-left-main>
 

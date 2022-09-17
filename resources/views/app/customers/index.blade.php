@@ -46,14 +46,14 @@
             <x-slot name="body">
                 @forelse($customers as $customer)
                     <tr class="hover:bg-gray-50">
-                        <x-tables.td-left>
+                        <x-tables.td-left-main>
                             <x-slot name="main"> {{ $customer->name ?? '-' }}</x-slot>
                             <x-slot name="sub">
                                 <p>{{ $customer->no_telp ?? '-' }}</p>
                                 <p>{{ $customer->status ?? '-' }}</p>
                             </x-slot>
 
-                        </x-tables.td-left>
+                        </x-tables.td-left-main>
                         <x-tables.td-right-hide>{{ $customer->no_telp ?? '-' }}</x-tables.td-right-hide>
                         <x-tables.td-left-hide>{{ $customer->status ?? '-' }}</x-tables.td-left-hide>
                         <td class="px-4 py-3 text-center" style="width: 134px;">

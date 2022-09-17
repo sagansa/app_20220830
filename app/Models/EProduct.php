@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\DataTables\HasActive;
 use App\Models\Scopes\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Livewire\DataTables\HasValid;
@@ -9,15 +10,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class EProduct extends Model
 {
-    use HasValid;
+    use HasActive;
     use HasFactory;
     use Searchable;
 
     const STATUSES = [
-        '1' => 'belum diperiksa',
-        '2' => 'valid',
-        '3' => 'diperbaiki',
-        '4' => 'periksa ulang',
+        '1' => 'active',
+        '2' => 'inactive',
     ];
 
     protected $fillable = [
