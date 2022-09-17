@@ -8,22 +8,16 @@ use App\Http\Livewire\DataTables\WithFilter;
 use App\Http\Livewire\DataTables\WithModal;
 use App\Http\Livewire\DataTables\WithPerPagePagination;
 use App\Http\Livewire\DataTables\WithSortingDate;
-use App\Models\Customer;
 use App\Models\DeliveryService;
 use App\Models\OnlineShopProvider;
 use App\Models\SalesOrderOnline;
 use App\Models\Store;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class SalesOrderOnlinesList extends Component
 {
 
-    use WithPagination;
-    // use WithPerPagePagination;
-
-    use WithSortingDate, WithModal, WithBulkAction, WithFilter;
+    use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
 
     public SalesOrderOnline $editing;
 
@@ -52,12 +46,9 @@ class SalesOrderOnlinesList extends Component
         $this->deliveryServices = DeliveryService::orderBy('name', 'asc')->pluck('id', 'name');
     }
 
-    public function render()
+    public function getRowsQueryProperty()
     {
-        $salesOrderOnlines = SalesOrderOnline::query()
-            ->orderBy('date', 'desc')
-            ->latest()
-            ->paginate(10);
+        $salesOrderOnlines = SalesOrderOnline::query();
 
         foreach ($this->filters as $filter => $value) {
                 if (!empty($value)) {
@@ -75,9 +66,19 @@ class SalesOrderOnlinesList extends Component
                 $salesOrderOnline->total += $product->pivot->quantity * $product->pivot->price;
             }
         }
+    }
 
+    public function getRowsProperty()
+    {
+        return $this->cache(function () {
+            return $this->applyPagination($this->rowsQuery);
+        });
+    }
+
+    public function render()
+    {
         return view('livewire.sales-order-onlines.sales-order-onlines-list', [
-            'salesOrderOnlines' => $salesOrderOnlines,
+            'salesOrderOnlines' => $this->rows,
         ]);
     }
 
