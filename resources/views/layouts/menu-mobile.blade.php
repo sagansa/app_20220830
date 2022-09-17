@@ -258,6 +258,9 @@
                       <x-sidebars.dropdown-link href="{{ route('utility-usages.index') }}">
                           Utility Usages
                       </x-sidebars.dropdown-link>
+                      <x-sidebars.dropdown-link href="{{ route('utilities.index') }}">
+                          Utilities
+                      </x-sidebars.dropdown-link>
                   @endcan
                   @can('view-any', App\Models\StockCard::class)
                       <x-sidebars.dropdown-link href="{{ route('stock-cards.index') }}">
@@ -447,9 +450,7 @@
                   <x-sidebars.dropdown-link href="{{ route('products.index') }}">
                       Products
                   </x-sidebars.dropdown-link>
-                  <x-sidebars.dropdown-link href="{{ route('utilities.index') }}">
-                      Utilities
-                  </x-sidebars.dropdown-link>
+
                   <x-sidebars.dropdown-link href="{{ route('units.index') }}">
                       Units
                   </x-sidebars.dropdown-link>

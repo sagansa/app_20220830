@@ -115,18 +115,20 @@
                         @endif
                     </x-spans.sort>
                 </x-tables.th-left>
-                <x-tables.th-left>@lang('crud.products.inputs.unit_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.products.inputs.material_group_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.products.inputs.payment_type_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.products.inputs.product_group_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.products.inputs.request')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.products.inputs.remaining')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.products.inputs.unit_id')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.products.inputs.material_group_id')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.products.inputs.payment_type_id')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.products.inputs.product_group_id')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.products.inputs.request')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.products.inputs.remaining')</x-tables.th-left-hide>
                 <th></th>
             </x-slot>
             <x-slot name="body">
                 @forelse($products as $product)
                     <tr class="hover:bg-gray-50">
-                        <x-tables.td-left-hide>
+                        <x-tables.td-left-main>
+                            <x-slot name="main"></x-slot>
+                            <x-slot name="sub"></x-slot>
                             @if ($product->image == null)
                                 <x-partials.thumbnail src="" />
                             @else
@@ -135,7 +137,7 @@
                                         src="{{ $product->image ? \Storage::url($product->image) : '' }}" />
                                 </a>
                             @endif
-                        </x-tables.td-left-hide>
+                        </x-tables.td-left-main>
 
                         <x-tables.td-left-hide>{{ $product->name ?? '-' }}</x-tables.td-left-hide>
                         <x-tables.td-left-hide>{{ optional($product->unit)->unit ?? '-' }}</x-tables.td-left-hide>
