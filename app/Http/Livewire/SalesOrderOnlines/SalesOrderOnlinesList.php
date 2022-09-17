@@ -16,7 +16,6 @@ use Livewire\Component;
 
 class SalesOrderOnlinesList extends Component
 {
-
     use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
 
     public SalesOrderOnline $editing;
@@ -66,6 +65,8 @@ class SalesOrderOnlinesList extends Component
                 $salesOrderOnline->total += $product->pivot->quantity * $product->pivot->price;
             }
         }
+
+        return $this->applySorting($salesOrderOnlines);
     }
 
     public function getRowsProperty()
