@@ -66,7 +66,7 @@
                             <a href="{{ route('sales-order-onlines.create') }}">
                                 <x-jet-button>
                                     <i class="mr-1 icon ion-md-add"></i>
-                                    @lang('crud.common.create') Sales
+                                    Sales
                                 </x-jet-button>
                             </a>
                         @endcan
@@ -75,7 +75,7 @@
                         <a href="{{ route('customers.create') }}">
                             <x-jet-button class="mt-1">
                                 <i class="mr-1 icon ion-md-add"></i>
-                                @lang('crud.common.create') Customer
+                                Customer
                             </x-jet-button>
                         </a>
                     @endcan
@@ -170,7 +170,7 @@
                             @endforelse
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
-                            {{ $salesOrderOnline->total }}
+                            @currency($salesOrderOnline->total)
                         </x-tables.td-left-hide>
                         @role('super-admin|manager')
                             <x-tables.td-left-hide>
@@ -212,7 +212,7 @@
             <x-slot name="foot">
                 <tr>
                     <td colspan="12">
-                        <div class="px-4 mt-10">{!! $salesOrderOnlines->render() !!}</div>
+                        {{-- <div class="px-4 mt-10">{!! $salesOrderOnlines->render() !!}</div> --}}
                     </td>
                 </tr>
             </x-slot>

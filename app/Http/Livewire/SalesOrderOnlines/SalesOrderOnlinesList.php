@@ -20,7 +20,7 @@ use Livewire\WithPagination;
 class SalesOrderOnlinesList extends Component
 {
 
-    use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
+    use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithFilter;
 
     // public SalesOrderOnline $salesOrderOnline;
     use WithPagination;
@@ -69,9 +69,9 @@ class SalesOrderOnlinesList extends Component
         }
     }
 
-    public function getRowsQueryProperty()
+    public function render()
     {
-        $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')->latest();
+        $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')->latest()->paginate(10);
 
         foreach ($this->filters as $filter => $value) {
                 if (!empty($value)) {
@@ -86,25 +86,13 @@ class SalesOrderOnlinesList extends Component
 
         foreach ($salesOrderOnlines as $salesOrderOnline) {
             $salesOrderOnline->total = 0;
-            foreach($salesOrderOnline->products as $product) {
-                $salesOrderOnline->total += ($product->pivot->quantity * $product->pivot->price);
+            foreach ($salesOrderOnline->products as $product) {
+                $salesOrderOnline->total += $product->pivot->quantity * $product->pivot->price;
             }
         }
 
-        return $this->applySorting($salesOrderOnlines);
-    }
-
-     public function render(SalesOrderOnline $salesOrderOnline)
-    {
-        $total = 0;
-
-        foreach ($salesOrderOnline->products as $product) {
-            $total += $product->pivot->quantity;
-        }
-
         return view('livewire.sales-order-onlines.sales-order-onlines-list', [
-            'salesOrderOnlines' => $this->rows,
-            'total' => $total,
+            'salesOrderOnlines' => $salesOrderOnlines,
         ]);
     }
 
