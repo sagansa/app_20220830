@@ -54,7 +54,8 @@ class SalesOrderOnlinesList extends Component
 
     public function render()
     {
-        $salesOrderOnlines = SalesOrderOnline::orderBy('date', 'desc')
+        $salesOrderOnlines = SalesOrderOnline::query()
+            ->orderBy('date', 'desc')
             ->latest()
             ->paginate(10);
 
