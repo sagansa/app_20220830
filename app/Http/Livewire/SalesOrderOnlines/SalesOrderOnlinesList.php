@@ -96,14 +96,14 @@ class SalesOrderOnlinesList extends Component
             }
         }
 
-        $salesOrderOnlines->orderBy('date', 'desc')->latest();
-
         foreach ($salesOrderOnlines as $salesOrderOnline) {
             $salesOrderOnline->total = 0;
             foreach ($salesOrderOnline->products as $product) {
                 $salesOrderOnline->total += $product->pivot->quantity * $product->pivot->price;
             }
         }
+
+        $salesOrderOnlines->orderBy('date', 'desc')->latest();
 
         return view('livewire.sales-order-onlines.sales-order-onlines-list', [
             'salesOrderOnlines' => $salesOrderOnlines->paginate(10),
