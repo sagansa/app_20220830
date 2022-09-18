@@ -84,8 +84,7 @@ class SalesOrderOnlinesList extends Component
 
     public function render()
     {
-        $salesOrderOnlines = SalesOrderOnline::query()
-            ->orderBy('date', 'desc');
+        $salesOrderOnlines = SalesOrderOnline::query();
 
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
@@ -96,6 +95,8 @@ class SalesOrderOnlinesList extends Component
                     ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
             }
         }
+
+        $salesOrderOnlines->orderBy('date', 'desc')->latest();
 
         foreach ($salesOrderOnlines as $salesOrderOnline) {
             $salesOrderOnline->total = 0;
