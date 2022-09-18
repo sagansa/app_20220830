@@ -17,34 +17,34 @@ use Livewire\WithPagination;
 
 class SalesOrderOnlinesList extends Component
 {
-    // use WithPerPagePagination;
-    // use WithSortingDate;
+    use WithPerPagePagination;
+    use WithSortingDate;
     // use WithModal;
-    // use WithBulkAction;
+    use WithBulkAction;
     // use WithCachedRows;
-    // use WithFilter;
+    use WithFilter;
 
-    use WithPagination;
+    // use WithPagination;
 
-    // public SalesOrderOnline $editing;
+    public SalesOrderOnline $editing;
 
-    // public $sortColumn = 'sales_order_onlines.date';
+    public $sortColumn = 'sales_order_onlines.date';
 
-    // protected $queryString = [
-    //     'sortColumn' => [
-    //     'except' => 'sales_order_onlines.date'
-    //     ],
-    //     'sortDirection' => [
-    //         'except' => 'desc',
-    //     ],
-    // ];
+    protected $queryString = [
+        'sortColumn' => [
+        'except' => 'sales_order_onlines.date'
+        ],
+        'sortDirection' => [
+            'except' => 'desc',
+        ],
+    ];
 
-    // public $filters = [
-    //     'store_id' => null,
-    //     'supplier_id' => null,
-    //     'payment_type_id' => null,
-    //     'status' => '',
-    // ];
+    public $filters = [
+        'store_id' => null,
+        'supplier_id' => null,
+        'payment_type_id' => null,
+        'status' => '',
+    ];
 
     public function mount()
     {
@@ -88,15 +88,15 @@ class SalesOrderOnlinesList extends Component
     {
         $salesOrderOnlines = SalesOrderOnline::latest()->paginate(10);
 
-        // foreach ($this->filters as $filter => $value) {
-        //     if (!empty($value)) {
-        //         $salesOrderOnlines
-        //             ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
-        //             ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
-        //             ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
-        //             ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
-        //     }
-        // }
+        foreach ($this->filters as $filter => $value) {
+            if (!empty($value)) {
+                $salesOrderOnlines
+                    ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
+                    ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
+                    ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
+                    ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
+            }
+        }
 
         foreach ($salesOrderOnlines as $salesOrderOnline) {
             $salesOrderOnline->total = 0;
@@ -119,14 +119,14 @@ class SalesOrderOnlinesList extends Component
     //     $this->reset(['selectedRows']);
     // }
 
-    // public function markAllAsValid()
-    // {
-    //     SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
-    //         'status' => '2',
-    //     ]);
+    public function markAllAsValid()
+    {
+        SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
+            'status' => '2',
+        ]);
 
-    //     $this->reset(['selectedRows']);
-    // }
+        $this->reset(['selectedRows']);
+    }
 
     // public function markAllAsSudahDikirim()
     // {
@@ -146,14 +146,14 @@ class SalesOrderOnlinesList extends Component
     //     $this->reset(['selectedRows']);
     // }
 
-    // public function markAllAsPerbaiki()
-    // {
-    //     SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
-    //         'status' => '4',
-    //     ]);
+    public function markAllAsPerbaiki()
+    {
+        SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
+            'status' => '4',
+        ]);
 
-    //     $this->reset(['selectedRows']);
-    // }
+        $this->reset(['selectedRows']);
+    }
 
     // public function markAllAsSiapDikirim()
     // {

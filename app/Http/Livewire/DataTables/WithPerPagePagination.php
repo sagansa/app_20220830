@@ -25,10 +25,4 @@ trait WithPerPagePagination
         return $query->paginate($this->perPage);
     }
 
-    public function getRowsProperty()
-    {
-        return $this->cache(function () {
-            return $this->applyPagination($this->rowsQuery);
-        });
-    }
 }
