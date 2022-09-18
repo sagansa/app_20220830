@@ -84,7 +84,7 @@ class SalesOrderOnlinesList extends Component
 
     public function render()
     {
-        $salesOrderOnlines = SalesOrderOnline::query();
+        $salesOrderOnlines = SalesOrderOnline::query()->paginate(10);
 
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
@@ -103,10 +103,8 @@ class SalesOrderOnlinesList extends Component
             }
         }
 
-        // $salesOrderOnlines->orderBy('date', 'desc')->latest();
-
         return view('livewire.sales-order-onlines.sales-order-onlines-list', [
-            'salesOrderOnlines' => $salesOrderOnlines->paginate(10),
+            'salesOrderOnlines' => $salesOrderOnlines,
         ]);
     }
 
