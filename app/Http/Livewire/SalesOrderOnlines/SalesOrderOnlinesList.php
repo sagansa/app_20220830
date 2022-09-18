@@ -13,30 +13,38 @@ use App\Models\OnlineShopProvider;
 use App\Models\SalesOrderOnline;
 use App\Models\Store;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class SalesOrderOnlinesList extends Component
 {
-    use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
+    // use WithPerPagePagination;
+    // use WithSortingDate;
+    // use WithModal;
+    // use WithBulkAction;
+    // use WithCachedRows;
+    // use WithFilter;
 
-    public SalesOrderOnline $editing;
+    use WithPagination;
 
-    public $sortColumn = 'sales_order_onlines.date';
+    // public SalesOrderOnline $editing;
 
-    protected $queryString = [
-        'sortColumn' => [
-        'except' => 'sales_order_onlines.date'
-        ],
-        'sortDirection' => [
-            'except' => 'desc',
-        ],
-    ];
+    // public $sortColumn = 'sales_order_onlines.date';
 
-    public $filters = [
-        'store_id' => null,
-        'supplier_id' => null,
-        'payment_type_id' => null,
-        'status' => '',
-    ];
+    // protected $queryString = [
+    //     'sortColumn' => [
+    //     'except' => 'sales_order_onlines.date'
+    //     ],
+    //     'sortDirection' => [
+    //         'except' => 'desc',
+    //     ],
+    // ];
+
+    // public $filters = [
+    //     'store_id' => null,
+    //     'supplier_id' => null,
+    //     'payment_type_id' => null,
+    //     'status' => '',
+    // ];
 
     public function mount()
     {
@@ -45,19 +53,50 @@ class SalesOrderOnlinesList extends Component
         $this->deliveryServices = DeliveryService::orderBy('name', 'asc')->pluck('id', 'name');
     }
 
-    public function getRowsQueryProperty()
-    {
-        $salesOrderOnlines = SalesOrderOnline::query();
+    // public function getRowsQueryProperty()
+    // {
+    //     $salesOrderOnlines = SalesOrderOnline::query();
 
-        foreach ($this->filters as $filter => $value) {
-                if (!empty($value)) {
-                    $salesOrderOnlines
-                        ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
-                        ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
-                        ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
-                        ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
-                }
-            }
+    //     foreach ($this->filters as $filter => $value) {
+    //             if (!empty($value)) {
+    //                 $salesOrderOnlines
+    //                     ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
+    //                     ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
+    //                     ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
+    //                     ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
+    //             }
+    //         }
+
+    //     return $this->applySorting($salesOrderOnlines);
+    // }
+
+    // public function getRowsProperty()
+    // {
+    //     return $this->cache(function () {
+    //         return $this->applyPagination($this->rowsQuery);
+    //     });
+    // }
+
+    // public function render()
+    // {
+    //     return view('livewire.sales-order-onlines.sales-order-onlines-list', [
+    //         'salesOrderOnlines' => $this->rows,
+    //     ]);
+    // }
+
+    public function render()
+    {
+        $salesOrderOnlines = SalesOrderOnline::query()->paginate(10);
+
+        // foreach ($this->filters as $filter => $value) {
+        //     if (!empty($value)) {
+        //         $salesOrderOnlines
+        //             ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
+        //             ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
+        //             ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
+        //             ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
+        //     }
+        // }
 
         foreach ($salesOrderOnlines as $salesOrderOnline) {
             $salesOrderOnline->total = 0;
@@ -66,74 +105,62 @@ class SalesOrderOnlinesList extends Component
             }
         }
 
-        return $this->applySorting($salesOrderOnlines);
-    }
-
-    public function getRowsProperty()
-    {
-        return $this->cache(function () {
-            return $this->applyPagination($this->rowsQuery);
-        });
-    }
-
-    public function render()
-    {
         return view('livewire.sales-order-onlines.sales-order-onlines-list', [
-            'salesOrderOnlines' => $this->rows,
+            'salesOrderOnlines' => $salesOrderOnlines,
         ]);
     }
 
-    public function markAllAsBelumDikirim()
-    {
-        SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
-            'status' => '1',
-        ]);
+    // public function markAllAsBelumDikirim()
+    // {
+    //     SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
+    //         'status' => '1',
+    //     ]);
 
-        $this->reset(['selectedRows']);
-    }
+    //     $this->reset(['selectedRows']);
+    // }
 
-    public function markAllAsValid()
-    {
-        SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
-            'status' => '2',
-        ]);
+    // public function markAllAsValid()
+    // {
+    //     SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
+    //         'status' => '2',
+    //     ]);
 
-        $this->reset(['selectedRows']);
-    }
+    //     $this->reset(['selectedRows']);
+    // }
 
-    public function markAllAsSudahDikirim()
-    {
-        SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
-            'status' => '3',
-        ]);
+    // public function markAllAsSudahDikirim()
+    // {
+    //     SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
+    //         'status' => '3',
+    //     ]);
 
-        $this->reset(['selectedRows']);
-    }
+    //     $this->reset(['selectedRows']);
+    // }
 
-    public function markAllAsDikembalikan()
-    {
-        SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
-            'status' => '6',
-        ]);
+    // public function markAllAsDikembalikan()
+    // {
+    //     SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
+    //         'status' => '6',
+    //     ]);
 
-        $this->reset(['selectedRows']);
-    }
+    //     $this->reset(['selectedRows']);
+    // }
 
-    public function markAllAsPerbaiki()
-    {
-        SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
-            'status' => '4',
-        ]);
+    // public function markAllAsPerbaiki()
+    // {
+    //     SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
+    //         'status' => '4',
+    //     ]);
 
-        $this->reset(['selectedRows']);
-    }
+    //     $this->reset(['selectedRows']);
+    // }
 
-    public function markAllAsSiapDikirim()
-    {
-        SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
-            'status' => '6',
-        ]);
+    // public function markAllAsSiapDikirim()
+    // {
+    //     SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
+    //         'status' => '6',
+    //     ]);
 
-        $this->reset(['selectedRows']);
-    }
+    //     $this->reset(['selectedRows']);
+    // }
 }

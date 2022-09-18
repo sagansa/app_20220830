@@ -6,7 +6,7 @@
         <p class="mt-2 text-xs text-gray-700">Laporan penjualan untuk order dari online shop</p>
     </x-slot>
 
-    <x-tables.topbar>
+    {{-- <x-tables.topbar>
         <x-slot name="search">
             <x-buttons.link wire:click.prevent="$toggle('showFilters')">
                 @if ($showFilters)
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </x-slot>
-    </x-tables.topbar>
+    </x-tables.topbar> --}}
 
     <x-tables.card>
         <x-table>
