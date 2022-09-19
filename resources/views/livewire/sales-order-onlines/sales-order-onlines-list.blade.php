@@ -14,7 +14,7 @@
                 @endif Advanced Search...
             </x-buttons.link>
             @if ($showFilters)
-                <x-filters.group>
+                {{-- <x-filters.group>
                     <x-filters.label>Store</x-filters.label>
                     <x-filters.select wire:model="filters.store_id">
                         @foreach ($stores as $label => $value)
@@ -38,7 +38,7 @@
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </x-filters.select>
-                </x-filters.group>
+                </x-filters.group> --}}
                 <x-filters.group>
                     <x-filters.label>Status</x-filters.label>
                     <x-filters.select wire:model="filters.status">
@@ -91,13 +91,8 @@
                     <th></th>
                 @endrole
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.image')</x-tables.th-left-hide>
-                <x-tables.th-left wire:click="sortByColumn('date')">
+                <x-tables.th-left>
                     <x-spans.sort>@lang('crud.sales_order_onlines.inputs.store_id') - @lang('crud.sales_order_onlines.inputs.date')</x-spans.sort>
-                    @if ($sortColumn == 'date')
-                        @include('svg.sort-' . $sortDirection)
-                    @else
-                        @include('svg.sort')
-                    @endif
                 </x-tables.th-left>
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.online_shop_provider_id')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.delivery_service_id')</x-tables.th-left-hide>

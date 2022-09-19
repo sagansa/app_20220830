@@ -18,7 +18,7 @@ use Livewire\WithPagination;
 class SalesOrderOnlinesList extends Component
 {
     use WithPerPagePagination;
-    use WithSortingDate;
+    // use WithSortingDate;
     // use WithModal;
     use WithBulkAction;
     // use WithCachedRows;
@@ -26,16 +26,11 @@ class SalesOrderOnlinesList extends Component
 
     public SalesOrderOnline $editing;
 
-    public $sortColumn = 'sales_order_onlines.date';
+    public array $selected = [];
 
-    protected $queryString = [
-        'sortColumn' => [
-        'except' => 'sales_order_onlines.date'
-        ],
-        'sortDirection' => [
-            'except' => 'desc',
-        ],
-    ];
+    // public $sortColumn = 'sales_order_onlines.date';
+
+    // public string $sortDirection = 'asc';
 
     public $filters = [
         'store_id' => null,
@@ -51,47 +46,19 @@ class SalesOrderOnlinesList extends Component
         $this->deliveryServices = DeliveryService::orderBy('name', 'asc')->pluck('id', 'name');
     }
 
-    // public function getRowsQueryProperty()
-    // {
-    //     $salesOrderOnlines = SalesOrderOnline::query();
-
-    //     foreach ($this->filters as $filter => $value) {
-    //             if (!empty($value)) {
-    //                 $salesOrderOnlines
-    //                     ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
-    //                     ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
-    //                     ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
-    //                     ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
-    //             }
-    //         }
-
-    //     return $this->applySorting($salesOrderOnlines);
-    // }
-
-    // public function getRowsProperty()
-    // {
-    //     return $this->cache(function () {
-    //         return $this->applyPagination($this->rowsQuery);
-    //     });
-    // }
-
-    // public function render()
-    // {
-    //     return view('livewire.sales-order-onlines.sales-order-onlines-list', [
-    //         'salesOrderOnlines' => $this->rows,
-    //     ]);
-    // }
-
     public function render()
     {
+<<<<<<< HEAD
         $salesOrderOnlines = SalesOrderOnline::query();
+=======
+        $salesOrderOnlines = SalesOrderOnline::query()
+            ->orderBy('date', 'desc')
+            ->latest();
+>>>>>>> f7bc24b16a7fcd38167a193a0cef5b28d0c2ea1a
 
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
                 $salesOrderOnlines
-                    ->when($filter == 'store_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('store', 'id', $value))
-                    ->when($filter == 'online_shop_provider_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('onlineShopProvider', 'id', $value))
-                    ->when($filter == 'delivery_service_id', fn($salesOrderOnlines) => $salesOrderOnlines->whereRelation('deliveryService', 'id', $value))
                     ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
             }
         }
@@ -108,14 +75,20 @@ class SalesOrderOnlinesList extends Component
         ]);
     }
 
-    // public function markAllAsBelumDikirim()
-    // {
-    //     SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
-    //         'status' => '1',
-    //     ]);
+    public function getSelectedCountProperty()
+    {
+        return count($this->selected);
+    }
 
-    //     $this->reset(['selectedRows']);
-    // }
+    public function sortByColumn($column)
+    {
+        if ($this->sortColumn == $column) {
+            $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->reset('sortDirection');
+            $this->sortColumn = $column;
+        }
+    }
 
     public function markAllAsValid()
     {
@@ -126,24 +99,6 @@ class SalesOrderOnlinesList extends Component
         $this->reset(['selectedRows']);
     }
 
-    // public function markAllAsSudahDikirim()
-    // {
-    //     SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
-    //         'status' => '3',
-    //     ]);
-
-    //     $this->reset(['selectedRows']);
-    // }
-
-    // public function markAllAsDikembalikan()
-    // {
-    //     SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
-    //         'status' => '6',
-    //     ]);
-
-    //     $this->reset(['selectedRows']);
-    // }
-
     public function markAllAsPerbaiki()
     {
         SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
@@ -153,12 +108,4 @@ class SalesOrderOnlinesList extends Component
         $this->reset(['selectedRows']);
     }
 
-    // public function markAllAsSiapDikirim()
-    // {
-    //     SalesOrderOnline::whereIn('id', $this->selectedRows)->update([
-    //         'status' => '6',
-    //     ]);
-
-    //     $this->reset(['selectedRows']);
-    // }
 }
