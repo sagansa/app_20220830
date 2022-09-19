@@ -173,7 +173,7 @@
                             @endforelse
                         </x-tables.td-left-hide>
                         <x-tables.td-right-hide>
-                            @currency($salesOrderOnline->total)
+                            {{ $salesOrderOnline->products->sum('pivot.quantity * pivot.price') }}
                         </x-tables.td-right-hide>
                         @role('super-admin|manager')
                             <x-tables.td-left-hide>

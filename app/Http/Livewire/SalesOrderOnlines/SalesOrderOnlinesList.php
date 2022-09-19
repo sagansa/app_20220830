@@ -48,9 +48,9 @@ class SalesOrderOnlinesList extends Component
 
     public function render()
     {
-        $salesOrderOnlines = SalesOrderOnline::query()
+        $salesOrderOnlines = SalesOrderOnline::with('products')
             ->orderBy('date', 'desc')
-            ->latest();
+            ->latest()->paginate(10);
 
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
@@ -59,15 +59,15 @@ class SalesOrderOnlinesList extends Component
             }
         }
 
-        foreach ($salesOrderOnlines as $salesOrderOnline) {
-            $salesOrderOnline->total = 0;
-            foreach ($salesOrderOnline->products as $product) {
-                $salesOrderOnline->total += $product->pivot->quantity * $product->pivot->price;
-            }
-        }
+        // foreach ($salesOrderOnlines as $salesOrderOnline) {
+        //     $salesOrderOnline->total = 0;
+        //     foreach ($salesOrderOnline->products as $product) {
+        //         $salesOrderOnline->total += $product->pivot->quantity * $product->pivot->price;
+        //     }
+        // }
 
         return view('livewire.sales-order-onlines.sales-order-onlines-list', [
-            'salesOrderOnlines' => $salesOrderOnlines->paginate(10),
+            'salesOrderOnlines' => $salesOrderOnlines,
         ]);
     }
 
