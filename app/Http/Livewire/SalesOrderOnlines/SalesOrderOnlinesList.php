@@ -48,9 +48,19 @@ class SalesOrderOnlinesList extends Component
 
     public function render()
     {
+<<<<<<< HEAD
         $salesOrderOnlines = SalesOrderOnline::with('products')
             ->orderBy('date', 'desc')
             ->latest()->paginate(10);
+=======
+<<<<<<< HEAD
+        $salesOrderOnlines = SalesOrderOnline::query();
+=======
+        $salesOrderOnlines = SalesOrderOnline::query()
+            ->orderBy('date', 'desc')
+            ->latest();
+>>>>>>> f7bc24b16a7fcd38167a193a0cef5b28d0c2ea1a
+>>>>>>> 98c1fd20381f7473ff4015d974a47ca5939c4571
 
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
