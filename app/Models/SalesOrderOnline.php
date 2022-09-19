@@ -99,4 +99,10 @@ class SalesOrderOnline extends Model
             unlink('storage/' . $this->image_sent);
         }
     }
+
+    public function getTotalPrice() {
+        return $this->products->sum(function($product) {
+            return $product->quantity * $product->price;
+        });
+    }
 }

@@ -220,7 +220,7 @@
             <x-slot name="foot">
                 <tr>
                     <td colspan="12">
-                        <div class="px-4 my-2">{{ $salesOrderOnlines->render() }}</div>
+                        <div class="px-4 my-2">{{ $salesOrderOnlines->links() }}</div>
                     </td>
                 </tr>
             </x-slot>
