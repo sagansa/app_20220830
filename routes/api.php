@@ -23,7 +23,6 @@ use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\CashlessController;
 use App\Http\Controllers\Api\EProductController;
 use App\Http\Controllers\Api\UserCartsController;
-use App\Http\Controllers\Api\StockCardController;
 use App\Http\Controllers\Api\UserStoresController;
 use App\Http\Controllers\Api\ShiftStoreController;
 use App\Http\Controllers\Api\ProductionController;
@@ -41,7 +40,6 @@ use App\Http\Controllers\Api\UserHygienesController;
 use App\Http\Controllers\Api\ProductGroupController;
 use App\Http\Controllers\Api\UnitProductsController;
 use App\Http\Controllers\Api\CleanAndNeatController;
-use App\Http\Controllers\Api\OutInProductController;
 use App\Http\Controllers\Api\UtilityUsageController;
 use App\Http\Controllers\Api\ProductionToController;
 use App\Http\Controllers\Api\ClosingStoreController;
@@ -65,7 +63,6 @@ use App\Http\Controllers\Api\StoreCashlessController;
 use App\Http\Controllers\Api\DetailRequestController;
 use App\Http\Controllers\Api\DetailInvoiceController;
 use App\Http\Controllers\Api\EProductCartsController;
-use App\Http\Controllers\Api\UserStockCardsController;
 use App\Http\Controllers\Api\StoreUtilitiesController;
 use App\Http\Controllers\Api\StoreEProductsController;
 use App\Http\Controllers\Api\StorePresencesController;
@@ -79,7 +76,6 @@ use App\Http\Controllers\Api\ProductionFromController;
 use App\Http\Controllers\Api\PaymentReceiptController;
 use App\Http\Controllers\Api\EmployeeSavingsController;
 use App\Http\Controllers\Api\UserProductionsController;
-use App\Http\Controllers\Api\StoreStockCardsController;
 use App\Http\Controllers\Api\DeliveryAddressController;
 use App\Http\Controllers\Api\ReceiptLoyverseController;
 use App\Http\Controllers\Api\UtilityProviderController;
@@ -101,7 +97,6 @@ use App\Http\Controllers\Api\ContractLocationController;
 use App\Http\Controllers\Api\UserClosingStoresController;
 use App\Http\Controllers\Api\UserCleanAndNeatsController;
 use App\Http\Controllers\Api\UserUtilityUsagesController;
-use App\Http\Controllers\Api\UserOutInProductsController;
 use App\Http\Controllers\Api\UserDailySalariesController;
 use App\Http\Controllers\Api\WorkingExperienceController;
 use App\Http\Controllers\Api\UserMaterialGroupsController;
@@ -138,9 +133,7 @@ use App\Http\Controllers\Api\UserInvoicePurchasesController;
 use App\Http\Controllers\Api\StoreRemainingStocksController;
 use App\Http\Controllers\Api\ProductGroupProductsController;
 use App\Http\Controllers\Api\ProductProductionTosController;
-use App\Http\Controllers\Api\ProductOutInProductsController;
 use App\Http\Controllers\Api\UtilityUtilityUsagesController;
-use App\Http\Controllers\Api\OutInProductProductsController;
 use App\Http\Controllers\Api\UserSalesOrderOnlinesController;
 use App\Http\Controllers\Api\StoreSelfConsumptionsController;
 use App\Http\Controllers\Api\StoreRequestPurchasesController;
@@ -163,8 +156,6 @@ use App\Http\Controllers\Api\MonthlySalaryPresencesController;
 use App\Http\Controllers\Api\OnlineCategoryProductsController;
 use App\Http\Controllers\Api\ProductRemainingStocksController;
 use App\Http\Controllers\Api\product_transfer_stockController;
-use App\Http\Controllers\Api\out_in_product_productController;
-use App\Http\Controllers\Api\StockCardOutInProductsController;
 use App\Http\Controllers\Api\ClosingStoreCashlessesController;
 use App\Http\Controllers\Api\UserSalesOrderEmployeesController;
 use App\Http\Controllers\Api\OnlineCategoryEProductsController;
@@ -218,7 +209,6 @@ use App\Http\Controllers\Api\PaymentReceiptDailySalariesController;
 use App\Http\Controllers\Api\ProductPurchaseOrderProductsController;
 use App\Http\Controllers\Api\product_sales_order_employeeController;
 use App\Http\Controllers\Api\ClosingStoreInvoicePurchasesController;
-use App\Http\Controllers\Api\DeliveryServiceOutInProductsController;
 use App\Http\Controllers\Api\InvoicePurchaseClosingStoresController;
 use App\Http\Controllers\Api\fuel_service_payment_receiptController;
 use App\Http\Controllers\Api\daily_salary_payment_receiptController;
@@ -709,16 +699,6 @@ Route::name('api.')
             'store',
         ])->name('users.self-consumptions.store');
 
-        // User Stock Cards
-        Route::get('/users/{user}/stock-cards', [
-            UserStockCardsController::class,
-            'index',
-        ])->name('users.stock-cards.index');
-        Route::post('/users/{user}/stock-cards', [
-            UserStockCardsController::class,
-            'store',
-        ])->name('users.stock-cards.store');
-
         // User Vehicle Taxes
         Route::get('/users/{user}/vehicle-taxes', [
             UserVehicleTaxesController::class,
@@ -738,26 +718,6 @@ Route::name('api.')
             UserRefundsController::class,
             'store',
         ])->name('users.refunds.store');
-
-        // User Out In Products Created
-        Route::get('/users/{user}/out-in-products', [
-            UserOutInProductsController::class,
-            'index',
-        ])->name('users.out-in-products.index');
-        Route::post('/users/{user}/out-in-products', [
-            UserOutInProductsController::class,
-            'store',
-        ])->name('users.out-in-products.store');
-
-        // User Out In Products Approved
-        Route::get('/users/{user}/out-in-products', [
-            UserOutInProductsController::class,
-            'index',
-        ])->name('users.out-in-products.index');
-        Route::post('/users/{user}/out-in-products', [
-            UserOutInProductsController::class,
-            'store',
-        ])->name('users.out-in-products.store');
 
         // User Carts
         Route::get('/users/{user}/carts', [
@@ -1022,16 +982,6 @@ Route::name('api.')
             StoreSelfConsumptionsController::class,
             'store',
         ])->name('stores.self-consumptions.store');
-
-        // Store Stock Cards
-        Route::get('/stores/{store}/stock-cards', [
-            StoreStockCardsController::class,
-            'index',
-        ])->name('stores.stock-cards.index');
-        Route::post('/stores/{store}/stock-cards', [
-            StoreStockCardsController::class,
-            'store',
-        ])->name('stores.stock-cards.store');
 
         // Store Utilities
         Route::get('/stores/{store}/utilities', [
@@ -1574,20 +1524,6 @@ Route::name('api.')
             [ProductSelfConsumptionsController::class, 'destroy']
         )->name('products.self-consumptions.destroy');
 
-        // Product Out In Products
-        Route::get('/products/{product}/out-in-products', [
-            ProductOutInProductsController::class,
-            'index',
-        ])->name('products.out-in-products.index');
-        Route::post('/products/{product}/out-in-products/{outInProduct}', [
-            ProductOutInProductsController::class,
-            'store',
-        ])->name('products.out-in-products.store');
-        Route::delete('/products/{product}/out-in-products/{outInProduct}', [
-            ProductOutInProductsController::class,
-            'destroy',
-        ])->name('products.out-in-products.destroy');
-
         Route::apiResource('banks', BankController::class);
 
         // Bank Employees
@@ -1814,22 +1750,6 @@ Route::name('api.')
             [SelfConsumptionProductsController::class, 'destroy']
         )->name('self-consumptions.products.destroy');
 
-        Route::apiResource('out-in-products', OutInProductController::class);
-
-        // OutInProduct Products
-        Route::get('/out-in-products/{outInProduct}/products', [
-            OutInProductProductsController::class,
-            'index',
-        ])->name('out-in-products.products.index');
-        Route::post('/out-in-products/{outInProduct}/products/{product}', [
-            OutInProductProductsController::class,
-            'store',
-        ])->name('out-in-products.products.store');
-        Route::delete('/out-in-products/{outInProduct}/products/{product}', [
-            OutInProductProductsController::class,
-            'destroy',
-        ])->name('out-in-products.products.destroy');
-
         Route::apiResource('rooms', RoomController::class);
 
         // Room Hygiene Of Rooms
@@ -1841,18 +1761,6 @@ Route::name('api.')
             RoomHygieneOfRoomsController::class,
             'store',
         ])->name('rooms.hygiene-of-rooms.store');
-
-        Route::apiResource('stock-cards', StockCardController::class);
-
-        // StockCard Out In Products
-        Route::get('/stock-cards/{stockCard}/out-in-products', [
-            StockCardOutInProductsController::class,
-            'index',
-        ])->name('stock-cards.out-in-products.index');
-        Route::post('/stock-cards/{stockCard}/out-in-products', [
-            StockCardOutInProductsController::class,
-            'store',
-        ])->name('stock-cards.out-in-products.store');
 
         Route::apiResource(
             'employee-statuses',
@@ -2069,16 +1977,6 @@ Route::name('api.')
             'delivery-services',
             DeliveryServiceController::class
         );
-
-        // DeliveryService Out In Products
-        Route::get('/delivery-services/{deliveryService}/out-in-products', [
-            DeliveryServiceOutInProductsController::class,
-            'index',
-        ])->name('delivery-services.out-in-products.index');
-        Route::post('/delivery-services/{deliveryService}/out-in-products', [
-            DeliveryServiceOutInProductsController::class,
-            'store',
-        ])->name('delivery-services.out-in-products.store');
 
         // DeliveryService Sales Order Onlines
         Route::get('/delivery-services/{deliveryService}/sales-order-onlines', [

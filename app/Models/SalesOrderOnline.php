@@ -24,7 +24,6 @@ class SalesOrderOnline extends Model
 
     protected $fillable = [
         'image',
-        'image_sent',
         'store_id',
         'online_shop_provider_id',
         'delivery_service_id',
@@ -36,6 +35,7 @@ class SalesOrderOnline extends Model
         'notes',
         'created_by_id',
         'approved_by_id',
+        'image_sent',
     ];
 
     protected $searchableFields = ['*'];
@@ -100,9 +100,14 @@ class SalesOrderOnline extends Model
         }
     }
 
-    public function getTotalPrice() {
-        return $this->products->sum(function($product) {
-            return $product->quantity * $product->price;
-        });
+    public function getTotalAttribute()
+    {
+        $this->salesOrderOnline->totals = 0;
+
+        foreach ($this->products as $product) {
+            $this->salesOrderOnline->totals += $product->pivot->price * $product->pivot->quantity;
+        }
+
+        return $this->salesOrderOnline->totals;
     }
 }

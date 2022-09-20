@@ -16,6 +16,11 @@ Route::prefix('/')
         Route::get('request-purchase-approvals', RequestPurchaseApprovals::class)->name('request-purchase-approvals');
 
         Route::get('e-products/{e-product}', EProductShow::class)->name('e-products.detail');
+
+        // Route::get('sales-order-onlines', SalesOrderOnlinesList::class)->name('sales-order-onlines.index');
+        // Route::get('sales-order-onlines/create', SalesOrderOnlineForm::class)->name('sales-order-onlines.create');
+        // Route::get('sales-order-onlines/{salesOrderOnline}', SalesOrderOnlineForm::class)->name('sales-order-onlines.edit');
+
     });
 
 

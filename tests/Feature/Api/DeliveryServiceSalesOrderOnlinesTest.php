@@ -70,6 +70,9 @@ class DeliveryServiceSalesOrderOnlinesTest extends TestCase
             $data
         );
 
+        unset($data['created_by_id']);
+        unset($data['approved_by_id']);
+
         $this->assertDatabaseHas('sales_order_onlines', $data);
 
         $response->assertStatus(201)->assertJsonFragment($data);

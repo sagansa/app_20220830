@@ -26,11 +26,6 @@ class DeliveryService extends Model
 
     protected $table = 'delivery_services';
 
-    public function outInProducts()
-    {
-        return $this->hasMany(OutInProduct::class);
-    }
-
     public function salesOrderOnlines()
     {
         return $this->hasMany(SalesOrderOnline::class);

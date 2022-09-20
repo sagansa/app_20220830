@@ -213,12 +213,6 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update onlineshopproviders']);
         Permission::create(['name' => 'delete onlineshopproviders']);
 
-        Permission::create(['name' => 'list outinproducts']);
-        Permission::create(['name' => 'view outinproducts']);
-        Permission::create(['name' => 'create outinproducts']);
-        Permission::create(['name' => 'update outinproducts']);
-        Permission::create(['name' => 'delete outinproducts']);
-
         Permission::create(['name' => 'list paymentreceipts']);
         Permission::create(['name' => 'view paymentreceipts']);
         Permission::create(['name' => 'create paymentreceipts']);
@@ -392,12 +386,6 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create sops']);
         Permission::create(['name' => 'update sops']);
         Permission::create(['name' => 'delete sops']);
-
-        Permission::create(['name' => 'list stockcards']);
-        Permission::create(['name' => 'view stockcards']);
-        Permission::create(['name' => 'create stockcards']);
-        Permission::create(['name' => 'update stockcards']);
-        Permission::create(['name' => 'delete stockcards']);
 
         Permission::create(['name' => 'list stores']);
         Permission::create(['name' => 'view stores']);

@@ -59,20 +59,23 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt>@lang('crud.sales_order_onlines.inputs.date')</x-shows.dt>
-                        <x-shows.dd>{{ $salesOrderOnline->date ?? '-' }}</x-shows.dd>
+                        <x-shows.dd>{{ $salesOrderOnline->date->toFormattedDate() ?? '-' }}</x-shows.dd>
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt>@lang('crud.sales_order_onlines.inputs.status')</x-shows.dt>
-                        <x-shows.dd>{{ $salesOrderOnline->status ?? '-' }}</x-shows.dd>
+                        <x-shows.dd>
+                            <x-spans.status-valid class="{{ $salesOrderOnline->status_badge }}">
+                                {{ $salesOrderOnline->status_name }}</x-spans.status-valid>
+                        </x-shows.dd>
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
-                        <x-shows.dt>@lang('crud.sales_order_onlines.inputs.created_by_id')</x-shows.dt>
+                        <x-shows.dt>Created By</x-shows.dt>
                         <x-shows.dd>
                             {{ optional($salesOrderOnline->created_by)->name ?? '-' }}
                         </x-shows.dd>
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
-                        <x-shows.dt>@lang('crud.sales_order_onlines.inputs.approved_by_id')</x-shows.dt>
+                        <x-shows.dt>Updated By</x-shows.dt>
                         <x-shows.dd>
                             {{ optional($salesOrderOnline->approved_by)->name ?? '-' }}
                         </x-shows.dd>
@@ -92,14 +95,6 @@
                                     size="150" />
                             </a>
                         @endif
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt>Created Date</x-shows.dt>
-                        <x-shows.dd>{{ $salesOrderOnline->created_at ?? '-' }}</x-shows.dd>
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt>Updated Date</x-shows.dt>
-                        <x-shows.dd>{{ $salesOrderOnline->updated_at ?? '-' }}</x-shows.dd>
                     </x-shows.sub-dl>
                 </x-shows.dl>
 

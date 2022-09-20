@@ -57,8 +57,6 @@ class StoreSalesOrderOnlinesController extends Controller
             'receipt_no' => ['nullable', 'max:255', 'string'],
             'date' => ['required', 'date'],
             'status' => ['required', 'in:1,2,3,4,5,6'],
-            'created_by_id' => ['nullable', 'exists:users,id'],
-            'approved_by_id' => ['nullable', 'exists:users,id'],
             'notes' => ['nullable', 'max:255', 'string'],
             'image_sent' => ['image', 'nullable'],
         ]);

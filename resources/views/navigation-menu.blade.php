@@ -188,19 +188,9 @@
                         Self Consumptions
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\OutInProduct::class)
-                        <x-dropdown-link href="{{ route('out-in-products.index') }}">
-                        Out In Products
-                        </x-dropdown-link>
-                        @endcan
                         @can('view-any', App\Models\Room::class)
                         <x-dropdown-link href="{{ route('rooms.index') }}">
                         Rooms
-                        </x-dropdown-link>
-                        @endcan
-                        @can('view-any', App\Models\StockCard::class)
-                        <x-dropdown-link href="{{ route('stock-cards.index') }}">
-                        Stock Cards
                         </x-dropdown-link>
                         @endcan
                         @can('view-any', App\Models\EmployeeStatus::class)
@@ -625,19 +615,9 @@
                 Self Consumptions
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\OutInProduct::class)
-                <x-jet-responsive-nav-link href="{{ route('out-in-products.index') }}">
-                Out In Products
-                </x-jet-responsive-nav-link>
-                @endcan
                 @can('view-any', App\Models\Room::class)
                 <x-jet-responsive-nav-link href="{{ route('rooms.index') }}">
                 Rooms
-                </x-jet-responsive-nav-link>
-                @endcan
-                @can('view-any', App\Models\StockCard::class)
-                <x-jet-responsive-nav-link href="{{ route('stock-cards.index') }}">
-                Stock Cards
                 </x-jet-responsive-nav-link>
                 @endcan
                 @can('view-any', App\Models\EmployeeStatus::class)

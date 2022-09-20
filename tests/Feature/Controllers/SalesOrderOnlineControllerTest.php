@@ -70,6 +70,9 @@ class SalesOrderOnlineControllerTest extends TestCase
 
         $response = $this->post(route('sales-order-onlines.store'), $data);
 
+        unset($data['created_by_id']);
+        unset($data['approved_by_id']);
+
         $this->assertDatabaseHas('sales_order_onlines', $data);
 
         $salesOrderOnline = SalesOrderOnline::latest('id')->first();
@@ -147,6 +150,9 @@ class SalesOrderOnlineControllerTest extends TestCase
             route('sales-order-onlines.update', $salesOrderOnline),
             $data
         );
+
+        unset($data['created_by_id']);
+        unset($data['approved_by_id']);
 
         $data['id'] = $salesOrderOnline->id;
 

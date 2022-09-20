@@ -100,7 +100,7 @@
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.receipt_no')</x-tables.th-left-hide>
                 {{-- <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.date')</x-tables.th-left-hide> --}}
                 <x-tables.th-left-hide>Detail Products</x-tables.th-left-hide>
-                <x-tables.th-left-hide>Totals</x-tables.th-left-hide>
+                {{-- <x-tables.th-left-hide>Totals</x-tables.th-left-hide> --}}
                 <x-tables.th-left-hide>Updated By</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.status')</x-tables.th-left-hide>
                 {{-- <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.created_by_id')</x-tables.th-left> --}}
@@ -151,6 +151,7 @@
                         </x-tables.td-left-main>
 
                         <x-tables.td-left>
+                            <p> {{ $salesOrderOnline->id }}</p>
                             <p>{{ optional($salesOrderOnline->store)->nickname ?? '-' }}</p>
                             <p> {{ $salesOrderOnline->date->toFormattedDate() ?? '-' }}</p>
                         </x-tables.td-left>
@@ -172,9 +173,9 @@
                                 -
                             @endforelse
                         </x-tables.td-left-hide>
-                        <x-tables.td-right-hide>
-                            {{ $salesOrderOnline->products->sum('pivot.quantity * pivot.price') }}
-                        </x-tables.td-right-hide>
+                        {{-- <x-tables.td-right-hide>
+                            @currency($salesOrderOnline->totals)
+                        </x-tables.td-right-hide> --}}
                         @role('super-admin|manager')
                             <x-tables.td-left-hide>
                                 {{ optional($salesOrderOnline->approved_by)->name ?? '-' }}
@@ -187,7 +188,7 @@
                         <td class="px-4 py-3 text-center" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @if ($salesOrderOnline->status != '2')
-                                    <a href="{{ route('sales-order-onlines.edit', $salesOrderOnline->id) }}"
+                                    <a href="{{ route('sales-order-onlines.edit', $salesOrderOnline) }}"
                                         class="mr-1">
                                         <x-buttons.edit></x-buttons.edit>
                                     </a>
@@ -215,7 +216,7 @@
             <x-slot name="foot">
                 <tr>
                     <td colspan="12">
-                        <div class="px-4 my-2">{{ $salesOrderOnlines->links() }}</div>
+                        <div class="px-4 my-2">{{ $salesOrderOnlines->render() }}</div>
                     </td>
                 </tr>
             </x-slot>

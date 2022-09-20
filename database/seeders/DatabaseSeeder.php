@@ -55,7 +55,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MovementAssetResultSeeder::class);
         $this->call(OnlineCategorySeeder::class);
         $this->call(OnlineShopProviderSeeder::class);
-        $this->call(OutInProductSeeder::class);
         $this->call(PaymentReceiptSeeder::class);
         $this->call(PaymentTypeSeeder::class);
         $this->call(PermitEmployeeSeeder::class);
@@ -85,7 +84,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SelfConsumptionSeeder::class);
         $this->call(ShiftStoreSeeder::class);
         $this->call(SopSeeder::class);
-        $this->call(StockCardSeeder::class);
         $this->call(StoreSeeder::class);
         $this->call(StoreAssetSeeder::class);
         $this->call(StoreCashlessSeeder::class);

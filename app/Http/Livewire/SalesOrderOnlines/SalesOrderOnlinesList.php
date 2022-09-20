@@ -13,7 +13,6 @@ use App\Models\OnlineShopProvider;
 use App\Models\SalesOrderOnline;
 use App\Models\Store;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class SalesOrderOnlinesList extends Component
 {
@@ -26,6 +25,10 @@ class SalesOrderOnlinesList extends Component
 
     public SalesOrderOnline $editing;
 
+    public $status = null;
+
+	protected $queryString = ['status'];
+
     public array $selected = [];
 
     // public $sortColumn = 'sales_order_onlines.date';
@@ -33,9 +36,6 @@ class SalesOrderOnlinesList extends Component
     // public string $sortDirection = 'asc';
 
     public $filters = [
-        'store_id' => null,
-        'supplier_id' => null,
-        'payment_type_id' => null,
         'status' => '',
     ];
 
@@ -48,9 +48,12 @@ class SalesOrderOnlinesList extends Component
 
     public function render()
     {
-        $salesOrderOnlines = SalesOrderOnline::with('products')
+        $salesOrderOnlines = SalesOrderOnline::query()
+            ->select(['sales_order_onlines.*', 'stores.nickname as storename'])
+            ->join('stores', 'stores.id', '=', 'sales_order_onlines.store_id')
+            ->with('products')
             ->orderBy('date', 'desc')
-            ->latest()->paginate(10);
+            ->latest();
 
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
@@ -59,15 +62,10 @@ class SalesOrderOnlinesList extends Component
             }
         }
 
-        // foreach ($salesOrderOnlines as $salesOrderOnline) {
-        //     $salesOrderOnline->total = 0;
-        //     foreach ($salesOrderOnline->products as $product) {
-        //         $salesOrderOnline->total += $product->pivot->quantity * $product->pivot->price;
-        //     }
-        // }
+        // $salesOrderOnlines->orderBy($this->sortColumn, $this->sortDirection);
 
         return view('livewire.sales-order-onlines.sales-order-onlines-list', [
-            'salesOrderOnlines' => $salesOrderOnlines,
+            'salesOrderOnlines' => $salesOrderOnlines->paginate(10),
         ]);
     }
 

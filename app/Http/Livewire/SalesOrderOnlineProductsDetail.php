@@ -94,6 +94,7 @@ class SalesOrderOnlineProductsDetail extends Component
         foreach ($this->salesOrderOnline->products as $product) {
             $this->salesOrderOnline->totals += $product->pivot->quantity * $product->pivot->price;
         }
+
         return view('livewire.sales-order-online-products-detail', [
             'salesOrderOnlineProducts' => $this->salesOrderOnline
                 ->products()

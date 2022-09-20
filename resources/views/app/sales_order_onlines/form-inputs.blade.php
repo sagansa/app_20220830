@@ -78,7 +78,6 @@
         <option value="5" {{ $selected == '5' ? 'selected' : '' }}>siap dikirim</option>
         <option value="4" {{ $selected == '4' ? 'selected' : '' }}>perbaiki</option>
         <option value="6" {{ $selected == '6' ? 'selected' : '' }}>dikembalikan</option>
-
     </x-input.select>
 
     <x-input.image name="image_sent" label="Image Sent">

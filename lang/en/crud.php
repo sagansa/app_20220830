@@ -352,8 +352,6 @@ return [
             'receipt_no' => 'Receipt No',
             'date' => 'Date',
             'status' => 'Status',
-            'created_by_id' => 'Created By',
-            'approved_by_id' => 'Approved By',
             'notes' => 'Notes',
             'image_sent' => 'Image Sent',
         ],
@@ -795,38 +793,6 @@ return [
         ],
     ],
 
-    'out_in_products' => [
-        'name' => 'Out In Products',
-        'index_title' => 'Out In Products List',
-        'new_title' => 'New Out In Product',
-        'create_title' => 'Create Out In Product',
-        'edit_title' => 'Edit Out In Product',
-        'show_title' => 'Show Out In Product',
-        'inputs' => [
-            'image' => 'Image',
-            'stock_card_id' => 'Stock Card',
-            'out_in' => 'Out In',
-            're' => 'Re',
-            'status' => 'Status',
-            'notes' => 'Notes',
-            'created_by_id' => 'Created By',
-            'approved_by_id' => 'Approved By',
-        ],
-    ],
-
-    'out_in_product_products' => [
-        'name' => 'OutInProduct Products',
-        'index_title' => ' List',
-        'new_title' => 'New Out in product product',
-        'create_title' => 'Create out_in_product_product',
-        'edit_title' => 'Edit out_in_product_product',
-        'show_title' => 'Show out_in_product_product',
-        'inputs' => [
-            'product_id' => 'Product',
-            'quantity' => 'Quantity',
-        ],
-    ],
-
     'rooms' => [
         'name' => 'Rooms',
         'index_title' => 'Rooms List',
@@ -836,20 +802,6 @@ return [
         'show_title' => 'Show Room',
         'inputs' => [
             'name' => 'Name',
-        ],
-    ],
-
-    'stock_cards' => [
-        'name' => 'Stock Cards',
-        'index_title' => 'Stock Cards List',
-        'new_title' => 'New Stock Card',
-        'create_title' => 'Create Stock Card',
-        'edit_title' => 'Edit Stock Card',
-        'show_title' => 'Show Stock Card',
-        'inputs' => [
-            'date' => 'Date',
-            'store_id' => 'Store',
-            'user_id' => 'User',
         ],
     ],
 
