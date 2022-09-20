@@ -92,7 +92,10 @@
                 @endrole
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.image')</x-tables.th-left-hide>
                 <x-tables.th-left>
-                    <x-spans.sort>@lang('crud.sales_order_onlines.inputs.store_id') - @lang('crud.sales_order_onlines.inputs.date')</x-spans.sort>
+                    <x-spans.sort>@lang('crud.sales_order_onlines.inputs.store_id')</x-spans.sort>
+                </x-tables.th-left>
+                <x-tables.th-left>
+                    <x-spans.sort>@lang('crud.sales_order_onlines.inputs.date')</x-spans.sort>
                 </x-tables.th-left>
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.online_shop_provider_id')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.delivery_service_id')</x-tables.th-left-hide>
@@ -151,9 +154,10 @@
                         </x-tables.td-left-main>
 
                         <x-tables.td-left>
-                            <p> {{ $salesOrderOnline->id }}</p>
-                            <p>{{ optional($salesOrderOnline->store)->nickname ?? '-' }}</p>
-                            <p> {{ $salesOrderOnline->date->toFormattedDate() ?? '-' }}</p>
+                            {{ optional($salesOrderOnline->store)->nickname ?? '-' }}
+                        </x-tables.td-left>
+                        <x-tables.td-left>
+                            {{ $salesOrderOnline->date->toFormattedDate() ?? '-' }}
                         </x-tables.td-left>
                         <x-tables.td-left-hide>
                             {{ optional($salesOrderOnline->onlineShopProvider)->name ?? '-' }}
