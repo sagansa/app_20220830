@@ -91,6 +91,13 @@ class ProductionsList extends Component
         return $this->applySorting($productions);
     }
 
+    public function getRowsProperty()
+    {
+        return $this->cache(function () {
+            return $this->applyPagination($this->rowsQuery);
+        });
+    }
+
     public function render()
     {
         return view('livewire.productions.productions-list', [
