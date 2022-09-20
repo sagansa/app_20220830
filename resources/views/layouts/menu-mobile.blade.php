@@ -210,7 +210,7 @@
               Auth::user()->can('view-any', App\Models\TransferStock::class) ||
               Auth::user()->can('view-any', App\Models\RemainingStock::class) ||
               Auth::user()->can('view-any', App\Models\UtilityUsage::class) ||
-              Auth::user()->can('view-any', App\Models\OutInProduct::class) ||
+              //   Auth::user()->can('view-any', App\Models\OutInProduct::class) ||
               //   Auth::user()->can('view-any', App\Models\StockCard::class) ||
               Auth::user()->can('view-any', App\Models\SelfConsumption::class))
               <x-sidebars.nav-dropdown-mobile control="stock-managements" title="Stock Managements">
