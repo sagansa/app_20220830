@@ -177,9 +177,9 @@
                                 -
                             @endforelse
                         </x-tables.td-left-hide>
-                        {{-- <x-tables.td-right-hide>
-                            @currency($salesOrderOnline->totals)
-                        </x-tables.td-right-hide> --}}
+                        <x-tables.td-right-hide>
+                            {{-- @currency($salesOrderOnline->products_sum_) --}}
+                        </x-tables.td-right-hide>
                         @role('super-admin|manager')
                             <x-tables.td-left-hide>
                                 {{ optional($salesOrderOnline->approved_by)->name ?? '-' }}

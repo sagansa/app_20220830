@@ -25,12 +25,6 @@ class SalesOrderOnlinesList extends Component
 
     public SalesOrderOnline $editing;
 
-    public $status = null;
-
-	protected $queryString = ['status'];
-
-    public array $selected = [];
-
     // public $sortColumn = 'sales_order_onlines.date';
 
     // public string $sortDirection = 'asc';
@@ -38,6 +32,14 @@ class SalesOrderOnlinesList extends Component
     public $filters = [
         'status' => '',
     ];
+
+    public function rules()
+    {
+        return [
+            // 'editing.status' => 'nullable',
+            'editing.status' => 'required|in:1,2,3,4,5,6',
+        ];
+    }
 
     public function mount()
     {
@@ -69,10 +71,10 @@ class SalesOrderOnlinesList extends Component
         ]);
     }
 
-    public function getSelectedCountProperty()
-    {
-        return count($this->selected);
-    }
+    // public function getSelectedCountProperty()
+    // {
+    //     return count($this->selected);
+    // }
 
     public function sortByColumn($column)
     {
