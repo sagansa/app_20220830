@@ -104,7 +104,7 @@
                 {{-- <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.date')</x-tables.th-left-hide> --}}
                 <x-tables.th-left-hide>Detail Products</x-tables.th-left-hide>
                 {{-- <x-tables.th-left-hide>Totals</x-tables.th-left-hide> --}}
-                <x-tables.th-left-hide>Updated By</x-tables.th-left-hide>
+
                 <x-tables.th-left-hide>@lang('crud.sales_order_onlines.inputs.status')</x-tables.th-left-hide>
                 {{-- <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.created_by_id')</x-tables.th-left> --}}
                 {{-- <x-tables.th-left>@lang('crud.sales_order_onlines.inputs.approved_by_id')</x-tables.th-left> --}}
@@ -177,11 +177,7 @@
                                 -
                             @endforelse
                         </x-tables.td-left-hide>
-                        @role('super-admin|manager')
-                            <x-tables.td-left-hide>
-                                {{ optional($salesOrderOnline->approved_by)->name ?? '-' }}
-                            </x-tables.td-left-hide>
-                        @endrole
+
                         <x-tables.td-left-hide>
                             <x-spans.status-valid class="{{ $salesOrderOnline->status_badge }}">
                                 {{ $salesOrderOnline->status_name }}</x-spans.status-valid>
