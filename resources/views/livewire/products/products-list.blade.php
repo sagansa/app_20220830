@@ -15,6 +15,10 @@
             </x-buttons.link>
             @if ($showFilters)
                 <x-filters.group>
+                    <x-filters.label>Product Name</x-filters.label>
+                    <x-filters.text wire:model="filters.name" name="search" autocompolete="off"></x-filters.text>
+                </x-filters.group>
+                <x-filters.group>
                     <x-filters.label>Payment Type</x-filters.label>
                     <x-filters.select wire:model="filters.payment_type_id">
                         @foreach ($paymentTypes as $label => $value)

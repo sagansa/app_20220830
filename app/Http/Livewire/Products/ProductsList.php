@@ -55,6 +55,7 @@ class ProductsList extends Component
     ];
 
     public $filters = [
+        'name' => '',
         'request' => '',
         'remaining' => '',
         'storename' => '',
@@ -222,6 +223,7 @@ class ProductsList extends Component
             foreach ($this->filters as $filter => $value) {
                 if (!empty($value)) {
                     $products
+                        ->when($filter == 'name', fn($purchaseOrders) => $purchaseOrders->where('products.' . $filter, 'LIKE', '%' . $value . '%'))
                         ->when($filter == 'payment_type_id', fn($products) => $products->whereRelation('paymentType', 'id', $value))
                         ->when($filter == 'product_group_id', fn($products) => $products->whereRelation('productGroup', 'id', $value))
                         ->when($filter == 'material_group_id', fn($products) => $products->whereRelation('materialGroup', 'id', $value))
