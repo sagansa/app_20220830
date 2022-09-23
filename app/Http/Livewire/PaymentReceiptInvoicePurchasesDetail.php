@@ -100,8 +100,9 @@ class PaymentReceiptInvoicePurchasesDetail extends Component
                 $this->subtotal += $detailInvoice['subtotal_invoice'];
             }
 
-            $this->totals = $this->subtotal - $invoicePurchase['discounts'] + $invoicePurchase['taxes'];
         }
+
+        $this->totals = $this->subtotal - $invoicePurchase['discounts'] + $invoicePurchase['taxes'];
 
         $this->difference = $this->paymentReceipt->amount - $this->totals;
 
