@@ -133,7 +133,9 @@
                 @role('super-admin|manager')
                     <tr>
                         <x-tables.th-total colspan="5">Total Invoice</x-tables.th-total>
-                        <x-tables.td-total>@currency($this->subtotal - $invoicePurchase->discounts + $invoicePurchase->taxes)</x-tables.td-total>
+                        <x-tables.td-total>@currency($this->subtotal - $invoicePurchase->discounts + $invoicePurchase->taxes)
+                            {{ $invoicePurchase->discounts }}
+                        </x-tables.td-total>
                     </tr>
                     <tr>
                         <x-tables.th-total colspan="5">Amount</x-tables.th-total>
