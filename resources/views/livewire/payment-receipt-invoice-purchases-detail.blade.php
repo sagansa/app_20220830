@@ -96,6 +96,7 @@
                             @foreach ($invoicePurchase->detailInvoices as $detailInvoice)
                                 <p>@currency($detailInvoice->subtotal_invoice)</p>
                             @endforeach
+                            @currency($this->totals)
                         </x-tables.td-right>
                         @role('super-admin|manager')
                             <x-tables.td-left>
