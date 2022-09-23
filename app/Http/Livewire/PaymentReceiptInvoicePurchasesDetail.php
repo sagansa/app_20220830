@@ -92,18 +92,9 @@ class PaymentReceiptInvoicePurchasesDetail extends Component
 
     public function render()
     {
-        $this->subtotal = 0;
-        $this->totals = 0;
+        $invoicePurchases = InvoicePurchase::query();
 
-        foreach ($this->paymentReceipt->invoicePurchases as $invoicePurchase) {
-            foreach ($invoicePurchase->detailInvoices as $detailInvoice) {
-                $this->subtotal += $detailInvoice->subtotal_invoice;
-            }
-
-            // $this->totals = $this->subtotal - $invoicePurchase->discounts + $invoicePurchase->taxes;
-        }
-
-        $this->difference = $this->paymentReceipt->amount - $this->totals;
+        $invoicePurchases->withSum('detailInvoices', 'subtotal_invoice')->get();
 
         return view('livewire.payment-receipt-invoice-purchases-detail', [
             'paymentReceiptInvoicePurchases' => $this->paymentReceipt
