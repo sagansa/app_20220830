@@ -86,7 +86,7 @@
                         <x-tables.td-right>
                             <p>discounts: @currency($invoicePurchase->discounts)</p>
                             <p>taxes: @currency($invoicePurchase->taxes)</p>
-                            <p>totals: @currency($this->subtotal - $invoicePurchase->discounts + $invoicePurchase->taxes)
+                            <p>totals: @currency($this->totals)
                             </p>
                         </x-tables.td-right>
                         <x-tables.td-right>
