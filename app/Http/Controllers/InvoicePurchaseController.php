@@ -25,29 +25,16 @@ class InvoicePurchaseController extends Controller
 
         $search = $request->get('search', '');
 
-        // $invoicePurchases = InvoicePurchase::search($search)
-        //     ->latest()
-        //     ->paginate(10)
-        //     ->withQueryString();
+        $invoicePurchases = InvoicePurchase::search($search)
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
 
         if(Auth::user()->hasRole('supervisor')) {
-            $invoicePurchases = InvoicePurchase::search($search)
-                ->where('approved_by_id', '=', Auth::user()->id)
-                ->orWhere('approved_by_id', '=', NULL)
-                ->latest()
-                ->paginate(10)
-                ->withQueryString();
-        } elseif (Auth::user()->hasRole('super-admin|manager')) {
-            $invoicePurchases = InvoicePurchase::search($search)
-                ->latest()
-                ->paginate(10)
-                ->withQueryString();
-        } else if (Auth::user()->hasRole('staff')) {
-            $invoicePurchases = InvoicePurchase::search($search)
-                ->where('created_by_id', '=', Auth::user()->id)
-                ->latest()
-                ->paginate(10)
-                ->withQueryString();
+            $invoicePurchases->where('approved_by_id', '=', Auth::user()->id)
+                ->orWhere('approved_by_id', '=', NULL);
+        } elseif (Auth::user()->hasRole('staff')) {
+            $invoicePurchases->where('created_by_id', '=', Auth::user()->id);
         }
 
         return view(

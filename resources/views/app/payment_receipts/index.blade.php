@@ -104,7 +104,7 @@
                             @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
                                 <p>{{ $invoicePurchase->store->nickname }} | {{ $invoicePurchase->supplier->name }} |
                                     {{ $invoicePurchase->date->toFormattedDate() }} |
-                                    @currency($invoicePurchase->detailInvoices->sum('subtotal_invoice'))</p>
+                                    @currency($invoicePurchase->detailInvoices->sum('subtotal_invoice') - $invoicePurchase->discounts + $invoicePurchase->taxes)</p>
                             @endforeach
 
                         </x-tables.td-left-hide>
