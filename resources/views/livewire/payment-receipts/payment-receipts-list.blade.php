@@ -6,6 +6,27 @@
         <p class="mt-2 text-xs text-gray-700">bukti transfer kepada pemasok</p>
     </x-slot>
 
+    <x-tables.topbar>
+        <x-slot name="search"></x-slot>
+        <x-slot name="action">
+            <div class="flex flex-wrap justify-between mt-1">
+                <div class="mt-1 md:w-1/2">
+
+                </div>
+                <div class="mt-1 text-right md:w-1/2">
+                    @role('super-admin|manager')
+                        <a href="{{ route('payment-receipts.create') }}">
+                            <x-jet-button>
+                                <i class="mr-1 icon ion-md-add"></i>
+                                @lang('crud.common.create')
+                            </x-jet-button>
+                        </a>
+                    @endrole
+                </div>
+            </div>
+        </x-slot>
+    </x-tables.topbar>
+
     <x-tables.card>
         <x-table>
             <x-slot name="head">
