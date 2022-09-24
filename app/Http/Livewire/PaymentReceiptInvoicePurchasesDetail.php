@@ -104,7 +104,7 @@ class PaymentReceiptInvoicePurchasesDetail extends Component
             $invoicePurchase->totals = $invoicePurchase->subtotal - $invoicePurchase->discounts + $invoicePurchase->taxes;
         }
 
-        $this->difference = $this->paymentReceipt->amount - $this->totals;
+        $this->difference = $this->paymentReceipt->amount - $invoicePurchase->totals;
 
         return view('livewire.payment-receipt-invoice-purchases-detail', [
             'paymentReceiptInvoicePurchases' => $this->paymentReceipt
