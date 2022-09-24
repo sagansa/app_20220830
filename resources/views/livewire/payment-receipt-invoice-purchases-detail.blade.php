@@ -128,7 +128,7 @@
                 @role('super-admin|manager')
                     <tr>
                         <x-tables.th-total colspan="5">Total Invoice</x-tables.th-total>
-                        <x-tables.td-total>{{ $this->totals }}
+                        <x-tables.td-total>@currency($this->totals)
                         </x-tables.td-total>
                     </tr>
                     <tr>
