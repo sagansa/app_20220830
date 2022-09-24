@@ -81,7 +81,6 @@
                 </div>
             </div>
         </x-slot>
-
     </x-tables.topbar>
 
     <x-tables.card>
