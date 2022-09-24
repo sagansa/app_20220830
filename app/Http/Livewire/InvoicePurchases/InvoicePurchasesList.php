@@ -79,6 +79,11 @@ class InvoicePurchasesList extends Component
         $invoicePurchases = InvoicePurchase::query()
             ->join('suppliers', 'suppliers.id', '=', 'invoice_purchases.supplier_id');
 
+            if (Auth::user()->hasRole('staff|supervisor')) {
+
+                $invoicePurchases->where('created_by_id', '=', Auth::user()->id);
+        }
+
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
                 $invoicePurchases
@@ -88,11 +93,6 @@ class InvoicePurchasesList extends Component
                     ->when($filter == 'payment_status', fn($invoicePurchases) => $invoicePurchases->where('invoice_purchases.' . $filter, 'LIKE', '%' . $value . '%'))
                     ->when($filter == 'order_status', fn($invoicePurchases) => $invoicePurchases->where('invoice_purchases.' . $filter, 'LIKE', '%' . $value . '%'));
             }
-        }
-
-        if (Auth::user()->hasRole('staff|supervisor')) {
-
-                $invoicePurchases->where('created_by_id', '=', Auth::user()->id);
         }
 
         $invoicePurchases->withSum('detailInvoices', 'subtotal_invoice')->get();
