@@ -30,10 +30,7 @@ class InvoicePurchaseController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        if(Auth::user()->hasRole('supervisor')) {
-            $invoicePurchases->where('approved_by_id', '=', Auth::user()->id)
-                ->orWhere('approved_by_id', '=', NULL);
-        } elseif (Auth::user()->hasRole('staff')) {
+        if (Auth::user()->hasRole('staff|supervisor')) {
             $invoicePurchases->where('created_by_id', '=', Auth::user()->id);
         }
 
