@@ -86,7 +86,6 @@
                         <x-tables.td-right>
                             <p>discounts: @currency($invoicePurchase->discounts)</p>
                             <p>taxes: @currency($invoicePurchase->taxes)</p>
-
                         </x-tables.td-right>
                         <x-tables.td-right>
                             @foreach ($invoicePurchase->detailInvoices as $detailInvoice)
@@ -94,9 +93,6 @@
                             @endforeach
                         </x-tables.td-right>
                         <x-tables.td-right>
-                            {{-- @foreach ($invoicePurchase->detailInvoices as $detailInvoice)
-                                <p>@currency($detailInvoice->subtotal_invoice)</p>
-                            @endforeach --}}
                             @currency($invoicePurchase->detailInvoices->sum('subtotal_invoice') - $invoicePurchase->discounts + $invoicePurchase->taxes)
                         </x-tables.td-right>
                         @role('super-admin|manager')
@@ -132,7 +128,7 @@
                 @role('super-admin|manager')
                     <tr>
                         <x-tables.th-total colspan="5">Total Invoice</x-tables.th-total>
-                        <x-tables.td-total>{{ $invoicePurchase->totals }}
+                        <x-tables.td-total>{{ $this->totals }}
                         </x-tables.td-total>
                     </tr>
                     <tr>
