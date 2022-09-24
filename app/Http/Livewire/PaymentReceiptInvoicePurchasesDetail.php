@@ -92,13 +92,16 @@ class PaymentReceiptInvoicePurchasesDetail extends Component
 
     public function render()
     {
-        $this->subtotal = 0;
-        $this->totals = 0;
+        // $this->subtotal = 0;
+        // $this->totals = 0;
 
         foreach ($this->paymentReceipt->invoicePurchases as $invoicePurchase) {
+            $invoicePurchase->subtotal = 0;
+            $invoicePurchase->totals = 0;
             foreach($invoicePurchase->detailInvoices as $detailInvoice) {
-                $this->subtotal += $detailInvoice->subtotal_invoice;
+                $invoicePurchase->subtotal += $detailInvoice->subtotal_invoice;
             }
+            $invoicePurchase->totals = $invoicePurchase->subtotal - $invoicePurchase->discounts + $invoicePurchase->taxes;
         }
 
         $this->difference = $this->paymentReceipt->amount - $this->totals;
