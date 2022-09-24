@@ -95,7 +95,7 @@ class PaymentReceiptInvoicePurchasesDetail extends Component
         $this->totals = 0;
 
         foreach($this->paymentReceipt->invoicePurchases as $invoicePurchase) {
-            $this->totals = $invoicePurchase->detailInvoices->sum('subtotal_invoice') - $invoicePurchase->discounts + $invoicePurchase->taxes;
+            $this->totals += $invoicePurchase->detailInvoices->sum('subtotal_invoice') - $invoicePurchase->discounts + $invoicePurchase->taxes;
         }
 
         $this->difference = $this->paymentReceipt->amount - $this->totals;
