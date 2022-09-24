@@ -41,23 +41,29 @@
                     <tr class="hover:bg-gray-50">
                         <x-tables.td-left-main>
                             <x-slot name="main">
-                                @if ($paymentReceipt->image == null)
-                                    <x-partials.thumbnail src="" />
-                                @else
-                                    <a href="{{ \Storage::url($paymentReceipt->image) }}">
-                                        <x-partials.thumbnail
-                                            src="{{ $paymentReceipt->image ? \Storage::url($paymentReceipt->image) : '' }}" />
-                                    </a>
-                                @endif
+                                <div class="relative z-0 flex -space-x-2 overflow-hidden">
+                                    <div class="mr-3">
+                                        @if ($paymentReceipt->image == null)
+                                            <x-partials.thumbnail src="" />
+                                        @else
+                                            <a href="{{ \Storage::url($paymentReceipt->image) }}">
+                                                <x-partials.thumbnail
+                                                    src="{{ $paymentReceipt->image ? \Storage::url($paymentReceipt->image) : '' }}" />
+                                            </a>
+                                        @endif
+                                    </div>
 
-                                @if ($paymentReceipt->image_adjust == null)
-                                    <x-partials.thumbnail src="" />
-                                @else
-                                    <a href="{{ \Storage::url($paymentReceipt->image_adjust) }}">
-                                        <x-partials.thumbnail
-                                            src="{{ $paymentReceipt->image_adjust ? \Storage::url($paymentReceipt->image_adjust) : '' }}" />
-                                    </a>
-                                @endif
+                                    <div>
+                                        @if ($paymentReceipt->image_adjust == null)
+                                            <x-partials.thumbnail src="" />
+                                        @else
+                                            <a href="{{ \Storage::url($paymentReceipt->image_adjust) }}">
+                                                <x-partials.thumbnail
+                                                    src="{{ $paymentReceipt->image_adjust ? \Storage::url($paymentReceipt->image_adjust) : '' }}" />
+                                            </a>
+                                        @endif
+                                    </div>
+                                </div>
                             </x-slot>
                             <x-slot name="sub">
                                 <p>{{ $paymentReceipt->created_at ?? '-' }}</p>
