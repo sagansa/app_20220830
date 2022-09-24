@@ -36,7 +36,7 @@ class PaymentReceiptsList extends Component
 
     public function render()
     {
-        $paymentReceipts = PaymentReceipt::query();
+        $paymentReceipts = PaymentReceipt::query()->latest();
 
         $this->totals = 0;
         foreach($paymentReceipts as $paymentReceipt) {
