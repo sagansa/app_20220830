@@ -88,6 +88,9 @@
                             <p>taxes: @currency($invoicePurchase->taxes)</p>
                             <p>totals: @currency($this->totals)
                             </p>
+                            <p>
+                                {{ $invoicePurchase->detailInvoices->sum('subtotal_invoice') - $invoicePurchase->discounts + $invoicePurchase->taxes }}
+                            </p>
                         </x-tables.td-right>
                         <x-tables.td-right>
                             @foreach ($invoicePurchase->detailInvoices as $detailInvoice)
