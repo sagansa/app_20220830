@@ -37,8 +37,33 @@
         <option value="3" {{ $selected == '3' ? 'selected' : '' }}>invoice purchase</option>
         <option value="1" {{ $selected == '1' ? 'selected' : '' }}>fuel service</option>
         <option value="2" {{ $selected == '2' ? 'selected' : '' }}>daily salary</option>
-
     </x-input.select>
+
+    <x-input.image name="image_adjust" label="Additional">
+        <div x-data="imageViewer('{{ $editing && $paymentReceipt->image_adjust ? \Storage::url($paymentReceipt->image_adjust) : '' }}')" class="mt-1 sm:mt-0 sm:col-span-2">
+            <!-- Show the image -->
+            <template x-if="imageUrl">
+                <img :src="imageUrl" class="object-cover border border-gray-200 rounded"
+                    style="width: 100px; height: 100px;" />
+            </template>
+
+            <!-- Show the gray box when image is not available -->
+            <template x-if="!imageUrl">
+                <div class="bg-gray-100 border border-gray-200 rounded" style="width: 100px; height: 100px;"></div>
+            </template>
+
+            <div class="mt-2">
+                <input type="file" name="image_adjust" id="image_adjust" @change="fileChosen" />
+            </div>
+
+            @error('image_adjust')
+                @include('components.inputs.partials.error')
+            @enderror
+        </div>
+    </x-input.image>
+
+    <x-input.textarea name="notes" label="Notes" maxlength="255">
+        {{ old('notes', $editing ? $paymentReceipt->notes : '') }}</x-input.textarea>
 
     @if ($editing)
         <x-shows.dl>

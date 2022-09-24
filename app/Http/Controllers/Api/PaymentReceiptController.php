@@ -43,6 +43,12 @@ class PaymentReceiptController extends Controller
             $validated['image'] = $request->file('image')->store('public');
         }
 
+        if ($request->hasFile('image_adjust')) {
+            $validated['image_adjust'] = $request
+                ->file('image_adjust')
+                ->store('public');
+        }
+
         $paymentReceipt = PaymentReceipt::create($validated);
 
         return new PaymentReceiptResource($paymentReceipt);
@@ -81,6 +87,16 @@ class PaymentReceiptController extends Controller
             $validated['image'] = $request->file('image')->store('public');
         }
 
+        if ($request->hasFile('image_adjust')) {
+            if ($paymentReceipt->image_adjust) {
+                Storage::delete($paymentReceipt->image_adjust);
+            }
+
+            $validated['image_adjust'] = $request
+                ->file('image_adjust')
+                ->store('public');
+        }
+
         $paymentReceipt->update($validated);
 
         return new PaymentReceiptResource($paymentReceipt);
@@ -97,6 +113,10 @@ class PaymentReceiptController extends Controller
 
         if ($paymentReceipt->image) {
             Storage::delete($paymentReceipt->image);
+        }
+
+        if ($paymentReceipt->image_adjust) {
+            Storage::delete($paymentReceipt->image_adjust);
         }
 
         $paymentReceipt->delete();

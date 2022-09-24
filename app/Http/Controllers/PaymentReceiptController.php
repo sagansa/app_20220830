@@ -71,6 +71,21 @@ class PaymentReceiptController extends Controller
             $validated['image'] = $fileimage;
         }
 
+        if ($request->hasFile('image_adjust')) {
+            $file = $request->file('image_adjust');
+            $extension = $file->getClientOriginalExtension();
+            $fileimage_adjust = rand() . time() . '.' . $extension;
+            $file->move('storage/', $fileimage_adjust);
+            Image::make('storage/' . $fileimage_adjust)
+                ->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save();
+
+            $validated['image_adjust'] = $fileimage_adjust;
+        }
+
         $validated['amount'] = 0;
 
         $paymentReceipt = PaymentReceipt::create($validated);
@@ -132,6 +147,30 @@ class PaymentReceiptController extends Controller
             $validated['image'] = $file_image;
         }
 
+        if ($request->hasFile('image_adjust')) {
+            $file = $request->file('image_adjust');
+            $paymentReceipt->delete_image_adjust();
+            $extension = $file->getClientOriginalExtension();
+            $file_image_adjust = rand() . time() . '.' . $extension;
+            $file->move('storage/', $file_image_adjust);
+            Image::make('storage/' . $file_image_adjust)
+                ->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save();
+
+            $validated['image_adjust'] = $file_image_adjust;
+        }
+
+        if (
+            auth()
+                ->user()
+                ->hasRole('supervisor|manager|super-admin')
+        ) {
+            $validated['approved_by_id'] = auth()->user()->id;
+        }
+
         $paymentReceipt->update($validated);
 
         return redirect()
@@ -150,6 +189,10 @@ class PaymentReceiptController extends Controller
 
         if ($paymentReceipt->image) {
             Storage::delete($paymentReceipt->image);
+        }
+
+        if ($paymentReceipt->image_adjust) {
+            Storage::delete($paymentReceipt->image_adjust);
         }
 
         $paymentReceipt->delete();

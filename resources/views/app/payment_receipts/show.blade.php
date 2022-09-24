@@ -39,6 +39,22 @@
                         </x-shows.dd>
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
+                        <x-shows.dt>@lang('crud.payment_receipts.inputs.image_adjust')</x-shows.dt>
+                        @if ($paymentReceipt->image_adjust != null)
+                            <x-partials.thumbnail src="" size="150" />
+                        @else
+                            <a href="{{ \Storage::url($paymentReceipt->image_adjust) }}">
+                                <x-partials.thumbnail
+                                    src="{{ $paymentReceipt->image_adjust ? \Storage::url($paymentReceipt->image_adjust) : '' }}"
+                                    size="150" />
+                            </a>
+                        @endif
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt>@lang('crud.payment_receipts.inputs.notes')</x-shows.dt>
+                        <x-shows.dd>{{ $paymentReceipt->notes ?? '-' }}</x-shows.dd>
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
                         <x-shows.dt>Created Date</x-shows.dt>
                         <x-shows.dd>{{ $paymentReceipt->created_at ?? '-' }}</x-shows.dd>
                     </x-shows.sub-dl>

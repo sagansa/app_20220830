@@ -1204,6 +1204,8 @@ return [
             'image' => 'Image',
             'amount' => 'Amount',
             'payment_for' => 'Payment For',
+            'image_adjust' => 'Additional',
+            'notes' => 'Notes',
         ],
     ],
 

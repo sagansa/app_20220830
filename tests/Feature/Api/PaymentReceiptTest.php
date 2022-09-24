@@ -67,6 +67,8 @@ class PaymentReceiptTest extends TestCase
         $data = [
             'amount' => $this->faker->randomNumber,
             'payment_for' => $this->faker->numberBetween(1, 3),
+            'image_adjust' => $this->faker->text(255),
+            'notes' => $this->faker->text,
         ];
 
         $response = $this->putJson(

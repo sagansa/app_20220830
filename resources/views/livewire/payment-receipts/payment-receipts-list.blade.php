@@ -49,6 +49,15 @@
                                             src="{{ $paymentReceipt->image ? \Storage::url($paymentReceipt->image) : '' }}" />
                                     </a>
                                 @endif
+
+                                @if ($paymentReceipt->image_adjust == null)
+                                    <x-partials.thumbnail src="" />
+                                @else
+                                    <a href="{{ \Storage::url($paymentReceipt->image_adjust) }}">
+                                        <x-partials.thumbnail
+                                            src="{{ $paymentReceipt->image_adjust ? \Storage::url($paymentReceipt->image_adjust) : '' }}" />
+                                    </a>
+                                @endif
                             </x-slot>
                             <x-slot name="sub">
                                 <p>{{ $paymentReceipt->created_at ?? '-' }}</p>
@@ -108,10 +117,6 @@
                             @elseif ($paymentReceipt->payment_for == 3)
                                 <p>invoice purchase</p>
                             @endif
-                        </x-tables.td-left-hide>
-
-                        <x-tables.td-left-hide>
-                            {{ $this->totals }}
                         </x-tables.td-left-hide>
 
                         <td class="px-4 py-3 text-center" style="width: 134px;">

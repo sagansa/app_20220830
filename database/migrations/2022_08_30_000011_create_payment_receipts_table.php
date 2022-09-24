@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->string('image')->nullable();
             $table->bigInteger('amount');
             $table->tinyInteger('payment_for');
+            $table->string('image_adjust')->nullable();
+            $table->text('notes')->nullable();
 
             $table->timestamps();
         });

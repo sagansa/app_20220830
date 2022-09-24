@@ -20,7 +20,13 @@ class PaymentReceipt extends Model
         '4' => 'periksa ulang',
     ];
 
-    protected $fillable = ['image', 'amount', 'payment_for'];
+    protected $fillable = [
+        'image',
+        'amount',
+        'payment_for',
+        'image_adjust',
+        'notes',
+    ];
 
     protected $searchableFields = ['*'];
 
@@ -45,6 +51,13 @@ class PaymentReceipt extends Model
     {
         if ($this->image && file_exists('storage/' . $this->image)) {
             unlink('storage/' . $this->image);
+        }
+    }
+
+    public function delete_image_adjust()
+    {
+        if ($this->image_adjust && file_exists('storage/' . $this->image_adjust)) {
+            unlink('storage/' . $this->image_adjust);
         }
     }
 

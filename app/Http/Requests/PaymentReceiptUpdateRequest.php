@@ -26,7 +26,9 @@ class PaymentReceiptUpdateRequest extends FormRequest
         return [
             'image' => ['nullable', 'image'],
             'amount' => ['required', 'min:0', 'numeric'],
-            'payment_for' => ['required', 'max:255'],
+            'payment_for' => ['required', 'in:1,2,3'],
+            'image_adjust' => ['image', 'nullable'],
+            'notes' => ['nullable', 'max:255', 'string'],
         ];
     }
 }
