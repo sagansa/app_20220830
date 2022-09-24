@@ -106,7 +106,7 @@
                 </div>
             </x-partials.card>
 
-            @can('view-any', App\Models\product_sales_order_online::class)
+            @can('view-any', App\Models\SalesOrderOnline::class)
                 <x-partials.card class="mt-5">
                     <x-slot name="title"> Products </x-slot>
 
