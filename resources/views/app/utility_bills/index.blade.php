@@ -63,10 +63,10 @@
                                 @endif
                             </x-slot>
                             <x-slot name="sub">
-                                <p>{{ optional($utilityBill->utility)->number ?? '-' }}</p>
+                                <p>{{ optional($utilityBill->utility)->number ?? '-' }} -
+                                    {{ $utilityBill->utility->utilityProvider->name }} -
+                                    {{ $utilityBill->date->toFormattedDate() ?? '-' }}</p>
                                 <p> {{ $utilityBill->utility->store->nickname }}</p>
-                                <p>{{ $utilityBill->utility->utilityProvider->name }}</p>
-                                <p>{{ $utilityBill->date->toFormattedDate() ?? '-' }}</p>
                                 <p>@currency($utilityBill->amount)</p>
                             </x-slot>
 
