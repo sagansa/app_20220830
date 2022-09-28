@@ -38,14 +38,14 @@
     <x-tables.card>
         <x-table>
             <x-slot name="head">
-                <x-tables.th-left>@lang('crud.utility_bills.inputs.image')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.utility_bills.inputs.utility_id')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.utility_bills.inputs.image')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.utility_bills.inputs.utility_id')</x-tables.th-left-hide>
                 <x-tables.th-left>Store</x-tables.th-left>
-                <x-tables.th-left>Provider</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.utility_bills.inputs.date')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.utility_bills.inputs.amount')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.utility_bills.inputs.initial_indicator')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.utility_bills.inputs.last_indicator')</x-tables.th-left>
+                <x-tables.th-left-hide>Provider</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.utility_bills.inputs.date')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.utility_bills.inputs.amount')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.utility_bills.inputs.initial_indicator')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.utility_bills.inputs.last_indicator')</x-tables.th-left-hide>
                 <th></th>
             </x-slot>
             <x-slot name="body">
