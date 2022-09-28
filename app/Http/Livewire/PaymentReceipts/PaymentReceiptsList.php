@@ -38,11 +38,12 @@ class PaymentReceiptsList extends Component
     {
         $paymentReceipts = PaymentReceipt::query()->latest();
 
-        $this->totals = 0;
         foreach($paymentReceipts as $paymentReceipt) {
             foreach($paymentReceipt->invoicePurchases as $invoicePurchase) {
-                $this->totals += $invoicePurchase->detailInvoices->sum('subtotal_invoice') - $invoicePurchase->discounts + $invoicePurchase->taxes;
+                $invoicePurchase->subtotals += $invoicePurchase->detailInvoices->sum('subtotal_invoice') - $invoicePurchase->discounts + $invoicePurchase->taxes;
             }
+
+            $paymentReceipt->totals += $invoicePurchase->subtotals;
         }
 
         return view('livewire.payment-receipts.payment-receipts-list', [

@@ -89,7 +89,7 @@
                                     @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
                                         <p>
                                             {{ $invoicePurchase->supplier->name }} |
-                                            @currency($invoicePurchase->detailInvoices->sum('subtotal_invoice'))</p>
+                                            @currency($invoicePurchase->detailInvoices->sum('subtotal_invoice') - $invoicePurchase->discounts + $invoicePurchase->taxes)</p>
                                     @endforeach
                                 </p>
                             </x-slot>
