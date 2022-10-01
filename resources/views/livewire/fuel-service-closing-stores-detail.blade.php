@@ -60,7 +60,7 @@
                         </x-tables.td-left>
                         <td class="px-4 py-3 text-right" style="width: 70px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
-                                @can('delete-any', App\Models\ClosingStore::class)
+                                @can('delete-any', App\Models\FuelService::class)
                                     <button class="button button-danger"
                                         onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
                                         wire:click="detach({{ $closingStore->id }})">
