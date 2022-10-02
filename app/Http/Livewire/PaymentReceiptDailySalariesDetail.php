@@ -97,7 +97,7 @@ class PaymentReceiptDailySalariesDetail extends Component
         $this->totals = 0;
 
         foreach($this->paymentReceipt->dailySalaries as $dailySalary) {
-            $this->totals += $dailySalary->sum('amount');
+            $this->totals += $dailySalary['amount'];
         }
 
         $this->difference = $this->paymentReceipt->amount - $this->totals;

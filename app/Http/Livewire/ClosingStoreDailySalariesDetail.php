@@ -84,10 +84,10 @@ class ClosingStoreDailySalariesDetail extends Component
 
     public function render()
     {
-        $this->totals = 0;
+        $this->dailySalary->totals = 0;
 
         foreach ($this->closingStore->dailySalaries as $dailySalary) {
-            $this->totals += $dailySalary['amount'];
+            $this->dailySalary->totals += $dailySalary['amount'];
         }
 
         return view('livewire.closing-store-daily-salaries-detail', [
