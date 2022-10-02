@@ -26,7 +26,13 @@ class PaymentReceiptDailySalariesDetail extends Component
     public function mount(PaymentReceipt $paymentReceipt)
     {
         $this->paymentReceipt = $paymentReceipt;
-        $this->dailySalariesForSelect = DailySalary::pluck('date', 'id');
+        $this->dailySalariesForSelect = DailySalary::
+            orderBy('created_by_id', 'asc')
+            ->latest()
+            ->where('payment_type_id', '=', '1')
+            ->where('status', '=', '3')
+            ->get()
+            ->pluck('date', 'id');
         $this->resetDailySalaryData();
     }
 

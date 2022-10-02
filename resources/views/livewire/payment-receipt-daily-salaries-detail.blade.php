@@ -14,7 +14,7 @@
 
             <div class="mt-1 sm:space-y-5">
                 <x-input.select name="daily_salary_id" label="Daily Salary" wire:model="daily_salary_id">
-                    <option value="null" disabled>Please select the Daily Salary</option>
+                    <option value="null" disabled>-- select --</option>
                     @foreach ($dailySalariesForSelect as $value => $label)
                         <option value="{{ $value }}">{{ $label }}</option>
                     @endforeach
