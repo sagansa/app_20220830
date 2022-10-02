@@ -31,7 +31,7 @@ class PaymentReceiptFuelServicesDetail extends Component
         $this->fuelServicesForSelect = FuelService::
             orderBy('created_at', 'desc')
             ->where('payment_type_id', '=', '1')
-            ->wheere('status', '=', '1')
+            ->where('status', '=', '1')
             ->get()
             ->pluck('id', 'fuel_service_name');
         $this->resetFuelServiceData();
