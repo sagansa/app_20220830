@@ -37,11 +37,7 @@
                         date
                     </x-tables.th-left>
                     <x-tables.th-left>
-                        @lang('crud.payment_receipt_daily_salaries.inputs.daily_salary_id')
-                    </x-tables.th-left>
-
-                    <x-tables.th-left>
-                        store
+                        for
                     </x-tables.th-left>
                     <x-tables.th-left>
                         amount
@@ -60,10 +56,6 @@
                         </x-tables.td-left>
                         <x-tables.td-left>
                             {{ $dailySalary->created_by->name ?? '-' }}
-                        </x-tables.td-left>
-
-                        <x-tables.td-left>
-                            {{ $dailySalary->store->nickname }}
                         </x-tables.td-left>
                         <x-tables.td-right>
                             @currency($dailySalary->amount)
