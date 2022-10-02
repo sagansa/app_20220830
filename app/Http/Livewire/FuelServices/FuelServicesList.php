@@ -39,7 +39,7 @@ class FuelServicesList extends Component
     {
 
         $fuelServices = FuelService::query()
-            ->orderBy('date', 'desc');
+            ->orderBy('created_at', 'desc');
 
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
