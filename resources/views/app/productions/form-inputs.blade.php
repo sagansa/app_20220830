@@ -2,38 +2,22 @@
 
 <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
 
-    @role('staff|super-admin|manager')
-        <x-input.select name="store_id" label="Store" required>
-            @php $selected = old('store_id', ($editing ? $production->store_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-            @foreach ($stores as $value => $label)
-                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
-                </option>
-            @endforeach
-        </x-input.select>
+    <x-input.select name="store_id" label="Store" required>
+        @php $selected = old('store_id', ($editing ? $production->store_id : '')) @endphp
+        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
+        @foreach ($stores as $value => $label)
+            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
+            </option>
+        @endforeach
+    </x-input.select>
 
-        <x-input.date name="date" label="Date"
-            value="{{ old('date', $editing ? optional($production->date)->format('Y-m-d') : '') }}" required>
-        </x-input.date>
+    <x-input.date name="date" label="Date"
+        value="{{ old('date', $editing ? optional($production->date)->format('Y-m-d') : '') }}" required>
+    </x-input.date>
 
-        <x-input.hidden name="status" value="{{ old('status', $editing ? $production->status : '1') }}">
-        </x-input.hidden>
-    @endrole
+    <x-input.hidden name="status" value="{{ old('status', $editing ? $production->status : '1') }}">
+    </x-input.hidden>
 
-    @role('supervisor')
-        <x-input.hidden name="store_id" value="{{ old('store_id', $editing ? $production->store_id : '') }}">
-        </x-input.hidden>
-
-        <x-input.hidden name="date"
-            value="{{ old('date', $editing ? optional($production->date)->format('Y-m-d') : '') }}">
-        </x-input.hidden>
-
-        <x-input.hidden name="product_id" value="{{ old('product_id', $editing ? $production->product_id : '') }}">
-        </x-input.hidden>
-
-        <x-input.hidden name="quantity" label="Quantity"
-            value="{{ old('quantity', $editing ? $production->quantity : '') }}" required></x-input.hidden>
-    @endrole
 
     @if ($editing)
         @role('manager|supervisor|super-admin')
