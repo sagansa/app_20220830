@@ -56,7 +56,7 @@
                 @foreach ($paymentReceiptDailySalaries as $dailySalary)
                     <tr class="hover:bg-gray-100">
                         <x-tables.td-left>
-                            {{ $dailySalary->date->toFormattedDate() ?? '-' }}
+                            {{ $dailySalary->date ?? '-' }}
                         </x-tables.td-left>
                         <x-tables.td-left>
                             {{ $dailySalary->created_by->name ?? '-' }}
