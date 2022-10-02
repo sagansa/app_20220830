@@ -42,9 +42,7 @@
                     <x-tables.th-left>
                         fuel / Service
                     </x-tables.th-left>
-                    <x-tables.th-left>
-                        liter
-                    </x-tables.th-left>
+
                     <x-tables.th-left>
                         amount
                     </x-tables.th-left>
@@ -72,9 +70,7 @@
                             @endif
 
                         </x-tables.td-left>
-                        <x-tables.td-right>
-                            @number($fuelService->liter)
-                        </x-tables.td-right>
+
                         <x-tables.td-right>
                             @currency($fuelService->amount)
                         </x-tables.td-right>
@@ -112,6 +108,33 @@
                 @endforeach
             </x-slot>
             <x-slot name="foot">
+                @role('super-admin|manager')
+                    <tr>
+                        <x-tables.th-total colspan="2">Total Payment</x-tables.th-total>
+                        <x-tables.td-total>@currency($this->totals)
+                        </x-tables.td-total>
+                    </tr>
+                    <tr>
+                        <x-tables.th-total colspan="3">Amount</x-tables.th-total>
+                        @role('supervisor|manager|staff')
+                            <x-tables.td-total>@currency($this->paymentReceipt->amount)</x-tables.td-total>
+                        @endrole
+                        @role('super-admin')
+                            <x-input.wire-currency name="amount" wiresubmit="updatePaymentReceipt" wiremodel="state.amount">
+                            </x-input.wire-currency>
+                        @endrole
+                    </tr>
+                    <tr>
+                        <x-tables.th-total colspan="3">Difference</x-tables.th-total>
+                        <x-tables.td-total>
+                            @if ($this->difference < 0)
+                                <x-spans.text-red>@currency($this->difference) </x-spans.text-red>
+                            @else
+                                <x-spans.text-green>@currency($this->difference) </x-spans.text-green>
+                            @endif
+                        </x-tables.td-total>
+                    </tr>
+                @endrole
                 <tr>
                     <td colspan="2">
                         <div class="px-4 mt-10">

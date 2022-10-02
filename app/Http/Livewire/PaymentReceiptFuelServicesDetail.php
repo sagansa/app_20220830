@@ -13,6 +13,8 @@ class PaymentReceiptFuelServicesDetail extends Component
 {
     use AuthorizesRequests;
 
+    public $state = [];
+
     public PaymentReceipt $paymentReceipt;
     public FuelService $fuelService;
     public $fuelServicesForSelect = [];
@@ -29,8 +31,8 @@ class PaymentReceiptFuelServicesDetail extends Component
     {
         $this->paymentReceipt = $paymentReceipt;
         $this->fuelServicesForSelect = FuelService::
-            // orderBy('created_at', 'desc')
-            where('payment_type_id', '=', '1')
+            latest()
+            ->where('payment_type_id', '=', '1')
             ->where('status', '=', '1')
             ->get()
             ->pluck('id', 'fuel_service_name');
@@ -91,6 +93,14 @@ class PaymentReceiptFuelServicesDetail extends Component
 
     public function render()
     {
+        $this->totals = 0;
+
+        foreach($this->paymentReceipt->fuelServices as $fuelService) {
+            $this->totals += $fuelService['amount'];
+        }
+
+        $this->difference = $this->paymentReceipt->amount - $this->totals;
+
         return view('livewire.payment-receipt-fuel-services-detail', [
             'paymentReceiptFuelServices' => $this->paymentReceipt
                 ->fuelServices()
@@ -113,5 +123,17 @@ class PaymentReceiptFuelServicesDetail extends Component
         $this->emit($this->fuelServicesForSelect);
 
 		$this->dispatchBrowserEvent('updated', ['message' => "Status changed to {$status} successfully."]);
+    }
+
+    public function updatePaymentReceipt()
+    {
+        Validator::make(
+            $this->state,
+            [
+                'amount' => 'required', 'numeric', 'min:0'
+            ]
+        )->validate();
+
+        $this->paymentReceipt->update($this->state);
     }
 }
