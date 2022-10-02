@@ -68,6 +68,18 @@
                         <x-tables.td-right>
                             @currency($dailySalary->amount)
                         </x-tables.td-right>
+                        @role('super-admin|manager')
+                            <x-tables.td-left>
+                                <select
+                                    class="block w-full py-2 pl-3 pr-10 mt-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                    wire:change="changeStatus({{ $dailySalary }}, $event.target.value)">
+                                    <option value="1" {{ $dailySalary->status == '1' ? 'selected' : '' }}>
+                                        Belum Dibayar</option>
+                                    <option value="2" {{ $dailySalary->status == '2' ? 'selected' : '' }}>
+                                        Sudah Dibayar</option>
+                                </select>
+                            </x-tables.td-left>
+                        @endrole
                         <td class="px-4 py-3 text-right" style="width: 70px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @can('delete-any', App\Models\DailySalary::class)
@@ -86,14 +98,14 @@
             <x-slot name="foot">
                 @role('super-admin|manager')
                     <tr>
-                        <x-tables.th-total colspan="5">Total Invoice</x-tables.th-total>
+                        <x-tables.th-total colspan="5">Total Payment</x-tables.th-total>
                         <x-tables.td-total>@currency($this->totals)
                         </x-tables.td-total>
                     </tr>
                     <tr>
                         <x-tables.th-total colspan="5">Amount</x-tables.th-total>
                         @role('supervisor|manager|staff')
-                            <x-tables.td-total>@currency($this->purchaseReceipt->nominal_transfer)</x-tables.td-total>
+                            <x-tables.td-total>@currency($this->paymentReceipt->amount)</x-tables.td-total>
                         @endrole
                         @role('super-admin')
                             <x-input.wire-currency name="amount" wiresubmit="updatePaymentReceipt" wiremodel="state.amount">

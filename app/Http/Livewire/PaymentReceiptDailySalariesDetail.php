@@ -6,10 +6,14 @@ use Livewire\Component;
 use App\Models\DailySalary;
 use App\Models\PaymentReceipt;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class PaymentReceiptDailySalariesDetail extends Component
 {
     use AuthorizesRequests;
+
+    public $state = [];
 
     public PaymentReceipt $paymentReceipt;
     public DailySalary $dailySalary;
@@ -96,5 +100,31 @@ class PaymentReceiptDailySalariesDetail extends Component
                 ->withPivot([])
                 ->paginate(30),
         ]);
+    }
+
+    public function changeStatus(DailySalary $dailySalary, $status)
+    {
+        Validator::make(['status' => $status], [
+			'status' => [
+				'required',
+				Rule::in(DailySalary::STATUS_SIAP_DIBAYAR, DailySalary::STATUS_SUDAH_DIBAYAR),
+			],
+		])->validate();
+
+		$dailySalary->update(['status' => $status]);
+
+		$this->dispatchBrowserEvent('updated', ['message' => "Status changed to {$status} successfully."]);
+    }
+
+    public function updatePaymentReceipt()
+    {
+        Validator::make(
+            $this->state,
+            [
+                'amount' => 'required', 'numeric', 'min:0'
+            ]
+        )->validate();
+
+        $this->paymentReceipt->update($this->state);
     }
 }
