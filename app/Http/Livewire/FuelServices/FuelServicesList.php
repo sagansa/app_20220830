@@ -9,6 +9,7 @@ use App\Http\Livewire\DataTables\WithModal;
 use App\Http\Livewire\DataTables\WithPerPagePagination;
 use App\Http\Livewire\DataTables\WithSorting;
 use App\Models\FuelService;
+use App\Models\PaymentType;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -35,9 +36,13 @@ class FuelServicesList extends Component
         'status' => '',
     ];
 
+    public function mount()
+    {
+        $this->paymentTypes = PaymentType::orderBy('name', 'asc')->whereIn('id', ['1', '2'])->pluck('id', 'name');
+    }
+
     public function getRowsQueryProperty()
     {
-
         $fuelServices = FuelService::query()
             ->orderBy('created_at', 'desc');
 
@@ -45,15 +50,12 @@ class FuelServicesList extends Component
             if (!empty($value)) {
                 $fuelServices
                     ->when($filter == 'payment_type_id', fn($fuelServices) => $fuelServices->whereRelation('paymentType', 'id', $value))
-                    ->when($filter == 'created_by_id', fn($fuelServices) => $fuelServices->whereRelation('created_by', 'id', $value))
                     ->when($filter == 'status', fn($fuelServices) => $fuelServices->where('daily_salaries.' . $filter, 'LIKE', '%' . $value . '%'));
             }
         }
 
         if (Auth::user()->hasRole('staff|supervisor|manager')) {
-
             $fuelServices->where('created_by_id', '=', Auth::user()->id);
-
         }
 
         return $this->applySorting($fuelServices);

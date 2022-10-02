@@ -6,35 +6,6 @@
         <p class="mt-2 text-xs text-gray-700">laporan bahan bakar atau service kendaraan</p>
     </x-slot>
 
-    <div class="mt-4 mb-5">
-        <div class="flex flex-wrap justify-between mt-1">
-            <div class="mt-1 md:w-1/3">
-                <form>
-                    <div class="flex items-center w-full">
-                        <x-inputs.text name="search" value="{{ $search ?? '' }}"
-                            placeholder="{{ __('crud.common.search') }}" autocomplete="off"></x-inputs.text>
-
-                        <div class="ml-1">
-                            <x-jet-button>
-                                <i class="icon ion-md-search"></i>
-                            </x-jet-button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="mt-1 text-right md:w-1/3">
-                @can('create', App\Models\FuelService::class)
-                    <a href="{{ route('fuel-services.create') }}">
-                        <x-jet-button>
-                            <i class="mr-1 icon ion-md-add"></i>
-                            @lang('crud.common.create')
-                        </x-jet-button>
-                    </a>
-                @endcan
-            </div>
-        </div>
-    </div>
-
     <x-tables.topbar>
         <x-slot name="search">
             <x-buttons.link wire:click="$toggle('showFilters')">
@@ -43,16 +14,6 @@
                 @endif Advanced Search...
             </x-buttons.link>
             @if ($showFilters)
-                @role('super-admin')
-                    <x-filters.group>
-                        <x-filters.label>User</x-filters.label>
-                        <x-filters.select wire:model="filters.created_by_id">
-                            @foreach ($users as $label => $value)
-                                <option value="{{ $value }}">{{ $label }}</option>
-                            @endforeach
-                        </x-filters.select>
-                    </x-filters.group>
-                @endrole
                 <x-filters.group>
                     <x-filters.label>Payment Type</x-filters.label>
                     <x-filters.select wire:model="filters.payment_type_id">
