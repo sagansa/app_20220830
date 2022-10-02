@@ -89,7 +89,7 @@
             </x-slot>
             <x-slot name="foot">
                 <tr>
-                    <td colspan="2">
+                    <td colspan="6">
                         <div class="px-4 mt-10">
                             {{ $paymentReceiptDailySalaries->render() }}
                         </div>

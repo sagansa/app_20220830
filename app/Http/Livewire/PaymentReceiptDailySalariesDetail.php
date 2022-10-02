@@ -94,7 +94,7 @@ class PaymentReceiptDailySalariesDetail extends Component
             'paymentReceiptDailySalaries' => $this->paymentReceipt
                 ->dailySalaries()
                 ->withPivot([])
-                ->paginate(20),
+                ->paginate(30),
         ]);
     }
 }
