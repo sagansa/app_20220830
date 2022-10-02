@@ -99,6 +99,9 @@ class PaymentReceiptDailySalariesDetail extends Component
         foreach($this->paymentReceipt->dailySalaries as $dailySalary) {
             $this->totals += $dailySalary->sum('amount');
         }
+
+        $this->difference = $this->paymentReceipt->amount - $this->totals;
+
         return view('livewire.payment-receipt-daily-salaries-detail', [
             'paymentReceiptDailySalaries' => $this->paymentReceipt
                 ->dailySalaries()
