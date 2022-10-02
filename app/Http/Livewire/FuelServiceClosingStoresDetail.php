@@ -76,7 +76,7 @@ class FuelServiceClosingStoresDetail extends Component
 
     public function detach($closingStore)
     {
-        $this->authorize('delete-any', ClosingStore::class);
+        $this->authorize('delete-any', FuelService::class);
 
         $this->fuelService->closingStores()->detach($closingStore);
 
