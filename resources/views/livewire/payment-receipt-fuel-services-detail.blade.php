@@ -48,6 +48,12 @@
                     <x-tables.th-left>
                         amount
                     </x-tables.th-left>
+                    <x-tables.th-left>
+                        created by
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        status
+                    </x-tables.th-left>
                     <th></th>
                 </tr>
             </x-slot>
@@ -64,7 +70,7 @@
                             @elseif ($fuelService->fuel_service == 2)
                                 service
                             @endif
-                            {{ $fuelService->fuel_service ?? '-' }}
+
                         </x-tables.td-left>
                         <x-tables.td-right>
                             @number($fuelService->liter)
