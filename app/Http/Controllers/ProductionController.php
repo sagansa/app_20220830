@@ -28,13 +28,6 @@ class ProductionController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        if(Auth::user()->hasRole('supervisor')) {
-            $productions->where('approved_by_id', '=', Auth::user()->id)
-                ->orWhere('approved_by_id', '=', NULL);
-        } else if (Auth::user()->hasRole('staff')) {
-            $productions->where('created_by_id', '=', Auth::user()->id);
-        }
-
         return view('app.productions.index', compact('productions', 'search'));
     }
 
