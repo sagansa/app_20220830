@@ -1472,6 +1472,18 @@ return [
         ],
     ],
 
+    'payment_receipt_daily_salaries' => [
+        'name' => 'PaymentReceipt Daily Salaries',
+        'index_title' => ' List',
+        'new_title' => 'New Daily salary payment receipt',
+        'create_title' => 'Create daily_salary_payment_receipt',
+        'edit_title' => 'Edit daily_salary_payment_receipt',
+        'show_title' => 'Show daily_salary_payment_receipt',
+        'inputs' => [
+            'daily_salary_id' => 'Daily Salary',
+        ],
+    ],
+
     'roles' => [
         'name' => 'Roles',
         'index_title' => 'Roles List',

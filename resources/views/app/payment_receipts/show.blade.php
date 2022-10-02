@@ -88,11 +88,19 @@
                     </x-partials.card>
                 @endcan
             @elseif ($paymentReceipt->payment_for == 2)
-                @can('view-any', App\Models\payment_receipt_presence::class)
+                {{-- @can('view-any', App\Models\payment_receipt_presence::class)
                     <x-partials.card class="mt-5">
                         <x-slot name="title"> Presences </x-slot>
 
                         <livewire:payment-receipt-presences-detail :paymentReceipt="$paymentReceipt" />
+                    </x-partials.card>
+                @endcan --}}
+
+                @can('view-any', App\Models\daily_salary_payment_receipt::class)
+                    <x-partials.card class="mt-5">
+                        <x-slot name="title"> Daily Salaries </x-slot>
+
+                        <livewire:payment-receipt-daily-salaries-detail :paymentReceipt="$paymentReceipt" />
                     </x-partials.card>
                 @endcan
             @elseif ($paymentReceipt->payment_for == 3)
@@ -104,6 +112,8 @@
                     </x-partials.card>
                 @endcan
             @endif
+
+
 
 
 
