@@ -98,12 +98,12 @@
             <x-slot name="foot">
                 @role('super-admin|manager')
                     <tr>
-                        <x-tables.th-total colspan="5">Total Payment</x-tables.th-total>
+                        <x-tables.th-total colspan="3">Total Payment</x-tables.th-total>
                         <x-tables.td-total>@currency($this->totals)
                         </x-tables.td-total>
                     </tr>
                     <tr>
-                        <x-tables.th-total colspan="5">Amount</x-tables.th-total>
+                        <x-tables.th-total colspan="3">Amount</x-tables.th-total>
                         @role('supervisor|manager|staff')
                             <x-tables.td-total>@currency($this->paymentReceipt->amount)</x-tables.td-total>
                         @endrole
@@ -113,7 +113,7 @@
                         @endrole
                     </tr>
                     <tr>
-                        <x-tables.th-total colspan="5">Difference</x-tables.th-total>
+                        <x-tables.th-total colspan="3">Difference</x-tables.th-total>
                         <x-tables.td-total>
                             @if ($this->difference < 0)
                                 <x-spans.text-red>@currency($this->difference) </x-spans.text-red>
