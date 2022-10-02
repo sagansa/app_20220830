@@ -74,7 +74,7 @@ class PaymentReceiptDailySalariesDetail extends Component
 
         $this->paymentReceipt
             ->dailySalaries()
-            ->attach($this->dailySalary_id, []);
+            ->attach($this->daily_salary_id, []);
 
         $this->hideModal();
     }
