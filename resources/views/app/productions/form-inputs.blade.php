@@ -64,14 +64,6 @@
                     <x-shows.dt>Date</x-shows.dt>
                     <x-shows.dd>{{ $production->date->toFormattedDate() }} </x-shows.dd>
                 </x-shows.sub-dl>
-                <x-shows.sub-dl>
-                    <x-shows.dt>Product</x-shows.dt>
-                    <x-shows.dd>{{ $production->product->name }} </x-shows.dd>
-                </x-shows.sub-dl>
-                <x-shows.sub-dl>
-                    <x-shows.dt>Quantity</x-shows.dt>
-                    <x-shows.dd>{{ $production->quantity }} {{ $production->product->unit->unit }} </x-shows.dd>
-                </x-shows.sub-dl>
             @endrole
             <x-shows.sub-dl>
                 <x-shows.dt>Created Date</x-shows.dt>
