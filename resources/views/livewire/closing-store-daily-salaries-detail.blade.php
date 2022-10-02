@@ -79,7 +79,7 @@
             <x-slot name="foot">
                 <tr>
                     <x-tables.th-total colspan="2">Totals</x-tables.th-total>
-                    <x-tables.td-total>@currency($this->dailySalary->totals)</x-tables.td-total>
+                    <x-tables.td-total>@currency($this->totals)</x-tables.td-total>
                 </tr>
                 <tr>
                     <td colspan="2">
