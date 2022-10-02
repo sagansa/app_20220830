@@ -39,9 +39,7 @@
                     <x-tables.th-left>
                         @lang('crud.payment_receipt_daily_salaries.inputs.daily_salary_id')
                     </x-tables.th-left>
-                    <x-tables.th-left>
-                        payment type
-                    </x-tables.th-left>
+
                     <x-tables.th-left>
                         store
                     </x-tables.th-left>
@@ -63,9 +61,7 @@
                         <x-tables.td-left>
                             {{ $dailySalary->created_by->name ?? '-' }}
                         </x-tables.td-left>
-                        <x-tables.td-left>
-                            {{ $dailySalary->paymentType->name }}
-                        </x-tables.td-left>
+
                         <x-tables.td-left>
                             {{ $dailySalary->store->nickname }}
                         </x-tables.td-left>
@@ -78,8 +74,8 @@
                                     <button class="button button-danger"
                                         onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
                                         wire:click="detach({{ $dailySalary->id }})">
-                                        <i class="mr-1 icon ion-md-trash text-primary"></i>
-                                        @lang('crud.common.detach')
+                                        <i class="icon ion-md-trash text-primary"></i>
+
                                     </button>
                                 @endcan
                             </div>
@@ -88,8 +84,35 @@
                 @endforeach
             </x-slot>
             <x-slot name="foot">
+                @role('super-admin|manager')
+                    <tr>
+                        <x-tables.th-total colspan="5">Total Invoice</x-tables.th-total>
+                        <x-tables.td-total>@currency($this->totals)
+                        </x-tables.td-total>
+                    </tr>
+                    <tr>
+                        <x-tables.th-total colspan="5">Amount</x-tables.th-total>
+                        @role('supervisor|manager|staff')
+                            <x-tables.td-total>@currency($this->purchaseReceipt->nominal_transfer)</x-tables.td-total>
+                        @endrole
+                        @role('super-admin')
+                            <x-input.wire-currency name="amount" wiresubmit="updatePaymentReceipt" wiremodel="state.amount">
+                            </x-input.wire-currency>
+                        @endrole
+                    </tr>
+                    <tr>
+                        <x-tables.th-total colspan="5">Difference</x-tables.th-total>
+                        <x-tables.td-total>
+                            @if ($this->difference < 0)
+                                <x-spans.text-red>@currency($this->difference) </x-spans.text-red>
+                            @else
+                                <x-spans.text-green>@currency($this->difference) </x-spans.text-green>
+                            @endif
+                        </x-tables.td-total>
+                    </tr>
+                @endrole
                 <tr>
-                    <td colspan="6">
+                    <td colspan="5">
                         <div class="px-4 mt-10">
                             {{ $paymentReceiptDailySalaries->render() }}
                         </div>

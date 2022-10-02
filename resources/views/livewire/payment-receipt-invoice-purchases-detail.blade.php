@@ -134,7 +134,8 @@
                     <tr>
                         <x-tables.th-total colspan="5">Amount</x-tables.th-total>
                         @role('supervisor|manager|staff')
-                            <x-tables.td-total>@currency($this->purchaseReceipt->nominal_transfer)</x-tables.td-total>
+                            <x-tables.td-total>@currency($this->paymentReceipt->nominal_transfer)
+                            </x-tables.td-total>
                         @endrole
                         @role('super-admin')
                             <x-input.wire-currency name="amount" wiresubmit="updatePaymentReceipt" wiremodel="state.amount">
