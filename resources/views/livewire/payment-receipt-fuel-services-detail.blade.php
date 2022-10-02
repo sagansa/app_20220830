@@ -81,18 +81,13 @@
                             <select
                                 class="block w-full py-2 pl-3 pr-10 mt-1 text-xs border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                                 wire:change="changeStatus({{ $fuelService }}, $event.target.value)">
-                                @foreach (App\Models\FuelService::STATUSES as $value => $label)
-                                    <option value="{{ $value }}">{{ $label }}</option>
-                                @endforeach
 
-                                {{-- <option value="1" {{ $fuelService->status == '1' ? 'selected' : '' }}>
+
+                                <option value="1" {{ $fuelService->status == '1' ? 'selected' : '' }}>
                                     belum dibayar</option>
                                 <option value="2" {{ $fuelService->status == '2' ? 'selected' : '' }}>
                                     sudah dibayar</option>
-                                <option value="3" {{ $fuelService->status == '3' ? 'selected' : '' }}>
-                                    siap dibayar</option>
-                                <option value="4" {{ $fuelService->status == '4' ? 'selected' : '' }}>
-                                    tidak valid</option> --}}
+
                             </select>
                         </x-tables.td-right>
                         <td class="px-4 py-3 text-right" style="width: 70px;">
