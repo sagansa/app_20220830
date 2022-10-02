@@ -63,7 +63,7 @@
                         </x-tables.td-left>
 
                         <x-tables.td-left>
-                            {{ $dailySalary->store_id }}
+                            {{-- {{ $dailySalary->store_id }} --}}
                         </x-tables.td-left>
                         <x-tables.td-right>
                             @currency($dailySalary->amount)
