@@ -56,14 +56,14 @@
                 @foreach ($paymentReceiptDailySalaries as $dailySalary)
                     <tr class="hover:bg-gray-100">
                         <x-tables.td-left>
-                            {{ $dailySalary->date ?? '-' }}
+                            {{ $dailySalary->date->toFormattedDate() ?? '-' }}
                         </x-tables.td-left>
                         <x-tables.td-left>
                             {{ $dailySalary->created_by->name ?? '-' }}
                         </x-tables.td-left>
 
                         <x-tables.td-left>
-                            {{-- {{ $dailySalary->store_id }} --}}
+                            {{ $dailySalary->store->nickname }}
                         </x-tables.td-left>
                         <x-tables.td-right>
                             @currency($dailySalary->amount)
@@ -123,6 +123,13 @@
                         </x-tables.td-total>
                     </tr>
                 @endrole
+                <tr>
+                    <td colspan="5">
+                        <div class="px-4 mt-10">
+                            {{ $paymentReceiptDailySalaries->render() }}
+                        </div>
+                    </td>
+                </tr>
             </x-slot>
         </x-table>
     </x-tables.card-overflow>
