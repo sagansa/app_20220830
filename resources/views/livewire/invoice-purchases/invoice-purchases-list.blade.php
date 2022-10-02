@@ -206,12 +206,16 @@
                         @role('super-admin')
                             <x-tables.td-left-hide>
                                 @foreach ($invoicePurchase->detailInvoices as $detailInvoice)
-                                    <p>
-                                        {{-- {{ $detailInvoice->detailRequest->product->name }} -
-                                        {{ $detailInvoice->quantity_product }}
-                                        {{ $detailInvoice->detailRequest->product->unit->unit }} -
-                                        @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product) --}}
-                                    </p>
+                                    @if ($detailInvoice == null)
+                                        -
+                                    @else
+                                        <p>
+                                            {{ $detailInvoice->detailRequest->product->name }} -
+                                            {{ $detailInvoice->quantity_product }}
+                                            {{ $detailInvoice->detailRequest->product->unit->unit }} -
+                                            @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
+                                        </p>
+                                    @endif
                                 @endforeach
                             </x-tables.td-left-hide>
 
