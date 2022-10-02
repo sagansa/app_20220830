@@ -123,13 +123,6 @@
                         </x-tables.td-total>
                     </tr>
                 @endrole
-                <tr>
-                    <td colspan="5">
-                        <div class="px-4 mt-10">
-                            {{ $paymentReceiptDailySalaries->render() }}
-                        </div>
-                    </td>
-                </tr>
             </x-slot>
         </x-table>
     </x-tables.card-overflow>
