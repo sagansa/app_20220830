@@ -27,8 +27,8 @@ class PaymentReceiptDailySalariesDetail extends Component
     {
         $this->paymentReceipt = $paymentReceipt;
         $this->dailySalariesForSelect = DailySalary::
-            orderBy('date', 'asc')
-            ->latest()
+            orderBy('created_by_id', 'asc')
+            ->orderBy('date', 'desc')
             ->where('payment_type_id', '=', '1')
             ->where('status', '=', '3')
             ->get()
