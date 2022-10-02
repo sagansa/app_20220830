@@ -14,17 +14,17 @@ use Livewire\Component;
 
 class FuelServicesList extends Component
 {
-    use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
+    use WithPerPagePagination, WithSorting, WithModal, WithBulkAction, WithCachedRows, WithFilter;
 
     public FuelService $fuelService;
 
     public $fuelServiceDate;
 
-    public $sortColumn = 'fuel_services.date';
+    public $sortColumn = 'fuel_services.created_at';
 
     protected $queryString = [
         'sortColumn' => [
-        'except' => 'fuel_services.date'
+        'except' => 'fuel_services.created_at'
         ],
         'sortDirection' => [
             'except' => 'desc',
