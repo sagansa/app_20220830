@@ -82,6 +82,6 @@ class FuelService extends Model
 
     public function getFuelServiceNameAttribute()
     {
-        return $this->vehicle->no_register . ' | ' . $this->amount . ' | ' . $this->created_at . ' | ' . $this->created_by->name . ' | ' . $this->payment_type->name;
+        return $this->vehicle->no_register . ' | ' . $this->amount . ' | ' . $this->created_at . ' | ' . $this->created_by->name . ' | ' . $this->payment_type_id;
     }
 }
