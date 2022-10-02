@@ -67,7 +67,7 @@
                             {{ $dailySalary->paymentType->name }}
                         </x-tables.td-left>
                         <x-tables.td-left>
-                            {{ $dailySalary->closingStore->store->nickname }}
+                            {{ $dailySalary->store->nickname }}
                         </x-tables.td-left>
                         <x-tables.td-right>
                             @currency($dailySalary->amount)
