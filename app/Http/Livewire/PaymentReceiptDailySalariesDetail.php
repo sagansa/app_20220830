@@ -32,7 +32,7 @@ class PaymentReceiptDailySalariesDetail extends Component
             ->where('payment_type_id', '=', '1')
             ->where('status', '=', '3')
             ->get()
-            ->pluck('id', 'presence_name');
+            ->pluck('id', 'daily_salary_name');
         $this->resetDailySalaryData();
     }
 
