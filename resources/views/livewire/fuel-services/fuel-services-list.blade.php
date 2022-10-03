@@ -46,8 +46,8 @@
                     @endrole
                 </div>
                 <div class="mt-1 text-right md:w-1/3">
-                    @can('create', App\Models\DailySalary::class)
-                        <a href="{{ route('daily-salaries.create') }}">
+                    @can('create', App\Models\FuelService::class)
+                        <a href="{{ route('fuel-services.create') }}">
                             <x-jet-button>
                                 <i class="mr-1 icon ion-md-add"></i>
                                 @lang('crud.common.create')
