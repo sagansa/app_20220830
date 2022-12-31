@@ -65,8 +65,9 @@
                                 </div>
                             </div>
                             <button type="submit"
-                                class="flex items-center justify-center w-full px-8 py-3 mt-8 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Add
+                                class="flex items-center justify-center w-full px-8 py-3 mt-8 text-base font-medium text-white bg-gray-900 border border-transparent rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Add
                                 to cart</button>
+
                         </form>
 
                         <!-- Product details -->

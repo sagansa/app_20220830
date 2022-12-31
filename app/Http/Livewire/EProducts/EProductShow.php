@@ -46,8 +46,6 @@ class EProductShow extends Component
 
         $cart->subtotal = $cart->eProduct->price * $cart->quantity;
 
-        dd($cart);
-
         $cart->save();
 
 
