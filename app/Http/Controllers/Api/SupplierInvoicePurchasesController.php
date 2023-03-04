@@ -10,13 +10,10 @@ use App\Http\Resources\InvoicePurchaseCollection;
 
 class SupplierInvoicePurchasesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Supplier $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Supplier $supplier)
-    {
+    public function index(
+        Request $request,
+        Supplier $supplier
+    ): InvoicePurchaseCollection {
         $this->authorize('view', $supplier);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class SupplierInvoicePurchasesController extends Controller
         return new InvoicePurchaseCollection($invoicePurchases);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Supplier $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Supplier $supplier)
-    {
+    public function store(
+        Request $request,
+        Supplier $supplier
+    ): InvoicePurchaseResource {
         $this->authorize('create', InvoicePurchase::class);
 
         $validated = $request->validate([

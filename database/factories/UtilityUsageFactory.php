@@ -18,9 +18,9 @@ class UtilityUsageFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'result' => $this->faker->randomNumber(2),

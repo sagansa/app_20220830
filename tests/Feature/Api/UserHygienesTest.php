@@ -30,7 +30,7 @@ class UserHygienesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_hygienes()
+    public function it_gets_user_hygienes(): void
     {
         $user = User::factory()->create();
         $hygienes = Hygiene::factory()
@@ -47,7 +47,7 @@ class UserHygienesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_hygienes()
+    public function it_stores_the_user_hygienes(): void
     {
         $user = User::factory()->create();
         $data = Hygiene::factory()

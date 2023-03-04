@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\VehicleTax;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\VehicleTaxResource;
@@ -13,11 +14,7 @@ use App\Http\Requests\VehicleTaxUpdateRequest;
 
 class VehicleTaxController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): VehicleTaxCollection
     {
         $this->authorize('view-any', VehicleTax::class);
 
@@ -30,11 +27,7 @@ class VehicleTaxController extends Controller
         return new VehicleTaxCollection($vehicleTaxes);
     }
 
-    /**
-     * @param \App\Http\Requests\VehicleTaxStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(VehicleTaxStoreRequest $request)
+    public function store(VehicleTaxStoreRequest $request): VehicleTaxResource
     {
         $this->authorize('create', VehicleTax::class);
 
@@ -48,27 +41,19 @@ class VehicleTaxController extends Controller
         return new VehicleTaxResource($vehicleTax);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\VehicleTax $vehicleTax
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, VehicleTax $vehicleTax)
-    {
+    public function show(
+        Request $request,
+        VehicleTax $vehicleTax
+    ): VehicleTaxResource {
         $this->authorize('view', $vehicleTax);
 
         return new VehicleTaxResource($vehicleTax);
     }
 
-    /**
-     * @param \App\Http\Requests\VehicleTaxUpdateRequest $request
-     * @param \App\Models\VehicleTax $vehicleTax
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         VehicleTaxUpdateRequest $request,
         VehicleTax $vehicleTax
-    ) {
+    ): VehicleTaxResource {
         $this->authorize('update', $vehicleTax);
 
         $validated = $request->validated();
@@ -86,12 +71,7 @@ class VehicleTaxController extends Controller
         return new VehicleTaxResource($vehicleTax);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\VehicleTax $vehicleTax
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, VehicleTax $vehicleTax)
+    public function destroy(Request $request, VehicleTax $vehicleTax): Response
     {
         $this->authorize('delete', $vehicleTax);
 

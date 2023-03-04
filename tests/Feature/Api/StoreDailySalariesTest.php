@@ -31,7 +31,7 @@ class StoreDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_daily_salaries()
+    public function it_gets_store_daily_salaries(): void
     {
         $store = Store::factory()->create();
         $dailySalaries = DailySalary::factory()
@@ -50,7 +50,7 @@ class StoreDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_daily_salaries()
+    public function it_stores_the_store_daily_salaries(): void
     {
         $store = Store::factory()->create();
         $data = DailySalary::factory()

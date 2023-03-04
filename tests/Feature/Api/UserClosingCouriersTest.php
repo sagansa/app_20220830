@@ -30,7 +30,7 @@ class UserClosingCouriersTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_closing_couriers()
+    public function it_gets_user_closing_couriers(): void
     {
         $user = User::factory()->create();
         $closingCouriers = ClosingCourier::factory()
@@ -49,7 +49,7 @@ class UserClosingCouriersTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_closing_couriers()
+    public function it_stores_the_user_closing_couriers(): void
     {
         $user = User::factory()->create();
         $data = ClosingCourier::factory()

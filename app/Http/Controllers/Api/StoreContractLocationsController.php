@@ -10,13 +10,10 @@ use App\Http\Resources\ContractLocationCollection;
 
 class StoreContractLocationsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Store $store)
-    {
+    public function index(
+        Request $request,
+        Store $store
+    ): ContractLocationCollection {
         $this->authorize('view', $store);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class StoreContractLocationsController extends Controller
         return new ContractLocationCollection($contractLocations);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Store $store)
-    {
+    public function store(
+        Request $request,
+        Store $store
+    ): ContractLocationResource {
         $this->authorize('create', ContractLocation::class);
 
         $validated = $request->validate([

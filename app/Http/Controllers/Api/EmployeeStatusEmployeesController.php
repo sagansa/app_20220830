@@ -10,13 +10,10 @@ use App\Http\Resources\EmployeeCollection;
 
 class EmployeeStatusEmployeesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\EmployeeStatus $employeeStatus
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, EmployeeStatus $employeeStatus)
-    {
+    public function index(
+        Request $request,
+        EmployeeStatus $employeeStatus
+    ): EmployeeCollection {
         $this->authorize('view', $employeeStatus);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class EmployeeStatusEmployeesController extends Controller
         return new EmployeeCollection($employees);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\EmployeeStatus $employeeStatus
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, EmployeeStatus $employeeStatus)
-    {
+    public function store(
+        Request $request,
+        EmployeeStatus $employeeStatus
+    ): EmployeeResource {
         $this->authorize('create', Employee::class);
 
         $validated = $request->validate([
@@ -60,10 +54,6 @@ class EmployeeStatusEmployeesController extends Controller
                 'numeric',
             ],
             'address' => ['required', 'max:255', 'string'],
-            'district_id' => ['nullable', 'exists:districts,id'],
-            'province_id' => ['nullable', 'exists:provinces,id'],
-            'regency_id' => ['nullable', 'exists:regencies,id'],
-            'village_id' => ['nullable', 'exists:villages,id'],
             'codepos' => ['required', 'integer', 'digits:5'],
             'gps_location' => ['nullable', 'max:255', 'string'],
             'siblings_name' => ['required', 'max:255', 'string'],
@@ -87,6 +77,9 @@ class EmployeeStatusEmployeesController extends Controller
             'image_identity_id' => ['required', 'image', 'max:1024'],
             'image_selfie' => ['required', 'image', 'max:1024'],
             'notes' => ['required', 'max:255', 'string'],
+            'province_id' => ['nullable', 'exists:provinces,id'],
+            'regency_id' => ['nullable', 'exists:regencies,id'],
+            'district_id' => ['nullable', 'exists:districts,id'],
         ]);
 
         if ($request->hasFile('image_identity_id')) {

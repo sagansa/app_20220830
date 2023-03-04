@@ -3,16 +3,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function login(Request $request)
+    public function login(Request $request): JsonResponse
     {
         $credentials = $request->validate([
             'email' => 'required|email',

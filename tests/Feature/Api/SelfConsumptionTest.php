@@ -32,7 +32,7 @@ class SelfConsumptionTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_self_consumptions_list()
+    public function it_gets_self_consumptions_list(): void
     {
         $selfConsumptions = SelfConsumption::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class SelfConsumptionTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_self_consumption()
+    public function it_stores_the_self_consumption(): void
     {
         $data = SelfConsumption::factory()
             ->make()
@@ -65,7 +65,7 @@ class SelfConsumptionTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_self_consumption()
+    public function it_updates_the_self_consumption(): void
     {
         $selfConsumption = SelfConsumption::factory()->create();
 
@@ -97,7 +97,7 @@ class SelfConsumptionTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_self_consumption()
+    public function it_deletes_the_self_consumption(): void
     {
         $selfConsumption = SelfConsumption::factory()->create();
 

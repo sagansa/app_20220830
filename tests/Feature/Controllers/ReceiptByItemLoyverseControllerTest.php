@@ -29,7 +29,7 @@ class ReceiptByItemLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_receipt_by_item_loyverses()
+    public function it_displays_index_view_with_receipt_by_item_loyverses(): void
     {
         $receiptByItemLoyverses = ReceiptByItemLoyverse::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class ReceiptByItemLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_receipt_by_item_loyverse()
+    public function it_displays_create_view_for_receipt_by_item_loyverse(): void
     {
         $response = $this->get(route('receipt-by-item-loyverses.create'));
 
@@ -58,7 +58,7 @@ class ReceiptByItemLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_receipt_by_item_loyverse()
+    public function it_stores_the_receipt_by_item_loyverse(): void
     {
         $data = ReceiptByItemLoyverse::factory()
             ->make()
@@ -81,7 +81,7 @@ class ReceiptByItemLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_receipt_by_item_loyverse()
+    public function it_displays_show_view_for_receipt_by_item_loyverse(): void
     {
         $receiptByItemLoyverse = ReceiptByItemLoyverse::factory()->create();
 
@@ -98,7 +98,7 @@ class ReceiptByItemLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_receipt_by_item_loyverse()
+    public function it_displays_edit_view_for_receipt_by_item_loyverse(): void
     {
         $receiptByItemLoyverse = ReceiptByItemLoyverse::factory()->create();
 
@@ -115,7 +115,7 @@ class ReceiptByItemLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_receipt_by_item_loyverse()
+    public function it_updates_the_receipt_by_item_loyverse(): void
     {
         $receiptByItemLoyverse = ReceiptByItemLoyverse::factory()->create();
 
@@ -162,7 +162,7 @@ class ReceiptByItemLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_receipt_by_item_loyverse()
+    public function it_deletes_the_receipt_by_item_loyverse(): void
     {
         $receiptByItemLoyverse = ReceiptByItemLoyverse::factory()->create();
 

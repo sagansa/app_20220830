@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\MaterialGroup;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MaterialGroupResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\MaterialGroupUpdateRequest;
 
 class MaterialGroupController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): MaterialGroupCollection
     {
         $this->authorize('view-any', MaterialGroup::class);
 
@@ -29,12 +26,9 @@ class MaterialGroupController extends Controller
         return new MaterialGroupCollection($materialGroups);
     }
 
-    /**
-     * @param \App\Http\Requests\MaterialGroupStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(MaterialGroupStoreRequest $request)
-    {
+    public function store(
+        MaterialGroupStoreRequest $request
+    ): MaterialGroupResource {
         $this->authorize('create', MaterialGroup::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class MaterialGroupController extends Controller
         return new MaterialGroupResource($materialGroup);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MaterialGroup $materialGroup
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, MaterialGroup $materialGroup)
-    {
+    public function show(
+        Request $request,
+        MaterialGroup $materialGroup
+    ): MaterialGroupResource {
         $this->authorize('view', $materialGroup);
 
         return new MaterialGroupResource($materialGroup);
     }
 
-    /**
-     * @param \App\Http\Requests\MaterialGroupUpdateRequest $request
-     * @param \App\Models\MaterialGroup $materialGroup
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         MaterialGroupUpdateRequest $request,
         MaterialGroup $materialGroup
-    ) {
+    ): MaterialGroupResource {
         $this->authorize('update', $materialGroup);
 
         $validated = $request->validated();
@@ -74,13 +60,10 @@ class MaterialGroupController extends Controller
         return new MaterialGroupResource($materialGroup);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MaterialGroup $materialGroup
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, MaterialGroup $materialGroup)
-    {
+    public function destroy(
+        Request $request,
+        MaterialGroup $materialGroup
+    ): Response {
         $this->authorize('delete', $materialGroup);
 
         $materialGroup->delete();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\PermitEmployee;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PermitEmployeeResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\PermitEmployeeUpdateRequest;
 
 class PermitEmployeeController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): PermitEmployeeCollection
     {
         $this->authorize('view-any', PermitEmployee::class);
 
@@ -29,12 +26,9 @@ class PermitEmployeeController extends Controller
         return new PermitEmployeeCollection($permitEmployees);
     }
 
-    /**
-     * @param \App\Http\Requests\PermitEmployeeStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PermitEmployeeStoreRequest $request)
-    {
+    public function store(
+        PermitEmployeeStoreRequest $request
+    ): PermitEmployeeResource {
         $this->authorize('create', PermitEmployee::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class PermitEmployeeController extends Controller
         return new PermitEmployeeResource($permitEmployee);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PermitEmployee $permitEmployee
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, PermitEmployee $permitEmployee)
-    {
+    public function show(
+        Request $request,
+        PermitEmployee $permitEmployee
+    ): PermitEmployeeResource {
         $this->authorize('view', $permitEmployee);
 
         return new PermitEmployeeResource($permitEmployee);
     }
 
-    /**
-     * @param \App\Http\Requests\PermitEmployeeUpdateRequest $request
-     * @param \App\Models\PermitEmployee $permitEmployee
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         PermitEmployeeUpdateRequest $request,
         PermitEmployee $permitEmployee
-    ) {
+    ): PermitEmployeeResource {
         $this->authorize('update', $permitEmployee);
 
         $validated = $request->validated();
@@ -74,13 +60,10 @@ class PermitEmployeeController extends Controller
         return new PermitEmployeeResource($permitEmployee);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PermitEmployee $permitEmployee
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, PermitEmployee $permitEmployee)
-    {
+    public function destroy(
+        Request $request,
+        PermitEmployee $permitEmployee
+    ): Response {
         $this->authorize('delete', $permitEmployee);
 
         $permitEmployee->delete();

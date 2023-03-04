@@ -33,7 +33,7 @@ class InvoicePurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_invoice_purchases()
+    public function it_displays_index_view_with_invoice_purchases(): void
     {
         $invoicePurchases = InvoicePurchase::factory()
             ->count(5)
@@ -50,7 +50,7 @@ class InvoicePurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_invoice_purchase()
+    public function it_displays_create_view_for_invoice_purchase(): void
     {
         $response = $this->get(route('invoice-purchases.create'));
 
@@ -60,7 +60,7 @@ class InvoicePurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_invoice_purchase()
+    public function it_stores_the_invoice_purchase(): void
     {
         $data = InvoicePurchase::factory()
             ->make()
@@ -82,7 +82,7 @@ class InvoicePurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_invoice_purchase()
+    public function it_displays_show_view_for_invoice_purchase(): void
     {
         $invoicePurchase = InvoicePurchase::factory()->create();
 
@@ -99,7 +99,7 @@ class InvoicePurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_invoice_purchase()
+    public function it_displays_edit_view_for_invoice_purchase(): void
     {
         $invoicePurchase = InvoicePurchase::factory()->create();
 
@@ -116,7 +116,7 @@ class InvoicePurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_invoice_purchase()
+    public function it_updates_the_invoice_purchase(): void
     {
         $invoicePurchase = InvoicePurchase::factory()->create();
 
@@ -159,7 +159,7 @@ class InvoicePurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_invoice_purchase()
+    public function it_deletes_the_invoice_purchase(): void
     {
         $invoicePurchase = InvoicePurchase::factory()->create();
 

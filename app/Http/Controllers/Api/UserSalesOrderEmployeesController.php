@@ -10,13 +10,10 @@ use App\Http\Resources\SalesOrderEmployeeCollection;
 
 class UserSalesOrderEmployeesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
-    {
+    public function index(
+        Request $request,
+        User $user
+    ): SalesOrderEmployeeCollection {
         $this->authorize('view', $user);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class UserSalesOrderEmployeesController extends Controller
         return new SalesOrderEmployeeCollection($salesOrderEmployees);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
-    {
+    public function store(
+        Request $request,
+        User $user
+    ): SalesOrderEmployeeResource {
         $this->authorize('create', SalesOrderEmployee::class);
 
         $validated = $request->validate([

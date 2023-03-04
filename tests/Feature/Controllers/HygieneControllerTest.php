@@ -31,7 +31,7 @@ class HygieneControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_hygienes()
+    public function it_displays_index_view_with_hygienes(): void
     {
         $hygienes = Hygiene::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class HygieneControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_hygiene()
+    public function it_displays_create_view_for_hygiene(): void
     {
         $response = $this->get(route('hygienes.create'));
 
@@ -58,7 +58,7 @@ class HygieneControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_hygiene()
+    public function it_stores_the_hygiene(): void
     {
         $data = Hygiene::factory()
             ->make()
@@ -76,7 +76,7 @@ class HygieneControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_hygiene()
+    public function it_displays_show_view_for_hygiene(): void
     {
         $hygiene = Hygiene::factory()->create();
 
@@ -91,7 +91,7 @@ class HygieneControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_hygiene()
+    public function it_displays_edit_view_for_hygiene(): void
     {
         $hygiene = Hygiene::factory()->create();
 
@@ -106,7 +106,7 @@ class HygieneControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_hygiene()
+    public function it_updates_the_hygiene(): void
     {
         $hygiene = Hygiene::factory()->create();
 
@@ -134,7 +134,7 @@ class HygieneControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_hygiene()
+    public function it_deletes_the_hygiene(): void
     {
         $hygiene = Hygiene::factory()->create();
 

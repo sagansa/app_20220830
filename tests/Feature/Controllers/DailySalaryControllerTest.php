@@ -34,7 +34,7 @@ class DailySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_daily_salaries()
+    public function it_displays_index_view_with_daily_salaries(): void
     {
         $dailySalaries = DailySalary::factory()
             ->count(5)
@@ -51,7 +51,7 @@ class DailySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_daily_salary()
+    public function it_displays_create_view_for_daily_salary(): void
     {
         $response = $this->get(route('daily-salaries.create'));
 
@@ -61,7 +61,7 @@ class DailySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_daily_salary()
+    public function it_stores_the_daily_salary(): void
     {
         $data = DailySalary::factory()
             ->make()
@@ -82,7 +82,7 @@ class DailySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_daily_salary()
+    public function it_displays_show_view_for_daily_salary(): void
     {
         $dailySalary = DailySalary::factory()->create();
 
@@ -97,7 +97,7 @@ class DailySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_daily_salary()
+    public function it_displays_edit_view_for_daily_salary(): void
     {
         $dailySalary = DailySalary::factory()->create();
 
@@ -112,7 +112,7 @@ class DailySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_daily_salary()
+    public function it_updates_the_daily_salary(): void
     {
         $dailySalary = DailySalary::factory()->create();
 
@@ -153,7 +153,7 @@ class DailySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_daily_salary()
+    public function it_deletes_the_daily_salary(): void
     {
         $dailySalary = DailySalary::factory()->create();
 

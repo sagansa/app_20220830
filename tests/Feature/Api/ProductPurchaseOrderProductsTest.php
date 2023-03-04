@@ -31,7 +31,7 @@ class ProductPurchaseOrderProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_product_purchase_order_products()
+    public function it_gets_product_purchase_order_products(): void
     {
         $product = Product::factory()->create();
         $purchaseOrderProducts = PurchaseOrderProduct::factory()
@@ -50,7 +50,7 @@ class ProductPurchaseOrderProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_product_purchase_order_products()
+    public function it_stores_the_product_purchase_order_products(): void
     {
         $product = Product::factory()->create();
         $data = PurchaseOrderProduct::factory()

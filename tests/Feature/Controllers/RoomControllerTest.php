@@ -29,7 +29,7 @@ class RoomControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_rooms()
+    public function it_displays_index_view_with_rooms(): void
     {
         $rooms = Room::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class RoomControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_room()
+    public function it_displays_create_view_for_room(): void
     {
         $response = $this->get(route('rooms.create'));
 
@@ -56,7 +56,7 @@ class RoomControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_room()
+    public function it_stores_the_room(): void
     {
         $data = Room::factory()
             ->make()
@@ -74,7 +74,7 @@ class RoomControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_room()
+    public function it_displays_show_view_for_room(): void
     {
         $room = Room::factory()->create();
 
@@ -89,7 +89,7 @@ class RoomControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_room()
+    public function it_displays_edit_view_for_room(): void
     {
         $room = Room::factory()->create();
 
@@ -104,7 +104,7 @@ class RoomControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_room()
+    public function it_updates_the_room(): void
     {
         $room = Room::factory()->create();
 
@@ -124,7 +124,7 @@ class RoomControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_room()
+    public function it_deletes_the_room(): void
     {
         $room = Room::factory()->create();
 

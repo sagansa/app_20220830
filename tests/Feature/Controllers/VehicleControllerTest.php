@@ -31,7 +31,7 @@ class VehicleControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_vehicles()
+    public function it_displays_index_view_with_vehicles(): void
     {
         $vehicles = Vehicle::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class VehicleControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_vehicle()
+    public function it_displays_create_view_for_vehicle(): void
     {
         $response = $this->get(route('vehicles.create'));
 
@@ -58,7 +58,7 @@ class VehicleControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_vehicle()
+    public function it_stores_the_vehicle(): void
     {
         $data = Vehicle::factory()
             ->make()
@@ -76,7 +76,7 @@ class VehicleControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_vehicle()
+    public function it_displays_show_view_for_vehicle(): void
     {
         $vehicle = Vehicle::factory()->create();
 
@@ -91,7 +91,7 @@ class VehicleControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_vehicle()
+    public function it_displays_edit_view_for_vehicle(): void
     {
         $vehicle = Vehicle::factory()->create();
 
@@ -106,7 +106,7 @@ class VehicleControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_vehicle()
+    public function it_updates_the_vehicle(): void
     {
         $vehicle = Vehicle::factory()->create();
 
@@ -134,7 +134,7 @@ class VehicleControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_vehicle()
+    public function it_deletes_the_vehicle(): void
     {
         $vehicle = Vehicle::factory()->create();
 

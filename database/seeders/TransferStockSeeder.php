@@ -9,10 +9,8 @@ class TransferStockSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         TransferStock::factory()
             ->count(5)

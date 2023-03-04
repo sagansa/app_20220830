@@ -10,12 +10,7 @@ use App\Http\Resources\StoreCollection;
 
 class UserStoresController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user): StoreCollection
     {
         $this->authorize('view', $user);
 
@@ -30,12 +25,7 @@ class UserStoresController extends Controller
         return new StoreCollection($stores);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): StoreResource
     {
         $this->authorize('create', Store::class);
 

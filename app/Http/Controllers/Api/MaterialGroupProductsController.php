@@ -10,13 +10,10 @@ use App\Http\Resources\ProductCollection;
 
 class MaterialGroupProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MaterialGroup $materialGroup
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, MaterialGroup $materialGroup)
-    {
+    public function index(
+        Request $request,
+        MaterialGroup $materialGroup
+    ): ProductCollection {
         $this->authorize('view', $materialGroup);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class MaterialGroupProductsController extends Controller
         return new ProductCollection($products);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MaterialGroup $materialGroup
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, MaterialGroup $materialGroup)
-    {
+    public function store(
+        Request $request,
+        MaterialGroup $materialGroup
+    ): ProductResource {
         $this->authorize('create', Product::class);
 
         $validated = $request->validate([

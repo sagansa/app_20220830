@@ -30,7 +30,7 @@ class PaymentTypeTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_payment_types_list()
+    public function it_gets_payment_types_list(): void
     {
         $paymentTypes = PaymentType::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class PaymentTypeTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_payment_type()
+    public function it_stores_the_payment_type(): void
     {
         $data = PaymentType::factory()
             ->make()
@@ -60,7 +60,7 @@ class PaymentTypeTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_payment_type()
+    public function it_updates_the_payment_type(): void
     {
         $paymentType = PaymentType::factory()->create();
 
@@ -84,7 +84,7 @@ class PaymentTypeTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_payment_type()
+    public function it_deletes_the_payment_type(): void
     {
         $paymentType = PaymentType::factory()->create();
 

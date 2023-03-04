@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
@@ -13,11 +14,7 @@ use App\Http\Requests\ProductUpdateRequest;
 
 class ProductController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): ProductCollection
     {
         $this->authorize('view-any', Product::class);
 
@@ -30,11 +27,7 @@ class ProductController extends Controller
         return new ProductCollection($products);
     }
 
-    /**
-     * @param \App\Http\Requests\ProductStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ProductStoreRequest $request)
+    public function store(ProductStoreRequest $request): ProductResource
     {
         $this->authorize('create', Product::class);
 
@@ -52,25 +45,17 @@ class ProductController extends Controller
         return new ProductResource($product);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Product $product)
+    public function show(Request $request, Product $product): ProductResource
     {
         $this->authorize('view', $product);
 
         return new ProductResource($product);
     }
 
-    /**
-     * @param \App\Http\Requests\ProductUpdateRequest $request
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(ProductUpdateRequest $request, Product $product)
-    {
+    public function update(
+        ProductUpdateRequest $request,
+        Product $product
+    ): ProductResource {
         $this->authorize('update', $product);
 
         $validated = $request->validated();
@@ -96,12 +81,7 @@ class ProductController extends Controller
         return new ProductResource($product);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Product $product)
+    public function destroy(Request $request, Product $product): Response
     {
         $this->authorize('delete', $product);
 

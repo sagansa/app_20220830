@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\UtilityBill;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\UtilityBillResource;
@@ -13,11 +14,7 @@ use App\Http\Requests\UtilityBillUpdateRequest;
 
 class UtilityBillController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): UtilityBillCollection
     {
         $this->authorize('view-any', UtilityBill::class);
 
@@ -30,11 +27,7 @@ class UtilityBillController extends Controller
         return new UtilityBillCollection($utilityBills);
     }
 
-    /**
-     * @param \App\Http\Requests\UtilityBillStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(UtilityBillStoreRequest $request)
+    public function store(UtilityBillStoreRequest $request): UtilityBillResource
     {
         $this->authorize('create', UtilityBill::class);
 
@@ -48,27 +41,19 @@ class UtilityBillController extends Controller
         return new UtilityBillResource($utilityBill);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\UtilityBill $utilityBill
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, UtilityBill $utilityBill)
-    {
+    public function show(
+        Request $request,
+        UtilityBill $utilityBill
+    ): UtilityBillResource {
         $this->authorize('view', $utilityBill);
 
         return new UtilityBillResource($utilityBill);
     }
 
-    /**
-     * @param \App\Http\Requests\UtilityBillUpdateRequest $request
-     * @param \App\Models\UtilityBill $utilityBill
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         UtilityBillUpdateRequest $request,
         UtilityBill $utilityBill
-    ) {
+    ): UtilityBillResource {
         $this->authorize('update', $utilityBill);
 
         $validated = $request->validated();
@@ -86,13 +71,10 @@ class UtilityBillController extends Controller
         return new UtilityBillResource($utilityBill);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\UtilityBill $utilityBill
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, UtilityBill $utilityBill)
-    {
+    public function destroy(
+        Request $request,
+        UtilityBill $utilityBill
+    ): Response {
         $this->authorize('delete', $utilityBill);
 
         if ($utilityBill->image) {

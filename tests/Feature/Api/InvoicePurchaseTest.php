@@ -34,7 +34,7 @@ class InvoicePurchaseTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_invoice_purchases_list()
+    public function it_gets_invoice_purchases_list(): void
     {
         $invoicePurchases = InvoicePurchase::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class InvoicePurchaseTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_invoice_purchase()
+    public function it_stores_the_invoice_purchase(): void
     {
         $data = InvoicePurchase::factory()
             ->make()
@@ -69,7 +69,7 @@ class InvoicePurchaseTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_invoice_purchase()
+    public function it_updates_the_invoice_purchase(): void
     {
         $invoicePurchase = InvoicePurchase::factory()->create();
 
@@ -110,7 +110,7 @@ class InvoicePurchaseTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_invoice_purchase()
+    public function it_deletes_the_invoice_purchase(): void
     {
         $invoicePurchase = InvoicePurchase::factory()->create();
 

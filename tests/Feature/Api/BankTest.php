@@ -30,7 +30,7 @@ class BankTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_banks_list()
+    public function it_gets_banks_list(): void
     {
         $banks = Bank::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class BankTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_bank()
+    public function it_stores_the_bank(): void
     {
         $data = Bank::factory()
             ->make()
@@ -60,7 +60,7 @@ class BankTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_bank()
+    public function it_updates_the_bank(): void
     {
         $bank = Bank::factory()->create();
 
@@ -81,7 +81,7 @@ class BankTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_bank()
+    public function it_deletes_the_bank(): void
     {
         $bank = Bank::factory()->create();
 

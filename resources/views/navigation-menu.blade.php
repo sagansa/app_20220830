@@ -303,6 +303,21 @@
                         Sales Order Employees
                         </x-dropdown-link>
                         @endcan
+                        @can('view-any', App\Models\SalesOrderDirect::class)
+                        <x-dropdown-link href="{{ route('sales-order-directs.index') }}">
+                        Sales Order Directs
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\DeliveryLocation::class)
+                        <x-dropdown-link href="{{ route('delivery-locations.index') }}">
+                        Delivery Locations
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\TransferToAccount::class)
+                        <x-dropdown-link href="{{ route('transfer-to-accounts.index') }}">
+                        Transfer To Accounts
+                        </x-dropdown-link>
+                        @endcan
                 </x-nav-dropdown>
 
                     @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) || 
@@ -728,6 +743,21 @@
                 @can('view-any', App\Models\SalesOrderEmployee::class)
                 <x-jet-responsive-nav-link href="{{ route('sales-order-employees.index') }}">
                 Sales Order Employees
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\SalesOrderDirect::class)
+                <x-jet-responsive-nav-link href="{{ route('sales-order-directs.index') }}">
+                Sales Order Directs
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\DeliveryLocation::class)
+                <x-jet-responsive-nav-link href="{{ route('delivery-locations.index') }}">
+                Delivery Locations
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\TransferToAccount::class)
+                <x-jet-responsive-nav-link href="{{ route('transfer-to-accounts.index') }}">
+                Transfer To Accounts
                 </x-jet-responsive-nav-link>
                 @endcan
 

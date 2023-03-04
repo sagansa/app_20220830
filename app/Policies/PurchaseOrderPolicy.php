@@ -12,94 +12,64 @@ class PurchaseOrderPolicy
 
     /**
      * Determine whether the purchaseOrder can view any models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('list purchaseorders');
     }
 
     /**
      * Determine whether the purchaseOrder can view the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\PurchaseOrder  $model
-     * @return mixed
      */
-    public function view(User $user, PurchaseOrder $model)
+    public function view(User $user, PurchaseOrder $model): bool
     {
         return $user->hasPermissionTo('view purchaseorders');
     }
 
     /**
      * Determine whether the purchaseOrder can create models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->hasPermissionTo('create purchaseorders');
     }
 
     /**
      * Determine whether the purchaseOrder can update the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\PurchaseOrder  $model
-     * @return mixed
      */
-    public function update(User $user, PurchaseOrder $model)
+    public function update(User $user, PurchaseOrder $model): bool
     {
         return $user->hasPermissionTo('update purchaseorders');
     }
 
     /**
      * Determine whether the purchaseOrder can delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\PurchaseOrder  $model
-     * @return mixed
      */
-    public function delete(User $user, PurchaseOrder $model)
+    public function delete(User $user, PurchaseOrder $model): bool
     {
         return $user->hasPermissionTo('delete purchaseorders');
     }
 
     /**
      * Determine whether the user can delete multiple instances of the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\PurchaseOrder  $model
-     * @return mixed
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->hasPermissionTo('delete purchaseorders');
     }
 
     /**
      * Determine whether the purchaseOrder can restore the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\PurchaseOrder  $model
-     * @return mixed
      */
-    public function restore(User $user, PurchaseOrder $model)
+    public function restore(User $user, PurchaseOrder $model): bool
     {
         return false;
     }
 
     /**
      * Determine whether the purchaseOrder can permanently delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\PurchaseOrder  $model
-     * @return mixed
      */
-    public function forceDelete(User $user, PurchaseOrder $model)
+    public function forceDelete(User $user, PurchaseOrder $model): bool
     {
         return false;
     }

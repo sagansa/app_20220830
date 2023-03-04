@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\EmployeeStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EmployeeStatusResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\EmployeeStatusUpdateRequest;
 
 class EmployeeStatusController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): EmployeeStatusCollection
     {
         $this->authorize('view-any', EmployeeStatus::class);
 
@@ -29,12 +26,9 @@ class EmployeeStatusController extends Controller
         return new EmployeeStatusCollection($employeeStatuses);
     }
 
-    /**
-     * @param \App\Http\Requests\EmployeeStatusStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(EmployeeStatusStoreRequest $request)
-    {
+    public function store(
+        EmployeeStatusStoreRequest $request
+    ): EmployeeStatusResource {
         $this->authorize('create', EmployeeStatus::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class EmployeeStatusController extends Controller
         return new EmployeeStatusResource($employeeStatus);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\EmployeeStatus $employeeStatus
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, EmployeeStatus $employeeStatus)
-    {
+    public function show(
+        Request $request,
+        EmployeeStatus $employeeStatus
+    ): EmployeeStatusResource {
         $this->authorize('view', $employeeStatus);
 
         return new EmployeeStatusResource($employeeStatus);
     }
 
-    /**
-     * @param \App\Http\Requests\EmployeeStatusUpdateRequest $request
-     * @param \App\Models\EmployeeStatus $employeeStatus
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         EmployeeStatusUpdateRequest $request,
         EmployeeStatus $employeeStatus
-    ) {
+    ): EmployeeStatusResource {
         $this->authorize('update', $employeeStatus);
 
         $validated = $request->validated();
@@ -74,13 +60,10 @@ class EmployeeStatusController extends Controller
         return new EmployeeStatusResource($employeeStatus);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\EmployeeStatus $employeeStatus
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, EmployeeStatus $employeeStatus)
-    {
+    public function destroy(
+        Request $request,
+        EmployeeStatus $employeeStatus
+    ): Response {
         $this->authorize('delete', $employeeStatus);
 
         $employeeStatus->delete();

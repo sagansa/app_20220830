@@ -9,7 +9,7 @@ use Spatie\Permission\PermissionRegistrar;
 
 class PermissionsSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
@@ -98,6 +98,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create deliveryaddresses']);
         Permission::create(['name' => 'update deliveryaddresses']);
         Permission::create(['name' => 'delete deliveryaddresses']);
+
+        Permission::create(['name' => 'list deliverylocations']);
+        Permission::create(['name' => 'view deliverylocations']);
+        Permission::create(['name' => 'create deliverylocations']);
+        Permission::create(['name' => 'update deliverylocations']);
+        Permission::create(['name' => 'delete deliverylocations']);
 
         Permission::create(['name' => 'list deliveryservices']);
         Permission::create(['name' => 'view deliveryservices']);
@@ -351,6 +357,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update rooms']);
         Permission::create(['name' => 'delete rooms']);
 
+        Permission::create(['name' => 'list salesorderdirects']);
+        Permission::create(['name' => 'view salesorderdirects']);
+        Permission::create(['name' => 'create salesorderdirects']);
+        Permission::create(['name' => 'update salesorderdirects']);
+        Permission::create(['name' => 'delete salesorderdirects']);
+
         Permission::create(['name' => 'list salesorderemployees']);
         Permission::create(['name' => 'view salesorderemployees']);
         Permission::create(['name' => 'create salesorderemployees']);
@@ -380,6 +392,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create shiftstores']);
         Permission::create(['name' => 'update shiftstores']);
         Permission::create(['name' => 'delete shiftstores']);
+
+        Permission::create(['name' => 'list soddetails']);
+        Permission::create(['name' => 'view soddetails']);
+        Permission::create(['name' => 'create soddetails']);
+        Permission::create(['name' => 'update soddetails']);
+        Permission::create(['name' => 'delete soddetails']);
 
         Permission::create(['name' => 'list sops']);
         Permission::create(['name' => 'view sops']);
@@ -416,6 +434,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create transferstocks']);
         Permission::create(['name' => 'update transferstocks']);
         Permission::create(['name' => 'delete transferstocks']);
+
+        Permission::create(['name' => 'list transfertoaccounts']);
+        Permission::create(['name' => 'view transfertoaccounts']);
+        Permission::create(['name' => 'create transfertoaccounts']);
+        Permission::create(['name' => 'update transfertoaccounts']);
+        Permission::create(['name' => 'delete transfertoaccounts']);
 
         Permission::create(['name' => 'list units']);
         Permission::create(['name' => 'view units']);

@@ -33,7 +33,7 @@ class ClosingStoreTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_closing_stores_list()
+    public function it_gets_closing_stores_list(): void
     {
         $closingStores = ClosingStore::factory()
             ->count(5)
@@ -47,7 +47,7 @@ class ClosingStoreTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_closing_store()
+    public function it_stores_the_closing_store(): void
     {
         $data = ClosingStore::factory()
             ->make()
@@ -63,7 +63,7 @@ class ClosingStoreTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_closing_store()
+    public function it_updates_the_closing_store(): void
     {
         $closingStore = ClosingStore::factory()->create();
 
@@ -102,7 +102,7 @@ class ClosingStoreTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_closing_store()
+    public function it_deletes_the_closing_store(): void
     {
         $closingStore = ClosingStore::factory()->create();
 

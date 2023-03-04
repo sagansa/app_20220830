@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\MovementAssetResult;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MovementAssetResultResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\MovementAssetResultUpdateRequest;
 
 class MovementAssetResultController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): MovementAssetResultCollection
     {
         $this->authorize('view-any', MovementAssetResult::class);
 
@@ -29,12 +26,9 @@ class MovementAssetResultController extends Controller
         return new MovementAssetResultCollection($movementAssetResults);
     }
 
-    /**
-     * @param \App\Http\Requests\MovementAssetResultStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(MovementAssetResultStoreRequest $request)
-    {
+    public function store(
+        MovementAssetResultStoreRequest $request
+    ): MovementAssetResultResource {
         $this->authorize('create', MovementAssetResult::class);
 
         $validated = $request->validated();
@@ -44,29 +38,19 @@ class MovementAssetResultController extends Controller
         return new MovementAssetResultResource($movementAssetResult);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MovementAssetResult $movementAssetResult
-     * @return \Illuminate\Http\Response
-     */
     public function show(
         Request $request,
         MovementAssetResult $movementAssetResult
-    ) {
+    ): MovementAssetResultResource {
         $this->authorize('view', $movementAssetResult);
 
         return new MovementAssetResultResource($movementAssetResult);
     }
 
-    /**
-     * @param \App\Http\Requests\MovementAssetResultUpdateRequest $request
-     * @param \App\Models\MovementAssetResult $movementAssetResult
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         MovementAssetResultUpdateRequest $request,
         MovementAssetResult $movementAssetResult
-    ) {
+    ): MovementAssetResultResource {
         $this->authorize('update', $movementAssetResult);
 
         $validated = $request->validated();
@@ -76,15 +60,10 @@ class MovementAssetResultController extends Controller
         return new MovementAssetResultResource($movementAssetResult);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MovementAssetResult $movementAssetResult
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         MovementAssetResult $movementAssetResult
-    ) {
+    ): Response {
         $this->authorize('delete', $movementAssetResult);
 
         $movementAssetResult->delete();

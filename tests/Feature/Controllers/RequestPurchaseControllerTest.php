@@ -31,7 +31,7 @@ class RequestPurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_request_purchases()
+    public function it_displays_index_view_with_request_purchases(): void
     {
         $requestPurchases = RequestPurchase::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class RequestPurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_request_purchase()
+    public function it_displays_create_view_for_request_purchase(): void
     {
         $response = $this->get(route('request-purchases.create'));
 
@@ -58,7 +58,7 @@ class RequestPurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_request_purchase()
+    public function it_stores_the_request_purchase(): void
     {
         $data = RequestPurchase::factory()
             ->make()
@@ -78,7 +78,7 @@ class RequestPurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_request_purchase()
+    public function it_displays_show_view_for_request_purchase(): void
     {
         $requestPurchase = RequestPurchase::factory()->create();
 
@@ -95,7 +95,7 @@ class RequestPurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_request_purchase()
+    public function it_displays_edit_view_for_request_purchase(): void
     {
         $requestPurchase = RequestPurchase::factory()->create();
 
@@ -112,7 +112,7 @@ class RequestPurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_request_purchase()
+    public function it_updates_the_request_purchase(): void
     {
         $requestPurchase = RequestPurchase::factory()->create();
 
@@ -143,7 +143,7 @@ class RequestPurchaseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_request_purchase()
+    public function it_deletes_the_request_purchase(): void
     {
         $requestPurchase = RequestPurchase::factory()->create();
 

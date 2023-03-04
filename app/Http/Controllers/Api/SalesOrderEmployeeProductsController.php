@@ -3,21 +3,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\SalesOrderEmployee;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductCollection;
 
 class SalesOrderEmployeeProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SalesOrderEmployee $salesOrderEmployee
-     * @return \Illuminate\Http\Response
-     */
     public function index(
         Request $request,
         SalesOrderEmployee $salesOrderEmployee
-    ) {
+    ): ProductCollection {
         $this->authorize('view', $salesOrderEmployee);
 
         $search = $request->get('search', '');
@@ -31,17 +27,11 @@ class SalesOrderEmployeeProductsController extends Controller
         return new ProductCollection($products);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SalesOrderEmployee $salesOrderEmployee
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         SalesOrderEmployee $salesOrderEmployee,
         Product $product
-    ) {
+    ): Response {
         $this->authorize('update', $salesOrderEmployee);
 
         $salesOrderEmployee->products()->syncWithoutDetaching([$product->id]);
@@ -49,17 +39,11 @@ class SalesOrderEmployeeProductsController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SalesOrderEmployee $salesOrderEmployee
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         SalesOrderEmployee $salesOrderEmployee,
         Product $product
-    ) {
+    ): Response {
         $this->authorize('update', $salesOrderEmployee);
 
         $salesOrderEmployee->products()->detach($product);

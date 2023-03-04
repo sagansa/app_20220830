@@ -31,7 +31,7 @@ class AccountCashlessAdminCashlessesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_account_cashless_admin_cashlesses()
+    public function it_gets_account_cashless_admin_cashlesses(): void
     {
         $accountCashless = AccountCashless::factory()->create();
         $adminCashless = AdminCashless::factory()->create();
@@ -51,7 +51,7 @@ class AccountCashlessAdminCashlessesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_admin_cashlesses_to_account_cashless()
+    public function it_can_attach_admin_cashlesses_to_account_cashless(): void
     {
         $accountCashless = AccountCashless::factory()->create();
         $adminCashless = AdminCashless::factory()->create();
@@ -76,7 +76,7 @@ class AccountCashlessAdminCashlessesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_admin_cashlesses_from_account_cashless()
+    public function it_can_detach_admin_cashlesses_from_account_cashless(): void
     {
         $accountCashless = AccountCashless::factory()->create();
         $adminCashless = AdminCashless::factory()->create();

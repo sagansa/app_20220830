@@ -9,10 +9,8 @@ class CleanAndNeatSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         CleanAndNeat::factory()
             ->count(5)

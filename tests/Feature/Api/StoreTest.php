@@ -30,7 +30,7 @@ class StoreTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_stores_list()
+    public function it_gets_stores_list(): void
     {
         $stores = Store::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class StoreTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store()
+    public function it_stores_the_store(): void
     {
         $data = Store::factory()
             ->make()
@@ -62,7 +62,7 @@ class StoreTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_store()
+    public function it_updates_the_store(): void
     {
         $store = Store::factory()->create();
 
@@ -91,7 +91,7 @@ class StoreTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_store()
+    public function it_deletes_the_store(): void
     {
         $store = Store::factory()->create();
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
@@ -11,10 +12,7 @@ use App\Http\Resources\PermissionCollection;
 
 class PermissionController extends Controller
 {
-    /**
-    * @return \Illuminate\Http\Response
-    */
-    public function index(Request $request)
+    public function index(Request $request): PermissionCollection
     {
         $this->authorize('list', Permission::class);
 
@@ -24,11 +22,7 @@ class PermissionController extends Controller
         return new PermissionCollection($permissions);
     }
 
-    /**
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
-    public function store(Request $request)
+    public function store(Request $request): PermissionResource
     {
         $this->authorize('create', Permission::class);
 
@@ -45,23 +39,14 @@ class PermissionController extends Controller
         return new PermissionResource($permission);
     }
 
-    /**
-    * @param  \Spatie\Permission\Models\Permission  $permission
-    * @return \Illuminate\Http\Response
-    */
-    public function show(Permission $permission)
+    public function show(Permission $permission): PermissionResource
     {
         $this->authorize('view', Permission::class);
 
         return new PermissionResource($permission);
     }
 
-    /**
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \Spatie\Permission\Models\Permission  $permission
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, Permission $permission): PermissionResource
     {
         $this->authorize('update', $permission);
 
@@ -78,11 +63,7 @@ class PermissionController extends Controller
         return new PermissionResource($permission);
     }
 
-    /**
-    * @param  \Spatie\Permission\Models\Permission  $permission
-    * @return \Illuminate\Http\Response
-    */
-    public function destroy(Permission $permission)
+    public function destroy(Permission $permission): Response
     {
         $this->authorize('delete', $permission);
 

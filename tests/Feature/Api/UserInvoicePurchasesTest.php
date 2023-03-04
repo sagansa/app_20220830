@@ -30,7 +30,7 @@ class UserInvoicePurchasesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_invoice_purchases()
+    public function it_gets_user_invoice_purchases(): void
     {
         $user = User::factory()->create();
         $invoicePurchases = InvoicePurchase::factory()
@@ -49,7 +49,7 @@ class UserInvoicePurchasesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_invoice_purchases()
+    public function it_stores_the_user_invoice_purchases(): void
     {
         $user = User::factory()->create();
         $data = InvoicePurchase::factory()

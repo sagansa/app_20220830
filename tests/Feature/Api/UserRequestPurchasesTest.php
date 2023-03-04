@@ -30,7 +30,7 @@ class UserRequestPurchasesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_request_purchases()
+    public function it_gets_user_request_purchases(): void
     {
         $user = User::factory()->create();
         $requestPurchases = RequestPurchase::factory()
@@ -49,7 +49,7 @@ class UserRequestPurchasesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_request_purchases()
+    public function it_stores_the_user_request_purchases(): void
     {
         $user = User::factory()->create();
         $data = RequestPurchase::factory()

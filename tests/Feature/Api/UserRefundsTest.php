@@ -30,7 +30,7 @@ class UserRefundsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_refunds()
+    public function it_gets_user_refunds(): void
     {
         $user = User::factory()->create();
         $refunds = Refund::factory()
@@ -47,7 +47,7 @@ class UserRefundsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_refunds()
+    public function it_stores_the_user_refunds(): void
     {
         $user = User::factory()->create();
         $data = Refund::factory()

@@ -10,13 +10,10 @@ use App\Http\Resources\PurchaseOrderProductCollection;
 
 class UnitPurchaseOrderProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Unit $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Unit $unit)
-    {
+    public function index(
+        Request $request,
+        Unit $unit
+    ): PurchaseOrderProductCollection {
         $this->authorize('view', $unit);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class UnitPurchaseOrderProductsController extends Controller
         return new PurchaseOrderProductCollection($purchaseOrderProducts);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Unit $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Unit $unit)
-    {
+    public function store(
+        Request $request,
+        Unit $unit
+    ): PurchaseOrderProductResource {
         $this->authorize('create', PurchaseOrderProduct::class);
 
         $validated = $request->validate([

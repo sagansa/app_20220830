@@ -3,19 +3,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\FuelService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\PaymentReceipt;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PaymentReceiptCollection;
 
 class FuelServicePaymentReceiptsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\FuelService $fuelService
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, FuelService $fuelService)
-    {
+    public function index(
+        Request $request,
+        FuelService $fuelService
+    ): PaymentReceiptCollection {
         $this->authorize('view', $fuelService);
 
         $search = $request->get('search', '');
@@ -29,17 +27,11 @@ class FuelServicePaymentReceiptsController extends Controller
         return new PaymentReceiptCollection($paymentReceipts);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\FuelService $fuelService
-     * @param \App\Models\PaymentReceipt $paymentReceipt
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         FuelService $fuelService,
         PaymentReceipt $paymentReceipt
-    ) {
+    ): Response {
         $this->authorize('update', $fuelService);
 
         $fuelService
@@ -49,17 +41,11 @@ class FuelServicePaymentReceiptsController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\FuelService $fuelService
-     * @param \App\Models\PaymentReceipt $paymentReceipt
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         FuelService $fuelService,
         PaymentReceipt $paymentReceipt
-    ) {
+    ): Response {
         $this->authorize('update', $fuelService);
 
         $fuelService->paymentReceipts()->detach($paymentReceipt);

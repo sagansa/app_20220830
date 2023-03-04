@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\PurchaseOrder;
 use App\Models\PurchaseReceipt;
 use App\Http\Controllers\Controller;
@@ -9,13 +10,10 @@ use App\Http\Resources\PurchaseOrderCollection;
 
 class PurchaseReceiptPurchaseOrdersController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PurchaseReceipt $purchaseReceipt
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, PurchaseReceipt $purchaseReceipt)
-    {
+    public function index(
+        Request $request,
+        PurchaseReceipt $purchaseReceipt
+    ): PurchaseOrderCollection {
         $this->authorize('view', $purchaseReceipt);
 
         $search = $request->get('search', '');
@@ -29,17 +27,11 @@ class PurchaseReceiptPurchaseOrdersController extends Controller
         return new PurchaseOrderCollection($purchaseOrders);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PurchaseReceipt $purchaseReceipt
-     * @param \App\Models\PurchaseOrder $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         PurchaseReceipt $purchaseReceipt,
         PurchaseOrder $purchaseOrder
-    ) {
+    ): Response {
         $this->authorize('update', $purchaseReceipt);
 
         $purchaseReceipt
@@ -49,17 +41,11 @@ class PurchaseReceiptPurchaseOrdersController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PurchaseReceipt $purchaseReceipt
-     * @param \App\Models\PurchaseOrder $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         PurchaseReceipt $purchaseReceipt,
         PurchaseOrder $purchaseOrder
-    ) {
+    ): Response {
         $this->authorize('update', $purchaseReceipt);
 
         $purchaseReceipt->purchaseOrders()->detach($purchaseOrder);

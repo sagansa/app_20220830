@@ -32,7 +32,7 @@ class AdminCashlessTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_admin_cashlesses_list()
+    public function it_gets_admin_cashlesses_list(): void
     {
         $adminCashlesses = AdminCashless::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class AdminCashlessTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_admin_cashless()
+    public function it_stores_the_admin_cashless(): void
     {
         $data = AdminCashless::factory()
             ->make()
@@ -62,7 +62,7 @@ class AdminCashlessTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_admin_cashless()
+    public function it_updates_the_admin_cashless(): void
     {
         $adminCashless = AdminCashless::factory()->create();
 
@@ -90,7 +90,7 @@ class AdminCashlessTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_admin_cashless()
+    public function it_deletes_the_admin_cashless(): void
     {
         $adminCashless = AdminCashless::factory()->create();
 

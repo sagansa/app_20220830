@@ -9,10 +9,8 @@ class SavingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         Saving::factory()
             ->count(5)

@@ -10,12 +10,7 @@ use App\Http\Resources\ProductionCollection;
 
 class StoreProductionsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Store $store)
+    public function index(Request $request, Store $store): ProductionCollection
     {
         $this->authorize('view', $store);
 
@@ -30,12 +25,7 @@ class StoreProductionsController extends Controller
         return new ProductionCollection($productions);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Store $store)
+    public function store(Request $request, Store $store): ProductionResource
     {
         $this->authorize('create', Production::class);
 

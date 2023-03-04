@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\StoreResource;
 use App\Http\Resources\StoreCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\StoreUpdateRequest;
 
 class StoreController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): StoreCollection
     {
         $this->authorize('view-any', Store::class);
 
@@ -29,11 +26,7 @@ class StoreController extends Controller
         return new StoreCollection($stores);
     }
 
-    /**
-     * @param \App\Http\Requests\StoreStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreStoreRequest $request)
+    public function store(StoreStoreRequest $request): StoreResource
     {
         $this->authorize('create', Store::class);
 
@@ -44,25 +37,17 @@ class StoreController extends Controller
         return new StoreResource($store);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Store $store)
+    public function show(Request $request, Store $store): StoreResource
     {
         $this->authorize('view', $store);
 
         return new StoreResource($store);
     }
 
-    /**
-     * @param \App\Http\Requests\StoreUpdateRequest $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function update(StoreUpdateRequest $request, Store $store)
-    {
+    public function update(
+        StoreUpdateRequest $request,
+        Store $store
+    ): StoreResource {
         $this->authorize('update', $store);
 
         $validated = $request->validated();
@@ -72,12 +57,7 @@ class StoreController extends Controller
         return new StoreResource($store);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Store $store)
+    public function destroy(Request $request, Store $store): Response
     {
         $this->authorize('delete', $store);
 

@@ -30,7 +30,7 @@ class UserMaterialGroupsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_material_groups()
+    public function it_gets_user_material_groups(): void
     {
         $user = User::factory()->create();
         $materialGroups = MaterialGroup::factory()
@@ -49,7 +49,7 @@ class UserMaterialGroupsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_material_groups()
+    public function it_stores_the_user_material_groups(): void
     {
         $user = User::factory()->create();
         $data = MaterialGroup::factory()

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\View\View;
 use Livewire\WithPagination;
 use App\Models\MovementAsset;
 use Livewire\WithFileUploads;
@@ -40,14 +41,14 @@ class MovementAssetResultMovementAssetAuditsDetail extends Component
         'movementAssetAudit.bad_cond_qty' => ['required', 'numeric'],
     ];
 
-    public function mount(MovementAssetResult $movementAssetResult)
+    public function mount(MovementAssetResult $movementAssetResult): void
     {
         $this->movementAssetResult = $movementAssetResult;
         $this->movementAssetsForSelect = MovementAsset::pluck('image', 'id');
         $this->resetMovementAssetAuditData();
     }
 
-    public function resetMovementAssetAuditData()
+    public function resetMovementAssetAuditData(): void
     {
         $this->movementAssetAudit = new MovementAssetAudit();
 
@@ -57,7 +58,7 @@ class MovementAssetResultMovementAssetAuditsDetail extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newMovementAssetAudit()
+    public function newMovementAssetAudit(): void
     {
         $this->editing = false;
         $this->modalTitle = trans(
@@ -70,7 +71,7 @@ class MovementAssetResultMovementAssetAuditsDetail extends Component
 
     public function editMovementAssetAudit(
         MovementAssetAudit $movementAssetAudit
-    ) {
+    ): void {
         $this->editing = true;
         $this->modalTitle = trans(
             'crud.movement_asset_result_movement_asset_audits.edit_title'
@@ -82,18 +83,18 @@ class MovementAssetResultMovementAssetAuditsDetail extends Component
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -119,7 +120,7 @@ class MovementAssetResultMovementAssetAuditsDetail extends Component
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function destroySelected(): void
     {
         $this->authorize('delete-any', MovementAssetAudit::class);
 
@@ -139,7 +140,7 @@ class MovementAssetResultMovementAssetAuditsDetail extends Component
         $this->resetMovementAssetAuditData();
     }
 
-    public function toggleFullSelection()
+    public function toggleFullSelection(): void
     {
         if (!$this->allSelected) {
             $this->selected = [];
@@ -154,7 +155,7 @@ class MovementAssetResultMovementAssetAuditsDetail extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view(
             'livewire.movement-asset-result-movement-asset-audits-detail',

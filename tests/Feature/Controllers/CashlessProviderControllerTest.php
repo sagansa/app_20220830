@@ -29,7 +29,7 @@ class CashlessProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_cashless_providers()
+    public function it_displays_index_view_with_cashless_providers(): void
     {
         $cashlessProviders = CashlessProvider::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class CashlessProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_cashless_provider()
+    public function it_displays_create_view_for_cashless_provider(): void
     {
         $response = $this->get(route('cashless-providers.create'));
 
@@ -56,7 +56,7 @@ class CashlessProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_cashless_provider()
+    public function it_stores_the_cashless_provider(): void
     {
         $data = CashlessProvider::factory()
             ->make()
@@ -76,7 +76,7 @@ class CashlessProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_cashless_provider()
+    public function it_displays_show_view_for_cashless_provider(): void
     {
         $cashlessProvider = CashlessProvider::factory()->create();
 
@@ -93,7 +93,7 @@ class CashlessProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_cashless_provider()
+    public function it_displays_edit_view_for_cashless_provider(): void
     {
         $cashlessProvider = CashlessProvider::factory()->create();
 
@@ -110,7 +110,7 @@ class CashlessProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_cashless_provider()
+    public function it_updates_the_cashless_provider(): void
     {
         $cashlessProvider = CashlessProvider::factory()->create();
 
@@ -135,7 +135,7 @@ class CashlessProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_cashless_provider()
+    public function it_deletes_the_cashless_provider(): void
     {
         $cashlessProvider = CashlessProvider::factory()->create();
 

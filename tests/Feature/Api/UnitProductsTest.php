@@ -31,7 +31,7 @@ class UnitProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_unit_products()
+    public function it_gets_unit_products(): void
     {
         $unit = Unit::factory()->create();
         $products = Product::factory()
@@ -48,7 +48,7 @@ class UnitProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_unit_products()
+    public function it_stores_the_unit_products(): void
     {
         $unit = Unit::factory()->create();
         $data = Product::factory()

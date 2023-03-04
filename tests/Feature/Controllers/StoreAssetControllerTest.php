@@ -31,7 +31,7 @@ class StoreAssetControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_store_assets()
+    public function it_displays_index_view_with_store_assets(): void
     {
         $storeAssets = StoreAsset::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class StoreAssetControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_store_asset()
+    public function it_displays_create_view_for_store_asset(): void
     {
         $response = $this->get(route('store-assets.create'));
 
@@ -58,7 +58,7 @@ class StoreAssetControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_asset()
+    public function it_stores_the_store_asset(): void
     {
         $data = StoreAsset::factory()
             ->make()
@@ -76,7 +76,7 @@ class StoreAssetControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_store_asset()
+    public function it_displays_show_view_for_store_asset(): void
     {
         $storeAsset = StoreAsset::factory()->create();
 
@@ -91,7 +91,7 @@ class StoreAssetControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_store_asset()
+    public function it_displays_edit_view_for_store_asset(): void
     {
         $storeAsset = StoreAsset::factory()->create();
 
@@ -106,7 +106,7 @@ class StoreAssetControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_store_asset()
+    public function it_updates_the_store_asset(): void
     {
         $storeAsset = StoreAsset::factory()->create();
 
@@ -133,7 +133,7 @@ class StoreAssetControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_store_asset()
+    public function it_deletes_the_store_asset(): void
     {
         $storeAsset = StoreAsset::factory()->create();
 

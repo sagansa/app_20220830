@@ -10,13 +10,10 @@ use App\Http\Resources\RemainingStockCollection;
 
 class UserRemainingStocksController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
-    {
+    public function index(
+        Request $request,
+        User $user
+    ): RemainingStockCollection {
         $this->authorize('view', $user);
 
         $search = $request->get('search', '');
@@ -30,12 +27,7 @@ class UserRemainingStocksController extends Controller
         return new RemainingStockCollection($remainingStocks);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): RemainingStockResource
     {
         $this->authorize('create', RemainingStock::class);
 

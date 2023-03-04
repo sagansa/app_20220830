@@ -12,94 +12,64 @@ class MovementAssetPolicy
 
     /**
      * Determine whether the movementAsset can view any models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('list movementassets');
     }
 
     /**
      * Determine whether the movementAsset can view the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\MovementAsset  $model
-     * @return mixed
      */
-    public function view(User $user, MovementAsset $model)
+    public function view(User $user, MovementAsset $model): bool
     {
         return $user->hasPermissionTo('view movementassets');
     }
 
     /**
      * Determine whether the movementAsset can create models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->hasPermissionTo('create movementassets');
     }
 
     /**
      * Determine whether the movementAsset can update the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\MovementAsset  $model
-     * @return mixed
      */
-    public function update(User $user, MovementAsset $model)
+    public function update(User $user, MovementAsset $model): bool
     {
         return $user->hasPermissionTo('update movementassets');
     }
 
     /**
      * Determine whether the movementAsset can delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\MovementAsset  $model
-     * @return mixed
      */
-    public function delete(User $user, MovementAsset $model)
+    public function delete(User $user, MovementAsset $model): bool
     {
         return $user->hasPermissionTo('delete movementassets');
     }
 
     /**
      * Determine whether the user can delete multiple instances of the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\MovementAsset  $model
-     * @return mixed
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->hasPermissionTo('delete movementassets');
     }
 
     /**
      * Determine whether the movementAsset can restore the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\MovementAsset  $model
-     * @return mixed
      */
-    public function restore(User $user, MovementAsset $model)
+    public function restore(User $user, MovementAsset $model): bool
     {
         return false;
     }
 
     /**
      * Determine whether the movementAsset can permanently delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\MovementAsset  $model
-     * @return mixed
      */
-    public function forceDelete(User $user, MovementAsset $model)
+    public function forceDelete(User $user, MovementAsset $model): bool
     {
         return false;
     }

@@ -10,13 +10,10 @@ use App\Http\Resources\DetailRequestCollection;
 
 class StoreDetailRequestsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Store $store)
-    {
+    public function index(
+        Request $request,
+        Store $store
+    ): DetailRequestCollection {
         $this->authorize('view', $store);
 
         $search = $request->get('search', '');
@@ -30,12 +27,7 @@ class StoreDetailRequestsController extends Controller
         return new DetailRequestCollection($detailRequests);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Store $store)
+    public function store(Request $request, Store $store): DetailRequestResource
     {
         $this->authorize('create', DetailRequest::class);
 

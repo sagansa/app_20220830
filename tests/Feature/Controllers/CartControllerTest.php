@@ -31,7 +31,7 @@ class CartControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_carts()
+    public function it_displays_index_view_with_carts(): void
     {
         $carts = Cart::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class CartControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_cart()
+    public function it_displays_create_view_for_cart(): void
     {
         $response = $this->get(route('carts.create'));
 
@@ -58,7 +58,7 @@ class CartControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_cart()
+    public function it_stores_the_cart(): void
     {
         $data = Cart::factory()
             ->make()
@@ -76,7 +76,7 @@ class CartControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_cart()
+    public function it_displays_show_view_for_cart(): void
     {
         $cart = Cart::factory()->create();
 
@@ -91,7 +91,7 @@ class CartControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_cart()
+    public function it_displays_edit_view_for_cart(): void
     {
         $cart = Cart::factory()->create();
 
@@ -106,7 +106,7 @@ class CartControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_cart()
+    public function it_updates_the_cart(): void
     {
         $cart = Cart::factory()->create();
 
@@ -131,7 +131,7 @@ class CartControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_cart()
+    public function it_deletes_the_cart(): void
     {
         $cart = Cart::factory()->create();
 

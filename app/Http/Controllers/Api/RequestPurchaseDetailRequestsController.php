@@ -10,13 +10,10 @@ use App\Http\Resources\DetailRequestCollection;
 
 class RequestPurchaseDetailRequestsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\RequestPurchase $requestPurchase
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, RequestPurchase $requestPurchase)
-    {
+    public function index(
+        Request $request,
+        RequestPurchase $requestPurchase
+    ): DetailRequestCollection {
         $this->authorize('view', $requestPurchase);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class RequestPurchaseDetailRequestsController extends Controller
         return new DetailRequestCollection($detailRequests);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\RequestPurchase $requestPurchase
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, RequestPurchase $requestPurchase)
-    {
+    public function store(
+        Request $request,
+        RequestPurchase $requestPurchase
+    ): DetailRequestResource {
         $this->authorize('create', DetailRequest::class);
 
         $validated = $request->validate([

@@ -10,12 +10,7 @@ use App\Http\Resources\HygieneCollection;
 
 class StoreHygienesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Store $store)
+    public function index(Request $request, Store $store): HygieneCollection
     {
         $this->authorize('view', $store);
 
@@ -30,12 +25,7 @@ class StoreHygienesController extends Controller
         return new HygieneCollection($hygienes);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Store $store)
+    public function store(Request $request, Store $store): HygieneResource
     {
         $this->authorize('create', Hygiene::class);
 

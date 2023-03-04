@@ -31,7 +31,7 @@ class PurchaseOrderPurchaseReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_purchase_order_purchase_receipts()
+    public function it_gets_purchase_order_purchase_receipts(): void
     {
         $purchaseOrder = PurchaseOrder::factory()->create();
         $purchaseReceipt = PurchaseReceipt::factory()->create();
@@ -48,7 +48,7 @@ class PurchaseOrderPurchaseReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_purchase_receipts_to_purchase_order()
+    public function it_can_attach_purchase_receipts_to_purchase_order(): void
     {
         $purchaseOrder = PurchaseOrder::factory()->create();
         $purchaseReceipt = PurchaseReceipt::factory()->create();
@@ -73,7 +73,7 @@ class PurchaseOrderPurchaseReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_purchase_receipts_from_purchase_order()
+    public function it_can_detach_purchase_receipts_from_purchase_order(): void
     {
         $purchaseOrder = PurchaseOrder::factory()->create();
         $purchaseReceipt = PurchaseReceipt::factory()->create();

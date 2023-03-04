@@ -36,7 +36,7 @@ class SupplierTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_suppliers_list()
+    public function it_gets_suppliers_list(): void
     {
         $suppliers = Supplier::factory()
             ->count(5)
@@ -50,7 +50,7 @@ class SupplierTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_supplier()
+    public function it_stores_the_supplier(): void
     {
         $data = Supplier::factory()
             ->make()
@@ -68,7 +68,7 @@ class SupplierTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_supplier()
+    public function it_updates_the_supplier(): void
     {
         $supplier = Supplier::factory()->create();
 
@@ -112,7 +112,7 @@ class SupplierTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_supplier()
+    public function it_deletes_the_supplier(): void
     {
         $supplier = Supplier::factory()->create();
 

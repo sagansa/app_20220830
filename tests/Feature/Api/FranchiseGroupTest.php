@@ -30,7 +30,7 @@ class FranchiseGroupTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_franchise_groups_list()
+    public function it_gets_franchise_groups_list(): void
     {
         $franchiseGroups = FranchiseGroup::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class FranchiseGroupTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_franchise_group()
+    public function it_stores_the_franchise_group(): void
     {
         $data = FranchiseGroup::factory()
             ->make()
@@ -60,7 +60,7 @@ class FranchiseGroupTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_franchise_group()
+    public function it_updates_the_franchise_group(): void
     {
         $franchiseGroup = FranchiseGroup::factory()->create();
 
@@ -87,7 +87,7 @@ class FranchiseGroupTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_franchise_group()
+    public function it_deletes_the_franchise_group(): void
     {
         $franchiseGroup = FranchiseGroup::factory()->create();
 

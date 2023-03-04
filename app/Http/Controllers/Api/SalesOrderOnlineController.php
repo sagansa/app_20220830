@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\SalesOrderOnline;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -13,11 +14,7 @@ use App\Http\Requests\SalesOrderOnlineUpdateRequest;
 
 class SalesOrderOnlineController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): SalesOrderOnlineCollection
     {
         $this->authorize('view-any', SalesOrderOnline::class);
 
@@ -30,12 +27,9 @@ class SalesOrderOnlineController extends Controller
         return new SalesOrderOnlineCollection($salesOrderOnlines);
     }
 
-    /**
-     * @param \App\Http\Requests\SalesOrderOnlineStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(SalesOrderOnlineStoreRequest $request)
-    {
+    public function store(
+        SalesOrderOnlineStoreRequest $request
+    ): SalesOrderOnlineResource {
         $this->authorize('create', SalesOrderOnline::class);
 
         $validated = $request->validated();
@@ -54,27 +48,19 @@ class SalesOrderOnlineController extends Controller
         return new SalesOrderOnlineResource($salesOrderOnline);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SalesOrderOnline $salesOrderOnline
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, SalesOrderOnline $salesOrderOnline)
-    {
+    public function show(
+        Request $request,
+        SalesOrderOnline $salesOrderOnline
+    ): SalesOrderOnlineResource {
         $this->authorize('view', $salesOrderOnline);
 
         return new SalesOrderOnlineResource($salesOrderOnline);
     }
 
-    /**
-     * @param \App\Http\Requests\SalesOrderOnlineUpdateRequest $request
-     * @param \App\Models\SalesOrderOnline $salesOrderOnline
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         SalesOrderOnlineUpdateRequest $request,
         SalesOrderOnline $salesOrderOnline
-    ) {
+    ): SalesOrderOnlineResource {
         $this->authorize('update', $salesOrderOnline);
 
         $validated = $request->validated();
@@ -102,15 +88,10 @@ class SalesOrderOnlineController extends Controller
         return new SalesOrderOnlineResource($salesOrderOnline);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SalesOrderOnline $salesOrderOnline
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         SalesOrderOnline $salesOrderOnline
-    ) {
+    ): Response {
         $this->authorize('delete', $salesOrderOnline);
 
         if ($salesOrderOnline->image) {

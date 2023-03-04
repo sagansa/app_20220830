@@ -31,7 +31,7 @@ class ProductionProductionFromsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_production_production_froms()
+    public function it_gets_production_production_froms(): void
     {
         $production = Production::factory()->create();
         $productionFroms = ProductionFrom::factory()
@@ -50,7 +50,7 @@ class ProductionProductionFromsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_production_production_froms()
+    public function it_stores_the_production_production_froms(): void
     {
         $production = Production::factory()->create();
         $data = ProductionFrom::factory()

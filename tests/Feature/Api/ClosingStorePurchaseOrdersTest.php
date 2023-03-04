@@ -31,7 +31,7 @@ class ClosingStorePurchaseOrdersTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_closing_store_purchase_orders()
+    public function it_gets_closing_store_purchase_orders(): void
     {
         $closingStore = ClosingStore::factory()->create();
         $purchaseOrder = PurchaseOrder::factory()->create();
@@ -48,7 +48,7 @@ class ClosingStorePurchaseOrdersTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_purchase_orders_to_closing_store()
+    public function it_can_attach_purchase_orders_to_closing_store(): void
     {
         $closingStore = ClosingStore::factory()->create();
         $purchaseOrder = PurchaseOrder::factory()->create();
@@ -73,7 +73,7 @@ class ClosingStorePurchaseOrdersTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_purchase_orders_from_closing_store()
+    public function it_can_detach_purchase_orders_from_closing_store(): void
     {
         $closingStore = ClosingStore::factory()->create();
         $purchaseOrder = PurchaseOrder::factory()->create();

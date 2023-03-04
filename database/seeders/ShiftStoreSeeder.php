@@ -9,10 +9,8 @@ class ShiftStoreSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         ShiftStore::factory()
             ->count(5)

@@ -10,13 +10,10 @@ use App\Http\Resources\TransferStockCollection;
 
 class StoreTransferStocksController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Store $store)
-    {
+    public function index(
+        Request $request,
+        Store $store
+    ): TransferStockCollection {
         $this->authorize('view', $store);
 
         $search = $request->get('search', '');
@@ -30,12 +27,7 @@ class StoreTransferStocksController extends Controller
         return new TransferStockCollection($transferStocks);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Store $store)
+    public function store(Request $request, Store $store): TransferStockResource
     {
         $this->authorize('create', TransferStock::class);
 

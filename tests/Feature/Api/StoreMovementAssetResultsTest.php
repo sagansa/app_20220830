@@ -31,7 +31,7 @@ class StoreMovementAssetResultsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_movement_asset_results()
+    public function it_gets_store_movement_asset_results(): void
     {
         $store = Store::factory()->create();
         $movementAssetResults = MovementAssetResult::factory()
@@ -50,7 +50,7 @@ class StoreMovementAssetResultsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_movement_asset_results()
+    public function it_stores_the_store_movement_asset_results(): void
     {
         $store = Store::factory()->create();
         $data = MovementAssetResult::factory()

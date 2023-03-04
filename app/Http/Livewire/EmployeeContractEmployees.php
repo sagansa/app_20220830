@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Employee;
+use Illuminate\View\View;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Models\ContractEmployee;
@@ -38,13 +39,13 @@ class EmployeeContractEmployees extends Component
         'contractEmployee.guarantee' => ['required', 'max:255'],
     ];
 
-    public function mount(Employee $employee)
+    public function mount(Employee $employee): void
     {
         $this->employee = $employee;
         $this->resetContractEmployeeData();
     }
 
-    public function resetContractEmployeeData()
+    public function resetContractEmployeeData(): void
     {
         $this->contractEmployee = new ContractEmployee();
 
@@ -56,7 +57,7 @@ class EmployeeContractEmployees extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newContractEmployee()
+    public function newContractEmployee(): void
     {
         $this->editing = false;
         $this->modalTitle = trans('crud.employee_contract_employees.new_title');
@@ -65,38 +66,39 @@ class EmployeeContractEmployees extends Component
         $this->showModal();
     }
 
-    public function editContractEmployee(ContractEmployee $contractEmployee)
-    {
+    public function editContractEmployee(
+        ContractEmployee $contractEmployee
+    ): void {
         $this->editing = true;
         $this->modalTitle = trans(
             'crud.employee_contract_employees.edit_title'
         );
         $this->contractEmployee = $contractEmployee;
 
-        $this->contractEmployeeFromDate = $this->contractEmployee->from_date->format(
-            'Y-m-d'
-        );
-        $this->contractEmployeeUntilDate = $this->contractEmployee->until_date->format(
-            'Y-m-d'
-        );
+        $this->contractEmployeeFromDate = optional(
+            $this->contractEmployee->from_date
+        )->format('Y-m-d');
+        $this->contractEmployeeUntilDate = optional(
+            $this->contractEmployee->until_date
+        )->format('Y-m-d');
 
         $this->dispatchBrowserEvent('refresh');
 
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -114,10 +116,10 @@ class EmployeeContractEmployees extends Component
             );
         }
 
-        $this->contractEmployee->from_date = \Carbon\Carbon::parse(
+        $this->contractEmployee->from_date = \Carbon\Carbon::make(
             $this->contractEmployeeFromDate
         );
-        $this->contractEmployee->until_date = \Carbon\Carbon::parse(
+        $this->contractEmployee->until_date = \Carbon\Carbon::make(
             $this->contractEmployeeUntilDate
         );
 
@@ -128,7 +130,7 @@ class EmployeeContractEmployees extends Component
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function destroySelected(): void
     {
         $this->authorize('delete-any', ContractEmployee::class);
 
@@ -148,7 +150,7 @@ class EmployeeContractEmployees extends Component
         $this->resetContractEmployeeData();
     }
 
-    public function toggleFullSelection()
+    public function toggleFullSelection(): void
     {
         if (!$this->allSelected) {
             $this->selected = [];
@@ -160,7 +162,7 @@ class EmployeeContractEmployees extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.employee-contract-employees', [
             'contractEmployees' => $this->employee

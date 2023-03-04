@@ -30,7 +30,7 @@ class MonthlySalaryTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_monthly_salaries_list()
+    public function it_gets_monthly_salaries_list(): void
     {
         $monthlySalaries = MonthlySalary::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class MonthlySalaryTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_monthly_salary()
+    public function it_stores_the_monthly_salary(): void
     {
         $data = MonthlySalary::factory()
             ->make()
@@ -60,7 +60,7 @@ class MonthlySalaryTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_monthly_salary()
+    public function it_updates_the_monthly_salary(): void
     {
         $monthlySalary = MonthlySalary::factory()->create();
 
@@ -83,7 +83,7 @@ class MonthlySalaryTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_monthly_salary()
+    public function it_deletes_the_monthly_salary(): void
     {
         $monthlySalary = MonthlySalary::factory()->create();
 

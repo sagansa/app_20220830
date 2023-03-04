@@ -31,7 +31,7 @@ class StoreSelfConsumptionsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_self_consumptions()
+    public function it_gets_store_self_consumptions(): void
     {
         $store = Store::factory()->create();
         $selfConsumptions = SelfConsumption::factory()
@@ -50,7 +50,7 @@ class StoreSelfConsumptionsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_self_consumptions()
+    public function it_stores_the_store_self_consumptions(): void
     {
         $store = Store::factory()->create();
         $data = SelfConsumption::factory()

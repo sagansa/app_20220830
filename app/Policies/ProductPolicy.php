@@ -12,94 +12,64 @@ class ProductPolicy
 
     /**
      * Determine whether the product can view any models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('list products');
     }
 
     /**
      * Determine whether the product can view the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Product  $model
-     * @return mixed
      */
-    public function view(User $user, Product $model)
+    public function view(User $user, Product $model): bool
     {
         return $user->hasPermissionTo('view products');
     }
 
     /**
      * Determine whether the product can create models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->hasPermissionTo('create products');
     }
 
     /**
      * Determine whether the product can update the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Product  $model
-     * @return mixed
      */
-    public function update(User $user, Product $model)
+    public function update(User $user, Product $model): bool
     {
         return $user->hasPermissionTo('update products');
     }
 
     /**
      * Determine whether the product can delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Product  $model
-     * @return mixed
      */
-    public function delete(User $user, Product $model)
+    public function delete(User $user, Product $model): bool
     {
         return $user->hasPermissionTo('delete products');
     }
 
     /**
      * Determine whether the user can delete multiple instances of the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Product  $model
-     * @return mixed
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->hasPermissionTo('delete products');
     }
 
     /**
      * Determine whether the product can restore the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Product  $model
-     * @return mixed
      */
-    public function restore(User $user, Product $model)
+    public function restore(User $user, Product $model): bool
     {
         return false;
     }
 
     /**
      * Determine whether the product can permanently delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Product  $model
-     * @return mixed
      */
-    public function forceDelete(User $user, Product $model)
+    public function forceDelete(User $user, Product $model): bool
     {
         return false;
     }

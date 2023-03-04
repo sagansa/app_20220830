@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\ReceiptLoyverse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ReceiptLoyverseResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\ReceiptLoyverseUpdateRequest;
 
 class ReceiptLoyverseController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): ReceiptLoyverseCollection
     {
         $this->authorize('view-any', ReceiptLoyverse::class);
 
@@ -29,12 +26,9 @@ class ReceiptLoyverseController extends Controller
         return new ReceiptLoyverseCollection($receiptLoyverses);
     }
 
-    /**
-     * @param \App\Http\Requests\ReceiptLoyverseStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ReceiptLoyverseStoreRequest $request)
-    {
+    public function store(
+        ReceiptLoyverseStoreRequest $request
+    ): ReceiptLoyverseResource {
         $this->authorize('create', ReceiptLoyverse::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class ReceiptLoyverseController extends Controller
         return new ReceiptLoyverseResource($receiptLoyverse);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ReceiptLoyverse $receiptLoyverse
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, ReceiptLoyverse $receiptLoyverse)
-    {
+    public function show(
+        Request $request,
+        ReceiptLoyverse $receiptLoyverse
+    ): ReceiptLoyverseResource {
         $this->authorize('view', $receiptLoyverse);
 
         return new ReceiptLoyverseResource($receiptLoyverse);
     }
 
-    /**
-     * @param \App\Http\Requests\ReceiptLoyverseUpdateRequest $request
-     * @param \App\Models\ReceiptLoyverse $receiptLoyverse
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         ReceiptLoyverseUpdateRequest $request,
         ReceiptLoyverse $receiptLoyverse
-    ) {
+    ): ReceiptLoyverseResource {
         $this->authorize('update', $receiptLoyverse);
 
         $validated = $request->validated();
@@ -74,13 +60,10 @@ class ReceiptLoyverseController extends Controller
         return new ReceiptLoyverseResource($receiptLoyverse);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ReceiptLoyverse $receiptLoyverse
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, ReceiptLoyverse $receiptLoyverse)
-    {
+    public function destroy(
+        Request $request,
+        ReceiptLoyverse $receiptLoyverse
+    ): Response {
         $this->authorize('delete', $receiptLoyverse);
 
         $receiptLoyverse->delete();

@@ -10,13 +10,10 @@ use App\Http\Resources\PurchaseOrderCollection;
 
 class PaymentTypePurchaseOrdersController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, PaymentType $paymentType)
-    {
+    public function index(
+        Request $request,
+        PaymentType $paymentType
+    ): PurchaseOrderCollection {
         $this->authorize('view', $paymentType);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class PaymentTypePurchaseOrdersController extends Controller
         return new PurchaseOrderCollection($purchaseOrders);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, PaymentType $paymentType)
-    {
+    public function store(
+        Request $request,
+        PaymentType $paymentType
+    ): PurchaseOrderResource {
         $this->authorize('create', PurchaseOrder::class);
 
         $validated = $request->validate([

@@ -9,10 +9,8 @@ class ProductionSupportFromSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         ProductionSupportFrom::factory()
             ->count(5)

@@ -10,13 +10,10 @@ use App\Http\Resources\MovementAssetResultCollection;
 
 class UserMovementAssetResultsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
-    {
+    public function index(
+        Request $request,
+        User $user
+    ): MovementAssetResultCollection {
         $this->authorize('view', $user);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class UserMovementAssetResultsController extends Controller
         return new MovementAssetResultCollection($movementAssetResults);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
-    {
+    public function store(
+        Request $request,
+        User $user
+    ): MovementAssetResultResource {
         $this->authorize('create', MovementAssetResult::class);
 
         $validated = $request->validate([

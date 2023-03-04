@@ -10,13 +10,10 @@ use App\Http\Resources\SavingCollection;
 
 class EmployeeSavingsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Employee $employee)
-    {
+    public function index(
+        Request $request,
+        Employee $employee
+    ): SavingCollection {
         $this->authorize('view', $employee);
 
         $search = $request->get('search', '');
@@ -30,12 +27,7 @@ class EmployeeSavingsController extends Controller
         return new SavingCollection($savings);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Employee $employee)
+    public function store(Request $request, Employee $employee): SavingResource
     {
         $this->authorize('create', Saving::class);
 

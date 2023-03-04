@@ -34,7 +34,7 @@ class UtilityTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_utilities_list()
+    public function it_gets_utilities_list(): void
     {
         $utilities = Utility::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class UtilityTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_utility()
+    public function it_stores_the_utility(): void
     {
         $data = Utility::factory()
             ->make()
@@ -64,7 +64,7 @@ class UtilityTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_utility()
+    public function it_updates_the_utility(): void
     {
         $utility = Utility::factory()->create();
 
@@ -98,7 +98,7 @@ class UtilityTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_utility()
+    public function it_deletes_the_utility(): void
     {
         $utility = Utility::factory()->create();
 

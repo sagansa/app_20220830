@@ -31,7 +31,7 @@ class PaymentTypeDetailRequestsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_payment_type_detail_requests()
+    public function it_gets_payment_type_detail_requests(): void
     {
         $paymentType = PaymentType::factory()->create();
         $detailRequests = DetailRequest::factory()
@@ -50,7 +50,7 @@ class PaymentTypeDetailRequestsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_payment_type_detail_requests()
+    public function it_stores_the_payment_type_detail_requests(): void
     {
         $paymentType = PaymentType::factory()->create();
         $data = DetailRequest::factory()

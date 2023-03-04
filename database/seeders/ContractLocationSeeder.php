@@ -9,10 +9,8 @@ class ContractLocationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         ContractLocation::factory()
             ->count(5)

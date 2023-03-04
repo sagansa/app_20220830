@@ -31,7 +31,7 @@ class StorePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_presences()
+    public function it_gets_store_presences(): void
     {
         $store = Store::factory()->create();
         $presences = Presence::factory()
@@ -48,7 +48,7 @@ class StorePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_presences()
+    public function it_stores_the_store_presences(): void
     {
         $store = Store::factory()->create();
         $data = Presence::factory()

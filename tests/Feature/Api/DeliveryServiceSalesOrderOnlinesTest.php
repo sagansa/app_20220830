@@ -31,7 +31,7 @@ class DeliveryServiceSalesOrderOnlinesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_delivery_service_sales_order_onlines()
+    public function it_gets_delivery_service_sales_order_onlines(): void
     {
         $deliveryService = DeliveryService::factory()->create();
         $salesOrderOnlines = SalesOrderOnline::factory()
@@ -53,7 +53,7 @@ class DeliveryServiceSalesOrderOnlinesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_delivery_service_sales_order_onlines()
+    public function it_stores_the_delivery_service_sales_order_onlines(): void
     {
         $deliveryService = DeliveryService::factory()->create();
         $data = SalesOrderOnline::factory()

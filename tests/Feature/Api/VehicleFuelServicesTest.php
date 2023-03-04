@@ -31,7 +31,7 @@ class VehicleFuelServicesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_vehicle_fuel_services()
+    public function it_gets_vehicle_fuel_services(): void
     {
         $vehicle = Vehicle::factory()->create();
         $fuelServices = FuelService::factory()
@@ -50,7 +50,7 @@ class VehicleFuelServicesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_vehicle_fuel_services()
+    public function it_stores_the_vehicle_fuel_services(): void
     {
         $vehicle = Vehicle::factory()->create();
         $data = FuelService::factory()

@@ -31,6 +31,11 @@ class DeliveryService extends Model
         return $this->hasMany(SalesOrderOnline::class);
     }
 
+    public function salesOrderDirects()
+    {
+        return $this->hasMany(SalesOrderDirect::class);
+    }
+
     public function delete_image()
     {
         if ($this->image && file_exists('storage/' . $this->image)) {

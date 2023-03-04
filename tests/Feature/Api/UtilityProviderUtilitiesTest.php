@@ -31,7 +31,7 @@ class UtilityProviderUtilitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_utility_provider_utilities()
+    public function it_gets_utility_provider_utilities(): void
     {
         $utilityProvider = UtilityProvider::factory()->create();
         $utilities = Utility::factory()
@@ -50,7 +50,7 @@ class UtilityProviderUtilitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_utility_provider_utilities()
+    public function it_stores_the_utility_provider_utilities(): void
     {
         $utilityProvider = UtilityProvider::factory()->create();
         $data = Utility::factory()

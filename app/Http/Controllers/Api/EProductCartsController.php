@@ -10,12 +10,7 @@ use App\Http\Resources\CartCollection;
 
 class EProductCartsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\EProduct $eProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, EProduct $eProduct)
+    public function index(Request $request, EProduct $eProduct): CartCollection
     {
         $this->authorize('view', $eProduct);
 
@@ -30,12 +25,7 @@ class EProductCartsController extends Controller
         return new CartCollection($carts);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\EProduct $eProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, EProduct $eProduct)
+    public function store(Request $request, EProduct $eProduct): CartResource
     {
         $this->authorize('create', Cart::class);
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\CleanAndNeat;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\CleanAndNeatResource;
@@ -13,11 +14,7 @@ use App\Http\Requests\CleanAndNeatUpdateRequest;
 
 class CleanAndNeatController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): CleanAndNeatCollection
     {
         $this->authorize('view-any', CleanAndNeat::class);
 
@@ -30,12 +27,9 @@ class CleanAndNeatController extends Controller
         return new CleanAndNeatCollection($cleanAndNeats);
     }
 
-    /**
-     * @param \App\Http\Requests\CleanAndNeatStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CleanAndNeatStoreRequest $request)
-    {
+    public function store(
+        CleanAndNeatStoreRequest $request
+    ): CleanAndNeatResource {
         $this->authorize('create', CleanAndNeat::class);
 
         $validated = $request->validated();
@@ -56,27 +50,19 @@ class CleanAndNeatController extends Controller
         return new CleanAndNeatResource($cleanAndNeat);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\CleanAndNeat $cleanAndNeat
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, CleanAndNeat $cleanAndNeat)
-    {
+    public function show(
+        Request $request,
+        CleanAndNeat $cleanAndNeat
+    ): CleanAndNeatResource {
         $this->authorize('view', $cleanAndNeat);
 
         return new CleanAndNeatResource($cleanAndNeat);
     }
 
-    /**
-     * @param \App\Http\Requests\CleanAndNeatUpdateRequest $request
-     * @param \App\Models\CleanAndNeat $cleanAndNeat
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         CleanAndNeatUpdateRequest $request,
         CleanAndNeat $cleanAndNeat
-    ) {
+    ): CleanAndNeatResource {
         $this->authorize('update', $cleanAndNeat);
 
         $validated = $request->validated();
@@ -106,13 +92,10 @@ class CleanAndNeatController extends Controller
         return new CleanAndNeatResource($cleanAndNeat);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\CleanAndNeat $cleanAndNeat
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, CleanAndNeat $cleanAndNeat)
-    {
+    public function destroy(
+        Request $request,
+        CleanAndNeat $cleanAndNeat
+    ): Response {
         $this->authorize('delete', $cleanAndNeat);
 
         if ($cleanAndNeat->left_hand) {

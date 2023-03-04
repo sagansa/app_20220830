@@ -9,10 +9,8 @@ class OnlineCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         OnlineCategory::factory()
             ->count(5)

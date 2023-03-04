@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Store;
 use Livewire\Component;
 use App\Models\Supplier;
+use Illuminate\View\View;
 use App\Models\PaymentType;
 use Livewire\WithPagination;
 use App\Models\PurchaseOrder;
@@ -52,7 +53,7 @@ class StorePurchaseOrdersDetail extends Component
         'purchaseOrder.approved_by_id' => ['nullable', 'exists:users,id'],
     ];
 
-    public function mount(Store $store)
+    public function mount(Store $store): void
     {
         $this->store = $store;
         $this->paymentTypesForSelect = PaymentType::pluck('name', 'id');
@@ -61,7 +62,7 @@ class StorePurchaseOrdersDetail extends Component
         $this->resetPurchaseOrderData();
     }
 
-    public function resetPurchaseOrderData()
+    public function resetPurchaseOrderData(): void
     {
         $this->purchaseOrder = new PurchaseOrder();
 
@@ -77,7 +78,7 @@ class StorePurchaseOrdersDetail extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newPurchaseOrder()
+    public function newPurchaseOrder(): void
     {
         $this->editing = false;
         $this->modalTitle = trans('crud.store_purchase_orders.new_title');
@@ -86,31 +87,33 @@ class StorePurchaseOrdersDetail extends Component
         $this->showModal();
     }
 
-    public function editPurchaseOrder(PurchaseOrder $purchaseOrder)
+    public function editPurchaseOrder(PurchaseOrder $purchaseOrder): void
     {
         $this->editing = true;
         $this->modalTitle = trans('crud.store_purchase_orders.edit_title');
         $this->purchaseOrder = $purchaseOrder;
 
-        $this->purchaseOrderDate = $this->purchaseOrder->date->format('Y-m-d');
+        $this->purchaseOrderDate = optional($this->purchaseOrder->date)->format(
+            'Y-m-d'
+        );
 
         $this->dispatchBrowserEvent('refresh');
 
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -128,7 +131,7 @@ class StorePurchaseOrdersDetail extends Component
             );
         }
 
-        $this->purchaseOrder->date = \Carbon\Carbon::parse(
+        $this->purchaseOrder->date = \Carbon\Carbon::make(
             $this->purchaseOrderDate
         );
 
@@ -139,7 +142,7 @@ class StorePurchaseOrdersDetail extends Component
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function destroySelected(): void
     {
         $this->authorize('delete-any', PurchaseOrder::class);
 
@@ -159,7 +162,7 @@ class StorePurchaseOrdersDetail extends Component
         $this->resetPurchaseOrderData();
     }
 
-    public function toggleFullSelection()
+    public function toggleFullSelection(): void
     {
         if (!$this->allSelected) {
             $this->selected = [];
@@ -171,7 +174,7 @@ class StorePurchaseOrdersDetail extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.store-purchase-orders-detail', [
             'purchaseOrders' => $this->store->purchaseOrders()->paginate(20),

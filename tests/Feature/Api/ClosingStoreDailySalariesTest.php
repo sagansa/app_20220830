@@ -31,7 +31,7 @@ class ClosingStoreDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_closing_store_daily_salaries()
+    public function it_gets_closing_store_daily_salaries(): void
     {
         $closingStore = ClosingStore::factory()->create();
         $dailySalary = DailySalary::factory()->create();
@@ -48,7 +48,7 @@ class ClosingStoreDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_daily_salaries_to_closing_store()
+    public function it_can_attach_daily_salaries_to_closing_store(): void
     {
         $closingStore = ClosingStore::factory()->create();
         $dailySalary = DailySalary::factory()->create();
@@ -73,7 +73,7 @@ class ClosingStoreDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_daily_salaries_from_closing_store()
+    public function it_can_detach_daily_salaries_from_closing_store(): void
     {
         $closingStore = ClosingStore::factory()->create();
         $dailySalary = DailySalary::factory()->create();

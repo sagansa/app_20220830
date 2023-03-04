@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\SalesOrderEmployee;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -13,11 +14,7 @@ use App\Http\Requests\SalesOrderEmployeeUpdateRequest;
 
 class SalesOrderEmployeeController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): SalesOrderEmployeeCollection
     {
         $this->authorize('view-any', SalesOrderEmployee::class);
 
@@ -30,12 +27,9 @@ class SalesOrderEmployeeController extends Controller
         return new SalesOrderEmployeeCollection($salesOrderEmployees);
     }
 
-    /**
-     * @param \App\Http\Requests\SalesOrderEmployeeStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(SalesOrderEmployeeStoreRequest $request)
-    {
+    public function store(
+        SalesOrderEmployeeStoreRequest $request
+    ): SalesOrderEmployeeResource {
         $this->authorize('create', SalesOrderEmployee::class);
 
         $validated = $request->validated();
@@ -48,29 +42,19 @@ class SalesOrderEmployeeController extends Controller
         return new SalesOrderEmployeeResource($salesOrderEmployee);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SalesOrderEmployee $salesOrderEmployee
-     * @return \Illuminate\Http\Response
-     */
     public function show(
         Request $request,
         SalesOrderEmployee $salesOrderEmployee
-    ) {
+    ): SalesOrderEmployeeResource {
         $this->authorize('view', $salesOrderEmployee);
 
         return new SalesOrderEmployeeResource($salesOrderEmployee);
     }
 
-    /**
-     * @param \App\Http\Requests\SalesOrderEmployeeUpdateRequest $request
-     * @param \App\Models\SalesOrderEmployee $salesOrderEmployee
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         SalesOrderEmployeeUpdateRequest $request,
         SalesOrderEmployee $salesOrderEmployee
-    ) {
+    ): SalesOrderEmployeeResource {
         $this->authorize('update', $salesOrderEmployee);
 
         $validated = $request->validated();
@@ -88,15 +72,10 @@ class SalesOrderEmployeeController extends Controller
         return new SalesOrderEmployeeResource($salesOrderEmployee);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SalesOrderEmployee $salesOrderEmployee
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         SalesOrderEmployee $salesOrderEmployee
-    ) {
+    ): Response {
         $this->authorize('delete', $salesOrderEmployee);
 
         if ($salesOrderEmployee->image) {

@@ -31,7 +31,7 @@ class ProductSelfConsumptionsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_product_self_consumptions()
+    public function it_gets_product_self_consumptions(): void
     {
         $product = Product::factory()->create();
         $selfConsumption = SelfConsumption::factory()->create();
@@ -48,7 +48,7 @@ class ProductSelfConsumptionsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_self_consumptions_to_product()
+    public function it_can_attach_self_consumptions_to_product(): void
     {
         $product = Product::factory()->create();
         $selfConsumption = SelfConsumption::factory()->create();
@@ -73,7 +73,7 @@ class ProductSelfConsumptionsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_self_consumptions_from_product()
+    public function it_can_detach_self_consumptions_from_product(): void
     {
         $product = Product::factory()->create();
         $selfConsumption = SelfConsumption::factory()->create();

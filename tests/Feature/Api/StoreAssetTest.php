@@ -32,7 +32,7 @@ class StoreAssetTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_assets_list()
+    public function it_gets_store_assets_list(): void
     {
         $storeAssets = StoreAsset::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class StoreAssetTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_asset()
+    public function it_stores_the_store_asset(): void
     {
         $data = StoreAsset::factory()
             ->make()
@@ -62,7 +62,7 @@ class StoreAssetTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_store_asset()
+    public function it_updates_the_store_asset(): void
     {
         $storeAsset = StoreAsset::factory()->create();
 
@@ -89,7 +89,7 @@ class StoreAssetTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_store_asset()
+    public function it_deletes_the_store_asset(): void
     {
         $storeAsset = StoreAsset::factory()->create();
 

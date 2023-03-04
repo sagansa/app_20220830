@@ -30,7 +30,7 @@ class UserSalesOrderEmployeesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_sales_order_employees()
+    public function it_gets_user_sales_order_employees(): void
     {
         $user = User::factory()->create();
         $salesOrderEmployees = SalesOrderEmployee::factory()
@@ -49,7 +49,7 @@ class UserSalesOrderEmployeesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_sales_order_employees()
+    public function it_stores_the_user_sales_order_employees(): void
     {
         $user = User::factory()->create();
         $data = SalesOrderEmployee::factory()

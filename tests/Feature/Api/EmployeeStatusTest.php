@@ -30,7 +30,7 @@ class EmployeeStatusTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_employee_statuses_list()
+    public function it_gets_employee_statuses_list(): void
     {
         $employeeStatuses = EmployeeStatus::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class EmployeeStatusTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_employee_status()
+    public function it_stores_the_employee_status(): void
     {
         $data = EmployeeStatus::factory()
             ->make()
@@ -63,7 +63,7 @@ class EmployeeStatusTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_employee_status()
+    public function it_updates_the_employee_status(): void
     {
         $employeeStatus = EmployeeStatus::factory()->create();
 
@@ -86,7 +86,7 @@ class EmployeeStatusTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_employee_status()
+    public function it_deletes_the_employee_status(): void
     {
         $employeeStatus = EmployeeStatus::factory()->create();
 

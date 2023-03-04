@@ -29,7 +29,7 @@ class DeliveryServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_delivery_services()
+    public function it_displays_index_view_with_delivery_services(): void
     {
         $deliveryServices = DeliveryService::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class DeliveryServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_delivery_service()
+    public function it_displays_create_view_for_delivery_service(): void
     {
         $response = $this->get(route('delivery-services.create'));
 
@@ -56,7 +56,7 @@ class DeliveryServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_delivery_service()
+    public function it_stores_the_delivery_service(): void
     {
         $data = DeliveryService::factory()
             ->make()
@@ -76,7 +76,7 @@ class DeliveryServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_delivery_service()
+    public function it_displays_show_view_for_delivery_service(): void
     {
         $deliveryService = DeliveryService::factory()->create();
 
@@ -93,7 +93,7 @@ class DeliveryServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_delivery_service()
+    public function it_displays_edit_view_for_delivery_service(): void
     {
         $deliveryService = DeliveryService::factory()->create();
 
@@ -110,7 +110,7 @@ class DeliveryServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_delivery_service()
+    public function it_updates_the_delivery_service(): void
     {
         $deliveryService = DeliveryService::factory()->create();
 
@@ -136,7 +136,7 @@ class DeliveryServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_delivery_service()
+    public function it_deletes_the_delivery_service(): void
     {
         $deliveryService = DeliveryService::factory()->create();
 

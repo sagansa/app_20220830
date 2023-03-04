@@ -30,7 +30,7 @@ class UtilityProviderTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_utility_providers_list()
+    public function it_gets_utility_providers_list(): void
     {
         $utilityProviders = UtilityProvider::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class UtilityProviderTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_utility_provider()
+    public function it_stores_the_utility_provider(): void
     {
         $data = UtilityProvider::factory()
             ->make()
@@ -63,7 +63,7 @@ class UtilityProviderTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_utility_provider()
+    public function it_updates_the_utility_provider(): void
     {
         $utilityProvider = UtilityProvider::factory()->create();
 
@@ -87,7 +87,7 @@ class UtilityProviderTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_utility_provider()
+    public function it_deletes_the_utility_provider(): void
     {
         $utilityProvider = UtilityProvider::factory()->create();
 

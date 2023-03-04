@@ -36,7 +36,7 @@ class EmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_employees()
+    public function it_displays_index_view_with_employees(): void
     {
         $employees = Employee::factory()
             ->count(5)
@@ -53,7 +53,7 @@ class EmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_employee()
+    public function it_displays_create_view_for_employee(): void
     {
         $response = $this->get(route('employees.create'));
 
@@ -63,7 +63,7 @@ class EmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_employee()
+    public function it_stores_the_employee(): void
     {
         $data = Employee::factory()
             ->make()
@@ -71,6 +71,7 @@ class EmployeeControllerTest extends TestCase
 
         $response = $this->post(route('employees.store'), $data);
 
+        unset($data['village_id']);
         unset($data['user_id']);
 
         $this->assertDatabaseHas('employees', $data);
@@ -83,7 +84,7 @@ class EmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_employee()
+    public function it_displays_show_view_for_employee(): void
     {
         $employee = Employee::factory()->create();
 
@@ -98,7 +99,7 @@ class EmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_employee()
+    public function it_displays_edit_view_for_employee(): void
     {
         $employee = Employee::factory()->create();
 
@@ -113,7 +114,7 @@ class EmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_employee()
+    public function it_updates_the_employee(): void
     {
         $employee = Employee::factory()->create();
 
@@ -165,6 +166,7 @@ class EmployeeControllerTest extends TestCase
 
         $response = $this->put(route('employees.update', $employee), $data);
 
+        unset($data['village_id']);
         unset($data['user_id']);
 
         $data['id'] = $employee->id;
@@ -177,7 +179,7 @@ class EmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_employee()
+    public function it_deletes_the_employee(): void
     {
         $employee = Employee::factory()->create();
 

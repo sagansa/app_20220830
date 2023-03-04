@@ -3,19 +3,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\RemainingStock;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductCollection;
 
 class RemainingStockProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\RemainingStock $remainingStock
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, RemainingStock $remainingStock)
-    {
+    public function index(
+        Request $request,
+        RemainingStock $remainingStock
+    ): ProductCollection {
         $this->authorize('view', $remainingStock);
 
         $search = $request->get('search', '');
@@ -29,17 +27,11 @@ class RemainingStockProductsController extends Controller
         return new ProductCollection($products);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\RemainingStock $remainingStock
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         RemainingStock $remainingStock,
         Product $product
-    ) {
+    ): Response {
         $this->authorize('update', $remainingStock);
 
         $remainingStock->products()->syncWithoutDetaching([$product->id]);
@@ -47,17 +39,11 @@ class RemainingStockProductsController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\RemainingStock $remainingStock
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         RemainingStock $remainingStock,
         Product $product
-    ) {
+    ): Response {
         $this->authorize('update', $remainingStock);
 
         $remainingStock->products()->detach($product);

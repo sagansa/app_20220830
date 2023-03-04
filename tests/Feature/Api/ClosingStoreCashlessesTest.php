@@ -31,7 +31,7 @@ class ClosingStoreCashlessesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_closing_store_cashlesses()
+    public function it_gets_closing_store_cashlesses(): void
     {
         $closingStore = ClosingStore::factory()->create();
         $cashlesses = Cashless::factory()
@@ -50,7 +50,7 @@ class ClosingStoreCashlessesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_closing_store_cashlesses()
+    public function it_stores_the_closing_store_cashlesses(): void
     {
         $closingStore = ClosingStore::factory()->create();
         $data = Cashless::factory()

@@ -3,19 +3,17 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\ClosingStore;
+use Illuminate\Http\Response;
 use App\Models\InvoicePurchase;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\InvoicePurchaseCollection;
 
 class ClosingStoreInvoicePurchasesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, ClosingStore $closingStore)
-    {
+    public function index(
+        Request $request,
+        ClosingStore $closingStore
+    ): InvoicePurchaseCollection {
         $this->authorize('view', $closingStore);
 
         $search = $request->get('search', '');
@@ -29,17 +27,11 @@ class ClosingStoreInvoicePurchasesController extends Controller
         return new InvoicePurchaseCollection($invoicePurchases);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         ClosingStore $closingStore,
         InvoicePurchase $invoicePurchase
-    ) {
+    ): Response {
         $this->authorize('update', $closingStore);
 
         $closingStore
@@ -49,17 +41,11 @@ class ClosingStoreInvoicePurchasesController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         ClosingStore $closingStore,
         InvoicePurchase $invoicePurchase
-    ) {
+    ): Response {
         $this->authorize('update', $closingStore);
 
         $closingStore->invoicePurchases()->detach($invoicePurchase);

@@ -32,7 +32,7 @@ class FuelServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_fuel_services()
+    public function it_displays_index_view_with_fuel_services(): void
     {
         $fuelServices = FuelService::factory()
             ->count(5)
@@ -49,7 +49,7 @@ class FuelServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_fuel_service()
+    public function it_displays_create_view_for_fuel_service(): void
     {
         $response = $this->get(route('fuel-services.create'));
 
@@ -59,7 +59,7 @@ class FuelServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_fuel_service()
+    public function it_stores_the_fuel_service(): void
     {
         $data = FuelService::factory()
             ->make()
@@ -80,7 +80,7 @@ class FuelServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_fuel_service()
+    public function it_displays_show_view_for_fuel_service(): void
     {
         $fuelService = FuelService::factory()->create();
 
@@ -95,7 +95,7 @@ class FuelServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_fuel_service()
+    public function it_displays_edit_view_for_fuel_service(): void
     {
         $fuelService = FuelService::factory()->create();
 
@@ -110,7 +110,7 @@ class FuelServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_fuel_service()
+    public function it_updates_the_fuel_service(): void
     {
         $fuelService = FuelService::factory()->create();
 
@@ -150,7 +150,7 @@ class FuelServiceControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_fuel_service()
+    public function it_deletes_the_fuel_service(): void
     {
         $fuelService = FuelService::factory()->create();
 

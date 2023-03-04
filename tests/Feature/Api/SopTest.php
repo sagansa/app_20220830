@@ -30,7 +30,7 @@ class SopTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_sops_list()
+    public function it_gets_sops_list(): void
     {
         $sops = Sop::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class SopTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_sop()
+    public function it_stores_the_sop(): void
     {
         $data = Sop::factory()
             ->make()
@@ -60,7 +60,7 @@ class SopTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_sop()
+    public function it_updates_the_sop(): void
     {
         $sop = Sop::factory()->create();
 
@@ -82,7 +82,7 @@ class SopTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_sop()
+    public function it_deletes_the_sop(): void
     {
         $sop = Sop::factory()->create();
 

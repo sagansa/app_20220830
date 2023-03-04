@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\FuelService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\FuelServiceResource;
@@ -13,11 +14,7 @@ use App\Http\Requests\FuelServiceUpdateRequest;
 
 class FuelServiceController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): FuelServiceCollection
     {
         $this->authorize('view-any', FuelService::class);
 
@@ -30,11 +27,7 @@ class FuelServiceController extends Controller
         return new FuelServiceCollection($fuelServices);
     }
 
-    /**
-     * @param \App\Http\Requests\FuelServiceStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(FuelServiceStoreRequest $request)
+    public function store(FuelServiceStoreRequest $request): FuelServiceResource
     {
         $this->authorize('create', FuelService::class);
 
@@ -48,27 +41,19 @@ class FuelServiceController extends Controller
         return new FuelServiceResource($fuelService);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\FuelService $fuelService
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, FuelService $fuelService)
-    {
+    public function show(
+        Request $request,
+        FuelService $fuelService
+    ): FuelServiceResource {
         $this->authorize('view', $fuelService);
 
         return new FuelServiceResource($fuelService);
     }
 
-    /**
-     * @param \App\Http\Requests\FuelServiceUpdateRequest $request
-     * @param \App\Models\FuelService $fuelService
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         FuelServiceUpdateRequest $request,
         FuelService $fuelService
-    ) {
+    ): FuelServiceResource {
         $this->authorize('update', $fuelService);
 
         $validated = $request->validated();
@@ -86,13 +71,10 @@ class FuelServiceController extends Controller
         return new FuelServiceResource($fuelService);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\FuelService $fuelService
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, FuelService $fuelService)
-    {
+    public function destroy(
+        Request $request,
+        FuelService $fuelService
+    ): Response {
         $this->authorize('delete', $fuelService);
 
         if ($fuelService->image) {

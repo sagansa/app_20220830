@@ -29,7 +29,7 @@ class OnlineCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_online_categories()
+    public function it_displays_index_view_with_online_categories(): void
     {
         $onlineCategories = OnlineCategory::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class OnlineCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_online_category()
+    public function it_displays_create_view_for_online_category(): void
     {
         $response = $this->get(route('online-categories.create'));
 
@@ -56,7 +56,7 @@ class OnlineCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_online_category()
+    public function it_stores_the_online_category(): void
     {
         $data = OnlineCategory::factory()
             ->make()
@@ -76,7 +76,7 @@ class OnlineCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_online_category()
+    public function it_displays_show_view_for_online_category(): void
     {
         $onlineCategory = OnlineCategory::factory()->create();
 
@@ -93,7 +93,7 @@ class OnlineCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_online_category()
+    public function it_displays_edit_view_for_online_category(): void
     {
         $onlineCategory = OnlineCategory::factory()->create();
 
@@ -110,7 +110,7 @@ class OnlineCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_online_category()
+    public function it_updates_the_online_category(): void
     {
         $onlineCategory = OnlineCategory::factory()->create();
 
@@ -136,7 +136,7 @@ class OnlineCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_online_category()
+    public function it_deletes_the_online_category(): void
     {
         $onlineCategory = OnlineCategory::factory()->create();
 

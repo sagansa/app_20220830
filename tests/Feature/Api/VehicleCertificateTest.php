@@ -32,7 +32,7 @@ class VehicleCertificateTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_vehicle_certificates_list()
+    public function it_gets_vehicle_certificates_list(): void
     {
         $vehicleCertificates = VehicleCertificate::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class VehicleCertificateTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_vehicle_certificate()
+    public function it_stores_the_vehicle_certificate(): void
     {
         $data = VehicleCertificate::factory()
             ->make()
@@ -65,7 +65,7 @@ class VehicleCertificateTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_vehicle_certificate()
+    public function it_updates_the_vehicle_certificate(): void
     {
         $vehicleCertificate = VehicleCertificate::factory()->create();
 
@@ -109,7 +109,7 @@ class VehicleCertificateTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_vehicle_certificate()
+    public function it_deletes_the_vehicle_certificate(): void
     {
         $vehicleCertificate = VehicleCertificate::factory()->create();
 

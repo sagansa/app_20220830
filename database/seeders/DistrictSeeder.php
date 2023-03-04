@@ -9,10 +9,8 @@ class DistrictSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         District::factory()
             ->count(5)

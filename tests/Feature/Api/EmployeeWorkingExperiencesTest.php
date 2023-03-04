@@ -31,7 +31,7 @@ class EmployeeWorkingExperiencesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_employee_working_experiences()
+    public function it_gets_employee_working_experiences(): void
     {
         $employee = Employee::factory()->create();
         $workingExperiences = WorkingExperience::factory()
@@ -50,7 +50,7 @@ class EmployeeWorkingExperiencesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_employee_working_experiences()
+    public function it_stores_the_employee_working_experiences(): void
     {
         $employee = Employee::factory()->create();
         $data = WorkingExperience::factory()

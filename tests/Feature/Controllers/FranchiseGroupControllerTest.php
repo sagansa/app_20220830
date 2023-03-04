@@ -29,7 +29,7 @@ class FranchiseGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_franchise_groups()
+    public function it_displays_index_view_with_franchise_groups(): void
     {
         $franchiseGroups = FranchiseGroup::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class FranchiseGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_franchise_group()
+    public function it_displays_create_view_for_franchise_group(): void
     {
         $response = $this->get(route('franchise-groups.create'));
 
@@ -56,7 +56,7 @@ class FranchiseGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_franchise_group()
+    public function it_stores_the_franchise_group(): void
     {
         $data = FranchiseGroup::factory()
             ->make()
@@ -76,7 +76,7 @@ class FranchiseGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_franchise_group()
+    public function it_displays_show_view_for_franchise_group(): void
     {
         $franchiseGroup = FranchiseGroup::factory()->create();
 
@@ -91,7 +91,7 @@ class FranchiseGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_franchise_group()
+    public function it_displays_edit_view_for_franchise_group(): void
     {
         $franchiseGroup = FranchiseGroup::factory()->create();
 
@@ -106,7 +106,7 @@ class FranchiseGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_franchise_group()
+    public function it_updates_the_franchise_group(): void
     {
         $franchiseGroup = FranchiseGroup::factory()->create();
 
@@ -135,7 +135,7 @@ class FranchiseGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_franchise_group()
+    public function it_deletes_the_franchise_group(): void
     {
         $franchiseGroup = FranchiseGroup::factory()->create();
 

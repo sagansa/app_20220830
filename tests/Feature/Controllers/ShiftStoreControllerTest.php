@@ -29,7 +29,7 @@ class ShiftStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_shift_stores()
+    public function it_displays_index_view_with_shift_stores(): void
     {
         $shiftStores = ShiftStore::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class ShiftStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_shift_store()
+    public function it_displays_create_view_for_shift_store(): void
     {
         $response = $this->get(route('shift-stores.create'));
 
@@ -56,7 +56,7 @@ class ShiftStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_shift_store()
+    public function it_stores_the_shift_store(): void
     {
         $data = ShiftStore::factory()
             ->make()
@@ -74,7 +74,7 @@ class ShiftStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_shift_store()
+    public function it_displays_show_view_for_shift_store(): void
     {
         $shiftStore = ShiftStore::factory()->create();
 
@@ -89,7 +89,7 @@ class ShiftStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_shift_store()
+    public function it_displays_edit_view_for_shift_store(): void
     {
         $shiftStore = ShiftStore::factory()->create();
 
@@ -104,7 +104,7 @@ class ShiftStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_shift_store()
+    public function it_updates_the_shift_store(): void
     {
         $shiftStore = ShiftStore::factory()->create();
 
@@ -127,7 +127,7 @@ class ShiftStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_shift_store()
+    public function it_deletes_the_shift_store(): void
     {
         $shiftStore = ShiftStore::factory()->create();
 

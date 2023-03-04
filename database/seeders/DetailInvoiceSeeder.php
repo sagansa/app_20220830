@@ -9,10 +9,8 @@ class DetailInvoiceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         DetailInvoice::factory()
             ->count(5)

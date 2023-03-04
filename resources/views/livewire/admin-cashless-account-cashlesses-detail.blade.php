@@ -76,7 +76,7 @@
                             <button
                                 class="button button-danger"
                                 onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
-                                wire:click="detach({{ $accountCashless->id }})"
+                                wire:click="detach('{{ $accountCashless->id }}')"
                             >
                                 <i
                                     class="mr-1 icon ion-md-trash text-primary"

@@ -38,7 +38,7 @@ class ProductTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_products_list()
+    public function it_gets_products_list(): void
     {
         $products = Product::factory()
             ->count(5)
@@ -52,7 +52,7 @@ class ProductTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_product()
+    public function it_stores_the_product(): void
     {
         $data = Product::factory()
             ->make()
@@ -70,7 +70,7 @@ class ProductTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_product()
+    public function it_updates_the_product(): void
     {
         $product = Product::factory()->create();
 
@@ -118,7 +118,7 @@ class ProductTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_product()
+    public function it_deletes_the_product(): void
     {
         $product = Product::factory()->create();
 

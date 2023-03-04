@@ -30,7 +30,7 @@ class UserEmployeesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_employees()
+    public function it_gets_user_employees(): void
     {
         $user = User::factory()->create();
         $employees = Employee::factory()
@@ -47,7 +47,7 @@ class UserEmployeesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_employees()
+    public function it_stores_the_user_employees(): void
     {
         $user = User::factory()->create();
         $data = Employee::factory()
@@ -61,6 +61,7 @@ class UserEmployeesTest extends TestCase
             $data
         );
 
+        unset($data['village_id']);
         unset($data['user_id']);
 
         $this->assertDatabaseHas('employees', $data);

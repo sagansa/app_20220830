@@ -4,18 +4,16 @@ namespace App\Http\Controllers\Api;
 use App\Models\FuelService;
 use Illuminate\Http\Request;
 use App\Models\ClosingStore;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ClosingStoreCollection;
 
 class FuelServiceClosingStoresController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\FuelService $fuelService
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, FuelService $fuelService)
-    {
+    public function index(
+        Request $request,
+        FuelService $fuelService
+    ): ClosingStoreCollection {
         $this->authorize('view', $fuelService);
 
         $search = $request->get('search', '');
@@ -29,17 +27,11 @@ class FuelServiceClosingStoresController extends Controller
         return new ClosingStoreCollection($closingStores);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\FuelService $fuelService
-     * @param \App\Models\ClosingStore $closingStore
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         FuelService $fuelService,
         ClosingStore $closingStore
-    ) {
+    ): Response {
         $this->authorize('update', $fuelService);
 
         $fuelService
@@ -49,17 +41,11 @@ class FuelServiceClosingStoresController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\FuelService $fuelService
-     * @param \App\Models\ClosingStore $closingStore
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         FuelService $fuelService,
         ClosingStore $closingStore
-    ) {
+    ): Response {
         $this->authorize('update', $fuelService);
 
         $fuelService->closingStores()->detach($closingStore);

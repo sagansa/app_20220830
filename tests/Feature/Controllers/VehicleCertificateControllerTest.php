@@ -31,7 +31,7 @@ class VehicleCertificateControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_vehicle_certificates()
+    public function it_displays_index_view_with_vehicle_certificates(): void
     {
         $vehicleCertificates = VehicleCertificate::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class VehicleCertificateControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_vehicle_certificate()
+    public function it_displays_create_view_for_vehicle_certificate(): void
     {
         $response = $this->get(route('vehicle-certificates.create'));
 
@@ -58,7 +58,7 @@ class VehicleCertificateControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_vehicle_certificate()
+    public function it_stores_the_vehicle_certificate(): void
     {
         $data = VehicleCertificate::factory()
             ->make()
@@ -78,7 +78,7 @@ class VehicleCertificateControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_vehicle_certificate()
+    public function it_displays_show_view_for_vehicle_certificate(): void
     {
         $vehicleCertificate = VehicleCertificate::factory()->create();
 
@@ -95,7 +95,7 @@ class VehicleCertificateControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_vehicle_certificate()
+    public function it_displays_edit_view_for_vehicle_certificate(): void
     {
         $vehicleCertificate = VehicleCertificate::factory()->create();
 
@@ -112,7 +112,7 @@ class VehicleCertificateControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_vehicle_certificate()
+    public function it_updates_the_vehicle_certificate(): void
     {
         $vehicleCertificate = VehicleCertificate::factory()->create();
 
@@ -158,7 +158,7 @@ class VehicleCertificateControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_vehicle_certificate()
+    public function it_deletes_the_vehicle_certificate(): void
     {
         $vehicleCertificate = VehicleCertificate::factory()->create();
 

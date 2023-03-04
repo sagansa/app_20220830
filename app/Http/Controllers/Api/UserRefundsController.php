@@ -10,12 +10,7 @@ use App\Http\Resources\RefundCollection;
 
 class UserRefundsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user): RefundCollection
     {
         $this->authorize('view', $user);
 
@@ -30,12 +25,7 @@ class UserRefundsController extends Controller
         return new RefundCollection($refunds);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): RefundResource
     {
         $this->authorize('create', Refund::class);
 

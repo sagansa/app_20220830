@@ -31,7 +31,7 @@ class PaymentTypeFuelServicesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_payment_type_fuel_services()
+    public function it_gets_payment_type_fuel_services(): void
     {
         $paymentType = PaymentType::factory()->create();
         $fuelServices = FuelService::factory()
@@ -50,7 +50,7 @@ class PaymentTypeFuelServicesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_payment_type_fuel_services()
+    public function it_stores_the_payment_type_fuel_services(): void
     {
         $paymentType = PaymentType::factory()->create();
         $data = FuelService::factory()

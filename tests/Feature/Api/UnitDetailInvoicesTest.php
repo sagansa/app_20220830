@@ -31,7 +31,7 @@ class UnitDetailInvoicesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_unit_detail_invoices()
+    public function it_gets_unit_detail_invoices(): void
     {
         $unit = Unit::factory()->create();
         $detailInvoices = DetailInvoice::factory()
@@ -50,7 +50,7 @@ class UnitDetailInvoicesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_unit_detail_invoices()
+    public function it_stores_the_unit_detail_invoices(): void
     {
         $unit = Unit::factory()->create();
         $data = DetailInvoice::factory()

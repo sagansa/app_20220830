@@ -63,6 +63,15 @@
                 <x-tables.th-left
                     >@lang('crud.employees.inputs.employee_status_id')</x-tables.th-left
                 >
+                <x-tables.th-left
+                    >@lang('crud.employees.inputs.province_id')</x-tables.th-left
+                >
+                <x-tables.th-left
+                    >@lang('crud.employees.inputs.regency_id')</x-tables.th-left
+                >
+                <x-tables.th-left
+                    >@lang('crud.employees.inputs.district_id')</x-tables.th-left
+                >
                 <th></th>
             </x-slot>
             <x-slot name="body">
@@ -102,6 +111,18 @@
                         >{{ optional($employee->employeeStatus)->name ?? '-'
                         }}</x-tables.td-left-hide
                     >
+                    <x-tables.td-left-hide
+                        >{{ optional($employee->province)->name ?? '-'
+                        }}</x-tables.td-left-hide
+                    >
+                    <x-tables.td-left-hide
+                        >{{ optional($employee->regency)->name ?? '-'
+                        }}</x-tables.td-left-hide
+                    >
+                    <x-tables.td-left-hide
+                        >{{ optional($employee->district)->name ?? '-'
+                        }}</x-tables.td-left-hide
+                    >
                     <td class="px-4 py-3 text-center" style="width: 134px;">
                         <div
                             role="group"
@@ -136,7 +157,8 @@
                     </td>
                 </tr>
                 @empty
-                <x-tables.no-items-found colspan="8"> </x-tables.no-items-found>
+                <x-tables.no-items-found colspan="11">
+                </x-tables.no-items-found>
                 @endforelse
             </x-slot>
             <x-slot name="foot"> </x-slot>

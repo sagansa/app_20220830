@@ -29,7 +29,7 @@ class CleanAndNeatControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_clean_and_neats()
+    public function it_displays_index_view_with_clean_and_neats(): void
     {
         $cleanAndNeats = CleanAndNeat::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class CleanAndNeatControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_clean_and_neat()
+    public function it_displays_create_view_for_clean_and_neat(): void
     {
         $response = $this->get(route('clean-and-neats.create'));
 
@@ -56,7 +56,7 @@ class CleanAndNeatControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_clean_and_neat()
+    public function it_stores_the_clean_and_neat(): void
     {
         $data = CleanAndNeat::factory()
             ->make()
@@ -74,7 +74,7 @@ class CleanAndNeatControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_clean_and_neat()
+    public function it_displays_show_view_for_clean_and_neat(): void
     {
         $cleanAndNeat = CleanAndNeat::factory()->create();
 
@@ -89,7 +89,7 @@ class CleanAndNeatControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_clean_and_neat()
+    public function it_displays_edit_view_for_clean_and_neat(): void
     {
         $cleanAndNeat = CleanAndNeat::factory()->create();
 
@@ -104,7 +104,7 @@ class CleanAndNeatControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_clean_and_neat()
+    public function it_updates_the_clean_and_neat(): void
     {
         $cleanAndNeat = CleanAndNeat::factory()->create();
 
@@ -135,7 +135,7 @@ class CleanAndNeatControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_clean_and_neat()
+    public function it_deletes_the_clean_and_neat(): void
     {
         $cleanAndNeat = CleanAndNeat::factory()->create();
 

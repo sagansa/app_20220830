@@ -31,7 +31,7 @@ class PaymentReceiptDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_payment_receipt_daily_salaries()
+    public function it_gets_payment_receipt_daily_salaries(): void
     {
         $paymentReceipt = PaymentReceipt::factory()->create();
         $dailySalary = DailySalary::factory()->create();
@@ -48,7 +48,7 @@ class PaymentReceiptDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_daily_salaries_to_payment_receipt()
+    public function it_can_attach_daily_salaries_to_payment_receipt(): void
     {
         $paymentReceipt = PaymentReceipt::factory()->create();
         $dailySalary = DailySalary::factory()->create();
@@ -73,7 +73,7 @@ class PaymentReceiptDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_daily_salaries_from_payment_receipt()
+    public function it_can_detach_daily_salaries_from_payment_receipt(): void
     {
         $paymentReceipt = PaymentReceipt::factory()->create();
         $dailySalary = DailySalary::factory()->create();

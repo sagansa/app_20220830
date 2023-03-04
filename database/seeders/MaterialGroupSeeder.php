@@ -9,10 +9,8 @@ class MaterialGroupSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         MaterialGroup::factory()
             ->count(5)

@@ -31,7 +31,7 @@ class StoreUtilitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_utilities()
+    public function it_gets_store_utilities(): void
     {
         $store = Store::factory()->create();
         $utilities = Utility::factory()
@@ -48,7 +48,7 @@ class StoreUtilitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_utilities()
+    public function it_stores_the_store_utilities(): void
     {
         $store = Store::factory()->create();
         $data = Utility::factory()

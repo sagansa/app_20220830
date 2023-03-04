@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\DeliveryService;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DeliveryServiceResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\DeliveryServiceUpdateRequest;
 
 class DeliveryServiceController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): DeliveryServiceCollection
     {
         $this->authorize('view-any', DeliveryService::class);
 
@@ -29,12 +26,9 @@ class DeliveryServiceController extends Controller
         return new DeliveryServiceCollection($deliveryServices);
     }
 
-    /**
-     * @param \App\Http\Requests\DeliveryServiceStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(DeliveryServiceStoreRequest $request)
-    {
+    public function store(
+        DeliveryServiceStoreRequest $request
+    ): DeliveryServiceResource {
         $this->authorize('create', DeliveryService::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class DeliveryServiceController extends Controller
         return new DeliveryServiceResource($deliveryService);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\DeliveryService $deliveryService
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, DeliveryService $deliveryService)
-    {
+    public function show(
+        Request $request,
+        DeliveryService $deliveryService
+    ): DeliveryServiceResource {
         $this->authorize('view', $deliveryService);
 
         return new DeliveryServiceResource($deliveryService);
     }
 
-    /**
-     * @param \App\Http\Requests\DeliveryServiceUpdateRequest $request
-     * @param \App\Models\DeliveryService $deliveryService
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         DeliveryServiceUpdateRequest $request,
         DeliveryService $deliveryService
-    ) {
+    ): DeliveryServiceResource {
         $this->authorize('update', $deliveryService);
 
         $validated = $request->validated();
@@ -74,13 +60,10 @@ class DeliveryServiceController extends Controller
         return new DeliveryServiceResource($deliveryService);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\DeliveryService $deliveryService
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, DeliveryService $deliveryService)
-    {
+    public function destroy(
+        Request $request,
+        DeliveryService $deliveryService
+    ): Response {
         $this->authorize('delete', $deliveryService);
 
         $deliveryService->delete();

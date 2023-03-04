@@ -9,10 +9,8 @@ class FranchiseGroupSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         FranchiseGroup::factory()
             ->count(5)

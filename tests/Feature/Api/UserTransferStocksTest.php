@@ -30,7 +30,7 @@ class UserTransferStocksTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_transfer_stocks()
+    public function it_gets_user_transfer_stocks(): void
     {
         $user = User::factory()->create();
         $transferStocks = TransferStock::factory()
@@ -49,7 +49,7 @@ class UserTransferStocksTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_transfer_stocks()
+    public function it_stores_the_user_transfer_stocks(): void
     {
         $user = User::factory()->create();
         $data = TransferStock::factory()

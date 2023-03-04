@@ -10,12 +10,7 @@ use App\Http\Resources\EProductCollection;
 
 class StoreEProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Store $store)
+    public function index(Request $request, Store $store): EProductCollection
     {
         $this->authorize('view', $store);
 
@@ -30,12 +25,7 @@ class StoreEProductsController extends Controller
         return new EProductCollection($eProducts);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Store $store)
+    public function store(Request $request, Store $store): EProductResource
     {
         $this->authorize('create', EProduct::class);
 

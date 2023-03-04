@@ -30,7 +30,7 @@ class OnlineCategoryTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_online_categories_list()
+    public function it_gets_online_categories_list(): void
     {
         $onlineCategories = OnlineCategory::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class OnlineCategoryTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_online_category()
+    public function it_stores_the_online_category(): void
     {
         $data = OnlineCategory::factory()
             ->make()
@@ -63,7 +63,7 @@ class OnlineCategoryTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_online_category()
+    public function it_updates_the_online_category(): void
     {
         $onlineCategory = OnlineCategory::factory()->create();
 
@@ -87,7 +87,7 @@ class OnlineCategoryTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_online_category()
+    public function it_deletes_the_online_category(): void
     {
         $onlineCategory = OnlineCategory::factory()->create();
 

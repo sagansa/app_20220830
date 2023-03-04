@@ -29,7 +29,7 @@ class EmployeeStatusControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_employee_statuses()
+    public function it_displays_index_view_with_employee_statuses(): void
     {
         $employeeStatuses = EmployeeStatus::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class EmployeeStatusControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_employee_status()
+    public function it_displays_create_view_for_employee_status(): void
     {
         $response = $this->get(route('employee-statuses.create'));
 
@@ -56,7 +56,7 @@ class EmployeeStatusControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_employee_status()
+    public function it_stores_the_employee_status(): void
     {
         $data = EmployeeStatus::factory()
             ->make()
@@ -76,7 +76,7 @@ class EmployeeStatusControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_employee_status()
+    public function it_displays_show_view_for_employee_status(): void
     {
         $employeeStatus = EmployeeStatus::factory()->create();
 
@@ -93,7 +93,7 @@ class EmployeeStatusControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_employee_status()
+    public function it_displays_edit_view_for_employee_status(): void
     {
         $employeeStatus = EmployeeStatus::factory()->create();
 
@@ -110,7 +110,7 @@ class EmployeeStatusControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_employee_status()
+    public function it_updates_the_employee_status(): void
     {
         $employeeStatus = EmployeeStatus::factory()->create();
 
@@ -135,7 +135,7 @@ class EmployeeStatusControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_employee_status()
+    public function it_deletes_the_employee_status(): void
     {
         $employeeStatus = EmployeeStatus::factory()->create();
 

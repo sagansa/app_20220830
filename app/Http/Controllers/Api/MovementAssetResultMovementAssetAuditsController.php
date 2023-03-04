@@ -10,15 +10,10 @@ use App\Http\Resources\MovementAssetAuditCollection;
 
 class MovementAssetResultMovementAssetAuditsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MovementAssetResult $movementAssetResult
-     * @return \Illuminate\Http\Response
-     */
     public function index(
         Request $request,
         MovementAssetResult $movementAssetResult
-    ) {
+    ): MovementAssetAuditCollection {
         $this->authorize('view', $movementAssetResult);
 
         $search = $request->get('search', '');
@@ -32,15 +27,10 @@ class MovementAssetResultMovementAssetAuditsController extends Controller
         return new MovementAssetAuditCollection($movementAssetAudits);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MovementAssetResult $movementAssetResult
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         MovementAssetResult $movementAssetResult
-    ) {
+    ): MovementAssetAuditResource {
         $this->authorize('create', MovementAssetAudit::class);
 
         $validated = $request->validate([

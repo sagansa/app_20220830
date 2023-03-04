@@ -10,12 +10,7 @@ use App\Http\Resources\PresenceCollection;
 
 class StorePresencesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Store $store)
+    public function index(Request $request, Store $store): PresenceCollection
     {
         $this->authorize('view', $store);
 
@@ -30,12 +25,7 @@ class StorePresencesController extends Controller
         return new PresenceCollection($presences);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Store $store)
+    public function store(Request $request, Store $store): PresenceResource
     {
         $this->authorize('create', Presence::class);
 

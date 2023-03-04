@@ -33,7 +33,7 @@ class EProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_e_products()
+    public function it_displays_index_view_with_e_products(): void
     {
         $eProducts = EProduct::factory()
             ->count(5)
@@ -50,7 +50,7 @@ class EProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_e_product()
+    public function it_displays_create_view_for_e_product(): void
     {
         $response = $this->get(route('e-products.create'));
 
@@ -60,7 +60,7 @@ class EProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_e_product()
+    public function it_stores_the_e_product(): void
     {
         $data = EProduct::factory()
             ->make()
@@ -78,7 +78,7 @@ class EProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_e_product()
+    public function it_displays_show_view_for_e_product(): void
     {
         $eProduct = EProduct::factory()->create();
 
@@ -93,7 +93,7 @@ class EProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_e_product()
+    public function it_displays_edit_view_for_e_product(): void
     {
         $eProduct = EProduct::factory()->create();
 
@@ -108,7 +108,7 @@ class EProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_e_product()
+    public function it_updates_the_e_product(): void
     {
         $eProduct = EProduct::factory()->create();
 
@@ -137,7 +137,7 @@ class EProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_e_product()
+    public function it_deletes_the_e_product(): void
     {
         $eProduct = EProduct::factory()->create();
 

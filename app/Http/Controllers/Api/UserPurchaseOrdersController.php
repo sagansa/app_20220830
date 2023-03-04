@@ -10,12 +10,7 @@ use App\Http\Resources\PurchaseOrderCollection;
 
 class UserPurchaseOrdersController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user): PurchaseOrderCollection
     {
         $this->authorize('view', $user);
 
@@ -30,12 +25,7 @@ class UserPurchaseOrdersController extends Controller
         return new PurchaseOrderCollection($purchaseOrders);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): PurchaseOrderResource
     {
         $this->authorize('create', PurchaseOrder::class);
 

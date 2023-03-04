@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Saving;
 use Livewire\Component;
 use App\Models\Employee;
+use Illuminate\View\View;
 use Livewire\WithPagination;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -28,13 +29,13 @@ class EmployeeSavings extends Component
         'saving.nominal' => ['required', 'numeric', 'min:0'],
     ];
 
-    public function mount(Employee $employee)
+    public function mount(Employee $employee): void
     {
         $this->employee = $employee;
         $this->resetSavingData();
     }
 
-    public function resetSavingData()
+    public function resetSavingData(): void
     {
         $this->saving = new Saving();
 
@@ -43,7 +44,7 @@ class EmployeeSavings extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newSaving()
+    public function newSaving(): void
     {
         $this->editing = false;
         $this->modalTitle = trans('crud.employee_savings.new_title');
@@ -52,7 +53,7 @@ class EmployeeSavings extends Component
         $this->showModal();
     }
 
-    public function editSaving(Saving $saving)
+    public function editSaving(Saving $saving): void
     {
         $this->editing = true;
         $this->modalTitle = trans('crud.employee_savings.edit_title');
@@ -63,18 +64,18 @@ class EmployeeSavings extends Component
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -91,7 +92,7 @@ class EmployeeSavings extends Component
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function destroySelected(): void
     {
         $this->authorize('delete-any', Saving::class);
 
@@ -103,7 +104,7 @@ class EmployeeSavings extends Component
         $this->resetSavingData();
     }
 
-    public function toggleFullSelection()
+    public function toggleFullSelection(): void
     {
         if (!$this->allSelected) {
             $this->selected = [];
@@ -115,7 +116,7 @@ class EmployeeSavings extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.employee-savings', [
             'savings' => $this->employee->savings()->paginate(20),

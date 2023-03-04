@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\CashlessController;
 use App\Http\Controllers\Api\EProductController;
 use App\Http\Controllers\Api\UserCartsController;
+use App\Http\Controllers\Api\SoDdetailController;
 use App\Http\Controllers\Api\UserStoresController;
 use App\Http\Controllers\Api\ShiftStoreController;
 use App\Http\Controllers\Api\ProductionController;
@@ -94,11 +95,14 @@ use App\Http\Controllers\Api\SalesOrderOnlineController;
 use App\Http\Controllers\Api\ProductEProductsController;
 use App\Http\Controllers\Api\ContractEmployeeController;
 use App\Http\Controllers\Api\ContractLocationController;
+use App\Http\Controllers\Api\SalesOrderDirectController;
+use App\Http\Controllers\Api\DeliveryLocationController;
 use App\Http\Controllers\Api\UserClosingStoresController;
 use App\Http\Controllers\Api\UserCleanAndNeatsController;
 use App\Http\Controllers\Api\UserUtilityUsagesController;
 use App\Http\Controllers\Api\UserDailySalariesController;
 use App\Http\Controllers\Api\WorkingExperienceController;
+use App\Http\Controllers\Api\TransferToAccountController;
 use App\Http\Controllers\Api\UserMaterialGroupsController;
 use App\Http\Controllers\Api\UserPurchaseOrdersController;
 use App\Http\Controllers\Api\UserTransferStocksController;
@@ -111,6 +115,7 @@ use App\Http\Controllers\Api\RoomHygieneOfRoomsController;
 use App\Http\Controllers\Api\VehicleCertificateController;
 use App\Http\Controllers\Api\MovementAssetAuditController;
 use App\Http\Controllers\Api\ProductionMainFromController;
+use App\Http\Controllers\Api\EProductSoDdetailsController;
 use App\Http\Controllers\Api\SalesOrderEmployeeController;
 use App\Http\Controllers\Api\UserFranchiseGroupsController;
 use App\Http\Controllers\Api\UserRemainingStocksController;
@@ -135,6 +140,8 @@ use App\Http\Controllers\Api\ProductGroupProductsController;
 use App\Http\Controllers\Api\ProductProductionTosController;
 use App\Http\Controllers\Api\UtilityUtilityUsagesController;
 use App\Http\Controllers\Api\UserSalesOrderOnlinesController;
+use App\Http\Controllers\Api\UserSalesOrderDirectsController;
+use App\Http\Controllers\Api\UserDeliveryLocationsController;
 use App\Http\Controllers\Api\StoreSelfConsumptionsController;
 use App\Http\Controllers\Api\StoreRequestPurchasesController;
 use App\Http\Controllers\Api\StoreInvoicePurchasesController;
@@ -149,12 +156,14 @@ use App\Http\Controllers\Api\ProductionSupportFromController;
 use App\Http\Controllers\Api\StoreContractLocationsController;
 use App\Http\Controllers\Api\StoreSalesOrderOnlinesController;
 use App\Http\Controllers\Api\StoreAccountCashlessesController;
+use App\Http\Controllers\Api\StoreSalesOrderDirectsController;
 use App\Http\Controllers\Api\SupplierPurchaseOrdersController;
 use App\Http\Controllers\Api\RemainingStockProductsController;
 use App\Http\Controllers\Api\FranchiseGroupProductsController;
 use App\Http\Controllers\Api\MonthlySalaryPresencesController;
 use App\Http\Controllers\Api\OnlineCategoryProductsController;
 use App\Http\Controllers\Api\ProductRemainingStocksController;
+use App\Http\Controllers\Api\BankTransferToAccountsController;
 use App\Http\Controllers\Api\product_transfer_stockController;
 use App\Http\Controllers\Api\ClosingStoreCashlessesController;
 use App\Http\Controllers\Api\UserSalesOrderEmployeesController;
@@ -201,6 +210,7 @@ use App\Http\Controllers\Api\closing_store_fuel_serviceController;
 use App\Http\Controllers\Api\closing_store_daily_salaryController;
 use App\Http\Controllers\Api\DailySalaryPaymentReceiptsController;
 use App\Http\Controllers\Api\SalesOrderEmployeeProductsController;
+use App\Http\Controllers\Api\SalesOrderDirectSoDdetailsController;
 use App\Http\Controllers\Api\CustomerSalesOrderEmployeesController;
 use App\Http\Controllers\Api\ClosingCourierClosingStoresController;
 use App\Http\Controllers\Api\PaymentTypeInvoicePurchasesController;
@@ -232,9 +242,11 @@ use App\Http\Controllers\Api\ProductionProductionSupportFromsController;
 use App\Http\Controllers\Api\DeliveryAddressSalesOrderOnlinesController;
 use App\Http\Controllers\Api\MovementAssetMovementAssetAuditsController;
 use App\Http\Controllers\Api\DeliveryServiceSalesOrderOnlinesController;
+use App\Http\Controllers\Api\DeliveryServiceSalesOrderDirectsController;
 use App\Http\Controllers\Api\invoice_purchase_payment_receiptController;
 use App\Http\Controllers\Api\DetailInvoiceProductionMainFromsController;
 use App\Http\Controllers\Api\CashlessProviderAccountCashlessesController;
+use App\Http\Controllers\Api\TransferToAccountSalesOrderDirectsController;
 use App\Http\Controllers\Api\OnlineShopProviderSalesOrderOnlinesController;
 use App\Http\Controllers\Api\MovementAssetResultMovementAssetAuditsController;
 
@@ -829,6 +841,36 @@ Route::name('api.')
             'store',
         ])->name('users.transfer-stocks.store');
 
+        // User Sales Order Directs
+        Route::get('/users/{user}/sales-order-directs', [
+            UserSalesOrderDirectsController::class,
+            'index',
+        ])->name('users.sales-order-directs.index');
+        Route::post('/users/{user}/sales-order-directs', [
+            UserSalesOrderDirectsController::class,
+            'store',
+        ])->name('users.sales-order-directs.store');
+
+        // User Sales Order Directs2
+        Route::get('/users/{user}/sales-order-directs', [
+            UserSalesOrderDirectsController::class,
+            'index',
+        ])->name('users.sales-order-directs.index');
+        Route::post('/users/{user}/sales-order-directs', [
+            UserSalesOrderDirectsController::class,
+            'store',
+        ])->name('users.sales-order-directs.store');
+
+        // User Delivery Locations
+        Route::get('/users/{user}/delivery-locations', [
+            UserDeliveryLocationsController::class,
+            'index',
+        ])->name('users.delivery-locations.index');
+        Route::post('/users/{user}/delivery-locations', [
+            UserDeliveryLocationsController::class,
+            'store',
+        ])->name('users.delivery-locations.store');
+
         Route::apiResource('vehicles', VehicleController::class);
 
         // Vehicle Vehicle Taxes
@@ -1072,6 +1114,16 @@ Route::name('api.')
             StoreDailySalariesController::class,
             'store',
         ])->name('stores.daily-salaries.store');
+
+        // Store Sales Order Directs
+        Route::get('/stores/{store}/sales-order-directs', [
+            StoreSalesOrderDirectsController::class,
+            'index',
+        ])->name('stores.sales-order-directs.index');
+        Route::post('/stores/{store}/sales-order-directs', [
+            StoreSalesOrderDirectsController::class,
+            'store',
+        ])->name('stores.sales-order-directs.store');
 
         Route::apiResource('suppliers', SupplierController::class);
 
@@ -1556,6 +1608,16 @@ Route::name('api.')
             'store',
         ])->name('banks.closing-couriers.store');
 
+        // Bank Transfer To Accounts
+        Route::get('/banks/{bank}/transfer-to-accounts', [
+            BankTransferToAccountsController::class,
+            'index',
+        ])->name('banks.transfer-to-accounts.index');
+        Route::post('/banks/{bank}/transfer-to-accounts', [
+            BankTransferToAccountsController::class,
+            'store',
+        ])->name('banks.transfer-to-accounts.store');
+
         Route::apiResource('productions', ProductionController::class);
 
         // Production Production Froms
@@ -1988,6 +2050,16 @@ Route::name('api.')
             [DeliveryServiceSalesOrderOnlinesController::class, 'store']
         )->name('delivery-services.sales-order-onlines.store');
 
+        // DeliveryService Sales Order Directs
+        Route::get('/delivery-services/{deliveryService}/sales-order-directs', [
+            DeliveryServiceSalesOrderDirectsController::class,
+            'index',
+        ])->name('delivery-services.sales-order-directs.index');
+        Route::post(
+            '/delivery-services/{deliveryService}/sales-order-directs',
+            [DeliveryServiceSalesOrderDirectsController::class, 'store']
+        )->name('delivery-services.sales-order-directs.store');
+
         Route::apiResource('utility-bills', UtilityBillController::class);
 
         Route::apiResource('carts', CartController::class);
@@ -2136,6 +2208,16 @@ Route::name('api.')
             'store',
         ])->name('e-products.carts.store');
 
+        // EProduct So Ddetails
+        Route::get('/e-products/{eProduct}/so-ddetails', [
+            EProductSoDdetailsController::class,
+            'index',
+        ])->name('e-products.so-ddetails.index');
+        Route::post('/e-products/{eProduct}/so-ddetails', [
+            EProductSoDdetailsController::class,
+            'store',
+        ])->name('e-products.so-ddetails.store');
+
         Route::apiResource('daily-salaries', DailySalaryController::class);
 
         // DailySalary Closing Stores
@@ -2184,4 +2266,39 @@ Route::name('api.')
             '/sales-order-employees/{salesOrderEmployee}/products/{product}',
             [SalesOrderEmployeeProductsController::class, 'destroy']
         )->name('sales-order-employees.products.destroy');
+
+        Route::apiResource(
+            'sales-order-directs',
+            SalesOrderDirectController::class
+        );
+
+        // SalesOrderDirect So Ddetails
+        Route::get('/sales-order-directs/{salesOrderDirect}/so-ddetails', [
+            SalesOrderDirectSoDdetailsController::class,
+            'index',
+        ])->name('sales-order-directs.so-ddetails.index');
+        Route::post('/sales-order-directs/{salesOrderDirect}/so-ddetails', [
+            SalesOrderDirectSoDdetailsController::class,
+            'store',
+        ])->name('sales-order-directs.so-ddetails.store');
+
+        Route::apiResource(
+            'delivery-locations',
+            DeliveryLocationController::class
+        );
+
+        Route::apiResource(
+            'transfer-to-accounts',
+            TransferToAccountController::class
+        );
+
+        // TransferToAccount Sales Order Directs
+        Route::get(
+            '/transfer-to-accounts/{transferToAccount}/sales-order-directs',
+            [TransferToAccountSalesOrderDirectsController::class, 'index']
+        )->name('transfer-to-accounts.sales-order-directs.index');
+        Route::post(
+            '/transfer-to-accounts/{transferToAccount}/sales-order-directs',
+            [TransferToAccountSalesOrderDirectsController::class, 'store']
+        )->name('transfer-to-accounts.sales-order-directs.store');
     });

@@ -31,7 +31,7 @@ class UtilityUsageControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_utility_usages()
+    public function it_displays_index_view_with_utility_usages(): void
     {
         $utilityUsages = UtilityUsage::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class UtilityUsageControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_utility_usage()
+    public function it_displays_create_view_for_utility_usage(): void
     {
         $response = $this->get(route('utility-usages.create'));
 
@@ -58,7 +58,7 @@ class UtilityUsageControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_utility_usage()
+    public function it_stores_the_utility_usage(): void
     {
         $data = UtilityUsage::factory()
             ->make()
@@ -76,7 +76,7 @@ class UtilityUsageControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_utility_usage()
+    public function it_displays_show_view_for_utility_usage(): void
     {
         $utilityUsage = UtilityUsage::factory()->create();
 
@@ -91,7 +91,7 @@ class UtilityUsageControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_utility_usage()
+    public function it_displays_edit_view_for_utility_usage(): void
     {
         $utilityUsage = UtilityUsage::factory()->create();
 
@@ -106,7 +106,7 @@ class UtilityUsageControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_utility_usage()
+    public function it_updates_the_utility_usage(): void
     {
         $utilityUsage = UtilityUsage::factory()->create();
 
@@ -138,7 +138,7 @@ class UtilityUsageControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_utility_usage()
+    public function it_deletes_the_utility_usage(): void
     {
         $utilityUsage = UtilityUsage::factory()->create();
 

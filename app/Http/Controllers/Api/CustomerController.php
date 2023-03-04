@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CustomerResource;
 use App\Http\Resources\CustomerCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\CustomerUpdateRequest;
 
 class CustomerController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): CustomerCollection
     {
         $this->authorize('view-any', Customer::class);
 
@@ -29,11 +26,7 @@ class CustomerController extends Controller
         return new CustomerCollection($customers);
     }
 
-    /**
-     * @param \App\Http\Requests\CustomerStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CustomerStoreRequest $request)
+    public function store(CustomerStoreRequest $request): CustomerResource
     {
         $this->authorize('create', Customer::class);
 
@@ -44,25 +37,17 @@ class CustomerController extends Controller
         return new CustomerResource($customer);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Customer $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Customer $customer)
+    public function show(Request $request, Customer $customer): CustomerResource
     {
         $this->authorize('view', $customer);
 
         return new CustomerResource($customer);
     }
 
-    /**
-     * @param \App\Http\Requests\CustomerUpdateRequest $request
-     * @param \App\Models\Customer $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(CustomerUpdateRequest $request, Customer $customer)
-    {
+    public function update(
+        CustomerUpdateRequest $request,
+        Customer $customer
+    ): CustomerResource {
         $this->authorize('update', $customer);
 
         $validated = $request->validated();
@@ -72,12 +57,7 @@ class CustomerController extends Controller
         return new CustomerResource($customer);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Customer $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Customer $customer)
+    public function destroy(Request $request, Customer $customer): Response
     {
         $this->authorize('delete', $customer);
 

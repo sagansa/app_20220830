@@ -31,7 +31,7 @@ class CustomerDeliveryAddressesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_customer_delivery_addresses()
+    public function it_gets_customer_delivery_addresses(): void
     {
         $customer = Customer::factory()->create();
         $deliveryAddresses = DeliveryAddress::factory()
@@ -50,7 +50,7 @@ class CustomerDeliveryAddressesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_customer_delivery_addresses()
+    public function it_stores_the_customer_delivery_addresses(): void
     {
         $customer = Customer::factory()->create();
         $data = DeliveryAddress::factory()

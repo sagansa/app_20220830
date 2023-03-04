@@ -29,7 +29,7 @@ class StoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_stores()
+    public function it_displays_index_view_with_stores(): void
     {
         $stores = Store::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class StoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_store()
+    public function it_displays_create_view_for_store(): void
     {
         $response = $this->get(route('stores.create'));
 
@@ -56,7 +56,7 @@ class StoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store()
+    public function it_stores_the_store(): void
     {
         $data = Store::factory()
             ->make()
@@ -76,7 +76,7 @@ class StoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_store()
+    public function it_displays_show_view_for_store(): void
     {
         $store = Store::factory()->create();
 
@@ -91,7 +91,7 @@ class StoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_store()
+    public function it_displays_edit_view_for_store(): void
     {
         $store = Store::factory()->create();
 
@@ -106,7 +106,7 @@ class StoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_store()
+    public function it_updates_the_store(): void
     {
         $store = Store::factory()->create();
 
@@ -135,7 +135,7 @@ class StoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_store()
+    public function it_deletes_the_store(): void
     {
         $store = Store::factory()->create();
 

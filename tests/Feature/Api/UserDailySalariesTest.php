@@ -30,7 +30,7 @@ class UserDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_daily_salaries()
+    public function it_gets_user_daily_salaries(): void
     {
         $user = User::factory()->create();
         $dailySalaries = DailySalary::factory()
@@ -49,7 +49,7 @@ class UserDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_daily_salaries()
+    public function it_stores_the_user_daily_salaries(): void
     {
         $user = User::factory()->create();
         $data = DailySalary::factory()

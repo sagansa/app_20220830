@@ -10,13 +10,10 @@ use App\Http\Resources\PresenceCollection;
 
 class ShiftStorePresencesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ShiftStore $shiftStore
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, ShiftStore $shiftStore)
-    {
+    public function index(
+        Request $request,
+        ShiftStore $shiftStore
+    ): PresenceCollection {
         $this->authorize('view', $shiftStore);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class ShiftStorePresencesController extends Controller
         return new PresenceCollection($presences);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ShiftStore $shiftStore
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, ShiftStore $shiftStore)
-    {
+    public function store(
+        Request $request,
+        ShiftStore $shiftStore
+    ): PresenceResource {
         $this->authorize('create', Presence::class);
 
         $validated = $request->validate([

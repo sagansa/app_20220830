@@ -30,7 +30,7 @@ class OnlineShopProviderTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_online_shop_providers_list()
+    public function it_gets_online_shop_providers_list(): void
     {
         $onlineShopProviders = OnlineShopProvider::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class OnlineShopProviderTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_online_shop_provider()
+    public function it_stores_the_online_shop_provider(): void
     {
         $data = OnlineShopProvider::factory()
             ->make()
@@ -63,7 +63,7 @@ class OnlineShopProviderTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_online_shop_provider()
+    public function it_updates_the_online_shop_provider(): void
     {
         $onlineShopProvider = OnlineShopProvider::factory()->create();
 
@@ -86,7 +86,7 @@ class OnlineShopProviderTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_online_shop_provider()
+    public function it_deletes_the_online_shop_provider(): void
     {
         $onlineShopProvider = OnlineShopProvider::factory()->create();
 

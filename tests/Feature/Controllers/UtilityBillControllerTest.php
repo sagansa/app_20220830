@@ -31,7 +31,7 @@ class UtilityBillControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_utility_bills()
+    public function it_displays_index_view_with_utility_bills(): void
     {
         $utilityBills = UtilityBill::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class UtilityBillControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_utility_bill()
+    public function it_displays_create_view_for_utility_bill(): void
     {
         $response = $this->get(route('utility-bills.create'));
 
@@ -58,7 +58,7 @@ class UtilityBillControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_utility_bill()
+    public function it_stores_the_utility_bill(): void
     {
         $data = UtilityBill::factory()
             ->make()
@@ -76,7 +76,7 @@ class UtilityBillControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_utility_bill()
+    public function it_displays_show_view_for_utility_bill(): void
     {
         $utilityBill = UtilityBill::factory()->create();
 
@@ -91,7 +91,7 @@ class UtilityBillControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_utility_bill()
+    public function it_displays_edit_view_for_utility_bill(): void
     {
         $utilityBill = UtilityBill::factory()->create();
 
@@ -106,7 +106,7 @@ class UtilityBillControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_utility_bill()
+    public function it_updates_the_utility_bill(): void
     {
         $utilityBill = UtilityBill::factory()->create();
 
@@ -135,7 +135,7 @@ class UtilityBillControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_utility_bill()
+    public function it_deletes_the_utility_bill(): void
     {
         $utilityBill = UtilityBill::factory()->create();
 

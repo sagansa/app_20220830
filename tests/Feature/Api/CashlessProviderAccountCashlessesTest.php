@@ -31,7 +31,7 @@ class CashlessProviderAccountCashlessesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_cashless_provider_account_cashlesses()
+    public function it_gets_cashless_provider_account_cashlesses(): void
     {
         $cashlessProvider = CashlessProvider::factory()->create();
         $accountCashlesses = AccountCashless::factory()
@@ -53,7 +53,7 @@ class CashlessProviderAccountCashlessesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_cashless_provider_account_cashlesses()
+    public function it_stores_the_cashless_provider_account_cashlesses(): void
     {
         $cashlessProvider = CashlessProvider::factory()->create();
         $data = AccountCashless::factory()

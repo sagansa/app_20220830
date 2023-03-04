@@ -31,7 +31,7 @@ class EmployeeSavingsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_employee_savings()
+    public function it_gets_employee_savings(): void
     {
         $employee = Employee::factory()->create();
         $savings = Saving::factory()
@@ -50,7 +50,7 @@ class EmployeeSavingsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_employee_savings()
+    public function it_stores_the_employee_savings(): void
     {
         $employee = Employee::factory()->create();
         $data = Saving::factory()

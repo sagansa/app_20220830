@@ -8,10 +8,8 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         // Adding an admin user
         $user = \App\Models\User::factory()
@@ -36,6 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CustomerSeeder::class);
         $this->call(DailySalarySeeder::class);
         $this->call(DeliveryAddressSeeder::class);
+        $this->call(DeliveryLocationSeeder::class);
         $this->call(DeliveryServiceSeeder::class);
         $this->call(DetailInvoiceSeeder::class);
         $this->call(DetailRequestSeeder::class);
@@ -78,17 +77,20 @@ class DatabaseSeeder extends Seeder
         $this->call(RequestPurchaseSeeder::class);
         $this->call(RestaurantCategorySeeder::class);
         $this->call(RoomSeeder::class);
+        $this->call(SalesOrderDirectSeeder::class);
         $this->call(SalesOrderEmployeeSeeder::class);
         $this->call(SalesOrderOnlineSeeder::class);
         $this->call(SavingSeeder::class);
         $this->call(SelfConsumptionSeeder::class);
         $this->call(ShiftStoreSeeder::class);
+        $this->call(SoDdetailSeeder::class);
         $this->call(SopSeeder::class);
         $this->call(StoreSeeder::class);
         $this->call(StoreAssetSeeder::class);
         $this->call(StoreCashlessSeeder::class);
         $this->call(SupplierSeeder::class);
         $this->call(TransferStockSeeder::class);
+        $this->call(TransferToAccountSeeder::class);
         $this->call(UnitSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(UtilitySeeder::class);

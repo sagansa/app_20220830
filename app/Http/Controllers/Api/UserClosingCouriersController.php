@@ -10,13 +10,10 @@ use App\Http\Resources\ClosingCourierCollection;
 
 class UserClosingCouriersController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
-    {
+    public function index(
+        Request $request,
+        User $user
+    ): ClosingCourierCollection {
         $this->authorize('view', $user);
 
         $search = $request->get('search', '');
@@ -30,12 +27,7 @@ class UserClosingCouriersController extends Controller
         return new ClosingCourierCollection($closingCouriers);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): ClosingCourierResource
     {
         $this->authorize('create', ClosingCourier::class);
 

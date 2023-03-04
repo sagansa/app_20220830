@@ -10,13 +10,10 @@ use App\Http\Resources\DetailInvoiceCollection;
 
 class InvoicePurchaseDetailInvoicesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, InvoicePurchase $invoicePurchase)
-    {
+    public function index(
+        Request $request,
+        InvoicePurchase $invoicePurchase
+    ): DetailInvoiceCollection {
         $this->authorize('view', $invoicePurchase);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class InvoicePurchaseDetailInvoicesController extends Controller
         return new DetailInvoiceCollection($detailInvoices);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, InvoicePurchase $invoicePurchase)
-    {
+    public function store(
+        Request $request,
+        InvoicePurchase $invoicePurchase
+    ): DetailInvoiceResource {
         $this->authorize('create', DetailInvoice::class);
 
         $validated = $request->validate([

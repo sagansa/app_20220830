@@ -31,7 +31,7 @@ class ProductDetailRequestsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_product_detail_requests()
+    public function it_gets_product_detail_requests(): void
     {
         $product = Product::factory()->create();
         $detailRequests = DetailRequest::factory()
@@ -50,7 +50,7 @@ class ProductDetailRequestsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_product_detail_requests()
+    public function it_stores_the_product_detail_requests(): void
     {
         $product = Product::factory()->create();
         $data = DetailRequest::factory()

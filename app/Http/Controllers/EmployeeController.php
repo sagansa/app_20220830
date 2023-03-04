@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Image;
 use App\Models\Bank;
 use App\Models\Regency;
-use App\Models\Village;
 use App\Models\Employee;
-use App\Models\District;
 use App\Models\Province;
+use App\Models\District;
 use Illuminate\Http\Request;
 use App\Models\EmployeeStatus;
 use Illuminate\Support\Facades\Auth;
@@ -42,34 +41,30 @@ class EmployeeController extends Controller
      */
     public function create(Request $request)
     {
-        $districts = District::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
-        $provinces = Province::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
-        $regencies = Regency::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
-        $villages = Village::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
         $banks = Bank::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $employeeStatuses = EmployeeStatus::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
+            ->pluck('name', 'id');
+        $provinces = Province::orderBy('name', 'asc')
+            // ->whereIn('status', ['1'])
+            ->pluck('name', 'id');
+        $regencies = Regency::orderBy('name', 'asc')
+            // ->whereIn('status', ['1'])
+            ->pluck('name', 'id');
+        $districts = District::orderBy('name', 'asc')
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
         return view(
             'app.employees.create',
             compact(
-                'districts',
+                'banks',
+                'employeeStatuses',
                 'provinces',
                 'regencies',
-                'villages',
-                'banks',
-                'employeeStatuses'
+                'districts'
             )
         );
     }
@@ -145,7 +140,10 @@ class EmployeeController extends Controller
     {
         $this->authorize('update', $employee);
 
-        $districts = District::orderBy('name', 'asc')
+        $banks = Bank::orderBy('name', 'asc')
+            ->whereIn('status', ['1'])
+            ->pluck('name', 'id');
+        $employeeStatuses = EmployeeStatus::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $provinces = Province::orderBy('name', 'asc')
@@ -154,13 +152,7 @@ class EmployeeController extends Controller
         $regencies = Regency::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $villages = Village::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
-        $banks = Bank::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
-        $employeeStatuses = EmployeeStatus::orderBy('name', 'asc')
+        $districts = District::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
@@ -168,12 +160,11 @@ class EmployeeController extends Controller
             'app.employees.edit',
             compact(
                 'employee',
-                'districts',
+                'banks',
+                'employeeStatuses',
                 'provinces',
                 'regencies',
-                'villages',
-                'banks',
-                'employeeStatuses'
+                'districts'
             )
         );
     }

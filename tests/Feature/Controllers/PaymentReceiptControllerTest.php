@@ -29,7 +29,7 @@ class PaymentReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_payment_receipts()
+    public function it_displays_index_view_with_payment_receipts(): void
     {
         $paymentReceipts = PaymentReceipt::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class PaymentReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_payment_receipt()
+    public function it_displays_create_view_for_payment_receipt(): void
     {
         $response = $this->get(route('payment-receipts.create'));
 
@@ -56,7 +56,7 @@ class PaymentReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_payment_receipt()
+    public function it_stores_the_payment_receipt(): void
     {
         $data = PaymentReceipt::factory()
             ->make()
@@ -76,7 +76,7 @@ class PaymentReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_payment_receipt()
+    public function it_displays_show_view_for_payment_receipt(): void
     {
         $paymentReceipt = PaymentReceipt::factory()->create();
 
@@ -91,7 +91,7 @@ class PaymentReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_payment_receipt()
+    public function it_displays_edit_view_for_payment_receipt(): void
     {
         $paymentReceipt = PaymentReceipt::factory()->create();
 
@@ -106,7 +106,7 @@ class PaymentReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_payment_receipt()
+    public function it_updates_the_payment_receipt(): void
     {
         $paymentReceipt = PaymentReceipt::factory()->create();
 
@@ -134,7 +134,7 @@ class PaymentReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_payment_receipt()
+    public function it_deletes_the_payment_receipt(): void
     {
         $paymentReceipt = PaymentReceipt::factory()->create();
 

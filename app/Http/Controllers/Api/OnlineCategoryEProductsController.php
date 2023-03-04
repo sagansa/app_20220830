@@ -10,13 +10,10 @@ use App\Http\Resources\EProductCollection;
 
 class OnlineCategoryEProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\OnlineCategory $onlineCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, OnlineCategory $onlineCategory)
-    {
+    public function index(
+        Request $request,
+        OnlineCategory $onlineCategory
+    ): EProductCollection {
         $this->authorize('view', $onlineCategory);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class OnlineCategoryEProductsController extends Controller
         return new EProductCollection($eProducts);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\OnlineCategory $onlineCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, OnlineCategory $onlineCategory)
-    {
+    public function store(
+        Request $request,
+        OnlineCategory $onlineCategory
+    ): EProductResource {
         $this->authorize('create', EProduct::class);
 
         $validated = $request->validate([

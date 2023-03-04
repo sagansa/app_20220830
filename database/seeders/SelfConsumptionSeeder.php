@@ -9,10 +9,8 @@ class SelfConsumptionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         SelfConsumption::factory()
             ->count(5)

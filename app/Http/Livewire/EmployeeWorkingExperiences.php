@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Employee;
+use Illuminate\View\View;
 use Livewire\WithPagination;
 use App\Models\WorkingExperience;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -49,13 +50,13 @@ class EmployeeWorkingExperiences extends Component
         'workingExperience.reason' => ['required', 'string'],
     ];
 
-    public function mount(Employee $employee)
+    public function mount(Employee $employee): void
     {
         $this->employee = $employee;
         $this->resetWorkingExperienceData();
     }
 
-    public function resetWorkingExperienceData()
+    public function resetWorkingExperienceData(): void
     {
         $this->workingExperience = new WorkingExperience();
 
@@ -65,7 +66,7 @@ class EmployeeWorkingExperiences extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newWorkingExperience()
+    public function newWorkingExperience(): void
     {
         $this->editing = false;
         $this->modalTitle = trans(
@@ -76,38 +77,39 @@ class EmployeeWorkingExperiences extends Component
         $this->showModal();
     }
 
-    public function editWorkingExperience(WorkingExperience $workingExperience)
-    {
+    public function editWorkingExperience(
+        WorkingExperience $workingExperience
+    ): void {
         $this->editing = true;
         $this->modalTitle = trans(
             'crud.employee_working_experiences.edit_title'
         );
         $this->workingExperience = $workingExperience;
 
-        $this->workingExperienceFromDate = $this->workingExperience->from_date->format(
-            'Y-m-d'
-        );
-        $this->workingExperienceUntilDate = $this->workingExperience->until_date->format(
-            'Y-m-d'
-        );
+        $this->workingExperienceFromDate = optional(
+            $this->workingExperience->from_date
+        )->format('Y-m-d');
+        $this->workingExperienceUntilDate = optional(
+            $this->workingExperience->until_date
+        )->format('Y-m-d');
 
         $this->dispatchBrowserEvent('refresh');
 
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         if (!$this->workingExperience->employee_id) {
             $this->validate();
@@ -149,10 +151,10 @@ class EmployeeWorkingExperiences extends Component
             $this->authorize('update', $this->workingExperience);
         }
 
-        $this->workingExperience->from_date = \Carbon\Carbon::parse(
+        $this->workingExperience->from_date = \Carbon\Carbon::make(
             $this->workingExperienceFromDate
         );
-        $this->workingExperience->until_date = \Carbon\Carbon::parse(
+        $this->workingExperience->until_date = \Carbon\Carbon::make(
             $this->workingExperienceUntilDate
         );
 
@@ -161,7 +163,7 @@ class EmployeeWorkingExperiences extends Component
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function destroySelected(): void
     {
         $this->authorize('delete-any', WorkingExperience::class);
 
@@ -173,7 +175,7 @@ class EmployeeWorkingExperiences extends Component
         $this->resetWorkingExperienceData();
     }
 
-    public function toggleFullSelection()
+    public function toggleFullSelection(): void
     {
         if (!$this->allSelected) {
             $this->selected = [];
@@ -185,7 +187,7 @@ class EmployeeWorkingExperiences extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.employee-working-experiences', [
             'workingExperiences' => $this->employee

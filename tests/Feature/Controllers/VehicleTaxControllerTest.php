@@ -31,7 +31,7 @@ class VehicleTaxControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_vehicle_taxes()
+    public function it_displays_index_view_with_vehicle_taxes(): void
     {
         $vehicleTaxes = VehicleTax::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class VehicleTaxControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_vehicle_tax()
+    public function it_displays_create_view_for_vehicle_tax(): void
     {
         $response = $this->get(route('vehicle-taxes.create'));
 
@@ -58,7 +58,7 @@ class VehicleTaxControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_vehicle_tax()
+    public function it_stores_the_vehicle_tax(): void
     {
         $data = VehicleTax::factory()
             ->make()
@@ -78,7 +78,7 @@ class VehicleTaxControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_vehicle_tax()
+    public function it_displays_show_view_for_vehicle_tax(): void
     {
         $vehicleTax = VehicleTax::factory()->create();
 
@@ -93,7 +93,7 @@ class VehicleTaxControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_vehicle_tax()
+    public function it_displays_edit_view_for_vehicle_tax(): void
     {
         $vehicleTax = VehicleTax::factory()->create();
 
@@ -108,7 +108,7 @@ class VehicleTaxControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_vehicle_tax()
+    public function it_updates_the_vehicle_tax(): void
     {
         $vehicleTax = VehicleTax::factory()->create();
 
@@ -140,7 +140,7 @@ class VehicleTaxControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_vehicle_tax()
+    public function it_deletes_the_vehicle_tax(): void
     {
         $vehicleTax = VehicleTax::factory()->create();
 

@@ -31,7 +31,7 @@ class ProductTransferStocksTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_product_transfer_stocks()
+    public function it_gets_product_transfer_stocks(): void
     {
         $product = Product::factory()->create();
         $transferStock = TransferStock::factory()->create();
@@ -48,7 +48,7 @@ class ProductTransferStocksTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_transfer_stocks_to_product()
+    public function it_can_attach_transfer_stocks_to_product(): void
     {
         $product = Product::factory()->create();
         $transferStock = TransferStock::factory()->create();
@@ -73,7 +73,7 @@ class ProductTransferStocksTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_transfer_stocks_from_product()
+    public function it_can_detach_transfer_stocks_from_product(): void
     {
         $product = Product::factory()->create();
         $transferStock = TransferStock::factory()->create();

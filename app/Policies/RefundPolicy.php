@@ -12,94 +12,64 @@ class RefundPolicy
 
     /**
      * Determine whether the refund can view any models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('list refunds');
     }
 
     /**
      * Determine whether the refund can view the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Refund  $model
-     * @return mixed
      */
-    public function view(User $user, Refund $model)
+    public function view(User $user, Refund $model): bool
     {
         return $user->hasPermissionTo('view refunds');
     }
 
     /**
      * Determine whether the refund can create models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->hasPermissionTo('create refunds');
     }
 
     /**
      * Determine whether the refund can update the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Refund  $model
-     * @return mixed
      */
-    public function update(User $user, Refund $model)
+    public function update(User $user, Refund $model): bool
     {
         return $user->hasPermissionTo('update refunds');
     }
 
     /**
      * Determine whether the refund can delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Refund  $model
-     * @return mixed
      */
-    public function delete(User $user, Refund $model)
+    public function delete(User $user, Refund $model): bool
     {
         return $user->hasPermissionTo('delete refunds');
     }
 
     /**
      * Determine whether the user can delete multiple instances of the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Refund  $model
-     * @return mixed
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->hasPermissionTo('delete refunds');
     }
 
     /**
      * Determine whether the refund can restore the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Refund  $model
-     * @return mixed
      */
-    public function restore(User $user, Refund $model)
+    public function restore(User $user, Refund $model): bool
     {
         return false;
     }
 
     /**
      * Determine whether the refund can permanently delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\Refund  $model
-     * @return mixed
      */
-    public function forceDelete(User $user, Refund $model)
+    public function forceDelete(User $user, Refund $model): bool
     {
         return false;
     }

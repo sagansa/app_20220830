@@ -31,7 +31,7 @@ class StoreStoreAssetsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_store_assets()
+    public function it_gets_store_store_assets(): void
     {
         $store = Store::factory()->create();
         $storeAssets = StoreAsset::factory()
@@ -50,7 +50,7 @@ class StoreStoreAssetsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_store_assets()
+    public function it_stores_the_store_store_assets(): void
     {
         $store = Store::factory()->create();
         $data = StoreAsset::factory()

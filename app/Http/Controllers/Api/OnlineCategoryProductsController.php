@@ -10,13 +10,10 @@ use App\Http\Resources\ProductCollection;
 
 class OnlineCategoryProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\OnlineCategory $onlineCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, OnlineCategory $onlineCategory)
-    {
+    public function index(
+        Request $request,
+        OnlineCategory $onlineCategory
+    ): ProductCollection {
         $this->authorize('view', $onlineCategory);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class OnlineCategoryProductsController extends Controller
         return new ProductCollection($products);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\OnlineCategory $onlineCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, OnlineCategory $onlineCategory)
-    {
+    public function store(
+        Request $request,
+        OnlineCategory $onlineCategory
+    ): ProductResource {
         $this->authorize('create', Product::class);
 
         $validated = $request->validate([

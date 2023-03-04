@@ -10,13 +10,10 @@ use App\Http\Resources\DailySalaryCollection;
 
 class PaymentTypeDailySalariesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, PaymentType $paymentType)
-    {
+    public function index(
+        Request $request,
+        PaymentType $paymentType
+    ): DailySalaryCollection {
         $this->authorize('view', $paymentType);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class PaymentTypeDailySalariesController extends Controller
         return new DailySalaryCollection($dailySalaries);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, PaymentType $paymentType)
-    {
+    public function store(
+        Request $request,
+        PaymentType $paymentType
+    ): DailySalaryResource {
         $this->authorize('create', DailySalary::class);
 
         $validated = $request->validate([

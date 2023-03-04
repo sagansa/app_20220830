@@ -31,7 +31,7 @@ class UnitUtilitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_unit_utilities()
+    public function it_gets_unit_utilities(): void
     {
         $unit = Unit::factory()->create();
         $utilities = Utility::factory()
@@ -48,7 +48,7 @@ class UnitUtilitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_unit_utilities()
+    public function it_stores_the_unit_utilities(): void
     {
         $unit = Unit::factory()->create();
         $data = Utility::factory()

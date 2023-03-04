@@ -31,7 +31,7 @@ class PaymentTypeDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_payment_type_daily_salaries()
+    public function it_gets_payment_type_daily_salaries(): void
     {
         $paymentType = PaymentType::factory()->create();
         $dailySalaries = DailySalary::factory()
@@ -50,7 +50,7 @@ class PaymentTypeDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_payment_type_daily_salaries()
+    public function it_stores_the_payment_type_daily_salaries(): void
     {
         $paymentType = PaymentType::factory()->create();
         $data = DailySalary::factory()

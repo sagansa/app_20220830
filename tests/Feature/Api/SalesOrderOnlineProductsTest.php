@@ -31,7 +31,7 @@ class SalesOrderOnlineProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_sales_order_online_products()
+    public function it_gets_sales_order_online_products(): void
     {
         $salesOrderOnline = SalesOrderOnline::factory()->create();
         $product = Product::factory()->create();
@@ -48,7 +48,7 @@ class SalesOrderOnlineProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_products_to_sales_order_online()
+    public function it_can_attach_products_to_sales_order_online(): void
     {
         $salesOrderOnline = SalesOrderOnline::factory()->create();
         $product = Product::factory()->create();
@@ -73,7 +73,7 @@ class SalesOrderOnlineProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_products_from_sales_order_online()
+    public function it_can_detach_products_from_sales_order_online(): void
     {
         $salesOrderOnline = SalesOrderOnline::factory()->create();
         $product = Product::factory()->create();

@@ -30,7 +30,7 @@ class UserFranchiseGroupsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_franchise_groups()
+    public function it_gets_user_franchise_groups(): void
     {
         $user = User::factory()->create();
         $franchiseGroups = FranchiseGroup::factory()
@@ -49,7 +49,7 @@ class UserFranchiseGroupsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_franchise_groups()
+    public function it_stores_the_user_franchise_groups(): void
     {
         $user = User::factory()->create();
         $data = FranchiseGroup::factory()

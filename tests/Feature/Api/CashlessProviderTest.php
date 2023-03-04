@@ -30,7 +30,7 @@ class CashlessProviderTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_cashless_providers_list()
+    public function it_gets_cashless_providers_list(): void
     {
         $cashlessProviders = CashlessProvider::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class CashlessProviderTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_cashless_provider()
+    public function it_stores_the_cashless_provider(): void
     {
         $data = CashlessProvider::factory()
             ->make()
@@ -63,7 +63,7 @@ class CashlessProviderTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_cashless_provider()
+    public function it_updates_the_cashless_provider(): void
     {
         $cashlessProvider = CashlessProvider::factory()->create();
 
@@ -86,7 +86,7 @@ class CashlessProviderTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_cashless_provider()
+    public function it_deletes_the_cashless_provider(): void
     {
         $cashlessProvider = CashlessProvider::factory()->create();
 

@@ -10,13 +10,10 @@ use App\Http\Resources\ClosingStoreCollection;
 
 class ShiftStoreClosingStoresController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ShiftStore $shiftStore
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, ShiftStore $shiftStore)
-    {
+    public function index(
+        Request $request,
+        ShiftStore $shiftStore
+    ): ClosingStoreCollection {
         $this->authorize('view', $shiftStore);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class ShiftStoreClosingStoresController extends Controller
         return new ClosingStoreCollection($closingStores);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ShiftStore $shiftStore
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, ShiftStore $shiftStore)
-    {
+    public function store(
+        Request $request,
+        ShiftStore $shiftStore
+    ): ClosingStoreResource {
         $this->authorize('create', ClosingStore::class);
 
         $validated = $request->validate([

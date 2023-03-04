@@ -31,7 +31,7 @@ class RequestPurchaseDetailRequestsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_request_purchase_detail_requests()
+    public function it_gets_request_purchase_detail_requests(): void
     {
         $requestPurchase = RequestPurchase::factory()->create();
         $detailRequests = DetailRequest::factory()
@@ -53,7 +53,7 @@ class RequestPurchaseDetailRequestsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_request_purchase_detail_requests()
+    public function it_stores_the_request_purchase_detail_requests(): void
     {
         $requestPurchase = RequestPurchase::factory()->create();
         $data = DetailRequest::factory()

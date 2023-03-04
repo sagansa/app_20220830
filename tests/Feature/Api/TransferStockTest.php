@@ -32,7 +32,7 @@ class TransferStockTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_transfer_stocks_list()
+    public function it_gets_transfer_stocks_list(): void
     {
         $transferStocks = TransferStock::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class TransferStockTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_transfer_stock()
+    public function it_stores_the_transfer_stock(): void
     {
         $data = TransferStock::factory()
             ->make()
@@ -64,7 +64,7 @@ class TransferStockTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_transfer_stock()
+    public function it_updates_the_transfer_stock(): void
     {
         $transferStock = TransferStock::factory()->create();
 
@@ -102,7 +102,7 @@ class TransferStockTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_transfer_stock()
+    public function it_deletes_the_transfer_stock(): void
     {
         $transferStock = TransferStock::factory()->create();
 

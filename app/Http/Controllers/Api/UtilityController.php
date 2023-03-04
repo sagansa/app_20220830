@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Utility;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UtilityResource;
 use App\Http\Resources\UtilityCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\UtilityUpdateRequest;
 
 class UtilityController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): UtilityCollection
     {
         $this->authorize('view-any', Utility::class);
 
@@ -29,11 +26,7 @@ class UtilityController extends Controller
         return new UtilityCollection($utilities);
     }
 
-    /**
-     * @param \App\Http\Requests\UtilityStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(UtilityStoreRequest $request)
+    public function store(UtilityStoreRequest $request): UtilityResource
     {
         $this->authorize('create', Utility::class);
 
@@ -44,25 +37,17 @@ class UtilityController extends Controller
         return new UtilityResource($utility);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Utility $utility
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Utility $utility)
+    public function show(Request $request, Utility $utility): UtilityResource
     {
         $this->authorize('view', $utility);
 
         return new UtilityResource($utility);
     }
 
-    /**
-     * @param \App\Http\Requests\UtilityUpdateRequest $request
-     * @param \App\Models\Utility $utility
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UtilityUpdateRequest $request, Utility $utility)
-    {
+    public function update(
+        UtilityUpdateRequest $request,
+        Utility $utility
+    ): UtilityResource {
         $this->authorize('update', $utility);
 
         $validated = $request->validated();
@@ -72,12 +57,7 @@ class UtilityController extends Controller
         return new UtilityResource($utility);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Utility $utility
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Utility $utility)
+    public function destroy(Request $request, Utility $utility): Response
     {
         $this->authorize('delete', $utility);
 

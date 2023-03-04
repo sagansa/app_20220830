@@ -8,6 +8,7 @@ use App\Models\Village;
 use App\Models\Customer;
 use App\Models\Province;
 use App\Models\District;
+use Illuminate\View\View;
 use Livewire\WithPagination;
 use App\Models\DeliveryAddress;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -47,7 +48,7 @@ class CustomerDeliveryAddresses extends Component
         'deliveryAddress.codepos' => ['nullable', 'numeric'],
     ];
 
-    public function mount(Customer $customer)
+    public function mount(Customer $customer): void
     {
         $this->customer = $customer;
         $this->provincesForSelect = Province::pluck('name', 'id');
@@ -57,7 +58,7 @@ class CustomerDeliveryAddresses extends Component
         $this->resetDeliveryAddressData();
     }
 
-    public function resetDeliveryAddressData()
+    public function resetDeliveryAddressData(): void
     {
         $this->deliveryAddress = new DeliveryAddress();
 
@@ -69,7 +70,7 @@ class CustomerDeliveryAddresses extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newDeliveryAddress()
+    public function newDeliveryAddress(): void
     {
         $this->editing = false;
         $this->modalTitle = trans('crud.customer_delivery_addresses.new_title');
@@ -78,7 +79,7 @@ class CustomerDeliveryAddresses extends Component
         $this->showModal();
     }
 
-    public function editDeliveryAddress(DeliveryAddress $deliveryAddress)
+    public function editDeliveryAddress(DeliveryAddress $deliveryAddress): void
     {
         $this->editing = true;
         $this->modalTitle = trans(
@@ -91,18 +92,18 @@ class CustomerDeliveryAddresses extends Component
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -119,7 +120,7 @@ class CustomerDeliveryAddresses extends Component
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function destroySelected(): void
     {
         $this->authorize('delete-any', DeliveryAddress::class);
 
@@ -131,7 +132,7 @@ class CustomerDeliveryAddresses extends Component
         $this->resetDeliveryAddressData();
     }
 
-    public function toggleFullSelection()
+    public function toggleFullSelection(): void
     {
         if (!$this->allSelected) {
             $this->selected = [];
@@ -143,7 +144,7 @@ class CustomerDeliveryAddresses extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.customer-delivery-addresses', [
             'deliveryAddresses' => $this->customer

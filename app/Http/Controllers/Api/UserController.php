@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Resources\UserResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -13,11 +14,7 @@ use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): UserCollection
     {
         $this->authorize('view-any', User::class);
 
@@ -30,11 +27,7 @@ class UserController extends Controller
         return new UserCollection($users);
     }
 
-    /**
-     * @param \App\Http\Requests\UserStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(UserStoreRequest $request)
+    public function store(UserStoreRequest $request): UserResource
     {
         $this->authorize('create', User::class);
 
@@ -49,24 +42,14 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, User $user)
+    public function show(Request $request, User $user): UserResource
     {
         $this->authorize('view', $user);
 
         return new UserResource($user);
     }
 
-    /**
-     * @param \App\Http\Requests\UserUpdateRequest $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request, User $user): UserResource
     {
         $this->authorize('update', $user);
 
@@ -85,12 +68,7 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, User $user)
+    public function destroy(Request $request, User $user): Response
     {
         $this->authorize('delete', $user);
 

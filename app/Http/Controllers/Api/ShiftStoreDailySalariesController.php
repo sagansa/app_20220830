@@ -10,13 +10,10 @@ use App\Http\Resources\DailySalaryCollection;
 
 class ShiftStoreDailySalariesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ShiftStore $shiftStore
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, ShiftStore $shiftStore)
-    {
+    public function index(
+        Request $request,
+        ShiftStore $shiftStore
+    ): DailySalaryCollection {
         $this->authorize('view', $shiftStore);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class ShiftStoreDailySalariesController extends Controller
         return new DailySalaryCollection($dailySalaries);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ShiftStore $shiftStore
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, ShiftStore $shiftStore)
-    {
+    public function store(
+        Request $request,
+        ShiftStore $shiftStore
+    ): DailySalaryResource {
         $this->authorize('create', DailySalary::class);
 
         $validated = $request->validate([

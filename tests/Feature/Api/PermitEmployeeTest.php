@@ -30,7 +30,7 @@ class PermitEmployeeTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_permit_employees_list()
+    public function it_gets_permit_employees_list(): void
     {
         $permitEmployees = PermitEmployee::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class PermitEmployeeTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_permit_employee()
+    public function it_stores_the_permit_employee(): void
     {
         $data = PermitEmployee::factory()
             ->make()
@@ -62,7 +62,7 @@ class PermitEmployeeTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_permit_employee()
+    public function it_updates_the_permit_employee(): void
     {
         $permitEmployee = PermitEmployee::factory()->create();
 
@@ -96,7 +96,7 @@ class PermitEmployeeTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_permit_employee()
+    public function it_deletes_the_permit_employee(): void
     {
         $permitEmployee = PermitEmployee::factory()->create();
 

@@ -31,7 +31,7 @@ class ShiftStoreDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_shift_store_daily_salaries()
+    public function it_gets_shift_store_daily_salaries(): void
     {
         $shiftStore = ShiftStore::factory()->create();
         $dailySalaries = DailySalary::factory()
@@ -50,7 +50,7 @@ class ShiftStoreDailySalariesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_shift_store_daily_salaries()
+    public function it_stores_the_shift_store_daily_salaries(): void
     {
         $shiftStore = ShiftStore::factory()->create();
         $data = DailySalary::factory()

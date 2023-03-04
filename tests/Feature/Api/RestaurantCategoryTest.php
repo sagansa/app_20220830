@@ -30,7 +30,7 @@ class RestaurantCategoryTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_restaurant_categories_list()
+    public function it_gets_restaurant_categories_list(): void
     {
         $restaurantCategories = RestaurantCategory::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class RestaurantCategoryTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_restaurant_category()
+    public function it_stores_the_restaurant_category(): void
     {
         $data = RestaurantCategory::factory()
             ->make()
@@ -65,7 +65,7 @@ class RestaurantCategoryTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_restaurant_category()
+    public function it_updates_the_restaurant_category(): void
     {
         $restaurantCategory = RestaurantCategory::factory()->create();
 
@@ -93,7 +93,7 @@ class RestaurantCategoryTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_restaurant_category()
+    public function it_deletes_the_restaurant_category(): void
     {
         $restaurantCategory = RestaurantCategory::factory()->create();
 

@@ -29,7 +29,7 @@ class MaterialGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_material_groups()
+    public function it_displays_index_view_with_material_groups(): void
     {
         $materialGroups = MaterialGroup::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class MaterialGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_material_group()
+    public function it_displays_create_view_for_material_group(): void
     {
         $response = $this->get(route('material-groups.create'));
 
@@ -56,7 +56,7 @@ class MaterialGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_material_group()
+    public function it_stores_the_material_group(): void
     {
         $data = MaterialGroup::factory()
             ->make()
@@ -76,7 +76,7 @@ class MaterialGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_material_group()
+    public function it_displays_show_view_for_material_group(): void
     {
         $materialGroup = MaterialGroup::factory()->create();
 
@@ -91,7 +91,7 @@ class MaterialGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_material_group()
+    public function it_displays_edit_view_for_material_group(): void
     {
         $materialGroup = MaterialGroup::factory()->create();
 
@@ -106,7 +106,7 @@ class MaterialGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_material_group()
+    public function it_updates_the_material_group(): void
     {
         $materialGroup = MaterialGroup::factory()->create();
 
@@ -135,7 +135,7 @@ class MaterialGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_material_group()
+    public function it_deletes_the_material_group(): void
     {
         $materialGroup = MaterialGroup::factory()->create();
 

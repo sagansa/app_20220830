@@ -10,12 +10,7 @@ use App\Http\Resources\SupplierCollection;
 
 class UserSuppliersController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user): SupplierCollection
     {
         $this->authorize('view', $user);
 
@@ -30,12 +25,7 @@ class UserSuppliersController extends Controller
         return new SupplierCollection($suppliers);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): SupplierResource
     {
         $this->authorize('create', Supplier::class);
 

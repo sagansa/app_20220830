@@ -10,13 +10,10 @@ use App\Http\Resources\WorkingExperienceCollection;
 
 class EmployeeWorkingExperiencesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Employee $employee)
-    {
+    public function index(
+        Request $request,
+        Employee $employee
+    ): WorkingExperienceCollection {
         $this->authorize('view', $employee);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class EmployeeWorkingExperiencesController extends Controller
         return new WorkingExperienceCollection($workingExperiences);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Employee $employee)
-    {
+    public function store(
+        Request $request,
+        Employee $employee
+    ): WorkingExperienceResource {
         $this->authorize('create', WorkingExperience::class);
 
         $validated = $request->validate([

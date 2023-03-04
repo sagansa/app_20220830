@@ -10,13 +10,10 @@ use App\Http\Resources\ProductCollection;
 
 class PaymentTypeProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, PaymentType $paymentType)
-    {
+    public function index(
+        Request $request,
+        PaymentType $paymentType
+    ): ProductCollection {
         $this->authorize('view', $paymentType);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class PaymentTypeProductsController extends Controller
         return new ProductCollection($products);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, PaymentType $paymentType)
-    {
+    public function store(
+        Request $request,
+        PaymentType $paymentType
+    ): ProductResource {
         $this->authorize('create', Product::class);
 
         $validated = $request->validate([

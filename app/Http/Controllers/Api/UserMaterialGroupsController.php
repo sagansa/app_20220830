@@ -10,12 +10,7 @@ use App\Http\Resources\MaterialGroupCollection;
 
 class UserMaterialGroupsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user): MaterialGroupCollection
     {
         $this->authorize('view', $user);
 
@@ -30,12 +25,7 @@ class UserMaterialGroupsController extends Controller
         return new MaterialGroupCollection($materialGroups);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): MaterialGroupResource
     {
         $this->authorize('create', MaterialGroup::class);
 

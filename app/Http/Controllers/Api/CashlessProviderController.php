@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\CashlessProvider;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CashlessProviderResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\CashlessProviderUpdateRequest;
 
 class CashlessProviderController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): CashlessProviderCollection
     {
         $this->authorize('view-any', CashlessProvider::class);
 
@@ -29,12 +26,9 @@ class CashlessProviderController extends Controller
         return new CashlessProviderCollection($cashlessProviders);
     }
 
-    /**
-     * @param \App\Http\Requests\CashlessProviderStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CashlessProviderStoreRequest $request)
-    {
+    public function store(
+        CashlessProviderStoreRequest $request
+    ): CashlessProviderResource {
         $this->authorize('create', CashlessProvider::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class CashlessProviderController extends Controller
         return new CashlessProviderResource($cashlessProvider);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\CashlessProvider $cashlessProvider
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, CashlessProvider $cashlessProvider)
-    {
+    public function show(
+        Request $request,
+        CashlessProvider $cashlessProvider
+    ): CashlessProviderResource {
         $this->authorize('view', $cashlessProvider);
 
         return new CashlessProviderResource($cashlessProvider);
     }
 
-    /**
-     * @param \App\Http\Requests\CashlessProviderUpdateRequest $request
-     * @param \App\Models\CashlessProvider $cashlessProvider
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         CashlessProviderUpdateRequest $request,
         CashlessProvider $cashlessProvider
-    ) {
+    ): CashlessProviderResource {
         $this->authorize('update', $cashlessProvider);
 
         $validated = $request->validated();
@@ -74,15 +60,10 @@ class CashlessProviderController extends Controller
         return new CashlessProviderResource($cashlessProvider);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\CashlessProvider $cashlessProvider
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         CashlessProvider $cashlessProvider
-    ) {
+    ): Response {
         $this->authorize('delete', $cashlessProvider);
 
         $cashlessProvider->delete();

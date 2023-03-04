@@ -33,7 +33,7 @@ class AccountCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_account_cashlesses()
+    public function it_displays_index_view_with_account_cashlesses(): void
     {
         $accountCashlesses = AccountCashless::factory()
             ->count(5)
@@ -50,7 +50,7 @@ class AccountCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_account_cashless()
+    public function it_displays_create_view_for_account_cashless(): void
     {
         $response = $this->get(route('account-cashlesses.create'));
 
@@ -60,7 +60,7 @@ class AccountCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_account_cashless()
+    public function it_stores_the_account_cashless(): void
     {
         $data = AccountCashless::factory()
             ->make()
@@ -80,7 +80,7 @@ class AccountCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_account_cashless()
+    public function it_displays_show_view_for_account_cashless(): void
     {
         $accountCashless = AccountCashless::factory()->create();
 
@@ -97,7 +97,7 @@ class AccountCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_account_cashless()
+    public function it_displays_edit_view_for_account_cashless(): void
     {
         $accountCashless = AccountCashless::factory()->create();
 
@@ -114,7 +114,7 @@ class AccountCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_account_cashless()
+    public function it_updates_the_account_cashless(): void
     {
         $accountCashless = AccountCashless::factory()->create();
 
@@ -150,7 +150,7 @@ class AccountCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_account_cashless()
+    public function it_deletes_the_account_cashless(): void
     {
         $accountCashless = AccountCashless::factory()->create();
 

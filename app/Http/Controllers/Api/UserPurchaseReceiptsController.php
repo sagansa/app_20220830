@@ -10,13 +10,10 @@ use App\Http\Resources\PurchaseReceiptCollection;
 
 class UserPurchaseReceiptsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
-    {
+    public function index(
+        Request $request,
+        User $user
+    ): PurchaseReceiptCollection {
         $this->authorize('view', $user);
 
         $search = $request->get('search', '');
@@ -30,12 +27,7 @@ class UserPurchaseReceiptsController extends Controller
         return new PurchaseReceiptCollection($purchaseReceipts);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): PurchaseReceiptResource
     {
         $this->authorize('create', PurchaseReceipt::class);
 

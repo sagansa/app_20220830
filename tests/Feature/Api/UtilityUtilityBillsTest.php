@@ -31,7 +31,7 @@ class UtilityUtilityBillsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_utility_utility_bills()
+    public function it_gets_utility_utility_bills(): void
     {
         $utility = Utility::factory()->create();
         $utilityBills = UtilityBill::factory()
@@ -50,7 +50,7 @@ class UtilityUtilityBillsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_utility_utility_bills()
+    public function it_stores_the_utility_utility_bills(): void
     {
         $utility = Utility::factory()->create();
         $data = UtilityBill::factory()

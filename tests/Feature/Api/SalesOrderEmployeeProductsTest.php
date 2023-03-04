@@ -31,7 +31,7 @@ class SalesOrderEmployeeProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_sales_order_employee_products()
+    public function it_gets_sales_order_employee_products(): void
     {
         $salesOrderEmployee = SalesOrderEmployee::factory()->create();
         $product = Product::factory()->create();
@@ -51,7 +51,7 @@ class SalesOrderEmployeeProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_products_to_sales_order_employee()
+    public function it_can_attach_products_to_sales_order_employee(): void
     {
         $salesOrderEmployee = SalesOrderEmployee::factory()->create();
         $product = Product::factory()->create();
@@ -76,7 +76,7 @@ class SalesOrderEmployeeProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_products_from_sales_order_employee()
+    public function it_can_detach_products_from_sales_order_employee(): void
     {
         $salesOrderEmployee = SalesOrderEmployee::factory()->create();
         $product = Product::factory()->create();

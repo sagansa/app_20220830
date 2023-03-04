@@ -31,7 +31,7 @@ class PaymentTypeInvoicePurchasesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_payment_type_invoice_purchases()
+    public function it_gets_payment_type_invoice_purchases(): void
     {
         $paymentType = PaymentType::factory()->create();
         $invoicePurchases = InvoicePurchase::factory()
@@ -50,7 +50,7 @@ class PaymentTypeInvoicePurchasesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_payment_type_invoice_purchases()
+    public function it_stores_the_payment_type_invoice_purchases(): void
     {
         $paymentType = PaymentType::factory()->create();
         $data = InvoicePurchase::factory()

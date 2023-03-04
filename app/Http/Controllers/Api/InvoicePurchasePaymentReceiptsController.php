@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\PaymentReceipt;
 use App\Models\InvoicePurchase;
 use App\Http\Controllers\Controller;
@@ -9,13 +10,10 @@ use App\Http\Resources\PaymentReceiptCollection;
 
 class InvoicePurchasePaymentReceiptsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, InvoicePurchase $invoicePurchase)
-    {
+    public function index(
+        Request $request,
+        InvoicePurchase $invoicePurchase
+    ): PaymentReceiptCollection {
         $this->authorize('view', $invoicePurchase);
 
         $search = $request->get('search', '');
@@ -29,17 +27,11 @@ class InvoicePurchasePaymentReceiptsController extends Controller
         return new PaymentReceiptCollection($paymentReceipts);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @param \App\Models\PaymentReceipt $paymentReceipt
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         InvoicePurchase $invoicePurchase,
         PaymentReceipt $paymentReceipt
-    ) {
+    ): Response {
         $this->authorize('update', $invoicePurchase);
 
         $invoicePurchase
@@ -49,17 +41,11 @@ class InvoicePurchasePaymentReceiptsController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @param \App\Models\PaymentReceipt $paymentReceipt
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         InvoicePurchase $invoicePurchase,
         PaymentReceipt $paymentReceipt
-    ) {
+    ): Response {
         $this->authorize('update', $invoicePurchase);
 
         $invoicePurchase->paymentReceipts()->detach($paymentReceipt);

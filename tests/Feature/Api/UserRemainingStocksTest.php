@@ -30,7 +30,7 @@ class UserRemainingStocksTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_remaining_stocks()
+    public function it_gets_user_remaining_stocks(): void
     {
         $user = User::factory()->create();
         $remainingStocks = RemainingStock::factory()
@@ -49,7 +49,7 @@ class UserRemainingStocksTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_remaining_stocks()
+    public function it_stores_the_user_remaining_stocks(): void
     {
         $user = User::factory()->create();
         $data = RemainingStock::factory()

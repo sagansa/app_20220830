@@ -31,7 +31,7 @@ class EmployeeContractEmployeesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_employee_contract_employees()
+    public function it_gets_employee_contract_employees(): void
     {
         $employee = Employee::factory()->create();
         $contractEmployees = ContractEmployee::factory()
@@ -50,7 +50,7 @@ class EmployeeContractEmployeesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_employee_contract_employees()
+    public function it_stores_the_employee_contract_employees(): void
     {
         $employee = Employee::factory()->create();
         $data = ContractEmployee::factory()

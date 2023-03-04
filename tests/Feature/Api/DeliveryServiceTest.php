@@ -30,7 +30,7 @@ class DeliveryServiceTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_delivery_services_list()
+    public function it_gets_delivery_services_list(): void
     {
         $deliveryServices = DeliveryService::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class DeliveryServiceTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_delivery_service()
+    public function it_stores_the_delivery_service(): void
     {
         $data = DeliveryService::factory()
             ->make()
@@ -63,7 +63,7 @@ class DeliveryServiceTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_delivery_service()
+    public function it_updates_the_delivery_service(): void
     {
         $deliveryService = DeliveryService::factory()->create();
 
@@ -87,7 +87,7 @@ class DeliveryServiceTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_delivery_service()
+    public function it_deletes_the_delivery_service(): void
     {
         $deliveryService = DeliveryService::factory()->create();
 

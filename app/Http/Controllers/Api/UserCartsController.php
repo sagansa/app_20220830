@@ -10,12 +10,7 @@ use App\Http\Resources\CartCollection;
 
 class UserCartsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user): CartCollection
     {
         $this->authorize('view', $user);
 
@@ -30,12 +25,7 @@ class UserCartsController extends Controller
         return new CartCollection($carts);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): CartResource
     {
         $this->authorize('create', Cart::class);
 

@@ -10,15 +10,10 @@ use App\Http\Resources\ProductCollection;
 
 class RestaurantCategoryProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\RestaurantCategory $restaurantCategory
-     * @return \Illuminate\Http\Response
-     */
     public function index(
         Request $request,
         RestaurantCategory $restaurantCategory
-    ) {
+    ): ProductCollection {
         $this->authorize('view', $restaurantCategory);
 
         $search = $request->get('search', '');
@@ -32,15 +27,10 @@ class RestaurantCategoryProductsController extends Controller
         return new ProductCollection($products);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\RestaurantCategory $restaurantCategory
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         RestaurantCategory $restaurantCategory
-    ) {
+    ): ProductResource {
         $this->authorize('create', Product::class);
 
         $validated = $request->validate([

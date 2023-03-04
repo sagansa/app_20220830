@@ -10,12 +10,7 @@ use App\Http\Resources\ProductCollection;
 
 class UserProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user): ProductCollection
     {
         $this->authorize('view', $user);
 
@@ -30,12 +25,7 @@ class UserProductsController extends Controller
         return new ProductCollection($products);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): ProductResource
     {
         $this->authorize('create', Product::class);
 

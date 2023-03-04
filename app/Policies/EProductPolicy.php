@@ -12,94 +12,64 @@ class EProductPolicy
 
     /**
      * Determine whether the eProduct can view any models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('list eproducts');
     }
 
     /**
      * Determine whether the eProduct can view the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\EProduct  $model
-     * @return mixed
      */
-    public function view(User $user, EProduct $model)
+    public function view(User $user, EProduct $model): bool
     {
         return $user->hasPermissionTo('view eproducts');
     }
 
     /**
      * Determine whether the eProduct can create models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->hasPermissionTo('create eproducts');
     }
 
     /**
      * Determine whether the eProduct can update the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\EProduct  $model
-     * @return mixed
      */
-    public function update(User $user, EProduct $model)
+    public function update(User $user, EProduct $model): bool
     {
         return $user->hasPermissionTo('update eproducts');
     }
 
     /**
      * Determine whether the eProduct can delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\EProduct  $model
-     * @return mixed
      */
-    public function delete(User $user, EProduct $model)
+    public function delete(User $user, EProduct $model): bool
     {
         return $user->hasPermissionTo('delete eproducts');
     }
 
     /**
      * Determine whether the user can delete multiple instances of the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\EProduct  $model
-     * @return mixed
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->hasPermissionTo('delete eproducts');
     }
 
     /**
      * Determine whether the eProduct can restore the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\EProduct  $model
-     * @return mixed
      */
-    public function restore(User $user, EProduct $model)
+    public function restore(User $user, EProduct $model): bool
     {
         return false;
     }
 
     /**
      * Determine whether the eProduct can permanently delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\EProduct  $model
-     * @return mixed
      */
-    public function forceDelete(User $user, EProduct $model)
+    public function forceDelete(User $user, EProduct $model): bool
     {
         return false;
     }

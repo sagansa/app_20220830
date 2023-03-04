@@ -32,7 +32,7 @@ class HygieneTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_hygienes_list()
+    public function it_gets_hygienes_list(): void
     {
         $hygienes = Hygiene::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class HygieneTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_hygiene()
+    public function it_stores_the_hygiene(): void
     {
         $data = Hygiene::factory()
             ->make()
@@ -62,7 +62,7 @@ class HygieneTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_hygiene()
+    public function it_updates_the_hygiene(): void
     {
         $hygiene = Hygiene::factory()->create();
 
@@ -93,7 +93,7 @@ class HygieneTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_hygiene()
+    public function it_deletes_the_hygiene(): void
     {
         $hygiene = Hygiene::factory()->create();
 

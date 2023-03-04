@@ -9,10 +9,8 @@ class RemainingStockSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         RemainingStock::factory()
             ->count(5)

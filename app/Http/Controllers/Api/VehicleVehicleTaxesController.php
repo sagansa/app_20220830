@@ -10,13 +10,10 @@ use App\Http\Resources\VehicleTaxCollection;
 
 class VehicleVehicleTaxesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Vehicle $vehicle
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Vehicle $vehicle)
-    {
+    public function index(
+        Request $request,
+        Vehicle $vehicle
+    ): VehicleTaxCollection {
         $this->authorize('view', $vehicle);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class VehicleVehicleTaxesController extends Controller
         return new VehicleTaxCollection($vehicleTaxes);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Vehicle $vehicle
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Vehicle $vehicle)
-    {
+    public function store(
+        Request $request,
+        Vehicle $vehicle
+    ): VehicleTaxResource {
         $this->authorize('create', VehicleTax::class);
 
         $validated = $request->validate([

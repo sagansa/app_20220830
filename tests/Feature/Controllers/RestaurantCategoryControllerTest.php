@@ -29,7 +29,7 @@ class RestaurantCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_restaurant_categories()
+    public function it_displays_index_view_with_restaurant_categories(): void
     {
         $restaurantCategories = RestaurantCategory::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class RestaurantCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_restaurant_category()
+    public function it_displays_create_view_for_restaurant_category(): void
     {
         $response = $this->get(route('restaurant-categories.create'));
 
@@ -56,7 +56,7 @@ class RestaurantCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_restaurant_category()
+    public function it_stores_the_restaurant_category(): void
     {
         $data = RestaurantCategory::factory()
             ->make()
@@ -78,7 +78,7 @@ class RestaurantCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_restaurant_category()
+    public function it_displays_show_view_for_restaurant_category(): void
     {
         $restaurantCategory = RestaurantCategory::factory()->create();
 
@@ -95,7 +95,7 @@ class RestaurantCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_restaurant_category()
+    public function it_displays_edit_view_for_restaurant_category(): void
     {
         $restaurantCategory = RestaurantCategory::factory()->create();
 
@@ -112,7 +112,7 @@ class RestaurantCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_restaurant_category()
+    public function it_updates_the_restaurant_category(): void
     {
         $restaurantCategory = RestaurantCategory::factory()->create();
 
@@ -142,7 +142,7 @@ class RestaurantCategoryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_restaurant_category()
+    public function it_deletes_the_restaurant_category(): void
     {
         $restaurantCategory = RestaurantCategory::factory()->create();
 

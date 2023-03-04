@@ -31,7 +31,7 @@ class InvoicePurchaseDetailInvoicesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_invoice_purchase_detail_invoices()
+    public function it_gets_invoice_purchase_detail_invoices(): void
     {
         $invoicePurchase = InvoicePurchase::factory()->create();
         $detailInvoices = DetailInvoice::factory()
@@ -53,7 +53,7 @@ class InvoicePurchaseDetailInvoicesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_invoice_purchase_detail_invoices()
+    public function it_stores_the_invoice_purchase_detail_invoices(): void
     {
         $invoicePurchase = InvoicePurchase::factory()->create();
         $data = DetailInvoice::factory()

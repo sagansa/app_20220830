@@ -10,13 +10,10 @@ use App\Http\Resources\HygieneOfRoomCollection;
 
 class HygieneHygieneOfRoomsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Hygiene $hygiene
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Hygiene $hygiene)
-    {
+    public function index(
+        Request $request,
+        Hygiene $hygiene
+    ): HygieneOfRoomCollection {
         $this->authorize('view', $hygiene);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class HygieneHygieneOfRoomsController extends Controller
         return new HygieneOfRoomCollection($hygieneOfRooms);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Hygiene $hygiene
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Hygiene $hygiene)
-    {
+    public function store(
+        Request $request,
+        Hygiene $hygiene
+    ): HygieneOfRoomResource {
         $this->authorize('create', HygieneOfRoom::class);
 
         $validated = $request->validate([

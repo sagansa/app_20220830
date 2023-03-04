@@ -3,19 +3,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\SalesOrderOnline;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SalesOrderOnlineCollection;
 
 class ProductSalesOrderOnlinesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Product $product)
-    {
+    public function index(
+        Request $request,
+        Product $product
+    ): SalesOrderOnlineCollection {
         $this->authorize('view', $product);
 
         $search = $request->get('search', '');
@@ -29,17 +27,11 @@ class ProductSalesOrderOnlinesController extends Controller
         return new SalesOrderOnlineCollection($salesOrderOnlines);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Product $product
-     * @param \App\Models\SalesOrderOnline $salesOrderOnline
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         Product $product,
         SalesOrderOnline $salesOrderOnline
-    ) {
+    ): Response {
         $this->authorize('update', $product);
 
         $product
@@ -49,17 +41,11 @@ class ProductSalesOrderOnlinesController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Product $product
-     * @param \App\Models\SalesOrderOnline $salesOrderOnline
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         Product $product,
         SalesOrderOnline $salesOrderOnline
-    ) {
+    ): Response {
         $this->authorize('update', $product);
 
         $product->salesOrderOnlines()->detach($salesOrderOnline);

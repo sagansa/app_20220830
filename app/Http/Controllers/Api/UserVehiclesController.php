@@ -10,12 +10,7 @@ use App\Http\Resources\VehicleCollection;
 
 class UserVehiclesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user): VehicleCollection
     {
         $this->authorize('view', $user);
 
@@ -30,12 +25,7 @@ class UserVehiclesController extends Controller
         return new VehicleCollection($vehicles);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): VehicleResource
     {
         $this->authorize('create', Vehicle::class);
 

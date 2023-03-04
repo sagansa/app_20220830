@@ -31,7 +31,7 @@ class MovementAssetResultControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_movement_asset_results()
+    public function it_displays_index_view_with_movement_asset_results(): void
     {
         $movementAssetResults = MovementAssetResult::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class MovementAssetResultControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_movement_asset_result()
+    public function it_displays_create_view_for_movement_asset_result(): void
     {
         $response = $this->get(route('movement-asset-results.create'));
 
@@ -60,7 +60,7 @@ class MovementAssetResultControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_movement_asset_result()
+    public function it_stores_the_movement_asset_result(): void
     {
         $data = MovementAssetResult::factory()
             ->make()
@@ -80,7 +80,7 @@ class MovementAssetResultControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_movement_asset_result()
+    public function it_displays_show_view_for_movement_asset_result(): void
     {
         $movementAssetResult = MovementAssetResult::factory()->create();
 
@@ -97,7 +97,7 @@ class MovementAssetResultControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_movement_asset_result()
+    public function it_displays_edit_view_for_movement_asset_result(): void
     {
         $movementAssetResult = MovementAssetResult::factory()->create();
 
@@ -114,7 +114,7 @@ class MovementAssetResultControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_movement_asset_result()
+    public function it_updates_the_movement_asset_result(): void
     {
         $movementAssetResult = MovementAssetResult::factory()->create();
 
@@ -146,7 +146,7 @@ class MovementAssetResultControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_movement_asset_result()
+    public function it_deletes_the_movement_asset_result(): void
     {
         $movementAssetResult = MovementAssetResult::factory()->create();
 

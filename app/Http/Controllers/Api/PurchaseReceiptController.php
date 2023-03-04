@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\PurchaseReceipt;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -13,11 +14,7 @@ use App\Http\Requests\PurchaseReceiptUpdateRequest;
 
 class PurchaseReceiptController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): PurchaseReceiptCollection
     {
         $this->authorize('view-any', PurchaseReceipt::class);
 
@@ -30,12 +27,9 @@ class PurchaseReceiptController extends Controller
         return new PurchaseReceiptCollection($purchaseReceipts);
     }
 
-    /**
-     * @param \App\Http\Requests\PurchaseReceiptStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PurchaseReceiptStoreRequest $request)
-    {
+    public function store(
+        PurchaseReceiptStoreRequest $request
+    ): PurchaseReceiptResource {
         $this->authorize('create', PurchaseReceipt::class);
 
         $validated = $request->validated();
@@ -48,27 +42,19 @@ class PurchaseReceiptController extends Controller
         return new PurchaseReceiptResource($purchaseReceipt);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PurchaseReceipt $purchaseReceipt
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, PurchaseReceipt $purchaseReceipt)
-    {
+    public function show(
+        Request $request,
+        PurchaseReceipt $purchaseReceipt
+    ): PurchaseReceiptResource {
         $this->authorize('view', $purchaseReceipt);
 
         return new PurchaseReceiptResource($purchaseReceipt);
     }
 
-    /**
-     * @param \App\Http\Requests\PurchaseReceiptUpdateRequest $request
-     * @param \App\Models\PurchaseReceipt $purchaseReceipt
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         PurchaseReceiptUpdateRequest $request,
         PurchaseReceipt $purchaseReceipt
-    ) {
+    ): PurchaseReceiptResource {
         $this->authorize('update', $purchaseReceipt);
 
         $validated = $request->validated();
@@ -86,13 +72,10 @@ class PurchaseReceiptController extends Controller
         return new PurchaseReceiptResource($purchaseReceipt);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PurchaseReceipt $purchaseReceipt
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, PurchaseReceipt $purchaseReceipt)
-    {
+    public function destroy(
+        Request $request,
+        PurchaseReceipt $purchaseReceipt
+    ): Response {
         $this->authorize('delete', $purchaseReceipt);
 
         if ($purchaseReceipt->image) {

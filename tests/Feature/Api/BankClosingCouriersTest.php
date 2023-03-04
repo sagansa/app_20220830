@@ -31,7 +31,7 @@ class BankClosingCouriersTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_bank_closing_couriers()
+    public function it_gets_bank_closing_couriers(): void
     {
         $bank = Bank::factory()->create();
         $closingCouriers = ClosingCourier::factory()
@@ -50,7 +50,7 @@ class BankClosingCouriersTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_bank_closing_couriers()
+    public function it_stores_the_bank_closing_couriers(): void
     {
         $bank = Bank::factory()->create();
         $data = ClosingCourier::factory()

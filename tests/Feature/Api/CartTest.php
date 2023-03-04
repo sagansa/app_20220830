@@ -32,7 +32,7 @@ class CartTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_carts_list()
+    public function it_gets_carts_list(): void
     {
         $carts = Cart::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class CartTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_cart()
+    public function it_stores_the_cart(): void
     {
         $data = Cart::factory()
             ->make()
@@ -62,7 +62,7 @@ class CartTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_cart()
+    public function it_updates_the_cart(): void
     {
         $cart = Cart::factory()->create();
 
@@ -87,7 +87,7 @@ class CartTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_cart()
+    public function it_deletes_the_cart(): void
     {
         $cart = Cart::factory()->create();
 

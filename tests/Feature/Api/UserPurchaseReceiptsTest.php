@@ -30,7 +30,7 @@ class UserPurchaseReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_purchase_receipts()
+    public function it_gets_user_purchase_receipts(): void
     {
         $user = User::factory()->create();
         $purchaseReceipts = PurchaseReceipt::factory()
@@ -49,7 +49,7 @@ class UserPurchaseReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_purchase_receipts()
+    public function it_stores_the_user_purchase_receipts(): void
     {
         $user = User::factory()->create();
         $data = PurchaseReceipt::factory()

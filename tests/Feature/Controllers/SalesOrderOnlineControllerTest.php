@@ -35,7 +35,7 @@ class SalesOrderOnlineControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_sales_order_onlines()
+    public function it_displays_index_view_with_sales_order_onlines(): void
     {
         $salesOrderOnlines = SalesOrderOnline::factory()
             ->count(5)
@@ -52,7 +52,7 @@ class SalesOrderOnlineControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_sales_order_online()
+    public function it_displays_create_view_for_sales_order_online(): void
     {
         $response = $this->get(route('sales-order-onlines.create'));
 
@@ -62,7 +62,7 @@ class SalesOrderOnlineControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_sales_order_online()
+    public function it_stores_the_sales_order_online(): void
     {
         $data = SalesOrderOnline::factory()
             ->make()
@@ -85,7 +85,7 @@ class SalesOrderOnlineControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_sales_order_online()
+    public function it_displays_show_view_for_sales_order_online(): void
     {
         $salesOrderOnline = SalesOrderOnline::factory()->create();
 
@@ -102,7 +102,7 @@ class SalesOrderOnlineControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_sales_order_online()
+    public function it_displays_edit_view_for_sales_order_online(): void
     {
         $salesOrderOnline = SalesOrderOnline::factory()->create();
 
@@ -119,7 +119,7 @@ class SalesOrderOnlineControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_sales_order_online()
+    public function it_updates_the_sales_order_online(): void
     {
         $salesOrderOnline = SalesOrderOnline::factory()->create();
 
@@ -166,7 +166,7 @@ class SalesOrderOnlineControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_sales_order_online()
+    public function it_deletes_the_sales_order_online(): void
     {
         $salesOrderOnline = SalesOrderOnline::factory()->create();
 

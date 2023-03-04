@@ -30,7 +30,7 @@ class UserVehicleTaxesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_vehicle_taxes()
+    public function it_gets_user_vehicle_taxes(): void
     {
         $user = User::factory()->create();
         $vehicleTaxes = VehicleTax::factory()
@@ -49,7 +49,7 @@ class UserVehicleTaxesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_vehicle_taxes()
+    public function it_stores_the_user_vehicle_taxes(): void
     {
         $user = User::factory()->create();
         $data = VehicleTax::factory()

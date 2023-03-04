@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\StoreAsset;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\StoreAssetResource;
 use App\Http\Resources\StoreAssetCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\StoreAssetUpdateRequest;
 
 class StoreAssetController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): StoreAssetCollection
     {
         $this->authorize('view-any', StoreAsset::class);
 
@@ -29,11 +26,7 @@ class StoreAssetController extends Controller
         return new StoreAssetCollection($storeAssets);
     }
 
-    /**
-     * @param \App\Http\Requests\StoreAssetStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreAssetStoreRequest $request)
+    public function store(StoreAssetStoreRequest $request): StoreAssetResource
     {
         $this->authorize('create', StoreAsset::class);
 
@@ -44,27 +37,19 @@ class StoreAssetController extends Controller
         return new StoreAssetResource($storeAsset);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\StoreAsset $storeAsset
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, StoreAsset $storeAsset)
-    {
+    public function show(
+        Request $request,
+        StoreAsset $storeAsset
+    ): StoreAssetResource {
         $this->authorize('view', $storeAsset);
 
         return new StoreAssetResource($storeAsset);
     }
 
-    /**
-     * @param \App\Http\Requests\StoreAssetUpdateRequest $request
-     * @param \App\Models\StoreAsset $storeAsset
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         StoreAssetUpdateRequest $request,
         StoreAsset $storeAsset
-    ) {
+    ): StoreAssetResource {
         $this->authorize('update', $storeAsset);
 
         $validated = $request->validated();
@@ -74,12 +59,7 @@ class StoreAssetController extends Controller
         return new StoreAssetResource($storeAsset);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\StoreAsset $storeAsset
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, StoreAsset $storeAsset)
+    public function destroy(Request $request, StoreAsset $storeAsset): Response
     {
         $this->authorize('delete', $storeAsset);
 

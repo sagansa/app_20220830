@@ -10,12 +10,7 @@ use App\Http\Resources\DetailInvoiceCollection;
 
 class UnitDetailInvoicesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Unit $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Unit $unit)
+    public function index(Request $request, Unit $unit): DetailInvoiceCollection
     {
         $this->authorize('view', $unit);
 
@@ -30,12 +25,7 @@ class UnitDetailInvoicesController extends Controller
         return new DetailInvoiceCollection($detailInvoices);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Unit $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Unit $unit)
+    public function store(Request $request, Unit $unit): DetailInvoiceResource
     {
         $this->authorize('create', DetailInvoice::class);
 

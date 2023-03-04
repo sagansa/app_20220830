@@ -3,19 +3,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Presence;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\MonthlySalary;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PresenceCollection;
 
 class MonthlySalaryPresencesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MonthlySalary $monthlySalary
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, MonthlySalary $monthlySalary)
-    {
+    public function index(
+        Request $request,
+        MonthlySalary $monthlySalary
+    ): PresenceCollection {
         $this->authorize('view', $monthlySalary);
 
         $search = $request->get('search', '');
@@ -29,17 +27,11 @@ class MonthlySalaryPresencesController extends Controller
         return new PresenceCollection($presences);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MonthlySalary $monthlySalary
-     * @param \App\Models\Presence $presence
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         MonthlySalary $monthlySalary,
         Presence $presence
-    ) {
+    ): Response {
         $this->authorize('update', $monthlySalary);
 
         $monthlySalary->presences()->syncWithoutDetaching([$presence->id]);
@@ -47,17 +39,11 @@ class MonthlySalaryPresencesController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MonthlySalary $monthlySalary
-     * @param \App\Models\Presence $presence
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         MonthlySalary $monthlySalary,
         Presence $presence
-    ) {
+    ): Response {
         $this->authorize('update', $monthlySalary);
 
         $monthlySalary->presences()->detach($presence);

@@ -30,7 +30,7 @@ class UserPresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_presences()
+    public function it_gets_user_presences(): void
     {
         $user = User::factory()->create();
         $presences = Presence::factory()
@@ -47,7 +47,7 @@ class UserPresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_presences()
+    public function it_stores_the_user_presences(): void
     {
         $user = User::factory()->create();
         $data = Presence::factory()

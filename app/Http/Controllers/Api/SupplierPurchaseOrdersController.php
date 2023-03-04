@@ -10,13 +10,10 @@ use App\Http\Resources\PurchaseOrderCollection;
 
 class SupplierPurchaseOrdersController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Supplier $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Supplier $supplier)
-    {
+    public function index(
+        Request $request,
+        Supplier $supplier
+    ): PurchaseOrderCollection {
         $this->authorize('view', $supplier);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class SupplierPurchaseOrdersController extends Controller
         return new PurchaseOrderCollection($purchaseOrders);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Supplier $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Supplier $supplier)
-    {
+    public function store(
+        Request $request,
+        Supplier $supplier
+    ): PurchaseOrderResource {
         $this->authorize('create', PurchaseOrder::class);
 
         $validated = $request->validate([

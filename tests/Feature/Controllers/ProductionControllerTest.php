@@ -31,7 +31,7 @@ class ProductionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_productions()
+    public function it_displays_index_view_with_productions(): void
     {
         $productions = Production::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class ProductionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_production()
+    public function it_displays_create_view_for_production(): void
     {
         $response = $this->get(route('productions.create'));
 
@@ -58,7 +58,7 @@ class ProductionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_production()
+    public function it_stores_the_production(): void
     {
         $data = Production::factory()
             ->make()
@@ -76,7 +76,7 @@ class ProductionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_production()
+    public function it_displays_show_view_for_production(): void
     {
         $production = Production::factory()->create();
 
@@ -91,7 +91,7 @@ class ProductionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_production()
+    public function it_displays_edit_view_for_production(): void
     {
         $production = Production::factory()->create();
 
@@ -106,7 +106,7 @@ class ProductionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_production()
+    public function it_updates_the_production(): void
     {
         $production = Production::factory()->create();
 
@@ -135,7 +135,7 @@ class ProductionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_production()
+    public function it_deletes_the_production(): void
     {
         $production = Production::factory()->create();
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Production;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductionResource;
 use App\Http\Resources\ProductionCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\ProductionUpdateRequest;
 
 class ProductionController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): ProductionCollection
     {
         $this->authorize('view-any', Production::class);
 
@@ -29,11 +26,7 @@ class ProductionController extends Controller
         return new ProductionCollection($productions);
     }
 
-    /**
-     * @param \App\Http\Requests\ProductionStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ProductionStoreRequest $request)
+    public function store(ProductionStoreRequest $request): ProductionResource
     {
         $this->authorize('create', Production::class);
 
@@ -44,27 +37,19 @@ class ProductionController extends Controller
         return new ProductionResource($production);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Production $production
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Production $production)
-    {
+    public function show(
+        Request $request,
+        Production $production
+    ): ProductionResource {
         $this->authorize('view', $production);
 
         return new ProductionResource($production);
     }
 
-    /**
-     * @param \App\Http\Requests\ProductionUpdateRequest $request
-     * @param \App\Models\Production $production
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         ProductionUpdateRequest $request,
         Production $production
-    ) {
+    ): ProductionResource {
         $this->authorize('update', $production);
 
         $validated = $request->validated();
@@ -74,12 +59,7 @@ class ProductionController extends Controller
         return new ProductionResource($production);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Production $production
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Production $production)
+    public function destroy(Request $request, Production $production): Response
     {
         $this->authorize('delete', $production);
 

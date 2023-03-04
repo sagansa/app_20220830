@@ -10,13 +10,10 @@ use App\Http\Resources\FuelServiceCollection;
 
 class PaymentTypeFuelServicesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, PaymentType $paymentType)
-    {
+    public function index(
+        Request $request,
+        PaymentType $paymentType
+    ): FuelServiceCollection {
         $this->authorize('view', $paymentType);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class PaymentTypeFuelServicesController extends Controller
         return new FuelServiceCollection($fuelServices);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, PaymentType $paymentType)
-    {
+    public function store(
+        Request $request,
+        PaymentType $paymentType
+    ): FuelServiceResource {
         $this->authorize('create', FuelService::class);
 
         $validated = $request->validate([

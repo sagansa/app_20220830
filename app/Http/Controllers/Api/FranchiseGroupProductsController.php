@@ -10,13 +10,10 @@ use App\Http\Resources\ProductCollection;
 
 class FranchiseGroupProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\FranchiseGroup $franchiseGroup
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, FranchiseGroup $franchiseGroup)
-    {
+    public function index(
+        Request $request,
+        FranchiseGroup $franchiseGroup
+    ): ProductCollection {
         $this->authorize('view', $franchiseGroup);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class FranchiseGroupProductsController extends Controller
         return new ProductCollection($products);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\FranchiseGroup $franchiseGroup
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, FranchiseGroup $franchiseGroup)
-    {
+    public function store(
+        Request $request,
+        FranchiseGroup $franchiseGroup
+    ): ProductResource {
         $this->authorize('create', Product::class);
 
         $validated = $request->validate([

@@ -29,7 +29,7 @@ class OnlineShopProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_online_shop_providers()
+    public function it_displays_index_view_with_online_shop_providers(): void
     {
         $onlineShopProviders = OnlineShopProvider::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class OnlineShopProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_online_shop_provider()
+    public function it_displays_create_view_for_online_shop_provider(): void
     {
         $response = $this->get(route('online-shop-providers.create'));
 
@@ -56,7 +56,7 @@ class OnlineShopProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_online_shop_provider()
+    public function it_stores_the_online_shop_provider(): void
     {
         $data = OnlineShopProvider::factory()
             ->make()
@@ -76,7 +76,7 @@ class OnlineShopProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_online_shop_provider()
+    public function it_displays_show_view_for_online_shop_provider(): void
     {
         $onlineShopProvider = OnlineShopProvider::factory()->create();
 
@@ -93,7 +93,7 @@ class OnlineShopProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_online_shop_provider()
+    public function it_displays_edit_view_for_online_shop_provider(): void
     {
         $onlineShopProvider = OnlineShopProvider::factory()->create();
 
@@ -110,7 +110,7 @@ class OnlineShopProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_online_shop_provider()
+    public function it_updates_the_online_shop_provider(): void
     {
         $onlineShopProvider = OnlineShopProvider::factory()->create();
 
@@ -135,7 +135,7 @@ class OnlineShopProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_online_shop_provider()
+    public function it_deletes_the_online_shop_provider(): void
     {
         $onlineShopProvider = OnlineShopProvider::factory()->create();
 

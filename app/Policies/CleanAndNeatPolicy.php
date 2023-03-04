@@ -12,94 +12,64 @@ class CleanAndNeatPolicy
 
     /**
      * Determine whether the cleanAndNeat can view any models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('list cleanandneats');
     }
 
     /**
      * Determine whether the cleanAndNeat can view the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\CleanAndNeat  $model
-     * @return mixed
      */
-    public function view(User $user, CleanAndNeat $model)
+    public function view(User $user, CleanAndNeat $model): bool
     {
         return $user->hasPermissionTo('view cleanandneats');
     }
 
     /**
      * Determine whether the cleanAndNeat can create models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->hasPermissionTo('create cleanandneats');
     }
 
     /**
      * Determine whether the cleanAndNeat can update the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\CleanAndNeat  $model
-     * @return mixed
      */
-    public function update(User $user, CleanAndNeat $model)
+    public function update(User $user, CleanAndNeat $model): bool
     {
         return $user->hasPermissionTo('update cleanandneats');
     }
 
     /**
      * Determine whether the cleanAndNeat can delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\CleanAndNeat  $model
-     * @return mixed
      */
-    public function delete(User $user, CleanAndNeat $model)
+    public function delete(User $user, CleanAndNeat $model): bool
     {
         return $user->hasPermissionTo('delete cleanandneats');
     }
 
     /**
      * Determine whether the user can delete multiple instances of the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\CleanAndNeat  $model
-     * @return mixed
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->hasPermissionTo('delete cleanandneats');
     }
 
     /**
      * Determine whether the cleanAndNeat can restore the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\CleanAndNeat  $model
-     * @return mixed
      */
-    public function restore(User $user, CleanAndNeat $model)
+    public function restore(User $user, CleanAndNeat $model): bool
     {
         return false;
     }
 
     /**
      * Determine whether the cleanAndNeat can permanently delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\CleanAndNeat  $model
-     * @return mixed
      */
-    public function forceDelete(User $user, CleanAndNeat $model)
+    public function forceDelete(User $user, CleanAndNeat $model): bool
     {
         return false;
     }

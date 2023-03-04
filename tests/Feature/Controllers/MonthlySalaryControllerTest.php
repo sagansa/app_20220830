@@ -29,7 +29,7 @@ class MonthlySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_monthly_salaries()
+    public function it_displays_index_view_with_monthly_salaries(): void
     {
         $monthlySalaries = MonthlySalary::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class MonthlySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_monthly_salary()
+    public function it_displays_create_view_for_monthly_salary(): void
     {
         $response = $this->get(route('monthly-salaries.create'));
 
@@ -56,7 +56,7 @@ class MonthlySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_monthly_salary()
+    public function it_stores_the_monthly_salary(): void
     {
         $data = MonthlySalary::factory()
             ->make()
@@ -76,7 +76,7 @@ class MonthlySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_monthly_salary()
+    public function it_displays_show_view_for_monthly_salary(): void
     {
         $monthlySalary = MonthlySalary::factory()->create();
 
@@ -91,7 +91,7 @@ class MonthlySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_monthly_salary()
+    public function it_displays_edit_view_for_monthly_salary(): void
     {
         $monthlySalary = MonthlySalary::factory()->create();
 
@@ -106,7 +106,7 @@ class MonthlySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_monthly_salary()
+    public function it_updates_the_monthly_salary(): void
     {
         $monthlySalary = MonthlySalary::factory()->create();
 
@@ -131,7 +131,7 @@ class MonthlySalaryControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_monthly_salary()
+    public function it_deletes_the_monthly_salary(): void
     {
         $monthlySalary = MonthlySalary::factory()->create();
 

@@ -30,7 +30,7 @@ class RoomTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_rooms_list()
+    public function it_gets_rooms_list(): void
     {
         $rooms = Room::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class RoomTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_room()
+    public function it_stores_the_room(): void
     {
         $data = Room::factory()
             ->make()
@@ -60,7 +60,7 @@ class RoomTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_room()
+    public function it_updates_the_room(): void
     {
         $room = Room::factory()->create();
 
@@ -80,7 +80,7 @@ class RoomTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_room()
+    public function it_deletes_the_room(): void
     {
         $room = Room::factory()->create();
 

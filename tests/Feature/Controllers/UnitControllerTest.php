@@ -29,7 +29,7 @@ class UnitControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_units()
+    public function it_displays_index_view_with_units(): void
     {
         $units = Unit::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class UnitControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_unit()
+    public function it_displays_create_view_for_unit(): void
     {
         $response = $this->get(route('units.create'));
 
@@ -56,7 +56,7 @@ class UnitControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_unit()
+    public function it_stores_the_unit(): void
     {
         $data = Unit::factory()
             ->make()
@@ -74,7 +74,7 @@ class UnitControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_unit()
+    public function it_displays_show_view_for_unit(): void
     {
         $unit = Unit::factory()->create();
 
@@ -89,7 +89,7 @@ class UnitControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_unit()
+    public function it_displays_edit_view_for_unit(): void
     {
         $unit = Unit::factory()->create();
 
@@ -104,7 +104,7 @@ class UnitControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_unit()
+    public function it_updates_the_unit(): void
     {
         $unit = Unit::factory()->create();
 
@@ -125,7 +125,7 @@ class UnitControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_unit()
+    public function it_deletes_the_unit(): void
     {
         $unit = Unit::factory()->create();
 

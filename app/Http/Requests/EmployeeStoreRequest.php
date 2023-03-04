@@ -9,20 +9,16 @@ class EmployeeStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'identity_no' => ['required', 'numeric', 'digits:16', 'min:0'],
@@ -45,10 +41,6 @@ class EmployeeStoreRequest extends FormRequest
                 'numeric',
             ],
             'address' => ['required', 'max:255', 'string'],
-            'district_id' => ['nullable', 'exists:districts,id'],
-            'province_id' => ['nullable', 'exists:provinces,id'],
-            'regency_id' => ['nullable', 'exists:regencies,id'],
-            'village_id' => ['nullable', 'exists:villages,id'],
             'codepos' => ['required', 'integer', 'digits:5'],
             'gps_location' => ['nullable', 'max:255', 'string'],
             'siblings_name' => ['required', 'max:255', 'string'],
@@ -73,6 +65,9 @@ class EmployeeStoreRequest extends FormRequest
             'image_selfie' => ['required', 'image', 'max:1024'],
             'employee_status_id' => ['nullable', 'exists:employee_statuses,id'],
             'notes' => ['required', 'max:255', 'string'],
+            'province_id' => ['nullable', 'exists:provinces,id'],
+            'regency_id' => ['nullable', 'exists:regencies,id'],
+            'district_id' => ['nullable', 'exists:districts,id'],
         ];
     }
 }

@@ -31,7 +31,7 @@ class StoreContractLocationsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_contract_locations()
+    public function it_gets_store_contract_locations(): void
     {
         $store = Store::factory()->create();
         $contractLocations = ContractLocation::factory()
@@ -50,7 +50,7 @@ class StoreContractLocationsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_contract_locations()
+    public function it_stores_the_store_contract_locations(): void
     {
         $store = Store::factory()->create();
         $data = ContractLocation::factory()

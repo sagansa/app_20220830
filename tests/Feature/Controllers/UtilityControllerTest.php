@@ -33,7 +33,7 @@ class UtilityControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_utilities()
+    public function it_displays_index_view_with_utilities(): void
     {
         $utilities = Utility::factory()
             ->count(5)
@@ -50,7 +50,7 @@ class UtilityControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_utility()
+    public function it_displays_create_view_for_utility(): void
     {
         $response = $this->get(route('utilities.create'));
 
@@ -60,7 +60,7 @@ class UtilityControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_utility()
+    public function it_stores_the_utility(): void
     {
         $data = Utility::factory()
             ->make()
@@ -78,7 +78,7 @@ class UtilityControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_utility()
+    public function it_displays_show_view_for_utility(): void
     {
         $utility = Utility::factory()->create();
 
@@ -93,7 +93,7 @@ class UtilityControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_utility()
+    public function it_displays_edit_view_for_utility(): void
     {
         $utility = Utility::factory()->create();
 
@@ -108,7 +108,7 @@ class UtilityControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_utility()
+    public function it_updates_the_utility(): void
     {
         $utility = Utility::factory()->create();
 
@@ -139,7 +139,7 @@ class UtilityControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_utility()
+    public function it_deletes_the_utility(): void
     {
         $utility = Utility::factory()->create();
 

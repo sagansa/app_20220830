@@ -10,13 +10,10 @@ use App\Http\Resources\ProductionMainFromCollection;
 
 class ProductionProductionMainFromsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Production $production
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Production $production)
-    {
+    public function index(
+        Request $request,
+        Production $production
+    ): ProductionMainFromCollection {
         $this->authorize('view', $production);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class ProductionProductionMainFromsController extends Controller
         return new ProductionMainFromCollection($productionMainFroms);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Production $production
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Production $production)
-    {
+    public function store(
+        Request $request,
+        Production $production
+    ): ProductionMainFromResource {
         $this->authorize('create', ProductionMainFrom::class);
 
         $validated = $request->validate([

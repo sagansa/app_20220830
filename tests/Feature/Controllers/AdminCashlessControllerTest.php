@@ -31,7 +31,7 @@ class AdminCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_admin_cashlesses()
+    public function it_displays_index_view_with_admin_cashlesses(): void
     {
         $adminCashlesses = AdminCashless::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class AdminCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_admin_cashless()
+    public function it_displays_create_view_for_admin_cashless(): void
     {
         $response = $this->get(route('admin-cashlesses.create'));
 
@@ -58,7 +58,7 @@ class AdminCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_admin_cashless()
+    public function it_stores_the_admin_cashless(): void
     {
         $data = AdminCashless::factory()
             ->make()
@@ -78,7 +78,7 @@ class AdminCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_admin_cashless()
+    public function it_displays_show_view_for_admin_cashless(): void
     {
         $adminCashless = AdminCashless::factory()->create();
 
@@ -93,7 +93,7 @@ class AdminCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_admin_cashless()
+    public function it_displays_edit_view_for_admin_cashless(): void
     {
         $adminCashless = AdminCashless::factory()->create();
 
@@ -108,7 +108,7 @@ class AdminCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_admin_cashless()
+    public function it_updates_the_admin_cashless(): void
     {
         $adminCashless = AdminCashless::factory()->create();
 
@@ -138,7 +138,7 @@ class AdminCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_admin_cashless()
+    public function it_deletes_the_admin_cashless(): void
     {
         $adminCashless = AdminCashless::factory()->create();
 

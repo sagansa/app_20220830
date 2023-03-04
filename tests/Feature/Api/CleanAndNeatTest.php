@@ -30,7 +30,7 @@ class CleanAndNeatTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_clean_and_neats_list()
+    public function it_gets_clean_and_neats_list(): void
     {
         $cleanAndNeats = CleanAndNeat::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class CleanAndNeatTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_clean_and_neat()
+    public function it_stores_the_clean_and_neat(): void
     {
         $data = CleanAndNeat::factory()
             ->make()
@@ -60,7 +60,7 @@ class CleanAndNeatTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_clean_and_neat()
+    public function it_updates_the_clean_and_neat(): void
     {
         $cleanAndNeat = CleanAndNeat::factory()->create();
 
@@ -91,7 +91,7 @@ class CleanAndNeatTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_clean_and_neat()
+    public function it_deletes_the_clean_and_neat(): void
     {
         $cleanAndNeat = CleanAndNeat::factory()->create();
 

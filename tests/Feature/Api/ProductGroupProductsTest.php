@@ -31,7 +31,7 @@ class ProductGroupProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_product_group_products()
+    public function it_gets_product_group_products(): void
     {
         $productGroup = ProductGroup::factory()->create();
         $products = Product::factory()
@@ -50,7 +50,7 @@ class ProductGroupProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_product_group_products()
+    public function it_stores_the_product_group_products(): void
     {
         $productGroup = ProductGroup::factory()->create();
         $data = Product::factory()

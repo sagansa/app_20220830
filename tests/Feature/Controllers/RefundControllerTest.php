@@ -29,7 +29,7 @@ class RefundControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_refunds()
+    public function it_displays_index_view_with_refunds(): void
     {
         $refunds = Refund::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class RefundControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_refund()
+    public function it_displays_create_view_for_refund(): void
     {
         $response = $this->get(route('refunds.create'));
 
@@ -56,7 +56,7 @@ class RefundControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_refund()
+    public function it_stores_the_refund(): void
     {
         $data = Refund::factory()
             ->make()
@@ -74,7 +74,7 @@ class RefundControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_refund()
+    public function it_displays_show_view_for_refund(): void
     {
         $refund = Refund::factory()->create();
 
@@ -89,7 +89,7 @@ class RefundControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_refund()
+    public function it_displays_edit_view_for_refund(): void
     {
         $refund = Refund::factory()->create();
 
@@ -104,7 +104,7 @@ class RefundControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_refund()
+    public function it_updates_the_refund(): void
     {
         $refund = Refund::factory()->create();
 
@@ -128,7 +128,7 @@ class RefundControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_refund()
+    public function it_deletes_the_refund(): void
     {
         $refund = Refund::factory()->create();
 

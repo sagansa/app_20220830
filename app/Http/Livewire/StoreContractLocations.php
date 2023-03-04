@@ -8,6 +8,7 @@ use App\Models\Regency;
 use App\Models\Village;
 use App\Models\Province;
 use App\Models\District;
+use Illuminate\View\View;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Models\ContractLocation;
@@ -68,7 +69,7 @@ class StoreContractLocations extends Component
         ],
     ];
 
-    public function mount(Store $store)
+    public function mount(Store $store): void
     {
         $this->store = $store;
         $this->provincesForSelect = Province::pluck('name', 'id');
@@ -78,7 +79,7 @@ class StoreContractLocations extends Component
         $this->resetContractLocationData();
     }
 
-    public function resetContractLocationData()
+    public function resetContractLocationData(): void
     {
         $this->contractLocation = new ContractLocation();
 
@@ -93,7 +94,7 @@ class StoreContractLocations extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newContractLocation()
+    public function newContractLocation(): void
     {
         $this->editing = false;
         $this->modalTitle = trans('crud.store_contract_locations.new_title');
@@ -102,36 +103,37 @@ class StoreContractLocations extends Component
         $this->showModal();
     }
 
-    public function editContractLocation(ContractLocation $contractLocation)
-    {
+    public function editContractLocation(
+        ContractLocation $contractLocation
+    ): void {
         $this->editing = true;
         $this->modalTitle = trans('crud.store_contract_locations.edit_title');
         $this->contractLocation = $contractLocation;
 
-        $this->contractLocationFromDate = $this->contractLocation->from_date->format(
-            'Y-m-d'
-        );
-        $this->contractLocationUntilDate = $this->contractLocation->until_date->format(
-            'Y-m-d'
-        );
+        $this->contractLocationFromDate = optional(
+            $this->contractLocation->from_date
+        )->format('Y-m-d');
+        $this->contractLocationUntilDate = optional(
+            $this->contractLocation->until_date
+        )->format('Y-m-d');
 
         $this->dispatchBrowserEvent('refresh');
 
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -149,10 +151,10 @@ class StoreContractLocations extends Component
             );
         }
 
-        $this->contractLocation->from_date = \Carbon\Carbon::parse(
+        $this->contractLocation->from_date = \Carbon\Carbon::make(
             $this->contractLocationFromDate
         );
-        $this->contractLocation->until_date = \Carbon\Carbon::parse(
+        $this->contractLocation->until_date = \Carbon\Carbon::make(
             $this->contractLocationUntilDate
         );
 
@@ -163,7 +165,7 @@ class StoreContractLocations extends Component
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function destroySelected(): void
     {
         $this->authorize('delete-any', ContractLocation::class);
 
@@ -183,7 +185,7 @@ class StoreContractLocations extends Component
         $this->resetContractLocationData();
     }
 
-    public function toggleFullSelection()
+    public function toggleFullSelection(): void
     {
         if (!$this->allSelected) {
             $this->selected = [];
@@ -195,7 +197,7 @@ class StoreContractLocations extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.store-contract-locations', [
             'contractLocations' => $this->store

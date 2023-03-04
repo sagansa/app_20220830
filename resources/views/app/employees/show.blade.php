@@ -93,42 +93,6 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
-                            >@lang('crud.employees.inputs.district_id')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ optional($employee->district)->name ?? '-'
-                            }}</x-shows.dd
-                        >
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
-                            >@lang('crud.employees.inputs.province_id')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ optional($employee->province)->name ?? '-'
-                            }}</x-shows.dd
-                        >
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
-                            >@lang('crud.employees.inputs.regency_id')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ optional($employee->regency)->name ?? '-'
-                            }}</x-shows.dd
-                        >
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
-                            >@lang('crud.employees.inputs.village_id')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ optional($employee->village)->name ?? '-'
-                            }}</x-shows.dd
-                        >
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
                             >@lang('crud.employees.inputs.codepos')</x-shows.dt
                         >
                         <x-shows.dd>{{ $employee->codepos ?? '-' }}</x-shows.dd>
@@ -287,6 +251,33 @@
                             >@lang('crud.employees.inputs.notes')</x-shows.dt
                         >
                         <x-shows.dd>{{ $employee->notes ?? '-' }}</x-shows.dd>
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
+                            >@lang('crud.employees.inputs.province_id')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ optional($employee->province)->name ?? '-'
+                            }}</x-shows.dd
+                        >
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
+                            >@lang('crud.employees.inputs.regency_id')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ optional($employee->regency)->name ?? '-'
+                            }}</x-shows.dd
+                        >
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
+                            >@lang('crud.employees.inputs.district_id')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ optional($employee->district)->name ?? '-'
+                            }}</x-shows.dd
+                        >
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt>Created Date</x-shows.dt>

@@ -9,10 +9,8 @@ class ContractEmployeeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         ContractEmployee::factory()
             ->count(5)

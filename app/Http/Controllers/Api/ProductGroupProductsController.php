@@ -10,13 +10,10 @@ use App\Http\Resources\ProductCollection;
 
 class ProductGroupProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ProductGroup $productGroup
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, ProductGroup $productGroup)
-    {
+    public function index(
+        Request $request,
+        ProductGroup $productGroup
+    ): ProductCollection {
         $this->authorize('view', $productGroup);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class ProductGroupProductsController extends Controller
         return new ProductCollection($products);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ProductGroup $productGroup
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, ProductGroup $productGroup)
-    {
+    public function store(
+        Request $request,
+        ProductGroup $productGroup
+    ): ProductResource {
         $this->authorize('create', Product::class);
 
         $validated = $request->validate([

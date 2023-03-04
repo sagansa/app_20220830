@@ -31,7 +31,7 @@ class StoreClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_closing_stores()
+    public function it_gets_store_closing_stores(): void
     {
         $store = Store::factory()->create();
         $closingStores = ClosingStore::factory()
@@ -50,7 +50,7 @@ class StoreClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_closing_stores()
+    public function it_stores_the_store_closing_stores(): void
     {
         $store = Store::factory()->create();
         $data = ClosingStore::factory()

@@ -34,7 +34,7 @@ class SalesOrderEmployeeTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_sales_order_employees_list()
+    public function it_gets_sales_order_employees_list(): void
     {
         $salesOrderEmployees = SalesOrderEmployee::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class SalesOrderEmployeeTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_sales_order_employee()
+    public function it_stores_the_sales_order_employee(): void
     {
         $data = SalesOrderEmployee::factory()
             ->make()
@@ -67,7 +67,7 @@ class SalesOrderEmployeeTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_sales_order_employee()
+    public function it_updates_the_sales_order_employee(): void
     {
         $salesOrderEmployee = SalesOrderEmployee::factory()->create();
 
@@ -101,7 +101,7 @@ class SalesOrderEmployeeTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_sales_order_employee()
+    public function it_deletes_the_sales_order_employee(): void
     {
         $salesOrderEmployee = SalesOrderEmployee::factory()->create();
 

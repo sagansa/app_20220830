@@ -10,12 +10,7 @@ use App\Http\Resources\VehicleTaxCollection;
 
 class UserVehicleTaxesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user): VehicleTaxCollection
     {
         $this->authorize('view', $user);
 
@@ -30,12 +25,7 @@ class UserVehicleTaxesController extends Controller
         return new VehicleTaxCollection($vehicleTaxes);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): VehicleTaxResource
     {
         $this->authorize('create', VehicleTax::class);
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\StoreCashless;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\StoreCashlessResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\StoreCashlessUpdateRequest;
 
 class StoreCashlessController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): StoreCashlessCollection
     {
         $this->authorize('view-any', StoreCashless::class);
 
@@ -29,12 +26,9 @@ class StoreCashlessController extends Controller
         return new StoreCashlessCollection($storeCashlesses);
     }
 
-    /**
-     * @param \App\Http\Requests\StoreCashlessStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreCashlessStoreRequest $request)
-    {
+    public function store(
+        StoreCashlessStoreRequest $request
+    ): StoreCashlessResource {
         $this->authorize('create', StoreCashless::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class StoreCashlessController extends Controller
         return new StoreCashlessResource($storeCashless);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\StoreCashless $storeCashless
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, StoreCashless $storeCashless)
-    {
+    public function show(
+        Request $request,
+        StoreCashless $storeCashless
+    ): StoreCashlessResource {
         $this->authorize('view', $storeCashless);
 
         return new StoreCashlessResource($storeCashless);
     }
 
-    /**
-     * @param \App\Http\Requests\StoreCashlessUpdateRequest $request
-     * @param \App\Models\StoreCashless $storeCashless
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         StoreCashlessUpdateRequest $request,
         StoreCashless $storeCashless
-    ) {
+    ): StoreCashlessResource {
         $this->authorize('update', $storeCashless);
 
         $validated = $request->validated();
@@ -74,13 +60,10 @@ class StoreCashlessController extends Controller
         return new StoreCashlessResource($storeCashless);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\StoreCashless $storeCashless
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, StoreCashless $storeCashless)
-    {
+    public function destroy(
+        Request $request,
+        StoreCashless $storeCashless
+    ): Response {
         $this->authorize('delete', $storeCashless);
 
         $storeCashless->delete();

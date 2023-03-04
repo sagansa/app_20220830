@@ -9,10 +9,8 @@ class ClosingStoreSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         ClosingStore::factory()
             ->count(5)

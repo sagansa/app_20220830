@@ -9,10 +9,8 @@ class AccountCashlessSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         AccountCashless::factory()
             ->count(5)

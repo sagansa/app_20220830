@@ -31,7 +31,7 @@ class ClosingCourierClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_closing_courier_closing_stores()
+    public function it_gets_closing_courier_closing_stores(): void
     {
         $closingCourier = ClosingCourier::factory()->create();
         $closingStore = ClosingStore::factory()->create();
@@ -48,7 +48,7 @@ class ClosingCourierClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_closing_stores_to_closing_courier()
+    public function it_can_attach_closing_stores_to_closing_courier(): void
     {
         $closingCourier = ClosingCourier::factory()->create();
         $closingStore = ClosingStore::factory()->create();
@@ -73,7 +73,7 @@ class ClosingCourierClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_closing_stores_from_closing_courier()
+    public function it_can_detach_closing_stores_from_closing_courier(): void
     {
         $closingCourier = ClosingCourier::factory()->create();
         $closingStore = ClosingStore::factory()->create();

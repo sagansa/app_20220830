@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\PurchaseOrder;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -13,11 +14,7 @@ use App\Http\Requests\PurchaseOrderUpdateRequest;
 
 class PurchaseOrderController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): PurchaseOrderCollection
     {
         $this->authorize('view-any', PurchaseOrder::class);
 
@@ -30,12 +27,9 @@ class PurchaseOrderController extends Controller
         return new PurchaseOrderCollection($purchaseOrders);
     }
 
-    /**
-     * @param \App\Http\Requests\PurchaseOrderStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PurchaseOrderStoreRequest $request)
-    {
+    public function store(
+        PurchaseOrderStoreRequest $request
+    ): PurchaseOrderResource {
         $this->authorize('create', PurchaseOrder::class);
 
         $validated = $request->validated();
@@ -48,27 +42,19 @@ class PurchaseOrderController extends Controller
         return new PurchaseOrderResource($purchaseOrder);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PurchaseOrder $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, PurchaseOrder $purchaseOrder)
-    {
+    public function show(
+        Request $request,
+        PurchaseOrder $purchaseOrder
+    ): PurchaseOrderResource {
         $this->authorize('view', $purchaseOrder);
 
         return new PurchaseOrderResource($purchaseOrder);
     }
 
-    /**
-     * @param \App\Http\Requests\PurchaseOrderUpdateRequest $request
-     * @param \App\Models\PurchaseOrder $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         PurchaseOrderUpdateRequest $request,
         PurchaseOrder $purchaseOrder
-    ) {
+    ): PurchaseOrderResource {
         $this->authorize('update', $purchaseOrder);
 
         $validated = $request->validated();
@@ -86,13 +72,10 @@ class PurchaseOrderController extends Controller
         return new PurchaseOrderResource($purchaseOrder);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PurchaseOrder $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, PurchaseOrder $purchaseOrder)
-    {
+    public function destroy(
+        Request $request,
+        PurchaseOrder $purchaseOrder
+    ): Response {
         $this->authorize('delete', $purchaseOrder);
 
         if ($purchaseOrder->image) {

@@ -31,7 +31,7 @@ class RemainingStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_remaining_stocks()
+    public function it_displays_index_view_with_remaining_stocks(): void
     {
         $remainingStocks = RemainingStock::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class RemainingStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_remaining_stock()
+    public function it_displays_create_view_for_remaining_stock(): void
     {
         $response = $this->get(route('remaining-stocks.create'));
 
@@ -58,7 +58,7 @@ class RemainingStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_remaining_stock()
+    public function it_stores_the_remaining_stock(): void
     {
         $data = RemainingStock::factory()
             ->make()
@@ -78,7 +78,7 @@ class RemainingStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_remaining_stock()
+    public function it_displays_show_view_for_remaining_stock(): void
     {
         $remainingStock = RemainingStock::factory()->create();
 
@@ -93,7 +93,7 @@ class RemainingStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_remaining_stock()
+    public function it_displays_edit_view_for_remaining_stock(): void
     {
         $remainingStock = RemainingStock::factory()->create();
 
@@ -108,7 +108,7 @@ class RemainingStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_remaining_stock()
+    public function it_updates_the_remaining_stock(): void
     {
         $remainingStock = RemainingStock::factory()->create();
 
@@ -142,7 +142,7 @@ class RemainingStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_remaining_stock()
+    public function it_deletes_the_remaining_stock(): void
     {
         $remainingStock = RemainingStock::factory()->create();
 

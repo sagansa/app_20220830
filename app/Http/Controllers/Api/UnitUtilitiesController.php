@@ -10,12 +10,7 @@ use App\Http\Resources\UtilityCollection;
 
 class UnitUtilitiesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Unit $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Unit $unit)
+    public function index(Request $request, Unit $unit): UtilityCollection
     {
         $this->authorize('view', $unit);
 
@@ -30,12 +25,7 @@ class UnitUtilitiesController extends Controller
         return new UtilityCollection($utilities);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Unit $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Unit $unit)
+    public function store(Request $request, Unit $unit): UtilityResource
     {
         $this->authorize('create', Utility::class);
 

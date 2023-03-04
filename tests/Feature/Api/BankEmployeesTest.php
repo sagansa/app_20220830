@@ -31,7 +31,7 @@ class BankEmployeesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_bank_employees()
+    public function it_gets_bank_employees(): void
     {
         $bank = Bank::factory()->create();
         $employees = Employee::factory()
@@ -48,7 +48,7 @@ class BankEmployeesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_bank_employees()
+    public function it_stores_the_bank_employees(): void
     {
         $bank = Bank::factory()->create();
         $data = Employee::factory()
@@ -62,6 +62,7 @@ class BankEmployeesTest extends TestCase
             $data
         );
 
+        unset($data['village_id']);
         unset($data['user_id']);
 
         $this->assertDatabaseHas('employees', $data);

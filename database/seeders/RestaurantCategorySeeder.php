@@ -9,10 +9,8 @@ class RestaurantCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         RestaurantCategory::factory()
             ->count(5)

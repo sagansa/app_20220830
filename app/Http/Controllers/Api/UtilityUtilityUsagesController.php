@@ -10,13 +10,10 @@ use App\Http\Resources\UtilityUsageCollection;
 
 class UtilityUtilityUsagesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Utility $utility
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Utility $utility)
-    {
+    public function index(
+        Request $request,
+        Utility $utility
+    ): UtilityUsageCollection {
         $this->authorize('view', $utility);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class UtilityUtilityUsagesController extends Controller
         return new UtilityUsageCollection($utilityUsages);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Utility $utility
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Utility $utility)
-    {
+    public function store(
+        Request $request,
+        Utility $utility
+    ): UtilityUsageResource {
         $this->authorize('create', UtilityUsage::class);
 
         $validated = $request->validate([

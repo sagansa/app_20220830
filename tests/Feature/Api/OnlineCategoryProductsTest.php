@@ -31,7 +31,7 @@ class OnlineCategoryProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_online_category_products()
+    public function it_gets_online_category_products(): void
     {
         $onlineCategory = OnlineCategory::factory()->create();
         $products = Product::factory()
@@ -50,7 +50,7 @@ class OnlineCategoryProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_online_category_products()
+    public function it_stores_the_online_category_products(): void
     {
         $onlineCategory = OnlineCategory::factory()->create();
         $data = Product::factory()

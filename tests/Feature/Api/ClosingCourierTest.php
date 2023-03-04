@@ -32,7 +32,7 @@ class ClosingCourierTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_closing_couriers_list()
+    public function it_gets_closing_couriers_list(): void
     {
         $closingCouriers = ClosingCourier::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class ClosingCourierTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_closing_courier()
+    public function it_stores_the_closing_courier(): void
     {
         $data = ClosingCourier::factory()
             ->make()
@@ -65,7 +65,7 @@ class ClosingCourierTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_closing_courier()
+    public function it_updates_the_closing_courier(): void
     {
         $closingCourier = ClosingCourier::factory()->create();
 
@@ -100,7 +100,7 @@ class ClosingCourierTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_closing_courier()
+    public function it_deletes_the_closing_courier(): void
     {
         $closingCourier = ClosingCourier::factory()->create();
 

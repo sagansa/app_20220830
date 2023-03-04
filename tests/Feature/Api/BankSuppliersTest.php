@@ -31,7 +31,7 @@ class BankSuppliersTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_bank_suppliers()
+    public function it_gets_bank_suppliers(): void
     {
         $bank = Bank::factory()->create();
         $suppliers = Supplier::factory()
@@ -48,7 +48,7 @@ class BankSuppliersTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_bank_suppliers()
+    public function it_stores_the_bank_suppliers(): void
     {
         $bank = Bank::factory()->create();
         $data = Supplier::factory()

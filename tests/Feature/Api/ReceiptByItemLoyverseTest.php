@@ -30,7 +30,7 @@ class ReceiptByItemLoyverseTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_receipt_by_item_loyverses_list()
+    public function it_gets_receipt_by_item_loyverses_list(): void
     {
         $receiptByItemLoyverses = ReceiptByItemLoyverse::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class ReceiptByItemLoyverseTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_receipt_by_item_loyverse()
+    public function it_stores_the_receipt_by_item_loyverse(): void
     {
         $data = ReceiptByItemLoyverse::factory()
             ->make()
@@ -65,7 +65,7 @@ class ReceiptByItemLoyverseTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_receipt_by_item_loyverse()
+    public function it_updates_the_receipt_by_item_loyverse(): void
     {
         $receiptByItemLoyverse = ReceiptByItemLoyverse::factory()->create();
 
@@ -113,7 +113,7 @@ class ReceiptByItemLoyverseTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_receipt_by_item_loyverse()
+    public function it_deletes_the_receipt_by_item_loyverse(): void
     {
         $receiptByItemLoyverse = ReceiptByItemLoyverse::factory()->create();
 

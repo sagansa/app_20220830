@@ -31,7 +31,7 @@ class StoreSalesOrderOnlinesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_sales_order_onlines()
+    public function it_gets_store_sales_order_onlines(): void
     {
         $store = Store::factory()->create();
         $salesOrderOnlines = SalesOrderOnline::factory()
@@ -50,7 +50,7 @@ class StoreSalesOrderOnlinesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_sales_order_onlines()
+    public function it_stores_the_store_sales_order_onlines(): void
     {
         $store = Store::factory()->create();
         $data = SalesOrderOnline::factory()

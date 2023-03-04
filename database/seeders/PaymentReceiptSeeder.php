@@ -9,10 +9,8 @@ class PaymentReceiptSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         PaymentReceipt::factory()
             ->count(5)

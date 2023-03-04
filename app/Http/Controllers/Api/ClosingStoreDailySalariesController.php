@@ -4,18 +4,16 @@ namespace App\Http\Controllers\Api;
 use App\Models\DailySalary;
 use Illuminate\Http\Request;
 use App\Models\ClosingStore;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DailySalaryCollection;
 
 class ClosingStoreDailySalariesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, ClosingStore $closingStore)
-    {
+    public function index(
+        Request $request,
+        ClosingStore $closingStore
+    ): DailySalaryCollection {
         $this->authorize('view', $closingStore);
 
         $search = $request->get('search', '');
@@ -29,17 +27,11 @@ class ClosingStoreDailySalariesController extends Controller
         return new DailySalaryCollection($dailySalaries);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
-     * @param \App\Models\DailySalary $dailySalary
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         ClosingStore $closingStore,
         DailySalary $dailySalary
-    ) {
+    ): Response {
         $this->authorize('update', $closingStore);
 
         $closingStore
@@ -49,17 +41,11 @@ class ClosingStoreDailySalariesController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
-     * @param \App\Models\DailySalary $dailySalary
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         ClosingStore $closingStore,
         DailySalary $dailySalary
-    ) {
+    ): Response {
         $this->authorize('update', $closingStore);
 
         $closingStore->dailySalaries()->detach($dailySalary);

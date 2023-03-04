@@ -29,7 +29,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_users_list()
+    public function it_gets_users_list(): void
     {
         $users = User::factory()
             ->count(5)
@@ -43,7 +43,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user()
+    public function it_stores_the_user(): void
     {
         $data = User::factory()
             ->make()
@@ -64,7 +64,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_user()
+    public function it_updates_the_user(): void
     {
         $user = User::factory()->create();
 
@@ -92,7 +92,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_user()
+    public function it_deletes_the_user(): void
     {
         $user = User::factory()->create();
 

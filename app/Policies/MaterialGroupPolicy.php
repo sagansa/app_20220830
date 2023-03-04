@@ -12,94 +12,64 @@ class MaterialGroupPolicy
 
     /**
      * Determine whether the materialGroup can view any models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('list materialgroups');
     }
 
     /**
      * Determine whether the materialGroup can view the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\MaterialGroup  $model
-     * @return mixed
      */
-    public function view(User $user, MaterialGroup $model)
+    public function view(User $user, MaterialGroup $model): bool
     {
         return $user->hasPermissionTo('view materialgroups');
     }
 
     /**
      * Determine whether the materialGroup can create models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->hasPermissionTo('create materialgroups');
     }
 
     /**
      * Determine whether the materialGroup can update the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\MaterialGroup  $model
-     * @return mixed
      */
-    public function update(User $user, MaterialGroup $model)
+    public function update(User $user, MaterialGroup $model): bool
     {
         return $user->hasPermissionTo('update materialgroups');
     }
 
     /**
      * Determine whether the materialGroup can delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\MaterialGroup  $model
-     * @return mixed
      */
-    public function delete(User $user, MaterialGroup $model)
+    public function delete(User $user, MaterialGroup $model): bool
     {
         return $user->hasPermissionTo('delete materialgroups');
     }
 
     /**
      * Determine whether the user can delete multiple instances of the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\MaterialGroup  $model
-     * @return mixed
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->hasPermissionTo('delete materialgroups');
     }
 
     /**
      * Determine whether the materialGroup can restore the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\MaterialGroup  $model
-     * @return mixed
      */
-    public function restore(User $user, MaterialGroup $model)
+    public function restore(User $user, MaterialGroup $model): bool
     {
         return false;
     }
 
     /**
      * Determine whether the materialGroup can permanently delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\MaterialGroup  $model
-     * @return mixed
      */
-    public function forceDelete(User $user, MaterialGroup $model)
+    public function forceDelete(User $user, MaterialGroup $model): bool
     {
         return false;
     }

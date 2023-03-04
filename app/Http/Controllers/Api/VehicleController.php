@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\VehicleResource;
 use Illuminate\Support\Facades\Storage;
@@ -13,11 +14,7 @@ use App\Http\Requests\VehicleUpdateRequest;
 
 class VehicleController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): VehicleCollection
     {
         $this->authorize('view-any', Vehicle::class);
 
@@ -30,11 +27,7 @@ class VehicleController extends Controller
         return new VehicleCollection($vehicles);
     }
 
-    /**
-     * @param \App\Http\Requests\VehicleStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(VehicleStoreRequest $request)
+    public function store(VehicleStoreRequest $request): VehicleResource
     {
         $this->authorize('create', Vehicle::class);
 
@@ -48,25 +41,17 @@ class VehicleController extends Controller
         return new VehicleResource($vehicle);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Vehicle $vehicle
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Vehicle $vehicle)
+    public function show(Request $request, Vehicle $vehicle): VehicleResource
     {
         $this->authorize('view', $vehicle);
 
         return new VehicleResource($vehicle);
     }
 
-    /**
-     * @param \App\Http\Requests\VehicleUpdateRequest $request
-     * @param \App\Models\Vehicle $vehicle
-     * @return \Illuminate\Http\Response
-     */
-    public function update(VehicleUpdateRequest $request, Vehicle $vehicle)
-    {
+    public function update(
+        VehicleUpdateRequest $request,
+        Vehicle $vehicle
+    ): VehicleResource {
         $this->authorize('update', $vehicle);
 
         $validated = $request->validated();
@@ -84,12 +69,7 @@ class VehicleController extends Controller
         return new VehicleResource($vehicle);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Vehicle $vehicle
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Vehicle $vehicle)
+    public function destroy(Request $request, Vehicle $vehicle): Response
     {
         $this->authorize('delete', $vehicle);
 

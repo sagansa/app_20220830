@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\OnlineShopProvider;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OnlineShopProviderResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\OnlineShopProviderUpdateRequest;
 
 class OnlineShopProviderController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): OnlineShopProviderCollection
     {
         $this->authorize('view-any', OnlineShopProvider::class);
 
@@ -29,12 +26,9 @@ class OnlineShopProviderController extends Controller
         return new OnlineShopProviderCollection($onlineShopProviders);
     }
 
-    /**
-     * @param \App\Http\Requests\OnlineShopProviderStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(OnlineShopProviderStoreRequest $request)
-    {
+    public function store(
+        OnlineShopProviderStoreRequest $request
+    ): OnlineShopProviderResource {
         $this->authorize('create', OnlineShopProvider::class);
 
         $validated = $request->validated();
@@ -44,29 +38,19 @@ class OnlineShopProviderController extends Controller
         return new OnlineShopProviderResource($onlineShopProvider);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\OnlineShopProvider $onlineShopProvider
-     * @return \Illuminate\Http\Response
-     */
     public function show(
         Request $request,
         OnlineShopProvider $onlineShopProvider
-    ) {
+    ): OnlineShopProviderResource {
         $this->authorize('view', $onlineShopProvider);
 
         return new OnlineShopProviderResource($onlineShopProvider);
     }
 
-    /**
-     * @param \App\Http\Requests\OnlineShopProviderUpdateRequest $request
-     * @param \App\Models\OnlineShopProvider $onlineShopProvider
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         OnlineShopProviderUpdateRequest $request,
         OnlineShopProvider $onlineShopProvider
-    ) {
+    ): OnlineShopProviderResource {
         $this->authorize('update', $onlineShopProvider);
 
         $validated = $request->validated();
@@ -76,15 +60,10 @@ class OnlineShopProviderController extends Controller
         return new OnlineShopProviderResource($onlineShopProvider);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\OnlineShopProvider $onlineShopProvider
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         OnlineShopProvider $onlineShopProvider
-    ) {
+    ): Response {
         $this->authorize('delete', $onlineShopProvider);
 
         $onlineShopProvider->delete();

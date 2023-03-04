@@ -35,7 +35,7 @@ class SupplierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_suppliers()
+    public function it_displays_index_view_with_suppliers(): void
     {
         $suppliers = Supplier::factory()
             ->count(5)
@@ -52,7 +52,7 @@ class SupplierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_supplier()
+    public function it_displays_create_view_for_supplier(): void
     {
         $response = $this->get(route('suppliers.create'));
 
@@ -62,7 +62,7 @@ class SupplierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_supplier()
+    public function it_stores_the_supplier(): void
     {
         $data = Supplier::factory()
             ->make()
@@ -82,7 +82,7 @@ class SupplierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_supplier()
+    public function it_displays_show_view_for_supplier(): void
     {
         $supplier = Supplier::factory()->create();
 
@@ -97,7 +97,7 @@ class SupplierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_supplier()
+    public function it_displays_edit_view_for_supplier(): void
     {
         $supplier = Supplier::factory()->create();
 
@@ -112,7 +112,7 @@ class SupplierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_supplier()
+    public function it_updates_the_supplier(): void
     {
         $supplier = Supplier::factory()->create();
 
@@ -153,7 +153,7 @@ class SupplierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_supplier()
+    public function it_deletes_the_supplier(): void
     {
         $supplier = Supplier::factory()->create();
 

@@ -9,10 +9,8 @@ class CartSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         Cart::factory()
             ->count(5)

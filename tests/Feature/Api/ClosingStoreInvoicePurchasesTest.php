@@ -31,7 +31,7 @@ class ClosingStoreInvoicePurchasesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_closing_store_invoice_purchases()
+    public function it_gets_closing_store_invoice_purchases(): void
     {
         $closingStore = ClosingStore::factory()->create();
         $invoicePurchase = InvoicePurchase::factory()->create();
@@ -48,7 +48,7 @@ class ClosingStoreInvoicePurchasesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_invoice_purchases_to_closing_store()
+    public function it_can_attach_invoice_purchases_to_closing_store(): void
     {
         $closingStore = ClosingStore::factory()->create();
         $invoicePurchase = InvoicePurchase::factory()->create();
@@ -73,7 +73,7 @@ class ClosingStoreInvoicePurchasesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_invoice_purchases_from_closing_store()
+    public function it_can_detach_invoice_purchases_from_closing_store(): void
     {
         $closingStore = ClosingStore::factory()->create();
         $invoicePurchase = InvoicePurchase::factory()->create();

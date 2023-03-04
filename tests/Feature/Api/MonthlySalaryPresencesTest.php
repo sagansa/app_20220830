@@ -31,7 +31,7 @@ class MonthlySalaryPresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_monthly_salary_presences()
+    public function it_gets_monthly_salary_presences(): void
     {
         $monthlySalary = MonthlySalary::factory()->create();
         $presence = Presence::factory()->create();
@@ -48,7 +48,7 @@ class MonthlySalaryPresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_presences_to_monthly_salary()
+    public function it_can_attach_presences_to_monthly_salary(): void
     {
         $monthlySalary = MonthlySalary::factory()->create();
         $presence = Presence::factory()->create();
@@ -73,7 +73,7 @@ class MonthlySalaryPresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_presences_from_monthly_salary()
+    public function it_can_detach_presences_from_monthly_salary(): void
     {
         $monthlySalary = MonthlySalary::factory()->create();
         $presence = Presence::factory()->create();

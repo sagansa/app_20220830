@@ -30,7 +30,7 @@ class RefundTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_refunds_list()
+    public function it_gets_refunds_list(): void
     {
         $refunds = Refund::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class RefundTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_refund()
+    public function it_stores_the_refund(): void
     {
         $data = Refund::factory()
             ->make()
@@ -60,7 +60,7 @@ class RefundTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_refund()
+    public function it_updates_the_refund(): void
     {
         $refund = Refund::factory()->create();
 
@@ -84,7 +84,7 @@ class RefundTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_refund()
+    public function it_deletes_the_refund(): void
     {
         $refund = Refund::factory()->create();
 

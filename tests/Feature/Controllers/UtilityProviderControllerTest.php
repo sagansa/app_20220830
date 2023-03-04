@@ -29,7 +29,7 @@ class UtilityProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_utility_providers()
+    public function it_displays_index_view_with_utility_providers(): void
     {
         $utilityProviders = UtilityProvider::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class UtilityProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_utility_provider()
+    public function it_displays_create_view_for_utility_provider(): void
     {
         $response = $this->get(route('utility-providers.create'));
 
@@ -56,7 +56,7 @@ class UtilityProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_utility_provider()
+    public function it_stores_the_utility_provider(): void
     {
         $data = UtilityProvider::factory()
             ->make()
@@ -76,7 +76,7 @@ class UtilityProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_utility_provider()
+    public function it_displays_show_view_for_utility_provider(): void
     {
         $utilityProvider = UtilityProvider::factory()->create();
 
@@ -93,7 +93,7 @@ class UtilityProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_utility_provider()
+    public function it_displays_edit_view_for_utility_provider(): void
     {
         $utilityProvider = UtilityProvider::factory()->create();
 
@@ -110,7 +110,7 @@ class UtilityProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_utility_provider()
+    public function it_updates_the_utility_provider(): void
     {
         $utilityProvider = UtilityProvider::factory()->create();
 
@@ -136,7 +136,7 @@ class UtilityProviderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_utility_provider()
+    public function it_deletes_the_utility_provider(): void
     {
         $utilityProvider = UtilityProvider::factory()->create();
 

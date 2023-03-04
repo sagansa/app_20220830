@@ -78,38 +78,6 @@
         required
     ></x-input.text>
 
-    <x-input.select name="district_id" label="District">
-        @php $selected = old('district_id', ($editing ? $employee->district_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach($districts as $value => $label)
-        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
-        @endforeach
-    </x-input.select>
-
-    <x-input.select name="province_id" label="Province">
-        @php $selected = old('province_id', ($editing ? $employee->province_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach($provinces as $value => $label)
-        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
-        @endforeach
-    </x-input.select>
-
-    <x-input.select name="regency_id" label="Regency">
-        @php $selected = old('regency_id', ($editing ? $employee->regency_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach($regencies as $value => $label)
-        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
-        @endforeach
-    </x-input.select>
-
-    <x-input.select name="village_id" label="Village">
-        @php $selected = old('village_id', ($editing ? $employee->village_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach($villages as $value => $label)
-        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
-        @endforeach
-    </x-input.select>
-
     <x-input.number
         name="codepos"
         label="Codepos"
@@ -311,6 +279,30 @@
         >{{ old('notes', ($editing ? $employee->notes : ''))
         }}</x-input.textarea
     >
+
+    <x-input.select name="province_id" label="Province">
+        @php $selected = old('province_id', ($editing ? $employee->province_id : '')) @endphp
+        <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Province</option>
+        @foreach($provinces as $value => $label)
+        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+        @endforeach
+    </x-input.select>
+
+    <x-input.select name="regency_id" label="Regency">
+        @php $selected = old('regency_id', ($editing ? $employee->regency_id : '')) @endphp
+        <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Regency</option>
+        @foreach($regencies as $value => $label)
+        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+        @endforeach
+    </x-input.select>
+
+    <x-input.select name="district_id" label="District">
+        @php $selected = old('district_id', ($editing ? $employee->district_id : '')) @endphp
+        <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the District</option>
+        @foreach($districts as $value => $label)
+        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+        @endforeach
+    </x-input.select>
 
     @if ($editing)
     <x-shows.dl>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Refund;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\RefundResource;
 use Illuminate\Support\Facades\Storage;
@@ -13,11 +14,7 @@ use App\Http\Requests\RefundUpdateRequest;
 
 class RefundController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): RefundCollection
     {
         $this->authorize('view-any', Refund::class);
 
@@ -30,11 +27,7 @@ class RefundController extends Controller
         return new RefundCollection($refunds);
     }
 
-    /**
-     * @param \App\Http\Requests\RefundStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(RefundStoreRequest $request)
+    public function store(RefundStoreRequest $request): RefundResource
     {
         $this->authorize('create', Refund::class);
 
@@ -48,25 +41,17 @@ class RefundController extends Controller
         return new RefundResource($refund);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Refund $refund
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Refund $refund)
+    public function show(Request $request, Refund $refund): RefundResource
     {
         $this->authorize('view', $refund);
 
         return new RefundResource($refund);
     }
 
-    /**
-     * @param \App\Http\Requests\RefundUpdateRequest $request
-     * @param \App\Models\Refund $refund
-     * @return \Illuminate\Http\Response
-     */
-    public function update(RefundUpdateRequest $request, Refund $refund)
-    {
+    public function update(
+        RefundUpdateRequest $request,
+        Refund $refund
+    ): RefundResource {
         $this->authorize('update', $refund);
 
         $validated = $request->validated();
@@ -84,12 +69,7 @@ class RefundController extends Controller
         return new RefundResource($refund);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Refund $refund
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Refund $refund)
+    public function destroy(Request $request, Refund $refund): Response
     {
         $this->authorize('delete', $refund);
 

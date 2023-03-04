@@ -10,12 +10,7 @@ use App\Http\Resources\HygieneOfRoomCollection;
 
 class RoomHygieneOfRoomsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Room $room
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Room $room)
+    public function index(Request $request, Room $room): HygieneOfRoomCollection
     {
         $this->authorize('view', $room);
 
@@ -30,12 +25,7 @@ class RoomHygieneOfRoomsController extends Controller
         return new HygieneOfRoomCollection($hygieneOfRooms);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Room $room
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Room $room)
+    public function store(Request $request, Room $room): HygieneOfRoomResource
     {
         $this->authorize('create', HygieneOfRoom::class);
 

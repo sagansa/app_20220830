@@ -29,7 +29,7 @@ class PaymentTypeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_payment_types()
+    public function it_displays_index_view_with_payment_types(): void
     {
         $paymentTypes = PaymentType::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class PaymentTypeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_payment_type()
+    public function it_displays_create_view_for_payment_type(): void
     {
         $response = $this->get(route('payment-types.create'));
 
@@ -56,7 +56,7 @@ class PaymentTypeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_payment_type()
+    public function it_stores_the_payment_type(): void
     {
         $data = PaymentType::factory()
             ->make()
@@ -74,7 +74,7 @@ class PaymentTypeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_payment_type()
+    public function it_displays_show_view_for_payment_type(): void
     {
         $paymentType = PaymentType::factory()->create();
 
@@ -89,7 +89,7 @@ class PaymentTypeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_payment_type()
+    public function it_displays_edit_view_for_payment_type(): void
     {
         $paymentType = PaymentType::factory()->create();
 
@@ -104,7 +104,7 @@ class PaymentTypeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_payment_type()
+    public function it_updates_the_payment_type(): void
     {
         $paymentType = PaymentType::factory()->create();
 
@@ -128,7 +128,7 @@ class PaymentTypeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_payment_type()
+    public function it_deletes_the_payment_type(): void
     {
         $paymentType = PaymentType::factory()->create();
 

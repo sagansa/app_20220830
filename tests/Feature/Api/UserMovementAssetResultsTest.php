@@ -30,7 +30,7 @@ class UserMovementAssetResultsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_movement_asset_results()
+    public function it_gets_user_movement_asset_results(): void
     {
         $user = User::factory()->create();
         $movementAssetResults = MovementAssetResult::factory()
@@ -49,7 +49,7 @@ class UserMovementAssetResultsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_movement_asset_results()
+    public function it_stores_the_user_movement_asset_results(): void
     {
         $user = User::factory()->create();
         $data = MovementAssetResult::factory()

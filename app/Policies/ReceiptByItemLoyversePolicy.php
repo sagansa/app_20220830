@@ -12,94 +12,64 @@ class ReceiptByItemLoyversePolicy
 
     /**
      * Determine whether the receiptByItemLoyverse can view any models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('list receiptbyitemloyverses');
     }
 
     /**
      * Determine whether the receiptByItemLoyverse can view the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\ReceiptByItemLoyverse  $model
-     * @return mixed
      */
-    public function view(User $user, ReceiptByItemLoyverse $model)
+    public function view(User $user, ReceiptByItemLoyverse $model): bool
     {
         return $user->hasPermissionTo('view receiptbyitemloyverses');
     }
 
     /**
      * Determine whether the receiptByItemLoyverse can create models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->hasPermissionTo('create receiptbyitemloyverses');
     }
 
     /**
      * Determine whether the receiptByItemLoyverse can update the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\ReceiptByItemLoyverse  $model
-     * @return mixed
      */
-    public function update(User $user, ReceiptByItemLoyverse $model)
+    public function update(User $user, ReceiptByItemLoyverse $model): bool
     {
         return $user->hasPermissionTo('update receiptbyitemloyverses');
     }
 
     /**
      * Determine whether the receiptByItemLoyverse can delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\ReceiptByItemLoyverse  $model
-     * @return mixed
      */
-    public function delete(User $user, ReceiptByItemLoyverse $model)
+    public function delete(User $user, ReceiptByItemLoyverse $model): bool
     {
         return $user->hasPermissionTo('delete receiptbyitemloyverses');
     }
 
     /**
      * Determine whether the user can delete multiple instances of the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\ReceiptByItemLoyverse  $model
-     * @return mixed
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->hasPermissionTo('delete receiptbyitemloyverses');
     }
 
     /**
      * Determine whether the receiptByItemLoyverse can restore the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\ReceiptByItemLoyverse  $model
-     * @return mixed
      */
-    public function restore(User $user, ReceiptByItemLoyverse $model)
+    public function restore(User $user, ReceiptByItemLoyverse $model): bool
     {
         return false;
     }
 
     /**
      * Determine whether the receiptByItemLoyverse can permanently delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\ReceiptByItemLoyverse  $model
-     * @return mixed
      */
-    public function forceDelete(User $user, ReceiptByItemLoyverse $model)
+    public function forceDelete(User $user, ReceiptByItemLoyverse $model): bool
     {
         return false;
     }

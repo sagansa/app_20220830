@@ -37,7 +37,7 @@ class EmployeeTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_employees_list()
+    public function it_gets_employees_list(): void
     {
         $employees = Employee::factory()
             ->count(5)
@@ -51,7 +51,7 @@ class EmployeeTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_employee()
+    public function it_stores_the_employee(): void
     {
         $data = Employee::factory()
             ->make()
@@ -59,6 +59,7 @@ class EmployeeTest extends TestCase
 
         $response = $this->postJson(route('api.employees.store'), $data);
 
+        unset($data['village_id']);
         unset($data['user_id']);
 
         $this->assertDatabaseHas('employees', $data);
@@ -69,7 +70,7 @@ class EmployeeTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_employee()
+    public function it_updates_the_employee(): void
     {
         $employee = Employee::factory()->create();
 
@@ -124,6 +125,7 @@ class EmployeeTest extends TestCase
             $data
         );
 
+        unset($data['village_id']);
         unset($data['user_id']);
 
         $data['id'] = $employee->id;
@@ -136,7 +138,7 @@ class EmployeeTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_employee()
+    public function it_deletes_the_employee(): void
     {
         $employee = Employee::factory()->create();
 

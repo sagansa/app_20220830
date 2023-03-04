@@ -32,7 +32,7 @@ class ProductionTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_productions_list()
+    public function it_gets_productions_list(): void
     {
         $productions = Production::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class ProductionTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_production()
+    public function it_stores_the_production(): void
     {
         $data = Production::factory()
             ->make()
@@ -62,7 +62,7 @@ class ProductionTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_production()
+    public function it_updates_the_production(): void
     {
         $production = Production::factory()->create();
 
@@ -94,7 +94,7 @@ class ProductionTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_production()
+    public function it_deletes_the_production(): void
     {
         $production = Production::factory()->create();
 

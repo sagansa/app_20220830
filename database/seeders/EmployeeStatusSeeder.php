@@ -9,10 +9,8 @@ class EmployeeStatusSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         EmployeeStatus::factory()
             ->count(5)

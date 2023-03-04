@@ -32,7 +32,7 @@ class VehicleTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_vehicles_list()
+    public function it_gets_vehicles_list(): void
     {
         $vehicles = Vehicle::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class VehicleTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_vehicle()
+    public function it_stores_the_vehicle(): void
     {
         $data = Vehicle::factory()
             ->make()
@@ -62,7 +62,7 @@ class VehicleTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_vehicle()
+    public function it_updates_the_vehicle(): void
     {
         $vehicle = Vehicle::factory()->create();
 
@@ -93,7 +93,7 @@ class VehicleTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_vehicle()
+    public function it_deletes_the_vehicle(): void
     {
         $vehicle = Vehicle::factory()->create();
 

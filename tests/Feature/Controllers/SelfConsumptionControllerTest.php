@@ -31,7 +31,7 @@ class SelfConsumptionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_self_consumptions()
+    public function it_displays_index_view_with_self_consumptions(): void
     {
         $selfConsumptions = SelfConsumption::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class SelfConsumptionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_self_consumption()
+    public function it_displays_create_view_for_self_consumption(): void
     {
         $response = $this->get(route('self-consumptions.create'));
 
@@ -58,7 +58,7 @@ class SelfConsumptionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_self_consumption()
+    public function it_stores_the_self_consumption(): void
     {
         $data = SelfConsumption::factory()
             ->make()
@@ -78,7 +78,7 @@ class SelfConsumptionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_self_consumption()
+    public function it_displays_show_view_for_self_consumption(): void
     {
         $selfConsumption = SelfConsumption::factory()->create();
 
@@ -95,7 +95,7 @@ class SelfConsumptionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_self_consumption()
+    public function it_displays_edit_view_for_self_consumption(): void
     {
         $selfConsumption = SelfConsumption::factory()->create();
 
@@ -112,7 +112,7 @@ class SelfConsumptionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_self_consumption()
+    public function it_updates_the_self_consumption(): void
     {
         $selfConsumption = SelfConsumption::factory()->create();
 
@@ -146,7 +146,7 @@ class SelfConsumptionControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_self_consumption()
+    public function it_deletes_the_self_consumption(): void
     {
         $selfConsumption = SelfConsumption::factory()->create();
 

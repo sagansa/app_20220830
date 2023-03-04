@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\ProductGroup;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductGroupResource;
 use App\Http\Resources\ProductGroupCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\ProductGroupUpdateRequest;
 
 class ProductGroupController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): ProductGroupCollection
     {
         $this->authorize('view-any', ProductGroup::class);
 
@@ -29,12 +26,9 @@ class ProductGroupController extends Controller
         return new ProductGroupCollection($productGroups);
     }
 
-    /**
-     * @param \App\Http\Requests\ProductGroupStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ProductGroupStoreRequest $request)
-    {
+    public function store(
+        ProductGroupStoreRequest $request
+    ): ProductGroupResource {
         $this->authorize('create', ProductGroup::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class ProductGroupController extends Controller
         return new ProductGroupResource($productGroup);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ProductGroup $productGroup
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, ProductGroup $productGroup)
-    {
+    public function show(
+        Request $request,
+        ProductGroup $productGroup
+    ): ProductGroupResource {
         $this->authorize('view', $productGroup);
 
         return new ProductGroupResource($productGroup);
     }
 
-    /**
-     * @param \App\Http\Requests\ProductGroupUpdateRequest $request
-     * @param \App\Models\ProductGroup $productGroup
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         ProductGroupUpdateRequest $request,
         ProductGroup $productGroup
-    ) {
+    ): ProductGroupResource {
         $this->authorize('update', $productGroup);
 
         $validated = $request->validated();
@@ -74,13 +60,10 @@ class ProductGroupController extends Controller
         return new ProductGroupResource($productGroup);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ProductGroup $productGroup
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, ProductGroup $productGroup)
-    {
+    public function destroy(
+        Request $request,
+        ProductGroup $productGroup
+    ): Response {
         $this->authorize('delete', $productGroup);
 
         $productGroup->delete();

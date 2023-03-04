@@ -31,7 +31,7 @@ class ProductRemainingStocksTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_product_remaining_stocks()
+    public function it_gets_product_remaining_stocks(): void
     {
         $product = Product::factory()->create();
         $remainingStock = RemainingStock::factory()->create();
@@ -48,7 +48,7 @@ class ProductRemainingStocksTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_remaining_stocks_to_product()
+    public function it_can_attach_remaining_stocks_to_product(): void
     {
         $product = Product::factory()->create();
         $remainingStock = RemainingStock::factory()->create();
@@ -73,7 +73,7 @@ class ProductRemainingStocksTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_remaining_stocks_from_product()
+    public function it_can_detach_remaining_stocks_from_product(): void
     {
         $product = Product::factory()->create();
         $remainingStock = RemainingStock::factory()->create();

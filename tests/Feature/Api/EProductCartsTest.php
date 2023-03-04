@@ -31,7 +31,7 @@ class EProductCartsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_e_product_carts()
+    public function it_gets_e_product_carts(): void
     {
         $eProduct = EProduct::factory()->create();
         $carts = Cart::factory()
@@ -50,7 +50,7 @@ class EProductCartsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_e_product_carts()
+    public function it_stores_the_e_product_carts(): void
     {
         $eProduct = EProduct::factory()->create();
         $data = Cart::factory()

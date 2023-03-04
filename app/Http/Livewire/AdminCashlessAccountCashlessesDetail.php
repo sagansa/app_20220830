@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\View\View;
 use App\Models\AdminCashless;
 use App\Models\AccountCashless;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -23,7 +24,7 @@ class AdminCashlessAccountCashlessesDetail extends Component
         'account_cashless_id' => ['required', 'exists:account_cashlesses,id'],
     ];
 
-    public function mount(AdminCashless $adminCashless)
+    public function mount(AdminCashless $adminCashless): void
     {
         $this->adminCashless = $adminCashless;
         $this->accountCashlessesForSelect = AccountCashless::pluck(
@@ -33,7 +34,7 @@ class AdminCashlessAccountCashlessesDetail extends Component
         $this->resetAccountCashlessData();
     }
 
-    public function resetAccountCashlessData()
+    public function resetAccountCashlessData(): void
     {
         $this->accountCashless = new AccountCashless();
 
@@ -42,7 +43,7 @@ class AdminCashlessAccountCashlessesDetail extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newAccountCashless()
+    public function newAccountCashless(): void
     {
         $this->modalTitle = trans(
             'crud.admin_cashless_account_cashlesses.new_title'
@@ -52,18 +53,18 @@ class AdminCashlessAccountCashlessesDetail extends Component
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -76,7 +77,7 @@ class AdminCashlessAccountCashlessesDetail extends Component
         $this->hideModal();
     }
 
-    public function detach($accountCashless)
+    public function detach($accountCashless): void
     {
         $this->authorize('delete-any', AccountCashless::class);
 
@@ -85,7 +86,7 @@ class AdminCashlessAccountCashlessesDetail extends Component
         $this->resetAccountCashlessData();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin-cashless-account-cashlesses-detail', [
             'adminCashlessAccountCashlesses' => $this->adminCashless

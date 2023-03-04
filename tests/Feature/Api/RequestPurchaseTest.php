@@ -32,7 +32,7 @@ class RequestPurchaseTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_request_purchases_list()
+    public function it_gets_request_purchases_list(): void
     {
         $requestPurchases = RequestPurchase::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class RequestPurchaseTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_request_purchase()
+    public function it_stores_the_request_purchase(): void
     {
         $data = RequestPurchase::factory()
             ->make()
@@ -65,7 +65,7 @@ class RequestPurchaseTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_request_purchase()
+    public function it_updates_the_request_purchase(): void
     {
         $requestPurchase = RequestPurchase::factory()->create();
 
@@ -94,7 +94,7 @@ class RequestPurchaseTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_request_purchase()
+    public function it_deletes_the_request_purchase(): void
     {
         $requestPurchase = RequestPurchase::factory()->create();
 

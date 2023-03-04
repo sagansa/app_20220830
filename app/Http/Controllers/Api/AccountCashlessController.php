@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\AccountCashless;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -13,11 +14,7 @@ use App\Http\Requests\AccountCashlessUpdateRequest;
 
 class AccountCashlessController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): AccountCashlessCollection
     {
         $this->authorize('view-any', AccountCashless::class);
 
@@ -30,12 +27,9 @@ class AccountCashlessController extends Controller
         return new AccountCashlessCollection($accountCashlesses);
     }
 
-    /**
-     * @param \App\Http\Requests\AccountCashlessStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(AccountCashlessStoreRequest $request)
-    {
+    public function store(
+        AccountCashlessStoreRequest $request
+    ): AccountCashlessResource {
         $this->authorize('create', AccountCashless::class);
 
         $validated = $request->validated();
@@ -49,27 +43,19 @@ class AccountCashlessController extends Controller
         return new AccountCashlessResource($accountCashless);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\AccountCashless $accountCashless
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, AccountCashless $accountCashless)
-    {
+    public function show(
+        Request $request,
+        AccountCashless $accountCashless
+    ): AccountCashlessResource {
         $this->authorize('view', $accountCashless);
 
         return new AccountCashlessResource($accountCashless);
     }
 
-    /**
-     * @param \App\Http\Requests\AccountCashlessUpdateRequest $request
-     * @param \App\Models\AccountCashless $accountCashless
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         AccountCashlessUpdateRequest $request,
         AccountCashless $accountCashless
-    ) {
+    ): AccountCashlessResource {
         $this->authorize('update', $accountCashless);
 
         $validated = $request->validated();
@@ -85,13 +71,10 @@ class AccountCashlessController extends Controller
         return new AccountCashlessResource($accountCashless);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\AccountCashless $accountCashless
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, AccountCashless $accountCashless)
-    {
+    public function destroy(
+        Request $request,
+        AccountCashless $accountCashless
+    ): Response {
         $this->authorize('delete', $accountCashless);
 
         $accountCashless->delete();

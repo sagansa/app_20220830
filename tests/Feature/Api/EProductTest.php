@@ -34,7 +34,7 @@ class EProductTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_e_products_list()
+    public function it_gets_e_products_list(): void
     {
         $eProducts = EProduct::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class EProductTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_e_product()
+    public function it_stores_the_e_product(): void
     {
         $data = EProduct::factory()
             ->make()
@@ -64,7 +64,7 @@ class EProductTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_e_product()
+    public function it_updates_the_e_product(): void
     {
         $eProduct = EProduct::factory()->create();
 
@@ -96,7 +96,7 @@ class EProductTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_e_product()
+    public function it_deletes_the_e_product(): void
     {
         $eProduct = EProduct::factory()->create();
 

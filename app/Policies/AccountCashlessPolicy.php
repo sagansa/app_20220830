@@ -12,94 +12,64 @@ class AccountCashlessPolicy
 
     /**
      * Determine whether the accountCashless can view any models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('list accountcashlesses');
     }
 
     /**
      * Determine whether the accountCashless can view the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\AccountCashless  $model
-     * @return mixed
      */
-    public function view(User $user, AccountCashless $model)
+    public function view(User $user, AccountCashless $model): bool
     {
         return $user->hasPermissionTo('view accountcashlesses');
     }
 
     /**
      * Determine whether the accountCashless can create models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->hasPermissionTo('create accountcashlesses');
     }
 
     /**
      * Determine whether the accountCashless can update the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\AccountCashless  $model
-     * @return mixed
      */
-    public function update(User $user, AccountCashless $model)
+    public function update(User $user, AccountCashless $model): bool
     {
         return $user->hasPermissionTo('update accountcashlesses');
     }
 
     /**
      * Determine whether the accountCashless can delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\AccountCashless  $model
-     * @return mixed
      */
-    public function delete(User $user, AccountCashless $model)
+    public function delete(User $user, AccountCashless $model): bool
     {
         return $user->hasPermissionTo('delete accountcashlesses');
     }
 
     /**
      * Determine whether the user can delete multiple instances of the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\AccountCashless  $model
-     * @return mixed
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->hasPermissionTo('delete accountcashlesses');
     }
 
     /**
      * Determine whether the accountCashless can restore the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\AccountCashless  $model
-     * @return mixed
      */
-    public function restore(User $user, AccountCashless $model)
+    public function restore(User $user, AccountCashless $model): bool
     {
         return false;
     }
 
     /**
      * Determine whether the accountCashless can permanently delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\AccountCashless  $model
-     * @return mixed
      */
-    public function forceDelete(User $user, AccountCashless $model)
+    public function forceDelete(User $user, AccountCashless $model): bool
     {
         return false;
     }

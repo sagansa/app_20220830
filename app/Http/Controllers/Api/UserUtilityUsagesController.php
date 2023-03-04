@@ -10,12 +10,7 @@ use App\Http\Resources\UtilityUsageCollection;
 
 class UserUtilityUsagesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user): UtilityUsageCollection
     {
         $this->authorize('view', $user);
 
@@ -30,12 +25,7 @@ class UserUtilityUsagesController extends Controller
         return new UtilityUsageCollection($utilityUsages);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): UtilityUsageResource
     {
         $this->authorize('create', UtilityUsage::class);
 

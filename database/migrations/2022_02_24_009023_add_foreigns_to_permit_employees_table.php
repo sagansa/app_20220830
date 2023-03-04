@@ -7,10 +7,8 @@ use Illuminate\Database\Migrations\Migration;
 return new class extends Migration {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('permit_employees', function (Blueprint $table) {
             $table
@@ -31,10 +29,8 @@ return new class extends Migration {
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('permit_employees', function (Blueprint $table) {
             $table->dropForeign(['created_by_id']);

@@ -10,12 +10,7 @@ use App\Http\Resources\StoreAssetCollection;
 
 class StoreStoreAssetsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Store $store)
+    public function index(Request $request, Store $store): StoreAssetCollection
     {
         $this->authorize('view', $store);
 
@@ -30,12 +25,7 @@ class StoreStoreAssetsController extends Controller
         return new StoreAssetCollection($storeAssets);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Store $store)
+    public function store(Request $request, Store $store): StoreAssetResource
     {
         $this->authorize('create', StoreAsset::class);
 

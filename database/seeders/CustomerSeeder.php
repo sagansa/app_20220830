@@ -9,10 +9,8 @@ class CustomerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         Customer::factory()
             ->count(5)

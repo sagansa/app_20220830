@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\OnlineCategory;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OnlineCategoryResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\OnlineCategoryUpdateRequest;
 
 class OnlineCategoryController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): OnlineCategoryCollection
     {
         $this->authorize('view-any', OnlineCategory::class);
 
@@ -29,12 +26,9 @@ class OnlineCategoryController extends Controller
         return new OnlineCategoryCollection($onlineCategories);
     }
 
-    /**
-     * @param \App\Http\Requests\OnlineCategoryStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(OnlineCategoryStoreRequest $request)
-    {
+    public function store(
+        OnlineCategoryStoreRequest $request
+    ): OnlineCategoryResource {
         $this->authorize('create', OnlineCategory::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class OnlineCategoryController extends Controller
         return new OnlineCategoryResource($onlineCategory);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\OnlineCategory $onlineCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, OnlineCategory $onlineCategory)
-    {
+    public function show(
+        Request $request,
+        OnlineCategory $onlineCategory
+    ): OnlineCategoryResource {
         $this->authorize('view', $onlineCategory);
 
         return new OnlineCategoryResource($onlineCategory);
     }
 
-    /**
-     * @param \App\Http\Requests\OnlineCategoryUpdateRequest $request
-     * @param \App\Models\OnlineCategory $onlineCategory
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         OnlineCategoryUpdateRequest $request,
         OnlineCategory $onlineCategory
-    ) {
+    ): OnlineCategoryResource {
         $this->authorize('update', $onlineCategory);
 
         $validated = $request->validated();
@@ -74,13 +60,10 @@ class OnlineCategoryController extends Controller
         return new OnlineCategoryResource($onlineCategory);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\OnlineCategory $onlineCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, OnlineCategory $onlineCategory)
-    {
+    public function destroy(
+        Request $request,
+        OnlineCategory $onlineCategory
+    ): Response {
         $this->authorize('delete', $onlineCategory);
 
         $onlineCategory->delete();

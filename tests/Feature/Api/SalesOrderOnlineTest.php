@@ -36,7 +36,7 @@ class SalesOrderOnlineTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_sales_order_onlines_list()
+    public function it_gets_sales_order_onlines_list(): void
     {
         $salesOrderOnlines = SalesOrderOnline::factory()
             ->count(5)
@@ -50,7 +50,7 @@ class SalesOrderOnlineTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_sales_order_online()
+    public function it_stores_the_sales_order_online(): void
     {
         $data = SalesOrderOnline::factory()
             ->make()
@@ -72,7 +72,7 @@ class SalesOrderOnlineTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_sales_order_online()
+    public function it_updates_the_sales_order_online(): void
     {
         $salesOrderOnline = SalesOrderOnline::factory()->create();
 
@@ -117,7 +117,7 @@ class SalesOrderOnlineTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_sales_order_online()
+    public function it_deletes_the_sales_order_online(): void
     {
         $salesOrderOnline = SalesOrderOnline::factory()->create();
 

@@ -10,12 +10,7 @@ use App\Http\Resources\DailySalaryCollection;
 
 class StoreDailySalariesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Store $store)
+    public function index(Request $request, Store $store): DailySalaryCollection
     {
         $this->authorize('view', $store);
 
@@ -30,12 +25,7 @@ class StoreDailySalariesController extends Controller
         return new DailySalaryCollection($dailySalaries);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Store $store)
+    public function store(Request $request, Store $store): DailySalaryResource
     {
         $this->authorize('create', DailySalary::class);
 

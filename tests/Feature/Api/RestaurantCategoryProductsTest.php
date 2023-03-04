@@ -31,7 +31,7 @@ class RestaurantCategoryProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_restaurant_category_products()
+    public function it_gets_restaurant_category_products(): void
     {
         $restaurantCategory = RestaurantCategory::factory()->create();
         $products = Product::factory()
@@ -53,7 +53,7 @@ class RestaurantCategoryProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_restaurant_category_products()
+    public function it_stores_the_restaurant_category_products(): void
     {
         $restaurantCategory = RestaurantCategory::factory()->create();
         $data = Product::factory()

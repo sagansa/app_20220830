@@ -30,7 +30,7 @@ class PurchaseReceiptTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_purchase_receipts_list()
+    public function it_gets_purchase_receipts_list(): void
     {
         $purchaseReceipts = PurchaseReceipt::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class PurchaseReceiptTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_purchase_receipt()
+    public function it_stores_the_purchase_receipt(): void
     {
         $data = PurchaseReceipt::factory()
             ->make()
@@ -65,7 +65,7 @@ class PurchaseReceiptTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_purchase_receipt()
+    public function it_updates_the_purchase_receipt(): void
     {
         $purchaseReceipt = PurchaseReceipt::factory()->create();
 
@@ -93,7 +93,7 @@ class PurchaseReceiptTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_purchase_receipt()
+    public function it_deletes_the_purchase_receipt(): void
     {
         $purchaseReceipt = PurchaseReceipt::factory()->create();
 

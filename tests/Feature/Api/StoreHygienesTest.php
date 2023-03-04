@@ -31,7 +31,7 @@ class StoreHygienesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_hygienes()
+    public function it_gets_store_hygienes(): void
     {
         $store = Store::factory()->create();
         $hygienes = Hygiene::factory()
@@ -48,7 +48,7 @@ class StoreHygienesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_hygienes()
+    public function it_stores_the_store_hygienes(): void
     {
         $store = Store::factory()->create();
         $data = Hygiene::factory()

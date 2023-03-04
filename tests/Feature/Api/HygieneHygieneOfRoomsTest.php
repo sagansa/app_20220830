@@ -31,7 +31,7 @@ class HygieneHygieneOfRoomsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_hygiene_hygiene_of_rooms()
+    public function it_gets_hygiene_hygiene_of_rooms(): void
     {
         $hygiene = Hygiene::factory()->create();
         $hygieneOfRooms = HygieneOfRoom::factory()
@@ -50,7 +50,7 @@ class HygieneHygieneOfRoomsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_hygiene_hygiene_of_rooms()
+    public function it_stores_the_hygiene_hygiene_of_rooms(): void
     {
         $hygiene = Hygiene::factory()->create();
         $data = HygieneOfRoom::factory()

@@ -31,7 +31,7 @@ class ShiftStorePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_shift_store_presences()
+    public function it_gets_shift_store_presences(): void
     {
         $shiftStore = ShiftStore::factory()->create();
         $presences = Presence::factory()
@@ -50,7 +50,7 @@ class ShiftStorePresencesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_shift_store_presences()
+    public function it_stores_the_shift_store_presences(): void
     {
         $shiftStore = ShiftStore::factory()->create();
         $data = Presence::factory()

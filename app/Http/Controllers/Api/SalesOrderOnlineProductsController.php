@@ -3,19 +3,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\SalesOrderOnline;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductCollection;
 
 class SalesOrderOnlineProductsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SalesOrderOnline $salesOrderOnline
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, SalesOrderOnline $salesOrderOnline)
-    {
+    public function index(
+        Request $request,
+        SalesOrderOnline $salesOrderOnline
+    ): ProductCollection {
         $this->authorize('view', $salesOrderOnline);
 
         $search = $request->get('search', '');
@@ -29,17 +27,11 @@ class SalesOrderOnlineProductsController extends Controller
         return new ProductCollection($products);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SalesOrderOnline $salesOrderOnline
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         SalesOrderOnline $salesOrderOnline,
         Product $product
-    ) {
+    ): Response {
         $this->authorize('update', $salesOrderOnline);
 
         $salesOrderOnline->products()->syncWithoutDetaching([$product->id]);
@@ -47,17 +39,11 @@ class SalesOrderOnlineProductsController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SalesOrderOnline $salesOrderOnline
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         SalesOrderOnline $salesOrderOnline,
         Product $product
-    ) {
+    ): Response {
         $this->authorize('update', $salesOrderOnline);
 
         $salesOrderOnline->products()->detach($product);

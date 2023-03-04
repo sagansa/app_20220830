@@ -30,7 +30,7 @@ class UserCleanAndNeatsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_clean_and_neats()
+    public function it_gets_user_clean_and_neats(): void
     {
         $user = User::factory()->create();
         $cleanAndNeats = CleanAndNeat::factory()
@@ -49,7 +49,7 @@ class UserCleanAndNeatsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_clean_and_neats()
+    public function it_stores_the_user_clean_and_neats(): void
     {
         $user = User::factory()->create();
         $data = CleanAndNeat::factory()

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Product;
+use Illuminate\View\View;
 use App\Models\SalesOrderEmployee;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -27,14 +28,14 @@ class SalesOrderEmployeeProductsDetail extends Component
         'unit_price' => ['required', 'numeric', 'gt:0'],
     ];
 
-    public function mount(SalesOrderEmployee $salesOrderEmployee)
+    public function mount(SalesOrderEmployee $salesOrderEmployee): void
     {
         $this->salesOrderEmployee = $salesOrderEmployee;
         $this->productsForSelect = Product::pluck('name', 'id');
         $this->resetProductData();
     }
 
-    public function resetProductData()
+    public function resetProductData(): void
     {
         $this->product = new Product();
 
@@ -45,7 +46,7 @@ class SalesOrderEmployeeProductsDetail extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newProduct()
+    public function newProduct(): void
     {
         $this->modalTitle = trans(
             'crud.sales_order_employee_products.new_title'
@@ -55,18 +56,18 @@ class SalesOrderEmployeeProductsDetail extends Component
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -80,7 +81,7 @@ class SalesOrderEmployeeProductsDetail extends Component
         $this->hideModal();
     }
 
-    public function detach($product)
+    public function detach($product): void
     {
         $this->authorize('delete-any', Product::class);
 
@@ -89,7 +90,7 @@ class SalesOrderEmployeeProductsDetail extends Component
         $this->resetProductData();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.sales-order-employee-products-detail', [
             'salesOrderEmployeeProducts' => $this->salesOrderEmployee

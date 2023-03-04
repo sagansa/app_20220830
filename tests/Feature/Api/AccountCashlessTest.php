@@ -34,7 +34,7 @@ class AccountCashlessTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_account_cashlesses_list()
+    public function it_gets_account_cashlesses_list(): void
     {
         $accountCashlesses = AccountCashless::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class AccountCashlessTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_account_cashless()
+    public function it_stores_the_account_cashless(): void
     {
         $data = AccountCashless::factory()
             ->make()
@@ -67,7 +67,7 @@ class AccountCashlessTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_account_cashless()
+    public function it_updates_the_account_cashless(): void
     {
         $accountCashless = AccountCashless::factory()->create();
 
@@ -101,7 +101,7 @@ class AccountCashlessTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_account_cashless()
+    public function it_deletes_the_account_cashless(): void
     {
         $accountCashless = AccountCashless::factory()->create();
 

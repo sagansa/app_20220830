@@ -29,7 +29,7 @@ class PermitEmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_permit_employees()
+    public function it_displays_index_view_with_permit_employees(): void
     {
         $permitEmployees = PermitEmployee::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class PermitEmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_permit_employee()
+    public function it_displays_create_view_for_permit_employee(): void
     {
         $response = $this->get(route('permit-employees.create'));
 
@@ -56,7 +56,7 @@ class PermitEmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_permit_employee()
+    public function it_stores_the_permit_employee(): void
     {
         $data = PermitEmployee::factory()
             ->make()
@@ -78,7 +78,7 @@ class PermitEmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_permit_employee()
+    public function it_displays_show_view_for_permit_employee(): void
     {
         $permitEmployee = PermitEmployee::factory()->create();
 
@@ -93,7 +93,7 @@ class PermitEmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_permit_employee()
+    public function it_displays_edit_view_for_permit_employee(): void
     {
         $permitEmployee = PermitEmployee::factory()->create();
 
@@ -108,7 +108,7 @@ class PermitEmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_permit_employee()
+    public function it_updates_the_permit_employee(): void
     {
         $permitEmployee = PermitEmployee::factory()->create();
 
@@ -144,7 +144,7 @@ class PermitEmployeeControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_permit_employee()
+    public function it_deletes_the_permit_employee(): void
     {
         $permitEmployee = PermitEmployee::factory()->create();
 

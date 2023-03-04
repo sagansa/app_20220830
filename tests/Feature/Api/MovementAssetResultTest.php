@@ -32,7 +32,7 @@ class MovementAssetResultTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_movement_asset_results_list()
+    public function it_gets_movement_asset_results_list(): void
     {
         $movementAssetResults = MovementAssetResult::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class MovementAssetResultTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_movement_asset_result()
+    public function it_stores_the_movement_asset_result(): void
     {
         $data = MovementAssetResult::factory()
             ->make()
@@ -65,7 +65,7 @@ class MovementAssetResultTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_movement_asset_result()
+    public function it_updates_the_movement_asset_result(): void
     {
         $movementAssetResult = MovementAssetResult::factory()->create();
 
@@ -95,7 +95,7 @@ class MovementAssetResultTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_movement_asset_result()
+    public function it_deletes_the_movement_asset_result(): void
     {
         $movementAssetResult = MovementAssetResult::factory()->create();
 

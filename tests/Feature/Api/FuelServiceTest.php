@@ -33,7 +33,7 @@ class FuelServiceTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_fuel_services_list()
+    public function it_gets_fuel_services_list(): void
     {
         $fuelServices = FuelService::factory()
             ->count(5)
@@ -47,7 +47,7 @@ class FuelServiceTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_fuel_service()
+    public function it_stores_the_fuel_service(): void
     {
         $data = FuelService::factory()
             ->make()
@@ -66,7 +66,7 @@ class FuelServiceTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_fuel_service()
+    public function it_updates_the_fuel_service(): void
     {
         $fuelService = FuelService::factory()->create();
 
@@ -106,7 +106,7 @@ class FuelServiceTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_fuel_service()
+    public function it_deletes_the_fuel_service(): void
     {
         $fuelService = FuelService::factory()->create();
 

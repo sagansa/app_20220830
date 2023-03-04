@@ -29,7 +29,7 @@ class BankControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_banks()
+    public function it_displays_index_view_with_banks(): void
     {
         $banks = Bank::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class BankControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_bank()
+    public function it_displays_create_view_for_bank(): void
     {
         $response = $this->get(route('banks.create'));
 
@@ -56,7 +56,7 @@ class BankControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_bank()
+    public function it_stores_the_bank(): void
     {
         $data = Bank::factory()
             ->make()
@@ -74,7 +74,7 @@ class BankControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_bank()
+    public function it_displays_show_view_for_bank(): void
     {
         $bank = Bank::factory()->create();
 
@@ -89,7 +89,7 @@ class BankControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_bank()
+    public function it_displays_edit_view_for_bank(): void
     {
         $bank = Bank::factory()->create();
 
@@ -104,7 +104,7 @@ class BankControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_bank()
+    public function it_updates_the_bank(): void
     {
         $bank = Bank::factory()->create();
 
@@ -125,7 +125,7 @@ class BankControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_bank()
+    public function it_deletes_the_bank(): void
     {
         $bank = Bank::factory()->create();
 

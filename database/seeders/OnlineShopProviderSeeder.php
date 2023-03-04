@@ -9,10 +9,8 @@ class OnlineShopProviderSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         OnlineShopProvider::factory()
             ->count(5)

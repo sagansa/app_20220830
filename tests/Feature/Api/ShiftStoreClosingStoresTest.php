@@ -31,7 +31,7 @@ class ShiftStoreClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_shift_store_closing_stores()
+    public function it_gets_shift_store_closing_stores(): void
     {
         $shiftStore = ShiftStore::factory()->create();
         $closingStores = ClosingStore::factory()
@@ -50,7 +50,7 @@ class ShiftStoreClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_shift_store_closing_stores()
+    public function it_stores_the_shift_store_closing_stores(): void
     {
         $shiftStore = ShiftStore::factory()->create();
         $data = ClosingStore::factory()

@@ -31,7 +31,7 @@ class FranchiseGroupProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_franchise_group_products()
+    public function it_gets_franchise_group_products(): void
     {
         $franchiseGroup = FranchiseGroup::factory()->create();
         $products = Product::factory()
@@ -50,7 +50,7 @@ class FranchiseGroupProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_franchise_group_products()
+    public function it_stores_the_franchise_group_products(): void
     {
         $franchiseGroup = FranchiseGroup::factory()->create();
         $data = Product::factory()

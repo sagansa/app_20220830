@@ -30,7 +30,7 @@ class MaterialGroupTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_material_groups_list()
+    public function it_gets_material_groups_list(): void
     {
         $materialGroups = MaterialGroup::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class MaterialGroupTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_material_group()
+    public function it_stores_the_material_group(): void
     {
         $data = MaterialGroup::factory()
             ->make()
@@ -60,7 +60,7 @@ class MaterialGroupTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_material_group()
+    public function it_updates_the_material_group(): void
     {
         $materialGroup = MaterialGroup::factory()->create();
 
@@ -87,7 +87,7 @@ class MaterialGroupTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_material_group()
+    public function it_deletes_the_material_group(): void
     {
         $materialGroup = MaterialGroup::factory()->create();
 

@@ -3,19 +3,17 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\ClosingStore;
+use Illuminate\Http\Response;
 use App\Models\PurchaseOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PurchaseOrderCollection;
 
 class ClosingStorePurchaseOrdersController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, ClosingStore $closingStore)
-    {
+    public function index(
+        Request $request,
+        ClosingStore $closingStore
+    ): PurchaseOrderCollection {
         $this->authorize('view', $closingStore);
 
         $search = $request->get('search', '');
@@ -29,17 +27,11 @@ class ClosingStorePurchaseOrdersController extends Controller
         return new PurchaseOrderCollection($purchaseOrders);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
-     * @param \App\Models\PurchaseOrder $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         ClosingStore $closingStore,
         PurchaseOrder $purchaseOrder
-    ) {
+    ): Response {
         $this->authorize('update', $closingStore);
 
         $closingStore
@@ -49,17 +41,11 @@ class ClosingStorePurchaseOrdersController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
-     * @param \App\Models\PurchaseOrder $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         ClosingStore $closingStore,
         PurchaseOrder $purchaseOrder
-    ) {
+    ): Response {
         $this->authorize('update', $closingStore);
 
         $closingStore->purchaseOrders()->detach($purchaseOrder);

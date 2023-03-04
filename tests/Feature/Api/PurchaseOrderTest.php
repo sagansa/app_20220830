@@ -34,7 +34,7 @@ class PurchaseOrderTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_purchase_orders_list()
+    public function it_gets_purchase_orders_list(): void
     {
         $purchaseOrders = PurchaseOrder::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class PurchaseOrderTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_purchase_order()
+    public function it_stores_the_purchase_order(): void
     {
         $data = PurchaseOrder::factory()
             ->make()
@@ -64,7 +64,7 @@ class PurchaseOrderTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_purchase_order()
+    public function it_updates_the_purchase_order(): void
     {
         $purchaseOrder = PurchaseOrder::factory()->create();
 
@@ -103,7 +103,7 @@ class PurchaseOrderTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_purchase_order()
+    public function it_deletes_the_purchase_order(): void
     {
         $purchaseOrder = PurchaseOrder::factory()->create();
 

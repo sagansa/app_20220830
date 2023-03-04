@@ -10,13 +10,10 @@ use App\Http\Resources\SalesOrderOnlineCollection;
 
 class DeliveryServiceSalesOrderOnlinesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\DeliveryService $deliveryService
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, DeliveryService $deliveryService)
-    {
+    public function index(
+        Request $request,
+        DeliveryService $deliveryService
+    ): SalesOrderOnlineCollection {
         $this->authorize('view', $deliveryService);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class DeliveryServiceSalesOrderOnlinesController extends Controller
         return new SalesOrderOnlineCollection($salesOrderOnlines);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\DeliveryService $deliveryService
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, DeliveryService $deliveryService)
-    {
+    public function store(
+        Request $request,
+        DeliveryService $deliveryService
+    ): SalesOrderOnlineResource {
         $this->authorize('create', SalesOrderOnline::class);
 
         $validated = $request->validate([

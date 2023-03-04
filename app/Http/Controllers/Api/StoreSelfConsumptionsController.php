@@ -10,13 +10,10 @@ use App\Http\Resources\SelfConsumptionCollection;
 
 class StoreSelfConsumptionsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Store $store)
-    {
+    public function index(
+        Request $request,
+        Store $store
+    ): SelfConsumptionCollection {
         $this->authorize('view', $store);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class StoreSelfConsumptionsController extends Controller
         return new SelfConsumptionCollection($selfConsumptions);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Store $store)
-    {
+    public function store(
+        Request $request,
+        Store $store
+    ): SelfConsumptionResource {
         $this->authorize('create', SelfConsumption::class);
 
         $validated = $request->validate([

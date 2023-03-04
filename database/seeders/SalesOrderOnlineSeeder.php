@@ -9,10 +9,8 @@ class SalesOrderOnlineSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         SalesOrderOnline::factory()
             ->count(5)

@@ -37,7 +37,7 @@ class ProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_products()
+    public function it_displays_index_view_with_products(): void
     {
         $products = Product::factory()
             ->count(5)
@@ -54,7 +54,7 @@ class ProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_product()
+    public function it_displays_create_view_for_product(): void
     {
         $response = $this->get(route('products.create'));
 
@@ -64,7 +64,7 @@ class ProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_product()
+    public function it_stores_the_product(): void
     {
         $data = Product::factory()
             ->make()
@@ -84,7 +84,7 @@ class ProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_product()
+    public function it_displays_show_view_for_product(): void
     {
         $product = Product::factory()->create();
 
@@ -99,7 +99,7 @@ class ProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_product()
+    public function it_displays_edit_view_for_product(): void
     {
         $product = Product::factory()->create();
 
@@ -114,7 +114,7 @@ class ProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_product()
+    public function it_updates_the_product(): void
     {
         $product = Product::factory()->create();
 
@@ -159,7 +159,7 @@ class ProductControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_product()
+    public function it_deletes_the_product(): void
     {
         $product = Product::factory()->create();
 

@@ -33,7 +33,7 @@ class PurchaseOrderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_purchase_orders()
+    public function it_displays_index_view_with_purchase_orders(): void
     {
         $purchaseOrders = PurchaseOrder::factory()
             ->count(5)
@@ -50,7 +50,7 @@ class PurchaseOrderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_purchase_order()
+    public function it_displays_create_view_for_purchase_order(): void
     {
         $response = $this->get(route('purchase-orders.create'));
 
@@ -60,7 +60,7 @@ class PurchaseOrderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_purchase_order()
+    public function it_stores_the_purchase_order(): void
     {
         $data = PurchaseOrder::factory()
             ->make()
@@ -80,7 +80,7 @@ class PurchaseOrderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_purchase_order()
+    public function it_displays_show_view_for_purchase_order(): void
     {
         $purchaseOrder = PurchaseOrder::factory()->create();
 
@@ -95,7 +95,7 @@ class PurchaseOrderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_purchase_order()
+    public function it_displays_edit_view_for_purchase_order(): void
     {
         $purchaseOrder = PurchaseOrder::factory()->create();
 
@@ -110,7 +110,7 @@ class PurchaseOrderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_purchase_order()
+    public function it_updates_the_purchase_order(): void
     {
         $purchaseOrder = PurchaseOrder::factory()->create();
 
@@ -151,7 +151,7 @@ class PurchaseOrderControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_purchase_order()
+    public function it_deletes_the_purchase_order(): void
     {
         $purchaseOrder = PurchaseOrder::factory()->create();
 

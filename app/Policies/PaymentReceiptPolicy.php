@@ -12,94 +12,64 @@ class PaymentReceiptPolicy
 
     /**
      * Determine whether the paymentReceipt can view any models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('list paymentreceipts');
     }
 
     /**
      * Determine whether the paymentReceipt can view the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\PaymentReceipt  $model
-     * @return mixed
      */
-    public function view(User $user, PaymentReceipt $model)
+    public function view(User $user, PaymentReceipt $model): bool
     {
         return $user->hasPermissionTo('view paymentreceipts');
     }
 
     /**
      * Determine whether the paymentReceipt can create models.
-     *
-     * @param  App\Models\User  $user
-     * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->hasPermissionTo('create paymentreceipts');
     }
 
     /**
      * Determine whether the paymentReceipt can update the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\PaymentReceipt  $model
-     * @return mixed
      */
-    public function update(User $user, PaymentReceipt $model)
+    public function update(User $user, PaymentReceipt $model): bool
     {
         return $user->hasPermissionTo('update paymentreceipts');
     }
 
     /**
      * Determine whether the paymentReceipt can delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\PaymentReceipt  $model
-     * @return mixed
      */
-    public function delete(User $user, PaymentReceipt $model)
+    public function delete(User $user, PaymentReceipt $model): bool
     {
         return $user->hasPermissionTo('delete paymentreceipts');
     }
 
     /**
      * Determine whether the user can delete multiple instances of the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\PaymentReceipt  $model
-     * @return mixed
      */
-    public function deleteAny(User $user)
+    public function deleteAny(User $user): bool
     {
         return $user->hasPermissionTo('delete paymentreceipts');
     }
 
     /**
      * Determine whether the paymentReceipt can restore the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\PaymentReceipt  $model
-     * @return mixed
      */
-    public function restore(User $user, PaymentReceipt $model)
+    public function restore(User $user, PaymentReceipt $model): bool
     {
         return false;
     }
 
     /**
      * Determine whether the paymentReceipt can permanently delete the model.
-     *
-     * @param  App\Models\User  $user
-     * @param  App\Models\PaymentReceipt  $model
-     * @return mixed
      */
-    public function forceDelete(User $user, PaymentReceipt $model)
+    public function forceDelete(User $user, PaymentReceipt $model): bool
     {
         return false;
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\PaymentReceipt;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -13,11 +14,7 @@ use App\Http\Requests\PaymentReceiptUpdateRequest;
 
 class PaymentReceiptController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): PaymentReceiptCollection
     {
         $this->authorize('view-any', PaymentReceipt::class);
 
@@ -30,12 +27,9 @@ class PaymentReceiptController extends Controller
         return new PaymentReceiptCollection($paymentReceipts);
     }
 
-    /**
-     * @param \App\Http\Requests\PaymentReceiptStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PaymentReceiptStoreRequest $request)
-    {
+    public function store(
+        PaymentReceiptStoreRequest $request
+    ): PaymentReceiptResource {
         $this->authorize('create', PaymentReceipt::class);
 
         $validated = $request->validated();
@@ -54,27 +48,19 @@ class PaymentReceiptController extends Controller
         return new PaymentReceiptResource($paymentReceipt);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentReceipt $paymentReceipt
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, PaymentReceipt $paymentReceipt)
-    {
+    public function show(
+        Request $request,
+        PaymentReceipt $paymentReceipt
+    ): PaymentReceiptResource {
         $this->authorize('view', $paymentReceipt);
 
         return new PaymentReceiptResource($paymentReceipt);
     }
 
-    /**
-     * @param \App\Http\Requests\PaymentReceiptUpdateRequest $request
-     * @param \App\Models\PaymentReceipt $paymentReceipt
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         PaymentReceiptUpdateRequest $request,
         PaymentReceipt $paymentReceipt
-    ) {
+    ): PaymentReceiptResource {
         $this->authorize('update', $paymentReceipt);
 
         $validated = $request->validated();
@@ -102,13 +88,10 @@ class PaymentReceiptController extends Controller
         return new PaymentReceiptResource($paymentReceipt);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentReceipt $paymentReceipt
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, PaymentReceipt $paymentReceipt)
-    {
+    public function destroy(
+        Request $request,
+        PaymentReceipt $paymentReceipt
+    ): Response {
         $this->authorize('delete', $paymentReceipt);
 
         if ($paymentReceipt->image) {

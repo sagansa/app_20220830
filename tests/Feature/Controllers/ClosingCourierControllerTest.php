@@ -31,7 +31,7 @@ class ClosingCourierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_closing_couriers()
+    public function it_displays_index_view_with_closing_couriers(): void
     {
         $closingCouriers = ClosingCourier::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class ClosingCourierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_closing_courier()
+    public function it_displays_create_view_for_closing_courier(): void
     {
         $response = $this->get(route('closing-couriers.create'));
 
@@ -58,7 +58,7 @@ class ClosingCourierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_closing_courier()
+    public function it_stores_the_closing_courier(): void
     {
         $data = ClosingCourier::factory()
             ->make()
@@ -81,7 +81,7 @@ class ClosingCourierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_closing_courier()
+    public function it_displays_show_view_for_closing_courier(): void
     {
         $closingCourier = ClosingCourier::factory()->create();
 
@@ -96,7 +96,7 @@ class ClosingCourierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_closing_courier()
+    public function it_displays_edit_view_for_closing_courier(): void
     {
         $closingCourier = ClosingCourier::factory()->create();
 
@@ -111,7 +111,7 @@ class ClosingCourierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_closing_courier()
+    public function it_updates_the_closing_courier(): void
     {
         $closingCourier = ClosingCourier::factory()->create();
 
@@ -148,7 +148,7 @@ class ClosingCourierControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_closing_courier()
+    public function it_deletes_the_closing_courier(): void
     {
         $closingCourier = ClosingCourier::factory()->create();
 

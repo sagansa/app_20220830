@@ -29,7 +29,7 @@ class PurchaseReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_purchase_receipts()
+    public function it_displays_index_view_with_purchase_receipts(): void
     {
         $purchaseReceipts = PurchaseReceipt::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class PurchaseReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_purchase_receipt()
+    public function it_displays_create_view_for_purchase_receipt(): void
     {
         $response = $this->get(route('purchase-receipts.create'));
 
@@ -56,7 +56,7 @@ class PurchaseReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_purchase_receipt()
+    public function it_stores_the_purchase_receipt(): void
     {
         $data = PurchaseReceipt::factory()
             ->make()
@@ -78,7 +78,7 @@ class PurchaseReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_purchase_receipt()
+    public function it_displays_show_view_for_purchase_receipt(): void
     {
         $purchaseReceipt = PurchaseReceipt::factory()->create();
 
@@ -95,7 +95,7 @@ class PurchaseReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_purchase_receipt()
+    public function it_displays_edit_view_for_purchase_receipt(): void
     {
         $purchaseReceipt = PurchaseReceipt::factory()->create();
 
@@ -112,7 +112,7 @@ class PurchaseReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_purchase_receipt()
+    public function it_updates_the_purchase_receipt(): void
     {
         $purchaseReceipt = PurchaseReceipt::factory()->create();
 
@@ -142,7 +142,7 @@ class PurchaseReceiptControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_purchase_receipt()
+    public function it_deletes_the_purchase_receipt(): void
     {
         $purchaseReceipt = PurchaseReceipt::factory()->create();
 

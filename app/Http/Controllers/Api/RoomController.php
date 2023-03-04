@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Resources\RoomResource;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\RoomCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\RoomUpdateRequest;
 
 class RoomController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): RoomCollection
     {
         $this->authorize('view-any', Room::class);
 
@@ -29,11 +26,7 @@ class RoomController extends Controller
         return new RoomCollection($rooms);
     }
 
-    /**
-     * @param \App\Http\Requests\RoomStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(RoomStoreRequest $request)
+    public function store(RoomStoreRequest $request): RoomResource
     {
         $this->authorize('create', Room::class);
 
@@ -44,24 +37,14 @@ class RoomController extends Controller
         return new RoomResource($room);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Room $room
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Room $room)
+    public function show(Request $request, Room $room): RoomResource
     {
         $this->authorize('view', $room);
 
         return new RoomResource($room);
     }
 
-    /**
-     * @param \App\Http\Requests\RoomUpdateRequest $request
-     * @param \App\Models\Room $room
-     * @return \Illuminate\Http\Response
-     */
-    public function update(RoomUpdateRequest $request, Room $room)
+    public function update(RoomUpdateRequest $request, Room $room): RoomResource
     {
         $this->authorize('update', $room);
 
@@ -72,12 +55,7 @@ class RoomController extends Controller
         return new RoomResource($room);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Room $room
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Room $room)
+    public function destroy(Request $request, Room $room): Response
     {
         $this->authorize('delete', $room);
 

@@ -9,10 +9,8 @@ class DetailRequestSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         DetailRequest::factory()
             ->count(5)

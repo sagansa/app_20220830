@@ -30,7 +30,7 @@ class ShiftStoreTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_shift_stores_list()
+    public function it_gets_shift_stores_list(): void
     {
         $shiftStores = ShiftStore::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class ShiftStoreTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_shift_store()
+    public function it_stores_the_shift_store(): void
     {
         $data = ShiftStore::factory()
             ->make()
@@ -60,7 +60,7 @@ class ShiftStoreTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_shift_store()
+    public function it_updates_the_shift_store(): void
     {
         $shiftStore = ShiftStore::factory()->create();
 
@@ -83,7 +83,7 @@ class ShiftStoreTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_shift_store()
+    public function it_deletes_the_shift_store(): void
     {
         $shiftStore = ShiftStore::factory()->create();
 

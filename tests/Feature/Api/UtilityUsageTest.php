@@ -32,7 +32,7 @@ class UtilityUsageTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_utility_usages_list()
+    public function it_gets_utility_usages_list(): void
     {
         $utilityUsages = UtilityUsage::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class UtilityUsageTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_utility_usage()
+    public function it_stores_the_utility_usage(): void
     {
         $data = UtilityUsage::factory()
             ->make()
@@ -62,7 +62,7 @@ class UtilityUsageTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_utility_usage()
+    public function it_updates_the_utility_usage(): void
     {
         $utilityUsage = UtilityUsage::factory()->create();
 
@@ -94,7 +94,7 @@ class UtilityUsageTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_utility_usage()
+    public function it_deletes_the_utility_usage(): void
     {
         $utilityUsage = UtilityUsage::factory()->create();
 

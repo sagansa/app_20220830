@@ -30,7 +30,7 @@ class UserSelfConsumptionsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_self_consumptions()
+    public function it_gets_user_self_consumptions(): void
     {
         $user = User::factory()->create();
         $selfConsumptions = SelfConsumption::factory()
@@ -49,7 +49,7 @@ class UserSelfConsumptionsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_self_consumptions()
+    public function it_stores_the_user_self_consumptions(): void
     {
         $user = User::factory()->create();
         $data = SelfConsumption::factory()

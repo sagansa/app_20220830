@@ -10,13 +10,10 @@ use App\Http\Resources\InvoicePurchaseCollection;
 
 class PaymentTypeInvoicePurchasesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, PaymentType $paymentType)
-    {
+    public function index(
+        Request $request,
+        PaymentType $paymentType
+    ): InvoicePurchaseCollection {
         $this->authorize('view', $paymentType);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class PaymentTypeInvoicePurchasesController extends Controller
         return new InvoicePurchaseCollection($invoicePurchases);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, PaymentType $paymentType)
-    {
+    public function store(
+        Request $request,
+        PaymentType $paymentType
+    ): InvoicePurchaseResource {
         $this->authorize('create', InvoicePurchase::class);
 
         $validated = $request->validate([

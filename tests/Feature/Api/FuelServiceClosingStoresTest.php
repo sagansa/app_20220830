@@ -31,7 +31,7 @@ class FuelServiceClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_fuel_service_closing_stores()
+    public function it_gets_fuel_service_closing_stores(): void
     {
         $fuelService = FuelService::factory()->create();
         $closingStore = ClosingStore::factory()->create();
@@ -48,7 +48,7 @@ class FuelServiceClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_closing_stores_to_fuel_service()
+    public function it_can_attach_closing_stores_to_fuel_service(): void
     {
         $fuelService = FuelService::factory()->create();
         $closingStore = ClosingStore::factory()->create();
@@ -73,7 +73,7 @@ class FuelServiceClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_closing_stores_from_fuel_service()
+    public function it_can_detach_closing_stores_from_fuel_service(): void
     {
         $fuelService = FuelService::factory()->create();
         $closingStore = ClosingStore::factory()->create();

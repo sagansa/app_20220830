@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\ClosingStore;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ClosingStoreResource;
 use App\Http\Resources\ClosingStoreCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\ClosingStoreUpdateRequest;
 
 class ClosingStoreController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): ClosingStoreCollection
     {
         $this->authorize('view-any', ClosingStore::class);
 
@@ -29,12 +26,9 @@ class ClosingStoreController extends Controller
         return new ClosingStoreCollection($closingStores);
     }
 
-    /**
-     * @param \App\Http\Requests\ClosingStoreStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ClosingStoreStoreRequest $request)
-    {
+    public function store(
+        ClosingStoreStoreRequest $request
+    ): ClosingStoreResource {
         $this->authorize('create', ClosingStore::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class ClosingStoreController extends Controller
         return new ClosingStoreResource($closingStore);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, ClosingStore $closingStore)
-    {
+    public function show(
+        Request $request,
+        ClosingStore $closingStore
+    ): ClosingStoreResource {
         $this->authorize('view', $closingStore);
 
         return new ClosingStoreResource($closingStore);
     }
 
-    /**
-     * @param \App\Http\Requests\ClosingStoreUpdateRequest $request
-     * @param \App\Models\ClosingStore $closingStore
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         ClosingStoreUpdateRequest $request,
         ClosingStore $closingStore
-    ) {
+    ): ClosingStoreResource {
         $this->authorize('update', $closingStore);
 
         $validated = $request->validated();
@@ -74,13 +60,10 @@ class ClosingStoreController extends Controller
         return new ClosingStoreResource($closingStore);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingStore $closingStore
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, ClosingStore $closingStore)
-    {
+    public function destroy(
+        Request $request,
+        ClosingStore $closingStore
+    ): Response {
         $this->authorize('delete', $closingStore);
 
         $closingStore->delete();

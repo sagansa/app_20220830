@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Resources\UnitResource;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UnitCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\UnitUpdateRequest;
 
 class UnitController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): UnitCollection
     {
         $this->authorize('view-any', Unit::class);
 
@@ -29,11 +26,7 @@ class UnitController extends Controller
         return new UnitCollection($units);
     }
 
-    /**
-     * @param \App\Http\Requests\UnitStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(UnitStoreRequest $request)
+    public function store(UnitStoreRequest $request): UnitResource
     {
         $this->authorize('create', Unit::class);
 
@@ -44,24 +37,14 @@ class UnitController extends Controller
         return new UnitResource($unit);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Unit $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Unit $unit)
+    public function show(Request $request, Unit $unit): UnitResource
     {
         $this->authorize('view', $unit);
 
         return new UnitResource($unit);
     }
 
-    /**
-     * @param \App\Http\Requests\UnitUpdateRequest $request
-     * @param \App\Models\Unit $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UnitUpdateRequest $request, Unit $unit)
+    public function update(UnitUpdateRequest $request, Unit $unit): UnitResource
     {
         $this->authorize('update', $unit);
 
@@ -72,12 +55,7 @@ class UnitController extends Controller
         return new UnitResource($unit);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Unit $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Unit $unit)
+    public function destroy(Request $request, Unit $unit): Response
     {
         $this->authorize('delete', $unit);
 

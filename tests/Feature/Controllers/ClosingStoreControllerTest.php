@@ -32,7 +32,7 @@ class ClosingStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_closing_stores()
+    public function it_displays_index_view_with_closing_stores(): void
     {
         $closingStores = ClosingStore::factory()
             ->count(5)
@@ -49,7 +49,7 @@ class ClosingStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_closing_store()
+    public function it_displays_create_view_for_closing_store(): void
     {
         $response = $this->get(route('closing-stores.create'));
 
@@ -59,7 +59,7 @@ class ClosingStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_closing_store()
+    public function it_stores_the_closing_store(): void
     {
         $data = ClosingStore::factory()
             ->make()
@@ -77,7 +77,7 @@ class ClosingStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_closing_store()
+    public function it_displays_show_view_for_closing_store(): void
     {
         $closingStore = ClosingStore::factory()->create();
 
@@ -92,7 +92,7 @@ class ClosingStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_closing_store()
+    public function it_displays_edit_view_for_closing_store(): void
     {
         $closingStore = ClosingStore::factory()->create();
 
@@ -107,7 +107,7 @@ class ClosingStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_closing_store()
+    public function it_updates_the_closing_store(): void
     {
         $closingStore = ClosingStore::factory()->create();
 
@@ -146,7 +146,7 @@ class ClosingStoreControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_closing_store()
+    public function it_deletes_the_closing_store(): void
     {
         $closingStore = ClosingStore::factory()->create();
 

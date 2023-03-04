@@ -31,7 +31,7 @@ class ProductProductionSupportFromsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_product_production_support_froms()
+    public function it_gets_product_production_support_froms(): void
     {
         $product = Product::factory()->create();
         $productionSupportFroms = ProductionSupportFrom::factory()
@@ -50,7 +50,7 @@ class ProductProductionSupportFromsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_product_production_support_froms()
+    public function it_stores_the_product_production_support_froms(): void
     {
         $product = Product::factory()->create();
         $data = ProductionSupportFrom::factory()

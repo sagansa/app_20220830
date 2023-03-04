@@ -11,13 +11,10 @@ use App\Http\Resources\AccountCashlessCollection;
 
 class CashlessProviderAccountCashlessesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\CashlessProvider $cashlessProvider
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, CashlessProvider $cashlessProvider)
-    {
+    public function index(
+        Request $request,
+        CashlessProvider $cashlessProvider
+    ): AccountCashlessCollection {
         $this->authorize('view', $cashlessProvider);
 
         $search = $request->get('search', '');
@@ -31,13 +28,10 @@ class CashlessProviderAccountCashlessesController extends Controller
         return new AccountCashlessCollection($accountCashlesses);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\CashlessProvider $cashlessProvider
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, CashlessProvider $cashlessProvider)
-    {
+    public function store(
+        Request $request,
+        CashlessProvider $cashlessProvider
+    ): AccountCashlessResource {
         $this->authorize('create', AccountCashless::class);
 
         $validated = $request->validate([

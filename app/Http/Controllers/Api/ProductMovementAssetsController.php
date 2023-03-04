@@ -10,13 +10,10 @@ use App\Http\Resources\MovementAssetCollection;
 
 class ProductMovementAssetsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Product $product)
-    {
+    public function index(
+        Request $request,
+        Product $product
+    ): MovementAssetCollection {
         $this->authorize('view', $product);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class ProductMovementAssetsController extends Controller
         return new MovementAssetCollection($movementAssets);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Product $product)
-    {
+    public function store(
+        Request $request,
+        Product $product
+    ): MovementAssetResource {
         $this->authorize('create', MovementAsset::class);
 
         $validated = $request->validate([

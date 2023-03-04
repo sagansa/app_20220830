@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\SupplierResource;
@@ -13,11 +14,7 @@ use App\Http\Requests\SupplierUpdateRequest;
 
 class SupplierController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): SupplierCollection
     {
         $this->authorize('view-any', Supplier::class);
 
@@ -30,11 +27,7 @@ class SupplierController extends Controller
         return new SupplierCollection($suppliers);
     }
 
-    /**
-     * @param \App\Http\Requests\SupplierStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(SupplierStoreRequest $request)
+    public function store(SupplierStoreRequest $request): SupplierResource
     {
         $this->authorize('create', Supplier::class);
 
@@ -48,25 +41,17 @@ class SupplierController extends Controller
         return new SupplierResource($supplier);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Supplier $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Supplier $supplier)
+    public function show(Request $request, Supplier $supplier): SupplierResource
     {
         $this->authorize('view', $supplier);
 
         return new SupplierResource($supplier);
     }
 
-    /**
-     * @param \App\Http\Requests\SupplierUpdateRequest $request
-     * @param \App\Models\Supplier $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function update(SupplierUpdateRequest $request, Supplier $supplier)
-    {
+    public function update(
+        SupplierUpdateRequest $request,
+        Supplier $supplier
+    ): SupplierResource {
         $this->authorize('update', $supplier);
 
         $validated = $request->validated();
@@ -84,12 +69,7 @@ class SupplierController extends Controller
         return new SupplierResource($supplier);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Supplier $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Supplier $supplier)
+    public function destroy(Request $request, Supplier $supplier): Response
     {
         $this->authorize('delete', $supplier);
 

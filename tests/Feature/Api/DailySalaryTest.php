@@ -35,7 +35,7 @@ class DailySalaryTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_daily_salaries_list()
+    public function it_gets_daily_salaries_list(): void
     {
         $dailySalaries = DailySalary::factory()
             ->count(5)
@@ -49,7 +49,7 @@ class DailySalaryTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_daily_salary()
+    public function it_stores_the_daily_salary(): void
     {
         $data = DailySalary::factory()
             ->make()
@@ -68,7 +68,7 @@ class DailySalaryTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_daily_salary()
+    public function it_updates_the_daily_salary(): void
     {
         $dailySalary = DailySalary::factory()->create();
 
@@ -109,7 +109,7 @@ class DailySalaryTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_daily_salary()
+    public function it_deletes_the_daily_salary(): void
     {
         $dailySalary = DailySalary::factory()->create();
 

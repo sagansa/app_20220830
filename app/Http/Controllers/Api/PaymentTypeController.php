@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\PaymentType;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PaymentTypeResource;
 use App\Http\Resources\PaymentTypeCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\PaymentTypeUpdateRequest;
 
 class PaymentTypeController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): PaymentTypeCollection
     {
         $this->authorize('view-any', PaymentType::class);
 
@@ -29,11 +26,7 @@ class PaymentTypeController extends Controller
         return new PaymentTypeCollection($paymentTypes);
     }
 
-    /**
-     * @param \App\Http\Requests\PaymentTypeStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PaymentTypeStoreRequest $request)
+    public function store(PaymentTypeStoreRequest $request): PaymentTypeResource
     {
         $this->authorize('create', PaymentType::class);
 
@@ -44,27 +37,19 @@ class PaymentTypeController extends Controller
         return new PaymentTypeResource($paymentType);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, PaymentType $paymentType)
-    {
+    public function show(
+        Request $request,
+        PaymentType $paymentType
+    ): PaymentTypeResource {
         $this->authorize('view', $paymentType);
 
         return new PaymentTypeResource($paymentType);
     }
 
-    /**
-     * @param \App\Http\Requests\PaymentTypeUpdateRequest $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         PaymentTypeUpdateRequest $request,
         PaymentType $paymentType
-    ) {
+    ): PaymentTypeResource {
         $this->authorize('update', $paymentType);
 
         $validated = $request->validated();
@@ -74,13 +59,10 @@ class PaymentTypeController extends Controller
         return new PaymentTypeResource($paymentType);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\PaymentType $paymentType
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, PaymentType $paymentType)
-    {
+    public function destroy(
+        Request $request,
+        PaymentType $paymentType
+    ): Response {
         $this->authorize('delete', $paymentType);
 
         $paymentType->delete();

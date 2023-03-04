@@ -10,13 +10,10 @@ use App\Http\Resources\UtilityBillCollection;
 
 class UtilityUtilityBillsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Utility $utility
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Utility $utility)
-    {
+    public function index(
+        Request $request,
+        Utility $utility
+    ): UtilityBillCollection {
         $this->authorize('view', $utility);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class UtilityUtilityBillsController extends Controller
         return new UtilityBillCollection($utilityBills);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Utility $utility
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Utility $utility)
-    {
+    public function store(
+        Request $request,
+        Utility $utility
+    ): UtilityBillResource {
         $this->authorize('create', UtilityBill::class);
 
         $validated = $request->validate([

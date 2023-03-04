@@ -49,6 +49,11 @@ class Province extends Model
         return $this->hasMany(Supplier::class);
     }
 
+    public function deliveryLocations()
+    {
+        return $this->hasMany(DeliveryLocation::class);
+    }
+
     public function delete_image()
     {
         if ($this->image && file_exists('storage/' . $this->image)) {

@@ -10,13 +10,10 @@ use App\Http\Resources\DeliveryAddressCollection;
 
 class CustomerDeliveryAddressesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Customer $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Customer $customer)
-    {
+    public function index(
+        Request $request,
+        Customer $customer
+    ): DeliveryAddressCollection {
         $this->authorize('view', $customer);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class CustomerDeliveryAddressesController extends Controller
         return new DeliveryAddressCollection($deliveryAddresses);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Customer $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Customer $customer)
-    {
+    public function store(
+        Request $request,
+        Customer $customer
+    ): DeliveryAddressResource {
         $this->authorize('create', DeliveryAddress::class);
 
         $validated = $request->validate([

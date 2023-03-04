@@ -3,19 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Spatie\Permission\Models\Role;
 use App\Http\Resources\RoleResource;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\RoleCollection;
 use Spatie\Permission\Models\Permission;
 
-class RoleController extends Controller {
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request) 
+class RoleController extends Controller
+{
+    public function index(Request $request): RoleCollection
     {
         $this->authorize('list', Role::class);
 
@@ -25,11 +22,7 @@ class RoleController extends Controller {
         return new RoleCollection($roles);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request) 
+    public function store(Request $request): RoleResource
     {
         $this->authorize('create', Role::class);
 
@@ -46,23 +39,14 @@ class RoleController extends Controller {
         return new RoleResource($role);
     }
 
-    /**
-     * @param  \Spatie\Permission\Models\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Role $role) 
+    public function show(Role $role): RoleResource
     {
         $this->authorize('view', Role::class);
 
         return new RoleResource($role);
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Spatie\Permission\Models\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Role $role) 
+    public function update(Request $request, Role $role): RoleResource
     {
         $this->authorize('update', $role);
 
@@ -79,11 +63,7 @@ class RoleController extends Controller {
         return new RoleResource($role);
     }
 
-    /**
-     * @param  \Spatie\Permission\Models\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Role $role)
+    public function destroy(Role $role): Response
     {
         $this->authorize('delete', $role);
 

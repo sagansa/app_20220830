@@ -30,7 +30,7 @@ class UnitTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_units_list()
+    public function it_gets_units_list(): void
     {
         $units = Unit::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class UnitTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_unit()
+    public function it_stores_the_unit(): void
     {
         $data = Unit::factory()
             ->make()
@@ -60,7 +60,7 @@ class UnitTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_unit()
+    public function it_updates_the_unit(): void
     {
         $unit = Unit::factory()->create();
 
@@ -81,7 +81,7 @@ class UnitTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_unit()
+    public function it_deletes_the_unit(): void
     {
         $unit = Unit::factory()->create();
 

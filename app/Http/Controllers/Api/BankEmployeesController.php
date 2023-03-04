@@ -10,12 +10,7 @@ use App\Http\Resources\EmployeeCollection;
 
 class BankEmployeesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Bank $bank
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Bank $bank)
+    public function index(Request $request, Bank $bank): EmployeeCollection
     {
         $this->authorize('view', $bank);
 
@@ -30,12 +25,7 @@ class BankEmployeesController extends Controller
         return new EmployeeCollection($employees);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Bank $bank
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Bank $bank)
+    public function store(Request $request, Bank $bank): EmployeeResource
     {
         $this->authorize('create', Employee::class);
 
@@ -60,10 +50,6 @@ class BankEmployeesController extends Controller
                 'numeric',
             ],
             'address' => ['required', 'max:255', 'string'],
-            'district_id' => ['nullable', 'exists:districts,id'],
-            'province_id' => ['nullable', 'exists:provinces,id'],
-            'regency_id' => ['nullable', 'exists:regencies,id'],
-            'village_id' => ['nullable', 'exists:villages,id'],
             'codepos' => ['required', 'integer', 'digits:5'],
             'gps_location' => ['nullable', 'max:255', 'string'],
             'siblings_name' => ['required', 'max:255', 'string'],
@@ -87,6 +73,9 @@ class BankEmployeesController extends Controller
             'image_selfie' => ['required', 'image', 'max:1024'],
             'employee_status_id' => ['nullable', 'exists:employee_statuses,id'],
             'notes' => ['required', 'max:255', 'string'],
+            'province_id' => ['nullable', 'exists:provinces,id'],
+            'regency_id' => ['nullable', 'exists:regencies,id'],
+            'district_id' => ['nullable', 'exists:districts,id'],
         ]);
 
         if ($request->hasFile('image_identity_id')) {

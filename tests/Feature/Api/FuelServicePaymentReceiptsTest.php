@@ -31,7 +31,7 @@ class FuelServicePaymentReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_fuel_service_payment_receipts()
+    public function it_gets_fuel_service_payment_receipts(): void
     {
         $fuelService = FuelService::factory()->create();
         $paymentReceipt = PaymentReceipt::factory()->create();
@@ -48,7 +48,7 @@ class FuelServicePaymentReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_payment_receipts_to_fuel_service()
+    public function it_can_attach_payment_receipts_to_fuel_service(): void
     {
         $fuelService = FuelService::factory()->create();
         $paymentReceipt = PaymentReceipt::factory()->create();
@@ -73,7 +73,7 @@ class FuelServicePaymentReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_payment_receipts_from_fuel_service()
+    public function it_can_detach_payment_receipts_from_fuel_service(): void
     {
         $fuelService = FuelService::factory()->create();
         $paymentReceipt = PaymentReceipt::factory()->create();

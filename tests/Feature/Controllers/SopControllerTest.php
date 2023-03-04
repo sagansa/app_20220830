@@ -29,7 +29,7 @@ class SopControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_sops()
+    public function it_displays_index_view_with_sops(): void
     {
         $sops = Sop::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class SopControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_sop()
+    public function it_displays_create_view_for_sop(): void
     {
         $response = $this->get(route('sops.create'));
 
@@ -56,7 +56,7 @@ class SopControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_sop()
+    public function it_stores_the_sop(): void
     {
         $data = Sop::factory()
             ->make()
@@ -74,7 +74,7 @@ class SopControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_sop()
+    public function it_displays_show_view_for_sop(): void
     {
         $sop = Sop::factory()->create();
 
@@ -89,7 +89,7 @@ class SopControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_sop()
+    public function it_displays_edit_view_for_sop(): void
     {
         $sop = Sop::factory()->create();
 
@@ -104,7 +104,7 @@ class SopControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_sop()
+    public function it_updates_the_sop(): void
     {
         $sop = Sop::factory()->create();
 
@@ -126,7 +126,7 @@ class SopControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_sop()
+    public function it_deletes_the_sop(): void
     {
         $sop = Sop::factory()->create();
 

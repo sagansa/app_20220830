@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\UtilityUsage;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\UtilityUsageResource;
@@ -13,11 +14,7 @@ use App\Http\Requests\UtilityUsageUpdateRequest;
 
 class UtilityUsageController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): UtilityUsageCollection
     {
         $this->authorize('view-any', UtilityUsage::class);
 
@@ -30,12 +27,9 @@ class UtilityUsageController extends Controller
         return new UtilityUsageCollection($utilityUsages);
     }
 
-    /**
-     * @param \App\Http\Requests\UtilityUsageStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(UtilityUsageStoreRequest $request)
-    {
+    public function store(
+        UtilityUsageStoreRequest $request
+    ): UtilityUsageResource {
         $this->authorize('create', UtilityUsage::class);
 
         $validated = $request->validated();
@@ -48,27 +42,19 @@ class UtilityUsageController extends Controller
         return new UtilityUsageResource($utilityUsage);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\UtilityUsage $utilityUsage
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, UtilityUsage $utilityUsage)
-    {
+    public function show(
+        Request $request,
+        UtilityUsage $utilityUsage
+    ): UtilityUsageResource {
         $this->authorize('view', $utilityUsage);
 
         return new UtilityUsageResource($utilityUsage);
     }
 
-    /**
-     * @param \App\Http\Requests\UtilityUsageUpdateRequest $request
-     * @param \App\Models\UtilityUsage $utilityUsage
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         UtilityUsageUpdateRequest $request,
         UtilityUsage $utilityUsage
-    ) {
+    ): UtilityUsageResource {
         $this->authorize('update', $utilityUsage);
 
         $validated = $request->validated();
@@ -86,13 +72,10 @@ class UtilityUsageController extends Controller
         return new UtilityUsageResource($utilityUsage);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\UtilityUsage $utilityUsage
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, UtilityUsage $utilityUsage)
-    {
+    public function destroy(
+        Request $request,
+        UtilityUsage $utilityUsage
+    ): Response {
         $this->authorize('delete', $utilityUsage);
 
         if ($utilityUsage->image) {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\ClosingCourier;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -13,11 +14,7 @@ use App\Http\Requests\ClosingCourierUpdateRequest;
 
 class ClosingCourierController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): ClosingCourierCollection
     {
         $this->authorize('view-any', ClosingCourier::class);
 
@@ -30,12 +27,9 @@ class ClosingCourierController extends Controller
         return new ClosingCourierCollection($closingCouriers);
     }
 
-    /**
-     * @param \App\Http\Requests\ClosingCourierStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ClosingCourierStoreRequest $request)
-    {
+    public function store(
+        ClosingCourierStoreRequest $request
+    ): ClosingCourierResource {
         $this->authorize('create', ClosingCourier::class);
 
         $validated = $request->validated();
@@ -48,27 +42,19 @@ class ClosingCourierController extends Controller
         return new ClosingCourierResource($closingCourier);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingCourier $closingCourier
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, ClosingCourier $closingCourier)
-    {
+    public function show(
+        Request $request,
+        ClosingCourier $closingCourier
+    ): ClosingCourierResource {
         $this->authorize('view', $closingCourier);
 
         return new ClosingCourierResource($closingCourier);
     }
 
-    /**
-     * @param \App\Http\Requests\ClosingCourierUpdateRequest $request
-     * @param \App\Models\ClosingCourier $closingCourier
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         ClosingCourierUpdateRequest $request,
         ClosingCourier $closingCourier
-    ) {
+    ): ClosingCourierResource {
         $this->authorize('update', $closingCourier);
 
         $validated = $request->validated();
@@ -86,13 +72,10 @@ class ClosingCourierController extends Controller
         return new ClosingCourierResource($closingCourier);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingCourier $closingCourier
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, ClosingCourier $closingCourier)
-    {
+    public function destroy(
+        Request $request,
+        ClosingCourier $closingCourier
+    ): Response {
         $this->authorize('delete', $closingCourier);
 
         if ($closingCourier->image) {

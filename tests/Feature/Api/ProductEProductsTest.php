@@ -31,7 +31,7 @@ class ProductEProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_product_e_products()
+    public function it_gets_product_e_products(): void
     {
         $product = Product::factory()->create();
         $eProducts = EProduct::factory()
@@ -50,7 +50,7 @@ class ProductEProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_product_e_products()
+    public function it_stores_the_product_e_products(): void
     {
         $product = Product::factory()->create();
         $data = EProduct::factory()

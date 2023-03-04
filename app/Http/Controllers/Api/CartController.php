@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Resources\CartResource;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\CartUpdateRequest;
 
 class CartController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): CartCollection
     {
         $this->authorize('view-any', Cart::class);
 
@@ -29,11 +26,7 @@ class CartController extends Controller
         return new CartCollection($carts);
     }
 
-    /**
-     * @param \App\Http\Requests\CartStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CartStoreRequest $request)
+    public function store(CartStoreRequest $request): CartResource
     {
         $this->authorize('create', Cart::class);
 
@@ -44,24 +37,14 @@ class CartController extends Controller
         return new CartResource($cart);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Cart $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Cart $cart)
+    public function show(Request $request, Cart $cart): CartResource
     {
         $this->authorize('view', $cart);
 
         return new CartResource($cart);
     }
 
-    /**
-     * @param \App\Http\Requests\CartUpdateRequest $request
-     * @param \App\Models\Cart $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function update(CartUpdateRequest $request, Cart $cart)
+    public function update(CartUpdateRequest $request, Cart $cart): CartResource
     {
         $this->authorize('update', $cart);
 
@@ -72,12 +55,7 @@ class CartController extends Controller
         return new CartResource($cart);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Cart $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Cart $cart)
+    public function destroy(Request $request, Cart $cart): Response
     {
         $this->authorize('delete', $cart);
 

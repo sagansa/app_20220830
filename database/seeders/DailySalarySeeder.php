@@ -9,10 +9,8 @@ class DailySalarySeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         DailySalary::factory()
             ->count(5)

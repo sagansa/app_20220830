@@ -31,7 +31,7 @@ class MovementAssetResultMovementAssetAuditsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_movement_asset_result_movement_asset_audits()
+    public function it_gets_movement_asset_result_movement_asset_audits(): void
     {
         $movementAssetResult = MovementAssetResult::factory()->create();
         $movementAssetAudits = MovementAssetAudit::factory()
@@ -53,7 +53,7 @@ class MovementAssetResultMovementAssetAuditsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_movement_asset_result_movement_asset_audits()
+    public function it_stores_the_movement_asset_result_movement_asset_audits(): void
     {
         $movementAssetResult = MovementAssetResult::factory()->create();
         $data = MovementAssetAudit::factory()

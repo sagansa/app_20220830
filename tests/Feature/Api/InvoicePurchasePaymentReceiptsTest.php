@@ -31,7 +31,7 @@ class InvoicePurchasePaymentReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_invoice_purchase_payment_receipts()
+    public function it_gets_invoice_purchase_payment_receipts(): void
     {
         $invoicePurchase = InvoicePurchase::factory()->create();
         $paymentReceipt = PaymentReceipt::factory()->create();
@@ -51,7 +51,7 @@ class InvoicePurchasePaymentReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_attach_payment_receipts_to_invoice_purchase()
+    public function it_can_attach_payment_receipts_to_invoice_purchase(): void
     {
         $invoicePurchase = InvoicePurchase::factory()->create();
         $paymentReceipt = PaymentReceipt::factory()->create();
@@ -76,7 +76,7 @@ class InvoicePurchasePaymentReceiptsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_detach_payment_receipts_from_invoice_purchase()
+    public function it_can_detach_payment_receipts_from_invoice_purchase(): void
     {
         $invoicePurchase = InvoicePurchase::factory()->create();
         $paymentReceipt = PaymentReceipt::factory()->create();

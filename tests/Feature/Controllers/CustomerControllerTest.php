@@ -29,7 +29,7 @@ class CustomerControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_customers()
+    public function it_displays_index_view_with_customers(): void
     {
         $customers = Customer::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class CustomerControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_customer()
+    public function it_displays_create_view_for_customer(): void
     {
         $response = $this->get(route('customers.create'));
 
@@ -56,7 +56,7 @@ class CustomerControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_customer()
+    public function it_stores_the_customer(): void
     {
         $data = Customer::factory()
             ->make()
@@ -76,7 +76,7 @@ class CustomerControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_customer()
+    public function it_displays_show_view_for_customer(): void
     {
         $customer = Customer::factory()->create();
 
@@ -91,7 +91,7 @@ class CustomerControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_customer()
+    public function it_displays_edit_view_for_customer(): void
     {
         $customer = Customer::factory()->create();
 
@@ -106,7 +106,7 @@ class CustomerControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_customer()
+    public function it_updates_the_customer(): void
     {
         $customer = Customer::factory()->create();
 
@@ -133,7 +133,7 @@ class CustomerControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_customer()
+    public function it_deletes_the_customer(): void
     {
         $customer = Customer::factory()->create();
 

@@ -9,10 +9,8 @@ class UtilityUsageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         UtilityUsage::factory()
             ->count(5)

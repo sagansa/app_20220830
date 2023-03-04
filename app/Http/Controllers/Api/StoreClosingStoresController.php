@@ -10,13 +10,10 @@ use App\Http\Resources\ClosingStoreCollection;
 
 class StoreClosingStoresController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Store $store)
-    {
+    public function index(
+        Request $request,
+        Store $store
+    ): ClosingStoreCollection {
         $this->authorize('view', $store);
 
         $search = $request->get('search', '');
@@ -30,12 +27,7 @@ class StoreClosingStoresController extends Controller
         return new ClosingStoreCollection($closingStores);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Store $store)
+    public function store(Request $request, Store $store): ClosingStoreResource
     {
         $this->authorize('create', ClosingStore::class);
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\MonthlySalary;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MonthlySalaryResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\MonthlySalaryUpdateRequest;
 
 class MonthlySalaryController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): MonthlySalaryCollection
     {
         $this->authorize('view-any', MonthlySalary::class);
 
@@ -29,12 +26,9 @@ class MonthlySalaryController extends Controller
         return new MonthlySalaryCollection($monthlySalaries);
     }
 
-    /**
-     * @param \App\Http\Requests\MonthlySalaryStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(MonthlySalaryStoreRequest $request)
-    {
+    public function store(
+        MonthlySalaryStoreRequest $request
+    ): MonthlySalaryResource {
         $this->authorize('create', MonthlySalary::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class MonthlySalaryController extends Controller
         return new MonthlySalaryResource($monthlySalary);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MonthlySalary $monthlySalary
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, MonthlySalary $monthlySalary)
-    {
+    public function show(
+        Request $request,
+        MonthlySalary $monthlySalary
+    ): MonthlySalaryResource {
         $this->authorize('view', $monthlySalary);
 
         return new MonthlySalaryResource($monthlySalary);
     }
 
-    /**
-     * @param \App\Http\Requests\MonthlySalaryUpdateRequest $request
-     * @param \App\Models\MonthlySalary $monthlySalary
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         MonthlySalaryUpdateRequest $request,
         MonthlySalary $monthlySalary
-    ) {
+    ): MonthlySalaryResource {
         $this->authorize('update', $monthlySalary);
 
         $validated = $request->validated();
@@ -74,13 +60,10 @@ class MonthlySalaryController extends Controller
         return new MonthlySalaryResource($monthlySalary);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\MonthlySalary $monthlySalary
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, MonthlySalary $monthlySalary)
-    {
+    public function destroy(
+        Request $request,
+        MonthlySalary $monthlySalary
+    ): Response {
         $this->authorize('delete', $monthlySalary);
 
         $monthlySalary->delete();

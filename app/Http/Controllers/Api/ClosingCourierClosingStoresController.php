@@ -3,19 +3,17 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\ClosingStore;
+use Illuminate\Http\Response;
 use App\Models\ClosingCourier;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ClosingStoreCollection;
 
 class ClosingCourierClosingStoresController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingCourier $closingCourier
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, ClosingCourier $closingCourier)
-    {
+    public function index(
+        Request $request,
+        ClosingCourier $closingCourier
+    ): ClosingStoreCollection {
         $this->authorize('view', $closingCourier);
 
         $search = $request->get('search', '');
@@ -29,17 +27,11 @@ class ClosingCourierClosingStoresController extends Controller
         return new ClosingStoreCollection($closingStores);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingCourier $closingCourier
-     * @param \App\Models\ClosingStore $closingStore
-     * @return \Illuminate\Http\Response
-     */
     public function store(
         Request $request,
         ClosingCourier $closingCourier,
         ClosingStore $closingStore
-    ) {
+    ): Response {
         $this->authorize('update', $closingCourier);
 
         $closingCourier
@@ -49,17 +41,11 @@ class ClosingCourierClosingStoresController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ClosingCourier $closingCourier
-     * @param \App\Models\ClosingStore $closingStore
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(
         Request $request,
         ClosingCourier $closingCourier,
         ClosingStore $closingStore
-    ) {
+    ): Response {
         $this->authorize('update', $closingCourier);
 
         $closingCourier->closingStores()->detach($closingStore);

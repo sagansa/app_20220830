@@ -31,7 +31,7 @@ class EmployeeStatusEmployeesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_employee_status_employees()
+    public function it_gets_employee_status_employees(): void
     {
         $employeeStatus = EmployeeStatus::factory()->create();
         $employees = Employee::factory()
@@ -50,7 +50,7 @@ class EmployeeStatusEmployeesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_employee_status_employees()
+    public function it_stores_the_employee_status_employees(): void
     {
         $employeeStatus = EmployeeStatus::factory()->create();
         $data = Employee::factory()
@@ -64,6 +64,7 @@ class EmployeeStatusEmployeesTest extends TestCase
             $data
         );
 
+        unset($data['village_id']);
         unset($data['user_id']);
 
         $this->assertDatabaseHas('employees', $data);

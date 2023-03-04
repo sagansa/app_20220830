@@ -30,7 +30,7 @@ class UserPermitEmployeesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_permit_employees()
+    public function it_gets_user_permit_employees(): void
     {
         $user = User::factory()->create();
         $permitEmployees = PermitEmployee::factory()
@@ -49,7 +49,7 @@ class UserPermitEmployeesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_permit_employees()
+    public function it_stores_the_user_permit_employees(): void
     {
         $user = User::factory()->create();
         $data = PermitEmployee::factory()

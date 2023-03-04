@@ -29,7 +29,7 @@ class StoreCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_store_cashlesses()
+    public function it_displays_index_view_with_store_cashlesses(): void
     {
         $storeCashlesses = StoreCashless::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class StoreCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_store_cashless()
+    public function it_displays_create_view_for_store_cashless(): void
     {
         $response = $this->get(route('store-cashlesses.create'));
 
@@ -56,7 +56,7 @@ class StoreCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_cashless()
+    public function it_stores_the_store_cashless(): void
     {
         $data = StoreCashless::factory()
             ->make()
@@ -76,7 +76,7 @@ class StoreCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_store_cashless()
+    public function it_displays_show_view_for_store_cashless(): void
     {
         $storeCashless = StoreCashless::factory()->create();
 
@@ -91,7 +91,7 @@ class StoreCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_store_cashless()
+    public function it_displays_edit_view_for_store_cashless(): void
     {
         $storeCashless = StoreCashless::factory()->create();
 
@@ -106,7 +106,7 @@ class StoreCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_store_cashless()
+    public function it_updates_the_store_cashless(): void
     {
         $storeCashless = StoreCashless::factory()->create();
 
@@ -132,7 +132,7 @@ class StoreCashlessControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_store_cashless()
+    public function it_deletes_the_store_cashless(): void
     {
         $storeCashless = StoreCashless::factory()->create();
 

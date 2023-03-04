@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\TransferStock;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TransferStockResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\TransferStockUpdateRequest;
 
 class TransferStockController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): TransferStockCollection
     {
         $this->authorize('view-any', TransferStock::class);
 
@@ -29,12 +26,9 @@ class TransferStockController extends Controller
         return new TransferStockCollection($transferStocks);
     }
 
-    /**
-     * @param \App\Http\Requests\TransferStockStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(TransferStockStoreRequest $request)
-    {
+    public function store(
+        TransferStockStoreRequest $request
+    ): TransferStockResource {
         $this->authorize('create', TransferStock::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class TransferStockController extends Controller
         return new TransferStockResource($transferStock);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\TransferStock $transferStock
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, TransferStock $transferStock)
-    {
+    public function show(
+        Request $request,
+        TransferStock $transferStock
+    ): TransferStockResource {
         $this->authorize('view', $transferStock);
 
         return new TransferStockResource($transferStock);
     }
 
-    /**
-     * @param \App\Http\Requests\TransferStockUpdateRequest $request
-     * @param \App\Models\TransferStock $transferStock
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         TransferStockUpdateRequest $request,
         TransferStock $transferStock
-    ) {
+    ): TransferStockResource {
         $this->authorize('update', $transferStock);
 
         $validated = $request->validated();
@@ -74,13 +60,10 @@ class TransferStockController extends Controller
         return new TransferStockResource($transferStock);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\TransferStock $transferStock
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, TransferStock $transferStock)
-    {
+    public function destroy(
+        Request $request,
+        TransferStock $transferStock
+    ): Response {
         $this->authorize('delete', $transferStock);
 
         $transferStock->delete();

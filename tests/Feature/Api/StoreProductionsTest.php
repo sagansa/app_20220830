@@ -31,7 +31,7 @@ class StoreProductionsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_productions()
+    public function it_gets_store_productions(): void
     {
         $store = Store::factory()->create();
         $productions = Production::factory()
@@ -50,7 +50,7 @@ class StoreProductionsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_productions()
+    public function it_stores_the_store_productions(): void
     {
         $store = Store::factory()->create();
         $data = Production::factory()

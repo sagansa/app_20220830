@@ -30,7 +30,7 @@ class UserRestaurantCategoriesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_restaurant_categories()
+    public function it_gets_user_restaurant_categories(): void
     {
         $user = User::factory()->create();
         $restaurantCategories = RestaurantCategory::factory()
@@ -49,7 +49,7 @@ class UserRestaurantCategoriesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_restaurant_categories()
+    public function it_stores_the_user_restaurant_categories(): void
     {
         $user = User::factory()->create();
         $data = RestaurantCategory::factory()

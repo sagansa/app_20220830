@@ -31,7 +31,7 @@ class PaymentTypeProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_payment_type_products()
+    public function it_gets_payment_type_products(): void
     {
         $paymentType = PaymentType::factory()->create();
         $products = Product::factory()
@@ -50,7 +50,7 @@ class PaymentTypeProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_payment_type_products()
+    public function it_stores_the_payment_type_products(): void
     {
         $paymentType = PaymentType::factory()->create();
         $data = Product::factory()

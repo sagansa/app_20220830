@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\EmployeeResource;
@@ -13,11 +14,7 @@ use App\Http\Requests\EmployeeUpdateRequest;
 
 class EmployeeController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): EmployeeCollection
     {
         $this->authorize('view-any', Employee::class);
 
@@ -30,11 +27,7 @@ class EmployeeController extends Controller
         return new EmployeeCollection($employees);
     }
 
-    /**
-     * @param \App\Http\Requests\EmployeeStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(EmployeeStoreRequest $request)
+    public function store(EmployeeStoreRequest $request): EmployeeResource
     {
         $this->authorize('create', Employee::class);
 
@@ -56,25 +49,17 @@ class EmployeeController extends Controller
         return new EmployeeResource($employee);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Employee $employee)
+    public function show(Request $request, Employee $employee): EmployeeResource
     {
         $this->authorize('view', $employee);
 
         return new EmployeeResource($employee);
     }
 
-    /**
-     * @param \App\Http\Requests\EmployeeUpdateRequest $request
-     * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function update(EmployeeUpdateRequest $request, Employee $employee)
-    {
+    public function update(
+        EmployeeUpdateRequest $request,
+        Employee $employee
+    ): EmployeeResource {
         $this->authorize('update', $employee);
 
         $validated = $request->validated();
@@ -104,12 +89,7 @@ class EmployeeController extends Controller
         return new EmployeeResource($employee);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Employee $employee)
+    public function destroy(Request $request, Employee $employee): Response
     {
         $this->authorize('delete', $employee);
 

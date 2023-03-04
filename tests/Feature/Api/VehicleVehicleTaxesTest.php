@@ -31,7 +31,7 @@ class VehicleVehicleTaxesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_vehicle_vehicle_taxes()
+    public function it_gets_vehicle_vehicle_taxes(): void
     {
         $vehicle = Vehicle::factory()->create();
         $vehicleTaxes = VehicleTax::factory()
@@ -50,7 +50,7 @@ class VehicleVehicleTaxesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_vehicle_vehicle_taxes()
+    public function it_stores_the_vehicle_vehicle_taxes(): void
     {
         $vehicle = Vehicle::factory()->create();
         $data = VehicleTax::factory()

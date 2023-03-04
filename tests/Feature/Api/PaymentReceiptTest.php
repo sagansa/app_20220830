@@ -30,7 +30,7 @@ class PaymentReceiptTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_payment_receipts_list()
+    public function it_gets_payment_receipts_list(): void
     {
         $paymentReceipts = PaymentReceipt::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class PaymentReceiptTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_payment_receipt()
+    public function it_stores_the_payment_receipt(): void
     {
         $data = PaymentReceipt::factory()
             ->make()
@@ -60,7 +60,7 @@ class PaymentReceiptTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_payment_receipt()
+    public function it_updates_the_payment_receipt(): void
     {
         $paymentReceipt = PaymentReceipt::factory()->create();
 
@@ -86,7 +86,7 @@ class PaymentReceiptTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_payment_receipt()
+    public function it_deletes_the_payment_receipt(): void
     {
         $paymentReceipt = PaymentReceipt::factory()->create();
 

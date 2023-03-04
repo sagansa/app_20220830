@@ -30,7 +30,7 @@ class UserProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_products()
+    public function it_gets_user_products(): void
     {
         $user = User::factory()->create();
         $products = Product::factory()
@@ -47,7 +47,7 @@ class UserProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_products()
+    public function it_stores_the_user_products(): void
     {
         $user = User::factory()->create();
         $data = Product::factory()

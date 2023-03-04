@@ -31,7 +31,7 @@ class StoreInvoicePurchasesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_invoice_purchases()
+    public function it_gets_store_invoice_purchases(): void
     {
         $store = Store::factory()->create();
         $invoicePurchases = InvoicePurchase::factory()
@@ -50,7 +50,7 @@ class StoreInvoicePurchasesTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_invoice_purchases()
+    public function it_stores_the_store_invoice_purchases(): void
     {
         $store = Store::factory()->create();
         $data = InvoicePurchase::factory()

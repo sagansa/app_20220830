@@ -30,7 +30,7 @@ class StoreCashlessTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_cashlesses_list()
+    public function it_gets_store_cashlesses_list(): void
     {
         $storeCashlesses = StoreCashless::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class StoreCashlessTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_cashless()
+    public function it_stores_the_store_cashless(): void
     {
         $data = StoreCashless::factory()
             ->make()
@@ -60,7 +60,7 @@ class StoreCashlessTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_store_cashless()
+    public function it_updates_the_store_cashless(): void
     {
         $storeCashless = StoreCashless::factory()->create();
 
@@ -84,7 +84,7 @@ class StoreCashlessTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_store_cashless()
+    public function it_deletes_the_store_cashless(): void
     {
         $storeCashless = StoreCashless::factory()->create();
 

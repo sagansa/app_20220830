@@ -10,13 +10,10 @@ use App\Http\Resources\RequestPurchaseCollection;
 
 class StoreRequestPurchasesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Store $store)
-    {
+    public function index(
+        Request $request,
+        Store $store
+    ): RequestPurchaseCollection {
         $this->authorize('view', $store);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class StoreRequestPurchasesController extends Controller
         return new RequestPurchaseCollection($requestPurchases);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Store $store
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Store $store)
-    {
+    public function store(
+        Request $request,
+        Store $store
+    ): RequestPurchaseResource {
         $this->authorize('create', RequestPurchase::class);
 
         $validated = $request->validate([

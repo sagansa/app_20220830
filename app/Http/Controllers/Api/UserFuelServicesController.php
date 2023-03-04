@@ -10,12 +10,7 @@ use App\Http\Resources\FuelServiceCollection;
 
 class UserFuelServicesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user): FuelServiceCollection
     {
         $this->authorize('view', $user);
 
@@ -30,12 +25,7 @@ class UserFuelServicesController extends Controller
         return new FuelServiceCollection($fuelServices);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): FuelServiceResource
     {
         $this->authorize('create', FuelService::class);
 

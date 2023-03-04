@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\EProduct;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\EProductResource;
@@ -13,11 +14,7 @@ use App\Http\Requests\EProductUpdateRequest;
 
 class EProductController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): EProductCollection
     {
         $this->authorize('view-any', EProduct::class);
 
@@ -30,11 +27,7 @@ class EProductController extends Controller
         return new EProductCollection($eProducts);
     }
 
-    /**
-     * @param \App\Http\Requests\EProductStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(EProductStoreRequest $request)
+    public function store(EProductStoreRequest $request): EProductResource
     {
         $this->authorize('create', EProduct::class);
 
@@ -48,25 +41,17 @@ class EProductController extends Controller
         return new EProductResource($eProduct);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\EProduct $eProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, EProduct $eProduct)
+    public function show(Request $request, EProduct $eProduct): EProductResource
     {
         $this->authorize('view', $eProduct);
 
         return new EProductResource($eProduct);
     }
 
-    /**
-     * @param \App\Http\Requests\EProductUpdateRequest $request
-     * @param \App\Models\EProduct $eProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function update(EProductUpdateRequest $request, EProduct $eProduct)
-    {
+    public function update(
+        EProductUpdateRequest $request,
+        EProduct $eProduct
+    ): EProductResource {
         $this->authorize('update', $eProduct);
 
         $validated = $request->validated();
@@ -84,12 +69,7 @@ class EProductController extends Controller
         return new EProductResource($eProduct);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\EProduct $eProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, EProduct $eProduct)
+    public function destroy(Request $request, EProduct $eProduct): Response
     {
         $this->authorize('delete', $eProduct);
 

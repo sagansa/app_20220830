@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\InvoicePurchase;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -13,11 +14,7 @@ use App\Http\Requests\InvoicePurchaseUpdateRequest;
 
 class InvoicePurchaseController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): InvoicePurchaseCollection
     {
         $this->authorize('view-any', InvoicePurchase::class);
 
@@ -30,12 +27,9 @@ class InvoicePurchaseController extends Controller
         return new InvoicePurchaseCollection($invoicePurchases);
     }
 
-    /**
-     * @param \App\Http\Requests\InvoicePurchaseStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(InvoicePurchaseStoreRequest $request)
-    {
+    public function store(
+        InvoicePurchaseStoreRequest $request
+    ): InvoicePurchaseResource {
         $this->authorize('create', InvoicePurchase::class);
 
         $validated = $request->validated();
@@ -48,27 +42,19 @@ class InvoicePurchaseController extends Controller
         return new InvoicePurchaseResource($invoicePurchase);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, InvoicePurchase $invoicePurchase)
-    {
+    public function show(
+        Request $request,
+        InvoicePurchase $invoicePurchase
+    ): InvoicePurchaseResource {
         $this->authorize('view', $invoicePurchase);
 
         return new InvoicePurchaseResource($invoicePurchase);
     }
 
-    /**
-     * @param \App\Http\Requests\InvoicePurchaseUpdateRequest $request
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         InvoicePurchaseUpdateRequest $request,
         InvoicePurchase $invoicePurchase
-    ) {
+    ): InvoicePurchaseResource {
         $this->authorize('update', $invoicePurchase);
 
         $validated = $request->validated();
@@ -86,13 +72,10 @@ class InvoicePurchaseController extends Controller
         return new InvoicePurchaseResource($invoicePurchase);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, InvoicePurchase $invoicePurchase)
-    {
+    public function destroy(
+        Request $request,
+        InvoicePurchase $invoicePurchase
+    ): Response {
         $this->authorize('delete', $invoicePurchase);
 
         if ($invoicePurchase->image) {

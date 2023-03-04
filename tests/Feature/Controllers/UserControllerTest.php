@@ -28,7 +28,7 @@ class UserControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_users()
+    public function it_displays_index_view_with_users(): void
     {
         $users = User::factory()
             ->count(5)
@@ -45,7 +45,7 @@ class UserControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_user()
+    public function it_displays_create_view_for_user(): void
     {
         $response = $this->get(route('users.create'));
 
@@ -55,7 +55,7 @@ class UserControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user()
+    public function it_stores_the_user(): void
     {
         $data = User::factory()
             ->make()
@@ -78,7 +78,7 @@ class UserControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_user()
+    public function it_displays_show_view_for_user(): void
     {
         $user = User::factory()->create();
 
@@ -93,7 +93,7 @@ class UserControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_user()
+    public function it_displays_edit_view_for_user(): void
     {
         $user = User::factory()->create();
 
@@ -108,7 +108,7 @@ class UserControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_user()
+    public function it_updates_the_user(): void
     {
         $user = User::factory()->create();
 
@@ -136,7 +136,7 @@ class UserControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_user()
+    public function it_deletes_the_user(): void
     {
         $user = User::factory()->create();
 

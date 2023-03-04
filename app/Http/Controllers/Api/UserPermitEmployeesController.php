@@ -10,13 +10,10 @@ use App\Http\Resources\PermitEmployeeCollection;
 
 class UserPermitEmployeesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
-    {
+    public function index(
+        Request $request,
+        User $user
+    ): PermitEmployeeCollection {
         $this->authorize('view', $user);
 
         $search = $request->get('search', '');
@@ -30,12 +27,7 @@ class UserPermitEmployeesController extends Controller
         return new PermitEmployeeCollection($permitEmployees);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): PermitEmployeeResource
     {
         $this->authorize('create', PermitEmployee::class);
 

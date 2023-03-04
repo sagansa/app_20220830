@@ -29,7 +29,7 @@ class ProductGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_product_groups()
+    public function it_displays_index_view_with_product_groups(): void
     {
         $productGroups = ProductGroup::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class ProductGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_product_group()
+    public function it_displays_create_view_for_product_group(): void
     {
         $response = $this->get(route('product-groups.create'));
 
@@ -56,7 +56,7 @@ class ProductGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_product_group()
+    public function it_stores_the_product_group(): void
     {
         $data = ProductGroup::factory()
             ->make()
@@ -74,7 +74,7 @@ class ProductGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_product_group()
+    public function it_displays_show_view_for_product_group(): void
     {
         $productGroup = ProductGroup::factory()->create();
 
@@ -89,7 +89,7 @@ class ProductGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_product_group()
+    public function it_displays_edit_view_for_product_group(): void
     {
         $productGroup = ProductGroup::factory()->create();
 
@@ -104,7 +104,7 @@ class ProductGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_product_group()
+    public function it_updates_the_product_group(): void
     {
         $productGroup = ProductGroup::factory()->create();
 
@@ -127,7 +127,7 @@ class ProductGroupControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_product_group()
+    public function it_deletes_the_product_group(): void
     {
         $productGroup = ProductGroup::factory()->create();
 

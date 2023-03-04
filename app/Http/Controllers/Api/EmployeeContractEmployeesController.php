@@ -10,13 +10,10 @@ use App\Http\Resources\ContractEmployeeCollection;
 
 class EmployeeContractEmployeesController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Employee $employee)
-    {
+    public function index(
+        Request $request,
+        Employee $employee
+    ): ContractEmployeeCollection {
         $this->authorize('view', $employee);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class EmployeeContractEmployeesController extends Controller
         return new ContractEmployeeCollection($contractEmployees);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Employee $employee)
-    {
+    public function store(
+        Request $request,
+        Employee $employee
+    ): ContractEmployeeResource {
         $this->authorize('create', ContractEmployee::class);
 
         $validated = $request->validate([

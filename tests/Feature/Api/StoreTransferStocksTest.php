@@ -31,7 +31,7 @@ class StoreTransferStocksTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_store_transfer_stocks()
+    public function it_gets_store_transfer_stocks(): void
     {
         $store = Store::factory()->create();
         $transferStocks = TransferStock::factory()
@@ -50,7 +50,7 @@ class StoreTransferStocksTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_store_transfer_stocks()
+    public function it_stores_the_store_transfer_stocks(): void
     {
         $store = Store::factory()->create();
         $data = TransferStock::factory()

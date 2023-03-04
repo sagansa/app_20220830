@@ -32,7 +32,7 @@ class RemainingStockTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_remaining_stocks_list()
+    public function it_gets_remaining_stocks_list(): void
     {
         $remainingStocks = RemainingStock::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class RemainingStockTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_remaining_stock()
+    public function it_stores_the_remaining_stock(): void
     {
         $data = RemainingStock::factory()
             ->make()
@@ -62,7 +62,7 @@ class RemainingStockTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_remaining_stock()
+    public function it_updates_the_remaining_stock(): void
     {
         $remainingStock = RemainingStock::factory()->create();
 
@@ -94,7 +94,7 @@ class RemainingStockTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_remaining_stock()
+    public function it_deletes_the_remaining_stock(): void
     {
         $remainingStock = RemainingStock::factory()->create();
 

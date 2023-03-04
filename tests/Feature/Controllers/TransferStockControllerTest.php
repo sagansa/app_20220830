@@ -31,7 +31,7 @@ class TransferStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_transfer_stocks()
+    public function it_displays_index_view_with_transfer_stocks(): void
     {
         $transferStocks = TransferStock::factory()
             ->count(5)
@@ -48,7 +48,7 @@ class TransferStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_transfer_stock()
+    public function it_displays_create_view_for_transfer_stock(): void
     {
         $response = $this->get(route('transfer-stocks.create'));
 
@@ -58,7 +58,7 @@ class TransferStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_transfer_stock()
+    public function it_stores_the_transfer_stock(): void
     {
         $data = TransferStock::factory()
             ->make()
@@ -80,7 +80,7 @@ class TransferStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_transfer_stock()
+    public function it_displays_show_view_for_transfer_stock(): void
     {
         $transferStock = TransferStock::factory()->create();
 
@@ -95,7 +95,7 @@ class TransferStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_transfer_stock()
+    public function it_displays_edit_view_for_transfer_stock(): void
     {
         $transferStock = TransferStock::factory()->create();
 
@@ -110,7 +110,7 @@ class TransferStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_transfer_stock()
+    public function it_updates_the_transfer_stock(): void
     {
         $transferStock = TransferStock::factory()->create();
 
@@ -150,7 +150,7 @@ class TransferStockControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_transfer_stock()
+    public function it_deletes_the_transfer_stock(): void
     {
         $transferStock = TransferStock::factory()->create();
 

@@ -31,7 +31,7 @@ class MaterialGroupProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_material_group_products()
+    public function it_gets_material_group_products(): void
     {
         $materialGroup = MaterialGroup::factory()->create();
         $products = Product::factory()
@@ -50,7 +50,7 @@ class MaterialGroupProductsTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_material_group_products()
+    public function it_stores_the_material_group_products(): void
     {
         $materialGroup = MaterialGroup::factory()->create();
         $data = Product::factory()

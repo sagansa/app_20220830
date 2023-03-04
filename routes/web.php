@@ -55,6 +55,9 @@ use App\Http\Controllers\RequestPurchaseController;
 use App\Http\Controllers\InvoicePurchaseController;
 use App\Http\Controllers\CashlessProviderController;
 use App\Http\Controllers\SalesOrderOnlineController;
+use App\Http\Controllers\SalesOrderDirectController;
+use App\Http\Controllers\DeliveryLocationController;
+use App\Http\Controllers\TransferToAccountController;
 use App\Http\Controllers\OnlineShopProviderController;
 use App\Http\Controllers\RestaurantCategoryController;
 use App\Http\Controllers\VehicleCertificateController;
@@ -169,5 +172,17 @@ Route::prefix('/')
         Route::resource(
             'sales-order-employees',
             SalesOrderEmployeeController::class
+        );
+        Route::resource(
+            'sales-order-directs',
+            SalesOrderDirectController::class
+        );
+        Route::resource(
+            'delivery-locations',
+            DeliveryLocationController::class
+        );
+        Route::resource(
+            'transfer-to-accounts',
+            TransferToAccountController::class
         );
     });

@@ -30,7 +30,7 @@ class UserClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_user_closing_stores()
+    public function it_gets_user_closing_stores(): void
     {
         $user = User::factory()->create();
         $closingStores = ClosingStore::factory()
@@ -49,7 +49,7 @@ class UserClosingStoresTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_user_closing_stores()
+    public function it_stores_the_user_closing_stores(): void
     {
         $user = User::factory()->create();
         $data = ClosingStore::factory()

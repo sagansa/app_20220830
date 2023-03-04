@@ -10,12 +10,7 @@ use App\Http\Resources\CleanAndNeatCollection;
 
 class UserCleanAndNeatsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user): CleanAndNeatCollection
     {
         $this->authorize('view', $user);
 
@@ -30,12 +25,7 @@ class UserCleanAndNeatsController extends Controller
         return new CleanAndNeatCollection($cleanAndNeats);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function store(Request $request, User $user): CleanAndNeatResource
     {
         $this->authorize('create', CleanAndNeat::class);
 

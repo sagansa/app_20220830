@@ -30,7 +30,7 @@ class CustomerTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_customers_list()
+    public function it_gets_customers_list(): void
     {
         $customers = Customer::factory()
             ->count(5)
@@ -44,7 +44,7 @@ class CustomerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_customer()
+    public function it_stores_the_customer(): void
     {
         $data = Customer::factory()
             ->make()
@@ -62,7 +62,7 @@ class CustomerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_customer()
+    public function it_updates_the_customer(): void
     {
         $customer = Customer::factory()->create();
 
@@ -92,7 +92,7 @@ class CustomerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_customer()
+    public function it_deletes_the_customer(): void
     {
         $customer = Customer::factory()->create();
 

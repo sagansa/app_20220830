@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\SelfConsumption;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SelfConsumptionResource;
@@ -12,11 +13,7 @@ use App\Http\Requests\SelfConsumptionUpdateRequest;
 
 class SelfConsumptionController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): SelfConsumptionCollection
     {
         $this->authorize('view-any', SelfConsumption::class);
 
@@ -29,12 +26,9 @@ class SelfConsumptionController extends Controller
         return new SelfConsumptionCollection($selfConsumptions);
     }
 
-    /**
-     * @param \App\Http\Requests\SelfConsumptionStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(SelfConsumptionStoreRequest $request)
-    {
+    public function store(
+        SelfConsumptionStoreRequest $request
+    ): SelfConsumptionResource {
         $this->authorize('create', SelfConsumption::class);
 
         $validated = $request->validated();
@@ -44,27 +38,19 @@ class SelfConsumptionController extends Controller
         return new SelfConsumptionResource($selfConsumption);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SelfConsumption $selfConsumption
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, SelfConsumption $selfConsumption)
-    {
+    public function show(
+        Request $request,
+        SelfConsumption $selfConsumption
+    ): SelfConsumptionResource {
         $this->authorize('view', $selfConsumption);
 
         return new SelfConsumptionResource($selfConsumption);
     }
 
-    /**
-     * @param \App\Http\Requests\SelfConsumptionUpdateRequest $request
-     * @param \App\Models\SelfConsumption $selfConsumption
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         SelfConsumptionUpdateRequest $request,
         SelfConsumption $selfConsumption
-    ) {
+    ): SelfConsumptionResource {
         $this->authorize('update', $selfConsumption);
 
         $validated = $request->validated();
@@ -74,13 +60,10 @@ class SelfConsumptionController extends Controller
         return new SelfConsumptionResource($selfConsumption);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SelfConsumption $selfConsumption
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, SelfConsumption $selfConsumption)
-    {
+    public function destroy(
+        Request $request,
+        SelfConsumption $selfConsumption
+    ): Response {
         $this->authorize('delete', $selfConsumption);
 
         $selfConsumption->delete();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Sop;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Resources\SopResource;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SopCollection;
@@ -13,11 +14,7 @@ use Illuminate\Support\Facades\Storage;
 
 class SopController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): SopCollection
     {
         $this->authorize('view-any', Sop::class);
 
@@ -30,11 +27,7 @@ class SopController extends Controller
         return new SopCollection($sops);
     }
 
-    /**
-     * @param \App\Http\Requests\SopStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(SopStoreRequest $request)
+    public function store(SopStoreRequest $request): SopResource
     {
         $this->authorize('create', Sop::class);
 
@@ -48,24 +41,14 @@ class SopController extends Controller
         return new SopResource($sop);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Sop $sop
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Sop $sop)
+    public function show(Request $request, Sop $sop): SopResource
     {
         $this->authorize('view', $sop);
 
         return new SopResource($sop);
     }
 
-    /**
-     * @param \App\Http\Requests\SopUpdateRequest $request
-     * @param \App\Models\Sop $sop
-     * @return \Illuminate\Http\Response
-     */
-    public function update(SopUpdateRequest $request, Sop $sop)
+    public function update(SopUpdateRequest $request, Sop $sop): SopResource
     {
         $this->authorize('update', $sop);
 
@@ -84,12 +67,7 @@ class SopController extends Controller
         return new SopResource($sop);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Sop $sop
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Sop $sop)
+    public function destroy(Request $request, Sop $sop): Response
     {
         $this->authorize('delete', $sop);
 

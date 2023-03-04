@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\DailySalary;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DailySalaryResource;
 use App\Http\Resources\DailySalaryCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\DailySalaryUpdateRequest;
 
 class DailySalaryController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): DailySalaryCollection
     {
         $this->authorize('view-any', DailySalary::class);
 
@@ -29,11 +26,7 @@ class DailySalaryController extends Controller
         return new DailySalaryCollection($dailySalaries);
     }
 
-    /**
-     * @param \App\Http\Requests\DailySalaryStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(DailySalaryStoreRequest $request)
+    public function store(DailySalaryStoreRequest $request): DailySalaryResource
     {
         $this->authorize('create', DailySalary::class);
 
@@ -44,27 +37,19 @@ class DailySalaryController extends Controller
         return new DailySalaryResource($dailySalary);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\DailySalary $dailySalary
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, DailySalary $dailySalary)
-    {
+    public function show(
+        Request $request,
+        DailySalary $dailySalary
+    ): DailySalaryResource {
         $this->authorize('view', $dailySalary);
 
         return new DailySalaryResource($dailySalary);
     }
 
-    /**
-     * @param \App\Http\Requests\DailySalaryUpdateRequest $request
-     * @param \App\Models\DailySalary $dailySalary
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         DailySalaryUpdateRequest $request,
         DailySalary $dailySalary
-    ) {
+    ): DailySalaryResource {
         $this->authorize('update', $dailySalary);
 
         $validated = $request->validated();
@@ -74,13 +59,10 @@ class DailySalaryController extends Controller
         return new DailySalaryResource($dailySalary);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\DailySalary $dailySalary
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, DailySalary $dailySalary)
-    {
+    public function destroy(
+        Request $request,
+        DailySalary $dailySalary
+    ): Response {
         $this->authorize('delete', $dailySalary);
 
         $dailySalary->delete();

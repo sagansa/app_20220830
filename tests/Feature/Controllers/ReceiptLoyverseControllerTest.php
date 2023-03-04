@@ -29,7 +29,7 @@ class ReceiptLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_receipt_loyverses()
+    public function it_displays_index_view_with_receipt_loyverses(): void
     {
         $receiptLoyverses = ReceiptLoyverse::factory()
             ->count(5)
@@ -46,7 +46,7 @@ class ReceiptLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_create_view_for_receipt_loyverse()
+    public function it_displays_create_view_for_receipt_loyverse(): void
     {
         $response = $this->get(route('receipt-loyverses.create'));
 
@@ -56,7 +56,7 @@ class ReceiptLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_receipt_loyverse()
+    public function it_stores_the_receipt_loyverse(): void
     {
         $data = ReceiptLoyverse::factory()
             ->make()
@@ -76,7 +76,7 @@ class ReceiptLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_show_view_for_receipt_loyverse()
+    public function it_displays_show_view_for_receipt_loyverse(): void
     {
         $receiptLoyverse = ReceiptLoyverse::factory()->create();
 
@@ -93,7 +93,7 @@ class ReceiptLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_edit_view_for_receipt_loyverse()
+    public function it_displays_edit_view_for_receipt_loyverse(): void
     {
         $receiptLoyverse = ReceiptLoyverse::factory()->create();
 
@@ -110,7 +110,7 @@ class ReceiptLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_updates_the_receipt_loyverse()
+    public function it_updates_the_receipt_loyverse(): void
     {
         $receiptLoyverse = ReceiptLoyverse::factory()->create();
 
@@ -153,7 +153,7 @@ class ReceiptLoyverseControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_deletes_the_receipt_loyverse()
+    public function it_deletes_the_receipt_loyverse(): void
     {
         $receiptLoyverse = ReceiptLoyverse::factory()->create();
 

@@ -10,13 +10,10 @@ use App\Http\Resources\ProductionFromCollection;
 
 class ProductionProductionFromsController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Production $production
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, Production $production)
-    {
+    public function index(
+        Request $request,
+        Production $production
+    ): ProductionFromCollection {
         $this->authorize('view', $production);
 
         $search = $request->get('search', '');
@@ -30,13 +27,10 @@ class ProductionProductionFromsController extends Controller
         return new ProductionFromCollection($productionFroms);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Production $production
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Production $production)
-    {
+    public function store(
+        Request $request,
+        Production $production
+    ): ProductionFromResource {
         $this->authorize('create', ProductionFrom::class);
 
         $validated = $request->validate([

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Bank;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Resources\BankResource;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BankCollection;
@@ -12,11 +13,7 @@ use App\Http\Requests\BankUpdateRequest;
 
 class BankController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): BankCollection
     {
         $this->authorize('view-any', Bank::class);
 
@@ -29,11 +26,7 @@ class BankController extends Controller
         return new BankCollection($banks);
     }
 
-    /**
-     * @param \App\Http\Requests\BankStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(BankStoreRequest $request)
+    public function store(BankStoreRequest $request): BankResource
     {
         $this->authorize('create', Bank::class);
 
@@ -44,24 +37,14 @@ class BankController extends Controller
         return new BankResource($bank);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Bank $bank
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Bank $bank)
+    public function show(Request $request, Bank $bank): BankResource
     {
         $this->authorize('view', $bank);
 
         return new BankResource($bank);
     }
 
-    /**
-     * @param \App\Http\Requests\BankUpdateRequest $request
-     * @param \App\Models\Bank $bank
-     * @return \Illuminate\Http\Response
-     */
-    public function update(BankUpdateRequest $request, Bank $bank)
+    public function update(BankUpdateRequest $request, Bank $bank): BankResource
     {
         $this->authorize('update', $bank);
 
@@ -72,12 +55,7 @@ class BankController extends Controller
         return new BankResource($bank);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Bank $bank
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Bank $bank)
+    public function destroy(Request $request, Bank $bank): Response
     {
         $this->authorize('delete', $bank);
 
