@@ -45,7 +45,7 @@ class SalesOrderEmployeeController extends Controller
             ->whereNotIn('status', ['8'])
             ->pluck('name', 'id');
         $users = User::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
         return view(
@@ -121,7 +121,7 @@ class SalesOrderEmployeeController extends Controller
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $users = User::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
         return view(
