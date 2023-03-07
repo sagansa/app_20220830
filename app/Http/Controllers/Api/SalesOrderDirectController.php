@@ -33,14 +33,14 @@ class SalesOrderDirectController extends Controller
         $this->authorize('create', SalesOrderDirect::class);
 
         $validated = $request->validated();
-        if ($request->hasFile('sign')) {
-            $validated['sign'] = $request->file('sign')->store('public');
-        }
-
         if ($request->hasFile('image_transfer')) {
             $validated['image_transfer'] = $request
                 ->file('image_transfer')
                 ->store('public');
+        }
+
+        if ($request->hasFile('sign')) {
+            $validated['sign'] = $request->file('sign')->store('public');
         }
 
         if ($request->hasFile('image_receipt')) {
@@ -71,14 +71,6 @@ class SalesOrderDirectController extends Controller
 
         $validated = $request->validated();
 
-        if ($request->hasFile('sign')) {
-            if ($salesOrderDirect->sign) {
-                Storage::delete($salesOrderDirect->sign);
-            }
-
-            $validated['sign'] = $request->file('sign')->store('public');
-        }
-
         if ($request->hasFile('image_transfer')) {
             if ($salesOrderDirect->image_transfer) {
                 Storage::delete($salesOrderDirect->image_transfer);
@@ -87,6 +79,14 @@ class SalesOrderDirectController extends Controller
             $validated['image_transfer'] = $request
                 ->file('image_transfer')
                 ->store('public');
+        }
+
+        if ($request->hasFile('sign')) {
+            if ($salesOrderDirect->sign) {
+                Storage::delete($salesOrderDirect->sign);
+            }
+
+            $validated['sign'] = $request->file('sign')->store('public');
         }
 
         if ($request->hasFile('image_receipt')) {
@@ -110,12 +110,12 @@ class SalesOrderDirectController extends Controller
     ): Response {
         $this->authorize('delete', $salesOrderDirect);
 
-        if ($salesOrderDirect->sign) {
-            Storage::delete($salesOrderDirect->sign);
-        }
-
         if ($salesOrderDirect->image_transfer) {
             Storage::delete($salesOrderDirect->image_transfer);
+        }
+
+        if ($salesOrderDirect->sign) {
+            Storage::delete($salesOrderDirect->sign);
         }
 
         if ($salesOrderDirect->image_receipt) {

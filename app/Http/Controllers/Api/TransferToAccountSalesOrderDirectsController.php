@@ -40,25 +40,26 @@ class TransferToAccountSalesOrderDirectsController extends Controller
                 'required',
                 'exists:delivery_services,id',
             ],
-            'payment_status' => ['required', 'max:255'],
+            'image_transfer' => ['image', 'nullable'],
+            'payment_status' => ['required'],
             'store_id' => ['nullable', 'exists:stores,id'],
             'submitted_by_id' => ['nullable', 'exists:users,id'],
             'received_by' => ['nullable', 'max:255', 'string'],
             'sign' => ['image', 'nullable'],
-            'image_transfer' => ['image', 'nullable'],
             'image_receipt' => ['image', 'nullable'],
-            'delivery_status' => ['required', 'max:255'],
-            'shipping_cost' => ['nullable', 'max:255'],
+            'delivery_status' => ['required'],
+            'shipping_cost' => ['nullable'],
+            'Discounts' => ['required', 'max:255'],
         ]);
-
-        if ($request->hasFile('sign')) {
-            $validated['sign'] = $request->file('sign')->store('public');
-        }
 
         if ($request->hasFile('image_transfer')) {
             $validated['image_transfer'] = $request
                 ->file('image_transfer')
                 ->store('public');
+        }
+
+        if ($request->hasFile('sign')) {
+            $validated['sign'] = $request->file('sign')->store('public');
         }
 
         if ($request->hasFile('image_receipt')) {

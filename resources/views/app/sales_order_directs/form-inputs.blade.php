@@ -41,6 +41,42 @@
         @endforeach
     </x-input.select>
 
+    <x-input.image name="image_transfer" label="Image Transfer">
+        <div
+            x-data="imageViewer('{{ $editing && $salesOrderDirect->image_transfer ? \Storage::url($salesOrderDirect->image_transfer) : '' }}')"
+            class="mt-1 sm:mt-0 sm:col-span-2"
+        >
+            <!-- Show the image -->
+            <template x-if="imageUrl">
+                <img
+                    :src="imageUrl"
+                    class="object-cover rounded border border-gray-200"
+                    style="width: 100px; height: 100px;"
+                />
+            </template>
+
+            <!-- Show the gray box when image is not available -->
+            <template x-if="!imageUrl">
+                <div
+                    class="border rounded border-gray-200 bg-gray-100"
+                    style="width: 100px; height: 100px;"
+                ></div>
+            </template>
+
+            <div class="mt-2">
+                <input
+                    type="file"
+                    name="image_transfer"
+                    id="image_transfer"
+                    @change="fileChosen"
+                />
+            </div>
+
+            @error('image_transfer')
+            @include('components.inputs.partials.error') @enderror
+        </div>
+    </x-input.image>
+
     <x-input.select name="payment_status" label="Payment Status">
         @php $selected = old('payment_status', ($editing ? $salesOrderDirect->payment_status : '1')) @endphp
         <option value="1" {{ $selected == '1' ? 'selected' : '' }} >proses validasi</option>
@@ -102,42 +138,6 @@
         </div>
     </x-input.image>
 
-    <x-input.image name="image_transfer" label="Image Transfer">
-        <div
-            x-data="imageViewer('{{ $editing && $salesOrderDirect->image_transfer ? \Storage::url($salesOrderDirect->image_transfer) : '' }}')"
-            class="mt-1 sm:mt-0 sm:col-span-2"
-        >
-            <!-- Show the image -->
-            <template x-if="imageUrl">
-                <img
-                    :src="imageUrl"
-                    class="object-cover rounded border border-gray-200"
-                    style="width: 100px; height: 100px;"
-                />
-            </template>
-
-            <!-- Show the gray box when image is not available -->
-            <template x-if="!imageUrl">
-                <div
-                    class="border rounded border-gray-200 bg-gray-100"
-                    style="width: 100px; height: 100px;"
-                ></div>
-            </template>
-
-            <div class="mt-2">
-                <input
-                    type="file"
-                    name="image_transfer"
-                    id="image_transfer"
-                    @change="fileChosen"
-                />
-            </div>
-
-            @error('image_transfer')
-            @include('components.inputs.partials.error') @enderror
-        </div>
-    </x-input.image>
-
     <x-input.image name="image_receipt" label="Image Receipt">
         <div
             x-data="imageViewer('{{ $editing && $salesOrderDirect->image_receipt ? \Storage::url($salesOrderDirect->image_receipt) : '' }}')"
@@ -187,6 +187,13 @@
         name="shipping_cost"
         label="Shipping Cost"
         value="{{ old('shipping_cost', ($editing ? $salesOrderDirect->shipping_cost : '')) }}"
+    ></x-input.number>
+
+    <x-input.number
+        name="Discounts"
+        label="Discounts"
+        value="{{ old('Discounts', ($editing ? $salesOrderDirect->Discounts : '')) }}"
+        required
     ></x-input.number>
 
     @if ($editing)

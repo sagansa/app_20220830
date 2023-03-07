@@ -62,8 +62,8 @@
           @endrole
 
           @if (Auth::user()->can('view-any', App\Models\Customer::class) ||
-              Auth::user()->can('view-any', App\Models\SalesOrderEmployee::class) ||
-              Auth::user()->can('view-any', App\Models\SalesOrderOnline::class))
+                  Auth::user()->can('view-any', App\Models\SalesOrderEmployee::class) ||
+                  Auth::user()->can('view-any', App\Models\SalesOrderOnline::class))
               <x-sidebars.nav-dropdown-mobile control="sales-transactions" title="Sales Transactions">
                   <x-slot name="content">
                       <svg x-data="{ isOn: false }" @click="isOn = !isOn" :aria-checked="isOn"
@@ -79,7 +79,6 @@
                           Customers
                       </x-sidebars.dropdown-link>
                   @endcan
-
                   @can('view-any', App\Models\SalesOrderOnline::class)
                       <x-sidebars.dropdown-link href="{{ route('sales-order-onlines.index') }}">
                           Sales Order Onlines
@@ -88,6 +87,11 @@
                   @can('view-any', App\Models\SalesOrderEmployee::class)
                       <x-sidebars.dropdown-link href="{{ route('sales-order-employees.index') }}">
                           Sales Order Employees
+                      </x-sidebars.dropdown-link>
+                  @endcan
+                  @can('view-any', App\Models\SalesOrderDirect::class)
+                      <x-sidebars.dropdown-link href="{{ route('sales-order-directs.index') }}">
+                          Sales Order Directs
                       </x-sidebars.dropdown-link>
                   @endcan
                   @can('view-any', App\Models\EProduct::class)
@@ -105,12 +109,12 @@
           @endif
 
           @if (Auth::user()->can('view-any', App\Models\Supplier::class) ||
-              Auth::user()->can('view-any', App\Models\PurchaseOrder::class) ||
-              Auth::user()->can('view-any', App\Models\PurchaseReceipt::class) ||
-              Auth::user()->can('view-any', App\Models\ClosingStore::class) ||
-              Auth::user()->can('view-any', App\Models\ClosingCourier::class) ||
-              Auth::user()->can('view-any', App\Models\Refund::class) ||
-              Auth::user()->can('view-any', App\Models\PaymentReceipt::class))
+                  Auth::user()->can('view-any', App\Models\PurchaseOrder::class) ||
+                  Auth::user()->can('view-any', App\Models\PurchaseReceipt::class) ||
+                  Auth::user()->can('view-any', App\Models\ClosingStore::class) ||
+                  Auth::user()->can('view-any', App\Models\ClosingCourier::class) ||
+                  Auth::user()->can('view-any', App\Models\Refund::class) ||
+                  Auth::user()->can('view-any', App\Models\PaymentReceipt::class))
               <x-sidebars.nav-dropdown-mobile control="purchase-transactions" title="Purchase Transactions">
                   <x-slot name="content">
                       <svg x-data="{ isOn: false }" @click="isOn = !isOn" :aria-checked="isOn"
@@ -207,12 +211,12 @@
           @endif
 
           @if (Auth::user()->can('view-any', App\Models\Production::class) ||
-              Auth::user()->can('view-any', App\Models\TransferStock::class) ||
-              Auth::user()->can('view-any', App\Models\RemainingStock::class) ||
-              Auth::user()->can('view-any', App\Models\UtilityUsage::class) ||
-              //   Auth::user()->can('view-any', App\Models\OutInProduct::class) ||
-              //   Auth::user()->can('view-any', App\Models\StockCard::class) ||
-              Auth::user()->can('view-any', App\Models\SelfConsumption::class))
+                  Auth::user()->can('view-any', App\Models\TransferStock::class) ||
+                  Auth::user()->can('view-any', App\Models\RemainingStock::class) ||
+                  Auth::user()->can('view-any', App\Models\UtilityUsage::class) ||
+                  //   Auth::user()->can('view-any', App\Models\OutInProduct::class) ||
+                  //   Auth::user()->can('view-any', App\Models\StockCard::class) ||
+                  Auth::user()->can('view-any', App\Models\SelfConsumption::class))
               <x-sidebars.nav-dropdown-mobile control="stock-managements" title="Stock Managements">
                   <x-slot name="content">
                       <svg x-data="{ isOn: false }" @click="isOn = !isOn" :aria-checked="isOn"
@@ -268,10 +272,10 @@
           @endif
 
           @if (Auth::user()->can('view-any', App\Models\Vehicle::class) ||
-              Auth::user()->can('view-any', App\Models\VehicleCertificate::class) ||
-              Auth::user()->can('view-any', App\Models\VehicleTax::class) ||
-              Auth::user()->can('view-any', App\Models\MovementAsset::class) ||
-              Auth::user()->can('view-any', App\Models\MovementAssetResult::class))
+                  Auth::user()->can('view-any', App\Models\VehicleCertificate::class) ||
+                  Auth::user()->can('view-any', App\Models\VehicleTax::class) ||
+                  Auth::user()->can('view-any', App\Models\MovementAsset::class) ||
+                  Auth::user()->can('view-any', App\Models\MovementAssetResult::class))
               <x-sidebars.nav-dropdown-mobile control="asset-managements" title="Asset Managements">
                   <x-slot name="content">
                       <svg x-data="{ isOn: false }" @click="isOn = !isOn" :aria-checked="isOn"
@@ -311,10 +315,10 @@
           @endif
 
           @if (Auth::user()->can('view-any', App\Models\Employee::class) ||
-              Auth::user()->can('view-any', App\Models\PermitEmployee::class) ||
-              Auth::user()->can('view-any', App\Models\Presence::class) ||
-              Auth::user()->can('view-any', App\Models\Sop::class) ||
-              Auth::user()->can('view-any', App\Models\MonthlySalary::class))
+                  Auth::user()->can('view-any', App\Models\PermitEmployee::class) ||
+                  Auth::user()->can('view-any', App\Models\Presence::class) ||
+                  Auth::user()->can('view-any', App\Models\Sop::class) ||
+                  Auth::user()->can('view-any', App\Models\MonthlySalary::class))
               <x-sidebars.nav-dropdown-mobile control="hrd" title="HRD">
                   <x-slot name="content">
                       <svg x-data="{ isOn: false }" @click="isOn = !isOn" :aria-checked="isOn"
@@ -356,7 +360,7 @@
           @endif
 
           @if (Auth::user()->can('view-any', App\Models\CleanAndNeat::class) ||
-              Auth::user()->can('view-any', App\Models\Hygiene::class))
+                  Auth::user()->can('view-any', App\Models\Hygiene::class))
               <x-sidebars.nav-dropdown-mobile control="environments" title="Environments">
                   <x-slot name="content">
                       <svg x-data="{ isOn: false }" @click="isOn = !isOn" :aria-checked="isOn"
@@ -381,7 +385,7 @@
           @endif
 
           @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) ||
-              Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
+                  Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
               <x-sidebars.nav-dropdown-mobile control="access-managements" title="Access Managements">
                   <x-slot name="content">
                       <svg x-data="{ isOn: false }" @click="isOn = !isOn" :aria-checked="isOn"
@@ -480,6 +484,9 @@
                   </x-sidebars.dropdown-link>
                   <x-sidebars.dropdown-link href="{{ route('delivery-services.index') }}">
                       Delivery Services
+                  </x-sidebars.dropdown-link>
+                  <x-sidebars.dropdown-link href="{{ route('transfer-to-accounts.index') }}">
+                      Transfer To Accounts
                   </x-sidebars.dropdown-link>
               </x-sidebars.nav-dropdown-mobile>
           @endrole

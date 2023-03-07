@@ -103,9 +103,24 @@ class Product extends Model
         return $this->belongsTo(RestaurantCategory::class);
     }
 
-    public function productionsTo()
+    public function productionsTos()
     {
-        return $this->hasMany(Production::class);
+        return $this->hasMany(ProductionTo::class);
+    }
+
+    public function productionSupportFroms()
+    {
+        return $this->hasMany(ProductionSupportFrom::class);
+    }
+
+    public function eProducts()
+    {
+        return $this->hasMany(EProduct::class);
+    }
+
+    public function detailRequests()
+    {
+        return $this->hasMany(DetailRequest::class);
     }
 
     public function remainingStocks()

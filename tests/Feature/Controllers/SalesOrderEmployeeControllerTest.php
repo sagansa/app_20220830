@@ -6,8 +6,6 @@ use App\Models\User;
 use App\Models\SalesOrderEmployee;
 
 use App\Models\Store;
-use App\Models\Customer;
-use App\Models\DeliveryAddress;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -118,17 +116,14 @@ class SalesOrderEmployeeControllerTest extends TestCase
     {
         $salesOrderEmployee = SalesOrderEmployee::factory()->create();
 
-        $customer = Customer::factory()->create();
-        $deliveryAddress = DeliveryAddress::factory()->create();
         $store = Store::factory()->create();
         $user = User::factory()->create();
 
         $data = [
+            'customer' => $this->faker->text(255),
+            'detail_customer' => $this->faker->text,
             'date' => $this->faker->date,
             'status' => $this->faker->numberBetween(1, 4),
-            'notes' => $this->faker->text,
-            'customer_id' => $customer->id,
-            'delivery_address_id' => $deliveryAddress->id,
             'store_id' => $store->id,
             'user_id' => $user->id,
         ];

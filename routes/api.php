@@ -95,8 +95,8 @@ use App\Http\Controllers\Api\SalesOrderOnlineController;
 use App\Http\Controllers\Api\ProductEProductsController;
 use App\Http\Controllers\Api\ContractEmployeeController;
 use App\Http\Controllers\Api\ContractLocationController;
-use App\Http\Controllers\Api\SalesOrderDirectController;
 use App\Http\Controllers\Api\DeliveryLocationController;
+use App\Http\Controllers\Api\SalesOrderDirectController;
 use App\Http\Controllers\Api\UserClosingStoresController;
 use App\Http\Controllers\Api\UserCleanAndNeatsController;
 use App\Http\Controllers\Api\UserUtilityUsagesController;
@@ -140,8 +140,8 @@ use App\Http\Controllers\Api\ProductGroupProductsController;
 use App\Http\Controllers\Api\ProductProductionTosController;
 use App\Http\Controllers\Api\UtilityUtilityUsagesController;
 use App\Http\Controllers\Api\UserSalesOrderOnlinesController;
-use App\Http\Controllers\Api\UserSalesOrderDirectsController;
 use App\Http\Controllers\Api\UserDeliveryLocationsController;
+use App\Http\Controllers\Api\UserSalesOrderDirectsController;
 use App\Http\Controllers\Api\StoreSelfConsumptionsController;
 use App\Http\Controllers\Api\StoreRequestPurchasesController;
 use App\Http\Controllers\Api\StoreInvoicePurchasesController;
@@ -211,7 +211,6 @@ use App\Http\Controllers\Api\closing_store_daily_salaryController;
 use App\Http\Controllers\Api\DailySalaryPaymentReceiptsController;
 use App\Http\Controllers\Api\SalesOrderEmployeeProductsController;
 use App\Http\Controllers\Api\SalesOrderDirectSoDdetailsController;
-use App\Http\Controllers\Api\CustomerSalesOrderEmployeesController;
 use App\Http\Controllers\Api\ClosingCourierClosingStoresController;
 use App\Http\Controllers\Api\PaymentTypeInvoicePurchasesController;
 use App\Http\Controllers\Api\ClosingStoreClosingCouriersController;
@@ -276,16 +275,6 @@ Route::name('api.')
         Route::apiResource('permissions', PermissionController::class);
 
         Route::apiResource('customers', CustomerController::class);
-
-        // Customer Sales Order Employees
-        Route::get('/customers/{customer}/sales-order-employees', [
-            CustomerSalesOrderEmployeesController::class,
-            'index',
-        ])->name('customers.sales-order-employees.index');
-        Route::post('/customers/{customer}/sales-order-employees', [
-            CustomerSalesOrderEmployeesController::class,
-            'store',
-        ])->name('customers.sales-order-employees.store');
 
         // Customer Sales Order Onlines
         Route::get('/customers/{customer}/sales-order-onlines', [
@@ -841,26 +830,6 @@ Route::name('api.')
             'store',
         ])->name('users.transfer-stocks.store');
 
-        // User Sales Order Directs
-        Route::get('/users/{user}/sales-order-directs', [
-            UserSalesOrderDirectsController::class,
-            'index',
-        ])->name('users.sales-order-directs.index');
-        Route::post('/users/{user}/sales-order-directs', [
-            UserSalesOrderDirectsController::class,
-            'store',
-        ])->name('users.sales-order-directs.store');
-
-        // User Sales Order Directs2
-        Route::get('/users/{user}/sales-order-directs', [
-            UserSalesOrderDirectsController::class,
-            'index',
-        ])->name('users.sales-order-directs.index');
-        Route::post('/users/{user}/sales-order-directs', [
-            UserSalesOrderDirectsController::class,
-            'store',
-        ])->name('users.sales-order-directs.store');
-
         // User Delivery Locations
         Route::get('/users/{user}/delivery-locations', [
             UserDeliveryLocationsController::class,
@@ -870,6 +839,26 @@ Route::name('api.')
             UserDeliveryLocationsController::class,
             'store',
         ])->name('users.delivery-locations.store');
+
+        // User Sales Order Direct Submits
+        Route::get('/users/{user}/sales-order-directs', [
+            UserSalesOrderDirectsController::class,
+            'index',
+        ])->name('users.sales-order-directs.index');
+        Route::post('/users/{user}/sales-order-directs', [
+            UserSalesOrderDirectsController::class,
+            'store',
+        ])->name('users.sales-order-directs.store');
+
+        // User Sales Order Direct Orders
+        Route::get('/users/{user}/sales-order-directs', [
+            UserSalesOrderDirectsController::class,
+            'index',
+        ])->name('users.sales-order-directs.index');
+        Route::post('/users/{user}/sales-order-directs', [
+            UserSalesOrderDirectsController::class,
+            'store',
+        ])->name('users.sales-order-directs.store');
 
         Route::apiResource('vehicles', VehicleController::class);
 
@@ -2268,6 +2257,11 @@ Route::name('api.')
         )->name('sales-order-employees.products.destroy');
 
         Route::apiResource(
+            'delivery-locations',
+            DeliveryLocationController::class
+        );
+
+        Route::apiResource(
             'sales-order-directs',
             SalesOrderDirectController::class
         );
@@ -2281,11 +2275,6 @@ Route::name('api.')
             SalesOrderDirectSoDdetailsController::class,
             'store',
         ])->name('sales-order-directs.so-ddetails.store');
-
-        Route::apiResource(
-            'delivery-locations',
-            DeliveryLocationController::class
-        );
 
         Route::apiResource(
             'transfer-to-accounts',

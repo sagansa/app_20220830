@@ -51,7 +51,7 @@
 
             @can('view-any', App\Models\SoDdetail::class)
             <x-partials.card class="mt-5">
-                <x-slot name="title"> So Ddetails </x-slot>
+                <x-slot name="title"> Details </x-slot>
 
                 <livewire:sales-order-direct-so-ddetails-detail
                     :salesOrderDirect="$salesOrderDirect"

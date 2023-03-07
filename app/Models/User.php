@@ -228,10 +228,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(SelfConsumption::class, 'approved_by_id');
     }
 
-    public function stockCards()
-    {
-        return $this->hasMany(StockCard::class);
-    }
+    // public function stockCards()
+    // {
+    //     return $this->hasMany(StockCard::class);
+    // }
 
     public function vehicleTaxes()
     {
@@ -243,15 +243,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Refund::class);
     }
 
-    public function outInProductsCreated()
-    {
-        return $this->hasMany(OutInProduct::class, 'created_by_id');
-    }
+    // public function outInProductsCreated()
+    // {
+    //     return $this->hasMany(OutInProduct::class, 'created_by_id');
+    // }
 
-    public function outInProductsApproved()
-    {
-        return $this->hasMany(OutInProduct::class, 'approved_by_id');
-    }
+    // public function outInProductsApproved()
+    // {
+    //     return $this->hasMany(OutInProduct::class, 'approved_by_id');
+    // }
 
     public function carts()
     {
@@ -306,6 +306,21 @@ class User extends Authenticatable implements MustVerifyEmail
     public function transferStocksReceived()
     {
         return $this->hasMany(TransferStock::class, 'received_by_id');
+    }
+
+     public function deliveryLocations()
+    {
+        return $this->hasMany(DeliveryLocation::class);
+    }
+
+    public function salesOrderDirectSubmits()
+    {
+        return $this->hasMany(SalesOrderDirect::class, 'submitted_by_id');
+    }
+
+    public function salesOrderDirectOrders()
+    {
+        return $this->hasMany(SalesOrderDirect::class, 'order_by_id');
     }
 
     public function isSuperAdmin()

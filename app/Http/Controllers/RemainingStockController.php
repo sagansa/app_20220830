@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Image;
 use App\Models\User;
 use App\Models\Store;
 use App\Models\Product;
@@ -93,7 +93,7 @@ class RemainingStockController extends Controller
         $validated['status'] = '1';
 
         $remainingStock = RemainingStock::create($validated);
-        
+
         // if(auth()->user()->hasRole('manager|staff|super-admin')) {
         $remainingStock->products()->sync($this->mapProducts($validated['products']));
         // }
@@ -191,7 +191,7 @@ class RemainingStockController extends Controller
             ->withSuccess(__('crud.common.removed'));
     }
 
-    private function mapProducts($products) 
+    private function mapProducts($products)
     {
         return collect($products)->map(function ($i) {
             return ['quantity' => $i];

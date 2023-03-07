@@ -28,21 +28,20 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
-                            >@lang('crud.sales_order_employees.inputs.customer_id')</x-shows.dt
+                            >@lang('crud.sales_order_employees.inputs.customer')</x-shows.dt
                         >
                         <x-shows.dd
-                            >{{ optional($salesOrderEmployee->customer)->name ??
-                            '-' }}</x-shows.dd
+                            >{{ $salesOrderEmployee->customer ?? '-'
+                            }}</x-shows.dd
                         >
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
-                            >@lang('crud.sales_order_employees.inputs.delivery_address_id')</x-shows.dt
+                            >@lang('crud.sales_order_employees.inputs.detail_customer')</x-shows.dt
                         >
                         <x-shows.dd
-                            >{{
-                            optional($salesOrderEmployee->deliveryAddress)->name
-                            ?? '-' }}</x-shows.dd
+                            >{{ $salesOrderEmployee->detail_customer ?? '-'
+                            }}</x-shows.dd
                         >
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
@@ -77,14 +76,6 @@
                         <x-shows.dd
                             >{{ $salesOrderEmployee->status ?? '-'
                             }}</x-shows.dd
-                        >
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
-                            >@lang('crud.sales_order_employees.inputs.notes')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ $salesOrderEmployee->notes ?? '-' }}</x-shows.dd
                         >
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>

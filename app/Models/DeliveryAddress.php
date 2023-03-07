@@ -63,11 +63,6 @@ class DeliveryAddress extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function salesOrderEmployees()
-    {
-        return $this->hasMany(SalesOrderEmployee::class);
-    }
-
     public function salesOrderOnlines()
     {
         return $this->hasMany(SalesOrderOnline::class);

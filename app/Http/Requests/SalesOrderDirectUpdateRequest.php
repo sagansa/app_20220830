@@ -30,15 +30,16 @@ class SalesOrderDirectUpdateRequest extends FormRequest
                 'required',
                 'exists:transfer_to_accounts,id',
             ],
-            'payment_status' => ['required', 'max:255'],
+            'image_transfer' => ['image', 'nullable'],
+            'payment_status' => ['required'],
             'store_id' => ['nullable', 'exists:stores,id'],
             'submitted_by_id' => ['nullable', 'exists:users,id'],
             'received_by' => ['nullable', 'max:255', 'string'],
             'sign' => ['image', 'nullable'],
-            'image_transfer' => ['image', 'nullable'],
             'image_receipt' => ['image', 'nullable'],
-            'delivery_status' => ['required', 'max:255'],
-            'shipping_cost' => ['nullable', 'max:255'],
+            'delivery_status' => ['required'],
+            'shipping_cost' => ['nullable'],
+            'Discounts' => ['required', 'max:255'],
         ];
     }
 }

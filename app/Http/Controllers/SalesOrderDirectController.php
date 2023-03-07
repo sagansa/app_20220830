@@ -78,21 +78,6 @@ class SalesOrderDirectController extends Controller
 
         $validated = $request->validated();
 
-        if ($request->hasFile('sign')) {
-            $file = $request->file('sign');
-            $extension = $file->getClientOriginalExtension();
-            $filesign = rand() . time() . '.' . $extension;
-            $file->move('storage/', $filesign);
-            Image::make('storage/' . $filesign)
-                ->resize(400, 400, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                })
-                ->save();
-
-            $validated['sign'] = $filesign;
-        }
-
         if ($request->hasFile('image_transfer')) {
             $file = $request->file('image_transfer');
             $extension = $file->getClientOriginalExtension();
@@ -106,6 +91,21 @@ class SalesOrderDirectController extends Controller
                 ->save();
 
             $validated['image_transfer'] = $fileimage_transfer;
+        }
+
+        if ($request->hasFile('sign')) {
+            $file = $request->file('sign');
+            $extension = $file->getClientOriginalExtension();
+            $filesign = rand() . time() . '.' . $extension;
+            $file->move('storage/', $filesign);
+            Image::make('storage/' . $filesign)
+                ->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save();
+
+            $validated['sign'] = $filesign;
         }
 
         if ($request->hasFile('image_receipt')) {
@@ -195,22 +195,6 @@ class SalesOrderDirectController extends Controller
         $this->authorize('update', $salesOrderDirect);
 
         $validated = $request->validated();
-        if ($request->hasFile('sign')) {
-            $file = $request->file('sign');
-            $salesOrderDirect->delete_sign();
-            $extension = $file->getClientOriginalExtension();
-            $file_sign = rand() . time() . '.' . $extension;
-            $file->move('storage/', $file_sign);
-            Image::make('storage/' . $file_sign)
-                ->resize(400, 400, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                })
-                ->save();
-
-            $validated['sign'] = $file_sign;
-        }
-
         if ($request->hasFile('image_transfer')) {
             $file = $request->file('image_transfer');
             $salesOrderDirect->delete_image_transfer();
@@ -225,6 +209,22 @@ class SalesOrderDirectController extends Controller
                 ->save();
 
             $validated['image_transfer'] = $file_image_transfer;
+        }
+
+        if ($request->hasFile('sign')) {
+            $file = $request->file('sign');
+            $salesOrderDirect->delete_sign();
+            $extension = $file->getClientOriginalExtension();
+            $file_sign = rand() . time() . '.' . $extension;
+            $file->move('storage/', $file_sign);
+            Image::make('storage/' . $file_sign)
+                ->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save();
+
+            $validated['sign'] = $file_sign;
         }
 
         if ($request->hasFile('image_receipt')) {
@@ -269,12 +269,12 @@ class SalesOrderDirectController extends Controller
     ) {
         $this->authorize('delete', $salesOrderDirect);
 
-        if ($salesOrderDirect->sign) {
-            Storage::delete($salesOrderDirect->sign);
-        }
-
         if ($salesOrderDirect->image_transfer) {
             Storage::delete($salesOrderDirect->image_transfer);
+        }
+
+        if ($salesOrderDirect->sign) {
+            Storage::delete($salesOrderDirect->sign);
         }
 
         if ($salesOrderDirect->image_receipt) {

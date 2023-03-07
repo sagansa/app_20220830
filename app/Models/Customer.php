@@ -29,11 +29,6 @@ class Customer extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function salesOrderEmployees()
-    {
-        return $this->hasMany(SalesOrderEmployee::class);
-    }
-
     public function salesOrderOnlines()
     {
         return $this->hasMany(SalesOrderOnline::class);

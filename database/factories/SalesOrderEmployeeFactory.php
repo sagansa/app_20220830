@@ -23,11 +23,10 @@ class SalesOrderEmployeeFactory extends Factory
     public function definition(): array
     {
         return [
+            'customer' => $this->faker->text(255),
+            'detail_customer' => $this->faker->text,
             'date' => $this->faker->date,
             'status' => $this->faker->numberBetween(1, 4),
-            'notes' => $this->faker->text,
-            'customer_id' => \App\Models\Customer::factory(),
-            'delivery_address_id' => \App\Models\DeliveryAddress::factory(),
             'store_id' => \App\Models\Store::factory(),
             'user_id' => \App\Models\User::factory(),
         ];

@@ -37,6 +37,11 @@ class Bank extends Model
         return $this->hasMany(ClosingCourier::class);
     }
 
+    public function transferToAccounts()
+    {
+        return $this->hasMany(TransferToAccount::class);
+    }
+
     public function delete_image()
     {
         if ($this->image && file_exists('storage/' . $this->image)) {

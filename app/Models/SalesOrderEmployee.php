@@ -21,13 +21,12 @@ class SalesOrderEmployee extends Model
     ];
 
     protected $fillable = [
+        'customer',
+        'detail_customer',
         'store_id',
-        'customer_id',
-        'delivery_address_id',
         'date',
         'image',
         'status',
-        'notes',
         'user_id',
     ];
 
@@ -38,16 +37,6 @@ class SalesOrderEmployee extends Model
     protected $casts = [
         'date' => 'date',
     ];
-
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class);
-    }
-
-    public function deliveryAddress()
-    {
-        return $this->belongsTo(DeliveryAddress::class);
-    }
 
     public function store()
     {
@@ -61,7 +50,7 @@ class SalesOrderEmployee extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot((['quantity', 'unit_price']));
+        return $this->belongsToMany(Product::class);
     }
 
     public function delete_image()

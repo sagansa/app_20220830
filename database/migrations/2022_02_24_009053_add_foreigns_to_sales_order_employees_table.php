@@ -19,20 +19,6 @@ return new class extends Migration {
                 ->onDelete('CASCADE');
 
             $table
-                ->foreign('customer_id')
-                ->references('id')
-                ->on('customers')
-                ->onUpdate('CASCADE')
-                ->onDelete('CASCADE');
-
-            $table
-                ->foreign('delivery_address_id')
-                ->references('id')
-                ->on('delivery_addresses')
-                ->onUpdate('CASCADE')
-                ->onDelete('CASCADE');
-
-            $table
                 ->foreign('user_id')
                 ->references('id')
                 ->on('users')
@@ -48,8 +34,6 @@ return new class extends Migration {
     {
         Schema::table('sales_order_employees', function (Blueprint $table) {
             $table->dropForeign(['store_id']);
-            $table->dropForeign(['customer_id']);
-            $table->dropForeign(['delivery_address_id']);
             $table->dropForeign(['user_id']);
         });
     }

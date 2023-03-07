@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Image;
 use App\Models\User;
 use App\Models\Store;
-use App\Models\Customer;
 use Illuminate\Http\Request;
-use App\Models\DeliveryAddress;
 use App\Models\SalesOrderEmployee;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -46,25 +44,13 @@ class SalesOrderEmployeeController extends Controller
         $stores = Store::orderBy('name', 'asc')
             ->whereNotIn('status', ['8'])
             ->pluck('name', 'id');
-        $customers = Customer::orderBy('name', 'asc')
-            // ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
-        $deliveryAddresses = DeliveryAddress::orderBy('name', 'asc')
-            // ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
         $users = User::orderBy('name', 'asc')
-            // ->whereIn('status', ['1'])
+            ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
         return view(
             'app.sales_order_employees.create',
-            compact(
-                'stores',
-                'customers',
-                'deliveryAddresses',
-                'users',
-                'users'
-            )
+            compact('stores', 'users')
         );
     }
 
@@ -93,7 +79,7 @@ class SalesOrderEmployeeController extends Controller
             $validated['image'] = $fileimage;
         }
 
-        $validated['user_id'] = auth()->user()->id;
+        $validated['created_by_id'] = auth()->user()->id;
         $validated['status'] = '1';
 
         $salesOrderEmployee = SalesOrderEmployee::create($validated);
@@ -132,28 +118,15 @@ class SalesOrderEmployeeController extends Controller
         $this->authorize('update', $salesOrderEmployee);
 
         $stores = Store::orderBy('name', 'asc')
-            ->whereNotIn('status', ['8'])
-            ->pluck('name', 'id');
-        $customers = Customer::orderBy('name', 'asc')
-            // ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
-        $deliveryAddresses = DeliveryAddress::orderBy('name', 'asc')
-            // ->whereIn('status', ['1'])
+            ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $users = User::orderBy('name', 'asc')
-            // ->whereIn('status', ['1'])
+            ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
         return view(
             'app.sales_order_employees.edit',
-            compact(
-                'salesOrderEmployee',
-                'stores',
-                'customers',
-                'deliveryAddresses',
-                'users',
-                'users'
-            )
+            compact('salesOrderEmployee', 'stores', 'users')
         );
     }
 
@@ -183,6 +156,14 @@ class SalesOrderEmployeeController extends Controller
                 ->save();
 
             $validated['image'] = $file_image;
+        }
+
+        if (
+            auth()
+                ->user()
+                ->hasRole('supervisor|manager|super-admin')
+        ) {
+            $validated['approved_by_id'] = auth()->user()->id;
         }
 
         $salesOrderEmployee->update($validated);

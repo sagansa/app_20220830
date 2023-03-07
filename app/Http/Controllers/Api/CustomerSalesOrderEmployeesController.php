@@ -35,15 +35,15 @@ class CustomerSalesOrderEmployeesController extends Controller
 
         $validated = $request->validate([
             'store_id' => ['required', 'exists:stores,id'],
-            'delivery_address_id' => [
-                'nullable',
-                'exists:delivery_addresses,id',
-            ],
             'date' => ['required', 'date'],
             'image' => ['nullable', 'image'],
             'status' => ['required', 'in:1,2,3,4'],
             'notes' => ['nullable', 'max:255', 'string'],
             'user_id' => ['required', 'exists:users,id'],
+            'delivery_address_id' => [
+                'nullable',
+                'exists:delivery_addresses,id',
+            ],
         ]);
 
         if ($request->hasFile('image')) {

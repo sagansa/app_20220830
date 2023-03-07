@@ -51,6 +51,11 @@ class Utility extends Model
         return $this->belongsTo(Store::class);
     }
 
+    public function utilityBills()
+    {
+        return $this->hasMany(UtilityBill::class);
+    }
+
     public function delete_image()
     {
         if ($this->image && file_exists('storage/' . $this->image)) {

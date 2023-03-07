@@ -55,6 +55,9 @@
                     >@lang('crud.sales_order_directs.inputs.transfer_to_account_id')</x-tables.th-left
                 >
                 <x-tables.th-left
+                    >@lang('crud.sales_order_directs.inputs.image_transfer')</x-tables.th-left
+                >
+                <x-tables.th-left
                     >@lang('crud.sales_order_directs.inputs.payment_status')</x-tables.th-left
                 >
                 <x-tables.th-left
@@ -67,19 +70,10 @@
                     >@lang('crud.sales_order_directs.inputs.received_by')</x-tables.th-left
                 >
                 <x-tables.th-left
-                    >@lang('crud.sales_order_directs.inputs.sign')</x-tables.th-left
-                >
-                <x-tables.th-left
-                    >@lang('crud.sales_order_directs.inputs.image_transfer')</x-tables.th-left
-                >
-                <x-tables.th-left
                     >@lang('crud.sales_order_directs.inputs.image_receipt')</x-tables.th-left
                 >
                 <x-tables.th-left
                     >@lang('crud.sales_order_directs.inputs.delivery_status')</x-tables.th-left
-                >
-                <x-tables.th-left
-                    >@lang('crud.sales_order_directs.inputs.shipping_cost')</x-tables.th-left
                 >
                 <th></th>
             </x-slot>
@@ -102,6 +96,20 @@
                         >{{ optional($salesOrderDirect->transferToAccount)->name
                         ?? '-' }}</x-tables.td-left-hide
                     >
+                    <x-tables.td-left-hide>
+                        @if ($salesOrderDirect->image_transfer == null)
+                        <x-partials.thumbnail src="" />
+                        @else
+                        <a
+                            href="{{ \Storage::url($salesOrderDirect->image_transfer) }}"
+                        >
+                            <x-partials.thumbnail
+                                src="{{ $salesOrderDirect->image_transfer ? \Storage::url($salesOrderDirect->image_transfer) : '' }}"
+                            />
+                        </a>
+                        @endif
+                    </x-tables.td-left-hide>
+
                     <x-tables.td-left-hide
                         >{{ $salesOrderDirect->payment_status ?? '-'
                         }}</x-tables.td-left-hide
@@ -119,32 +127,6 @@
                         }}</x-tables.td-left-hide
                     >
                     <x-tables.td-left-hide>
-                        @if ($salesOrderDirect->sign == null)
-                        <x-partials.thumbnail src="" />
-                        @else
-                        <a href="{{ \Storage::url($salesOrderDirect->sign) }}">
-                            <x-partials.thumbnail
-                                src="{{ $salesOrderDirect->sign ? \Storage::url($salesOrderDirect->sign) : '' }}"
-                            />
-                        </a>
-                        @endif
-                    </x-tables.td-left-hide>
-
-                    <x-tables.td-left-hide>
-                        @if ($salesOrderDirect->image_transfer == null)
-                        <x-partials.thumbnail src="" />
-                        @else
-                        <a
-                            href="{{ \Storage::url($salesOrderDirect->image_transfer) }}"
-                        >
-                            <x-partials.thumbnail
-                                src="{{ $salesOrderDirect->image_transfer ? \Storage::url($salesOrderDirect->image_transfer) : '' }}"
-                            />
-                        </a>
-                        @endif
-                    </x-tables.td-left-hide>
-
-                    <x-tables.td-left-hide>
                         @if ($salesOrderDirect->image_receipt == null)
                         <x-partials.thumbnail src="" />
                         @else
@@ -161,10 +143,6 @@
                     <x-tables.td-left-hide
                         >{{ $salesOrderDirect->delivery_status ?? '-'
                         }}</x-tables.td-left-hide
-                    >
-                    <x-tables.td-right-hide
-                        >{{ $salesOrderDirect->shipping_cost ?? '-'
-                        }}</x-tables.td-right-hide
                     >
                     <td class="px-4 py-3 text-center" style="width: 134px;">
                         <div
@@ -200,7 +178,7 @@
                     </td>
                 </tr>
                 @empty
-                <x-tables.no-items-found colspan="14">
+                <x-tables.no-items-found colspan="12">
                 </x-tables.no-items-found>
                 @endforelse
             </x-slot>

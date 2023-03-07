@@ -57,6 +57,23 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
+                            >@lang('crud.sales_order_directs.inputs.image_transfer')</x-shows.dt
+                        >
+                        @if ($salesOrderDirect->image_transfer != null)
+                        <x-partials.thumbnail src="" size="150" />
+                        @else
+                        <a
+                            href="{{ \Storage::url($salesOrderDirect->image_transfer) }}"
+                        >
+                            <x-partials.thumbnail
+                                src="{{ $salesOrderDirect->image_transfer ? \Storage::url($salesOrderDirect->image_transfer) : '' }}"
+                                size="150"
+                            />
+                        </a>
+                        @endif
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
                             >@lang('crud.sales_order_directs.inputs.payment_status')</x-shows.dt
                         >
                         <x-shows.dd
@@ -108,23 +125,6 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
-                            >@lang('crud.sales_order_directs.inputs.image_transfer')</x-shows.dt
-                        >
-                        @if ($salesOrderDirect->image_transfer != null)
-                        <x-partials.thumbnail src="" size="150" />
-                        @else
-                        <a
-                            href="{{ \Storage::url($salesOrderDirect->image_transfer) }}"
-                        >
-                            <x-partials.thumbnail
-                                src="{{ $salesOrderDirect->image_transfer ? \Storage::url($salesOrderDirect->image_transfer) : '' }}"
-                                size="150"
-                            />
-                        </a>
-                        @endif
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
                             >@lang('crud.sales_order_directs.inputs.image_receipt')</x-shows.dt
                         >
                         @if ($salesOrderDirect->image_receipt != null)
@@ -159,6 +159,15 @@
                         >
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
+                        <x-shows.dt
+                            >@lang('crud.sales_order_directs.inputs.Discounts')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ $salesOrderDirect->Discounts ?? '-'
+                            }}</x-shows.dd
+                        >
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
                         <x-shows.dt>Created Date</x-shows.dt>
                         <x-shows.dd
                             >{{ $salesOrderDirect->created_at ?? '-'
@@ -187,7 +196,7 @@
 
             @can('view-any', App\Models\SoDdetail::class)
             <x-partials.card class="mt-5">
-                <x-slot name="title"> So Ddetails </x-slot>
+                <x-slot name="title"> Details </x-slot>
 
                 <livewire:sales-order-direct-so-ddetails-detail
                     :salesOrderDirect="$salesOrderDirect"

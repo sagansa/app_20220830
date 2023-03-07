@@ -25,6 +25,7 @@ return new class extends Migration {
             $table->string('received_by')->nullable();
             $table->string('sign')->nullable();
             $table->unsignedBigInteger('order_by_id');
+            $table->bigInteger('Discounts');
 
             $table->timestamps();
         });

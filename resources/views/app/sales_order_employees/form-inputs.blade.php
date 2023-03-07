@@ -9,22 +9,12 @@
         @endforeach
     </x-input.select>
 
-    <x-input.select name="customer_id" label="Customer" required>
-        @php $selected = old('customer_id', ($editing ? $salesOrderEmployee->customer_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach ($customers as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}</option>
-        @endforeach
-    </x-input.select>
+    <x-input.text name="customer" label="Customer"
+        value="{{ old('customer', $editing ? $salesOrderEmployee->customer : '') }}" maxlength="255" required>
+    </x-input.text>
 
-    <x-input.select name="delivery_address_id" label="Delivery Address">
-        @php $selected = old('delivery_address_id', ($editing ? $salesOrderEmployee->delivery_address_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach ($deliveryAddresses as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
-            </option>
-        @endforeach
-    </x-input.select>
+    <x-input.textarea name="detail_customer" label="Detail Customer" maxlength="255" required>
+        {{ old('detail_customer', $editing ? $salesOrderEmployee->detail_customer : '') }}</x-input.textarea>
 
     <x-input.date name="date" label="Date"
         value="{{ old('date', $editing ? optional($salesOrderEmployee->date)->format('Y-m-d') : '') }}" max="255"
@@ -53,27 +43,23 @@
         </div>
     </x-input.image>
 
-    <x-input.select name="status" label="Status">
-        @php $selected = old('status', ($editing ? $salesOrderEmployee->status : '1')) @endphp
-        <option value="1" {{ $selected == '1' ? 'selected' : '' }}>belum diperiksa</option>
-        <option value="2" {{ $selected == '2' ? 'selected' : '' }}>valid</option>
-        <option value="3" {{ $selected == '3' ? 'selected' : '' }}>perbaiki</option>
-        <option value="4" {{ $selected == '4' ? 'selected' : '' }}>periksa ulang</option>
-    </x-input.select>
-
-    <x-input.textarea name="notes" label="Notes" maxlength="255">
-        {{ old('notes', $editing ? $salesOrderEmployee->notes : '') }}</x-input.textarea>
-
     @role('super-admin|manager')
-        <x-input.select name="user_id" label="User" required>
-            @php $selected = old('user_id', ($editing ? $salesOrderEmployee->user_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
-            @foreach ($users as $value => $label)
-                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
-                </option>
-            @endforeach
+        <x-input.select name="status" label="Status">
+            @php $selected = old('status', ($editing ? $salesOrderEmployee->status : '1')) @endphp
+            <option value="1" {{ $selected == '1' ? 'selected' : '' }}>belum diperiksa</option>
+            <option value="2" {{ $selected == '2' ? 'selected' : '' }}>valid</option>
+            <option value="3" {{ $selected == '3' ? 'selected' : '' }}>perbaiki</option>
+            <option value="4" {{ $selected == '4' ? 'selected' : '' }}>periksa ulang</option>
         </x-input.select>
     @endrole
+
+    {{-- <x-input.select name="user_id" label="User" required>
+        @php $selected = old('user_id', ($editing ? $salesOrderEmployee->user_id : '')) @endphp
+        <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
+        @foreach ($users as $value => $label)
+        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+        @endforeach
+    </x-input.select> --}}
 
     @if ($editing)
         <x-shows.dl>

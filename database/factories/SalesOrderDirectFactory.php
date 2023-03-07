@@ -30,6 +30,7 @@ class SalesOrderDirectFactory extends Factory
             'image_receipt' => $this->faker->text(255),
             'received_by' => $this->faker->text(255),
             'sign' => $this->faker->text(255),
+            'Discounts' => $this->faker->randomNumber,
             'store_id' => \App\Models\Store::factory(),
             'delivery_service_id' => \App\Models\DeliveryService::factory(),
             'transfer_to_account_id' => \App\Models\TransferToAccount::factory(),

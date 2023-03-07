@@ -42,7 +42,7 @@ class ProductSalesOrderEmployeesTest extends TestCase
             route('api.products.sales-order-employees.index', $product)
         );
 
-        $response->assertOk()->assertSee($salesOrderEmployee->date);
+        $response->assertOk()->assertSee($salesOrderEmployee->customer);
     }
 
     /**

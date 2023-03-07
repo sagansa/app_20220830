@@ -85,6 +85,7 @@ class SalesOrderDirectTest extends TestCase
             'image_receipt' => $this->faker->text(255),
             'received_by' => $this->faker->text(255),
             'sign' => $this->faker->text(255),
+            'Discounts' => $this->faker->randomNumber,
             'store_id' => $store->id,
             'delivery_service_id' => $deliveryService->id,
             'transfer_to_account_id' => $transferToAccount->id,

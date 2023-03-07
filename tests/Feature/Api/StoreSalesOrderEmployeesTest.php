@@ -44,7 +44,7 @@ class StoreSalesOrderEmployeesTest extends TestCase
             route('api.stores.sales-order-employees.index', $store)
         );
 
-        $response->assertOk()->assertSee($salesOrderEmployees[0]->date);
+        $response->assertOk()->assertSee($salesOrderEmployees[0]->customer);
     }
 
     /**

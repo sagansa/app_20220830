@@ -21,15 +21,11 @@ class SalesOrderEmployeeUpdateRequest extends FormRequest
     {
         return [
             'store_id' => ['required', 'exists:stores,id'],
-            'customer_id' => ['required', 'exists:customers,id'],
-            'delivery_address_id' => [
-                'nullable',
-                'exists:delivery_addresses,id',
-            ],
+            'customer' => ['required', 'max:255', 'string'],
+            'detail_customer' => ['required', 'max:255', 'string'],
             'date' => ['required', 'date'],
             'image' => ['nullable', 'image'],
-            'status' => ['required', 'in:1,2,3,4'],
-            'notes' => ['nullable', 'max:255', 'string'],
+            'status' => ['required'],
             'user_id' => ['required', 'exists:users,id'],
         ];
     }

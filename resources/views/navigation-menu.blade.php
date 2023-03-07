@@ -303,14 +303,14 @@
                         Sales Order Employees
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\SalesOrderDirect::class)
-                        <x-dropdown-link href="{{ route('sales-order-directs.index') }}">
-                        Sales Order Directs
-                        </x-dropdown-link>
-                        @endcan
                         @can('view-any', App\Models\DeliveryLocation::class)
                         <x-dropdown-link href="{{ route('delivery-locations.index') }}">
                         Delivery Locations
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\SalesOrderDirect::class)
+                        <x-dropdown-link href="{{ route('sales-order-directs.index') }}">
+                        Sales Order Directs
                         </x-dropdown-link>
                         @endcan
                         @can('view-any', App\Models\TransferToAccount::class)
@@ -745,14 +745,14 @@
                 Sales Order Employees
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\SalesOrderDirect::class)
-                <x-jet-responsive-nav-link href="{{ route('sales-order-directs.index') }}">
-                Sales Order Directs
-                </x-jet-responsive-nav-link>
-                @endcan
                 @can('view-any', App\Models\DeliveryLocation::class)
                 <x-jet-responsive-nav-link href="{{ route('delivery-locations.index') }}">
                 Delivery Locations
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\SalesOrderDirect::class)
+                <x-jet-responsive-nav-link href="{{ route('sales-order-directs.index') }}">
+                Sales Order Directs
                 </x-jet-responsive-nav-link>
                 @endcan
                 @can('view-any', App\Models\TransferToAccount::class)
