@@ -63,6 +63,7 @@
 
           @if (Auth::user()->can('view-any', App\Models\Customer::class) ||
                   Auth::user()->can('view-any', App\Models\SalesOrderEmployee::class) ||
+                  Auth::user()->can('view-any', App\Models\SalesOrderDirect::class) ||
                   Auth::user()->can('view-any', App\Models\SalesOrderOnline::class))
               <x-sidebars.nav-dropdown-mobile control="sales-transactions" title="Sales Transactions">
                   <x-slot name="content">
@@ -92,6 +93,11 @@
                   @can('view-any', App\Models\SalesOrderDirect::class)
                       <x-sidebars.dropdown-link href="{{ route('sales-order-directs.index') }}">
                           Sales Order Directs
+                      </x-sidebars.dropdown-link>
+                  @endcan
+                  @can('view-any', App\Models\DeliveryLocation::class)
+                      <x-sidebars.dropdown-link href="{{ route('delivery-locations.index') }}">
+                          Delivery Locations
                       </x-sidebars.dropdown-link>
                   @endcan
                   @can('view-any', App\Models\EProduct::class)

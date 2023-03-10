@@ -3,22 +3,22 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\TransferToAccount;
+use App\Models\DeliveryLocation;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SalesOrderDirectResource;
 use App\Http\Resources\SalesOrderDirectCollection;
 
-class TransferToAccountSalesOrderDirectsController extends Controller
+class DeliveryLocationSalesOrderDirectsController extends Controller
 {
     public function index(
         Request $request,
-        TransferToAccount $transferToAccount
+        DeliveryLocation $deliveryLocation
     ): SalesOrderDirectCollection {
-        $this->authorize('view', $transferToAccount);
+        $this->authorize('view', $deliveryLocation);
 
         $search = $request->get('search', '');
 
-        $salesOrderDirects = $transferToAccount
+        $salesOrderDirects = $deliveryLocation
             ->salesOrderDirects()
             ->search($search)
             ->latest()
@@ -29,7 +29,7 @@ class TransferToAccountSalesOrderDirectsController extends Controller
 
     public function store(
         Request $request,
-        TransferToAccount $transferToAccount
+        DeliveryLocation $deliveryLocation
     ): SalesOrderDirectResource {
         $this->authorize('create', SalesOrderDirect::class);
 
@@ -40,9 +40,9 @@ class TransferToAccountSalesOrderDirectsController extends Controller
                 'required',
                 'exists:delivery_services,id',
             ],
-            'delivery_location_id' => [
-                'nullable',
-                'exists:delivery_locations,id',
+            'transfer_to_account_id' => [
+                'required',
+                'exists:transfer_to_accounts,id',
             ],
             'payment_status' => ['required', 'max:255'],
             'image_transfer' => ['image', 'nullable'],
@@ -73,7 +73,7 @@ class TransferToAccountSalesOrderDirectsController extends Controller
             $validated['sign'] = $request->file('sign')->store('public');
         }
 
-        $salesOrderDirect = $transferToAccount
+        $salesOrderDirect = $deliveryLocation
             ->salesOrderDirects()
             ->create($validated);
 

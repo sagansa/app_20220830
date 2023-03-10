@@ -20,26 +20,31 @@ class SalesOrderDirectUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'order_by_id' => ['required', 'exists:users,id'],
+            'order_by_id' => ['nullable', 'exists:users,id'],
             'delivery_date' => ['required', 'date'],
             'delivery_service_id' => [
                 'required',
                 'exists:delivery_services,id',
             ],
+            'delivery_location_id' => [
+                'nullable',
+                'exists:delivery_locations,id',
+            ],
             'transfer_to_account_id' => [
                 'required',
                 'exists:transfer_to_accounts,id',
             ],
+            'payment_status' => ['required', 'max:255'],
             'image_transfer' => ['image', 'nullable'],
-            'payment_status' => ['required'],
             'store_id' => ['nullable', 'exists:stores,id'],
             'submitted_by_id' => ['nullable', 'exists:users,id'],
             'received_by' => ['nullable', 'max:255', 'string'],
-            'sign' => ['image', 'nullable'],
+            'delivery_status' => ['required', 'max:255'],
+            'notes' => ['nullable', 'max:255', 'string'],
             'image_receipt' => ['image', 'nullable'],
-            'delivery_status' => ['required'],
-            'shipping_cost' => ['nullable'],
-            'Discounts' => ['required', 'max:255'],
+            'sign' => ['image', 'nullable'],
+            'shipping_cost' => ['nullable', 'numeric'],
+            'discounts' => ['nullable', 'numeric'],
         ];
     }
 }

@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\SoDdetail;
 use Illuminate\Support\Str;
+use App\Models\SalesOrderDirectProduct;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SoDdetailFactory extends Factory
+class SalesOrderDirectProductFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = SoDdetail::class;
+    protected $model = SalesOrderDirectProduct::class;
 
     /**
      * Define the model's default state.
@@ -24,7 +24,7 @@ class SoDdetailFactory extends Factory
     {
         return [
             'quantity' => $this->faker->randomNumber,
-            'price' => $this->faker->randomNumber(1),
+            'amount' => $this->faker->randomNumber,
             'e_product_id' => \App\Models\EProduct::factory(),
             'sales_order_direct_id' => \App\Models\SalesOrderDirect::factory(),
         ];

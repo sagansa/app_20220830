@@ -59,4 +59,9 @@ class EProduct extends Model
             unlink('storage/' . $this->image);
         }
     }
+
+    public function getProductNameAttribute()
+    {
+        return $this->product->name . ' | ' . $this->product->unit->unit . ' | ' . $this->price;
+    }
 }

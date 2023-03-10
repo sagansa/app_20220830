@@ -51,27 +51,6 @@
                 <x-tables.th-left
                     >@lang('crud.delivery_locations.inputs.contact_number')</x-tables.th-left
                 >
-                <x-tables.th-left
-                    >@lang('crud.delivery_locations.inputs.Address')</x-tables.th-left
-                >
-                <x-tables.th-left
-                    >@lang('crud.delivery_locations.inputs.village_id')</x-tables.th-left
-                >
-                <x-tables.th-left
-                    >@lang('crud.delivery_locations.inputs.notes')</x-tables.th-left
-                >
-                <x-tables.th-left
-                    >@lang('crud.delivery_locations.inputs.user_id')</x-tables.th-left
-                >
-                <x-tables.th-left
-                    >@lang('crud.delivery_locations.inputs.province_id')</x-tables.th-left
-                >
-                <x-tables.th-left
-                    >@lang('crud.delivery_locations.inputs.regency_id')</x-tables.th-left
-                >
-                <x-tables.th-left
-                    >@lang('crud.delivery_locations.inputs.district_id')</x-tables.th-left
-                >
                 <th></th>
             </x-slot>
             <x-slot name="body">
@@ -87,34 +66,6 @@
                     >
                     <x-tables.td-left-hide
                         >{{ $deliveryLocation->contact_number ?? '-'
-                        }}</x-tables.td-left-hide
-                    >
-                    <x-tables.td-left-hide
-                        >{{ $deliveryLocation->Address ?? '-'
-                        }}</x-tables.td-left-hide
-                    >
-                    <x-tables.td-left-hide
-                        >{{ optional($deliveryLocation->village)->name ?? '-'
-                        }}</x-tables.td-left-hide
-                    >
-                    <x-tables.td-left-hide
-                        >{{ $deliveryLocation->notes ?? '-'
-                        }}</x-tables.td-left-hide
-                    >
-                    <x-tables.td-left-hide
-                        >{{ optional($deliveryLocation->user)->name ?? '-'
-                        }}</x-tables.td-left-hide
-                    >
-                    <x-tables.td-left-hide
-                        >{{ optional($deliveryLocation->province)->name ?? '-'
-                        }}</x-tables.td-left-hide
-                    >
-                    <x-tables.td-left-hide
-                        >{{ optional($deliveryLocation->regency)->name ?? '-'
-                        }}</x-tables.td-left-hide
-                    >
-                    <x-tables.td-left-hide
-                        >{{ optional($deliveryLocation->district)->name ?? '-'
                         }}</x-tables.td-left-hide
                     >
                     <td class="px-4 py-3 text-center" style="width: 134px;">
@@ -151,8 +102,7 @@
                     </td>
                 </tr>
                 @empty
-                <x-tables.no-items-found colspan="11">
-                </x-tables.no-items-found>
+                <x-tables.no-items-found colspan="4"> </x-tables.no-items-found>
                 @endforelse
             </x-slot>
             <x-slot name="foot"> </x-slot>

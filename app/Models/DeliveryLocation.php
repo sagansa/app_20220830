@@ -29,7 +29,6 @@ class DeliveryLocation extends Model
         'regency_id',
         'district_id',
         'village_id',
-        'notes',
         'user_id',
     ];
 
@@ -60,6 +59,11 @@ class DeliveryLocation extends Model
     public function village()
     {
         return $this->belongsTo(Village::class);
+    }
+
+    public function salesOrderDirects()
+    {
+        return $this->hasMany(SalesOrderDirect::class);
     }
 
     public function delete_image()

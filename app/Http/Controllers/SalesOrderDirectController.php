@@ -8,6 +8,7 @@ use App\Models\Store;
 use Illuminate\Http\Request;
 use App\Models\DeliveryService;
 use App\Models\SalesOrderDirect;
+use App\Models\DeliveryLocation;
 use App\Models\TransferToAccount;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -44,10 +45,13 @@ class SalesOrderDirectController extends Controller
     public function create(Request $request)
     {
         $users = User::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $deliveryServices = DeliveryService::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
+            ->pluck('name', 'id');
+        $deliveryLocations = DeliveryLocation::orderBy('name', 'asc')
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $transferToAccounts = TransferToAccount::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
@@ -61,6 +65,7 @@ class SalesOrderDirectController extends Controller
             compact(
                 'users',
                 'deliveryServices',
+                'deliveryLocations',
                 'transferToAccounts',
                 'stores',
                 'users'
@@ -93,21 +98,6 @@ class SalesOrderDirectController extends Controller
             $validated['image_transfer'] = $fileimage_transfer;
         }
 
-        if ($request->hasFile('sign')) {
-            $file = $request->file('sign');
-            $extension = $file->getClientOriginalExtension();
-            $filesign = rand() . time() . '.' . $extension;
-            $file->move('storage/', $filesign);
-            Image::make('storage/' . $filesign)
-                ->resize(400, 400, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                })
-                ->save();
-
-            $validated['sign'] = $filesign;
-        }
-
         if ($request->hasFile('image_receipt')) {
             $file = $request->file('image_receipt');
             $extension = $file->getClientOriginalExtension();
@@ -123,8 +113,22 @@ class SalesOrderDirectController extends Controller
             $validated['image_receipt'] = $fileimage_receipt;
         }
 
-        $validated['created_by_id'] = auth()->user()->id;
-        $validated['status'] = '1';
+        if ($request->hasFile('sign')) {
+            $file = $request->file('sign');
+            $extension = $file->getClientOriginalExtension();
+            $filesign = rand() . time() . '.' . $extension;
+            $file->move('storage/', $filesign);
+            Image::make('storage/' . $filesign)
+                ->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save();
+
+            $validated['sign'] = $filesign;
+        }
+
+        $validated['order_by_id'] = auth()->user()->id;
 
         $salesOrderDirect = SalesOrderDirect::create($validated);
 
@@ -158,10 +162,13 @@ class SalesOrderDirectController extends Controller
         $this->authorize('update', $salesOrderDirect);
 
         $users = User::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $deliveryServices = DeliveryService::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
+            ->pluck('name', 'id');
+        $deliveryLocations = DeliveryLocation::orderBy('name', 'asc')
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $transferToAccounts = TransferToAccount::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
@@ -176,6 +183,7 @@ class SalesOrderDirectController extends Controller
                 'salesOrderDirect',
                 'users',
                 'deliveryServices',
+                'deliveryLocations',
                 'transferToAccounts',
                 'stores',
                 'users'
@@ -211,22 +219,6 @@ class SalesOrderDirectController extends Controller
             $validated['image_transfer'] = $file_image_transfer;
         }
 
-        if ($request->hasFile('sign')) {
-            $file = $request->file('sign');
-            $salesOrderDirect->delete_sign();
-            $extension = $file->getClientOriginalExtension();
-            $file_sign = rand() . time() . '.' . $extension;
-            $file->move('storage/', $file_sign);
-            Image::make('storage/' . $file_sign)
-                ->resize(400, 400, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                })
-                ->save();
-
-            $validated['sign'] = $file_sign;
-        }
-
         if ($request->hasFile('image_receipt')) {
             $file = $request->file('image_receipt');
             $salesOrderDirect->delete_image_receipt();
@@ -243,12 +235,28 @@ class SalesOrderDirectController extends Controller
             $validated['image_receipt'] = $file_image_receipt;
         }
 
+        if ($request->hasFile('sign')) {
+            $file = $request->file('sign');
+            $salesOrderDirect->delete_sign();
+            $extension = $file->getClientOriginalExtension();
+            $file_sign = rand() . time() . '.' . $extension;
+            $file->move('storage/', $file_sign);
+            Image::make('storage/' . $file_sign)
+                ->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save();
+
+            $validated['sign'] = $file_sign;
+        }
+
         if (
             auth()
                 ->user()
-                ->hasRole('supervisor|manager|super-admin')
+                ->hasRole('storage-staff')
         ) {
-            $validated['approved_by_id'] = auth()->user()->id;
+            $validated['submitted_by_id'] = auth()->user()->id;
         }
 
         $salesOrderDirect->update($validated);
@@ -273,12 +281,12 @@ class SalesOrderDirectController extends Controller
             Storage::delete($salesOrderDirect->image_transfer);
         }
 
-        if ($salesOrderDirect->sign) {
-            Storage::delete($salesOrderDirect->sign);
-        }
-
         if ($salesOrderDirect->image_receipt) {
             Storage::delete($salesOrderDirect->image_receipt);
+        }
+
+        if ($salesOrderDirect->sign) {
+            Storage::delete($salesOrderDirect->sign);
         }
 
         $salesOrderDirect->delete();

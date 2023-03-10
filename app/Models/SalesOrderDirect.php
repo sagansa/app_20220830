@@ -2,26 +2,35 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\DataTables\HasSalesDirect;
 use App\Models\Scopes\Searchable;
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Livewire\DataTables\HasValid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SalesOrderDirect extends Model
 {
-    use HasValid;
+    use HasSalesDirect;
     use HasFactory;
     use Searchable;
 
-    const STATUSES = [
-        '1' => 'belum diperiksa',
+    const PAYMENT_STATUSES = [
+        '1' => 'proses validasi',
         '2' => 'valid',
-        '3' => 'diperbaiki',
-        '4' => 'periksa ulang',
+        '3' => 'tidak valid',
+    ];
+
+    const DELIVERY_STATUSES = [
+        '1' => 'belum diproses',
+        '2' => 'pesanan diproses',
+        '3' => 'siap dikirim',
+        '4' => 'telah dikirim',
+        '5' => 'selesai',
+        '6' => 'dikembalikan',
     ];
 
     protected $fillable = [
         'delivery_date',
+        'delivery_location_id',
         'delivery_service_id',
         'transfer_to_account_id',
         'image_transfer',
@@ -34,6 +43,8 @@ class SalesOrderDirect extends Model
         'received_by',
         'sign',
         'order_by_id',
+        'discounts',
+        'notes',
     ];
 
     protected $searchableFields = ['*'];
@@ -59,11 +70,6 @@ class SalesOrderDirect extends Model
         return $this->belongsTo(TransferToAccount::class);
     }
 
-    public function soDdetails()
-    {
-        return $this->hasMany(SoDdetail::class);
-    }
-
     public function submitted_by()
     {
         return $this->belongsTo(User::class, 'submitted_by_id');
@@ -72,6 +78,16 @@ class SalesOrderDirect extends Model
     public function order_by()
     {
         return $this->belongsTo(User::class, 'order_by_id');
+    }
+
+    public function deliveryLocation()
+    {
+        return $this->belongsTo(DeliveryLocation::class);
+    }
+
+    public function salesOrderDirectProducts()
+    {
+        return $this->hasMany(SalesOrderDirectProduct::class);
     }
 
     public function delete_image()

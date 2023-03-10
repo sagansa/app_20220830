@@ -1,12 +1,12 @@
 <x-admin-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    {{-- <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             @lang('crud.sales_order_directs.index_title')
         </h2>
         <p class="mt-2 text-xs text-gray-700">---</p>
     </x-slot>
 
-    <div class="mb-5 mt-4">
+    <div class="mt-4 mb-5">
         <div class="flex flex-wrap justify-between mt-1">
             <div class="mt-1 md:w-1/3">
                 <form>
@@ -26,7 +26,7 @@
                     </div>
                 </form>
             </div>
-            <div class="mt-1 md:w-1/3 text-right">
+            <div class="mt-1 text-right md:w-1/3">
                 @can('create', App\Models\SalesOrderDirect::class)
                 <a href="{{ route('sales-order-directs.create') }}"
                     ><x-jet-button>
@@ -55,10 +55,10 @@
                     >@lang('crud.sales_order_directs.inputs.transfer_to_account_id')</x-tables.th-left
                 >
                 <x-tables.th-left
-                    >@lang('crud.sales_order_directs.inputs.image_transfer')</x-tables.th-left
+                    >@lang('crud.sales_order_directs.inputs.payment_status')</x-tables.th-left
                 >
                 <x-tables.th-left
-                    >@lang('crud.sales_order_directs.inputs.payment_status')</x-tables.th-left
+                    >@lang('crud.sales_order_directs.inputs.image_transfer')</x-tables.th-left
                 >
                 <x-tables.th-left
                     >@lang('crud.sales_order_directs.inputs.store_id')</x-tables.th-left
@@ -67,13 +67,10 @@
                     >@lang('crud.sales_order_directs.inputs.submitted_by_id')</x-tables.th-left
                 >
                 <x-tables.th-left
-                    >@lang('crud.sales_order_directs.inputs.received_by')</x-tables.th-left
+                    >@lang('crud.sales_order_directs.inputs.delivery_status')</x-tables.th-left
                 >
                 <x-tables.th-left
                     >@lang('crud.sales_order_directs.inputs.image_receipt')</x-tables.th-left
-                >
-                <x-tables.th-left
-                    >@lang('crud.sales_order_directs.inputs.delivery_status')</x-tables.th-left
                 >
                 <th></th>
             </x-slot>
@@ -96,6 +93,10 @@
                         >{{ optional($salesOrderDirect->transferToAccount)->name
                         ?? '-' }}</x-tables.td-left-hide
                     >
+                    <x-tables.td-left-hide
+                        >{{ $salesOrderDirect->payment_status ?? '-'
+                        }}</x-tables.td-left-hide
+                    >
                     <x-tables.td-left-hide>
                         @if ($salesOrderDirect->image_transfer == null)
                         <x-partials.thumbnail src="" />
@@ -111,10 +112,6 @@
                     </x-tables.td-left-hide>
 
                     <x-tables.td-left-hide
-                        >{{ $salesOrderDirect->payment_status ?? '-'
-                        }}</x-tables.td-left-hide
-                    >
-                    <x-tables.td-left-hide
                         >{{ optional($salesOrderDirect->store)->name ?? '-'
                         }}</x-tables.td-left-hide
                     >
@@ -123,7 +120,7 @@
                         '-' }}</x-tables.td-left-hide
                     >
                     <x-tables.td-left-hide
-                        >{{ $salesOrderDirect->received_by ?? '-'
+                        >{{ $salesOrderDirect->delivery_status ?? '-'
                         }}</x-tables.td-left-hide
                     >
                     <x-tables.td-left-hide>
@@ -140,17 +137,13 @@
                         @endif
                     </x-tables.td-left-hide>
 
-                    <x-tables.td-left-hide
-                        >{{ $salesOrderDirect->delivery_status ?? '-'
-                        }}</x-tables.td-left-hide
-                    >
                     <td class="px-4 py-3 text-center" style="width: 134px;">
                         <div
                             role="group"
                             aria-label="Row Actions"
                             class="relative inline-flex align-middle"
                         >
-                            @if($salesOrderDirect->status != '2')
+                            @if ($salesOrderDirect->status != '2')
                             <a
                                 href="{{ route('sales-order-directs.edit', $salesOrderDirect) }}"
                                 class="mr-1"
@@ -178,12 +171,13 @@
                     </td>
                 </tr>
                 @empty
-                <x-tables.no-items-found colspan="12">
+                <x-tables.no-items-found colspan="11">
                 </x-tables.no-items-found>
                 @endforelse
             </x-slot>
             <x-slot name="foot"> </x-slot>
         </x-table>
     </x-tables.card>
-    <div class="mt-10 px-4">{!! $salesOrderDirects->render() !!}</div>
+    <div class="px-4 mt-10">{!! $salesOrderDirects->render() !!}</div> --}}
+    <livewire:sales-order-directs.sales-order-directs-list />
 </x-admin-layout>

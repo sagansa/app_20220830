@@ -7,6 +7,7 @@ use App\Models\SalesOrderDirect;
 
 use App\Models\Store;
 use App\Models\DeliveryService;
+use App\Models\DeliveryLocation;
 use App\Models\TransferToAccount;
 
 use Tests\TestCase;
@@ -76,6 +77,7 @@ class SalesOrderDirectTest extends TestCase
         $transferToAccount = TransferToAccount::factory()->create();
         $user = User::factory()->create();
         $user = User::factory()->create();
+        $deliveryLocation = DeliveryLocation::factory()->create();
 
         $data = [
             'delivery_date' => $this->faker->date,
@@ -85,12 +87,14 @@ class SalesOrderDirectTest extends TestCase
             'image_receipt' => $this->faker->text(255),
             'received_by' => $this->faker->text(255),
             'sign' => $this->faker->text(255),
-            'Discounts' => $this->faker->randomNumber,
+            'discounts' => $this->faker->randomNumber,
+            'notes' => $this->faker->text,
             'store_id' => $store->id,
             'delivery_service_id' => $deliveryService->id,
             'transfer_to_account_id' => $transferToAccount->id,
             'submitted_by_id' => $user->id,
             'order_by_id' => $user->id,
+            'delivery_location_id' => $deliveryLocation->id,
         ];
 
         $response = $this->putJson(

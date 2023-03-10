@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('sales_order_directs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('delivery_date');
+            $table->unsignedBigInteger('delivery_location_id')->nullable();
             $table->unsignedBigInteger('delivery_service_id');
             $table->unsignedBigInteger('transfer_to_account_id');
             $table->string('image_transfer')->nullable();
@@ -24,8 +25,9 @@ return new class extends Migration {
             $table->unsignedBigInteger('submitted_by_id')->nullable();
             $table->string('received_by')->nullable();
             $table->string('sign')->nullable();
-            $table->unsignedBigInteger('order_by_id');
-            $table->bigInteger('Discounts');
+            $table->unsignedBigInteger('order_by_id')->nullable();
+            $table->bigInteger('discounts')->nullable();
+            $table->text('notes')->nullable();
 
             $table->timestamps();
         });

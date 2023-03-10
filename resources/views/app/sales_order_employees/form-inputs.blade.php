@@ -43,6 +43,8 @@
         </div>
     </x-input.image>
 
+    <x-inputs.hidden name="status" :value="old('status', $editing ? $salesOrderEmployee->status : '1')"></x-inputs.hidden>
+
     @role('super-admin|manager')
         <x-input.select name="status" label="Status">
             @php $selected = old('status', ($editing ? $salesOrderEmployee->status : '1')) @endphp

@@ -10,7 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('so_ddetails', function (Blueprint $table) {
+        Schema::table('sales_order_direct_products', function (
+            Blueprint $table
+        ) {
             $table
                 ->foreign('e_product_id')
                 ->references('id')
@@ -32,7 +34,9 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('so_ddetails', function (Blueprint $table) {
+        Schema::table('sales_order_direct_products', function (
+            Blueprint $table
+        ) {
             $table->dropForeign(['e_product_id']);
             $table->dropForeign(['sales_order_direct_id']);
         });

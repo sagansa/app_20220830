@@ -44,19 +44,19 @@ class DeliveryLocationController extends Controller
     public function create(Request $request)
     {
         $villages = Village::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $users = User::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $provinces = Province::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $regencies = Regency::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $districts = District::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
         return view(
@@ -75,8 +75,7 @@ class DeliveryLocationController extends Controller
 
         $validated = $request->validated();
 
-        $validated['created_by_id'] = auth()->user()->id;
-        $validated['status'] = '1';
+        $validated['user_id'] = auth()->user()->id;
 
         $deliveryLocation = DeliveryLocation::create($validated);
 

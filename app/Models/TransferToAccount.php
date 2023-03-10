@@ -42,4 +42,9 @@ class TransferToAccount extends Model
             unlink('storage/' . $this->image);
         }
     }
+
+    public function getTransferNameAttribute()
+    {
+        return $this->name . ' | ' . $this->number . ' | ' . $this->bank->name;
+    }
 }

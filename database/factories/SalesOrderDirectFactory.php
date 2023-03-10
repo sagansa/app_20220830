@@ -30,12 +30,14 @@ class SalesOrderDirectFactory extends Factory
             'image_receipt' => $this->faker->text(255),
             'received_by' => $this->faker->text(255),
             'sign' => $this->faker->text(255),
-            'Discounts' => $this->faker->randomNumber,
+            'discounts' => $this->faker->randomNumber,
+            'notes' => $this->faker->text,
             'store_id' => \App\Models\Store::factory(),
             'delivery_service_id' => \App\Models\DeliveryService::factory(),
             'transfer_to_account_id' => \App\Models\TransferToAccount::factory(),
             'submitted_by_id' => \App\Models\User::factory(),
             'order_by_id' => \App\Models\User::factory(),
+            'delivery_location_id' => \App\Models\DeliveryLocation::factory(),
         ];
     }
 }

@@ -62,14 +62,6 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
-                            >@lang('crud.delivery_locations.inputs.notes')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ $deliveryLocation->notes ?? '-' }}</x-shows.dd
-                        >
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
                             >@lang('crud.delivery_locations.inputs.user_id')</x-shows.dt
                         >
                         <x-shows.dd

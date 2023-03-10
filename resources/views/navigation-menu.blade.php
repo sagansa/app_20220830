@@ -303,9 +303,9 @@
                         Sales Order Employees
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\DeliveryLocation::class)
-                        <x-dropdown-link href="{{ route('delivery-locations.index') }}">
-                        Delivery Locations
+                        @can('view-any', App\Models\TransferToAccount::class)
+                        <x-dropdown-link href="{{ route('transfer-to-accounts.index') }}">
+                        Transfer To Accounts
                         </x-dropdown-link>
                         @endcan
                         @can('view-any', App\Models\SalesOrderDirect::class)
@@ -313,9 +313,9 @@
                         Sales Order Directs
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\TransferToAccount::class)
-                        <x-dropdown-link href="{{ route('transfer-to-accounts.index') }}">
-                        Transfer To Accounts
+                        @can('view-any', App\Models\DeliveryLocation::class)
+                        <x-dropdown-link href="{{ route('delivery-locations.index') }}">
+                        Delivery Locations
                         </x-dropdown-link>
                         @endcan
                 </x-nav-dropdown>
@@ -745,9 +745,9 @@
                 Sales Order Employees
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\DeliveryLocation::class)
-                <x-jet-responsive-nav-link href="{{ route('delivery-locations.index') }}">
-                Delivery Locations
+                @can('view-any', App\Models\TransferToAccount::class)
+                <x-jet-responsive-nav-link href="{{ route('transfer-to-accounts.index') }}">
+                Transfer To Accounts
                 </x-jet-responsive-nav-link>
                 @endcan
                 @can('view-any', App\Models\SalesOrderDirect::class)
@@ -755,9 +755,9 @@
                 Sales Order Directs
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\TransferToAccount::class)
-                <x-jet-responsive-nav-link href="{{ route('transfer-to-accounts.index') }}">
-                Transfer To Accounts
+                @can('view-any', App\Models\DeliveryLocation::class)
+                <x-jet-responsive-nav-link href="{{ route('delivery-locations.index') }}">
+                Delivery Locations
                 </x-jet-responsive-nav-link>
                 @endcan
 

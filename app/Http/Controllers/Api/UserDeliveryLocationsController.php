@@ -39,7 +39,6 @@ class UserDeliveryLocationsController extends Controller
             'contact_number' => ['required', 'max:255', 'string'],
             'Address' => ['required', 'max:255', 'string'],
             'village_id' => ['nullable', 'exists:villages,id'],
-            'notes' => ['nullable', 'max:255', 'string'],
             'province_id' => ['nullable', 'exists:provinces,id'],
             'regency_id' => ['nullable', 'exists:regencies,id'],
             'district_id' => ['nullable', 'exists:districts,id'],

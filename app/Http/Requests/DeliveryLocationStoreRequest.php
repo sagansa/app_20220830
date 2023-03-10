@@ -25,7 +25,6 @@ class DeliveryLocationStoreRequest extends FormRequest
             'contact_number' => ['required', 'max:255', 'string'],
             'Address' => ['required', 'max:255', 'string'],
             'village_id' => ['nullable', 'exists:villages,id'],
-            'notes' => ['nullable', 'max:255', 'string'],
             'user_id' => ['required', 'exists:users,id'],
             'province_id' => ['nullable', 'exists:provinces,id'],
             'regency_id' => ['nullable', 'exists:regencies,id'],

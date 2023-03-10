@@ -10,12 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('so_ddetails', function (Blueprint $table) {
+        Schema::create('sales_order_direct_products', function (
+            Blueprint $table
+        ) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('e_product_id');
-            $table->bigInteger('quantity');
-            $table->decimal('price');
+            $table->integer('quantity');
             $table->unsignedBigInteger('sales_order_direct_id');
+            $table->bigInteger('amount');
 
             $table->timestamps();
         });
@@ -26,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('so_ddetails');
+        Schema::dropIfExists('sales_order_direct_products');
     }
 };

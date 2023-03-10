@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Livewire\DataTables\HasValid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class SoDdetail extends Model
+class SalesOrderDirectProduct extends Model
 {
     use HasValid;
     use HasFactory;
@@ -23,13 +23,13 @@ class SoDdetail extends Model
     protected $fillable = [
         'e_product_id',
         'quantity',
-        'price',
         'sales_order_direct_id',
+        'amount',
     ];
 
     protected $searchableFields = ['*'];
 
-    protected $table = 'so_ddetails';
+    protected $table = 'sales_order_direct_products';
 
     public function eProduct()
     {

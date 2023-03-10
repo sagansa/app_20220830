@@ -20,7 +20,6 @@ return new class extends Migration {
             $table->unsignedBigInteger('regency_id')->nullable();
             $table->unsignedBigInteger('district_id')->nullable();
             $table->unsignedBigInteger('village_id')->nullable();
-            $table->text('notes')->nullable();
             $table->unsignedBigInteger('user_id');
 
             $table->timestamps();

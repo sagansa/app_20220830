@@ -3,15 +3,15 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
-use App\Models\SoDdetail;
 use App\Models\SalesOrderDirect;
+use App\Models\SalesOrderDirectProduct;
 
 use Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class SalesOrderDirectSoDdetailsTest extends TestCase
+class SalesOrderDirectSalesOrderDirectProductsTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,10 +31,10 @@ class SalesOrderDirectSoDdetailsTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_sales_order_direct_so_ddetails(): void
+    public function it_gets_sales_order_direct_sales_order_direct_products(): void
     {
         $salesOrderDirect = SalesOrderDirect::factory()->create();
-        $soDdetails = SoDdetail::factory()
+        $salesOrderDirectProducts = SalesOrderDirectProduct::factory()
             ->count(2)
             ->create([
                 'sales_order_direct_id' => $salesOrderDirect->id,
@@ -42,21 +42,21 @@ class SalesOrderDirectSoDdetailsTest extends TestCase
 
         $response = $this->getJson(
             route(
-                'api.sales-order-directs.so-ddetails.index',
+                'api.sales-order-directs.sales-order-direct-products.index',
                 $salesOrderDirect
             )
         );
 
-        $response->assertOk()->assertSee($soDdetails[0]->id);
+        $response->assertOk()->assertSee($salesOrderDirectProducts[0]->id);
     }
 
     /**
      * @test
      */
-    public function it_stores_the_sales_order_direct_so_ddetails(): void
+    public function it_stores_the_sales_order_direct_sales_order_direct_products(): void
     {
         $salesOrderDirect = SalesOrderDirect::factory()->create();
-        $data = SoDdetail::factory()
+        $data = SalesOrderDirectProduct::factory()
             ->make([
                 'sales_order_direct_id' => $salesOrderDirect->id,
             ])
@@ -64,7 +64,7 @@ class SalesOrderDirectSoDdetailsTest extends TestCase
 
         $response = $this->postJson(
             route(
-                'api.sales-order-directs.so-ddetails.store',
+                'api.sales-order-directs.sales-order-direct-products.store',
                 $salesOrderDirect
             ),
             $data
@@ -72,15 +72,17 @@ class SalesOrderDirectSoDdetailsTest extends TestCase
 
         unset($data['sales_order_direct_id']);
 
-        $this->assertDatabaseHas('so_ddetails', $data);
+        $this->assertDatabaseHas('sales_order_direct_products', $data);
 
         $response->assertStatus(201)->assertJsonFragment($data);
 
-        $soDdetail = SoDdetail::latest('id')->first();
+        $salesOrderDirectProduct = SalesOrderDirectProduct::latest(
+            'id'
+        )->first();
 
         $this->assertEquals(
             $salesOrderDirect->id,
-            $soDdetail->sales_order_direct_id
+            $salesOrderDirectProduct->sales_order_direct_id
         );
     }
 }

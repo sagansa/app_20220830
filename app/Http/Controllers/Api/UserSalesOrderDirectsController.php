@@ -19,7 +19,7 @@ class UserSalesOrderDirectsController extends Controller
         $search = $request->get('search', '');
 
         $salesOrderDirects = $user
-            ->salesOrderDirects2()
+            ->salesOrderDirectOrders()
             ->search($search)
             ->latest()
             ->paginate();
@@ -39,23 +39,25 @@ class UserSalesOrderDirectsController extends Controller
                 'required',
                 'exists:delivery_services,id',
             ],
+            'delivery_location_id' => [
+                'nullable',
+                'exists:delivery_locations,id',
+            ],
             'transfer_to_account_id' => [
                 'required',
                 'exists:transfer_to_accounts,id',
             ],
             'payment_status' => ['required', 'max:255'],
+            'image_transfer' => ['image', 'nullable'],
             'store_id' => ['nullable', 'exists:stores,id'],
             'received_by' => ['nullable', 'max:255', 'string'],
-            'sign' => ['image', 'nullable'],
-            'image_transfer' => ['image', 'nullable'],
-            'image_receipt' => ['image', 'nullable'],
             'delivery_status' => ['required', 'max:255'],
-            'shipping_cost' => ['nullable', 'max:255'],
+            'notes' => ['nullable', 'max:255', 'string'],
+            'image_receipt' => ['image', 'nullable'],
+            'sign' => ['image', 'nullable'],
+            'shipping_cost' => ['nullable', 'numeric'],
+            'discounts' => ['nullable', 'numeric'],
         ]);
-
-        if ($request->hasFile('sign')) {
-            $validated['sign'] = $request->file('sign')->store('public');
-        }
 
         if ($request->hasFile('image_transfer')) {
             $validated['image_transfer'] = $request
@@ -69,7 +71,11 @@ class UserSalesOrderDirectsController extends Controller
                 ->store('public');
         }
 
-        $salesOrderDirect = $user->salesOrderDirects2()->create($validated);
+        if ($request->hasFile('sign')) {
+            $validated['sign'] = $request->file('sign')->store('public');
+        }
+
+        $salesOrderDirect = $user->salesOrderDirectOrders()->create($validated);
 
         return new SalesOrderDirectResource($salesOrderDirect);
     }

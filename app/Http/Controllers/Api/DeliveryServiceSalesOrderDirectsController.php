@@ -34,26 +34,28 @@ class DeliveryServiceSalesOrderDirectsController extends Controller
         $this->authorize('create', SalesOrderDirect::class);
 
         $validated = $request->validate([
-            'order_by_id' => ['required', 'exists:users,id'],
+            'order_by_id' => ['nullable', 'exists:users,id'],
             'delivery_date' => ['required', 'date'],
+            'delivery_location_id' => [
+                'nullable',
+                'exists:delivery_locations,id',
+            ],
             'transfer_to_account_id' => [
                 'required',
                 'exists:transfer_to_accounts,id',
             ],
             'payment_status' => ['required', 'max:255'],
+            'image_transfer' => ['image', 'nullable'],
             'store_id' => ['nullable', 'exists:stores,id'],
             'submitted_by_id' => ['nullable', 'exists:users,id'],
             'received_by' => ['nullable', 'max:255', 'string'],
-            'sign' => ['image', 'nullable'],
-            'image_transfer' => ['image', 'nullable'],
-            'image_receipt' => ['image', 'nullable'],
             'delivery_status' => ['required', 'max:255'],
-            'shipping_cost' => ['nullable', 'max:255'],
+            'notes' => ['nullable', 'max:255', 'string'],
+            'image_receipt' => ['image', 'nullable'],
+            'sign' => ['image', 'nullable'],
+            'shipping_cost' => ['nullable', 'numeric'],
+            'discounts' => ['nullable', 'numeric'],
         ]);
-
-        if ($request->hasFile('sign')) {
-            $validated['sign'] = $request->file('sign')->store('public');
-        }
 
         if ($request->hasFile('image_transfer')) {
             $validated['image_transfer'] = $request
@@ -65,6 +67,10 @@ class DeliveryServiceSalesOrderDirectsController extends Controller
             $validated['image_receipt'] = $request
                 ->file('image_receipt')
                 ->store('public');
+        }
+
+        if ($request->hasFile('sign')) {
+            $validated['sign'] = $request->file('sign')->store('public');
         }
 
         $salesOrderDirect = $deliveryService

@@ -55,8 +55,8 @@ use App\Http\Controllers\RequestPurchaseController;
 use App\Http\Controllers\InvoicePurchaseController;
 use App\Http\Controllers\CashlessProviderController;
 use App\Http\Controllers\SalesOrderOnlineController;
-use App\Http\Controllers\DeliveryLocationController;
 use App\Http\Controllers\SalesOrderDirectController;
+use App\Http\Controllers\DeliveryLocationController;
 use App\Http\Controllers\TransferToAccountController;
 use App\Http\Controllers\OnlineShopProviderController;
 use App\Http\Controllers\RestaurantCategoryController;
@@ -174,15 +174,15 @@ Route::prefix('/')
             SalesOrderEmployeeController::class
         );
         Route::resource(
-            'delivery-locations',
-            DeliveryLocationController::class
+            'transfer-to-accounts',
+            TransferToAccountController::class
         );
         Route::resource(
             'sales-order-directs',
             SalesOrderDirectController::class
         );
         Route::resource(
-            'transfer-to-accounts',
-            TransferToAccountController::class
+            'delivery-locations',
+            DeliveryLocationController::class
         );
     });

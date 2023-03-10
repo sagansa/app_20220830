@@ -12,6 +12,13 @@ return new class extends Migration {
     {
         Schema::table('sales_order_directs', function (Blueprint $table) {
             $table
+                ->foreign('delivery_location_id')
+                ->references('id')
+                ->on('delivery_locations')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
+
+            $table
                 ->foreign('delivery_service_id')
                 ->references('id')
                 ->on('delivery_services')
@@ -54,6 +61,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('sales_order_directs', function (Blueprint $table) {
+            $table->dropForeign(['delivery_location_id']);
             $table->dropForeign(['delivery_service_id']);
             $table->dropForeign(['transfer_to_account_id']);
             $table->dropForeign(['store_id']);
