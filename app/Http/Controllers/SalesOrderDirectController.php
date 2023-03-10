@@ -54,8 +54,9 @@ class SalesOrderDirectController extends Controller
             // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $transferToAccounts = TransferToAccount::orderBy('name', 'asc')
+            ->get()
             ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
+            ->pluck('transfer_name', 'id');
         $stores = Store::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');

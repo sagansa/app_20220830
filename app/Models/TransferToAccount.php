@@ -45,6 +45,6 @@ class TransferToAccount extends Model
 
     public function getTransferNameAttribute()
     {
-        return $this->name . ' | ' . $this->number . ' | ' . $this->bank->name;
+        return $this->bank->name . ' | ' . $this->number . ' | ' . $this->name;
     }
 }
