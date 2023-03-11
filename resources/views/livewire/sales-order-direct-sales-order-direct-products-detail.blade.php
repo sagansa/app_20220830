@@ -117,7 +117,7 @@
                 <tr>
                     <x-tables.th-total colspan="4">Discounts</x-tables.th-total>
                     @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
-                        <x-input.wire-currency name="discounts" wiresubmit="updateOrder" wiremodel="state.discounts">
+                        <x-input.wire-currency name="discounts" wire:submit="updateOrder" wire:model="state.discounts">
                         </x-input.wire-currency>
                     @else
                         <x-tables.td-total>@currency($this->salesOrderDirect->discounts)</x-tables.td-total>
@@ -126,8 +126,8 @@
                 <tr>
                     <x-tables.th-total colspan="4">Shipping Cost</x-tables.th-total>
                     @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
-                        <x-input.wire-currency name="shipping_cost" wiresubmit="updateOrder"
-                            wiremodel="state.shipping_cost"></x-input.wire-currency>
+                        <x-input.wire-currency name="shipping_cost" wire:submit="updateOrder"
+                            wire:model="state.shipping_cost"></x-input.wire-currency>
                     @else
                         <x-tables.td-total> @currency($this->salesOrderDirect->shipping_cost)</x-tables.td-total>
                     @endif

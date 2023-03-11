@@ -138,7 +138,7 @@
                             </x-tables.td-total>
                         @endrole
                         @role('super-admin')
-                            <x-input.wire-currency name="amount" wiresubmit="updatePaymentReceipt" wiremodel="state.amount">
+                            <x-input.wire-currency name="amount" wire:submit="updatePaymentReceipt" wire:model="state.amount">
                             </x-input.wire-currency>
                         @endrole
                     </tr>
