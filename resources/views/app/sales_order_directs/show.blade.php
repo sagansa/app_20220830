@@ -35,12 +35,17 @@
                         <x-shows.dt>@lang('crud.sales_order_directs.inputs.delivery_location_id')</x-shows.dt>
                         <x-shows.dd>
                             {{ optional($salesOrderDirect->deliveryLocation)->name ?? '-' }}
+                            <div> {{ optional($salesOrderDirect->deliveryLocation)->contact_name ?? '-' }} -
+                                {{ optional($salesOrderDirect->deliveryLocation)->contact_number ?? '-' }}</div>
+                            <div>{{ optional($salesOrderDirect->deliveryLocation)->address ?? '-' }}</div>
                         </x-shows.dd>
                     </x-shows.sub-dl>
                     @role('super-admin|manager|customer')
                         <x-shows.sub-dl>
                             <x-shows.dt>@lang('crud.sales_order_directs.inputs.transfer_to_account_id')</x-shows.dt>
                             <x-shows.dd>
+                                {{ optional($salesOrderDirect->transferToAccount)->bank->name ?? '-' }} -
+                                {{ optional($salesOrderDirect->transferToAccount)->number ?? '-' }} -
                                 {{ optional($salesOrderDirect->transferToAccount)->name ?? '-' }}
                             </x-shows.dd>
                         </x-shows.sub-dl>
@@ -69,7 +74,7 @@
                     @role('super-admin|manager|storage-staff')
                         <x-shows.sub-dl>
                             <x-shows.dt>@lang('crud.sales_order_directs.inputs.store_id')</x-shows.dt>
-                            <x-shows.dd>{{ optional($salesOrderDirect->store)->name ?? '-' }}</x-shows.dd>
+                            <x-shows.dd>{{ optional($salesOrderDirect->store)->nickname ?? '-' }}</x-shows.dd>
                         </x-shows.sub-dl>
                         <x-shows.sub-dl>
                             <x-shows.dt>@lang('crud.sales_order_directs.inputs.submitted_by_id')</x-shows.dt>
@@ -118,16 +123,6 @@
                                         size="150" />
                                 </a>
                             @endif
-                        </x-shows.sub-dl>
-                    @endrole
-                    @role('super-admin|manager|storage-staff')
-                        <x-shows.sub-dl>
-                            <x-shows.dt>@lang('crud.sales_order_directs.inputs.shipping_cost')</x-shows.dt>
-                            <x-shows.dd>{{ $salesOrderDirect->shipping_cost ?? '-' }}</x-shows.dd>
-                        </x-shows.sub-dl>
-                        <x-shows.sub-dl>
-                            <x-shows.dt>@lang('crud.sales_order_directs.inputs.discounts')</x-shows.dt>
-                            <x-shows.dd>{{ $salesOrderDirect->discounts ?? '-' }}</x-shows.dd>
                         </x-shows.sub-dl>
                     @endrole
                     @role('super-admin|manager')

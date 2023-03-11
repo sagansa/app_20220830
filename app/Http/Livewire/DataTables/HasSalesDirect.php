@@ -32,7 +32,7 @@ trait HasSalesDirect
     {
     	$badges = [
     		'1' => 'bg-yellow-100 text-yellow-800',
-    		'2' => 'bg-yellow-100 text-green-800',
+    		'2' => 'bg-yellow-100 text-yellow-800',
             '3' => 'bg-green-100 text-green-800',
             '4' => 'bg-green-100 text-green-800',
             '5' => 'bg-green-100 text-green-800',

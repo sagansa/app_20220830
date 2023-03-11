@@ -1,17 +1,36 @@
 <div>
     <div>
-        @can('create', App\Models\SalesOrderDirectProduct::class)
-            <button class="button" wire:click="newSalesOrderDirectProduct">
-                <i class="mr-1 icon ion-md-add text-primary"></i>
-                @lang('crud.common.new')
-            </button>
-            @endcan @can('delete-any', App\Models\SalesOrderDirectProduct::class)
-            <button class="button button-danger" {{ empty($selected) ? 'disabled' : '' }}
-                onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="destroySelected">
-                <i class="mr-1 icon ion-md-trash text-primary"></i>
-                @lang('crud.common.delete_selected')
-            </button>
-        @endcan
+        @role('super-admin|manager')
+            @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
+                @can('create', App\Models\SalesOrderDirectProduct::class)
+                    <button class="button" wire:click="newSalesOrderDirectProduct">
+                        <i class="mr-1 icon ion-md-add text-primary"></i>
+                        @lang('crud.common.new')
+                    </button>
+                    @endcan @can('delete-any', App\Models\SalesOrderDirectProduct::class)
+                    <button class="button button-danger" {{ empty($selected) ? 'disabled' : '' }}
+                        onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="destroySelected">
+                        <i class="mr-1 icon ion-md-trash text-primary"></i>
+                        @lang('crud.common.delete_selected')
+                    </button>
+                @endcan
+            @endif
+            @elserole('customer')
+            @if ($salesOrderDirect->payment_status != 2)
+                @can('create', App\Models\SalesOrderDirectProduct::class)
+                    <button class="button" wire:click="newSalesOrderDirectProduct">
+                        <i class="mr-1 icon ion-md-add text-primary"></i>
+                        @lang('crud.common.new')
+                    </button>
+                    @endcan @can('delete-any', App\Models\SalesOrderDirectProduct::class)
+                    <button class="button button-danger" {{ empty($selected) ? 'disabled' : '' }}
+                        onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="destroySelected">
+                        <i class="mr-1 icon ion-md-trash text-primary"></i>
+                        @lang('crud.common.delete_selected')
+                    </button>
+                @endcan
+            @endif
+        @endrole
     </div>
 
     <x-modal wire:model="showingModal">
@@ -35,16 +54,6 @@
         </div>
 
         <div class="flex justify-between px-6 py-4 bg-gray-50">
-            {{-- <button type="button" class="button" wire:click="$toggle('showingModal')">
-                <i class="mr-1 icon ion-md-close"></i>
-                @lang('crud.common.cancel')
-            </button>
-
-            <button type="button" class="button button-primary" wire:click="save">
-                <i class="mr-1 icon ion-md-save"></i>
-                @lang('crud.common.save')
-            </button> --}}
-
             <x-buttons.secondary wire:click="$toggle('showingModal')">Cancel</x-buttons.secondary>
             <x-jet-button wire:click="save">Save</x-jet-button>
         </div>
@@ -87,13 +96,9 @@
                             {{ $salesOrderDirectProduct->eProduct->product->unit->unit }}
                         </x-tables.td-right>
                         <x-tables.td-right>
-                            {{-- {{ $salesOrderDirectProduct->eProduct->price }} --}}
-
                             @currency($salesOrderDirectProduct->eProduct->price)
                         </x-tables.td-right>
                         <x-tables.td-right>
-                            {{-- {{ $salesOrderDirectProduct->amount ?? '-' }} --}}
-
                             @currency($salesOrderDirectProduct->amount)
                         </x-tables.td-right>
                         <td class="px-4 py-3 text-right" style="width: 134px;">
@@ -116,21 +121,29 @@
                 </tr>
                 <tr>
                     <x-tables.th-total colspan="4">Discounts</x-tables.th-total>
-                    @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
-                        <x-input.wire-currency name="discounts" wire:submit="updateOrder" wire:model="state.discounts">
-                        </x-input.wire-currency>
-                    @else
+                    @role('super-admin|manager')
+                        @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
+                            <x-input.wire-currency name="discounts" wiresubmit="updateOrder" wiremodel="state.discounts">
+                            </x-input.wire-currency>
+                        @else
+                            <x-tables.td-total>@currency($this->salesOrderDirect->discounts)</x-tables.td-total>
+                        @endif
+                        @elserole('customer|storage-staff')
                         <x-tables.td-total>@currency($this->salesOrderDirect->discounts)</x-tables.td-total>
-                    @endif
+                    @endrole
                 </tr>
                 <tr>
                     <x-tables.th-total colspan="4">Shipping Cost</x-tables.th-total>
-                    @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
-                        <x-input.wire-currency name="shipping_cost" wire:submit="updateOrder"
-                            wire:model="state.shipping_cost"></x-input.wire-currency>
-                    @else
+                    @role('super-admin|manager')
+                        @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
+                            <x-input.wire-currency name="shipping_cost" wiresubmit="updateOrder"
+                                wiremodel="state.shipping_cost"></x-input.wire-currency>
+                        @else
+                            <x-tables.td-total> @currency($this->salesOrderDirect->shipping_cost)</x-tables.td-total>
+                        @endif
+                        @elserole('customer|storage-staff')
                         <x-tables.td-total> @currency($this->salesOrderDirect->shipping_cost)</x-tables.td-total>
-                    @endif
+                    @endrole
                 </tr>
                 <tr>
                     <x-tables.th-total colspan="4">Totals</x-tables.th-total>

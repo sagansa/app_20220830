@@ -140,14 +140,6 @@ class SalesOrderDirectSalesOrderDirectProductsDetail extends Component
 
     public function render(): View
     {
-        $this->salesOrderDirect->subtotals = 0;
-
-        foreach ($this->salesOrderDirect->salesOrderDirectProducts as $salesOrderDirectProduct) {
-            $this->salesOrderDirectProduct->subtotals += $salesOrderDirectProduct['amount'];
-        }
-
-        $this->salesOrderDirect->totals = $this->salesOrderDirect->subtotals - $this->salesOrderDirect->discounts + $this->salesOrderDirect->shipping_cost;
-
         return view(
             'livewire.sales-order-direct-sales-order-direct-products-detail',
             [
