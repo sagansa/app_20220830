@@ -138,21 +138,8 @@
                             </x-tables.td-total>
                         @endrole
                         @role('super-admin')
-                            {{-- <x-input.wire-currency name="amount" wiresubmit="updatePaymentReceipt" wiremodel="state.amount">
-                            </x-input.wire-currency> --}}
-
-                            <form wire:submit.prevent="updatePaymentReceipt" autocomplete="off">
-                                <div
-                                    class="relative px-3 py-1 text-xs border border-gray-300 rounded-md shadow-sm sm:col-span-2 focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600">
-                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        <span class="text-xs text-gray-500">Rp</span>
-                                    </div>
-
-                                    <input type="number" wire:model.defer="state.amount"
-                                        class="block w-full p-0 text-xs font-medium text-right text-gray-500 placeholder-gray-500 border-0 focus:ring-0">
-
-                                </div>
-                            </form>
+                            <x-input.wire-currency name="amount" wiresubmit="updatePaymentReceipt" wiremodel="state.amount">
+                            </x-input.wire-currency>
                         @endrole
                     </tr>
                     <tr>
