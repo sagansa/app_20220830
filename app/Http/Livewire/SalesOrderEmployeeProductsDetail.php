@@ -18,6 +18,7 @@ class SalesOrderEmployeeProductsDetail extends Component
     public $product_id = null;
     public $quantity;
     public $unit_price;
+    public $amount;
 
     public $showingModal = false;
     public $modalTitle = 'New Product';
@@ -31,7 +32,7 @@ class SalesOrderEmployeeProductsDetail extends Component
     public function mount(SalesOrderEmployee $salesOrderEmployee): void
     {
         $this->salesOrderEmployee = $salesOrderEmployee;
-        $this->productsForSelect = Product::pluck('name', 'id');
+        $this->productsForSelect = Product::whereNotIn('online_category_id', ['4'])->orderBy('name', 'asc')->get()->pluck('id', 'product_name');
         $this->resetProductData();
     }
 
@@ -42,6 +43,7 @@ class SalesOrderEmployeeProductsDetail extends Component
         $this->product_id = null;
         $this->quantity = null;
         $this->unit_price = null;
+        $this->amount = null;
 
         $this->dispatchBrowserEvent('refresh');
     }
@@ -71,7 +73,7 @@ class SalesOrderEmployeeProductsDetail extends Component
     {
         $this->validate();
 
-        $this->authorize('create', Product::class);
+        // $this->authorize('create', SalesOrderEmployee::class);
 
         $this->salesOrderEmployee->products()->attach($this->product_id, [
             'quantity' => $this->quantity,
@@ -83,7 +85,7 @@ class SalesOrderEmployeeProductsDetail extends Component
 
     public function detach($product): void
     {
-        $this->authorize('delete-any', Product::class);
+        // $this->authorize('delete-any', SalesOrdeEmployee::class);
 
         $this->salesOrderEmployee->products()->detach($product);
 
@@ -92,6 +94,11 @@ class SalesOrderEmployeeProductsDetail extends Component
 
     public function render(): View
     {
+        $this->salesOrderEmployee->totals = 0;
+
+        foreach ($this->salesOrderEmployee->products as $product) {
+            $this->salesOrderEmployee->totals += $product->pivot->quantity * $product->pivot->unit_price;
+        }
         return view('livewire.sales-order-employee-products-detail', [
             'salesOrderEmployeeProducts' => $this->salesOrderEmployee
                 ->products()

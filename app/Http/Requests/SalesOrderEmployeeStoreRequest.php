@@ -25,8 +25,8 @@ class SalesOrderEmployeeStoreRequest extends FormRequest
             'detail_customer' => ['required', 'max:255', 'string'],
             'date' => ['required', 'date'],
             'image' => ['nullable', 'image'],
-            'status' => ['required'],
-            'user_id' => ['required', 'exists:users,id'],
+            'status' => ['nullable', 'max:255'],
+            'user_id' => ['nullable', 'exists:users,id'],
         ];
     }
 }

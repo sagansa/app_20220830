@@ -43,9 +43,15 @@
         </div>
     </x-input.image>
 
-    <x-inputs.hidden name="status" :value="old('status', $editing ? $salesOrderEmployee->status : '1')"></x-inputs.hidden>
-
-    @role('super-admin|manager')
+    @role('sales')
+        @if (!$editing)
+            <x-input.hidden name="status" value="{{ old('status', $editing ? $salesOrderEmployee->status : '1') }}">
+            </x-input.hidden>
+        @else
+            <x-input.hidden name="status" value="{{ old('status', $editing ? $salesOrderEmployee->status : '') }}">
+            </x-input.hidden>
+        @endif
+        @elserole('super-admin|manager')
         <x-input.select name="status" label="Status">
             @php $selected = old('status', ($editing ? $salesOrderEmployee->status : '1')) @endphp
             <option value="1" {{ $selected == '1' ? 'selected' : '' }}>belum diperiksa</option>
@@ -55,37 +61,35 @@
         </x-input.select>
     @endrole
 
-    {{-- <x-input.select name="user_id" label="User" required>
-        @php $selected = old('user_id', ($editing ? $salesOrderEmployee->user_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
-        @foreach ($users as $value => $label)
-        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
-        @endforeach
-    </x-input.select> --}}
-
-    @if ($editing)
-        <x-shows.dl>
-            <x-shows.sub-dl>
-                <x-shows.dt>Created Date</x-shows.dt>
-                <x-shows.dd>{{ $salesOrderEmployee->created_at }} </x-shows.dd>
-            </x-shows.sub-dl>
-            <x-shows.sub-dl>
-                <x-shows.dt>Updated Date</x-shows.dt>
-                <x-shows.dd>{{ $salesOrderEmployee->updated_at }} </x-shows.dd>
-            </x-shows.sub-dl>
-            @role('super-admin|manager|supervisor')
+    @role('super-admin|manager')
+        @if ($editing)
+            <x-shows.dl>
+                <x-shows.sub-dl>
+                    <x-shows.dt>Created Date</x-shows.dt>
+                    <x-shows.dd>{{ $salesOrderEmployee->created_at }} </x-shows.dd>
+                </x-shows.sub-dl>
+                <x-shows.sub-dl>
+                    <x-shows.dt>Updated Date</x-shows.dt>
+                    <x-shows.dd>{{ $salesOrderEmployee->updated_at }} </x-shows.dd>
+                </x-shows.sub-dl>
                 <x-shows.sub-dl>
                     <x-shows.dt>Created By</x-shows.dt>
-                    <x-shows.dd>{{ optional($salesOrderEmployee->created_by)->name ?? '-' }}
+                    <x-shows.dd>{{ optional($salesOrderEmployee->user)->name ?? '-' }}
                     </x-shows.dd>
                 </x-shows.sub-dl>
-                @endrole @role('staff|super-admin')
+            </x-shows.dl>
+        @endif
+        @elserole('sales')
+        @if ($editing)
+            <x-shows.dl>
                 <x-shows.sub-dl>
-                    <x-shows.dt>Updated By</x-shows.dt>
-                    <x-shows.dd>{{ optional($salesOrderEmployee->approved_by)->name ?? '-' }}
+                    <x-shows.dt>@lang('crud.sales_order_employees.inputs.status')</x-shows.dt>
+                    <x-shows.dd>
+                        <x-spans.status-valid class="{{ $salesOrderEmployee->status_badge }}">
+                            {{ $salesOrderEmployee->status_name }}</x-spans.status-valid>
                     </x-shows.dd>
                 </x-shows.sub-dl>
-            @endrole
-        </x-shows.dl>
-    @endif
+            </x-shows.dl>
+        @endif
+    @endrole
 </div>

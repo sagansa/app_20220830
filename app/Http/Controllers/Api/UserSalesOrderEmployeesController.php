@@ -39,7 +39,7 @@ class UserSalesOrderEmployeesController extends Controller
             'detail_customer' => ['required', 'max:255', 'string'],
             'date' => ['required', 'date'],
             'image' => ['nullable', 'image'],
-            'status' => ['required'],
+            'status' => ['nullable', 'max:255'],
         ]);
 
         if ($request->hasFile('image')) {

@@ -419,6 +419,7 @@ return [
             'product_id' => 'Product',
             'quantity' => 'Quantity',
             'unit_price' => 'Unit Price',
+            'amount' => 'Amount',
         ],
     ],
 

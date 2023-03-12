@@ -79,8 +79,7 @@ class SalesOrderEmployeeController extends Controller
             $validated['image'] = $fileimage;
         }
 
-        $validated['created_by_id'] = auth()->user()->id;
-        $validated['status'] = '1';
+        $validated['user_id'] = auth()->user()->id;
 
         $salesOrderEmployee = SalesOrderEmployee::create($validated);
 
@@ -156,14 +155,6 @@ class SalesOrderEmployeeController extends Controller
                 ->save();
 
             $validated['image'] = $file_image;
-        }
-
-        if (
-            auth()
-                ->user()
-                ->hasRole('supervisor|manager|super-admin')
-        ) {
-            $validated['approved_by_id'] = auth()->user()->id;
         }
 
         $salesOrderEmployee->update($validated);

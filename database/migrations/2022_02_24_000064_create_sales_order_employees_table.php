@@ -17,8 +17,11 @@ return new class extends Migration {
             $table->unsignedBigInteger('store_id');
             $table->date('date');
             $table->string('image')->nullable();
-            $table->tinyInteger('status')->default(1);
-            $table->unsignedBigInteger('user_id');
+            $table
+                ->tinyInteger('status')
+                ->default(1)
+                ->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
 
             $table->timestamps();
         });
