@@ -109,6 +109,8 @@ class SalesOrderDirectSalesOrderDirectProductsDetail extends Component
             $this->authorize('update', $this->salesOrderDirectProduct);
         }
 
+        $this->salesOrderDirectProduct->amount = $this->salesOrderDirectProduct->quantity * $this->salesOrderDirectProduct->price;
+
         $this->salesOrderDirectProduct->save();
 
         $this->hideModal();
