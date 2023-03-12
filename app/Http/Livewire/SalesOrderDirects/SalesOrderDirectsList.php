@@ -85,6 +85,12 @@ class SalesOrderDirectsList extends Component
                 $salesOrderDirects->where('order_by_id', '=', Auth::user()->id);
             }
 
+            if (Auth::user()->hasRole('storage-staff')) {
+
+                $salesOrderDirects->where('payment_status', '/=', 1);
+            }
+
+
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
                 $salesOrderDirects
