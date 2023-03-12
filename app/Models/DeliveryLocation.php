@@ -21,7 +21,7 @@ class DeliveryLocation extends Model
     ];
 
     protected $fillable = [
-        'name',
+        'label',
         'contact_name',
         'contact_number',
         'Address',

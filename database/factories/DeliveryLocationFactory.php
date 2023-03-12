@@ -23,7 +23,7 @@ class DeliveryLocationFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+            'label' => $this->faker->name(),
             'contact_name' => $this->faker->text(255),
             'contact_number' => $this->faker->text(255),
             'Address' => $this->faker->address,

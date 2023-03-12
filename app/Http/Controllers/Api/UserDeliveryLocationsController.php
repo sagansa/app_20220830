@@ -34,7 +34,7 @@ class UserDeliveryLocationsController extends Controller
         $this->authorize('create', DeliveryLocation::class);
 
         $validated = $request->validate([
-            'name' => ['required', 'max:255', 'string'],
+            'label' => ['required', 'max:255', 'string'],
             'contact_name' => ['required', 'max:255', 'string'],
             'contact_number' => ['required', 'max:255', 'string'],
             'Address' => ['required', 'max:255', 'string'],

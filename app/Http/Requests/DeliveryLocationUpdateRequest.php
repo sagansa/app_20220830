@@ -20,7 +20,7 @@ class DeliveryLocationUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:255', 'string'],
+            'label' => ['required', 'max:255', 'string'],
             'contact_name' => ['required', 'max:255', 'string'],
             'contact_number' => ['required', 'max:255', 'string'],
             'Address' => ['required', 'max:255', 'string'],

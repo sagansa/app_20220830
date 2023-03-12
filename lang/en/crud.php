@@ -1533,7 +1533,7 @@ return [
         'edit_title' => 'Edit Delivery Location',
         'show_title' => 'Show Delivery Location',
         'inputs' => [
-            'name' => 'Name',
+            'label' => 'Label',
             'contact_name' => 'Contact Name',
             'contact_number' => 'Contact Number',
             'Address' => 'Address',

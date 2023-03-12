@@ -43,7 +43,7 @@ class UserDeliveryLocationsTest extends TestCase
             route('api.users.delivery-locations.index', $user)
         );
 
-        $response->assertOk()->assertSee($deliveryLocations[0]->name);
+        $response->assertOk()->assertSee($deliveryLocations[0]->label);
     }
 
     /**

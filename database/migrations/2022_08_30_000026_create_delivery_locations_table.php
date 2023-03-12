@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('delivery_locations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('label');
             $table->string('contact_name');
             $table->string('contact_number');
             $table->string('Address');

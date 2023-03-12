@@ -43,7 +43,7 @@ class DeliveryLocationTest extends TestCase
 
         $response = $this->getJson(route('api.delivery-locations.index'));
 
-        $response->assertOk()->assertSee($deliveryLocations[0]->name);
+        $response->assertOk()->assertSee($deliveryLocations[0]->label);
     }
 
     /**
@@ -79,7 +79,7 @@ class DeliveryLocationTest extends TestCase
         $village = Village::factory()->create();
 
         $data = [
-            'name' => $this->faker->name(),
+            'label' => $this->faker->name(),
             'contact_name' => $this->faker->text(255),
             'contact_number' => $this->faker->text(255),
             'Address' => $this->faker->address,

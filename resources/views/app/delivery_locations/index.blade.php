@@ -43,7 +43,7 @@
         <x-table>
             <x-slot name="head">
                 <x-tables.th-left
-                    >@lang('crud.delivery_locations.inputs.name')</x-tables.th-left
+                    >@lang('crud.delivery_locations.inputs.label')</x-tables.th-left
                 >
                 <x-tables.th-left
                     >@lang('crud.delivery_locations.inputs.contact_name')</x-tables.th-left
@@ -57,7 +57,7 @@
                 @forelse($deliveryLocations as $deliveryLocation)
                 <tr class="hover:bg-gray-50">
                     <x-tables.td-left-hide
-                        >{{ $deliveryLocation->name ?? '-'
+                        >{{ $deliveryLocation->label ?? '-'
                         }}</x-tables.td-left-hide
                     >
                     <x-tables.td-left-hide

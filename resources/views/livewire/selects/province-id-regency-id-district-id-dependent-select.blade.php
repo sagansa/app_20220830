@@ -5,7 +5,7 @@
             label="Province"
             wire:model="selectedProvinceId"
         >
-            <option selected>Please select the Province</option>
+            <option selected>-- select --</option>
             @foreach($allProvinces as $id => $name)
             <option value="{{ $id }}">{{ $name }}</option>
             @endforeach
@@ -18,7 +18,7 @@
             label="Regency"
             wire:model="selectedRegencyId"
         >
-            <option selected>Please select the Regency</option>
+            <option selected>-- select --</option>
             @foreach($allRegencies as $id => $name)
             <option value="{{ $id }}">{{ $name }}</option>
             @endforeach
@@ -30,7 +30,7 @@
             label="District"
             wire:model="selectedDistrictId"
         >
-            <option selected>Please select the District</option>
+            <option selected>-- select --</option>
             @foreach($allDistricts as $id => $name)
             <option value="{{ $id }}">{{ $name }}</option>
             @endforeach
