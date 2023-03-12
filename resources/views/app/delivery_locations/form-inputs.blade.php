@@ -66,6 +66,8 @@
     @endrole
 
     @role('customer')
+        <x-input.hidden name="user_id" value="{{ old('user_id', $editing ? $deliveryLocation->user_id : '') }}">
+        </x-input.hidden>
         <x-input.hidden name="province_id"
             value="{{ old('province_id', $editing ? $deliveryLocation->province_id : '') }}">
         </x-input.hidden>

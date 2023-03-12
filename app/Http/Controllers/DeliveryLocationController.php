@@ -148,14 +148,6 @@ class DeliveryLocationController extends Controller
 
         $validated = $request->validated();
 
-        if (
-            auth()
-                ->user()
-                ->hasRole('supervisor|manager|super-admin')
-        ) {
-            $validated['approved_by_id'] = auth()->user()->id;
-        }
-
         $deliveryLocation->update($validated);
 
         return redirect()
