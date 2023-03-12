@@ -50,10 +50,18 @@ class SalesOrderDirectController extends Controller
         $deliveryServices = DeliveryService::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $deliveryLocations = DeliveryLocation::where('user_id', '=', auth()->user()->id)
-            ->orderBy('label', 'asc')
-            // ->whereIn('status', ['1'])
-            ->pluck('label', 'id');
+
+        if(Auth::user()->hasRole('customer')) {
+             $deliveryLocations = DeliveryLocation::where('user_id', '=', auth()->user()->id)
+                ->orderBy('label', 'asc')
+                // ->whereIn('status', ['1'])
+                ->pluck('label', 'id');
+        }
+
+        $deliveryLocations = DeliveryLocation::orderBy('label', 'asc')
+                // ->whereIn('status', ['1'])
+                ->pluck('label', 'id');
+
         $transferToAccounts = TransferToAccount::orderBy('name', 'asc')
             ->get()
             ->whereIn('status', ['1'])
