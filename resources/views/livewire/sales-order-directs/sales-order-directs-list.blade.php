@@ -92,25 +92,23 @@
                 @role('super-admin|manager')
                     <th></th>
                 @endrole
-                <x-tables.th-left>@lang('crud.sales_order_directs.inputs.image_transfer')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.image_transfer')</x-tables.th-left-hide>
                 @role('super-admin|storage-staff|manager')
-                    <x-tables.th-left>@lang('crud.sales_order_directs.inputs.order_by_id')</x-tables.th-left>
+                    <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.order_by_id')</x-tables.th-left-hide>
                 @endrole
                 <x-tables.th-left>@lang('crud.sales_order_directs.inputs.delivery_date')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.sales_order_directs.inputs.delivery_service_id')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.delivery_service_id')</x-tables.th-left-hide>
                 @role('super-admin|customer|manager')
-                    <x-tables.th-left>@lang('crud.sales_order_directs.inputs.transfer_to_account_id')</x-tables.th-left>
-                    <x-tables.th-left>@lang('crud.sales_order_directs.inputs.payment_status')</x-tables.th-left>
+                    <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.transfer_to_account_id')</x-tables.th-left-hide>
+                    <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.payment_status')</x-tables.th-left-hide>
                 @endrole
                 @role('super-admin|storage-staff|manager')
-                    <x-tables.th-left>@lang('crud.sales_order_directs.inputs.store_id')</x-tables.th-left>
+                    <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.store_id')</x-tables.th-left-hide>
                     @elserole('super-admin|manger')
-                    <x-tables.th-left>@lang('crud.sales_order_directs.inputs.submitted_by_id')</x-tables.th-left>
+                    <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.submitted_by_id')</x-tables.th-left-hide>
                 @endrole
-                <x-tables.th-left>@lang('crud.sales_order_directs.inputs.received_by')</x-tables.th-left>
-
-
-                <x-tables.th-left>@lang('crud.sales_order_directs.inputs.delivery_status')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.received_by')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.delivery_status')</x-tables.th-left-hide>
                 <th></th>
             </x-slot>
             <x-slot name="body">
@@ -134,7 +132,6 @@
                                             @endif
                                         </div>
                                     @endrole
-
                                     <div>
                                         @if ($salesOrderDirect->image_receipt == null)
                                             <x-partials.thumbnail src="" />
@@ -147,10 +144,22 @@
                                     </div>
                                 </div>
                             </x-slot>
-                            <x-slot name="sub"></x-slot>
+                            <x-slot name="sub">
+                                @role('super-admin|manager|storage-staff')
+                                    {{ optional($salesOrderDirect->order_by)->name ?? '-' }}
+                                @endrole
+
+                                <div> {{ $salesOrderDirect->delivery_date->toFormattedDate() ?? '-' }} </div>
+                                <div> {{ optional($salesOrderDirect->deliveryService)->name ?? '-' }} </div>
+                                <div> {{ optional($salesOrderDirect->transferToAccount)->bank->name ?? '-' }}</div>
+                                <x-spans.status-valid class="{{ $salesOrderDirect->payment_status_badge }}">
+                                    {{ $salesOrderDirect->payment_status_name }}
+                                </x-spans.status-valid>
+                                <x-spans.status-valid class="{{ $salesOrderDirect->delivery_status_badge }}">
+                                    {{ $salesOrderDirect->delivery_status_name }}
+                                </x-spans.status-valid>
+                            </x-slot>
                         </x-tables.td-left-main>
-
-
                         @role('super-admin|storage-staff|manager')
                             <x-tables.td-left-hide>{{ optional($salesOrderDirect->order_by)->name ?? '-' }}
                             </x-tables.td-left-hide>
