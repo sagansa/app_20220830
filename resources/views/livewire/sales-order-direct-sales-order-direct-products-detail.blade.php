@@ -78,13 +78,15 @@
                     <x-tables.th-left>
                         @lang('crud.sales_order_direct_sales_order_direct_products.inputs.quantity')
                     </x-tables.th-left>
-                    <x-tables.th-left>
-                        @lang('crud.sales_order_direct_sales_order_direct_products.inputs.price')
-                    </x-tables.th-left>
-                    <x-tables.th-left>
-                        @lang('crud.sales_order_direct_sales_order_direct_products.inputs.amount')
-                    </x-tables.th-left>
-                    <th></th>
+                    @role('super-admin|manaager|customer')
+                        <x-tables.th-left>
+                            @lang('crud.sales_order_direct_sales_order_direct_products.inputs.price')
+                        </x-tables.th-left>
+                        <x-tables.th-left>
+                            @lang('crud.sales_order_direct_sales_order_direct_products.inputs.amount')
+                        </x-tables.th-left>
+                        <th></th>
+                    @endrole
                 </tr>
             </x-slot>
             <x-slot name="body">
@@ -102,12 +104,14 @@
                             {{ $salesOrderDirectProduct->quantity ?? '-' }}
                             {{ $salesOrderDirectProduct->eProduct->product->unit->unit }}
                         </x-tables.td-right>
-                        <x-tables.td-right>
-                            @currency($salesOrderDirectProduct->price)
-                        </x-tables.td-right>
-                        <x-tables.td-right>
-                            @currency($salesOrderDirectProduct->quantity * $salesOrderDirectProduct->price)
-                        </x-tables.td-right>
+                        @role('super-admin|manager|customer')
+                            <x-tables.td-right>
+                                @currency($salesOrderDirectProduct->price)
+                            </x-tables.td-right>
+                            <x-tables.td-right>
+                                @currency($salesOrderDirectProduct->quantity * $salesOrderDirectProduct->price)
+                            </x-tables.td-right>
+                        @endrole
                         @role('super-admin|manager')
                             @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
                                 <td class="px-4 py-3 text-right" style="width: 134px;">
@@ -138,11 +142,12 @@
                 @endforeach
             </x-slot>
             <x-slot name="foot">
-                <tr>
-                    <x-tables.th-total colspan="4">Subtotals</x-tables.th-total>
-                    <x-tables.td-total>@currency($salesOrderDirectProducts->sum('amount'))</x-tables.td-total>
-                </tr>
-                {{-- <tr>
+                @role('super-admin|manager|customer')
+                    <tr>
+                        <x-tables.th-total colspan="4">Subtotals</x-tables.th-total>
+                        <x-tables.td-total>@currency($salesOrderDirectProducts->sum('amount'))</x-tables.td-total>
+                    </tr>
+                    {{-- <tr>
                     <x-tables.th-total colspan="4">Discounts</x-tables.th-total>
                     @role('super-admin|manager')
                         @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
@@ -155,23 +160,24 @@
                         <x-tables.td-total>@currency($this->salesOrderDirect->discounts)</x-tables.td-total>
                     @endrole
                 </tr> --}}
-                <tr>
-                    <x-tables.th-total colspan="4">Shipping Cost</x-tables.th-total>
-                    @role('super-admin|manager')
-                        @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
-                            <x-input.wire-currency name="shipping_cost" wiresubmit="updateOrder"
-                                wiremodel="state.shipping_cost"></x-input.wire-currency>
-                        @else
+                    <tr>
+                        <x-tables.th-total colspan="4">Shipping Cost</x-tables.th-total>
+                        @role('super-admin|manager')
+                            @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
+                                <x-input.wire-currency name="shipping_cost" wiresubmit="updateOrder"
+                                    wiremodel="state.shipping_cost"></x-input.wire-currency>
+                            @else
+                                <x-tables.td-total> @currency($this->salesOrderDirect->shipping_cost)</x-tables.td-total>
+                            @endif
+                            @elserole('customer|storage-staff')
                             <x-tables.td-total> @currency($this->salesOrderDirect->shipping_cost)</x-tables.td-total>
-                        @endif
-                        @elserole('customer|storage-staff')
-                        <x-tables.td-total> @currency($this->salesOrderDirect->shipping_cost)</x-tables.td-total>
-                    @endrole
-                </tr>
-                <tr>
-                    <x-tables.th-total colspan="4">Totals</x-tables.th-total>
-                    <x-tables.td-total> @currency($this->salesOrderDirect->totals)</x-tables.td-total>
-                </tr>
+                        @endrole
+                    </tr>
+                    <tr>
+                        <x-tables.th-total colspan="4">Totals</x-tables.th-total>
+                        <x-tables.td-total> @currency($this->salesOrderDirect->totals)</x-tables.td-total>
+                    </tr>
+                @endrole
                 <tr>
                     <td colspan="5">
                         <div class="px-4 mt-10">
