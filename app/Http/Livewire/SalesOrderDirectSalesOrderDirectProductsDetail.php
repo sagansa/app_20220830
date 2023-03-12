@@ -38,6 +38,7 @@ class SalesOrderDirectSalesOrderDirectProductsDetail extends Component
             'exists:e_products,id',
         ],
         'salesOrderDirectProduct.quantity' => ['required', 'numeric'],
+        'salesOrderDirectProduct.price' => ['required', 'numeric'],
     ];
 
     public function mount(SalesOrderDirect $salesOrderDirect): void
