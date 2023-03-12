@@ -24,16 +24,15 @@
             @endforeach
         </x-input.select>
 
-        @if ($salesOrderDirect->delivery_service != 33)
-            <x-input.select name="delivery_location_id" label="Delivery Location">
-                @php $selected = old('delivery_location_id', ($editing ? $salesOrderDirect->delivery_location_id : '')) @endphp
-                <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-                @foreach ($deliveryLocations as $value => $label)
-                    <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
-                    </option>
-                @endforeach
-            </x-input.select>
-        @endif
+        <x-input.select name="delivery_location_id" label="Delivery Location">
+            @php $selected = old('delivery_location_id', ($editing ? $salesOrderDirect->delivery_location_id : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
+            @foreach ($deliveryLocations as $value => $label)
+                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
+                </option>
+            @endforeach
+        </x-input.select>
+
 
         <x-input.select name="transfer_to_account_id" label="Transfer To Account" required>
             @php $selected = old('transfer_to_account_id', ($editing ? $salesOrderDirect->transfer_to_account_id : '')) @endphp

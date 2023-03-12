@@ -50,7 +50,8 @@ class SalesOrderDirectController extends Controller
         $deliveryServices = DeliveryService::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $deliveryLocations = DeliveryLocation::orderBy('name', 'asc')
+        $deliveryLocations = DeliveryLocation::where('user_id', '=', auth()->user()->id)
+            ->orderBy('name', 'asc')
             // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $transferToAccounts = TransferToAccount::orderBy('name', 'asc')
@@ -168,7 +169,8 @@ class SalesOrderDirectController extends Controller
         $deliveryServices = DeliveryService::orderBy('name', 'asc')
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
-        $deliveryLocations = DeliveryLocation::orderBy('name', 'asc')
+        $deliveryLocations = DeliveryLocation::where('user_id', '=', auth()->user()->id)
+            ->orderBy('name', 'asc')
             // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $transferToAccounts = TransferToAccount::orderBy('name', 'asc')
