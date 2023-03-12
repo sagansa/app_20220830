@@ -104,6 +104,7 @@
                 @endrole
                 @role('super-admin|storage-staff|manager')
                     <x-tables.th-left>@lang('crud.sales_order_directs.inputs.store_id')</x-tables.th-left>
+                    @elserole('super-admin|manger')
                     <x-tables.th-left>@lang('crud.sales_order_directs.inputs.submitted_by_id')</x-tables.th-left>
                 @endrole
                 <x-tables.th-left>@lang('crud.sales_order_directs.inputs.received_by')</x-tables.th-left>
