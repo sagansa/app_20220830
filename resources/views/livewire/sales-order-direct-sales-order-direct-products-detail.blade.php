@@ -66,7 +66,7 @@
         <x-table>
             <x-slot name="head">
                 <tr>
-                    @role('super-admin|manager|storage-staff')
+                    @role('super-admin|manager|customer')
                         <x-tables.th-left>
                             <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
                                 title="{{ trans('crud.common.select_all') }}" />
@@ -90,7 +90,7 @@
             <x-slot name="body">
                 @foreach ($salesOrderDirectProducts as $salesOrderDirectProduct)
                     <tr class="hover:bg-gray-100">
-                        @role('super-admin|manager|storage-staff')
+                        @role('super-admin|manager|customer')
                             <x-tables.td-left>
                                 <input type="checkbox" value="{{ $salesOrderDirectProduct->id }}" wire:model="selected" />
                             </x-tables.td-left>
