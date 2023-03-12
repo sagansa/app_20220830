@@ -98,6 +98,7 @@
                 @endrole
                 <x-tables.th-left>@lang('crud.sales_order_directs.inputs.delivery_date')</x-tables.th-left>
                 <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.delivery_service_id')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>DETAIL ORDER</x-tables.th-left-hide>
                 @role('super-admin|customer|manager')
                     <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.transfer_to_account_id')</x-tables.th-left-hide>
                     <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.payment_status')</x-tables.th-left-hide>
@@ -151,7 +152,9 @@
 
                                 <div> {{ $salesOrderDirect->delivery_date->toFormattedDate() ?? '-' }} </div>
                                 <div> {{ optional($salesOrderDirect->deliveryService)->name ?? '-' }} </div>
-                                <div> {{ optional($salesOrderDirect->transferToAccount)->bank->name ?? '-' }}</div>
+                                @role('super-admin|customer|manager')
+                                    <div> {{ optional($salesOrderDirect->transferToAccount)->bank->name ?? '-' }}</div>
+                                @endrole
                                 <x-spans.status-valid class="{{ $salesOrderDirect->payment_status_badge }}">
                                     {{ $salesOrderDirect->payment_status_name }}
                                 </x-spans.status-valid>
@@ -168,6 +171,16 @@
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             {{ optional($salesOrderDirect->deliveryService)->name ?? '-' }}
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            @forelse ($salesOrderDirect->salesOrderDirectProducts as $salesOrderDirectProduct)
+                                {{ $salesOrderDirectProduct->eProduct->product->name }} -
+                                {{ $salesOrderDirectProduct->quantity }}
+                                {{ $salesOrderDirectProduct->eProduct->product->unit->unit }} -
+                                @currency($salesOrderDirectProduct->price)
+                            @empty
+                                -
+                            @endforelse
                         </x-tables.td-left-hide>
                         @role('super-admin|customer|manager')
                             <x-tables.td-left-hide>
