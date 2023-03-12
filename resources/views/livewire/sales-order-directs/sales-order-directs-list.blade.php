@@ -62,7 +62,7 @@
                     @endrole
                 </div>
                 <div class="mt-1 text-right md:w-1/2">
-                    @role('super-admin|customer')
+                    @role('customer')
                         @can('create', App\Models\SalesOrderDirect::class)
                             <a href="{{ route('sales-order-directs.create') }}">
                                 <x-jet-button>

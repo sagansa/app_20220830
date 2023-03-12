@@ -58,10 +58,6 @@ class SalesOrderDirectController extends Controller
                 ->pluck('label', 'id');
         }
 
-        $deliveryLocations = DeliveryLocation::orderBy('label', 'asc')
-                // ->whereIn('status', ['1'])
-                ->pluck('label', 'id');
-
         $transferToAccounts = TransferToAccount::orderBy('name', 'asc')
             ->get()
             ->whereIn('status', ['1'])

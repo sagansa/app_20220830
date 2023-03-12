@@ -23,7 +23,9 @@
                 <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}</option>
             @endforeach
         </x-input.select>
+    @endrole
 
+    @role('customer')
         <x-input.select name="delivery_location_id" label="Delivery Location">
             @php $selected = old('delivery_location_id', ($editing ? $salesOrderDirect->delivery_location_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
@@ -32,8 +34,9 @@
                 </option>
             @endforeach
         </x-input.select>
+    @endrole
 
-
+    @role('super-admin|manager|customer')
         <x-input.select name="transfer_to_account_id" label="Transfer To Account" required>
             @php $selected = old('transfer_to_account_id', ($editing ? $salesOrderDirect->transfer_to_account_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
@@ -249,6 +252,13 @@
                     <x-shows.dd>{{ optional($salesOrderDirect->deliveryService)->name ?? '-' }}
                     </x-shows.dd>
                 </x-shows.sub-dl>
+            </x-shows.dl>
+        @endif
+    @endrole
+
+    @role('super-admin|manager|storage-staff')
+        @if ($editing)
+            <x-shows.dl>
                 <x-shows.sub-dl>
                     <x-shows.dt>@lang('crud.sales_order_directs.inputs.delivery_location_id')</x-shows.dt>
                     <x-shows.dd>
