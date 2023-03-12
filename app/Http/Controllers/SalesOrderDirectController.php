@@ -53,7 +53,7 @@ class SalesOrderDirectController extends Controller
         $deliveryLocations = DeliveryLocation::where('user_id', '=', auth()->user()->id)
             ->orderBy('name', 'asc')
             // ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
+            ->pluck('label', 'id');
         $transferToAccounts = TransferToAccount::orderBy('name', 'asc')
             ->get()
             ->whereIn('status', ['1'])
@@ -172,7 +172,7 @@ class SalesOrderDirectController extends Controller
         $deliveryLocations = DeliveryLocation::where('user_id', '=', auth()->user()->id)
             ->orderBy('name', 'asc')
             // ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
+            ->pluck('label', 'id');
         $transferToAccounts = TransferToAccount::orderBy('name', 'asc')
             ->get()
             ->whereIn('status', ['1'])
