@@ -87,7 +87,7 @@ class SalesOrderDirectsList extends Component
 
             if (Auth::user()->hasRole('storage-staff')) {
 
-                $salesOrderDirects->where('payment_status', '/=', 1);
+                $salesOrderDirects->where('payment_status', '=', 2);
             }
 
 
