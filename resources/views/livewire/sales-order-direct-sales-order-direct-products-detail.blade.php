@@ -161,13 +161,21 @@
                 @endforeach
             </x-slot>
             <x-slot name="foot">
-                @role('super-admin|manager|customer')
+                @role('super-admin|manager')
                     <tr>
-                        <x-tables.th-total colspan="3">Subtotals</x-tables.th-total>
+                        @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
+                            <x-tables.th-total colspan="4">Subtotals</x-tables.th-total>
+                        @else
+                            <x-tables.th-total colspan="3">Subtotals</x-tables.th-total>
+                        @endif
                         <x-tables.td-total>@currency($salesOrderDirectProducts->sum('amount'))</x-tables.td-total>
                     </tr>
                     <tr>
-                        <x-tables.th-total colspan="3">Shipping Cost</x-tables.th-total>
+                        @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
+                            <x-tables.th-total colspan="4">Shipping Cost</x-tables.th-total>
+                        @else
+                            <x-tables.th-total colspan="3">Shipping Cost</x-tables.th-total>
+                        @endif
                         @role('super-admin|manager')
                             @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
                                 <x-input.wire-currency name="shipping_cost" wiresubmit="updateOrder"
@@ -180,7 +188,45 @@
                         @endrole
                     </tr>
                     <tr>
-                        <x-tables.th-total colspan="3">Totals</x-tables.th-total>
+                        @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
+                            <x-tables.th-total colspan="4">Totals</x-tables.th-total>
+                        @else
+                            <x-tables.th-total colspan="3">Totals</x-tables.th-total>
+                        @endif
+                        <x-tables.td-total> @currency($this->salesOrderDirect->totals)</x-tables.td-total>
+                    </tr>
+                    @elserole('customer')
+                    <tr>
+                        @if ($salesOrderDirect->payment_status != 2)
+                            <x-tables.th-total colspan="4">Subtotals</x-tables.th-total>
+                        @else
+                            <x-tables.th-total colspan="3">Subtotals</x-tables.th-total>
+                        @endif
+                        <x-tables.td-total>@currency($salesOrderDirectProducts->sum('amount'))</x-tables.td-total>
+                    </tr>
+                    <tr>
+                        @if ($salesOrderDirect->payment_status != 2)
+                            <x-tables.th-total colspan="4">Shipping Cost</x-tables.th-total>
+                        @else
+                            <x-tables.th-total colspan="3">Shipping Cost</x-tables.th-total>
+                        @endif
+                        @role('super-admin|manager')
+                            @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
+                                <x-input.wire-currency name="shipping_cost" wiresubmit="updateOrder"
+                                    wiremodel="state.shipping_cost"></x-input.wire-currency>
+                            @else
+                                <x-tables.td-total> @currency($this->salesOrderDirect->shipping_cost)</x-tables.td-total>
+                            @endif
+                            @elserole('customer|storage-staff')
+                            <x-tables.td-total> @currency($this->salesOrderDirect->shipping_cost)</x-tables.td-total>
+                        @endrole
+                    </tr>
+                    <tr>
+                        @if ($salesOrderDirect->payment_status != 2)
+                            <x-tables.th-total colspan="4">Totals</x-tables.th-total>
+                        @else
+                            <x-tables.th-total colspan="3">Totals</x-tables.th-total>
+                        @endif
                         <x-tables.td-total> @currency($this->salesOrderDirect->totals)</x-tables.td-total>
                     </tr>
                 @endrole
