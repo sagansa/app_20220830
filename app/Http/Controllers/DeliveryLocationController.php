@@ -47,7 +47,7 @@ class DeliveryLocationController extends Controller
             // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $users = User::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $provinces = Province::orderBy('name', 'asc')
             // ->whereIn('status', ['1'])
@@ -106,19 +106,19 @@ class DeliveryLocationController extends Controller
         $this->authorize('update', $deliveryLocation);
 
         $villages = Village::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $users = User::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $provinces = Province::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $regencies = Regency::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $districts = District::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
 
         return view(
