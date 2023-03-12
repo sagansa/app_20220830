@@ -99,10 +99,10 @@
                             {{ $salesOrderDirectProduct->eProduct->product->unit->unit }}
                         </x-tables.td-right>
                         <x-tables.td-right>
-                            @currency($salesOrderDirectProduct->eProduct->price)
+                            @currency($salesOrderDirectProduct->price)
                         </x-tables.td-right>
                         <x-tables.td-right>
-                            @currency($salesOrderDirectProduct->amount)
+                            @currency($salesOrderDirectProduct->quantity * $salesOrderDirectProduct->price)
                         </x-tables.td-right>
                         <td class="px-4 py-3 text-right" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">

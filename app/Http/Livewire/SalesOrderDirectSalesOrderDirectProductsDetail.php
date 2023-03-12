@@ -44,8 +44,10 @@ class SalesOrderDirectSalesOrderDirectProductsDetail extends Component
     public function mount(SalesOrderDirect $salesOrderDirect): void
     {
         $this->salesOrderDirect = $salesOrderDirect;
-        $this->eProductsForSelect = EProduct::join('products', 'products.id', '=', 'e_products.product_id')
-            ->orderBy('products.name', 'asc')->get()->pluck('id', 'product_name');
+        // $this->eProductsForSelect = EProduct::join('products', 'products.id', '=', 'e_products.product_id')
+        //     ->orderBy('products.name', 'asc')->get()->pluck('id', 'product_name');
+
+        $this->eProductsForSelect = EProduct::get()->pluck('id', 'product_name');
         $this->resetSalesOrderDirectProductData();
     }
 
@@ -106,8 +108,6 @@ class SalesOrderDirectSalesOrderDirectProductsDetail extends Component
         } else {
             $this->authorize('update', $this->salesOrderDirectProduct);
         }
-
-        $this->salesOrderDirectProduct->amount = $this->salesOrderDirectProduct->eProduct->price * $this->salesOrderDirectProduct->quantity;
 
         $this->salesOrderDirectProduct->save();
 
