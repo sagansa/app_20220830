@@ -66,10 +66,12 @@
         <x-table>
             <x-slot name="head">
                 <tr>
-                    <x-tables.th-left>
-                        <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
-                            title="{{ trans('crud.common.select_all') }}" />
-                    </x-tables.th-left>
+                    @role('super-admin|manager|storage-staff')
+                        <x-tables.th-left>
+                            <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
+                                title="{{ trans('crud.common.select_all') }}" />
+                        </x-tables.th-left>
+                    @endrole
                     <x-tables.th-left>
                         {{-- @lang('crud.sales_order_direct_sales_order_direct_products.inputs.e_product_id') --}} Product
                     </x-tables.th-left>
@@ -88,9 +90,11 @@
             <x-slot name="body">
                 @foreach ($salesOrderDirectProducts as $salesOrderDirectProduct)
                     <tr class="hover:bg-gray-100">
-                        <x-tables.td-left>
-                            <input type="checkbox" value="{{ $salesOrderDirectProduct->id }}" wire:model="selected" />
-                        </x-tables.td-left>
+                        @role('super-admin|manager|storage-staff')
+                            <x-tables.td-left>
+                                <input type="checkbox" value="{{ $salesOrderDirectProduct->id }}" wire:model="selected" />
+                            </x-tables.td-left>
+                        @endrole
                         <x-tables.td-left>
                             {{ optional($salesOrderDirectProduct->eProduct)->product->name ?? '-' }}
                         </x-tables.td-left>
@@ -104,16 +108,32 @@
                         <x-tables.td-right>
                             @currency($salesOrderDirectProduct->quantity * $salesOrderDirectProduct->price)
                         </x-tables.td-right>
-                        <td class="px-4 py-3 text-right" style="width: 134px;">
-                            <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
-                                @can('update', $salesOrderDirectProduct)
-                                    <button type="button" class="button"
-                                        wire:click="editSalesOrderDirectProduct({{ $salesOrderDirectProduct->id }})">
-                                        <i class="icon ion-md-create"></i>
-                                    </button>
-                                @endcan
-                            </div>
-                        </td>
+                        @role('super-admin|manager')
+                            @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
+                                <td class="px-4 py-3 text-right" style="width: 134px;">
+                                    <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
+                                        @can('update', $salesOrderDirectProduct)
+                                            <button type="button" class="button"
+                                                wire:click="editSalesOrderDirectProduct({{ $salesOrderDirectProduct->id }})">
+                                                <i class="icon ion-md-create"></i>
+                                            </button>
+                                        @endcan
+                                    </div>
+                                </td>
+                            @endif @elserole('customer')
+                            @if ($salesOrderDirect->payment_status != 2)
+                                <td class="px-4 py-3 text-right" style="width: 134px;">
+                                    <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
+                                        @can('update', $salesOrderDirectProduct)
+                                            <button type="button" class="button"
+                                                wire:click="editSalesOrderDirectProduct({{ $salesOrderDirectProduct->id }})">
+                                                <i class="icon ion-md-create"></i>
+                                            </button>
+                                        @endcan
+                                    </div>
+                                </td>
+                            @endif
+                        @endrole
                     </tr>
                 @endforeach
             </x-slot>
