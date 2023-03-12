@@ -12,8 +12,8 @@
         value="{{ old('contact_number', $editing ? $deliveryLocation->contact_number : '') }}" maxlength="255" required>
     </x-input.text>
 
-    <x-input.textarea name="Address" label="Address" maxlength="255" required>
-        {{ old('Address', $editing ? $deliveryLocation->Address : '') }}</x-input.textarea>
+    <x-input.textarea name="address" label="address" required>
+        {{ old('address', $editing ? $deliveryLocation->address : '') }}</x-input.textarea>
 
 
     @role('super-admin')
