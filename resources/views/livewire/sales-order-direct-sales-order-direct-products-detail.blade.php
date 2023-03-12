@@ -163,24 +163,11 @@
             <x-slot name="foot">
                 @role('super-admin|manager|customer')
                     <tr>
-                        <x-tables.th-total colspan="4">Subtotals</x-tables.th-total>
+                        <x-tables.th-total colspan="3">Subtotals</x-tables.th-total>
                         <x-tables.td-total>@currency($salesOrderDirectProducts->sum('amount'))</x-tables.td-total>
                     </tr>
-                    {{-- <tr>
-                    <x-tables.th-total colspan="4">Discounts</x-tables.th-total>
-                    @role('super-admin|manager')
-                        @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
-                            <x-input.wire-currency name="discounts" wiresubmit="updateOrder" wiremodel="state.discounts">
-                            </x-input.wire-currency>
-                        @else
-                            <x-tables.td-total>@currency($this->salesOrderDirect->discounts)</x-tables.td-total>
-                        @endif
-                        @elserole('customer|storage-staff')
-                        <x-tables.td-total>@currency($this->salesOrderDirect->discounts)</x-tables.td-total>
-                    @endrole
-                </tr> --}}
                     <tr>
-                        <x-tables.th-total colspan="4">Shipping Cost</x-tables.th-total>
+                        <x-tables.th-total colspan="3">Shipping Cost</x-tables.th-total>
                         @role('super-admin|manager')
                             @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
                                 <x-input.wire-currency name="shipping_cost" wiresubmit="updateOrder"
@@ -193,12 +180,12 @@
                         @endrole
                     </tr>
                     <tr>
-                        <x-tables.th-total colspan="4">Totals</x-tables.th-total>
+                        <x-tables.th-total colspan="3">Totals</x-tables.th-total>
                         <x-tables.td-total> @currency($this->salesOrderDirect->totals)</x-tables.td-total>
                     </tr>
                 @endrole
                 <tr>
-                    <td colspan="5">
+                    <td colspan="3">
                         <div class="px-4 mt-10">
                             {{ $salesOrderDirectProducts->render() }}
                         </div>
