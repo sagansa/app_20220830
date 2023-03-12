@@ -77,8 +77,8 @@ class SalesOrderDirectsList extends Component
 
     public function getRowsQueryProperty()
     {
-        $salesOrderDirects = SalesOrderDirect::query()
-            ->join('stores', 'stores.id', '=', 'sales_order_directs.store_id');
+        $salesOrderDirects = SalesOrderDirect::query();
+            // ->join('stores', 'stores.id', '=', 'sales_order_directs.store_id');
 
             if (Auth::user()->hasRole('customer')) {
 
@@ -88,8 +88,8 @@ class SalesOrderDirectsList extends Component
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
                 $salesOrderDirects
-                    ->when($filter == 'store_id', fn($salesOrderDirects) => $salesOrderDirects->whenRelation('store', 'id', $value))
-                    ->when($filter == 'order_by_id', fn($salesOrderDirects) => $salesOrderDirects->whenRelation('user', 'id', $value))
+                    // ->when($filter == 'store_id', fn($salesOrderDirects) => $salesOrderDirects->whenRelation('store', 'id', $value))
+                    // ->when($filter == 'order_by_id', fn($salesOrderDirects) => $salesOrderDirects->whenRelation('user', 'id', $value))
                     ->when($filter == 'payment_status', fn($salesOrderDirects) => $salesOrderDirects->where('sales_order_directs.' . $filter, 'LIKE', '%' . $value . '%'))
                     ->when($filter == 'delivery_status', fn($salesOrderDirects) => $salesOrderDirects->where('sales_order_directs.' . $filter, 'LIKE', '%' . $value . '%'));
             }
