@@ -44,7 +44,7 @@ class SalesOrderDirectSalesOrderDirectProductsDetail extends Component
     {
         $this->salesOrderDirect = $salesOrderDirect;
         $this->eProductsForSelect = EProduct::join('products', 'products.id', '=', 'e_products.product_id')
-            ->orderBy('products.name', 'asc')->get()->pluck('product_name', 'id');
+            ->orderBy('products.name', 'asc')->get()->pluck('id', 'product_name');
         $this->resetSalesOrderDirectProductData();
     }
 

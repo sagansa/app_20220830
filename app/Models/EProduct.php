@@ -62,6 +62,6 @@ class EProduct extends Model
 
     public function getProductNameAttribute()
     {
-        return $this->product->name . ' | ' . $this->product->unit->unit . ' | ' . $this->price;
+        return $this->product->name . ' | ' . $this->product->unit->unit;
     }
 }

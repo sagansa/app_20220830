@@ -42,13 +42,16 @@
                 <x-input.select name="salesOrderDirectProduct.e_product_id" label="E Product"
                     wire:model="salesOrderDirectProduct.e_product_id">
                     <option value="null" disabled>-- select --</option>
-                    @foreach ($eProductsForSelect as $value => $label)
+                    @foreach ($eProductsForSelect as $label => $value)
                         <option value="{{ $value }}">{{ $label }}</option>
                     @endforeach
                 </x-input.select>
 
                 <x-input.number name="salesOrderDirectProduct.quantity" label="Quantity"
                     wire:model="salesOrderDirectProduct.quantity"></x-input.number>
+
+                <x-input.number name="salesOrderDirectProduct.price" label="Price"
+                    wire:model="salesOrderDirectProduct.price"></x-input.number>
 
             </div>
         </div>
@@ -119,7 +122,7 @@
                     <x-tables.th-total colspan="4">Subtotals</x-tables.th-total>
                     <x-tables.td-total>@currency($salesOrderDirectProducts->sum('amount'))</x-tables.td-total>
                 </tr>
-                <tr>
+                {{-- <tr>
                     <x-tables.th-total colspan="4">Discounts</x-tables.th-total>
                     @role('super-admin|manager')
                         @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
@@ -131,7 +134,7 @@
                         @elserole('customer|storage-staff')
                         <x-tables.td-total>@currency($this->salesOrderDirect->discounts)</x-tables.td-total>
                     @endrole
-                </tr>
+                </tr> --}}
                 <tr>
                     <x-tables.th-total colspan="4">Shipping Cost</x-tables.th-total>
                     @role('super-admin|manager')
