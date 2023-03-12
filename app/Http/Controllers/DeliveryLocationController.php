@@ -27,7 +27,7 @@ class DeliveryLocationController extends Controller
         $search = $request->get('search', '');
 
         $deliveryLocations = DeliveryLocation::search($search)
-            ->whereIn('user_id', '=', auth()->user()->id)
+            ->where('user_id', '=', auth()->user()->id)
             ->latest()
             ->paginate(10)
             ->withQueryString();
