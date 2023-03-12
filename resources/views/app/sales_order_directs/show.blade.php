@@ -34,7 +34,7 @@
                     <x-shows.sub-dl>
                         <x-shows.dt>@lang('crud.sales_order_directs.inputs.delivery_location_id')</x-shows.dt>
                         <x-shows.dd>
-                            {{ optional($salesOrderDirect->deliveryLocation)->name ?? '-' }}
+                            {{ optional($salesOrderDirect->deliveryLocation)->label ?? '-' }}
                             <div> {{ optional($salesOrderDirect->deliveryLocation)->contact_name ?? '-' }} -
                                 {{ optional($salesOrderDirect->deliveryLocation)->contact_number ?? '-' }}</div>
                             <div>{{ optional($salesOrderDirect->deliveryLocation)->address ?? '-' }}</div>

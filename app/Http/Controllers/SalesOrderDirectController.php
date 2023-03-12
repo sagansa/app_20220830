@@ -51,16 +51,16 @@ class SalesOrderDirectController extends Controller
             ->whereIn('status', ['1'])
             ->pluck('name', 'id');
         $deliveryLocations = DeliveryLocation::where('user_id', '=', auth()->user()->id)
-            ->orderBy('name', 'asc')
+            ->orderBy('label', 'asc')
             // ->whereIn('status', ['1'])
             ->pluck('label', 'id');
         $transferToAccounts = TransferToAccount::orderBy('name', 'asc')
             ->get()
             ->whereIn('status', ['1'])
             ->pluck('transfer_name', 'id');
-        $stores = Store::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
+        $stores = Store::orderBy('nickname', 'asc')
+            // ->whereIn('status', ['1'])
+            ->pluck('nickname', 'id');
 
         return view(
             'app.sales_order_directs.create',
@@ -177,9 +177,9 @@ class SalesOrderDirectController extends Controller
             ->get()
             ->whereIn('status', ['1'])
             ->pluck('transfer_name', 'id');
-        $stores = Store::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
-            ->pluck('name', 'id');
+        $stores = Store::orderBy('nickname', 'asc')
+            // ->whereIn('status', ['1'])
+            ->pluck('nickname', 'id');
 
         return view(
             'app.sales_order_directs.edit',

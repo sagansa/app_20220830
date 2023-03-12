@@ -167,7 +167,9 @@
                 @enderror
             </div>
         </x-input.image>
+    @endrole
 
+    @role('super-admin|manager')
         <x-input.image name="sign" label="Sign">
             <div x-data="imageViewer('{{ $editing && $salesOrderDirect->sign ? \Storage::url($salesOrderDirect->sign) : '' }}')" class="mt-1 sm:mt-0 sm:col-span-2">
                 <!-- Show the image -->
