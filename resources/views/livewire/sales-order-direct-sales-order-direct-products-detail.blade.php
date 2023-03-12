@@ -67,10 +67,19 @@
             <x-slot name="head">
                 <tr>
                     @role('super-admin|manager|customer')
-                        <x-tables.th-left>
-                            <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
-                                title="{{ trans('crud.common.select_all') }}" />
-                        </x-tables.th-left>
+                        @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
+                            <x-tables.th-left>
+                                <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
+                                    title="{{ trans('crud.common.select_all') }}" />
+                            </x-tables.th-left>
+                        @endif
+                        @elserole('customer')
+                        @if ($salesOrderDirect->payment_status != 2)
+                            <x-tables.th-left>
+                                <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
+                                    title="{{ trans('crud.common.select_all') }}" />
+                            </x-tables.th-left>
+                        @endif
                     @endrole
                     <x-tables.th-left>
                         {{-- @lang('crud.sales_order_direct_sales_order_direct_products.inputs.e_product_id') --}} Product
@@ -93,9 +102,19 @@
                 @foreach ($salesOrderDirectProducts as $salesOrderDirectProduct)
                     <tr class="hover:bg-gray-100">
                         @role('super-admin|manager|customer')
-                            <x-tables.td-left>
-                                <input type="checkbox" value="{{ $salesOrderDirectProduct->id }}" wire:model="selected" />
-                            </x-tables.td-left>
+                            @if ($salesOrderDirect->payment_status != 2 || $salesOrderDirect->delivery_status != 5)
+                                <x-tables.td-left>
+                                    <input type="checkbox" value="{{ $salesOrderDirectProduct->id }}"
+                                        wire:model="selected" />
+                                </x-tables.td-left>
+                            @endif
+                            @elserole('customer')
+                            @if ($salesOrderDirect->payment_status != 2)
+                                <x-tables.td-left>
+                                    <input type="checkbox" value="{{ $salesOrderDirectProduct->id }}"
+                                        wire:model="selected" />
+                                </x-tables.td-left>
+                            @endif
                         @endrole
                         <x-tables.td-left>
                             {{ optional($salesOrderDirectProduct->eProduct)->product->name ?? '-' }}
