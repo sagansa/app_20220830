@@ -17,7 +17,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasRoles;
-    use HasValid;
     use Notifiable;
     use HasFactory;
     use Searchable;
@@ -26,14 +25,16 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasProfilePhoto;
     use TwoFactorAuthenticatable;
 
-    const STATUSES = [
-        '1' => 'belum diperiksa',
-        '2' => 'valid',
-        '3' => 'diperbaiki',
-        '4' => 'periksa ulang',
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'two_factor_confirmed_at',
+        'current_team_id',
+        'profile_photo_path',
     ];
-
-    protected $fillable = ['name', 'email', 'password', 'status'];
 
     protected $searchableFields = ['*'];
 
@@ -41,6 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'two_factor_confirmed_at' => 'datetime',
     ];
 
     public function employees()
@@ -228,11 +230,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(SelfConsumption::class, 'approved_by_id');
     }
 
-    // public function stockCards()
-    // {
-    //     return $this->hasMany(StockCard::class);
-    // }
-
     public function vehicleTaxes()
     {
         return $this->hasMany(VehicleTax::class);
@@ -242,16 +239,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Refund::class);
     }
-
-    // public function outInProductsCreated()
-    // {
-    //     return $this->hasMany(OutInProduct::class, 'created_by_id');
-    // }
-
-    // public function outInProductsApproved()
-    // {
-    //     return $this->hasMany(OutInProduct::class, 'approved_by_id');
-    // }
 
     public function carts()
     {
@@ -308,7 +295,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(TransferStock::class, 'received_by_id');
     }
 
-     public function deliveryLocations()
+    public function deliveryLocations()
     {
         return $this->hasMany(DeliveryLocation::class);
     }

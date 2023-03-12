@@ -38,6 +38,7 @@ class SalesOrderDirectFactory extends Factory
             'submitted_by_id' => \App\Models\User::factory(),
             'order_by_id' => \App\Models\User::factory(),
             'delivery_location_id' => \App\Models\DeliveryLocation::factory(),
+            'coupon_id' => \App\Models\Coupon::factory(),
         ];
     }
 }

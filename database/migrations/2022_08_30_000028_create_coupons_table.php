@@ -10,15 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('sales_order_direct_products', function (
-            Blueprint $table
-        ) {
+        Schema::create('coupons', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('e_product_id');
-            $table->integer('quantity');
-            $table->bigInteger('price');
+            $table->string('name');
             $table->bigInteger('amount');
-            $table->unsignedBigInteger('sales_order_direct_id');
 
             $table->timestamps();
         });
@@ -29,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('sales_order_direct_products');
+        Schema::dropIfExists('coupons');
     }
 };

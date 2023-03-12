@@ -117,7 +117,7 @@
             <x-slot name="foot">
                 <tr>
                     <x-tables.th-total colspan="4">Subtotals</x-tables.th-total>
-                    <x-tables.td-total>@currency($salesOrderDirectProduct->sum('amount'))</x-tables.td-total>
+                    <x-tables.td-total>@currency($salesOrderDirectProducts->sum('amount'))</x-tables.td-total>
                 </tr>
                 <tr>
                     <x-tables.th-total colspan="4">Discounts</x-tables.th-total>
@@ -147,7 +147,7 @@
                 </tr>
                 <tr>
                     <x-tables.th-total colspan="4">Totals</x-tables.th-total>
-                    <x-tables.td-total> @currency($salesOrderDirectProduct->sum('amount') - $this->salesOrderDirect->discounts + $this->salesOrderDirect->shipping_cost)</x-tables.td-total>
+                    <x-tables.td-total> @currency($this->salesOrderDirect->totals)</x-tables.td-total>
                 </tr>
                 <tr>
                     <td colspan="5">

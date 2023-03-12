@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\StoreController;
 use App\Http\Controllers\Api\SavingController;
 use App\Http\Controllers\Api\RefundController;
+use App\Http\Controllers\Api\CouponController;
 use App\Http\Controllers\Api\VehicleController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UtilityController;
@@ -175,6 +176,7 @@ use App\Http\Controllers\Api\product_remaining_stockController;
 use App\Http\Controllers\Api\SelfConsumptionProductsController;
 use App\Http\Controllers\Api\EmployeeStatusEmployeesController;
 use App\Http\Controllers\Api\SalesOrderDirectProductController;
+use App\Http\Controllers\Api\CouponSalesOrderDirectsController;
 use App\Http\Controllers\Api\UserRestaurantCategoriesController;
 use App\Http\Controllers\Api\UserMovementAssetResultsController;
 use App\Http\Controllers\Api\StoreSalesOrderEmployeesController;
@@ -2301,4 +2303,16 @@ Route::name('api.')
             '/delivery-locations/{deliveryLocation}/sales-order-directs',
             [DeliveryLocationSalesOrderDirectsController::class, 'store']
         )->name('delivery-locations.sales-order-directs.store');
+
+        Route::apiResource('coupons', CouponController::class);
+
+        // Coupon Sales Order Directs
+        Route::get('/coupons/{coupon}/sales-order-directs', [
+            CouponSalesOrderDirectsController::class,
+            'index',
+        ])->name('coupons.sales-order-directs.index');
+        Route::post('/coupons/{coupon}/sales-order-directs', [
+            CouponSalesOrderDirectsController::class,
+            'store',
+        ])->name('coupons.sales-order-directs.store');
     });

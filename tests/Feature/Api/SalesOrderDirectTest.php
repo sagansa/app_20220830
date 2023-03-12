@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\SalesOrderDirect;
 
 use App\Models\Store;
+use App\Models\Coupon;
 use App\Models\DeliveryService;
 use App\Models\DeliveryLocation;
 use App\Models\TransferToAccount;
@@ -78,6 +79,7 @@ class SalesOrderDirectTest extends TestCase
         $user = User::factory()->create();
         $user = User::factory()->create();
         $deliveryLocation = DeliveryLocation::factory()->create();
+        $coupon = Coupon::factory()->create();
 
         $data = [
             'delivery_date' => $this->faker->date,
@@ -95,6 +97,7 @@ class SalesOrderDirectTest extends TestCase
             'submitted_by_id' => $user->id,
             'order_by_id' => $user->id,
             'delivery_location_id' => $deliveryLocation->id,
+            'coupon_id' => $coupon->id,
         ];
 
         $response = $this->putJson(

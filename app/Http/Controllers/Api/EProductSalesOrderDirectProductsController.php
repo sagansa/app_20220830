@@ -35,6 +35,7 @@ class EProductSalesOrderDirectProductsController extends Controller
 
         $validated = $request->validate([
             'quantity' => ['required', 'numeric'],
+            'price' => ['required', 'numeric'],
             'amount' => ['required', 'numeric'],
         ]);
 

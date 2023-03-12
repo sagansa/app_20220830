@@ -52,6 +52,13 @@ return new class extends Migration {
                 ->on('users')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
+
+            $table
+                ->foreign('coupon_id')
+                ->references('id')
+                ->on('coupons')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
         });
     }
 
@@ -67,6 +74,7 @@ return new class extends Migration {
             $table->dropForeign(['store_id']);
             $table->dropForeign(['submitted_by_id']);
             $table->dropForeign(['order_by_id']);
+            $table->dropForeign(['coupon_id']);
         });
     }
 };

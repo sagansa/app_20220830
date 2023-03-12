@@ -66,7 +66,11 @@ class UserControllerTest extends TestCase
 
         unset($data['password']);
         unset($data['email_verified_at']);
-        unset($data['status']);
+        unset($data['two_factor_secret']);
+        unset($data['two_factor_recovery_codes']);
+        unset($data['two_factor_confirmed_at']);
+        unset($data['current_team_id']);
+        unset($data['profile_photo_path']);
 
         $this->assertDatabaseHas('users', $data);
 
@@ -115,7 +119,11 @@ class UserControllerTest extends TestCase
         $data = [
             'name' => $this->faker->name,
             'email' => $this->faker->unique->email,
-            'status' => $this->faker->numberBetween(0, 127),
+            'two_factor_secret' => $this->faker->text,
+            'two_factor_recovery_codes' => $this->faker->text,
+            'two_factor_confirmed_at' => $this->faker->dateTime,
+            'current_team_id' => $this->faker->randomNumber,
+            'profile_photo_path' => $this->faker->text,
         ];
 
         $data['password'] = \Str::random('8');
@@ -124,7 +132,11 @@ class UserControllerTest extends TestCase
 
         unset($data['password']);
         unset($data['email_verified_at']);
-        unset($data['status']);
+        unset($data['two_factor_secret']);
+        unset($data['two_factor_recovery_codes']);
+        unset($data['two_factor_confirmed_at']);
+        unset($data['current_team_id']);
+        unset($data['profile_photo_path']);
 
         $data['id'] = $user->id;
 

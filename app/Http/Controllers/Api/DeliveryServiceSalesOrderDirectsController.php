@@ -55,6 +55,7 @@ class DeliveryServiceSalesOrderDirectsController extends Controller
             'sign' => ['image', 'nullable'],
             'shipping_cost' => ['nullable', 'numeric'],
             'discounts' => ['nullable', 'numeric'],
+            'coupon_id' => ['nullable', 'exists:coupons,id'],
         ]);
 
         if ($request->hasFile('image_transfer')) {

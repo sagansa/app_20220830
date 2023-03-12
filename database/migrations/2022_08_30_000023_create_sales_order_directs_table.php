@@ -28,6 +28,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('order_by_id')->nullable();
             $table->bigInteger('discounts')->nullable();
             $table->text('notes')->nullable();
+            $table->unsignedBigInteger('coupon_id')->nullable();
 
             $table->timestamps();
         });

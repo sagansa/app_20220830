@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\User;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SalesOrderDirectResource;
 use App\Http\Resources\SalesOrderDirectCollection;
 
-class UserSalesOrderDirectsController extends Controller
+class CouponSalesOrderDirectsController extends Controller
 {
     public function index(
         Request $request,
-        User $user
+        Coupon $coupon
     ): SalesOrderDirectCollection {
-        $this->authorize('view', $user);
+        $this->authorize('view', $coupon);
 
         $search = $request->get('search', '');
 
-        $salesOrderDirects = $user
-            ->salesOrderDirectOrders()
+        $salesOrderDirects = $coupon
+            ->salesOrderDirects()
             ->search($search)
             ->latest()
             ->paginate();
@@ -29,11 +29,12 @@ class UserSalesOrderDirectsController extends Controller
 
     public function store(
         Request $request,
-        User $user
+        Coupon $coupon
     ): SalesOrderDirectResource {
         $this->authorize('create', SalesOrderDirect::class);
 
         $validated = $request->validate([
+            'order_by_id' => ['nullable', 'exists:users,id'],
             'delivery_date' => ['required', 'date'],
             'delivery_service_id' => [
                 'required',
@@ -50,6 +51,7 @@ class UserSalesOrderDirectsController extends Controller
             'payment_status' => ['required', 'max:255'],
             'image_transfer' => ['image', 'nullable'],
             'store_id' => ['nullable', 'exists:stores,id'],
+            'submitted_by_id' => ['nullable', 'exists:users,id'],
             'received_by' => ['nullable', 'max:255', 'string'],
             'delivery_status' => ['required', 'max:255'],
             'notes' => ['nullable', 'max:255', 'string'],
@@ -57,7 +59,6 @@ class UserSalesOrderDirectsController extends Controller
             'sign' => ['image', 'nullable'],
             'shipping_cost' => ['nullable', 'numeric'],
             'discounts' => ['nullable', 'numeric'],
-            'coupon_id' => ['nullable', 'exists:coupons,id'],
         ]);
 
         if ($request->hasFile('image_transfer')) {
@@ -76,7 +77,7 @@ class UserSalesOrderDirectsController extends Controller
             $validated['sign'] = $request->file('sign')->store('public');
         }
 
-        $salesOrderDirect = $user->salesOrderDirectOrders()->create($validated);
+        $salesOrderDirect = $coupon->salesOrderDirects()->create($validated);
 
         return new SalesOrderDirectResource($salesOrderDirect);
     }

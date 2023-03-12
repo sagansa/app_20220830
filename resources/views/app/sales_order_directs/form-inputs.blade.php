@@ -124,6 +124,7 @@
             <option value="4" {{ $selected == '4' ? 'selected' : '' }}>telah dikirim</option>
             <option value="5" {{ $selected == '5' ? 'selected' : '' }}>selesai</option>
             <option value="6" {{ $selected == '6' ? 'selected' : '' }}>dikembalikan</option>
+            <option value="7" {{ $selected == '7' ? 'selected' : '' }}>batal</option>
         </x-input.select>
     @endrole
 
@@ -190,22 +191,14 @@
         </x-input.image>
     @endrole
 
-    @role('super-admin|manager')
-        @if (!$editing)
-            <x-input.hidden name="shipping_cost"
-                value="{{ old('shipping_cost', $editing ? $salesOrderDirect->shipping_cost : '0') }}">
-            </x-input.hidden>
-            <x-input.hidden name="discounts" value="{{ old('discounts', $editing ? $salesOrderDirect->discounts : '0') }}">
-            </x-input.hidden>
-        @else
-            <x-input.hidden name="shipping_cost"
-                value="{{ old('shipping_cost', $editing ? $salesOrderDirect->shipping_cost : '') }}">
-            </x-input.hidden>
-            <x-input.hidden name="discounts"
-                value="{{ old('discounts', $editing ? $salesOrderDirect->discounts : '') }}">
-            </x-input.hidden>
-        @endif
-    @endrole
+    @if (!$editing)
+        <x-input.hidden name="shipping_cost"
+            value="{{ old('shipping_cost', $editing ? $salesOrderDirect->shipping_cost : '0') }}">
+        </x-input.hidden>
+        <x-input.hidden name="discounts"
+            value="{{ old('discounts', $editing ? $salesOrderDirect->discounts : '0') }}">
+        </x-input.hidden>
+    @endif
 
     @role('super-admin|manager')
         @if ($editing)
@@ -223,8 +216,6 @@
     @endrole
 
     @role('storage-staff')
-
-
         @if ($editing)
             <x-input.hidden name="delivery_date"
                 value="{{ old('delivery_date', $editing ? $salesOrderDirect->delivery_date : '') }}">
@@ -266,6 +257,7 @@
     @role('customer')
         @if ($editing)
             <x-shows.dl>
+
                 <x-shows.sub-dl>
                     <x-shows.dt>Payment Status</x-shows.dt>
                     <x-shows.dd>
@@ -283,12 +275,20 @@
                     </x-shows.dd>
                 </x-shows.sub-dl>
                 <x-shows.sub-dl>
-                    <x-shows.dt>Recieved By</x-shows.dt>
-                    <x-shows.dd>{{ $salesOrderDirect->received_by }} </x-shows.dd>
+                    <x-shows.dt>@lang('crud.sales_order_directs.inputs.image_receipt')</x-shows.dt>
+                    @if ($salesOrderDirect->image_receipt != null)
+                        <x-partials.thumbnail src="" size="150" />
+                    @else
+                        <a href="{{ \Storage::url($salesOrderDirect->image_receipt) }}">
+                            <x-partials.thumbnail
+                                src="{{ $salesOrderDirect->image_receipt ? \Storage::url($salesOrderDirect->image_receipt) : '' }}"
+                                size="150" />
+                        </a>
+                    @endif
                 </x-shows.sub-dl>
                 <x-shows.sub-dl>
-                    <x-shows.dt>Shipping Cost</x-shows.dt>
-                    <x-shows.dd>{{ $salesOrderDirect->shipping_cost }} </x-shows.dd>
+                    <x-shows.dt>Recieved By</x-shows.dt>
+                    <x-shows.dd>{{ $salesOrderDirect->received_by }} </x-shows.dd>
                 </x-shows.sub-dl>
             </x-shows.dl>
         @endif

@@ -6,6 +6,7 @@
         label="Name"
         value="{{ old('name', ($editing ? $user->name : '')) }}"
         maxlength="255"
+        placeholder="Name"
         required
     ></x-input.text>
 
@@ -14,6 +15,7 @@
         label="Email"
         value="{{ old('email', ($editing ? $user->email : '')) }}"
         maxlength="255"
+        placeholder="Email"
         required
     ></x-input.email>
 
@@ -21,6 +23,7 @@
         name="password"
         label="Password"
         maxlength="255"
+        placeholder="Password"
         :required="!$editing"
     ></x-input.password>
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Livewire\DataTables\HasValid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class SalesOrderDirectProduct extends Model
+class Coupon extends Model
 {
     use HasValid;
     use HasFactory;
@@ -20,26 +20,13 @@ class SalesOrderDirectProduct extends Model
         '4' => 'periksa ulang',
     ];
 
-    protected $fillable = [
-        'e_product_id',
-        'quantity',
-        'price',
-        'amount',
-        'sales_order_direct_id',
-    ];
+    protected $fillable = ['name', 'amount'];
 
     protected $searchableFields = ['*'];
 
-    protected $table = 'sales_order_direct_products';
-
-    public function eProduct()
+    public function salesOrderDirects()
     {
-        return $this->belongsTo(EProduct::class);
-    }
-
-    public function salesOrderDirect()
-    {
-        return $this->belongsTo(SalesOrderDirect::class);
+        return $this->hasMany(SalesOrderDirect::class);
     }
 
     public function delete_image()

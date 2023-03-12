@@ -1521,6 +1521,7 @@ return [
             'sign' => 'Sign',
             'shipping_cost' => 'Shipping Cost',
             'discounts' => 'Discounts',
+            'coupon_id' => 'Coupon',
         ],
     ],
 
@@ -1555,6 +1556,19 @@ return [
             'e_product_id' => 'E Product',
             'quantity' => 'Quantity',
             'price' => 'Price',
+            'amount' => 'Amount',
+        ],
+    ],
+
+    'coupons' => [
+        'name' => 'Coupons',
+        'index_title' => 'Coupons List',
+        'new_title' => 'New Coupon',
+        'create_title' => 'Create Coupon',
+        'edit_title' => 'Edit Coupon',
+        'show_title' => 'Show Coupon',
+        'inputs' => [
+            'name' => 'Name',
             'amount' => 'Amount',
         ],
     ],

@@ -26,6 +26,7 @@ class SalesOrderDirect extends Model
         '4' => 'telah dikirim',
         '5' => 'selesai',
         '6' => 'dikembalikan',
+        '7' => 'batal',
     ];
 
     protected $fillable = [

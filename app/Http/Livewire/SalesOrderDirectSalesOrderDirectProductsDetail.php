@@ -16,6 +16,8 @@ class SalesOrderDirectSalesOrderDirectProductsDetail extends Component
 
     public $state = [];
 
+    public $subtotals;
+
     use WithPagination;
     use AuthorizesRequests;
 
@@ -140,13 +142,21 @@ class SalesOrderDirectSalesOrderDirectProductsDetail extends Component
 
     public function render(): View
     {
+        $this->salesOrderDirect->subtotals = 0;
+
+        foreach ($this->salesOrderDirect->salesOrderDirectProducts as $salesOrderDirectProduct) {
+            $this->salesOrderDirectProduct->subtotals += $salesOrderDirectProduct['amount'];
+        }
+
+        $this->salesOrderDirect->totals = $this->salesOrderDirectProduct->subtotals - $this->salesOrderDirect->discounts + $this->salesOrderDirect->shipping_cost;
+
         return view(
             'livewire.sales-order-direct-sales-order-direct-products-detail',
             [
                 'salesOrderDirectProducts' => $this->salesOrderDirect
                     ->salesOrderDirectProducts()
                     ->paginate(20),
-            ]
+            ],
         );
     }
 

@@ -11,6 +11,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\RefundController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UtilityController;
@@ -185,4 +186,5 @@ Route::prefix('/')
             'delivery-locations',
             DeliveryLocationController::class
         );
+        Route::resource('coupons', CouponController::class);
     });

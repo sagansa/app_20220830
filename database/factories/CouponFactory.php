@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\Coupon;
 use Illuminate\Support\Str;
-use App\Models\SalesOrderDirectProduct;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SalesOrderDirectProductFactory extends Factory
+class CouponFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = SalesOrderDirectProduct::class;
+    protected $model = Coupon::class;
 
     /**
      * Define the model's default state.
@@ -23,11 +23,8 @@ class SalesOrderDirectProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'quantity' => $this->faker->randomNumber,
-            'price' => $this->faker->randomNumber,
+            'name' => $this->faker->name(),
             'amount' => $this->faker->randomNumber,
-            'e_product_id' => \App\Models\EProduct::factory(),
-            'sales_order_direct_id' => \App\Models\SalesOrderDirect::factory(),
         ];
     }
 }
