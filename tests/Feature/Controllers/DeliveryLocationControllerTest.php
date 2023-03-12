@@ -129,7 +129,7 @@ class DeliveryLocationControllerTest extends TestCase
             'label' => $this->faker->name(),
             'contact_name' => $this->faker->text(255),
             'contact_number' => $this->faker->text(255),
-            'Address' => $this->faker->address,
+            'address' => $this->faker->address,
             'user_id' => $user->id,
             'province_id' => $province->id,
             'regency_id' => $regency->id,

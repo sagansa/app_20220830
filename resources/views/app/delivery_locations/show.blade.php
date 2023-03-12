@@ -45,10 +45,10 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
-                            >@lang('crud.delivery_locations.inputs.Address')</x-shows.dt
+                            >@lang('crud.delivery_locations.inputs.address')</x-shows.dt
                         >
                         <x-shows.dd
-                            >{{ $deliveryLocation->Address ?? '-' }}</x-shows.dd
+                            >{{ $deliveryLocation->address ?? '-' }}</x-shows.dd
                         >
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>

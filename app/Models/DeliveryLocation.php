@@ -24,7 +24,7 @@ class DeliveryLocation extends Model
         'label',
         'contact_name',
         'contact_number',
-        'Address',
+        'address',
         'province_id',
         'regency_id',
         'district_id',

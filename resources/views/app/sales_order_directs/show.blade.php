@@ -76,15 +76,17 @@
                             <x-shows.dt>@lang('crud.sales_order_directs.inputs.store_id')</x-shows.dt>
                             <x-shows.dd>{{ optional($salesOrderDirect->store)->nickname ?? '-' }}</x-shows.dd>
                         </x-shows.sub-dl>
+
+                        <x-shows.sub-dl>
+                            <x-shows.dt>@lang('crud.sales_order_directs.inputs.received_by')</x-shows.dt>
+                            <x-shows.dd>{{ $salesOrderDirect->received_by ?? '-' }}</x-shows.dd>
+                        </x-shows.sub-dl>
+                        @elserole('super-admin|manager')
                         <x-shows.sub-dl>
                             <x-shows.dt>@lang('crud.sales_order_directs.inputs.submitted_by_id')</x-shows.dt>
                             <x-shows.dd>
                                 {{ optional($salesOrderDirect->submitted_by)->name ?? '-' }}
                             </x-shows.dd>
-                        </x-shows.sub-dl>
-                        <x-shows.sub-dl>
-                            <x-shows.dt>@lang('crud.sales_order_directs.inputs.received_by')</x-shows.dt>
-                            <x-shows.dd>{{ $salesOrderDirect->received_by ?? '-' }}</x-shows.dd>
                         </x-shows.sub-dl>
                     @endrole
                     <x-shows.sub-dl>

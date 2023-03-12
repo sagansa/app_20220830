@@ -1536,7 +1536,7 @@ return [
             'label' => 'Label',
             'contact_name' => 'Contact Name',
             'contact_number' => 'Contact Number',
-            'Address' => 'Address',
+            'address' => 'Address',
             'village_id' => 'Village',
             'user_id' => 'User',
             'province_id' => 'Province',

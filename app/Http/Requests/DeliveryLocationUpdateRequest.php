@@ -23,7 +23,7 @@ class DeliveryLocationUpdateRequest extends FormRequest
             'label' => ['required', 'max:255', 'string'],
             'contact_name' => ['required', 'max:255', 'string'],
             'contact_number' => ['required', 'max:255', 'string'],
-            'Address' => ['required', 'max:255', 'string'],
+            'address' => ['required', 'max:255', 'string'],
             'village_id' => ['nullable', 'exists:villages,id'],
             'user_id' => ['nullable', 'exists:users,id'],
             'province_id' => ['nullable', 'exists:provinces,id'],

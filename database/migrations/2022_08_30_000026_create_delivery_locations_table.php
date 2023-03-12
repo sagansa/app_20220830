@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('label');
             $table->string('contact_name');
             $table->string('contact_number');
-            $table->string('Address');
+            $table->string('address');
             $table->unsignedBigInteger('province_id')->nullable();
             $table->unsignedBigInteger('regency_id')->nullable();
             $table->unsignedBigInteger('district_id')->nullable();
