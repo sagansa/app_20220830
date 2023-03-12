@@ -76,6 +76,8 @@
         </x-input.hidden>
         <x-input.hidden name="village_id" value="{{ old('village_id', $editing ? $deliveryLocation->village_id : '') }}">
         </x-input.hidden>
+        <x-input.hidden name="user_id" value="{{ old('user_id', $editing ? $deliveryLocation->user_id : '') }}">
+        </x-input.hidden>
     @endrole
 
     @if ($editing)
