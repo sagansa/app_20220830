@@ -173,6 +173,7 @@
                         @role('super-admin|storage-staff|manager')
                             <x-tables.td-left-hide>{{ optional($salesOrderDirect->store)->nickname ?? '-' }}
                             </x-tables.td-left-hide>
+                            @elserole('super-admin|manager')
                             <x-tables.td-left-hide>
                                 {{ optional($salesOrderDirect->submitted_by)->name ?? '-' }}
                             </x-tables.td-left-hide>
