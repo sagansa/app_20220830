@@ -38,21 +38,38 @@
     <x-tables.card>
         <x-table>
             <x-slot name="head">
-                <x-tables.th-left>@lang('crud.sales_order_employees.inputs.image')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.sales_order_employees.inputs.store_id')</x-tables.th-left>
-                <x-tables.th-left>@lang('crud.sales_order_employees.inputs.customer')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.sales_order_employees.inputs.image')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.sales_order_employees.inputs.store_id')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>@lang('crud.sales_order_employees.inputs.customer')</x-tables.th-left-hide>
                 <x-tables.th-left>@lang('crud.sales_order_employees.inputs.date')</x-tables.th-left>
 
-                <x-tables.th-left>@lang('crud.sales_order_employees.inputs.status')</x-tables.th-left>
+                <x-tables.th-left-hide>@lang('crud.sales_order_employees.inputs.status')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>Detail Order</x-tables.th-left-hide>
                 @role('super-admin|manager')
-                    <x-tables.th-left>@lang('crud.sales_order_employees.inputs.user_id')</x-tables.th-left>
+                    <x-tables.th-left-hide>@lang('crud.sales_order_employees.inputs.user_id')</x-tables.th-left-hide>
                 @endrole
                 <th></th>
             </x-slot>
             <x-slot name="body">
                 @forelse($salesOrderEmployees as $salesOrderEmployee)
                     <tr class="hover:bg-gray-50">
+                        <x-tables.td-left-main>
+                            <x-slot name="main">
+                                @if ($salesOrderEmployee->image == null)
+                                    <x-partials.thumbnail src="" />
+                                @else
+                                    <a href="{{ \Storage::url($salesOrderEmployee->image) }}">
+                                        <x-partials.thumbnail
+                                            src="{{ $salesOrderEmployee->image ? \Storage::url($salesOrderEmployee->image) : '' }}" />
+                                    </a>
+                                @endif
+                            </x-slot>
+                            <x-slot name="sub">{{ optional($salesOrderEmployee->user)->name ?? '-' }} -
+                                {{ $salesOrderEmployee->date->toFormattedDate() ?? '-' }}
+                                <x-spans.status-valid class="{{ $salesOrderEmployee->status_badge }}">
+                                    {{ $salesOrderEmployee->status_name }}</x-spans.status-valid>
+                            </x-slot>
+                        </x-tables.td-left-main>
                         <x-tables.td-left-hide>
                             @if ($salesOrderEmployee->image == null)
                                 <x-partials.thumbnail src="" />
