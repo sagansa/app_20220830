@@ -91,7 +91,14 @@ class SalesOrderDirect extends Model
         return $this->hasMany(SalesOrderDirectProduct::class);
     }
 
-    public function delete_image()
+    public function delete_image_receipt()
+    {
+        if ($this->image && file_exists('storage/' . $this->image)) {
+            unlink('storage/' . $this->image);
+        }
+    }
+
+    public function delete_image_transfer()
     {
         if ($this->image && file_exists('storage/' . $this->image)) {
             unlink('storage/' . $this->image);
