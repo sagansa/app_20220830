@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\CashlessController;
 use App\Http\Controllers\Api\EProductController;
+use App\Http\Controllers\Api\PresenceController;
 use App\Http\Controllers\Api\UserCartsController;
 use App\Http\Controllers\Api\UserStoresController;
 use App\Http\Controllers\Api\ShiftStoreController;
@@ -177,6 +178,7 @@ use App\Http\Controllers\Api\SelfConsumptionProductsController;
 use App\Http\Controllers\Api\EmployeeStatusEmployeesController;
 use App\Http\Controllers\Api\SalesOrderDirectProductController;
 use App\Http\Controllers\Api\CouponSalesOrderDirectsController;
+use App\Http\Controllers\Api\PresenceMonthlySalariesController;
 use App\Http\Controllers\Api\UserRestaurantCategoriesController;
 use App\Http\Controllers\Api\UserMovementAssetResultsController;
 use App\Http\Controllers\Api\StoreSalesOrderEmployeesController;
@@ -2315,4 +2317,20 @@ Route::name('api.')
             CouponSalesOrderDirectsController::class,
             'store',
         ])->name('coupons.sales-order-directs.store');
+
+        Route::apiResource('presences', PresenceController::class);
+
+        // Presence Monthly Salaries
+        Route::get('/presences/{presence}/monthly-salaries', [
+            PresenceMonthlySalariesController::class,
+            'index',
+        ])->name('presences.monthly-salaries.index');
+        Route::post('/presences/{presence}/monthly-salaries/{monthlySalary}', [
+            PresenceMonthlySalariesController::class,
+            'store',
+        ])->name('presences.monthly-salaries.store');
+        Route::delete(
+            '/presences/{presence}/monthly-salaries/{monthlySalary}',
+            [PresenceMonthlySalariesController::class, 'destroy']
+        )->name('presences.monthly-salaries.destroy');
     });

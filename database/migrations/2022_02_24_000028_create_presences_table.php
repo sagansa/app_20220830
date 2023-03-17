@@ -14,13 +14,18 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('store_id');
             $table->unsignedBigInteger('shift_store_id');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(1);
             $table->string('image_in')->nullable();
             $table->string('image_out')->nullable();
-            $table->string('lat_long_in')->nullable();
-            $table->string('lat_long_out')->nullable();
+            $table->date('date');
+            $table->time('time_in');
+            $table->time('time_out')->nullable();
             $table->unsignedBigInteger('created_by_id')->nullable();
             $table->unsignedBigInteger('approved_by_id')->nullable();
+            $table->decimal('latitude_in');
+            $table->decimal('longitude_in');
+            $table->decimal('latitude_out')->nullable();
+            $table->decimal('longitude_out')->nullable();
 
             $table->timestamps();
         });

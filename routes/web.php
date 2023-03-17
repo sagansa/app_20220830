@@ -20,6 +20,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\EProductController;
+use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\ShiftStoreController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\VehicleTaxController;
@@ -187,4 +188,5 @@ Route::prefix('/')
             DeliveryLocationController::class
         );
         Route::resource('coupons', CouponController::class);
+        Route::resource('presences', PresenceController::class);
     });

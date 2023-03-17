@@ -1574,6 +1574,31 @@ return [
         ],
     ],
 
+    'presences' => [
+        'name' => 'Presences',
+        'index_title' => 'Presences List',
+        'new_title' => 'New Presence',
+        'create_title' => 'Create Presence',
+        'edit_title' => 'Edit Presence',
+        'show_title' => 'Show Presence',
+        'inputs' => [
+            'store_id' => 'Store',
+            'shift_store_id' => 'Shift Store',
+            'date' => 'Date',
+            'time_in' => 'Time In',
+            'time_out' => 'Time Out',
+            'created_by_id' => 'Created By',
+            'approved_by_id' => 'Approved By',
+            'latitude_in' => 'Latitude In',
+            'longitude_in' => 'Longitude In',
+            'image_in' => 'Image In',
+            'latitude_out' => 'Latitude Out',
+            'longitude_out' => 'Longitude Out',
+            'image_out' => 'Image Out',
+            'status' => 'Status',
+        ],
+    ],
+
     'roles' => [
         'name' => 'Roles',
         'index_title' => 'Roles List',

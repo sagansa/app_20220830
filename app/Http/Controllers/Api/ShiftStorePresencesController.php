@@ -35,14 +35,31 @@ class ShiftStorePresencesController extends Controller
 
         $validated = $request->validate([
             'store_id' => ['required', 'exists:stores,id'],
-            'status' => ['required', 'max:255'],
-            'image_in' => ['nullable', 'max:255', 'string'],
-            'image_out' => ['nullable', 'max:255', 'string'],
-            'lat_long_in' => ['nullable', 'max:255', 'string'],
-            'lat_long_out' => ['nullable', 'max:255', 'string'],
+            'date' => ['required', 'date'],
+            'time_in' => ['required', 'date_format:H:i:s'],
+            'time_out' => ['nullable', 'date_format:H:i:s'],
             'created_by_id' => ['nullable', 'exists:users,id'],
             'approved_by_id' => ['nullable', 'exists:users,id'],
+            'latitude_in' => ['required', 'numeric'],
+            'longitude_in' => ['required', 'numeric'],
+            'image_in' => ['image', 'max:1024', 'nullable'],
+            'latitude_out' => ['nullable', 'numeric'],
+            'longitude_out' => ['nullable', 'numeric'],
+            'image_out' => ['image', 'max:1024', 'nullable'],
+            'status' => ['required', 'max:255'],
         ]);
+
+        if ($request->hasFile('image_in')) {
+            $validated['image_in'] = $request
+                ->file('image_in')
+                ->store('public');
+        }
+
+        if ($request->hasFile('image_out')) {
+            $validated['image_out'] = $request
+                ->file('image_out')
+                ->store('public');
+        }
 
         $presence = $shiftStore->presences()->create($validated);
 

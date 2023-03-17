@@ -32,12 +32,29 @@ class UserPresencesController extends Controller
         $validated = $request->validate([
             'store_id' => ['required', 'exists:stores,id'],
             'shift_store_id' => ['required', 'exists:shift_stores,id'],
+            'date' => ['required', 'date'],
+            'time_in' => ['required', 'date_format:H:i:s'],
+            'time_out' => ['nullable', 'date_format:H:i:s'],
+            'latitude_in' => ['required', 'numeric'],
+            'longitude_in' => ['required', 'numeric'],
+            'image_in' => ['image', 'max:1024', 'nullable'],
+            'latitude_out' => ['nullable', 'numeric'],
+            'longitude_out' => ['nullable', 'numeric'],
+            'image_out' => ['image', 'max:1024', 'nullable'],
             'status' => ['required', 'max:255'],
-            'image_in' => ['nullable', 'max:255', 'string'],
-            'image_out' => ['nullable', 'max:255', 'string'],
-            'lat_long_in' => ['nullable', 'max:255', 'string'],
-            'lat_long_out' => ['nullable', 'max:255', 'string'],
         ]);
+
+        if ($request->hasFile('image_in')) {
+            $validated['image_in'] = $request
+                ->file('image_in')
+                ->store('public');
+        }
+
+        if ($request->hasFile('image_out')) {
+            $validated['image_out'] = $request
+                ->file('image_out')
+                ->store('public');
+        }
 
         $presence = $user->presencesApproved()->create($validated);
 

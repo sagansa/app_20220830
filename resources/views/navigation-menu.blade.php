@@ -323,6 +323,11 @@
                         Coupons
                         </x-dropdown-link>
                         @endcan
+                        @can('view-any', App\Models\Presence::class)
+                        <x-dropdown-link href="{{ route('presences.index') }}">
+                        Presences
+                        </x-dropdown-link>
+                        @endcan
                 </x-nav-dropdown>
 
                     @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) || 
@@ -768,6 +773,11 @@
                 @can('view-any', App\Models\Coupon::class)
                 <x-jet-responsive-nav-link href="{{ route('coupons.index') }}">
                 Coupons
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\Presence::class)
+                <x-jet-responsive-nav-link href="{{ route('presences.index') }}">
+                Presences
                 </x-jet-responsive-nav-link>
                 @endcan
 

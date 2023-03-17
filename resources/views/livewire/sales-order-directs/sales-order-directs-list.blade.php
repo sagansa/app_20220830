@@ -98,7 +98,7 @@
                 @endrole
                 <x-tables.th-left>@lang('crud.sales_order_directs.inputs.delivery_date')</x-tables.th-left>
                 <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.delivery_service_id')</x-tables.th-left-hide>
-                <x-tables.th-left-hide>DETAIL ORDER</x-tables.th-left-hide>
+                {{-- <x-tables.th-left-hide>DETAIL ORDER</x-tables.th-left-hide> --}}
                 @role('super-admin|customer|manager')
                     <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.transfer_to_account_id')</x-tables.th-left-hide>
                     <x-tables.th-left-hide>@lang('crud.sales_order_directs.inputs.payment_status')</x-tables.th-left-hide>
@@ -172,7 +172,7 @@
                         <x-tables.td-left-hide>
                             {{ optional($salesOrderDirect->deliveryService)->name ?? '-' }}
                         </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>
+                        {{-- <x-tables.td-left-hide>
                             @forelse ($salesOrderDirect->salesOrderDirectProducts as $salesOrderDirectProduct)
                                 {{ $salesOrderDirectProduct->eProduct->product->name }} -
                                 {{ $salesOrderDirectProduct->quantity }}
@@ -181,7 +181,7 @@
                             @empty
                                 -
                             @endforelse
-                        </x-tables.td-left-hide>
+                        </x-tables.td-left-hide> --}}
                         @role('super-admin|customer|manager')
                             <x-tables.td-left-hide>
                                 {{ optional($salesOrderDirect->transferToAccount)->bank->name ?? '-' }}
