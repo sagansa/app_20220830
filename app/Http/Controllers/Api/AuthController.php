@@ -25,9 +25,13 @@ class AuthController extends Controller
         $user = User::whereEmail($request->email)->firstOrFail();
 
         $token = $user->createToken('auth-token');
+        $user->token = $token;
+        $user->token_type = 'Bearer';
 
         return response()->json([
-            'token' => $token->plainTextToken,
+            // 'token' => $token->plainTextToken,
+             'success' => true,
+                'message' => 'Hi '.$user->name.', selamat datang di sistem presensi',
             'data' => $user
         ]);
     }
