@@ -70,17 +70,7 @@
                                     {{ $salesOrderEmployee->status_name }}</x-spans.status-valid>
                             </x-slot>
                         </x-tables.td-left-main>
-                        <x-tables.td-left-hide>
-                            @if ($salesOrderEmployee->image == null)
-                                <x-partials.thumbnail src="" />
-                            @else
-                                <a href="{{ \Storage::url($salesOrderEmployee->image) }}">
-                                    <x-partials.thumbnail
-                                        src="{{ $salesOrderEmployee->image ? \Storage::url($salesOrderEmployee->image) : '' }}" />
-                                </a>
-                            @endif
-                        </x-tables.td-left-hide>
-                        <x-tables.td-left-hide>{{ optional($salesOrderEmployee->store)->name ?? '-' }}
+                        <x-tables.td-left-hide>{{ optional($salesOrderEmployee->store)->nickname ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>{{ $salesOrderEmployee->customer ?? '-' }}</x-tables.td-left-hide>
                         <x-tables.td-left-hide>{{ $salesOrderEmployee->date->toFormattedDate() ?? '-' }}
