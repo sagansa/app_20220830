@@ -117,7 +117,7 @@ class SalesOrderEmployeeController extends Controller
         $this->authorize('update', $salesOrderEmployee);
 
         $stores = Store::orderBy('name', 'asc')
-            ->whereIn('status', ['1'])
+            ->whereNotIn('status', ['8'])
             ->pluck('name', 'id');
         $users = User::orderBy('name', 'asc')
             // ->whereIn('status', ['1'])
