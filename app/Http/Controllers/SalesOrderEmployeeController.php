@@ -43,7 +43,7 @@ class SalesOrderEmployeeController extends Controller
     {
         $stores = Store::orderBy('name', 'asc')
             ->whereNotIn('status', ['8'])
-            ->pluck('name', 'id');
+            ->pluck('nickname', 'id');
         $users = User::orderBy('name', 'asc')
             // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
@@ -118,7 +118,7 @@ class SalesOrderEmployeeController extends Controller
 
         $stores = Store::orderBy('name', 'asc')
             ->whereNotIn('status', ['8'])
-            ->pluck('name', 'id');
+            ->pluck('nickname', 'id');
         $users = User::orderBy('name', 'asc')
             // ->whereIn('status', ['1'])
             ->pluck('name', 'id');
