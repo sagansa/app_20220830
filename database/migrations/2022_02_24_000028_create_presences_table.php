@@ -18,8 +18,8 @@ return new class extends Migration {
             $table->string('image_in')->nullable();
             $table->string('image_out')->nullable();
             $table->date('date');
-            $table->time('time_in');
-            $table->time('time_out')->nullable();
+            $table->dateTime('time_in');
+            $table->dateTime('time_out')->nullable();
             $table->unsignedBigInteger('created_by_id')->nullable();
             $table->unsignedBigInteger('approved_by_id')->nullable();
             $table->decimal('latitude_in');

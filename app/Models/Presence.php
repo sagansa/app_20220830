@@ -14,36 +14,35 @@ class Presence extends Model
     use Searchable;
 
     const STATUSES = [
-        '1' => 'belum dibayar',
-        '2' => 'sudah dibayar',
-        '3' => 'siap dibayar',
-        '4' => 'tidak valid',
+        '1' => 'belum diperiksa',
+        '2' => 'valid',
+        '3' => 'diperbaiki',
+        '4' => 'periksa ulang',
     ];
-
-    const STATUS_BELUM_DIBAYAR = '1';
-    const STATUS_SUDAH_DIBAYAR = '2';
-    const STATUS_SIAP_DIBAYAR = '3';
-    const STATUS_TIDAK_VALID = '4';
 
     protected $fillable = [
         'store_id',
         'shift_store_id',
-        'date',
-        'amount',
-        'payment_type_id',
         'status',
         'image_in',
         'image_out',
-        'lat_long_in',
-        'lat_long_out',
+        'date',
+        'time_in',
+        'time_out',
         'created_by_id',
         'approved_by_id',
+        'latitude_in',
+        'longitude_in',
+        'latitude_out',
+        'longitude_out',
     ];
 
     protected $searchableFields = ['*'];
 
     protected $casts = [
         'date' => 'date',
+        'time_in' => 'datetime',
+        'time_out' => 'datetime',
     ];
 
     public function created_by()
@@ -56,11 +55,6 @@ class Presence extends Model
         return $this->belongsTo(User::class, 'approved_by_id');
     }
 
-    public function paymentType()
-    {
-        return $this->belongsTo(PaymentType::class);
-    }
-
     public function store()
     {
         return $this->belongsTo(Store::class);
@@ -71,24 +65,14 @@ class Presence extends Model
         return $this->belongsTo(ShiftStore::class);
     }
 
-    public function paymentReceipts()
+    public function dailySalary()
     {
-        return $this->belongsToMany(PaymentReceipt::class);
+        return $this->hasOne(DailySalary::class);
     }
 
-    public function salaries()
+    public function monthlySalaries()
     {
-        return $this->belongsToMany(
-            Salary::class,
-            'monthly_salary_presence',
-            'presence_id',
-            'monthly_salary_id'
-        );
-    }
-
-    public function closingStores()
-    {
-        return $this->belongsToMany(ClosingStore::class);
+        return $this->belongsToMany(MonthlySalary::class);
     }
 
     public function delete_image()
@@ -96,10 +80,5 @@ class Presence extends Model
         if ($this->image && file_exists('storage/' . $this->image)) {
             unlink('storage/' . $this->image);
         }
-    }
-
-    public function getPresenceNameAttribute()
-    {
-        return $this->created_by->name . ' - ' . $this->closingStore->store->nickname . ' - ' . $this->closingStore->date->toFormattedDate();
     }
 }

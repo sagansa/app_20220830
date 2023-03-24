@@ -11,9 +11,78 @@ use App\Http\Resources\PresenceResource;
 use App\Http\Resources\PresenceCollection;
 use App\Http\Requests\PresenceStoreRequest;
 use App\Http\Requests\PresenceUpdateRequest;
+use Illuminate\Support\Carbon;
+// use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PresenceController extends Controller
 {
+    function getPresences()
+    {
+        $presences = Presence::where('created_by_id', Auth::user()->id)->get();
+        foreach($presences as $item) {
+            if ($item->date == date('Y-m-d')) {
+                $item->is_hari_ini = true;
+            } else {
+                $item->is_hari_ini = false;
+            }
+            // $datetime = Carbon::parse($item->date)->locale('id');
+            // $time_in = Carbon::parse($item->time_in)->locale('id');
+            // $time_out = Carbon::parse($item->time_out)->locale('id');
+
+            // $datetime->settings(['formatFunction' => 'translatedFormat']);
+            // $time_in->settings(['formatFunction' => 'translatedFormat']);
+            // $time_out->settings(['formatFunction' => 'translatedFormat']);
+
+            // $item->date = $datetime->format('l, j F Y');
+            // $item->time_in = $time_in->format('H:i');
+            // $item->time_out = $time_out->format('H:i');
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $presences,
+            'message' => 'Sukses menampilkan data'
+        ]);
+    }
+
+    function savePresence(Request $request)
+    {
+        $keterangan = "";
+        $presence = Presence::whereDate('date', '=', date('Y-m-d'))
+                        ->where('created_by_id', Auth::user()->id)
+                        ->first();
+        if ($presence == null) {
+            $presence = Presence::create([
+                'created_by_id' => Auth::user()->id,
+                'latitude_in' => $request->latitude_in,
+                'longitude_in' => $request->longitude_in,
+                'date' => date('Y-m-d'),
+                'time_in' => date('H:i:s'),
+                'store_id' => $request->store_id,
+                'shift_store_id' => $request->shift_store_id,
+                'image_in'
+            ]);
+        } else {
+            $data = [
+                'time_out' => date('H:i:s'),
+                'latitude_in' => $request->latitude_out,
+                'longitude_in' => $request->longitude_out,
+            ];
+
+            Presence::whereDate('date', '=', date('Y-m-d'))->update($data);
+
+        }
+        $presence = Presence::whereDate('date', '=', date('Y-m-d'))
+                 ->first();
+
+        return response()->json([
+            'success' => true,
+            'data' => $presence,
+            'message' => 'Sukses simpan'
+        ]);
+    }
+
     public function index(Request $request): PresenceCollection
     {
         $this->authorize('view-any', Presence::class);

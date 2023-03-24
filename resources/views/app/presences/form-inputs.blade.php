@@ -25,23 +25,6 @@
         required
     ></x-input.date>
 
-    <x-input.text
-        name="time_in"
-        label="Time In"
-        value="{{ old('time_in', ($editing ? $presence->time_in : '')) }}"
-        maxlength="255"
-        placeholder="Time In"
-        required
-    ></x-input.text>
-
-    <x-input.text
-        name="time_out"
-        label="Time Out"
-        value="{{ old('time_out', ($editing ? $presence->time_out : '')) }}"
-        maxlength="255"
-        placeholder="Time Out"
-    ></x-input.text>
-
     <x-input.select name="created_by_id" label="Created By">
         @php $selected = old('created_by_id', ($editing ? $presence->created_by_id : '')) @endphp
         <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
@@ -167,6 +150,25 @@
     <x-input.select name="status" label="Status">
         @php $selected = old('status', ($editing ? $presence->status : '1')) @endphp
     </x-input.select>
+
+    <x-inputs.group class="w-full">
+        <x-inputs.datetime
+            name="time_in"
+            label="Time In"
+            value="{{ old('time_in', ($editing ? optional($presence->time_in)->format('Y-m-d\TH:i:s') : '')) }}"
+            max="255"
+            required
+        ></x-inputs.datetime>
+    </x-inputs.group>
+
+    <x-inputs.group class="w-full">
+        <x-inputs.datetime
+            name="time_out"
+            label="Time Out"
+            value="{{ old('time_out', ($editing ? optional($presence->time_out)->format('Y-m-d\TH:i:s') : '')) }}"
+            max="255"
+        ></x-inputs.datetime>
+    </x-inputs.group>
 
     @if ($editing)
     <x-shows.dl>
