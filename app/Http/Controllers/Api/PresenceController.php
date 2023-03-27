@@ -14,6 +14,7 @@ use App\Http\Requests\PresenceUpdateRequest;
 use Illuminate\Support\Carbon;
 // use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+date_default_timezone_set("Asia/Jakarta");
 
 class PresenceController extends Controller
 {
@@ -26,17 +27,18 @@ class PresenceController extends Controller
             } else {
                 $item->is_hari_ini = false;
             }
-            // $datetime = Carbon::parse($item->date)->locale('id');
-            // $time_in = Carbon::parse($item->time_in)->locale('id');
-            // $time_out = Carbon::parse($item->time_out)->locale('id');
 
-            // $datetime->settings(['formatFunction' => 'translatedFormat']);
-            // $time_in->settings(['formatFunction' => 'translatedFormat']);
-            // $time_out->settings(['formatFunction' => 'translatedFormat']);
+            $datetime = Carbon::parse($item->date)->locale('id');
+            $time_in = Carbon::parse($item->time_in)->locale('id');
+            $time_out = Carbon::parse($item->time_out)->locale('id');
 
-            // $item->date = $datetime->format('l, j F Y');
-            // $item->time_in = $time_in->format('H:i');
-            // $item->time_out = $time_out->format('H:i');
+            $datetime->settings(['formatFunction' => 'translatedFormat']);
+            $time_in->settings(['formatFunction' => 'translatedFormat']);
+            $time_out->settings(['formatFunction' => 'translatedFormat']);
+
+            $item->date = $datetime->format('l, j F Y');
+            $item->time_in = $time_in->format('h:i A');
+            $item->time_out = $time_out->format('h:i A');
         }
 
         return response()->json([

@@ -33,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
             return $this->format('Y / m / d');
         });
 
+        Carbon::macro('toFormattedTime', function () {
+            return $this->format('h:i A');
+        });
+
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');
 
