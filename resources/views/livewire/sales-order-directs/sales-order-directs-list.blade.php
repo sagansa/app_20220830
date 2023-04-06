@@ -247,9 +247,17 @@
                             </div>
                     </tr>
                 @empty
+                    <x-tables.no-items-found colspan="12">
+                    </x-tables.no-items-found>
                 @endforelse
             </x-slot>
-            <x-slot name="foot"></x-slot>
+            <x-slot name="foot">
+                <tr>
+                    <td colspan="12">
+                        <div class="px-4 my-2">{{ $salesOrderDirects->render() }}</div>
+                    </td>
+                </tr>
+            </x-slot>
         </x-table>
     </x-tables.card>
 </div>
