@@ -30,6 +30,7 @@ class SalesOrderOnlinesList extends Component
     // public string $sortDirection = 'asc';
 
     public $filters = [
+        'receipt_no' => '',
         'status' => '',
     ];
 
@@ -60,6 +61,7 @@ class SalesOrderOnlinesList extends Component
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
                 $salesOrderOnlines
+                    ->when($filter == 'receipt_no', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'))
                     ->when($filter == 'status', fn($salesOrderOnlines) => $salesOrderOnlines->where('sales_order_onlines.' . $filter, 'LIKE', '%' . $value . '%'));
             }
         }

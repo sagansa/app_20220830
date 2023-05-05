@@ -40,6 +40,10 @@
                     </x-filters.select>
                 </x-filters.group> --}}
                 <x-filters.group>
+                    <x-filters.label>Receipt No</x-filters.label>
+                    <x-filters.text wire:model="filters.receipt_no" name="search" autocompolete="off"></x-filters.text>
+                </x-filters.group>
+                <x-filters.group>
                     <x-filters.label>Status</x-filters.label>
                     <x-filters.select wire:model="filters.status">
                         @foreach (App\Models\SalesOrderOnline::STATUSES as $value => $label)
