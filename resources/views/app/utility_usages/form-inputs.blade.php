@@ -84,11 +84,11 @@
                     <x-shows.dd>
                         {{ optional($utilityUsage->utility)->number ?? '-' }} -
                         @if ($utilityUsage->utility->category == 1)
-                            <span>internet</span>
-                        @elseif ($utilityUsage->utility->category == 2)
                             <span>listrik</span>
-                        @elseif ($utilityUsage->utility->category == 3)
+                        @elseif ($utilityUsage->utility->category == 2)
                             <span>air</span>
+                        @elseif ($utilityUsage->utility->category == 3)
+                            <span>internet</span>
                         @endif
                     </x-shows.dd>
                 </x-shows.sub-dl>

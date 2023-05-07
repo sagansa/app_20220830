@@ -101,11 +101,11 @@
                             {{ $utilityUsage->utility->unit->unit }}</x-tables.td-right-hide>
                         <x-tables.td-left-hide>
                             @if ($utilityUsage->utility->category == 1)
-                                <span>internet</span>
-                            @elseif($utilityUsage->utility->category == 2)
                                 <span>listrik</span>
-                            @elseif($utilityUsage->utility->category == 3)
+                            @elseif($utilityUsage->utility->category == 2)
                                 <span>air</span>
+                            @elseif($utilityUsage->utility->category == 3)
+                                <span>internet</span>
                             @endif
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
