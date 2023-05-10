@@ -54,6 +54,7 @@ class InvoicePurchaseController extends Controller
             ->pluck('name', 'id');
         $suppliers = Supplier::orderBy('name', 'asc')
             // ->whereIn('status', ['1'])
+            ->get()
             ->pluck('supplier_name', 'id');
 
         return view(
