@@ -78,7 +78,7 @@ class Supplier extends Model
     {
         if ($this->bank_account_name != null) {
 
-            return $this->name . ' | ' . $this->bank->name . ' | ' . $this->bank_account_name . ' | ' . $this->bank_account_no;
+            return $this->bank->name . ' | ' . $this->bank_account_name . ' | ' . $this->bank_account_no;
 
         } else {
 
