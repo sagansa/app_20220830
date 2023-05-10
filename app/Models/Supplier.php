@@ -82,7 +82,7 @@ class Supplier extends Model
 
         } else {
 
-            return $this->name;
+            // return $this->name;
 
         }
     }
