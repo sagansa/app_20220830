@@ -51,7 +51,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             ->whereIn('status', ['4', '5'])
             // ->where('payment_type_id', '=', '1')
             // ->orderBy('detail_request_name', 'desc')
-            ->where('date', '>=', Carbon::now()->subDays(7)->toDateString())
+            // ->where('date', '>=', Carbon::now()->subDays(7)->toDateString())
             ->get()
             ->pluck( 'id', 'detail_request_name');
 
