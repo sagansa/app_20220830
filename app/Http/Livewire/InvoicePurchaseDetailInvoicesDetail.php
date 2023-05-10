@@ -9,6 +9,7 @@ use App\Models\DetailInvoice;
 use App\Models\DetailRequest;
 use App\Models\InvoicePurchase;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class InvoicePurchaseDetailInvoicesDetail extends Component
@@ -50,6 +51,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             ->whereIn('status', ['4', '5'])
             // ->where('payment_type_id', '=', '1')
             // ->orderBy('detail_request_name', 'desc')
+            ->where('date', '>=', Carbon::now()->subDays(7)->toDateString())
             ->get()
             ->pluck( 'id', 'detail_request_name');
 
