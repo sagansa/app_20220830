@@ -50,7 +50,7 @@ class FuelServicesList extends Component
             if (!empty($value)) {
                 $fuelServices
                     ->when($filter == 'payment_type_id', fn($fuelServices) => $fuelServices->whereRelation('paymentType', 'id', $value))
-                    ->when($filter == 'status', fn($fuelServices) => $fuelServices->where('daily_salaries.' . $filter, 'LIKE', '%' . $value . '%'));
+                    ->when($filter == 'status', fn($fuelServices) => $fuelServices->where('fuel_services.' . $filter, 'LIKE', '%' . $value . '%'));
             }
         }
 
