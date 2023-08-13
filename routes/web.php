@@ -21,6 +21,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\EProductController;
 use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ShiftStoreController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\VehicleTaxController;
@@ -59,6 +60,7 @@ use App\Http\Controllers\CashlessProviderController;
 use App\Http\Controllers\SalesOrderOnlineController;
 use App\Http\Controllers\SalesOrderDirectController;
 use App\Http\Controllers\DeliveryLocationController;
+use App\Http\Controllers\ContractLocationController;
 use App\Http\Controllers\TransferToAccountController;
 use App\Http\Controllers\OnlineShopProviderController;
 use App\Http\Controllers\RestaurantCategoryController;
@@ -189,4 +191,9 @@ Route::prefix('/')
         );
         Route::resource('coupons', CouponController::class);
         Route::resource('presences', PresenceController::class);
+        Route::resource(
+            'contract-locations',
+            ContractLocationController::class
+        );
+        Route::resource('locations', LocationController::class);
     });

@@ -328,6 +328,16 @@
                         Presences
                         </x-dropdown-link>
                         @endcan
+                        @can('view-any', App\Models\ContractLocation::class)
+                        <x-dropdown-link href="{{ route('contract-locations.index') }}">
+                        Contract Locations
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\Location::class)
+                        <x-dropdown-link href="{{ route('locations.index') }}">
+                        Locations
+                        </x-dropdown-link>
+                        @endcan
                 </x-nav-dropdown>
 
                     @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) || 
@@ -778,6 +788,16 @@
                 @can('view-any', App\Models\Presence::class)
                 <x-responsive-nav-link href="{{ route('presences.index') }}">
                 Presences
+                </x-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\ContractLocation::class)
+                <x-responsive-nav-link href="{{ route('contract-locations.index') }}">
+                Contract Locations
+                </x-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\Location::class)
+                <x-responsive-nav-link href="{{ route('locations.index') }}">
+                Locations
                 </x-responsive-nav-link>
                 @endcan
 

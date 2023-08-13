@@ -570,30 +570,6 @@ return [
         ],
     ],
 
-    'store_contract_locations' => [
-        'name' => 'Store Contract Locations',
-        'index_title' => 'Contract Locations List',
-        'new_title' => 'New Contract location',
-        'create_title' => 'Create Contract Location',
-        'edit_title' => 'Edit Contract Location',
-        'show_title' => 'Show Contract Location',
-        'inputs' => [
-            'file' => 'File',
-            'address' => 'Address',
-            'province_id' => 'Province',
-            'regency_id' => 'Regency',
-            'district_id' => 'District',
-            'village_id' => 'Village',
-            'codepos' => 'Codepos',
-            'gps_location' => 'GPS Location',
-            'from_date' => 'From Date',
-            'until_date' => 'Until Date',
-            'contact_person' => 'Contact Person',
-            'no_contact_person' => 'No Telp Contact Person',
-            'nominal_contract_per_year' => 'Nominal Contract Per Year',
-        ],
-    ],
-
     'closing_courier_closing_stores' => [
         'name' => 'Closing Courier Closing Stores',
         'index_title' => 'Closing Courier Closing Store List',
@@ -1596,6 +1572,42 @@ return [
             'status' => 'Status',
             'time_in' => 'Time In',
             'time_out' => 'Time Out',
+        ],
+    ],
+
+    'contract_locations' => [
+        'name' => 'Contract Locations',
+        'index_title' => 'ContractLocations List',
+        'new_title' => 'New Contract location',
+        'create_title' => 'Create ContractLocation',
+        'edit_title' => 'Edit ContractLocation',
+        'show_title' => 'Show ContractLocation',
+        'inputs' => [
+            'location_id' => 'Location',
+            'from_date' => 'From Date',
+            'until_date' => 'Until Date',
+            'nominal_contract' => 'Nominal Contract',
+        ],
+    ],
+
+    'locations' => [
+        'name' => 'Locations',
+        'index_title' => 'Locations List',
+        'new_title' => 'New Location',
+        'create_title' => 'Create Location',
+        'edit_title' => 'Edit Location',
+        'show_title' => 'Show Location',
+        'inputs' => [
+            'name' => 'Name',
+            'store_id' => 'Store',
+            'address' => 'Address',
+            'contact_person_name' => 'Contact Person Name',
+            'contact_person_number' => 'Contact Person Number',
+            'village_id' => 'Village',
+            'codepos' => 'Codepos',
+            'province_id' => 'Province',
+            'regency_id' => 'Regency',
+            'district_id' => 'District',
         ],
     ],
 

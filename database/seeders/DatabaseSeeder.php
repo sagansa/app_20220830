@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
         $this->call(HygieneSeeder::class);
         $this->call(HygieneOfRoomSeeder::class);
         $this->call(InvoicePurchaseSeeder::class);
+        $this->call(LocationSeeder::class);
         $this->call(MaterialGroupSeeder::class);
         $this->call(MonthlySalarySeeder::class);
         $this->call(MovementAssetSeeder::class);

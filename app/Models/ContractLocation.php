@@ -21,20 +21,10 @@ class ContractLocation extends Model
     ];
 
     protected $fillable = [
-        'store_id',
-        'file',
-        'address',
-        'province_id',
-        'regency_id',
-        'district_id',
-        'village_id',
-        'codepos',
-        'gps_location',
+        'location_id',
         'from_date',
         'until_date',
-        'contact_person',
-        'no_contact_person',
-        'nominal_contract_per_year',
+        'nominal_contract',
     ];
 
     protected $searchableFields = ['*'];
@@ -46,29 +36,9 @@ class ContractLocation extends Model
         'until_date' => 'date',
     ];
 
-    public function store()
+    public function location()
     {
-        return $this->belongsTo(Store::class);
-    }
-
-    public function province()
-    {
-        return $this->belongsTo(Province::class);
-    }
-
-    public function regency()
-    {
-        return $this->belongsTo(Regency::class);
-    }
-
-    public function district()
-    {
-        return $this->belongsTo(District::class);
-    }
-
-    public function village()
-    {
-        return $this->belongsTo(Village::class);
+        return $this->belongsTo(Location::class);
     }
 
     public function delete_image()

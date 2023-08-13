@@ -39,11 +39,6 @@ class Regency extends Model
         return $this->hasMany(Employee::class);
     }
 
-    public function contractLocations()
-    {
-        return $this->hasMany(ContractLocation::class);
-    }
-
     public function deliveryAddresses()
     {
         return $this->hasMany(DeliveryAddress::class);
@@ -57,6 +52,11 @@ class Regency extends Model
     public function deliveryLocations()
     {
         return $this->hasMany(DeliveryLocation::class);
+    }
+
+    public function locations()
+    {
+        return $this->hasMany(Location::class);
     }
 
     public function delete_image()

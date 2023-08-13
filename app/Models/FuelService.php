@@ -14,13 +14,13 @@ class FuelService extends Model
     use Searchable;
 
     const STATUSES = [
-        '1' => 'belum diperiksa',
+        '1' => 'belum dibayar',
         '2' => 'sudah dibayar',
         '3' => 'siap dibayar',
         '4' => 'perbaiki',
     ];
 
-    const STATUS_BELUM_DIPERIKSA = '1';
+    const STATUS_BELUM_DIBAYAR = '1';
     const STATUS_SUDAH_DIBAYAR = '2';
     const STATUS_SIAP_DIBAYAR = '3';
     const STATUS_TIDAK_VALID = '4';

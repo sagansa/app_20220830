@@ -4,10 +4,10 @@ namespace App\Http\Livewire\Selects;
 
 use Livewire\Component;
 use App\Models\Regency;
+use App\Models\Location;
 use App\Models\Province;
 use App\Models\District;
 use Illuminate\View\View;
-use App\Models\DeliveryLocation;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ProvinceIdRegencyIdDistrictIdDependentSelect extends Component
@@ -28,24 +28,24 @@ class ProvinceIdRegencyIdDistrictIdDependentSelect extends Component
         'selectedDistrictId' => ['nullable', 'exists:districts,id'],
     ];
 
-    public function mount($deliveryLocation): void
+    public function mount($location): void
     {
         $this->clearData();
         $this->fillAllProvinces();
 
-        if (is_null($deliveryLocation)) {
+        if (is_null($location)) {
             return;
         }
 
-        $deliveryLocation = DeliveryLocation::findOrFail($deliveryLocation);
+        $location = Location::findOrFail($location);
 
-        $this->selectedProvinceId = $deliveryLocation->province_id;
+        $this->selectedProvinceId = $location->province_id;
 
         $this->fillAllRegencies();
-        $this->selectedRegencyId = $deliveryLocation->regency_id;
+        $this->selectedRegencyId = $location->regency_id;
 
         $this->fillAllDistricts();
-        $this->selectedDistrictId = $deliveryLocation->district_id;
+        $this->selectedDistrictId = $location->district_id;
     }
 
     public function updatedSelectedProvinceId(): void

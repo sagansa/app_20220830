@@ -36,11 +36,6 @@ class Store extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function contractLocations()
-    {
-        return $this->hasMany(ContractLocation::class);
-    }
-
     public function vehicles()
     {
         return $this->hasMany(Vehicle::class);
@@ -149,6 +144,11 @@ class Store extends Model
     public function salesOrderDirects()
     {
         return $this->hasMany(SalesOrderDirect::class);
+    }
+
+    public function locations()
+    {
+        return $this->hasMany(Location::class);
     }
 
     public function delete_image()
