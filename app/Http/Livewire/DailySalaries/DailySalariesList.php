@@ -78,7 +78,18 @@ class DailySalariesList extends Component
     public function mount()
     {
         $this->paymentTypes = PaymentType::orderBy('name', 'asc')->whereIn('id', ['1', '2'])->pluck('id', 'name');
-        $this->users = User::orderBy('name', 'asc')->pluck('id', 'name');
+        $this->users = User::orderBy('name', 'asc')->pluck('id', 'name')->whereHas('roles', function ($query){
+            $query->whereIn('status', '');
+        });
+
+        // $user = User::where(function($query){
+        //        $query->where('age','>=',18);
+
+        //     })->whereHas('blogs', function ($query){
+
+        //             $query->where('text', 'LIKE', '%game%');
+
+        //     });
     }
 
     public function getRowsQueryProperty()
