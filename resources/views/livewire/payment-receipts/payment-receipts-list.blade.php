@@ -120,6 +120,7 @@
                         <x-tables.td-left-hide>
                             @foreach ($paymentReceipt->dailySalaries as $dailySalary)
                                 <p>{{ $dailySalary->created_by->name }} |
+                                    {{ $dailySalary->date->toFormattedDate() }} |
                                     @currency($dailySalary->amount)</p>
                             @endforeach
 
