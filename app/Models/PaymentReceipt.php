@@ -13,7 +13,7 @@ class PaymentReceipt extends Model
     use HasFactory;
     use Searchable;
 
-    const FORES = [
+    const PAYMENT_FORES = [
         '1' => 'fuel service',
         '2' => 'daily salary',
         '3' => 'invoice purchase',
