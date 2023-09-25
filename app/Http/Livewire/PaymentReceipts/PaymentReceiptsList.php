@@ -57,6 +57,13 @@ class PaymentReceiptsList extends Component
         return $this->applySorting($paymentReceipts);
     }
 
+    public function getRowsProperty()
+    {
+        return $this->cache(function () {
+            return $this->applyPagination($this->rowsQuery);
+        });
+    }
+
     public function render()
     {
         // $paymentReceipts = PaymentReceipt::query()->latest();
