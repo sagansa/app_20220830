@@ -99,7 +99,7 @@
                                 </p>
                                 <p>
                                     @foreach ($paymentReceipt->dailySalaries as $dailySalary)
-                                        <p>{{ $dailySalary->created_by->name }} |
+                                        <p>{{ $dailySalary->created_by->name }} | {{ $dailySalary->date }}
                                             @currency($dailySalary->amount)</p>
                                     @endforeach
                                     @foreach ($paymentReceipt->fuelServices as $fuelService)
