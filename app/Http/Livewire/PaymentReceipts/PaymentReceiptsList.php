@@ -23,7 +23,7 @@ class PaymentReceiptsList extends Component
 
     ];
 
-    public $fiters = [
+    public $filters = [
         'payment_for' => '',
     ];
 
