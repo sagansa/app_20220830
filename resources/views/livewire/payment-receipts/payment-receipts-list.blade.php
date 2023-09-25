@@ -7,7 +7,27 @@
     </x-slot>
 
     <x-tables.topbar>
-        <x-slot name="search"></x-slot>
+        <x-slot name="search">
+            <x-buttons.link wire:click.prevent="$toggle('showFilters')">
+                @if ($showFilters)
+                    Hide
+                @endif Advanced Search...
+            </x-buttons.link>
+            @if ($showFilters)
+
+                <x-filters.group>
+                    <x-filters.label>Payment For</x-filters.label>
+                    <x-filters.select wire:model="filters.payment_for">
+                        @foreach (App\Models\PAYMENTRECEIPT::PAYMENT_FORES as $value => $label)
+                            <option value="{{ $value }}">{{ $label }}</option>
+                        @endforeach
+                    </x-filters.select>
+                </x-filters.group>
+
+                <x-buttons.link wire:click.prevent="resetFilters">Reset Filter
+                </x-buttons.link>
+            @endif
+        </x-slot>
         <x-slot name="action">
             <div class="flex flex-wrap justify-between mt-1">
                 <div class="mt-1 md:w-1/2">

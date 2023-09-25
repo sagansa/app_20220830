@@ -13,11 +13,10 @@ class PaymentReceipt extends Model
     use HasFactory;
     use Searchable;
 
-    const STATUSES = [
-        '1' => 'belum diperiksa',
-        '2' => 'valid',
-        '3' => 'diperbaiki',
-        '4' => 'periksa ulang',
+    const FORES = [
+        '1' => 'fuel service',
+        '2' => 'daily salary',
+        '3' => 'invoice purchase',
     ];
 
     protected $fillable = [

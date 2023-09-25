@@ -24,19 +24,27 @@ class PaymentReceiptsList extends Component
     ];
 
     public $fiters = [
-
+        'payment_for' => '',
     ];
 
     public function rules()
     {
         return [
-
+            'editing.payment_for' => 'required|in:1,2,3',
         ];
     }
 
-    public function render()
+    public function getRowsQueryProperty()
     {
-        $paymentReceipts = PaymentReceipt::query()->latest();
+        $paymentReceipts = PaymentReceipt::query()
+            ->latest();
+
+        foreach ($this->filters as $filter => $value) {
+            if (!empty($value)) {
+                $paymentReceipts
+                    ->when($filter == 'payment_for', fn($paymentReceipts) => $paymentReceipts->where('payment_receipts.' . $filter, 'LIKE', '%' . $value . '%'));
+            }
+        }
 
         foreach($paymentReceipts as $paymentReceipt) {
             foreach($paymentReceipt->invoicePurchases as $invoicePurchase) {
@@ -46,8 +54,24 @@ class PaymentReceiptsList extends Component
             $paymentReceipt->totals += $invoicePurchase->subtotals;
         }
 
+        return $this->applySorting($paymentReceipts);
+    }
+
+    public function render()
+    {
+        // $paymentReceipts = PaymentReceipt::query()->latest();
+
+        // foreach($paymentReceipts as $paymentReceipt) {
+        //     foreach($paymentReceipt->invoicePurchases as $invoicePurchase) {
+        //         $invoicePurchase->subtotals += $invoicePurchase->detailInvoices->sum('subtotal_invoice') - $invoicePurchase->discounts + $invoicePurchase->taxes;
+        //     }
+
+        //     $paymentReceipt->totals += $invoicePurchase->subtotals;
+        // }
+
         return view('livewire.payment-receipts.payment-receipts-list', [
-            'paymentReceipts' => $paymentReceipts->paginate(10),
+            // 'paymentReceipts' => $paymentReceipts->paginate(10),
+            'paymentReceipts' => $this->rows,
         ]);
     }
 }
