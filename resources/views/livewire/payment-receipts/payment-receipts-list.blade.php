@@ -18,7 +18,7 @@
                 <x-filters.group>
                     <x-filters.label>Payment For</x-filters.label>
                     <x-filters.select wire:model="filters.payment_for">
-                        @foreach (App\Models\PAYMENTRECEIPT::PAYMENT_FORES as $value => $label)
+                        @foreach (App\Models\PaymentReceipt::PAYMENT_FORES as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </x-filters.select>
