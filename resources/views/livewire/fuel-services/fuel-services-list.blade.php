@@ -150,7 +150,10 @@
                         <x-tables.td-right-hide>@number($fuelService->liter)</x-tables.td-right-hide>
                         <x-tables.td-right-hide>@currency($fuelService->amount)</x-tables.td-right-hide>
                         @role('super-admin')
-                            <x-tables.td-right-hide>@currency($fuelService->amount / $fuelService->liter)
+                            <x-tables.td-right-hide>
+                                @if ($fuelService->fuel_service == 1)
+                                    @currency($fuelService->amount / $fuelService->liter)
+                                @endif
                             </x-tables.td-right-hide>
                             <x-tables.td-right-hide>
                                 {{ $fuelService->created_by->name }}
