@@ -32,7 +32,7 @@
                             @if ($paymentReceipt->payment_for == 1)
                                 <p>fuel service</p>
                             @elseif ($paymentReceipt->payment_for == 2)
-                                <p>dailySalary</p>
+                                <p>daily salary</p>
                             @elseif ($paymentReceipt->payment_for == 3)
                                 <p>invoice purchase</p>
                             @endif

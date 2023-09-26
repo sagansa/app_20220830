@@ -34,6 +34,8 @@ class FuelServicesList extends Component
 
     public $filters = [
         'status' => '',
+        'payment_type_id' => null,
+        'fuel_service' => '',
     ];
 
     public function mount()
@@ -50,6 +52,7 @@ class FuelServicesList extends Component
             if (!empty($value)) {
                 $fuelServices
                     ->when($filter == 'payment_type_id', fn($fuelServices) => $fuelServices->whereRelation('paymentType', 'id', $value))
+                    ->when($filter == 'fuel_service', fn($fuelServices) => $fuelServices->where('fuel_services.' . $filter, 'LIKE', '%' . $value . '%'))
                     ->when($filter == 'status', fn($fuelServices) => $fuelServices->where('fuel_services.' . $filter, 'LIKE', '%' . $value . '%'));
             }
         }

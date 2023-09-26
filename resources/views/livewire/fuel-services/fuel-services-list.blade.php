@@ -25,6 +25,15 @@
 
                 <x-filters.group>
                     <x-filters.label>Status</x-filters.label>
+                    <x-filters.select wire:model="filters.fuel_service">
+                        @foreach (App\Models\FuelService::FUELSERVICES as $value => $label)
+                            <option value="{{ $value }}">{{ $label }}</option>
+                        @endforeach
+                    </x-filters.select>
+                </x-filters.group>
+
+                <x-filters.group>
+                    <x-filters.label>Status</x-filters.label>
                     <x-filters.select wire:model="filters.status">
                         @foreach (App\Models\FuelService::STATUSES as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>

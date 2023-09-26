@@ -20,6 +20,11 @@ class FuelService extends Model
         '4' => 'perbaiki',
     ];
 
+    const FUELSERVICES = [
+        '1' => 'fuel',
+        '2' => 'service',
+    ];
+
     const STATUS_BELUM_DIBAYAR = '1';
     const STATUS_SUDAH_DIBAYAR = '2';
     const STATUS_SIAP_DIBAYAR = '3';
