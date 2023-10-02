@@ -59,11 +59,15 @@ class PresenceController extends Controller
                 'created_by_id' => Auth::user()->id,
                 'latitude_in' => $request->latitude_in,
                 'longitude_in' => $request->longitude_in,
+                'status' => 1,
                 'date' => date('Y-m-d'),
                 'time_in' => date('H:i:s'),
                 'store_id' => $request->store_id,
                 'shift_store_id' => $request->shift_store_id,
-                'image_in'
+                'image_in' => 1,
+                'image_out' => 1,
+                'latitude_out' => 1,
+                'longitude_out' => 1,
             ]);
         } else {
             $data = [
