@@ -51,7 +51,7 @@ class PresenceController extends Controller
     function savePresence(Request $request)
     {
         $keterangan = "";
-        $presence = Presence::whereDate('date', '=', date('Y-m-d'))
+        $presence = Presence::whereDate('date_in', '=', date('Y-m-d'))
                         ->where('created_by_id', Auth::user()->id)
                         ->first();
         if ($presence == null) {
