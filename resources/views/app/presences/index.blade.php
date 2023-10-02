@@ -49,13 +49,10 @@
                     >@lang('crud.presences.inputs.shift_store_id')</x-tables.th-left
                 >
                 <x-tables.th-left
-                    >@lang('crud.presences.inputs.date')</x-tables.th-left
+                    >@lang('crud.presences.inputs.date_in')</x-tables.th-left
                 >
                 <x-tables.th-left
-                    >@lang('crud.presences.inputs.created_by_id')</x-tables.th-left
-                >
-                <x-tables.th-left
-                    >@lang('crud.presences.inputs.approved_by_id')</x-tables.th-left
+                    >@lang('crud.presences.inputs.time_in')</x-tables.th-left
                 >
                 <x-tables.th-left
                     >@lang('crud.presences.inputs.latitude_in')</x-tables.th-left
@@ -65,6 +62,18 @@
                 >
                 <x-tables.th-left
                     >@lang('crud.presences.inputs.image_in')</x-tables.th-left
+                >
+                <x-tables.th-left
+                    >@lang('crud.presences.inputs.created_by_id')</x-tables.th-left
+                >
+                <x-tables.th-left
+                    >@lang('crud.presences.inputs.approved_by_id')</x-tables.th-left
+                >
+                <x-tables.th-left
+                    >@lang('crud.presences.inputs.date_out')</x-tables.th-left
+                >
+                <x-tables.th-left
+                    >@lang('crud.presences.inputs.time_out')</x-tables.th-left
                 >
                 <x-tables.th-left
                     >@lang('crud.presences.inputs.latitude_out')</x-tables.th-left
@@ -77,12 +86,6 @@
                 >
                 <x-tables.th-left
                     >@lang('crud.presences.inputs.status')</x-tables.th-left
-                >
-                <x-tables.th-left
-                    >@lang('crud.presences.inputs.time_in')</x-tables.th-left
-                >
-                <x-tables.th-left
-                    >@lang('crud.presences.inputs.time_out')</x-tables.th-left
                 >
                 <th></th>
             </x-slot>
@@ -98,15 +101,10 @@
                         }}</x-tables.td-left-hide
                     >
                     <x-tables.td-left-hide
-                        >{{ $presence->date ?? '-' }}</x-tables.td-left-hide
+                        >{{ $presence->date_in ?? '-' }}</x-tables.td-left-hide
                     >
                     <x-tables.td-left-hide
-                        >{{ optional($presence->created_by)->name ?? '-'
-                        }}</x-tables.td-left-hide
-                    >
-                    <x-tables.td-left-hide
-                        >{{ optional($presence->approved_by)->name ?? '-'
-                        }}</x-tables.td-left-hide
+                        >{{ $presence->time_in ?? '-' }}</x-tables.td-left-hide
                     >
                     <x-tables.td-right-hide
                         >{{ $presence->latitude_in ?? '-'
@@ -128,6 +126,20 @@
                         @endif
                     </x-tables.td-left-hide>
 
+                    <x-tables.td-left-hide
+                        >{{ optional($presence->created_by)->name ?? '-'
+                        }}</x-tables.td-left-hide
+                    >
+                    <x-tables.td-left-hide
+                        >{{ optional($presence->approved_by)->name ?? '-'
+                        }}</x-tables.td-left-hide
+                    >
+                    <x-tables.td-left-hide
+                        >{{ $presence->date_out ?? '-' }}</x-tables.td-left-hide
+                    >
+                    <x-tables.td-left-hide
+                        >{{ $presence->time_out ?? '-' }}</x-tables.td-left-hide
+                    >
                     <x-tables.td-right-hide
                         >{{ $presence->latitude_out ?? '-'
                         }}</x-tables.td-right-hide
@@ -150,12 +162,6 @@
 
                     <x-tables.td-left-hide
                         >{{ $presence->status ?? '-' }}</x-tables.td-left-hide
-                    >
-                    <x-tables.td-left-hide
-                        >{{ $presence->time_in ?? '-' }}</x-tables.td-left-hide
-                    >
-                    <x-tables.td-left-hide
-                        >{{ $presence->time_out ?? '-' }}</x-tables.td-left-hide
                     >
                     <td class="px-4 py-3 text-center" style="width: 134px;">
                         <div
@@ -191,7 +197,7 @@
                     </td>
                 </tr>
                 @empty
-                <x-tables.no-items-found colspan="15">
+                <x-tables.no-items-found colspan="16">
                 </x-tables.no-items-found>
                 @endforelse
             </x-slot>

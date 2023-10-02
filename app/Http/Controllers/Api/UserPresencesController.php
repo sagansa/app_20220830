@@ -32,16 +32,17 @@ class UserPresencesController extends Controller
         $validated = $request->validate([
             'store_id' => ['required', 'exists:stores,id'],
             'shift_store_id' => ['required', 'exists:shift_stores,id'],
-            'date' => ['required', 'date'],
+            'date_in' => ['required', 'date'],
+            'time_in' => ['required', 'date_format:H:i:s'],
             'latitude_in' => ['required', 'numeric'],
             'longitude_in' => ['required', 'numeric'],
             'image_in' => ['image', 'nullable'],
+            'date_out' => ['required', 'date'],
+            'time_out' => ['nullable', 'date_format:H:i:s'],
             'latitude_out' => ['nullable', 'numeric'],
             'longitude_out' => ['nullable', 'numeric'],
             'image_out' => ['image', 'nullable'],
-            'status' => ['required', 'max:255'],
-            'time_in' => ['required', 'date'],
-            'time_out' => ['nullable', 'date'],
+            'status' => ['required'],
         ]);
 
         if ($request->hasFile('image_in')) {

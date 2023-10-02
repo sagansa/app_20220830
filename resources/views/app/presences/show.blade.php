@@ -35,27 +35,15 @@
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
-                            >@lang('crud.presences.inputs.date')</x-shows.dt
+                            >@lang('crud.presences.inputs.date_in')</x-shows.dt
                         >
-                        <x-shows.dd>{{ $presence->date ?? '-' }}</x-shows.dd>
+                        <x-shows.dd>{{ $presence->date_in ?? '-' }}</x-shows.dd>
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
-                            >@lang('crud.presences.inputs.created_by_id')</x-shows.dt
+                            >@lang('crud.presences.inputs.time_in')</x-shows.dt
                         >
-                        <x-shows.dd
-                            >{{ optional($presence->created_by)->name ?? '-'
-                            }}</x-shows.dd
-                        >
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
-                            >@lang('crud.presences.inputs.approved_by_id')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ optional($presence->approved_by)->name ?? '-'
-                            }}</x-shows.dd
-                        >
+                        <x-shows.dd>{{ $presence->time_in ?? '-' }}</x-shows.dd>
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
@@ -87,6 +75,40 @@
                             />
                         </a>
                         @endif
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
+                            >@lang('crud.presences.inputs.created_by_id')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ optional($presence->created_by)->name ?? '-'
+                            }}</x-shows.dd
+                        >
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
+                            >@lang('crud.presences.inputs.approved_by_id')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ optional($presence->approved_by)->name ?? '-'
+                            }}</x-shows.dd
+                        >
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
+                            >@lang('crud.presences.inputs.date_out')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ $presence->date_out ?? '-' }}</x-shows.dd
+                        >
+                    </x-shows.sub-dl>
+                    <x-shows.sub-dl>
+                        <x-shows.dt
+                            >@lang('crud.presences.inputs.time_out')</x-shows.dt
+                        >
+                        <x-shows.dd
+                            >{{ $presence->time_out ?? '-' }}</x-shows.dd
+                        >
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt
@@ -124,20 +146,6 @@
                             >@lang('crud.presences.inputs.status')</x-shows.dt
                         >
                         <x-shows.dd>{{ $presence->status ?? '-' }}</x-shows.dd>
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
-                            >@lang('crud.presences.inputs.time_in')</x-shows.dt
-                        >
-                        <x-shows.dd>{{ $presence->time_in ?? '-' }}</x-shows.dd>
-                    </x-shows.sub-dl>
-                    <x-shows.sub-dl>
-                        <x-shows.dt
-                            >@lang('crud.presences.inputs.time_out')</x-shows.dt
-                        >
-                        <x-shows.dd
-                            >{{ $presence->time_out ?? '-' }}</x-shows.dd
-                        >
                     </x-shows.sub-dl>
                     <x-shows.sub-dl>
                         <x-shows.dt>Created Date</x-shows.dt>

@@ -18,28 +18,22 @@
     </x-input.select>
 
     <x-input.date
-        name="date"
-        label="Date"
-        value="{{ old('date', ($editing ? optional($presence->date)->format('Y-m-d') : '')) }}"
+        name="date_in"
+        label="Date In"
+        value="{{ old('date_in', ($editing ? optional($presence->date_in)->format('Y-m-d') : '')) }}"
         max="255"
         required
     ></x-input.date>
 
-    <x-input.select name="created_by_id" label="Created By">
-        @php $selected = old('created_by_id', ($editing ? $presence->created_by_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach($users as $value => $label)
-        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
-        @endforeach
-    </x-input.select>
-
-    <x-input.select name="approved_by_id" label="Approved By">
-        @php $selected = old('approved_by_id', ($editing ? $presence->approved_by_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach($users as $value => $label)
-        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
-        @endforeach
-    </x-input.select>
+    <x-inputs.group class="w-full">
+        <x-inputs.datetime
+            name="time_in"
+            label="Time In"
+            value="{{ old('time_in', ($editing ? optional($presence->time_in)->format('Y-m-d\TH:i:s') : '')) }}"
+            max="255"
+            required
+        ></x-inputs.datetime>
+    </x-inputs.group>
 
     <x-input.number
         name="latitude_in"
@@ -95,6 +89,39 @@
         </div>
     </x-input.image>
 
+    <x-input.select name="created_by_id" label="Created By">
+        @php $selected = old('created_by_id', ($editing ? $presence->created_by_id : '')) @endphp
+        <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
+        @foreach($users as $value => $label)
+        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+        @endforeach
+    </x-input.select>
+
+    <x-input.select name="approved_by_id" label="Approved By">
+        @php $selected = old('approved_by_id', ($editing ? $presence->approved_by_id : '')) @endphp
+        <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
+        @foreach($users as $value => $label)
+        <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+        @endforeach
+    </x-input.select>
+
+    <x-input.date
+        name="date_out"
+        label="Date Out"
+        value="{{ old('date_out', ($editing ? optional($presence->date_out)->format('Y-m-d') : '')) }}"
+        max="255"
+        required
+    ></x-input.date>
+
+    <x-inputs.group class="w-full">
+        <x-inputs.datetime
+            name="time_out"
+            label="Time Out"
+            value="{{ old('time_out', ($editing ? optional($presence->time_out)->format('Y-m-d\TH:i:s') : '')) }}"
+            max="255"
+        ></x-inputs.datetime>
+    </x-inputs.group>
+
     <x-input.number
         name="latitude_out"
         label="Latitude Out"
@@ -149,26 +176,10 @@
 
     <x-input.select name="status" label="Status">
         @php $selected = old('status', ($editing ? $presence->status : '1')) @endphp
+        <option value="1" {{ $selected == '1' ? 'selected' : '' }} >belum valid</option>
+        <option value="2" {{ $selected == '2' ? 'selected' : '' }} >valid</option>
+        <option value="3" {{ $selected == '3' ? 'selected' : '' }} >tidak valid</option>
     </x-input.select>
-
-    <x-inputs.group class="w-full">
-        <x-inputs.datetime
-            name="time_in"
-            label="Time In"
-            value="{{ old('time_in', ($editing ? optional($presence->time_in)->format('Y-m-d\TH:i:s') : '')) }}"
-            max="255"
-            required
-        ></x-inputs.datetime>
-    </x-inputs.group>
-
-    <x-inputs.group class="w-full">
-        <x-inputs.datetime
-            name="time_out"
-            label="Time Out"
-            value="{{ old('time_out', ($editing ? optional($presence->time_out)->format('Y-m-d\TH:i:s') : '')) }}"
-            max="255"
-        ></x-inputs.datetime>
-    </x-inputs.group>
 
     @if ($editing)
     <x-shows.dl>

@@ -22,13 +22,13 @@ class PresenceController extends Controller
     {
         $presences = Presence::where('created_by_id', Auth::user()->id)->get();
         foreach($presences as $item) {
-            if ($item->date == date('Y-m-d')) {
+            if ($item->date_in == date('Y-m-d')) {
                 $item->is_hari_ini = true;
             } else {
                 $item->is_hari_ini = false;
             }
 
-            $datetime = Carbon::parse($item->date)->locale('id');
+            $datetime = Carbon::parse($item->date_in)->locale('id');
             $time_in = Carbon::parse($item->time_in)->locale('id');
             $time_out = Carbon::parse($item->time_out)->locale('id');
 
@@ -36,7 +36,7 @@ class PresenceController extends Controller
             $time_in->settings(['formatFunction' => 'translatedFormat']);
             $time_out->settings(['formatFunction' => 'translatedFormat']);
 
-            $item->date = $datetime->format('l, j F Y');
+            $item->date_in = $datetime->format('l, j F Y');
             $item->time_in = $time_in->format('h:i A');
             $item->time_out = $time_out->format('h:i A');
         }
@@ -60,26 +60,24 @@ class PresenceController extends Controller
                 'latitude_in' => $request->latitude_in,
                 'longitude_in' => $request->longitude_in,
                 'status' => 1,
-                'date' => date('Y-m-d'),
+                'date_in' => date('Y-m-d'),
                 'time_in' => date('H:i:s'),
                 'store_id' => $request->store_id,
                 'shift_store_id' => $request->shift_store_id,
                 // 'image_in' => 1,
-                // 'image_out' => 1,
-                // 'latitude_out' => 1,
-                // 'longitude_out' => 1,
             ]);
         } else {
             $data = [
+                'date_out' => date('Y-m-d'),
                 'time_out' => date('H:i:s'),
                 'latitude_out' => $request->latitude_out,
                 'longitude_out' => $request->longitude_out,
             ];
 
-            Presence::whereDate('date', '=', date('Y-m-d'))->update($data);
+            Presence::whereDate('date_in', '=', date('Y-m-d'))->update($data);
 
         }
-        $presence = Presence::whereDate('date', '=', date('Y-m-d'))
+        $presence = Presence::whereDate('date_in', '=', date('Y-m-d'))
                  ->first();
 
         return response()->json([
