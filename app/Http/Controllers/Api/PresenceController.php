@@ -72,8 +72,8 @@ class PresenceController extends Controller
         } else {
             $data = [
                 'time_out' => date('H:i:s'),
-                'latitude_in' => $request->latitude_out,
-                'longitude_in' => $request->longitude_out,
+                'latitude_out' => $request->latitude_out,
+                'longitude_out' => $request->longitude_out,
             ];
 
             Presence::whereDate('date', '=', date('Y-m-d'))->update($data);
