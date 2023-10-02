@@ -64,10 +64,10 @@ class PresenceController extends Controller
                 'time_in' => date('H:i:s'),
                 'store_id' => $request->store_id,
                 'shift_store_id' => $request->shift_store_id,
-                'image_in' => 1,
-                'image_out' => 1,
-                'latitude_out' => 1,
-                'longitude_out' => 1,
+                // 'image_in' => 1,
+                // 'image_out' => 1,
+                // 'latitude_out' => 1,
+                // 'longitude_out' => 1,
             ]);
         } else {
             $data = [
