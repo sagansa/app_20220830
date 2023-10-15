@@ -36,8 +36,8 @@ class PresenceController extends Controller
             $time_in->settings(['formatFunction' => 'translatedFormat']);
             $time_out->settings(['formatFunction' => 'translatedFormat']);
 
-            $item->time_in = $time_in->format('h:i A');
-            $item->time_out = $time_out->format('h:i A');
+            // $item->time_in = $time_in->format('h:i A');
+            // $item->time_out = $time_out->format('h:i A');
         }
 
         return response()->json([
