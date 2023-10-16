@@ -20,7 +20,7 @@ class PresenceController extends Controller
 {
     function getPresenceToday()
     {
-        $presenceToday = Presence::whereDate('created_at', '>=', Carbon::now()->subDay())
+        $presenceToday = Presence::whereDate('created_at', '>=', Carbon::now()->subHours(12))
             ->where('created_by_id', Auth::user()->id)->first();
 
         return response()->json([
