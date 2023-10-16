@@ -74,7 +74,7 @@ class PresenceController extends Controller
             ];
 
             // Presence::whereDate('date_in', '=', date('Y-m-d'))->update($data);
-            Presence::whereDate('date_in', '>', now()->subDays(1))->update($data);
+            Presence::whereDate('date_in', '>', Carbon::now()->subDay())->update($data);
 
         }
         $presence = Presence::whereDate('date_in', '=', date('Y-m-d'))
