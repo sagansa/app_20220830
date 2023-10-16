@@ -73,7 +73,7 @@ class PresenceController extends Controller
                 'longitude_out' => $request->longitude_out,
             ];
 
-            Presence::whereDate('date_in', '=', now()->subDays(1))->update($data);
+            Presence::whereDate('date_in', '=', date('Y-m-d'))->update($data);
 
         }
         $presence = Presence::whereDate('date_in', '=', date('Y-m-d'))
