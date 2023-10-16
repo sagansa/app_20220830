@@ -56,6 +56,7 @@ class PresenceController extends Controller
         //                 ->first();
 
         $presence = Presence::whereDate('created_at', '>=', Carbon::now()->subDay())
+                        ->where('date_out', '=', NULL)
                         ->where('created_by_id', Auth::user()->id)
                         ->first();
 
