@@ -29,6 +29,7 @@ class PresenceController extends Controller
             }
 
             $datetime = Carbon::parse($item->date_in)->locale('id');
+            $datetime = Carbon::parse($item->date_out)->locale('id');
             $time_in = Carbon::parse($item->time_in)->locale('id');
             $time_out = Carbon::parse($item->time_out)->locale('id');
 
@@ -82,8 +83,8 @@ class PresenceController extends Controller
             Presence::whereDate('created_at', '>=', Carbon::now()->subDay())->update($data);
 
         }
-        $presence = Presence::whereDate('date_in', '=', date('Y-m-d'))
-                 ->first();
+        // $presence = Presence::whereDate('date_in', '=', date('Y-m-d'))
+        //          ->first();
 
         return response()->json([
             'success' => true,
