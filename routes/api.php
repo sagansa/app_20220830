@@ -2338,4 +2338,5 @@ Route::name('api.')
         // Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
         Route::get('/get-presence',  [PresenceController::class, 'getPresences']);
         Route::post('save-presence', [PresenceController::class, 'savePresence']);
+        Route::get('/get-presence-today', [PresenceController::class, 'getPresenceToday']);
     });

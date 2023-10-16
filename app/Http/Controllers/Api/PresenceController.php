@@ -18,6 +18,18 @@ date_default_timezone_set("Asia/Jakarta");
 
 class PresenceController extends Controller
 {
+    function getPresenceToday()
+    {
+        $presenceToday = Presence::whereDate('created_at', '>=', Carbon::now()->subDay())
+            ->where('created_by_id', Auth::user()->id)->first();
+
+        return response()->json([
+            'success' => true,
+            'data' => $presenceToday,
+            'message' => 'Sukses menampilkan data'
+        ]);
+    }
+
     function getPresences()
     {
         $presences = Presence::where('created_by_id', Auth::user()->id)->get();
@@ -82,7 +94,7 @@ class PresenceController extends Controller
             ];
 
             // Presence::whereDate('date_in', '=', date('Y-m-d'))->update($data);
-            Presence::whereDate('created_at', '>=', Carbon::now()->subDay())->update($data);
+            Presence::whereDate('created_at', '>=', Carbon::now()->subHours(12))->update($data);
 
         }
         // $presence = Presence::whereDate('date_in', '=', date('Y-m-d'))
