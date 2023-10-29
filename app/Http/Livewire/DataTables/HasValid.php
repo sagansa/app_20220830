@@ -120,5 +120,33 @@ trait HasValid
         return $names[$this->delivery_status];
     }
 
+    public function getApprovalStatusBadgeAttribute()
+    {
+    	$badges = [
+    		'1' => 'bg-yellow-100 text-yellow-800',
+    		'2' => 'bg-green-100 text-green-800',
+            '3' => 'bg-red-100 text-red-800',
+            '4' => 'bg-green-100 text-green-800',
+            '5' => 'bg-red-100 text-red-800',
+            '6' => 'bg-gray-100 text-gray-800',
+    	];
+
+    	return $badges[$this->status];
+    }
+
+    public function getApprovalStatusNameAttribute()
+    {
+        $names = [
+        '1' => 'process',
+        '2' => 'done',
+        '3' => 'reject',
+        '4' => 'approved',
+        '5' => 'not valid',
+        '6' => 'not used',
+        ];
+
+        return $names[$this->status];
+    }
+
 
 }

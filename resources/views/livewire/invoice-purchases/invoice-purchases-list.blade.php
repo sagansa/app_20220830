@@ -216,8 +216,8 @@
                                             @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product) -
                                             {{-- {{ $detailInvoice->detailRequest->status }} --}}
                                             <x-spans.status-valid
-                                                class="{{ $detailInvoice->detailRequest->status_badge }}">
-                                                {{ $detailInvoice->detailRequest->status_name }}
+                                                class="{{ $detailInvoice->detailRequest->approval_status_badge }}">
+                                                {{ $detailInvoice->detailRequest->approval_status_name }}
                                             </x-spans.status-valid>
                                         </p>
                                     @endif
