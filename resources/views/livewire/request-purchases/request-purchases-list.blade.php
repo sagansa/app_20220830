@@ -142,14 +142,15 @@
                                     <a href="{{ route('request-purchases.show', $requestPurchase) }}" class="mr-1">
                                         <x-buttons.show></x-buttons.show>
                                     </a>
+                                    @can('delete', $requestPurchase)
+                                        <form action="{{ route('request-purchases.destroy', $requestPurchase) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
+                                            @csrf @method('DELETE')
+                                            <x-buttons.delete></x-buttons.delete>
+                                        </form>
+                                    @endcan
                                 @endif
-                                @can('delete', $requestPurchase)
-                                    <form action="{{ route('request-purchases.destroy', $requestPurchase) }}"
-                                        method="POST" onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
-                                        @csrf @method('DELETE')
-                                        <x-buttons.delete></x-buttons.delete>
-                                    </form>
-                                @endcan
                             </div>
                         </td>
                     </tr>
