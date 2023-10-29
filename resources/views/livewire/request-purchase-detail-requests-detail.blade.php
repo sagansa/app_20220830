@@ -39,6 +39,7 @@
                         <option value="3" {{ $selected == '3' ? 'selected' : '' }}>reject</option>
                         <option value="4" {{ $selected == '4' ? 'selected' : '' }}>approved</option>
                         <option value="5" {{ $selected == '5' ? 'selected' : '' }}>not valid</option>
+                        <option value="5" {{ $selected == '5' ? 'selected' : '' }}>not used</option>
                     </x-input.select>
                 @endrole
                 @role('supervisor|staff')
@@ -81,7 +82,9 @@
                 @foreach ($detailRequests as $detailRequest)
                     <tr class="hover:bg-gray-100">
                         <x-tables.td-left>
-                            <input type="checkbox" value="{{ $detailRequest->id }}" wire:model="selected" />
+                            @if ($detailRequest->status != 2)
+                                <input type="checkbox" value="{{ $detailRequest->id }}" wire:model="selected" />
+                            @endif
                         </x-tables.td-left>
                         <x-tables.td-left>
                             {{ optional($detailRequest->product)->name ?? '-' }}
@@ -100,6 +103,8 @@
                                 <x-spans.green>approved</x-spans.green>
                             @elseif ($detailRequest->status == 5)
                                 <x-spans.red>not valid</x-spans.red>
+                            @elseif ($detailRequest->status == 6)
+                                <x-spans.grey>not used</x-spans.grey>
                             @endif
                         </x-tables.td-left>
                         <x-tables.td-left>
@@ -108,7 +113,7 @@
                         <td class="px-4 py-3 text-right" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @can('update', $detailRequest)
-                                    @if ($requestPurchase->status != 2)
+                                    @if ($detailRequest->status != 2)
                                         <button type="button" class="button"
                                             wire:click="editDetailRequest({{ $detailRequest->id }})">
                                             <i class="icon ion-md-create"></i>

@@ -20,6 +20,8 @@ class RequestPurchaseApprovals extends Component
 
     public DetailRequest $editing;
 
+    public $products;
+
     public $sortColumn = 'detail_requests.created_at';
 
     protected $queryString = [
