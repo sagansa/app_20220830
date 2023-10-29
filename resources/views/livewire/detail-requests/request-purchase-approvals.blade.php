@@ -19,6 +19,13 @@
 
                 <x-filters.group>
                     <x-filters.label>Status</x-filters.label>
+                    <x-filters.select wire:model="filters.product_id">
+
+                    </x-filters.select>
+                </x-filters.group>
+
+                <x-filters.group>
+                    <x-filters.label>Status</x-filters.label>
                     <x-filters.select wire:model="filters.status">
                         @foreach (App\Models\DetailRequest::STATUSES as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>

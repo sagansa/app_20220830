@@ -9,13 +9,14 @@ use App\Http\Livewire\DataTables\WithModal;
 use App\Http\Livewire\DataTables\WithSimpleTablePagination;
 use App\Http\Livewire\DataTables\WithSortingDate;
 use App\Models\DetailRequest;
+use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class RequestPurchaseApprovals extends Component
 {
-     use WithSimpleTablePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
+    use WithSimpleTablePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
 
     public DetailRequest $editing;
 
@@ -31,8 +32,14 @@ class RequestPurchaseApprovals extends Component
     ];
 
     public $filters = [
+        'product_id' => null,
         'status' => '',
     ];
+
+    public function mount()
+    {
+        $this->products = Product::orderBy('name', 'asc')->pluck('id', 'name');
+    }
 
     public function changeStatus(DetailRequest $detailRequest, $status)
     {
@@ -62,6 +69,7 @@ class RequestPurchaseApprovals extends Component
         foreach ($this->filters as $filter => $value) {
             if (!empty($value)) {
                 $detailRequests
+                    ->when($filter == 'product_id', fn($detailRequests) => $detailRequests->whereRelation('product', 'id', $value))
                     ->when($filter == 'status', fn($detailRequests) => $detailRequests->where('detail_requests.' . $filter, 'LIKE', '%' . $value . '%'));
             }
         }
