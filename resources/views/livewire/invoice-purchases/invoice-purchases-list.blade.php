@@ -198,7 +198,11 @@
                                         {{ $detailInvoice->quantity_product }}
                                         {{ $detailInvoice->detailRequest->product->unit->unit }} -
                                         @role('super-admin')
-                                            @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product) -
+                                            @if ($detailInvoice->quantity_product != 0)
+                                                @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product) -
+                                            @else
+                                                0
+                                            @endif
                                         @endrole
                                         <x-spans.status-valid
                                             class="{{ $detailInvoice->detailRequest->approval_status_badge }}">
@@ -212,7 +216,6 @@
                         @role('staff|supervisor|manager')
                             <x-tables.td-left-hide>
                                 @currency($invoicePurchase->detail_invoices_sum_subtotal_invoice - $invoicePurchase->discounts + $invoicePurchase->taxes)
-                                </@currency>
                             </x-tables.td-left-hide>
                         @endrole
                         @role('super-admin')
