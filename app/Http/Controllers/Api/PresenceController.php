@@ -33,25 +33,25 @@ class PresenceController extends Controller
     function getPresences()
     {
         $presences = Presence::where('created_by_id', Auth::user()->id)->get();
-        foreach($presences as $item) {
-            if ($item->date_in == date('Y-m-d')) {
-                $item->is_hari_ini = true;
-            } else {
-                $item->is_hari_ini = false;
-            }
+        // foreach($presences as $item) {
+        //     if ($item->date_in == date('Y-m-d')) {
+        //         $item->is_hari_ini = true;
+        //     } else {
+        //         $item->is_hari_ini = false;
+        //     }
 
-            $datetime = Carbon::parse($item->date_in)->locale('id');
-            $datetime = Carbon::parse($item->date_out)->locale('id');
-            $time_in = Carbon::parse($item->time_in)->locale('id');
-            $time_out = Carbon::parse($item->time_out)->locale('id');
+            // $datetime = Carbon::parse($item->date_in)->locale('id');
+            // $datetime = Carbon::parse($item->date_out)->locale('id');
+            // $time_in = Carbon::parse($item->time_in)->locale('id');
+            // $time_out = Carbon::parse($item->time_out)->locale('id');
 
-            $datetime->settings(['formatFunction' => 'translatedFormat']);
-            $time_in->settings(['formatFunction' => 'translatedFormat']);
-            $time_out->settings(['formatFunction' => 'translatedFormat']);
+            // $datetime->settings(['formatFunction' => 'translatedFormat']);
+            // $time_in->settings(['formatFunction' => 'translatedFormat']);
+            // $time_out->settings(['formatFunction' => 'translatedFormat']);
 
-            // $item->time_in = $time_in->format('h:i A');
-            // $item->time_out = $time_out->format('h:i A');
-        }
+            // // $item->time_in = $time_in->format('h:i A');
+            // // $item->time_out = $time_out->format('h:i A');
+        // }
 
         return response()->json([
             'success' => true,

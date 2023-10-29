@@ -18,6 +18,7 @@ class DetailRequest extends Model
     const STATUS_REJECT = '3';
     const STATUS_APPROVED = '4';
     const STATUS_NOT_VALID = '5';
+    const STATUS_NOT_USED = '6';
 
     const STATUSES = [
         '1' => 'process',
@@ -25,6 +26,7 @@ class DetailRequest extends Model
         '3' => 'reject',
         '4' => 'approved',
         '5' => 'not valid',
+        '6' => 'not used',
     ];
 
     protected $fillable = [

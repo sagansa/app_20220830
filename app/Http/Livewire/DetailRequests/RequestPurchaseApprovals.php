@@ -45,6 +45,7 @@ class RequestPurchaseApprovals extends Component
                     DetailRequest::STATUS_DONE,
                     DetailRequest::STATUS_REJECT,
                     DetailRequest::STATUS_NOT_VALID,
+                    DetailRequest::STATUS_NOT_USED,
                 ),
 			],
 		])->validate();
