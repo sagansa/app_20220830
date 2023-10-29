@@ -20,7 +20,9 @@
                 <x-filters.group>
                     <x-filters.label>Status</x-filters.label>
                     <x-filters.select wire:model="filters.product_id">
-
+                        @foreach ($products as $label => $value)
+                            <option value="{{ $value }}">{{ $label }}</option>
+                        @endforeach
                     </x-filters.select>
                 </x-filters.group>
 
