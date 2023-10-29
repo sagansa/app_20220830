@@ -40,7 +40,8 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->productsForSelect = Product::orderBy('name', 'asc')
             ->get()->pluck('id', 'product_name');
 
-        $this->products = Product::all()->map(function ($product) {
+        $this->products = Product::orderBy('name', 'asc')
+            ->get()->map(function ($product) {
             return [
                 'label' => $product->product_name,
                 'value' => $product->id,
