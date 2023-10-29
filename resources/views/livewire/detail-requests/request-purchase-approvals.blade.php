@@ -41,6 +41,15 @@
             @endif
         </x-slot>
         <x-slot name="action">
+            <div class="flex flex-wrap justify-between mt-1">
+                <div class="mt-1 md:w-1/3">
+                    @role('super-admin')
+                        {{-- <x-buttons.green wire:click.prevent="markAllAsSudahDibayar">Sudah Dibayar</x-buttons.green>
+                        <x-buttons.yellow wire:click.prevent="markAllAsBelumDibayar">Belum Dibayar</x-buttons.yellow> --}}
+                        <x-buttons.green wire:click.prevent='markAllAsDone'>Done</x-buttons.green>
+                    @endrole
+                </div>
+            </div>
         </x-slot>
     </x-tables.topbar>
 
@@ -48,6 +57,9 @@
         <x-table>
             <x-slot name="head">
                 <tr>
+                    @role('super-admin')
+                        <th></th>
+                    @endrole
                     <x-tables.th-left>
                         Product
                     </x-tables.th-left>
@@ -78,6 +90,9 @@
             <x-slot name="body">
                 @foreach ($detailRequests as $detailRequest)
                     <tr class="hover:bg-gray-100">
+                        @role('super-admin')
+                            <x-tables.td-checkbox id="{{ $detailRequest->id }}"></x-tables.td-checkbox>
+                        @endrole
                         <x-tables.td-left-main>
                             <x-slot name="main"> {{ $detailRequest->product->name }}</x-slot>
                             <x-slot name="sub">

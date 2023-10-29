@@ -90,4 +90,11 @@ class RequestPurchaseApprovals extends Component
               'detailRequests' => $this->rows,
         ]);
     }
+
+    public function markAllAsDone()
+    {
+        DetailRequest::whereIn('id', $this->selectedRows)->update([
+            'status' => '2',
+        ]);
+    }
 }
