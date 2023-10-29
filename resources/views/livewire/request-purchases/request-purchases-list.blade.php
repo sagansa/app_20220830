@@ -138,10 +138,6 @@
                                     <a href="{{ route('request-purchases.edit', $requestPurchase) }}" class="mr-1">
                                         <x-buttons.edit></x-buttons.edit>
                                     </a>
-                                @elseif($requestPurchase->status == '2')
-                                    <a href="{{ route('request-purchases.show', $requestPurchase) }}" class="mr-1">
-                                        <x-buttons.show></x-buttons.show>
-                                    </a>
                                     @can('delete', $requestPurchase)
                                         <form action="{{ route('request-purchases.destroy', $requestPurchase) }}"
                                             method="POST"
@@ -150,6 +146,10 @@
                                             <x-buttons.delete></x-buttons.delete>
                                         </form>
                                     @endcan
+                                @elseif($requestPurchase->status == '2')
+                                    <a href="{{ route('request-purchases.show', $requestPurchase) }}" class="mr-1">
+                                        <x-buttons.show></x-buttons.show>
+                                    </a>
                                 @endif
                             </div>
                         </td>
