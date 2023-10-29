@@ -21,11 +21,15 @@ class InvoicePurchasesList extends Component
 
     public InvoicePurchase $editing;
 
-    public $sortColumn = 'invoice_purchases.date';
+    public $suppliers;
+    public $stores;
+    public $paymentTypes;
+
+    public $sortColumn = 'invoice_purchases.created_date';
 
     protected $queryString = [
         'sortColumn' => [
-        'except' => 'invoice_purchases.date'
+        'except' => 'invoice_purchases.created_date'
         ],
         'sortDirection' => [
             'except' => 'desc',

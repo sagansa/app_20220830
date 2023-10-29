@@ -41,9 +41,8 @@ class Presence extends Model
     protected $searchableFields = ['*'];
 
     protected $casts = [
-        // 'date' => 'date',
-        // 'time_in' => 'datetime',
-        // 'time_out' => 'datetime',
+        'date_in' => 'date',
+        'date_out' => 'date',
     ];
 
     public function created_by()

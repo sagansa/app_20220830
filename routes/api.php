@@ -24,6 +24,7 @@ use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\CashlessController;
 use App\Http\Controllers\Api\EProductController;
 use App\Http\Controllers\Api\PresenceController;
+use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\UserCartsController;
 use App\Http\Controllers\Api\UserStoresController;
 use App\Http\Controllers\Api\ShiftStoreController;
@@ -68,6 +69,7 @@ use App\Http\Controllers\Api\EProductCartsController;
 use App\Http\Controllers\Api\StoreUtilitiesController;
 use App\Http\Controllers\Api\StoreEProductsController;
 use App\Http\Controllers\Api\StorePresencesController;
+use App\Http\Controllers\Api\StoreLocationsController;
 use App\Http\Controllers\Api\ClosingCourierController;
 use App\Http\Controllers\Api\RemainingStockController;
 use App\Http\Controllers\Api\FranchiseGroupController;
@@ -95,9 +97,9 @@ use App\Http\Controllers\Api\CashlessProviderController;
 use App\Http\Controllers\Api\SalesOrderOnlineController;
 use App\Http\Controllers\Api\ProductEProductsController;
 use App\Http\Controllers\Api\ContractEmployeeController;
-use App\Http\Controllers\Api\ContractLocationController;
 use App\Http\Controllers\Api\SalesOrderDirectController;
 use App\Http\Controllers\Api\DeliveryLocationController;
+use App\Http\Controllers\Api\ContractLocationController;
 use App\Http\Controllers\Api\UserClosingStoresController;
 use App\Http\Controllers\Api\UserCleanAndNeatsController;
 use App\Http\Controllers\Api\UserUtilityUsagesController;
@@ -153,7 +155,6 @@ use App\Http\Controllers\Api\ProductTransferStocksController;
 use App\Http\Controllers\Api\ReceiptByItemLoyverseController;
 use App\Http\Controllers\Api\HygieneHygieneOfRoomsController;
 use App\Http\Controllers\Api\ProductionSupportFromController;
-use App\Http\Controllers\Api\StoreContractLocationsController;
 use App\Http\Controllers\Api\StoreSalesOrderOnlinesController;
 use App\Http\Controllers\Api\StoreAccountCashlessesController;
 use App\Http\Controllers\Api\StoreSalesOrderDirectsController;
@@ -201,6 +202,7 @@ use App\Http\Controllers\Api\ProductionProductionFromsController;
 use App\Http\Controllers\Api\UnitPurchaseOrderProductsController;
 use App\Http\Controllers\Api\ClosingStoreDailySalariesController;
 use App\Http\Controllers\Api\AccountCashlessCashlessesController;
+use App\Http\Controllers\Api\LocationContractLocationsController;
 use App\Http\Controllers\Api\EmployeeWorkingExperiencesController;
 use App\Http\Controllers\Api\RestaurantCategoryProductsController;
 use App\Http\Controllers\Api\ProductSalesOrderEmployeesController;
@@ -889,16 +891,6 @@ Route::name('api.')
 
         Route::apiResource('stores', StoreController::class);
 
-        // Store Contract Locations
-        Route::get('/stores/{store}/contract-locations', [
-            StoreContractLocationsController::class,
-            'index',
-        ])->name('stores.contract-locations.index');
-        Route::post('/stores/{store}/contract-locations', [
-            StoreContractLocationsController::class,
-            'store',
-        ])->name('stores.contract-locations.store');
-
         // Store Vehicles
         Route::get('/stores/{store}/vehicles', [
             StoreVehiclesController::class,
@@ -1118,6 +1110,16 @@ Route::name('api.')
             StoreSalesOrderDirectsController::class,
             'store',
         ])->name('stores.sales-order-directs.store');
+
+        // Store Locations
+        Route::get('/stores/{store}/locations', [
+            StoreLocationsController::class,
+            'index',
+        ])->name('stores.locations.index');
+        Route::post('/stores/{store}/locations', [
+            StoreLocationsController::class,
+            'store',
+        ])->name('stores.locations.store');
 
         Route::apiResource('suppliers', SupplierController::class);
 
@@ -2334,9 +2336,20 @@ Route::name('api.')
             [PresenceMonthlySalariesController::class, 'destroy']
         )->name('presences.monthly-salaries.destroy');
 
-        // API route for logout user
-        // Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
-        Route::get('/get-presence',  [PresenceController::class, 'getPresences']);
-        Route::post('save-presence', [PresenceController::class, 'savePresence']);
-        Route::get('/get-presence-today', [PresenceController::class, 'getPresenceToday']);
+        Route::apiResource(
+            'contract-locations',
+            ContractLocationController::class
+        );
+
+        Route::apiResource('locations', LocationController::class);
+
+        // Location Contract Locations
+        Route::get('/locations/{location}/contract-locations', [
+            LocationContractLocationsController::class,
+            'index',
+        ])->name('locations.contract-locations.index');
+        Route::post('/locations/{location}/contract-locations', [
+            LocationContractLocationsController::class,
+            'store',
+        ])->name('locations.contract-locations.store');
     });
