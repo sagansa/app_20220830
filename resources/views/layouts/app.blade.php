@@ -45,7 +45,7 @@
         </div>
 
         @stack('modals')
-        
+        <script src="https://cdn.jsdelivr.net/npm/virtual-select-plugin@1.0.40/dist/virtual-select.min.js"></script>
         @livewireScripts
         
         @stack('scripts')
@@ -87,6 +87,5 @@
                 })
             })
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/virtual-select-plugin@1.0.40/dist/virtual-select.min.js"></script>
     </body>
 </html>
