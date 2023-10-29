@@ -58,6 +58,9 @@
                         Quantity Purchase
                     </x-tables.th-left-hide>
                     <x-tables.th-left-hide>
+                        Request By
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         Status
                     </x-tables.th-left-hide>
 
