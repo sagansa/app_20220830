@@ -213,7 +213,8 @@
                                             {{ $detailInvoice->detailRequest->product->name }} -
                                             {{ $detailInvoice->quantity_product }}
                                             {{ $detailInvoice->detailRequest->product->unit->unit }} -
-                                            @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
+                                            @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product) -
+                                            {{ $detailInvoice->detailRequest->status }}
                                         </p>
                                     @endif
                                 @endforeach
