@@ -41,6 +41,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
             ->get()->pluck('id', 'product_name');
 
         $this->products = Product::orderBy('name', 'asc')
+            ->whereNotIn('payment_type_id', ['3'])
             ->get()->map(function ($product) {
             return [
                 'label' => $product->product_name,
