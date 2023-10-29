@@ -18,6 +18,8 @@ class RequestPurchaseDetailRequestsDetail extends Component
     public DetailRequest $detailRequest;
     public $productsForSelect = [];
 
+    public $products;
+
     public $selected = [];
     public $editing = false;
     public $allSelected = false;
@@ -37,6 +39,14 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->requestPurchase = $requestPurchase;
         $this->productsForSelect = Product::orderBy('name', 'asc')
             ->get()->pluck('id', 'product_name');
+
+        $this->products = Product::all()->map(function ($product) {
+            return [
+                'label' => $product->product_name,
+                'value' => $product->id,
+            ];
+        });
+
         $this->resetDetailRequestData();
     }
 

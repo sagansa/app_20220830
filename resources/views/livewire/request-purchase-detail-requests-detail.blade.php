@@ -23,12 +23,15 @@
 
             <div class="mt-1 sm:space-y-5">
 
-                <x-input.select name="detailRequest.product_id" label="Product" wire:model="detailRequest.product_id">
+                {{-- <x-input.select name="detailRequest.product_id" label="Product" wire:model="detailRequest.product_id">
                     <option value="null" disabled>-- select --</option>
                     @foreach ($productsForSelect as $label => $value)
                         <option value="{{ $value }}">{{ $label }}</option>
                     @endforeach
-                </x-input.select>
+                </x-input.select> --}}
+
+                <x-virtual-select id="product" wire:model="detailRequest.product_id" options="products"
+                    multiple="false" />
 
                 <x-input.number name="detailRequest.quantity_plan" label="Quantity Plan"
                     wire:model="detailRequest.quantity_plan"></x-input.number>
