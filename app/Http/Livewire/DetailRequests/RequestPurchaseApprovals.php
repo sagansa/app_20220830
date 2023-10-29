@@ -97,4 +97,32 @@ class RequestPurchaseApprovals extends Component
             'status' => '2',
         ]);
     }
+
+    public function markAllAsApproved()
+    {
+        DetailRequest::whereIn('id', $this->selectedRows)->update([
+            'status' => '4',
+        ]);
+    }
+
+    public function markAllAsReject()
+    {
+        DetailRequest::whereIn('id', $this->selectedRows)->update([
+            'status' => '3',
+        ]);
+    }
+
+    public function markAllAsNotValid()
+    {
+        DetailRequest::whereIn('id', $this->selectedRows)->update([
+            'status' => '5',
+        ]);
+    }
+
+    public function markAllAsNotUsed()
+    {
+        DetailRequest::whereIn('id', $this->selectedRows)->update([
+            'status' => '6',
+        ]);
+    }
 }

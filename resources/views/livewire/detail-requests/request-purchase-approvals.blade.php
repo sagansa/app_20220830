@@ -18,7 +18,7 @@
             @if ($showFilters)
 
                 <x-filters.group>
-                    <x-filters.label>Status</x-filters.label>
+                    <x-filters.label>Product</x-filters.label>
                     <x-filters.select wire:model="filters.product_id">
                         @foreach ($products as $label => $value)
                             <option value="{{ $value }}">{{ $label }}</option>
@@ -44,8 +44,10 @@
             <div class="flex flex-wrap justify-between mt-1">
                 <div class="mt-1 md:w-1/3">
                     @role('super-admin')
-                        {{-- <x-buttons.green wire:click.prevent="markAllAsSudahDibayar">Sudah Dibayar</x-buttons.green>
-                        <x-buttons.yellow wire:click.prevent="markAllAsBelumDibayar">Belum Dibayar</x-buttons.yellow> --}}
+                        <x-buttons.yellow wire:click.prevent="markAllAsNotValid">Not Valid</x-buttons.yellow>
+                        <x-buttons.red wire:click.prevent="markAllAsReject">Reject</x-buttons.red>
+                        <x-buttons.red wire:click.prevent="markAllAsNotused">Not Used</x-buttons.red>
+                        <x-buttons.green wire:click.prevent="markAllAsApproved">Approved</x-buttons.green>
                         <x-buttons.green wire:click.prevent='markAllAsDone'>Done</x-buttons.green>
                     @endrole
                 </div>
