@@ -33,6 +33,19 @@
                 <x-virtual-select id="product" wire:model="detailRequest.product_id" options="products"
                     multiple="false" />
 
+                <div class="mb-4">
+                    <label class="block mb-2 text-sm font-medium text-gray-700" for="name">
+                        Product
+                    </label>
+                    <x-virtual-select id="product" wire:model="detailRequest.product_id" options="products"
+                        multiple="false" />
+                    {{-- @error('productCategories')
+                        <div class="mt-1 text-sm text-red-500">
+                            {{ $message }}
+                        </div>
+                    @enderror --}}
+                </div>
+
                 <x-input.number name="detailRequest.quantity_plan" label="Quantity Plan"
                     wire:model="detailRequest.quantity_plan"></x-input.number>
                 @role('super-admin|manager')
