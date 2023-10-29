@@ -132,7 +132,7 @@
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            @if ($detailRequest->detailInvoice->quantity_product != null)
+                            @if ($detailRequest->status == 1)
                                 {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }}
                             @endif
                         </x-tables.td-left-hide>
