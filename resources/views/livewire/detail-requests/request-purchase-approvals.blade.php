@@ -46,7 +46,7 @@
                     @role('super-admin')
                         <x-buttons.yellow wire:click.prevent="markAllAsNotValid">Not Valid</x-buttons.yellow>
                         <x-buttons.red wire:click.prevent="markAllAsReject">Reject</x-buttons.red>
-                        <x-buttons.red wire:click.prevent="markAllAsNotused">Not Used</x-buttons.red>
+                        <x-buttons.red wire:click.prevent="markAllAsNotUsed">Not Used</x-buttons.red>
                         <x-buttons.green wire:click.prevent="markAllAsApproved">Approved</x-buttons.green>
                         <x-buttons.green wire:click.prevent='markAllAsDone'>Done</x-buttons.green>
                     @endrole
