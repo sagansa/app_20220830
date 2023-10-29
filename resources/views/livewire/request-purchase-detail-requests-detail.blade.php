@@ -30,9 +30,6 @@
                     @endforeach
                 </x-input.select> --}}
 
-                <x-virtual-select id="product" wire:model="detailRequest.product_id" options="products"
-                    multiple="false" />
-
                 <div class="mb-4">
                     <label class="block mb-2 text-sm font-medium text-gray-700" for="name">
                         Product

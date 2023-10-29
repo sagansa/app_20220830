@@ -42,7 +42,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
 
         $this->products = Product::all()->map(function ($product) {
             return [
-                'label' => $product->product_name,
+                'label' => $product->name,
                 'value' => $product->id,
             ];
         });
