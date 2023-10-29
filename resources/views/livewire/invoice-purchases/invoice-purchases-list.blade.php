@@ -198,11 +198,7 @@
                                         {{ $detailInvoice->quantity_product }}
                                         {{ $detailInvoice->detailRequest->product->unit->unit }} -
                                         @role('super-admin')
-                                            @if ($detailInvoice->quantity_product != 0)
-                                                @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product) -
-                                            @else
-                                                0
-                                            @endif
+                                            @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product) -
                                         @endrole
                                         <x-spans.status-valid
                                             class="{{ $detailInvoice->detailRequest->approval_status_badge }}">
