@@ -140,6 +140,8 @@
                                     Reject</option>
                                 <option value="5" {{ $detailRequest->status == '5' ? 'selected' : '' }}>
                                     Not Valid</option>
+                                <option value="6" {{ $detailRequest->status == '6' ? 'selected' : '' }}>
+                                    Not Used</option>
                             </select>
 
                         </x-tables.td-left-hide>
