@@ -214,7 +214,11 @@
                                             {{ $detailInvoice->quantity_product }}
                                             {{ $detailInvoice->detailRequest->product->unit->unit }} -
                                             @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product) -
-                                            {{ $detailInvoice->detailRequest->status }}
+                                            {{-- {{ $detailInvoice->detailRequest->status }} --}}
+                                            <x-spans.status-valid
+                                                class="{{ $detailInvoice->detailRequest->status_badge }}">
+                                                {{ $detailInvoice->detailRequest->status_name }}
+                                            </x-spans.status-valid>
                                         </p>
                                     @endif
                                 @endforeach
