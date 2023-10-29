@@ -104,7 +104,7 @@
                             @elseif ($detailRequest->status == 5)
                                 <x-spans.red>not valid</x-spans.red>
                             @elseif ($detailRequest->status == 6)
-                                <x-spans.grey>not used</x-spans.grey>
+                                <x-spans.gray>not used</x-spans.gray>
                             @endif
                         </x-tables.td-left>
                         <x-tables.td-left>
