@@ -63,8 +63,10 @@
             <x-slot name="head">
                 <tr>
                     <x-tables.th-left>
-                        <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
-                            title="{{ trans('crud.common.select_all') }}" />
+                        @role('super-admin')
+                            <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
+                                title="{{ trans('crud.common.select_all') }}" />
+                        @endrole
                     </x-tables.th-left>
                     <x-tables.th-left>
                         @lang('crud.request_purchase_detail_requests.inputs.product_id')
@@ -113,7 +115,7 @@
                         <td class="px-4 py-3 text-right" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @can('update', $detailRequest)
-                                    @if ($detailRequest->status != 2)
+                                    @if ($detailRequest->status == 1 || $detailRequest->status == 5)
                                         <button type="button" class="button"
                                             wire:click="editDetailRequest({{ $detailRequest->id }})">
                                             <i class="icon ion-md-create"></i>
