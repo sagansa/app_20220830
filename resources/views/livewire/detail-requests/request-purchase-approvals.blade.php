@@ -101,7 +101,7 @@
                                 <p> {{ $detailRequest->requestPurchase->date->toFormattedDate() }}</p>
                                 <p>
                                     @if ($detailRequest->status == 2)
-                                        {{-- {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }} --}}
+                                        {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }}
                                     @endif
                                 </p>
                                 <p> {{ optional($detailRequest->store)->nickname ?? '-' }}</p>
@@ -133,7 +133,7 @@
 
                         <x-tables.td-left-hide>
                             @if ($detailRequest->status == 2)
-                                {{-- {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }} --}}
+                                {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }}
                             @endif
                         </x-tables.td-left-hide>
 
