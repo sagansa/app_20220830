@@ -102,14 +102,10 @@
                 <x-tables.th-left-hide>@lang('crud.invoice_purchases.inputs.supplier_id')</x-tables.th-left-hide>
                 {{-- <x-tables.th-left-hide>@lang('crud.invoice_purchases.inputs.payment_type_id')</x-tables.th-left-hide> --}}
 
+                <x-tables.th-left-hide>Detail Product</x-tables.th-left-hide>
 
-                @role('super-admin')
-                    <x-tables.th-left-hide>Unit Price</x-tables.th-left-hide>
-                @endrole
                 <x-tables.th-left-hide>Total</x-tables.th-left-hide>
-                {{-- @role('super-admin')
-                    <x-tables.th-left-hide>Nominal Payment</x-tables.th-left-hide>
-                @endrole --}}
+
                 @role('super-admin')
                     <x-tables.th-left-hide>Report Payment</x-tables.th-left-hide>
                 @endrole
@@ -191,10 +187,27 @@
                                 <p>{{ optional($invoicePurchase->supplier)->bank_account_name ?? '-' }}</p>
                             @endif
                         </x-tables.td-left-hide>
-                        {{-- <x-tables.td-left-hide>{{ optional($invoicePurchase->paymentType)->name ?? '-' }}
-                        </x-tables.td-left-hide> --}}
-                        {{-- <x-tables.td-left-hide>{{ $invoicePurchase->date->toFormattedDate() ?? '-' }}
-                        </x-tables.td-left-hide> --}}
+
+                        <x-tables.td-left-hide>
+                            @foreach ($invoicePurchase->detailInvoices as $detailInvoice)
+                                @if ($detailInvoice == null)
+                                    -
+                                @else
+                                    <p>
+                                        {{ $detailInvoice->detailRequest->product->name }} -
+                                        {{ $detailInvoice->quantity_product }}
+                                        {{ $detailInvoice->detailRequest->product->unit->unit }} -
+                                        @role('super-admin')
+                                            @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product) -
+                                        @endrole
+                                        <x-spans.status-valid
+                                            class="{{ $detailInvoice->detailRequest->approval_status_badge }}">
+                                            {{ $detailInvoice->detailRequest->approval_status_name }}
+                                        </x-spans.status-valid>
+                                    </p>
+                                @endif
+                            @endforeach
+                        </x-tables.td-left-hide>
 
                         @role('staff|supervisor|manager')
                             <x-tables.td-left-hide>
@@ -202,28 +215,7 @@
                                 </p>
                             </x-tables.td-left-hide>
                         @endrole
-
                         @role('super-admin')
-                            <x-tables.td-left-hide>
-                                @foreach ($invoicePurchase->detailInvoices as $detailInvoice)
-                                    @if ($detailInvoice == null)
-                                        -
-                                    @else
-                                        <p>
-                                            {{ $detailInvoice->detailRequest->product->name }} -
-                                            {{ $detailInvoice->quantity_product }}
-                                            {{ $detailInvoice->detailRequest->product->unit->unit }} -
-                                            @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product) -
-                                            {{-- {{ $detailInvoice->detailRequest->status }} --}}
-                                            <x-spans.status-valid
-                                                class="{{ $detailInvoice->detailRequest->approval_status_badge }}">
-                                                {{ $detailInvoice->detailRequest->approval_status_name }}
-                                            </x-spans.status-valid>
-                                        </p>
-                                    @endif
-                                @endforeach
-                            </x-tables.td-left-hide>
-
                             <x-tables.td-left-hide>
                                 <p>discounts: @currency($invoicePurchase->discounts)</p>
                                 <p>taxes: @currency($invoicePurchase->taxes)</p>
@@ -231,21 +223,21 @@
                                 <p>totals: @currency($invoicePurchase->detail_invoices_sum_subtotal_invoice - $invoicePurchase->discounts + $invoicePurchase->taxes)
                                 </p>
                             </x-tables.td-left-hide>
-
-                            <x-tables.td-left-hide>
-                                @foreach ($invoicePurchase->paymentReceipts as $paymentReceipt)
-                                    @if ($paymentReceipt->id != null)
-                                        sudah
-                                    @endif
-                                @endforeach
-
-                                @foreach ($invoicePurchase->closingStores as $closingStore)
-                                    @if ($closingStore->id != null)
-                                        sudah
-                                    @endif
-                                @endforeach
-                            </x-tables.td-left-hide>
                         @endrole
+                        <x-tables.td-left-hide>
+                            @foreach ($invoicePurchase->paymentReceipts as $paymentReceipt)
+                                @if ($paymentReceipt->id != null)
+                                    sudah
+                                @endif
+                            @endforeach
+
+                            @foreach ($invoicePurchase->closingStores as $closingStore)
+                                @if ($closingStore->id != null)
+                                    sudah
+                                @endif
+                            @endforeach
+                        </x-tables.td-left-hide>
+
                         <x-tables.td-left-hide>
                             <x-spans.status-valid class="{{ $invoicePurchase->payment_status_badge }}">
                                 {{ $invoicePurchase->payment_status_name }}
