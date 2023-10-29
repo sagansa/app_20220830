@@ -84,7 +84,7 @@
                 @foreach ($detailRequests as $detailRequest)
                     <tr class="hover:bg-gray-100">
                         <x-tables.td-left>
-                            @if ($detailRequest->status != 2)
+                            @if ($detailRequest->status == 1 || $detailRequest->status == 5)
                                 <input type="checkbox" value="{{ $detailRequest->id }}" wire:model="selected" />
                             @endif
                         </x-tables.td-left>
