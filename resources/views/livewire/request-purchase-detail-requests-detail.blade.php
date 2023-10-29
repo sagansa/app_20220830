@@ -114,10 +114,10 @@
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @can('update', $detailRequest)
                                     @if ($detailRequest->status != 2)
-                                        <button type="button" class="button"
+                                        {{-- <button type="button" class="button"
                                             wire:click="editDetailRequest({{ $detailRequest->id }})">
                                             <i class="icon ion-md-create"></i>
-                                        </button>
+                                        </button> --}}
                                     @endif
                                 @endcan
                             </div>
