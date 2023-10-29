@@ -43,6 +43,9 @@
                     @enderror --}}
                 </div>
 
+                <x-inputs.select-dropdown name="product" wire="detailRequest.product_id"
+                    options="products"></x-inputs.select-dropdown>
+
                 <x-input.number name="detailRequest.quantity_plan" label="Quantity Plan"
                     wire:model="detailRequest.quantity_plan"></x-input.number>
                 @role('super-admin|manager')
