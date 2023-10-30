@@ -111,7 +111,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
         }
 
         $this->detailRequest->store_id = $this->requestPurchase->store_id;
-        $this->detailRequest->payment_type_id = $this->products->payment_type_id;
+        $this->detailRequest->payment_type_id = '1';
 
         $this->detailRequest->save();
 
