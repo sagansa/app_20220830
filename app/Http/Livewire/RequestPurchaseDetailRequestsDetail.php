@@ -16,7 +16,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
 
     public RequestPurchase $requestPurchase;
     public DetailRequest $detailRequest;
-    public $productsForSelect = [];
+    // public $productsForSelect = [];
 
     public $products;
 
@@ -37,8 +37,8 @@ class RequestPurchaseDetailRequestsDetail extends Component
     public function mount(RequestPurchase $requestPurchase)
     {
         $this->requestPurchase = $requestPurchase;
-        $this->productsForSelect = Product::orderBy('name', 'asc')
-            ->get()->pluck('id', 'product_name');
+        // $this->productsForSelect = Product::orderBy('name', 'asc')
+        //     ->get()->pluck('id', 'product_name');
 
         $this->products = Product::orderBy('name', 'asc')
             ->whereNotIn('payment_type_id', ['3'])
@@ -111,7 +111,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
         }
 
         $this->detailRequest->store_id = $this->requestPurchase->store_id;
-        $this->detailRequest->payment_type_id = '1';
+        $this->detailRequest->payment_type_id = $this->products->payment_type_id;
 
         $this->detailRequest->save();
 
