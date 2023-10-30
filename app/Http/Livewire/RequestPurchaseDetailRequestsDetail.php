@@ -46,7 +46,6 @@ class RequestPurchaseDetailRequestsDetail extends Component
             return [
                 'label' => $product->product_name,
                 'value' => $product->id,
-                'payment_type' => $product->payment_type_id,
             ];
         });
 
@@ -112,7 +111,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
         }
 
         $this->detailRequest->store_id = $this->requestPurchase->store_id;
-        $this->detailRequest->payment_type_id = $this->products->payment_type;
+        $this->detailRequest->payment_type_id = $this->products->payment_type_id;
 
         $this->detailRequest->save();
 
