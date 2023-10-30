@@ -62,7 +62,7 @@ class PaymentReceiptController extends Controller
             $fileimage = rand() . time() . '.' . $extension;
             $file->move('storage/', $fileimage);
             Image::make('storage/' . $fileimage)
-                ->resize(400, 400, function ($constraint) {
+                ->resize(600, 600, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })
