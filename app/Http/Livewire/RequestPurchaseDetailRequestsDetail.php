@@ -114,9 +114,9 @@ class RequestPurchaseDetailRequestsDetail extends Component
         // $this->detailRequest->payment_type_id = '1';
         $this->detailRequest->payment_type_id = $this->detailRequest->product->payment_type_id;
 
-        if ($this->detailRequest->payment_type_id = '2') {
+        if ($this->detailRequest->product->payment_type_id = '2') {
             $this->detailRequest->status = '1';
-        } else {
+        } elseif ($this->detailRequest->product->payment_type_id = '1') {
             $this->detailRequest->status = '4';
         }
 
