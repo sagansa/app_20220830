@@ -57,7 +57,13 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->detailRequest = new DetailRequest();
 
         $this->detailRequest->product_id = null;
-        $this->detailRequest->status = null;
+        // $this->detailRequest->status = null;
+
+        if ($this->detailRequest->product->payment_type_id = '2') {
+            $this->detailRequest->status = '1';
+        } elseif ($this->detailRequest->product->payment_type_id = '1') {
+            $this->detailRequest->status = '4';
+        }
 
         $this->dispatchBrowserEvent('refresh');
     }
