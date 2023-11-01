@@ -57,13 +57,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->detailRequest = new DetailRequest();
 
         $this->detailRequest->product_id = null;
-        // $this->detailRequest->status = null;
-
-        if ($this->detailRequest->payment_type_id = '2') {
-            $this->detailRequest->status = '1';
-        } elseif ($this->detailRequest->payment_type_id = '1') {
-            $this->detailRequest->status = '4';
-        }
+        $this->detailRequest->status = null;
 
         $this->dispatchBrowserEvent('refresh');
     }
@@ -117,8 +111,8 @@ class RequestPurchaseDetailRequestsDetail extends Component
         }
 
         $this->detailRequest->store_id = $this->requestPurchase->store_id;
-        // $this->detailRequest->payment_type_id = '1';
-        $this->detailRequest->payment_type_id = $this->detailRequest->product->payment_type_id;
+        $this->detailRequest->payment_type_id = '1';
+        // $this->detailRequest->payment_type_id = $this->detailRequest->product->payment_type_id;
 
         if ($this->detailRequest->product->payment_type_id = '2') {
             $this->detailRequest->status = '1';
