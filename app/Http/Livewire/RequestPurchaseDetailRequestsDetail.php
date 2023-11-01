@@ -116,7 +116,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
 
         if ($this->detailRequest->payment_type_id = '1') {
             $this->detailRequest->status = '4';
-        } else {
+        } elseif ($this->detailRequest->payment_type_id = '2') {
             $this->detailRequest->status = '1';
         }
 
