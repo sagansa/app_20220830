@@ -48,7 +48,7 @@
 
                 <x-input.number name="detailRequest.quantity_plan" label="Quantity Plan"
                     wire:model="detailRequest.quantity_plan"></x-input.number>
-                @role('super-admin|manager')
+                {{-- @role('super-admin|manager')
                     <x-input.select name="detailRequest.status" label="Status" wire:model="detailRequest.status">
                         <option value="1" {{ $selected == '1' ? 'selected' : '' }}>process</option>
                         <option value="2" {{ $selected == '2' ? 'selected' : '' }}>done</option>
@@ -57,7 +57,7 @@
                         <option value="5" {{ $selected == '5' ? 'selected' : '' }}>not valid</option>
                         <option value="5" {{ $selected == '5' ? 'selected' : '' }}>not used</option>
                     </x-input.select>
-                @endrole
+                @endrole --}}
                 @role('supervisor|staff')
                     <x-input.hidden name="detailRequest.status" wire:model="detailRequest.status">
                     </x-input.hidden>
