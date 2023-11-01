@@ -30,7 +30,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
     protected $rules = [
         'detailRequest.product_id' => ['required', 'exists:products,id'],
         'detailRequest.quantity_plan' => ['required', 'numeric', 'min:0'],
-        'detailRequest.status' => ['required', 'in:1,2,3,4,5'],
+        'detailRequest.status' => ['required', 'in:1,2,3,4,5,6'],
         'detailRequest.notes' => ['nullable', 'max:255', 'string'],
     ];
 
@@ -113,6 +113,12 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->detailRequest->store_id = $this->requestPurchase->store_id;
         // $this->detailRequest->payment_type_id = '1';
         $this->detailRequest->payment_type_id = $this->detailRequest->product->payment_type_id;
+
+        if ($this->detailRequest->payment_type_id = '1') {
+            $this->detailRequest->status = '4';
+        } else {
+            $this->detailRequest->status = '1';
+        }
 
         $this->detailRequest->save();
 
