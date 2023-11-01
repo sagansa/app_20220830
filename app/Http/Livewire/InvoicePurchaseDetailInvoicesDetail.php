@@ -47,8 +47,10 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
     {
         $this->invoicePurchase = $invoicePurchase;
 
-        $this->detailRequestsForSelect = DetailRequest::where('store_id', $this->invoicePurchase->store_id)
+        $this->detailRequestsForSelect = DetailRequest::with('product')
+            ->where('store_id', $this->invoicePurchase->store_id)
             ->whereIn('status', ['4', '5'])
+            ->whereHas('products', function($query) {$query->where('payment_type_id', '=', $this->invoicePurchase->payment_type_id);})
             // ->where('payment_type_id', '=', '1')
             // ->orderBy('detail_request_name', 'desc')
             // ->where('request_purchase.date', '>=', Carbon::now()->subDays(7)->toDateString())
