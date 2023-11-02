@@ -59,10 +59,18 @@
                     </x-input.select>
                 @endrole --}}
                 {{-- @role('supervisor|staff') --}}
-                <x-input.hidden name="detailRequest.status" wire:model="detailRequest.status">
-                </x-input.hidden>
+                {{-- <x-input.hidden name="detailRequest.status" wire:model="detailRequest.status">
+                </x-input.hidden> --}}
                 {{-- @endrole --}}
-
+                @if ($this->detailRequest->payment_type_id = '1')
+                    <x-input.select name="detailRequest.status" label="Status" wire:model="detailRequest.status">
+                        <option value="4" {{ $selected == '4' ? 'selected' : '' }}>approved</option>
+                    </x-input.select>
+                @elseif ($this->detailRequest->payment_type_id = '2')
+                    <x-input.select name="detailRequest.status" label="Status" wire:model="detailRequest.status">
+                        <option value="1" {{ $selected == '1' ? 'selected' : '' }}>process</option>
+                    </x-input.select>
+                @endif
             </div>
         </div>
 
