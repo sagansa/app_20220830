@@ -4,11 +4,11 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Product;
+use Illuminate\View\View;
 use Livewire\WithPagination;
 use App\Models\DetailRequest;
 use App\Models\RequestPurchase;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\View\View;
 
 class RequestPurchaseDetailRequestsDetail extends Component
 {
@@ -58,7 +58,6 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->detailRequest = new DetailRequest();
 
         $this->detailRequest->product_id = null;
-        $this->detailRequest->status = null;
         $this->detailRequest->status = '1';
 
         $this->dispatchBrowserEvent('refresh');
@@ -118,7 +117,6 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->detailRequest->payment_type_id = $this->detailRequest->product->payment_type_id;
 
         // $this->detailRequest->status = '1';
-
 
         $this->detailRequest->save();
 
