@@ -112,14 +112,16 @@ class RequestPurchaseDetailRequestsDetail extends Component
         }
 
         $this->detailRequest->store_id = $this->requestPurchase->store_id;
-        // $this->detailRequest->payment_type_id = '1';
+
         $this->detailRequest->payment_type_id = $this->detailRequest->product->payment_type_id;
 
-        // if ($this->detailRequest->product->payment_type_id = '2') {
+        if ($this->detailRequest->payment_type_id = '1') {
+            $this->detailRequest->status = '4';
+        } elseif ($this->detailRequest->payment_type_id = '2') {
             $this->detailRequest->status = '1';
-        // } elseif ($this->detailRequest->product->payment_type_id = '1') {
-        //     $this->detailRequest->status = '4';
-        // }
+        }
+
+
 
         $this->detailRequest->save();
 
