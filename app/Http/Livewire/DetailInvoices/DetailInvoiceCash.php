@@ -163,7 +163,11 @@ class DetailInvoiceCash extends Component
 
         $this->invoicePurchase->totals = $this->detailInvoice->subtotals - $this->invoicePurchase->discounts + $this->invoicePurchase->taxes;
 
-        return view('livewire.detail-invoices.detail-invoice-cash');
+        return view('livewire.detail-invoices.detail-invoice-cash', [
+            'detailInvoices' => $this->invoicePurchase
+                ->detailInvoices()
+                ->paginate(20),
+        ]);
     }
 
     public function updateInvoicePurchase()
