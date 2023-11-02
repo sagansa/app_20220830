@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\DetailInvoices;
 
-use App\Models\Unit;
-use Livewire\Component;
-use Livewire\WithPagination;
 use App\Models\DetailInvoice;
 use App\Models\DetailRequest;
 use App\Models\InvoicePurchase;
+use App\Models\Unit;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\View\View;
+use Livewire\Component;
+use Livewire\WithPagination;
 
-class InvoicePurchaseDetailInvoicesDetail extends Component
+class DetailInvoiceCash extends Component
 {
     use WithPagination;
     use AuthorizesRequests;
@@ -49,39 +47,14 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
     {
         $this->invoicePurchase = $invoicePurchase;
 
-        // $this->detailRequestsForSelect = DetailRequest::with('product')
-        //     ->where('store_id', $this->invoicePurchase->store_id)
-        //     ->whereIn('status', ['4'])
-        //     // ->whereHas('products', function($query) {$query->where('payment_type_id', '=', $this->invoicePurchase->payment_type_id);})
-        //     // ->where('payment_type_id', '=', '1')
-        //     // ->orderBy('detail_request_name', 'desc')
-        //     // ->where('request_purchase.date', '>=', Carbon::now()->subDays(7)->toDateString())
-        //     // ->join('detail_requests', 'detail_requests.id', '=', 'detail_invoices.detail_request_id')
-            // ->orderBy('detail_request_name', 'desc')
-            // ->get()
-            // ->pluck( 'id', 'detail_request_name');
-
-        $this->detailRequestsForSelect = DetailRequest::where('status', '1')
+        $this->detailRequestsForSelect = DetailRequest::where('status', '4')
             ->orderBy('id', 'desc')
             ->where('store_id', $this->invoicePurchase->store_id)
             ->get()
             ->pluck('id', 'detail_request_name');
 
-        // $this->detailRequestsForTransfer = DetailRequest::where('status', '1')
-        //     ->orderBy('id', 'desc')
-        //     ->where('store_id', $this->invoicePurchase->store_id)
-        //     ->get()
-        //     ->pluck('id', 'detail_request_name');
-
-        // $this->detailRequestsForCash = DetailRequest::where('status', '4')
-        //     ->orderBy('id', 'desc')
-        //     ->where('store_id', $this->invoicePurchase->store_id)
-        //     ->get()
-        //     ->pluck('id', 'detail_request_name');
-
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
-
     }
 
     public function resetDetailInvoiceData(): void
@@ -180,7 +153,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         }
     }
 
-    public function render(): View
+    public function render()
     {
         $this->invoicePurchase->subtotals = 0;
 
@@ -190,11 +163,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
         $this->invoicePurchase->totals = $this->detailInvoice->subtotals - $this->invoicePurchase->discounts + $this->invoicePurchase->taxes;
 
-        return view('livewire.invoice-purchase-detail-invoices-detail', [
-            'detailInvoices' => $this->invoicePurchase
-                ->detailInvoices()
-                ->paginate(20),
-        ]);
+        return view('livewire.detail-invoices.detail-invoice-cash');
     }
 
     public function updateInvoicePurchase()

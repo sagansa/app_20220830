@@ -35,8 +35,11 @@
                 @can('view-any', App\Models\DetailInvoice::class)
                     <x-partials.card class="mt-5">
                         <x-slot name="title"> Detail Invoices </x-slot>
-
-                        <livewire:invoice-purchase-detail-invoices-detail :invoicePurchase="$invoicePurchase" />
+                        @if ($invoicePurchase->payment_type_id == 2)
+                            <livewire:detail-invoices.detail-invoice-cash :invoicePurchase="$invoicePurchase" />
+                        @elseif ($invoicePurchase->payment_type_id == 1)
+                            <livewire:invoice-purchase-detail-invoices-detail :invoicePurchase="$invoicePurchase" />
+                        @endif
                     </x-partials.card>
                 @endcan
 
