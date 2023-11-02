@@ -64,8 +64,8 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
                 // join('detail_requests', 'detail_requests.id', '=', 'detail_invoices.detail_request_id')
                 where('status', '4')
                 ->where('store_id', $this->invoicePurchase->store_id)
-                ->orderBy('detail_request_name', 'desc')
                 ->get()
+                ->orderBy('detail_request_name', 'desc')
                 ->pluck('id', 'detail_request_name');
         }
 
