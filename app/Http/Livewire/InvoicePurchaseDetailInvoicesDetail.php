@@ -11,11 +11,10 @@ use App\Models\InvoicePurchase;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 
 class InvoicePurchaseDetailInvoicesDetail extends Component
 {
-    public $state = [];
-
     use WithPagination;
     use AuthorizesRequests;
 
@@ -59,20 +58,18 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             // ->get()
             // ->pluck( 'id', 'detail_request_name');
 
-        if ($this->invoicePurchase->payment_type_id = '1') {
             $this->detailRequestsForSelect = DetailRequest::where('status', '4')
                 ->orderBy('id', 'desc')
                 ->where('store_id', $this->invoicePurchase->store_id)
                 ->get()
                 ->pluck('id', 'detail_request_name');
-        }
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
 
     }
 
-    public function resetDetailInvoiceData()
+    public function resetDetailInvoiceData(): void
     {
         $this->detailInvoice = new DetailInvoice();
 
@@ -83,7 +80,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newDetailInvoice()
+    public function newDetailInvoice(): void
     {
         $this->editing = false;
         $this->modalTitle = trans(
@@ -94,7 +91,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         $this->showModal();
     }
 
-    public function editDetailInvoice(DetailInvoice $detailInvoice)
+    public function editDetailInvoice(DetailInvoice $detailInvoice): void
     {
         $this->editing = true;
         $this->modalTitle = trans(
@@ -107,18 +104,18 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -140,7 +137,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function destroySelected(): void
     {
         $this->authorize('delete-any', DetailInvoice::class);
 
@@ -156,7 +153,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         $this->resetDetailInvoiceData();
     }
 
-    public function toggleFullSelection()
+    public function toggleFullSelection(): void
     {
         if (!$this->allSelected) {
             $this->selected = [];
@@ -168,7 +165,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
         $this->invoicePurchase->subtotals = 0;
 

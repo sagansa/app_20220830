@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 use App\Models\DetailRequest;
 use App\Models\RequestPurchase;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\View\View;
 
 class RequestPurchaseDetailRequestsDetail extends Component
 {
@@ -34,7 +35,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
         'detailRequest.notes' => ['nullable', 'max:255', 'string'],
     ];
 
-    public function mount(RequestPurchase $requestPurchase)
+    public function mount(RequestPurchase $requestPurchase): void
     {
         $this->requestPurchase = $requestPurchase;
         // $this->productsForSelect = Product::orderBy('name', 'asc')
@@ -52,17 +53,23 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->resetDetailRequestData();
     }
 
-    public function resetDetailRequestData()
+    public function resetDetailRequestData(): void
     {
         $this->detailRequest = new DetailRequest();
 
         $this->detailRequest->product_id = null;
         $this->detailRequest->status = null;
 
+        if ($this->detailRequest->payment_type_id = '1') {
+            $this->detailRequest->status = '4';
+        } else if ($this->detailRequest->payment_type_id = '2') {
+            $this->detailRequest->status = '1';
+        }
+
         $this->dispatchBrowserEvent('refresh');
     }
 
-    public function newDetailRequest()
+    public function newDetailRequest(): void
     {
         $this->editing = false;
         $this->modalTitle = trans(
@@ -73,7 +80,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->showModal();
     }
 
-    public function editDetailRequest(DetailRequest $detailRequest)
+    public function editDetailRequest(DetailRequest $detailRequest): void
     {
         $this->editing = true;
         $this->modalTitle = trans(
@@ -86,18 +93,18 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->showModal();
     }
 
-    public function showModal()
+    public function showModal(): void
     {
         $this->resetErrorBag();
         $this->showingModal = true;
     }
 
-    public function hideModal()
+    public function hideModal(): void
     {
         $this->showingModal = false;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -115,18 +122,15 @@ class RequestPurchaseDetailRequestsDetail extends Component
 
         $this->detailRequest->payment_type_id = $this->detailRequest->product->payment_type_id;
 
-        if ($this->detailRequest->payment_type_id = '2') {
-            $this->detailRequest->status = '1';
-        } elseif ($this->detailRequest->payment_type_id = '1') {
-           $this->detailRequest->status = '4';
-        }
+        // $this->detailRequest->status = '1';
+
 
         $this->detailRequest->save();
 
         $this->hideModal();
     }
 
-    public function destroySelected()
+    public function destroySelected(): void
     {
         $this->authorize('delete-any', DetailRequest::class);
 
@@ -138,7 +142,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->resetDetailRequestData();
     }
 
-    public function toggleFullSelection()
+    public function toggleFullSelection(): void
     {
         if (!$this->allSelected) {
             $this->selected = [];
@@ -150,7 +154,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.request-purchase-detail-requests-detail', [
             'detailRequests' => $this->requestPurchase

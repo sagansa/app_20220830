@@ -62,6 +62,9 @@
                     <x-input.hidden name="detailRequest.status" wire:model="detailRequest.status">
                     </x-input.hidden>
                 @endrole
+
+                <x-inputs.hidden name="detailRequest.status" wire:model="detailRequest.status"></x-inputs.hidden>
+
                 <x-input.textarea name="detailRequest.notes" label="Notes" wire:model="detailRequest.notes"
                     maxlength="255"></x-input.textarea>
 

@@ -1224,6 +1224,7 @@ return [
             'quantity_plan' => 'Quantity Plan',
             'status' => 'Status',
             'notes' => 'Notes',
+            'status' => 'Status',
         ],
     ],
 
