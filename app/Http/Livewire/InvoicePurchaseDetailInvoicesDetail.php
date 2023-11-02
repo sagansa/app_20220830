@@ -67,13 +67,13 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         //     ->get()
         //     ->pluck('id', 'detail_request_name');
 
-        $this->detailRequestsForTransfer = DetailRequest::where('status', '4')
+        $this->detailRequestsForTransfer = DetailRequest::where('status', '1')
             ->orderBy('id', 'desc')
             ->where('store_id', $this->invoicePurchase->store_id)
             ->get()
             ->pluck('id', 'detail_request_name');
 
-        $this->detailRequestsForCash = DetailRequest::where('status', '1')
+        $this->detailRequestsForCash = DetailRequest::where('status', '4')
             ->orderBy('id', 'desc')
             ->where('store_id', $this->invoicePurchase->store_id)
             ->get()
