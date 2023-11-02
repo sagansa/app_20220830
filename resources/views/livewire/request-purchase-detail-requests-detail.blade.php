@@ -59,8 +59,8 @@
                     </x-input.select>
                 @endrole --}}
                 {{-- @role('supervisor|staff') --}}
-                {{-- <x-input.hidden name="detailRequest.status" wire:model="detailRequest.status">
-                </x-input.hidden> --}}
+                <x-input.hidden name="detailRequest.status" wire:model="detailRequest.status">
+                </x-input.hidden>
                 {{-- @endrole --}}
                 @if ($this->detailRequest->product->payment_type_id = '1')
                     <x-input.select name="detailRequest.status" label="Status" wire:model="detailRequest.status">

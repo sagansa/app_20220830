@@ -23,6 +23,9 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
     public $detailRequestsForSelect = [];
     public $unitsForSelect = [];
 
+    public $detailRequestsForCash = [];
+    public $detailRequestsForTransfer = [];
+
     public $selected = [];
     public $editing = false;
     public $allSelected = false;
@@ -58,11 +61,23 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             // ->get()
             // ->pluck( 'id', 'detail_request_name');
 
-            $this->detailRequestsForSelect = DetailRequest::where('status', '4')
-                ->orderBy('id', 'desc')
-                ->where('store_id', $this->invoicePurchase->store_id)
-                ->get()
-                ->pluck('id', 'detail_request_name');
+        $this->detailRequestsForSelect = DetailRequest::where('status', '4')
+            ->orderBy('id', 'desc')
+            ->where('store_id', $this->invoicePurchase->store_id)
+            ->get()
+            ->pluck('id', 'detail_request_name');
+
+        $this->detailRequestsForTransfer = DetailRequest::whereIn('status', ['4', '1'])
+            ->orderBy('id', 'desc')
+            ->where('store_id', $this->invoicePurchase->store_id)
+            ->get()
+            ->pluck('id', 'detail_request_name');
+
+        $this->detailRequestsForCash = DetailRequest::where('status', '1')
+            ->orderBy('id', 'desc')
+            ->where('store_id', $this->invoicePurchase->store_id)
+            ->get()
+            ->pluck('id', 'detail_request_name');
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
