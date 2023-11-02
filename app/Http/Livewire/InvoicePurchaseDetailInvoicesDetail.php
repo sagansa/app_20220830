@@ -71,6 +71,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
                 ->where('store_id', $this->invoicePurchase->store_id)
                 ->get()
                 ->pluck('id', 'detail_request_name');
+        }
 
         // if ($this->invoicePurchase->payment_type_id = '1') {
         //     $this->detailRequestsForSelect = DetailRequest::with('product')
