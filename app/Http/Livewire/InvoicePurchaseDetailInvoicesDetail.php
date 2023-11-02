@@ -45,7 +45,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
     public function mount(InvoicePurchase $invoicePurchase)
     {
-        $this->invoicePurchase = $invoicePurchase;
+        // $this->invoicePurchase = $invoicePurchase;
 
         // $this->detailRequestsForSelect = DetailRequest::with('product')
         //     ->where('store_id', $this->invoicePurchase->store_id)
