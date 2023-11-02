@@ -22,7 +22,7 @@
 
             <div class="mt-1 sm:space-y-5">
 
-                @if ($detailInvoice->invoicePurchase->payment_type_id = '1')
+                @if ($this->invoicePurchase->payment_type_id = '1')
                     <x-input.select name="detailInvoice.detail_request_id" label="Detail Request"
                         wire:model="detailInvoice.detail_request_id">
                         <option value="null" disabled>-- select --</option>
@@ -30,7 +30,7 @@
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </x-input.select>
-                @elseif ($detailInvoice->invoicePurchase->payment_type_id = '2')
+                @elseif ($this->invoicePurchase->payment_type_id = '2')
                     <x-input.select name="detailInvoice.detail_request_id" label="Detail Request"
                         wire:model="detailInvoice.detail_request_id">
                         <option value="null" disabled>-- select --</option>
