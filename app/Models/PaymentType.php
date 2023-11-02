@@ -24,9 +24,9 @@ class PaymentType extends Model
 
     protected $table = 'payment_types';
 
-    public function purchaseOrders()
+    public function paymentTypes()
     {
-        return $this->hasMany(PurchaseOrder::class);
+        return $this->hasMany(PaymentType::class);
     }
 
     public function products()
