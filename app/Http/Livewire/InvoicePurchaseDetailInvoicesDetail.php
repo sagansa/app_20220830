@@ -76,7 +76,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             //     ->whereIn('status', ['4'])
             //     ->get()
             //     ->pluck( 'id', 'detail_request_name');
-        }
+        // }
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
