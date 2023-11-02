@@ -22,22 +22,23 @@
 
             <div class="mt-1 sm:space-y-5">
 
-
-                <x-input.select name="detailInvoice.detail_request_id" label="Detail Request"
-                    wire:model="detailInvoice.detail_request_id">
-                    <option value="null" disabled>-- select --</option>
-                    @if ($detailInvoice->invoicePurchase->payment_type_id = '1')
+                @if ($detailInvoice->invoicePurchase->payment_type_id = '1')
+                    <x-input.select name="detailInvoice.detail_request_id" label="Detail Request"
+                        wire:model="detailInvoice.detail_request_id">
+                        <option value="null" disabled>-- select --</option>
                         @foreach ($detailRequestsForTransfer as $label => $value)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
-                    @elseif ($detailInvoice->invoicePurchase->payment_type_id = '2')
+                    </x-input.select>
+                @elseif ($detailInvoice->invoicePurchase->payment_type_id = '2')
+                    <x-input.select name="detailInvoice.detail_request_id" label="Detail Request"
+                        wire:model="detailInvoice.detail_request_id">
+                        <option value="null" disabled>-- select --</option>
                         @foreach ($detailRequestsForCash as $label => $value)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
-                    @endif
-
-                </x-input.select>
-
+                    </x-input.select>
+                @endif
                 <x-input.select name="detailInvoice.detail_request_id" label="Detail Request"
                     wire:model="detailInvoice.detail_request_id">
                     <option value="null" disabled>-- select --</option>
