@@ -45,7 +45,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
     public function mount(InvoicePurchase $invoicePurchase)
     {
-        // $this->invoicePurchase = $invoicePurchase;
+        $this->invoicePurchase = $invoicePurchase;
 
         // $this->detailRequestsForSelect = DetailRequest::with('product')
         //     ->where('store_id', $this->invoicePurchase->store_id)
@@ -59,7 +59,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             // ->get()
             // ->pluck( 'id', 'detail_request_name');
 
-        if ($this->invoicePurchase->paymentType = '3') {
+        if ($this->invoicePurchases->payment_type_id = '1') {
             $this->detailRequestsForSelect = DetailRequest::where('status', '4')
                 ->orderBy('id', 'desc')
                 ->where('store_id', $this->invoicePurchase->store_id)
