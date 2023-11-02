@@ -61,7 +61,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
         if ($this->invoicePurchase->payment_type_id = '1') {
             $this->detailRequestsForSelect = DetailRequest::where('status', '4')
-                ->orderBy('detail_requests.date', 'desc')
+                ->orderBy('id', 'desc')
                 ->where('store_id', $this->invoicePurchase->store_id)
                 ->get()
                 ->pluck('id', 'detail_request_name');
