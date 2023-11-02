@@ -61,13 +61,13 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
         if ($this->invoicePurchase->payment_type_id = '1') {
             $this->detailRequestsForSelect = DetailRequest::
-                where('status', '1')
+                where('payment_type_id', '1')
                 ->where('store_id', $this->invoicePurchase->store_id)
                 ->get()
                 ->pluck('id', 'detail_request_name');
         } else if ($this->invoicePurchase->payment_type_id = '2') {
             $this->detailRequestsForSelect = DetailRequest::
-                where('status', '4')
+                where('payment_type_id', '2')
                 ->where('store_id', $this->invoicePurchase->store_id)
                 ->get()
                 ->pluck('id', 'detail_request_name');
