@@ -60,17 +60,17 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
         //     ->pluck( 'id', 'detail_request_name');
 
         // if ($this->invoicePurchase->payment_type_id = '1') {
-        //     $this->detailRequestsForSelect = DetailRequest::with('product')
-        //         ->where('store_id', $this->invoicePurchase->store_id)
-        //         ->whereIn('status', ['1'])
-        //         ->get()
-        //         ->pluck( 'id', 'detail_request_name');
-        // } elseif ($this->invoicePurchase->payment_type_id = '2') {
             $this->detailRequestsForSelect = DetailRequest::with('product')
                 ->where('store_id', $this->invoicePurchase->store_id)
-                ->whereIn('status', ['4'])
+                ->whereIn('status', ['1'])
                 ->get()
                 ->pluck( 'id', 'detail_request_name');
+        // } elseif ($this->invoicePurchase->payment_type_id = '2') {
+            // $this->detailRequestsForSelect = DetailRequest::with('product')
+            //     ->where('store_id', $this->invoicePurchase->store_id)
+            //     ->whereIn('status', ['4'])
+            //     ->get()
+            //     ->pluck( 'id', 'detail_request_name');
         // }
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
