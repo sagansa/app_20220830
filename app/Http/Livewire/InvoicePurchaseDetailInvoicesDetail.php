@@ -65,7 +65,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
                 where('status', '4')
                 ->where('store_id', $this->invoicePurchase->store_id)
                 ->get()
-                ->orderBy('detail_request_name', 'desc')
+                // ->orderBy('detail_request_name', 'desc')
                 ->pluck('id', 'detail_request_name');
         }
 
