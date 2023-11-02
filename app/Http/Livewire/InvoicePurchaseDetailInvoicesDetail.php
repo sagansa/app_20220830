@@ -49,7 +49,7 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
 
         $this->detailRequestsForSelect = DetailRequest::with('product')
             ->where('store_id', $this->invoicePurchase->store_id)
-            ->whereIn('status', ['4', '5'])
+            ->whereIn('status', ['4'])
         //     // ->whereHas('products', function($query) {$query->where('payment_type_id', '=', $this->invoicePurchase->payment_type_id);})
         //     // ->where('payment_type_id', '=', '1')
         //     // ->orderBy('detail_request_name', 'desc')
