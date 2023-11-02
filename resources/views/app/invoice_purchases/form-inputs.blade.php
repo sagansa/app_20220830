@@ -24,19 +24,36 @@
         </div>
     </x-input.image>
 
-    <x-input.select name="payment_type_id" label="Payment Type" required>
-        @php $selected = old('payment_type_id', ($editing ? $invoicePurchase->payment_type_id : '')) @endphp
-        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-        @foreach ($paymentTypes as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}</option>
-        @endforeach
-    </x-input.select>
+    @role('staff|manager|supervisor')
+        @if (!$editing)
+            <x-input.select name="payment_type_id" label="Payment Type" required>
+                @php $selected = old('payment_type_id', ($editing ? $invoicePurchase->payment_type_id : '')) @endphp
+                <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
+                @foreach ($paymentTypes as $value => $label)
+                    <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
+                    </option>
+                @endforeach
+            </x-input.select>
+        @endif
+    @endrole
+
+    @role('super-admin')
+        <x-input.select name="payment_type_id" label="Payment Type" required>
+            @php $selected = old('payment_type_id', ($editing ? $invoicePurchase->payment_type_id : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
+            @foreach ($paymentTypes as $value => $label)
+                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
+                </option>
+            @endforeach
+        </x-input.select>
+    @endrole
 
     <x-input.select name="store_id" label="Store" required>
         @php $selected = old('store_id', ($editing ? $invoicePurchase->store_id : '')) @endphp
         <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
         @foreach ($stores as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}</option>
+            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
+            </option>
         @endforeach
     </x-input.select>
 
@@ -81,6 +98,10 @@
 
     @if ($editing)
         <x-shows.dl>
+            <x-shows.sub-dl>
+                <x-shows.dt>Payment Type</x-shows.dt>
+                <x-shows.dd>{{ $invoicePurchase->paymentType->name }} </x-shows.dd>
+            </x-shows.sub-dl>
             <x-shows.sub-dl>
                 <x-shows.dt>Created Date</x-shows.dt>
                 <x-shows.dd>{{ $invoicePurchase->created_at }} </x-shows.dd>
