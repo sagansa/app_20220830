@@ -4,9 +4,11 @@ namespace App\Http\Livewire\DetailInvoices;
 
 use App\Models\DetailInvoice;
 use App\Models\DetailRequest;
+use App\Models\InvoicePurchase;
 use App\Models\Product;
 use App\Models\Store;
 use App\Models\Supplier;
+use App\Models\Unit;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -20,10 +22,11 @@ class UnitPricePurchases extends Component
     public $detailRequestsForSelect = [];
     public $unitsForSelect = [];
 
-    public $suppliers;
-    public $stores;
-    public $products;
+    // public $suppliers;
+    // public $stores;
+    // public $products;
 
+    public InvoicePurchase $invoicePurchase;
     public DetailInvoice $detailInvoice;
 
     public $selected = [];
@@ -49,11 +52,11 @@ class UnitPricePurchases extends Component
 
     public function mount()
     {
-        $this->suppliers = Supplier::orderBy('name', 'asc')->pluck('id', 'name');
-        $this->stores = Store::orderBy('nickname', 'asc')->pluck('id', 'nickname');
-        $this->products = Product::orderBy('name', 'asc')
-            ->whereNotIn('material_group_id', ['2', '6'])
-            ->pluck('id', 'name');
+        // $this->suppliers = Supplier::orderBy('name', 'asc')->pluck('id', 'name');
+        // $this->stores = Store::orderBy('nickname', 'asc')->pluck('id', 'nickname');
+        // $this->products = Product::orderBy('name', 'asc')
+        //     ->whereNotIn('material_group_id', ['2', '6'])
+        //     ->pluck('id', 'name');
 
         $this->detailRequestsForSelect = DetailRequest::where('status', '4')
             ->orderBy('id', 'desc')
