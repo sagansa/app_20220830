@@ -156,9 +156,9 @@ class UnitPricePurchases extends Component
     public function render()
     {
         return view('livewire.detail-invoices.unit-price-purchases', [
-            'detailInvoices' => $this->invoicePurchase
-                ->detailInvoices()
-                ->paginate(20),
+            // 'detailInvoices' => $this->invoicePurchase
+                // ->detailInvoices()
+                // ->paginate(20),
         ]);
     }
 
