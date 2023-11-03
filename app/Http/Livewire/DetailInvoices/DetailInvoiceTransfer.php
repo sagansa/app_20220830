@@ -158,7 +158,7 @@ class DetailInvoiceTransfer extends Component
     {
         return view('livewire.detail-invoices.detail-invoice-transfer', [
             'detailInvoices' => $this->invoicePurchase
-                ->detailInvoices()()
+                ->detailInvoices()
                 ->paginate(20),
         ]);
     }
