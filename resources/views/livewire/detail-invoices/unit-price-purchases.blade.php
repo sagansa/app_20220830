@@ -123,33 +123,6 @@
             </x-slot>
             <x-slot name="foot">
                 <tr>
-                    <x-tables.th-total colspan="4">Subtotals</x-tables.th-total>
-                    <x-tables.td-total> @currency($detailInvoices->sum('subtotal_invoice'))</x-tables.td-total>
-                </tr>
-                <tr>
-                    <x-tables.th-total colspan="4">Discounts</x-tables.th-total>
-                    @if ($invoicePurchase->payment_status != 2 || $invoicePurchase->order_status != 2)
-                        <x-input.wire-currency name="discounts" wiresubmit="updateInvoicePurchase"
-                            wiremodel="state.discounts"></x-input.wire-currency>
-                    @else
-                        <x-tables.td-total>@currency($this->invoicePurchase->discounts)</x-tables.td-total>
-                    @endif
-                </tr>
-                <tr>
-                    <x-tables.th-total colspan="4">Taxes</x-tables.th-total>
-                    @if ($invoicePurchase->payment_status != 2 || $invoicePurchase->order_status != 2)
-                        <x-input.wire-currency name="taxes" wiresubmit="updateInvoicePurchase"
-                            wiremodel="state.taxes">
-                        </x-input.wire-currency>
-                    @else
-                        <x-tables.td-total>@currency($this->invoicePurchase->taxes)</x-tables.td-total>
-                    @endif
-                </tr>
-                <tr>
-                    <x-tables.th-total colspan="4">Totals</x-tables.th-total>
-                    <x-tables.td-total>@currency($this->invoicePurchase->totals)</x-tables.td-total>
-                </tr>
-                <tr>
                     <td colspan="7">
                         <div class="px-4 mt-10">
                             {{ $detailInvoices->render() }}
