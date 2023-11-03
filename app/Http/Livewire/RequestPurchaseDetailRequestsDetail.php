@@ -58,7 +58,7 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->detailRequest = new DetailRequest();
 
         $this->detailRequest->product_id = null;
-        $this->detailRequest->status = null;
+        $this->detailRequest->status = 1;
         // $this->products = null;
 
         $this->dispatchBrowserEvent('refresh');
@@ -116,8 +116,6 @@ class RequestPurchaseDetailRequestsDetail extends Component
         $this->detailRequest->store_id = $this->requestPurchase->store_id;
 
         $this->detailRequest->payment_type_id = $this->detailRequest->product->payment_type_id;
-
-        // $this->detailRequest->status = '1';
 
         $this->detailRequest->save();
 
