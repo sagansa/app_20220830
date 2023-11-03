@@ -1,14 +1,4 @@
 <div>
-    <div>
-        @can('delete-any', App\Models\DetailInvoice::class)
-            <button class="button button-danger" {{ empty($selected) ? 'disabled' : '' }}
-                onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="destroySelected">
-                <i class="mr-1 icon ion-md-trash text-primary"></i>
-                @lang('crud.common.delete_selected')
-            </button>
-        @endcan
-    </div>
-
     <x-modal wire:model="showingModal">
         <div class="px-6 py-4">
             <div class="text-lg font-bold">{{ $modalTitle }}</div>
@@ -62,10 +52,6 @@
             <x-slot name="head">
                 <tr>
                     <x-tables.th-left>
-                        <input type="checkbox" wire:model="allSelected" wire:click="toggleFullSelection"
-                            title="{{ trans('crud.common.select_all') }}" />
-                    </x-tables.th-left>
-                    <x-tables.th-left>
                         Product
                     </x-tables.th-left>
                     <x-tables.th-left>
@@ -73,6 +59,9 @@
                     </x-tables.th-left>
                     <x-tables.th-left>
                         Created By
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        Date
                     </x-tables.th-left>
                     <x-tables.th-left>
                         Quantity Invoice
@@ -92,9 +81,6 @@
             <x-slot name="body">
                 @foreach ($detailInvoices as $detailInvoice)
                     <tr class="hover:bg-gray-100">
-                        <x-tables.td-left>
-                            <input type="checkbox" value="{{ $detailInvoice->id }}" wire:model="selected" />
-                        </x-tables.td-left>
                         <x-tables.td-left>
                             {{ optional($detailInvoice->detailRequest)->product->name ?? '-' }}
                         </x-tables.td-left>
