@@ -58,11 +58,11 @@ class UnitPricePurchases extends Component
         //     ->whereNotIn('material_group_id', ['2', '6'])
         //     ->pluck('id', 'name');
 
-        $this->detailRequestsForSelect = DetailRequest::where('status', '4')
-            ->orderBy('id', 'desc')
-            ->where('store_id', $this->invoicePurchase->store_id)
-            ->get()
-            ->pluck('id', 'detail_request_name');
+        // $this->detailRequestsForSelect = DetailRequest::where('status', '4')
+        //     ->orderBy('id', 'desc')
+        //     ->where('store_id', $this->invoicePurchase->store_id)
+        //     ->get()
+        //     ->pluck('id', 'detail_request_name');
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
