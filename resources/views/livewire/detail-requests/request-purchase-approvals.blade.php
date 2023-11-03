@@ -100,9 +100,9 @@
                             <x-slot name="sub">
                                 <p> {{ $detailRequest->requestPurchase->date->toFormattedDate() }}</p>
                                 <p>
-                                    @if ($detailRequest->status == 2)
+                                    {{-- @if ($detailRequest->status == 2)
                                         {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }}
-                                    @endif
+                                    @endif --}}
                                 </p>
                                 <p> {{ optional($detailRequest->store)->nickname ?? '-' }}</p>
                                 <p>
