@@ -69,7 +69,10 @@
                         Product
                     </x-tables.th-left>
                     <x-tables.th-left>
-                        Quantity
+                        Quantity Invoice
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        Quantity Product
                     </x-tables.th-left>
                     <x-tables.th-left>
                         Unit Price
@@ -87,23 +90,31 @@
                             <input type="checkbox" value="{{ $detailInvoice->id }}" wire:model="selected" />
                         </x-tables.td-left>
                         <x-tables.td-left>
-                            <x-spans.text-black>{{ optional($detailInvoice->detailRequest)->product->name ?? '-' }}
-                            </x-spans.text-black>
+                            {{ optional($detailInvoice->detailRequest)->product->name ?? '-' }}
+                        </x-tables.td-left>
+                        <x-tables.td-left>
+                            {{ optional($detailInvoice->invoicePurchase)->store->nickname ?? '-' }}
+                        </x-tables.td-left>
+                        <x-tables.td-left>
+                            {{ $detailInvoice->invoicePurchase->created_by->name }}
+                        </x-tables.td-left>
+                        <x-tables.td-left>
+                            {{ $detailInvoice->invoicePurchase->date }}
                         </x-tables.td-left>
                         <x-tables.td-right>
-                            <p>Prod: {{ $detailInvoice->quantity_product ?? '-' }}
-                                {{ $detailInvoice->detailRequest->product->unit->unit }}</p>
-                            <p>Inv: {{ $detailInvoice->quantity_invoice ?? '-' }}
-                                {{ $detailInvoice->detailRequest->product->unit->unit ?? '-' }}</p>
+                            {{ $detailInvoice->quantity_product ?? '-' }}
+                            {{ $detailInvoice->detailRequest->product->unit->unit }}
                         </x-tables.td-right>
-
+                        <x-tables.td-right>
+                            {{ $detailInvoice->quantity_invoice ?? '-' }}
+                            {{ $detailInvoice->detailRequest->product->unit->unit ?? '-' }}
+                        </x-tables.td-right>
                         <x-tables.td-right>
                             @if ($detailInvoice->quantity_product != null)
                                 @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
                             @else
                                 -
                             @endif
-
                         </x-tables.td-right>
                         <x-tables.td-right>
                             @currency($detailInvoice->subtotal_invoice)
