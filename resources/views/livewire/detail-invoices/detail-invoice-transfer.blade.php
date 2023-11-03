@@ -1,12 +1,19 @@
 <div>
     <div>
-        @can('delete-any', App\Models\DetailInvoice::class)
-            <button class="button button-danger" {{ empty($selected) ? 'disabled' : '' }}
-                onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="destroySelected">
-                <i class="mr-1 icon ion-md-trash text-primary"></i>
-                @lang('crud.common.delete_selected')
-            </button>
-        @endcan
+        @if ($invoicePurchase->payment_status != 2 || $invoicePurchase->order_status != 2)
+            @can('create', App\Models\DetailInvoice::class)
+                <button class="button" wire:click="newDetailInvoice">
+                    <i class="mr-1 icon ion-md-add text-primary"></i>
+                    @lang('crud.common.new')
+                </button>
+                @endcan @can('delete-any', App\Models\DetailInvoice::class)
+                <button class="button button-danger" {{ empty($selected) ? 'disabled' : '' }}
+                    onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="destroySelected">
+                    <i class="mr-1 icon ion-md-trash text-primary"></i>
+                    @lang('crud.common.delete_selected')
+                </button>
+            @endcan
+        @endif
     </div>
 
     <x-modal wire:model="showingModal">
@@ -40,6 +47,19 @@
                 <x-input.currency name="detailInvoice.subtotal_invoice" label="Subtotal Invoice"
                     wire:model="detailInvoice.subtotal_invoice"></x-input.currency>
 
+                @role('staff|supervisor')
+                    <x-input.select name="detailInvoice.status" label="Status" wire:model="detailInvoice.status">
+                        @if ($detailInvoice->detailRequest != null)
+                            @if ($detailInvoice->detailRequest->product->material_group_id == 3)
+                                <option value="1" {{ $selected == '1' ? 'selected' : '' }}>process</option>
+                            @elseif ($detailInvoice->detailRequest->product->material_group_id != 3)
+                                <option value="3" {{ $selected == '3' ? 'selected' : '' }}>no need</option>
+                            @endif
+                        @else
+                            <option value="" {{ $selected == '' ? 'selected' : '' }}></option>
+                        @endif
+                    </x-input.select>
+                @endrole
                 @role('super-admin|manager')
                     <x-input.select name="detailInvoice.status" label="Status" wire:model="detailInvoice.status">
                         <option value="1" {{ $selected == '1' ? 'selected' : '' }}>process</option>

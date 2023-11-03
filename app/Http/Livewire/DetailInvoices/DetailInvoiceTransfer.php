@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class DetailInvoiceCash extends Component
+class DetailInvoiceTransfer extends Component
 {
-    use WithPagination;
+     use WithPagination;
     use AuthorizesRequests;
 
     public InvoicePurchase $invoicePurchase;
@@ -29,7 +29,7 @@ class DetailInvoiceCash extends Component
     public $allSelected = false;
     public $showingModal = false;
 
-    public $modalTitle = 'New Detail Invoice';
+    public $modalTitle = 'New DetailInvoice';
 
     protected $rules = [
         'detailInvoice.detail_request_id' => [
@@ -47,7 +47,7 @@ class DetailInvoiceCash extends Component
     {
         $this->invoicePurchase = $invoicePurchase;
 
-        $this->detailRequestsForSelect = DetailRequest::where('status', '4')
+        $this->detailRequestsForSelect = DetailRequest::whereIn('status', ['1', '4'])
             ->orderBy('id', 'desc')
             ->where('store_id', $this->invoicePurchase->store_id)
             ->get()
@@ -55,6 +55,7 @@ class DetailInvoiceCash extends Component
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();
+
     }
 
     public function resetDetailInvoiceData(): void
@@ -155,17 +156,9 @@ class DetailInvoiceCash extends Component
 
     public function render()
     {
-        $this->invoicePurchase->subtotals = 0;
-
-        foreach ($this->invoicePurchase->detailInvoices as $detailInvoice) {
-            $this->detailInvoice->subtotals += $detailInvoice['subtotal_invoice'];
-        }
-
-        $this->invoicePurchase->totals = $this->detailInvoice->subtotals - $this->invoicePurchase->discounts + $this->invoicePurchase->taxes;
-
-        return view('livewire.detail-invoices.detail-invoice-cash', [
+        return view('livewire.detail-invoices.detail-invoice-transfer', [
             'detailInvoices' => $this->invoicePurchase
-                ->detailInvoices()
+                ->detailInvoices()()
                 ->paginate(20),
         ]);
     }
@@ -182,4 +175,5 @@ class DetailInvoiceCash extends Component
 
 		$this->invoicePurchase->update($this->state);
     }
+
 }
