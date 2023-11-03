@@ -69,6 +69,12 @@
                         Product
                     </x-tables.th-left>
                     <x-tables.th-left>
+                        Store
+                    </x-tables.th-left>
+                    <x-tables.th-left>
+                        Created By
+                    </x-tables.th-left>
+                    <x-tables.th-left>
                         Quantity Invoice
                     </x-tables.th-left>
                     <x-tables.th-left>
@@ -99,7 +105,7 @@
                             {{ $detailInvoice->invoicePurchase->created_by->name }}
                         </x-tables.td-left>
                         <x-tables.td-left>
-                            {{ $detailInvoice->invoicePurchase->date }}
+                            {{ $detailInvoice->invoicePurchase->date->toFormattedDate() }}
                         </x-tables.td-left>
                         <x-tables.td-right>
                             {{ $detailInvoice->quantity_product ?? '-' }}
