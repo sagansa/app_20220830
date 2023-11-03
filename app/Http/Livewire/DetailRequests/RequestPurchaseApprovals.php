@@ -26,7 +26,7 @@ class RequestPurchaseApprovals extends Component
 
     protected $queryString = [
         'sortColumn' => [
-        'except' => 'detail_requests.date'
+        'except' => 'detail_requests.created_at'
         ],
         'sortDirection' => [
             'except' => 'asc',

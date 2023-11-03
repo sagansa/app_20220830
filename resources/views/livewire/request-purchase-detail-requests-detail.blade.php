@@ -48,29 +48,10 @@
 
                 <x-input.number name="detailRequest.quantity_plan" label="Quantity Plan"
                     wire:model="detailRequest.quantity_plan"></x-input.number>
-                {{-- @role('super-admin|manager')
-                    <x-input.select name="detailRequest.status" label="Status" wire:model="detailRequest.status">
-                        <option value="1" {{ $selected == '1' ? 'selected' : '' }}>process</option>
-                        <option value="2" {{ $selected == '2' ? 'selected' : '' }}>done</option>
-                        <option value="3" {{ $selected == '3' ? 'selected' : '' }}>reject</option>
-                        <option value="4" {{ $selected == '4' ? 'selected' : '' }}>approved</option>
-                        <option value="5" {{ $selected == '5' ? 'selected' : '' }}>not valid</option>
-                        <option value="5" {{ $selected == '5' ? 'selected' : '' }}>not used</option>
-                    </x-input.select>
-                @endrole --}}
-                {{-- @role('supervisor|staff') --}}
+
                 <x-input.hidden name="detailRequest.status" wire:model="detailRequest.status">
                 </x-input.hidden>
-                {{-- @endrole --}}
-                @if ($this->detailRequest->product->payment_type_id = '1')
-                    <x-input.select name="detailRequest.status" label="Status" wire:model="detailRequest.status">
-                        <option value="4" {{ $selected == '4' ? 'selected' : '' }}>approved</option>
-                    </x-input.select>
-                @elseif ($this->detailRequest->product->payment_type_id = '2')
-                    <x-input.select name="detailRequest.status" label="Status" wire:model="detailRequest.status">
-                        <option value="1" {{ $selected == '1' ? 'selected' : '' }}>process</option>
-                    </x-input.select>
-                @endif
+
             </div>
         </div>
 

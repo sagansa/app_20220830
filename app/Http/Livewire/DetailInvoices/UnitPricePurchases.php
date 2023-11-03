@@ -2,6 +2,12 @@
 
 namespace App\Http\Livewire\DetailInvoices;
 
+use App\Http\Livewire\DataTables\WithBulkAction;
+use App\Http\Livewire\DataTables\WithCachedRows;
+use App\Http\Livewire\DataTables\WithFilter;
+use App\Http\Livewire\DataTables\WithModal;
+use App\Http\Livewire\DataTables\WithPerPagePagination;
+use App\Http\Livewire\DataTables\WithSortingDate;
 use App\Models\DetailInvoice;
 use App\Models\DetailRequest;
 use App\Models\InvoicePurchase;
@@ -16,15 +22,17 @@ use Livewire\WithPagination;
 
 class UnitPricePurchases extends Component
 {
+    use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
+
     use WithPagination;
     use AuthorizesRequests;
 
     public $detailRequestsForSelect = [];
     public $unitsForSelect = [];
 
-    // public $suppliers;
-    // public $stores;
-    // public $products;
+    public $suppliers;
+    public $stores;
+    public $products;
 
     public InvoicePurchase $invoicePurchase;
     public DetailInvoice $detailInvoice;
@@ -37,6 +45,21 @@ class UnitPricePurchases extends Component
     public $modalTitle = 'New Detail Invoice';
 
     public $sortColumn = 'detail_invoices.created_at';
+
+    protected $queryString = [
+        'sortColumn' => [
+        'except' => 'detail_invoices.created_at'
+        ],
+        'sortDirection' => [
+            'except' => 'desc',
+        ],
+    ];
+
+    public $filters = [
+        'product_id' => null,
+        'supplier_id' => null,
+        'store_id' => null,
+    ];
 
     protected $rules = [
         'editing.detail_request_id' => [
@@ -52,11 +75,11 @@ class UnitPricePurchases extends Component
 
     public function mount()
     {
-        // $this->suppliers = Supplier::orderBy('name', 'asc')->pluck('id', 'name');
-        // $this->stores = Store::orderBy('nickname', 'asc')->pluck('id', 'nickname');
-        // $this->products = Product::orderBy('name', 'asc')
-        //     ->whereNotIn('material_group_id', ['2', '6'])
-        //     ->pluck('id', 'name');
+        $this->suppliers = Supplier::orderBy('name', 'asc')->pluck('id', 'name');
+        $this->stores = Store::orderBy('nickname', 'asc')->pluck('id', 'nickname');
+        $this->products = Product::orderBy('name', 'asc')
+            ->whereNotIn('material_group_id', ['2', '6'])
+            ->pluck('id', 'name');
 
         // $this->detailRequestsForSelect = DetailRequest::where('status', '4')
         //     ->orderBy('id', 'desc')
@@ -130,28 +153,28 @@ class UnitPricePurchases extends Component
         }
     }
 
-    // public function getRowsQueryProperty()
-    // {
-    //     $detailInvoices = DetailInvoice::query();
+    public function getRowsQueryProperty()
+    {
+        $detailInvoices = DetailInvoice::query();
 
-    //         foreach ($this->filters as $filter => $value) {
-    //             if (!empty($value)) {
-    //                 $detailInvoices
-    //                     ->when($filter == 'store_id', fn($detailInvoices) => $detailInvoices->whereRelation('invoicePurchase.store', 'id', $value))
-    //                     ->when($filter == 'supplier_id', fn($detailInvoices) => $detailInvoices->whereRelation('invoicePurchase.supplier', 'id', $value))
-    //                     ->when($filter == 'product_id', fn($detailInvoices) => $detailInvoices->whereRelation('detailRequest.product', 'id', $value));
-    //             }
-    //         }
+            foreach ($this->filters as $filter => $value) {
+                if (!empty($value)) {
+                    $detailInvoices
+                        ->when($filter == 'store_id', fn($detailInvoices) => $detailInvoices->whereRelation('invoicePurchase.store', 'id', $value))
+                        ->when($filter == 'supplier_id', fn($detailInvoices) => $detailInvoices->whereRelation('invoicePurchase.supplier', 'id', $value))
+                        ->when($filter == 'product_id', fn($detailInvoices) => $detailInvoices->whereRelation('detailRequest.product', 'id', $value));
+                }
+            }
 
-    //     return $this->applySorting($detailInvoices);
-    // }
+        return $this->applySorting($detailInvoices);
+    }
 
-    // public function getRowsProperty()
-    // {
-    //     return $this->cache(function () {
-    //         return $this->applyPagination($this->rowsQuery);
-    //     });
-    // }
+    public function getRowsProperty()
+    {
+        return $this->cache(function () {
+            return $this->applyPagination($this->rowsQuery);
+        });
+    }
 
     public function render()
     {
