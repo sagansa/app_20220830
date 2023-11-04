@@ -74,7 +74,9 @@
 
     <x-inputs.hidden name="taxes" :value="old('taxes', $editing ? $invoicePurchase->taxes : '0')"></x-inputs.hidden>
 
-    <x-inputs.hidden name="payment_status" :value="old('payment_status', $editing ? $invoicePurchase->payment_status : '1')"></x-inputs.hidden>
+    @role('supervisor|manager|staff')
+        <x-inputs.hidden name="payment_status" :value="old('payment_status', $editing ? $invoicePurchase->payment_status : '1')"></x-inputs.hidden>
+    @endrole
 
     @role('super-admin')
         <x-input.select name="payment_status" label="Payment Status">

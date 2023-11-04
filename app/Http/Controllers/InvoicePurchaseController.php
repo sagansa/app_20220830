@@ -43,7 +43,7 @@ class InvoicePurchaseController extends Controller
             ->pluck('name', 'id');
         $stores = Store::orderBy('nickname', 'asc')
             ->whereNotIn('status', ['8'])
-            ->pluck('name', 'id');
+            ->pluck('nickname', 'id');
         $suppliers = Supplier::orderBy('name', 'asc')
             ->get()
             ->pluck('supplier_name', 'id');
@@ -103,7 +103,7 @@ class InvoicePurchaseController extends Controller
             ->pluck('name', 'id');
         $stores = Store::orderBy('nickname', 'asc')
             ->whereNotIn('status', ['8'])
-            ->pluck('name', 'id');
+            ->pluck('nickname', 'id');
         $suppliers = Supplier::orderBy('name', 'asc')
             ->get()
             ->pluck('supplier_name', 'id');
