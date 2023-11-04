@@ -34,6 +34,8 @@
                     </option>
                 @endforeach
             </x-input.select>
+        @elseif ($editing)
+            <x-inputs.hidden name="payment_type_id" :value="old('payment_type_id', $invoicePurchase->payment_type_id)"></x-inputs.hidden>
         @endif
     @endrole
 
@@ -47,6 +49,7 @@
             @endforeach
         </x-input.select>
     @endrole
+
 
     <x-input.select name="store_id" label="Store" required>
         @php $selected = old('store_id', ($editing ? $invoicePurchase->store_id : '')) @endphp
