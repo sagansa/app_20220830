@@ -76,9 +76,9 @@ class InvoicePurchaseController extends Controller
         }
 
         $validated['created_by_id'] = auth()->user()->id;
-        $validated['payment_status'] = '1';
-        $validated['discounts'] = '0';
-        $validated['taxes'] = '0';
+        // $validated['payment_status'] = '1';
+        // $validated['discounts'] = '0';
+        // $validated['taxes'] = '0';
 
         $invoicePurchase = InvoicePurchase::create($validated);
 
