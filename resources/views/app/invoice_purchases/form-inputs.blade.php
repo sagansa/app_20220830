@@ -24,32 +24,14 @@
         </div>
     </x-input.image>
 
-    @role('staff|manager|supervisor')
-        {{-- @if (!$editing) --}}
-        <x-input.select name="payment_type_id" label="Payment Type" required>
-            @php $selected = old('payment_type_id', ($editing ? $invoicePurchase->payment_type_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-            @foreach ($paymentTypes as $value => $label)
-                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
-                </option>
-            @endforeach
-        </x-input.select>
-        {{-- @elseif ($editing)
-            <x-inputs.hidden name="payment_type_id" :value="old('payment_type_id', $invoicePurchase->payment_type_id)"></x-inputs.hidden>
-        @endif --}}
-    @endrole
-
-    @role('super-admin')
-        <x-input.select name="payment_type_id" label="Payment Type" required>
-            @php $selected = old('payment_type_id', ($editing ? $invoicePurchase->payment_type_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
-            @foreach ($paymentTypes as $value => $label)
-                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
-                </option>
-            @endforeach
-        </x-input.select>
-    @endrole
-
+    <x-input.select name="payment_type_id" label="Payment Type" required>
+        @php $selected = old('payment_type_id', ($editing ? $invoicePurchase->payment_type_id : '')) @endphp
+        <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>
+        @foreach ($paymentTypes as $value => $label)
+            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>{{ $label }}
+            </option>
+        @endforeach
+    </x-input.select>
 
     <x-input.select name="store_id" label="Store" required>
         @php $selected = old('store_id', ($editing ? $invoicePurchase->store_id : '')) @endphp
