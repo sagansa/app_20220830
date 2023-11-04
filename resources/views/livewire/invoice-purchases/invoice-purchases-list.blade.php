@@ -281,7 +281,7 @@
                         </td>
                     </tr>
                 @empty
-                    <x-tables.no-items-found colspan="10">
+                    <x-tables.no-items-found colspan="11">
                     </x-tables.no-items-found>
                 @endforelse
             </x-slot>

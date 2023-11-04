@@ -15,10 +15,6 @@ use App\Http\Requests\InvoicePurchaseUpdateRequest;
 
 class InvoicePurchaseController extends Controller
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $this->authorize('view-any', InvoicePurchase::class);
@@ -40,10 +36,6 @@ class InvoicePurchaseController extends Controller
         );
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
         $paymentTypes = PaymentType::orderBy('name', 'asc')
@@ -53,7 +45,6 @@ class InvoicePurchaseController extends Controller
             ->whereNotIn('status', ['8'])
             ->pluck('name', 'id');
         $suppliers = Supplier::orderBy('name', 'asc')
-            // ->whereIn('status', ['1'])
             ->get()
             ->pluck('supplier_name', 'id');
 
@@ -63,10 +54,6 @@ class InvoicePurchaseController extends Controller
         );
     }
 
-    /**
-     * @param \App\Http\Requests\InvoicePurchaseStoreRequest $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(InvoicePurchaseStoreRequest $request)
     {
         $this->authorize('create', InvoicePurchase::class);
@@ -89,7 +76,7 @@ class InvoicePurchaseController extends Controller
         }
 
         $validated['created_by_id'] = auth()->user()->id;
-        $validated['status'] = '1';
+        $validated['payment_status'] = '1';
         $validated['discounts'] = '0';
         $validated['taxes'] = '0';
 
@@ -100,11 +87,6 @@ class InvoicePurchaseController extends Controller
             ->withSuccess(__('crud.common.created'));
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @return \Illuminate\Http\Response
-     */
     public function show(Request $request, InvoicePurchase $invoicePurchase)
     {
         $this->authorize('view', $invoicePurchase);
@@ -112,11 +94,6 @@ class InvoicePurchaseController extends Controller
         return view('app.invoice_purchases.show', compact('invoicePurchase'));
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Request $request, InvoicePurchase $invoicePurchase)
     {
         $this->authorize('update', $invoicePurchase);
@@ -128,7 +105,6 @@ class InvoicePurchaseController extends Controller
             ->whereNotIn('status', ['8'])
             ->pluck('name', 'id');
         $suppliers = Supplier::orderBy('name', 'asc')
-            // ->whereIn('status', ['1'])
             ->get()
             ->pluck('supplier_name', 'id');
 
@@ -138,11 +114,6 @@ class InvoicePurchaseController extends Controller
         );
     }
 
-    /**
-     * @param \App\Http\Requests\InvoicePurchaseUpdateRequest $request
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @return \Illuminate\Http\Response
-     */
     public function update(
         InvoicePurchaseUpdateRequest $request,
         InvoicePurchase $invoicePurchase
@@ -169,23 +140,19 @@ class InvoicePurchaseController extends Controller
         if (
             auth()
                 ->user()
-                ->hasRole('supervisor|manager|super-admin')
+                ->hasRole('super-admin')
         ) {
             $validated['approved_by_id'] = auth()->user()->id;
         }
 
         $invoicePurchase->update($validated);
 
+        dd($validated);
         return redirect()
             ->route('invoice-purchases.index')
             ->withSuccess(__('crud.common.saved'));
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\InvoicePurchase $invoicePurchase
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request, InvoicePurchase $invoicePurchase)
     {
         $this->authorize('delete', $invoicePurchase);
