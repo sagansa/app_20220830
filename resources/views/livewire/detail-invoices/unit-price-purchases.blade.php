@@ -115,6 +115,9 @@
                         Store
                     </x-tables.th-left-hide>
                     <x-tables.th-left-hide>
+                        Supplier
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         Created By
                     </x-tables.th-left-hide>
                     <x-tables.th-left-hide>
@@ -143,6 +146,9 @@
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             {{ optional($detailInvoice->invoicePurchase)->store->nickname ?? '-' }}
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
+                            {{ optional($detailInvoice->invoicePurchase)->supplier->name ?? '-' }}
                         </x-tables.td-left-hide>
                         <x-tables.td-left-hide>
                             {{ $detailInvoice->invoicePurchase->created_by->name }}

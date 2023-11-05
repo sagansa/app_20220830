@@ -82,7 +82,7 @@ class UnitPricePurchases extends Component
         $this->suppliers = Supplier::orderBy('name', 'asc')->pluck('id', 'name');
         $this->stores = Store::orderBy('nickname', 'asc')->pluck('id', 'nickname');
         $this->products = Product::orderBy('name', 'asc')
-            ->whereNotIn('material_group_id', ['2', '6'])
+            ->whereNotIn('payment_type_id', ['3'])
             ->pluck('id', 'name');
 
         // $this->detailRequestsForSelect = DetailRequest::where('status', '4')
