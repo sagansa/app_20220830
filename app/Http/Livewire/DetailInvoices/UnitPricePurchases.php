@@ -61,17 +61,20 @@ class UnitPricePurchases extends Component
         'store_id' => null,
     ];
 
-    protected $rules = [
-        'editing.detail_request_id' => [
-            'required',
-            'exists:detail_requests,id',
-        ],
-        'editing.quantity_product' => ['required', 'numeric', 'gt:0'],
-        'editing.quantity_invoice' => ['required', 'numeric', 'gt:0'],
-        'editing.unit_invoice_id' => ['required', 'exists:units,id'],
-        'editing.subtotal_invoice' => ['required', 'numeric', 'gt:0'],
-        'editing.status' => ['required', 'in:1,2,3'],
-    ];
+    public function rules()
+    {
+        return [
+            'editing.detail_request_id' => [
+                'required',
+                'exists:detail_requests,id',
+            ],
+            'editing.quantity_product' => ['required', 'numeric', 'gt:0'],
+            'editing.quantity_invoice' => ['required', 'numeric', 'gt:0'],
+            'editing.unit_invoice_id' => ['required', 'exists:units,id'],
+            'editing.subtotal_invoice' => ['required', 'numeric', 'gt:0'],
+            'editing.status' => ['required', 'in:1,2,3'],
+        ];
+    }
 
     public function mount()
     {
@@ -115,17 +118,6 @@ class UnitPricePurchases extends Component
         $this->showModal();
     }
 
-    public function showModal(): void
-    {
-        $this->resetErrorBag();
-        $this->showingModal = true;
-    }
-
-    public function hideModal(): void
-    {
-        $this->showingModal = false;
-    }
-
     public function save(): void
     {
         $this->validate();
@@ -139,18 +131,6 @@ class UnitPricePurchases extends Component
         $this->detailInvoice->save();
 
         $this->hideModal();
-    }
-
-    public function toggleFullSelection(): void
-    {
-        if (!$this->allSelected) {
-            $this->selected = [];
-            return;
-        }
-
-        foreach ($this->invoicePurchase->detailInvoices as $detailInvoice) {
-            array_push($this->selected, $detailInvoice->id);
-        }
     }
 
     public function getRowsQueryProperty()
@@ -179,20 +159,8 @@ class UnitPricePurchases extends Component
     public function render()
     {
         return view('livewire.detail-invoices.unit-price-purchases', [
-            'detailInvoices' => DetailInvoice::paginate(20),
+            // 'detailInvoices' => DetailInvoice::paginate(20),
+            'detailInvoices' => $this->rows,
         ]);
-    }
-
-    public function updateInvoicePurchase()
-    {
-        Validator::make(
-			$this->state,
-			[
-				'discounts' => 'required', 'numeric', 'min:0',
-                'taxes' => 'required', 'numeric', 'min:0',
-
-			])->validate();
-
-		$this->invoicePurchase->update($this->state);
     }
 }
