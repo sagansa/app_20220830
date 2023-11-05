@@ -76,7 +76,7 @@ class RequestPurchaseApprovals extends Component
             if (!empty($value)) {
                 $detailRequests
                     ->when($filter == 'product_id', fn($detailRequests) => $detailRequests->whereRelation('product', 'id', $value))
-                    ->when($filter == 'payment_type_id', fn($detailRequests) => $detailRequests->whereRelation('payment_type', 'id', $value))
+                    ->when($filter == 'payment_type_id', fn($detailRequests) => $detailRequests->whereRelation('paymentType', 'id', $value))
                     ->when($filter == 'status', fn($detailRequests) => $detailRequests->where('detail_requests.' . $filter, 'LIKE', '%' . $value . '%'));
             }
         }
