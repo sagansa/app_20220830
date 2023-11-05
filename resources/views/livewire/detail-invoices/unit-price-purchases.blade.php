@@ -83,27 +83,27 @@
                     <x-tables.th-left>
                         Product
                     </x-tables.th-left>
-                    <x-tables.th-left>
+                    <x-tables.th-left-hide>
                         Store
-                    </x-tables.th-left>
-                    <x-tables.th-left>
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         Created By
-                    </x-tables.th-left>
-                    <x-tables.th-left>
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         Date
-                    </x-tables.th-left>
-                    <x-tables.th-left>
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         Quantity Invoice
-                    </x-tables.th-left>
-                    <x-tables.th-left>
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         Quantity Product
-                    </x-tables.th-left>
-                    <x-tables.th-left>
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         Unit Price
-                    </x-tables.th-left>
-                    <x-tables.th-left>
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         @lang('crud.invoice_purchase_detail_invoices.inputs.subtotal_invoice')
-                    </x-tables.th-left>
+                    </x-tables.th-left-hide>
                     <th></th>
                 </tr>
             </x-slot>
@@ -140,7 +140,7 @@
                         <x-tables.td-right-hide>
                             @currency($detailInvoice->subtotal_invoice)
                         </x-tables.td-right-hide>
-                        <td class="px-4 py-3 text-right" style="width: 134px;">
+                        {{-- <td class="px-4 py-3 text-right" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @can('update', $detailInvoice)
                                     <button type="button" class="button"
@@ -149,7 +149,7 @@
                                     </button>
                                 @endcan
                             </div>
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
             </x-slot>
