@@ -9,6 +9,7 @@ use App\Http\Livewire\DataTables\WithModal;
 use App\Http\Livewire\DataTables\WithSimpleTablePagination;
 use App\Http\Livewire\DataTables\WithSortingDate;
 use App\Models\DetailRequest;
+use App\Models\PaymentType;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -21,6 +22,7 @@ class RequestPurchaseApprovals extends Component
     public DetailRequest $editing;
 
     public $products;
+    public $paymentTypes;
 
     public $sortColumn = 'detail_requests.created_at';
 
@@ -35,12 +37,14 @@ class RequestPurchaseApprovals extends Component
 
     public $filters = [
         'product_id' => null,
+        'payment_type_id' => 2,
         'status' => '',
     ];
 
     public function mount()
     {
         $this->products = Product::orderBy('name', 'asc')->pluck('id', 'name');
+        $this->paymentTypes = PaymentType::orderBy('name', 'asc')->pluck('id', 'name');
     }
 
     public function changeStatus(DetailRequest $detailRequest, $status)
@@ -72,6 +76,7 @@ class RequestPurchaseApprovals extends Component
             if (!empty($value)) {
                 $detailRequests
                     ->when($filter == 'product_id', fn($detailRequests) => $detailRequests->whereRelation('product', 'id', $value))
+                    ->when($filter == 'payment_type_id', fn($detailRequests) => $detailRequests->whereRelation('payment_type', 'id', $value))
                     ->when($filter == 'status', fn($detailRequests) => $detailRequests->where('detail_requests.' . $filter, 'LIKE', '%' . $value . '%'));
             }
         }

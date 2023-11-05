@@ -27,6 +27,15 @@
                 </x-filters.group>
 
                 <x-filters.group>
+                    <x-filters.label>Payment Type</x-filters.label>
+                    <x-filters.select wire:model="filters.payment_type_id">
+                        @foreach ($paymentTypes as $label => $value)
+                            <option value="{{ $value }}">{{ $label }}</option>
+                        @endforeach
+                    </x-filters.select>
+                </x-filters.group>
+
+                <x-filters.group>
                     <x-filters.label>Status</x-filters.label>
                     <x-filters.select wire:model="filters.status">
                         @foreach (App\Models\DetailRequest::STATUSES as $value => $label)
@@ -67,9 +76,6 @@
                     </x-tables.th-left>
                     <x-tables.th-left-hide>
                         Request Date
-                    </x-tables.th-left-hide>
-                    <x-tables.th-left-hide>
-                        Purchase Date
                     </x-tables.th-left-hide>
                     <x-tables.th-left-hide>
                         Payment Type
@@ -132,12 +138,6 @@
 
                         <x-tables.td-left-hide>
                             {{ $detailRequest->requestPurchase->date->toFormattedDate() }}
-                        </x-tables.td-left-hide>
-
-                        <x-tables.td-left-hide>
-                            {{-- @if ($detailRequest->status == 2)
-                                {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }}
-                            @endif --}}
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
