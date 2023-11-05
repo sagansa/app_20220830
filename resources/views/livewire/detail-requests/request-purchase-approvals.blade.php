@@ -72,6 +72,9 @@
                         Purchase Date
                     </x-tables.th-left-hide>
                     <x-tables.th-left-hide>
+                        Payment Type
+                    </x-tables.th-left-hide>
+                    <x-tables.th-left-hide>
                         Store
                     </x-tables.th-left-hide>
                     <x-tables.th-left-hide>
@@ -135,6 +138,10 @@
                             {{-- @if ($detailRequest->status == 2)
                                 {{ optional($detailRequest->detailInvoice)->invoicePurchase->date->toFormattedDate() ?? '-' }}
                             @endif --}}
+                        </x-tables.td-left-hide>
+
+                        <x-tables.td-left-hide>
+                            {{ optional($detailRequest->detailInvoice)->invoicePurchase->paymentType->name ?? '-' }}
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>

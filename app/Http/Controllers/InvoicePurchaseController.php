@@ -147,7 +147,6 @@ class InvoicePurchaseController extends Controller
 
         $invoicePurchase->update($validated);
 
-        // dd($validated);
         return redirect()
             ->route('invoice-purchases.index')
             ->withSuccess(__('crud.common.saved'));
