@@ -141,7 +141,7 @@
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
-                            {{ optional($detailRequest->detailInvoice)->invoicePurchase->paymentType->name ?? '-' }}
+                            {{ optional($detailRequest->paymentType)->name ?? '-' }}
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
