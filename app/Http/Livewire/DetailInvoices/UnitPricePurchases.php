@@ -7,6 +7,7 @@ use App\Http\Livewire\DataTables\WithCachedRows;
 use App\Http\Livewire\DataTables\WithFilter;
 use App\Http\Livewire\DataTables\WithModal;
 use App\Http\Livewire\DataTables\WithPerPagePagination;
+use App\Http\Livewire\DataTables\WithSimpleTablePagination;
 use App\Http\Livewire\DataTables\WithSortingDate;
 use App\Models\DetailInvoice;
 use App\Models\DetailRequest;
@@ -22,7 +23,7 @@ use Livewire\WithPagination;
 
 class UnitPricePurchases extends Component
 {
-    use WithPerPagePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
+    use WithSimpleTablePagination, WithSortingDate, WithModal, WithBulkAction, WithCachedRows, WithFilter;
 
     use WithPagination;
     use AuthorizesRequests;
