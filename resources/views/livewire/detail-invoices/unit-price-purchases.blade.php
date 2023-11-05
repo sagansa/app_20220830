@@ -1,4 +1,11 @@
 <div>
+    <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            Unit Price
+        </h2>
+        <p class="mt-2 text-xs text-gray-700"> --- </p>
+    </x-slot>
+
     <x-modal wire:model="showingModal">
         <div class="px-6 py-4">
             <div class="text-lg font-bold">{{ $modalTitle }}</div>
@@ -47,7 +54,29 @@
         </div>
     </x-modal>
 
-    <x-tables.card-overflow>
+    <x-tables.topbar>
+        <x-slot name="search">
+            <x-buttons.link wire:click="$toggle('showFilters')">
+                @if ($showFilters)
+                    Hide
+                @endif Advanced Search...
+            </x-buttons.link>
+
+            @if ($showFilters)
+                <x-buttons.link wire:click="resetFilters">Reset Filter
+                </x-buttons.link>
+            @endif
+        </x-slot>
+        <x-slot name="action">
+            <div class="flex flex-wrap justify-between mt-1">
+                <div class="mt-1 md:w-1/3">
+
+                </div>
+            </div>
+        </x-slot>
+    </x-tables.topbar>
+
+    <x-tables.card>
         <x-table>
             <x-slot name="head">
                 <tr>
@@ -81,36 +110,36 @@
             <x-slot name="body">
                 @foreach ($detailInvoices as $detailInvoice)
                     <tr class="hover:bg-gray-100">
-                        <x-tables.td-left>
+                        <x-tables.td-left-hide>
                             {{ optional($detailInvoice->detailRequest)->product->name ?? '-' }}
-                        </x-tables.td-left>
-                        <x-tables.td-left>
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
                             {{ optional($detailInvoice->invoicePurchase)->store->nickname ?? '-' }}
-                        </x-tables.td-left>
-                        <x-tables.td-left>
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
                             {{ $detailInvoice->invoicePurchase->created_by->name }}
-                        </x-tables.td-left>
-                        <x-tables.td-left>
+                        </x-tables.td-left-hide>
+                        <x-tables.td-left-hide>
                             {{ $detailInvoice->invoicePurchase->date->toFormattedDate() }}
-                        </x-tables.td-left>
-                        <x-tables.td-right>
+                        </x-tables.td-left-hide>
+                        <x-tables.td-right-hide>
                             {{ $detailInvoice->quantity_product ?? '-' }}
                             {{ $detailInvoice->detailRequest->product->unit->unit }}
-                        </x-tables.td-right>
-                        <x-tables.td-right>
+                        </x-tables.td-right-hide>
+                        <x-tables.td-right-hide>
                             {{ $detailInvoice->quantity_invoice ?? '-' }}
                             {{ $detailInvoice->detailRequest->product->unit->unit ?? '-' }}
-                        </x-tables.td-right>
-                        <x-tables.td-right>
+                        </x-tables.td-right-hide>
+                        <x-tables.td-right-hide>
                             @if ($detailInvoice->quantity_product != null)
                                 @currency($detailInvoice->subtotal_invoice / $detailInvoice->quantity_product)
                             @else
                                 -
                             @endif
-                        </x-tables.td-right>
-                        <x-tables.td-right>
+                        </x-tables.td-right-hide>
+                        <x-tables.td-right-hide>
                             @currency($detailInvoice->subtotal_invoice)
-                        </x-tables.td-right>
+                        </x-tables.td-right-hide>
                         <td class="px-4 py-3 text-right" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @can('update', $detailInvoice)
@@ -134,5 +163,5 @@
                 </tr>
             </x-slot>
         </x-table>
-    </x-tables.card-overflow>
+    </x-tables.card>
 </div>
