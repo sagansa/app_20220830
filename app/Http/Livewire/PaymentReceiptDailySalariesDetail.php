@@ -73,7 +73,7 @@ class PaymentReceiptDailySalariesDetail extends Component
         $this->showingModal = false;
     }
 
-    public function save(DailySalary $dailySalary, $status)
+    public function save(DailySalary $dailySalary)
     {
         $this->validate();
 
@@ -83,14 +83,7 @@ class PaymentReceiptDailySalariesDetail extends Component
             ->dailySalaries()
             ->attach($this->daily_salary_id, []);
 
-        Validator::make(['status' => $status], [
-			'status' => [
-				'required',
-				Rule::in(DailySalary::STATUS_SIAP_DIBAYAR, DailySalary::STATUS_SUDAH_DIBAYAR),
-			],
-		])->validate();
-
-        $dailySalary->update(['status' => '2']);
+        $this->dailySalary->update(['status' => '2']);
 
         $this->hideModal();
     }
