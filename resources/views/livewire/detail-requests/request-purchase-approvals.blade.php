@@ -18,6 +18,15 @@
             @if ($showFilters)
 
                 <x-filters.group>
+                    <x-filters.label>Store</x-filters.label>
+                    <x-filters.select wire:model="filters.store_id">
+                        @foreach ($stores as $label => $value)
+                            <option value="{{ $value }}">{{ $label }}</option>
+                        @endforeach
+                    </x-filters.select>
+                </x-filters.group>
+
+                <x-filters.group>
                     <x-filters.label>Product</x-filters.label>
                     <x-filters.select wire:model="filters.product_id">
                         @foreach ($products as $label => $value)

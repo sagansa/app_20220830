@@ -23,6 +23,7 @@ class RequestPurchaseApprovals extends Component
 
     public $products;
     public $paymentTypes;
+    public $stores;
 
     public $sortColumn = 'detail_requests.created_at';
 
@@ -38,6 +39,7 @@ class RequestPurchaseApprovals extends Component
     public $filters = [
         'product_id' => null,
         'payment_type_id' => 2,
+        'store_id' => null,
         'status' => '',
     ];
 
@@ -45,6 +47,7 @@ class RequestPurchaseApprovals extends Component
     {
         $this->products = Product::orderBy('name', 'asc')->pluck('id', 'name');
         $this->paymentTypes = PaymentType::orderBy('name', 'asc')->pluck('id', 'name');
+        $this->stores = Store::orderBy('nickname', 'asc')->pluck('id', 'name');
     }
 
     public function changeStatus(DetailRequest $detailRequest, $status)
@@ -76,6 +79,7 @@ class RequestPurchaseApprovals extends Component
             if (!empty($value)) {
                 $detailRequests
                     ->when($filter == 'product_id', fn($detailRequests) => $detailRequests->whereRelation('product', 'id', $value))
+                    ->when($filter == 'store_id', fn($detailRequests) => $detailRequests->whereRelation('store', 'id', $value))
                     ->when($filter == 'payment_type_id', fn($detailRequests) => $detailRequests->whereRelation('paymentType', 'id', $value))
                     ->when($filter == 'status', fn($detailRequests) => $detailRequests->where('detail_requests.' . $filter, 'LIKE', '%' . $value . '%'));
             }
