@@ -83,7 +83,7 @@ class PaymentReceiptDailySalariesDetail extends Component
             ->dailySalaries()
             ->attach($this->daily_salary_id, []);
 
-        $this->dailySalary->update(['status' => '2']);
+        $dailySalary->update(['status' => '2']);
 
         $this->hideModal();
     }
