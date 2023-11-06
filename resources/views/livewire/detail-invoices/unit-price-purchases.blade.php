@@ -167,7 +167,7 @@
                         <x-tables.td-right-hide>
                             @currency($detailInvoice->subtotal_invoice)
                         </x-tables.td-right-hide>
-                        {{-- <td class="px-4 py-3 text-right" style="width: 134px;">
+                        <td class="px-4 py-3 text-right" style="width: 134px;">
                             <div role="group" aria-label="Row Actions" class="relative inline-flex align-middle">
                                 @can('update', $detailInvoice)
                                     <button type="button" class="button"
@@ -176,7 +176,7 @@
                                     </button>
                                 @endcan
                             </div>
-                        </td> --}}
+                        </td>
                     </tr>
                 @endforeach
             </x-slot>
