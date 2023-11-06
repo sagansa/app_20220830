@@ -124,10 +124,10 @@
                         Date
                     </x-tables.th-left-hide>
                     <x-tables.th-left-hide>
-                        Quantity Invoice
+                        Qty Invoice
                     </x-tables.th-left-hide>
                     <x-tables.th-left-hide>
-                        Quantity Product
+                        Qty Product
                     </x-tables.th-left-hide>
                     <x-tables.th-left-hide>
                         Unit Price

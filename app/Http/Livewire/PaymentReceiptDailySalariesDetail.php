@@ -15,6 +15,9 @@ class PaymentReceiptDailySalariesDetail extends Component
 
     public $state = [];
 
+    public $difference;
+    public $totals;
+
     public PaymentReceipt $paymentReceipt;
     public DailySalary $dailySalary;
     public $dailySalariesForSelect = [];
@@ -79,6 +82,8 @@ class PaymentReceiptDailySalariesDetail extends Component
         $this->paymentReceipt
             ->dailySalaries()
             ->attach($this->daily_salary_id, []);
+
+        $this->dailySalary->status = 2;
 
         $this->hideModal();
     }
