@@ -124,9 +124,6 @@
                         Date
                     </x-tables.th-left-hide>
                     <x-tables.th-left-hide>
-                        Qty Invoice
-                    </x-tables.th-left-hide>
-                    <x-tables.th-left-hide>
                         Qty Product
                     </x-tables.th-left-hide>
                     <x-tables.th-left-hide>
@@ -159,10 +156,6 @@
                         <x-tables.td-right-hide>
                             {{ $detailInvoice->quantity_product ?? '-' }}
                             {{ $detailInvoice->detailRequest->product->unit->unit }}
-                        </x-tables.td-right-hide>
-                        <x-tables.td-right-hide>
-                            {{ $detailInvoice->quantity_invoice ?? '-' }}
-                            {{ $detailInvoice->detailRequest->product->unit->unit ?? '-' }}
                         </x-tables.td-right-hide>
                         <x-tables.td-right-hide>
                             @if ($detailInvoice->quantity_product != null)
