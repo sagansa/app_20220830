@@ -49,6 +49,8 @@ class PaymentReceiptDailySalariesDetail extends Component
 
         $this->daily_salary_id = null;
 
+        $this->dailySalary->status = 2;
+
         $this->dispatchBrowserEvent('refresh');
     }
 
@@ -82,8 +84,6 @@ class PaymentReceiptDailySalariesDetail extends Component
         $this->paymentReceipt
             ->dailySalaries()
             ->attach($this->daily_salary_id, []);
-
-        $this->dailySalary->status = 2;
 
         $this->hideModal();
     }
