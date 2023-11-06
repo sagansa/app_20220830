@@ -11,6 +11,7 @@ use App\Http\Livewire\DataTables\WithSortingDate;
 use App\Models\DetailRequest;
 use App\Models\PaymentType;
 use App\Models\Product;
+use App\Models\Store;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
