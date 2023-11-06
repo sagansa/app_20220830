@@ -83,6 +83,13 @@ class PaymentReceiptDailySalariesDetail extends Component
             ->dailySalaries()
             ->attach($this->daily_salary_id, []);
 
+        Validator::make(['status' => $status], [
+			'status' => [
+				'required',
+				Rule::in(DailySalary::STATUS_SIAP_DIBAYAR, DailySalary::STATUS_SUDAH_DIBAYAR),
+			],
+		])->validate();
+
         $dailySalary->update(['status' => '2']);
 
         $this->hideModal();
