@@ -49,25 +49,13 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
     {
         $this->invoicePurchase = $invoicePurchase;
 
-        // $this->detailRequestsForSelect = DetailRequest::with('product')
-        //     ->where('store_id', $this->invoicePurchase->store_id)
-        //     ->whereIn('status', ['4'])
-        //     // ->whereHas('products', function($query) {$query->where('payment_type_id', '=', $this->invoicePurchase->payment_type_id);})
-        //     // ->where('payment_type_id', '=', '1')
-        //     // ->orderBy('detail_request_name', 'desc')
-        //     // ->where('request_purchase.date', '>=', Carbon::now()->subDays(7)->toDateString())
-        //     // ->join('detail_requests', 'detail_requests.id', '=', 'detail_invoices.detail_request_id')
-            // ->orderBy('detail_request_name', 'desc')
-            // ->get()
-            // ->pluck( 'id', 'detail_request_name');
-
         if ($this->invoicePurchase->payment_type_id == 1) {
             $this->detailRequestsForSelect = DetailRequest::whereIn('status', ['1', '4'])
                 ->orderBy('id', 'desc')
                 ->where('store_id', $this->invoicePurchase->store_id)
                 ->get()
                 ->pluck('id', 'detail_request_name');
-        } else if ($this->invoicePurchase->payment_type_id ==2) {
+        } else if ($this->invoicePurchase->payment_type_id == 2) {
             $this->detailRequestsForSelect = DetailRequest::where('status', '4')
                 ->orderBy('id', 'desc')
                 ->where('store_id', $this->invoicePurchase->store_id)
