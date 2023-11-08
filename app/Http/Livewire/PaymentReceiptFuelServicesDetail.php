@@ -23,6 +23,9 @@ class PaymentReceiptFuelServicesDetail extends Component
     public $showingModal = false;
     public $modalTitle = 'New FuelService';
 
+    public $totals;
+    public $difference;
+
     protected $rules = [
         'fuel_service_id' => ['required', 'exists:fuel_services,id'],
     ];
