@@ -61,11 +61,19 @@ class InvoicePurchaseDetailInvoicesDetail extends Component
             // ->get()
             // ->pluck( 'id', 'detail_request_name');
 
-        $this->detailRequestsForSelect = DetailRequest::whereIn('status', ['1', '4'])
-            ->orderBy('id', 'desc')
-            ->where('store_id', $this->invoicePurchase->store_id)
-            ->get()
-            ->pluck('id', 'detail_request_name');
+        if ($this->invoicePurchase->payment_type_id == 1) {
+            $this->detailRequestsForSelect = DetailRequest::whereIn('status', ['1', '4'])
+                ->orderBy('id', 'desc')
+                ->where('store_id', $this->invoicePurchase->store_id)
+                ->get()
+                ->pluck('id', 'detail_request_name');
+        } else if ($this->invoicePurchase->payment_type_id ==2) {
+            $this->detailRequestsForSelect = DetailRequest::where('status', '4')
+                ->orderBy('id', 'desc')
+                ->where('store_id', $this->invoicePurchase->store_id)
+                ->get()
+                ->pluck('id', 'detail_request_name');
+        }
 
         $this->unitsForSelect = Unit::orderBy('unit', 'asc')->pluck('id', 'unit');
         $this->resetDetailInvoiceData();

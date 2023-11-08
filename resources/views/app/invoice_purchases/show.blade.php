@@ -112,12 +112,12 @@
                 <x-partials.card class="mt-5">
                     <x-slot name="title"> Detail Invoices </x-slot>
 
-                    @if ($invoicePurchase->payment_type_id == 2)
-                        <livewire:detail-invoices.detail-invoice-cash :invoicePurchase="$invoicePurchase" />
-                    @elseif ($invoicePurchase->payment_type_id == 1)
-                        <livewire:invoice-purchase-detail-invoices-detail :invoicePurchase="$invoicePurchase" />
-                        {{-- <livewire:detail-invoices.detail-invoice-transfer :invoicePurchase="$invoicePurchase" /> --}}
-                    @endif
+                    {{-- @if ($invoicePurchase->payment_type_id == 2) --}}
+                    {{-- <livewire:detail-invoices.detail-invoice-cash :invoicePurchase="$invoicePurchase" /> --}}
+                    {{-- @elseif ($invoicePurchase->payment_type_id == 1) --}}
+                    <livewire:invoice-purchase-detail-invoices-detail :invoicePurchase="$invoicePurchase" />
+                    {{-- <livewire:detail-invoices.detail-invoice-transfer :invoicePurchase="$invoicePurchase" /> --}}
+                    {{-- @endif --}}
 
                 </x-partials.card>
             @endcan
