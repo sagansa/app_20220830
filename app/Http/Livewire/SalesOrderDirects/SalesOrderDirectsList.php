@@ -129,4 +129,40 @@ class SalesOrderDirectsList extends Component
             'salesOrderDirects' => $this->rows,
         ]);
     }
+
+    public function markAllAsTelahDikirim()
+    {
+        SalesOrderDirect::whereIn('id', $this->selectedRows)->update([
+            'delivery_status' => '4',
+        ]);
+
+        $this->reset(['selectedRows']);
+    }
+
+    public function markAllAsSelesai()
+    {
+        SalesOrderDirect::whereIn('id', $this->selectedRows)->update([
+            'delivery_status' => '5',
+        ]);
+
+        $this->reset(['selectedRows']);
+    }
+
+    public function markAllAsValid()
+    {
+        SalesOrderDirect::whereIn('id', $this->selectedRows)->update([
+            'status' => '2',
+        ]);
+
+        $this->reset(['selectedRows']);
+    }
+
+    public function markAllAsPerbaiki()
+    {
+        SalesOrderDirect::whereIn('id', $this->selectedRows)->update([
+            'status' => '4',
+        ]);
+
+        $this->reset(['selectedRows']);
+    }
 }

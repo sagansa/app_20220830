@@ -59,6 +59,8 @@
                     @role('super-admin|manager')
                         <x-buttons.green wire:click.prevent="markAllAsValid">Valid</x-buttons.green>
                         <x-buttons.red wire:click.prevent="markAllAsPerbaiki">Perbaiki</x-buttons.red>
+                        <x-buttons.green wire:click.prevent="markAllAsTelahDikirim">Valid</x-buttons.green>
+                        <x-buttons.green wire:click.prevent="markAllAsSelesai">Valid</x-buttons.green>
                     @endrole
                 </div>
                 <div class="mt-1 text-right md:w-1/2">
