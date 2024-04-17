@@ -42,7 +42,9 @@
                     <x-tables.th-left>
                         fuel / Service
                     </x-tables.th-left>
-
+                    <x-tables.th-left>
+                        date
+                    </x-tables.th-left>
                     <x-tables.th-left>
                         amount
                     </x-tables.th-left>
@@ -69,6 +71,10 @@
                                 service
                             @endif
 
+                        </x-tables.td-left>
+
+                        <x-tables.td-left>
+                            {{ $fuelService->created_at->toFormattedDate() ?? '-' }}
                         </x-tables.td-left>
 
                         <x-tables.td-right>
