@@ -125,7 +125,8 @@
                             @endforeach
 
                             @foreach ($paymentReceipt->fuelServices as $fuelService)
-                                <p>{{ $fuelService->vehicle->no_register }} | @currency($fuelService->amount)</p>
+                                <p>{{ $fuelService->vehicle->no_register }} |
+                                    {{ $fuelService->created_at->toFormattedDate() }} | @currency($fuelService->amount)</p>
                             @endforeach
 
                             @foreach ($paymentReceipt->invoicePurchases as $invoicePurchase)
