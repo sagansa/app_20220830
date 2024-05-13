@@ -139,7 +139,7 @@
                             @if ($fuelService == null)
                                 -
                             @else
-                                {{ $fuelService->date->toFormattedDate() ?? '-' }}
+                                {{ $fuelService->date->toFormattedDate() }}
                             @endif
                         </x-tables.td-left-hide>
 
