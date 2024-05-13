@@ -24,6 +24,10 @@
         </div>
     </x-input.image>
 
+    <x-input.date name="date" label="Date"
+        value="{{ old('date', $editing ? optional($fuelService->date)->format('Y-m-d') : '') }}" required>
+    </x-input.date>
+
     <x-input.select name="vehicle_id" label="Vehicle">
         @php $selected = old('vehicle_id', ($editing ? $fuelService->vehicle_id : '')) @endphp
         <option disabled {{ empty($selected) ? 'selected' : '' }}>-- select --</option>

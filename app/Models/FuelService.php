@@ -34,6 +34,7 @@ class FuelService extends Model
         'image',
         'vehicle_id',
         'payment_type_id',
+        'date',
         'fuel_service',
         'km',
         'liter',
