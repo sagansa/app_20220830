@@ -72,6 +72,7 @@
         <x-table>
             <x-slot name="head">
                 <x-tables.th-left-hide>@lang('crud.fuel_services.inputs.image')</x-tables.th-left-hide>
+                <x-tables.th-left-hide>date</x-tables.th-left-hide>
                 <x-tables.th-left>@lang('crud.fuel_services.inputs.vehicle_id')</x-tables.th-left>
                 <x-tables.th-left-hide>@lang('crud.fuel_services.inputs.fuel_service')</x-tables.th-left-hide>
                 <x-tables.th-left-hide>@lang('crud.fuel_services.inputs.payment_type_id')</x-tables.th-left-hide>
@@ -133,6 +134,10 @@
                             </x-slot>
 
                         </x-tables.td-left-main>
+
+                        <x-tables.td-left-hide>
+                            {{ $fuelService->date->toFormattedDate() ?? '-' }}
+                        </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
                             {{ $fuelService->vehicle->no_register }}
