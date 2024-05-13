@@ -49,6 +49,10 @@ class FuelService extends Model
 
     protected $table = 'fuel_services';
 
+    protected $casts = [
+        'date' => 'date',
+    ];
+
     public function vehicle()
     {
         return $this->belongsTo(Vehicle::class);
