@@ -136,11 +136,11 @@
                         </x-tables.td-left-main>
 
                         <x-tables.td-left-hide>
-                            {{-- @if ($fuelService == null)
+                            @if ($fuelService == null)
                                 -
-                            @else --}}
-                            {{ optional($fuelService->date)->toFormattedDate() ?? '-' }}
-                            {{-- @endif --}}
+                            @else
+                                {{ optional($fuelService->date)->toFormattedDate() ?? '-' }}
+                            @endif
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
