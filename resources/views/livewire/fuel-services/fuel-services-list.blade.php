@@ -136,11 +136,11 @@
                         </x-tables.td-left-main>
 
                         <x-tables.td-left-hide>
-                            @if ($fuelService == null)
+                            {{-- @if ($fuelService == null)
                                 -
-                            @else
-                                {{ $fuelService->date }}
-                            @endif
+                            @else --}}
+                            {{ optional($fuelService->date)->toFormattedDate() ?? '-' }}
+                            {{-- @endif --}}
                         </x-tables.td-left-hide>
 
                         <x-tables.td-left-hide>
@@ -208,7 +208,7 @@
                         </td>
                     </tr>
                 @empty
-                    <x-tables.no-items-found colspan="9"> </x-tables.no-items-found>
+                    <x-tables.no-items-found colspan="10"> </x-tables.no-items-found>
                 @endforelse
             </x-slot>
             <x-slot name="foot"> </x-slot>

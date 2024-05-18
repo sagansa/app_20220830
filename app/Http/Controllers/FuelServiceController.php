@@ -194,8 +194,6 @@ class FuelServiceController extends Controller
             $validated['approved_by_id'] = auth()->user()->id;
         }
 
-        // dd($fuelService);
-
         $fuelService->update($validated);
 
         return redirect()
