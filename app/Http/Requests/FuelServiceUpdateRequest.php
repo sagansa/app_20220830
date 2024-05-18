@@ -21,6 +21,7 @@ class FuelServiceUpdateRequest extends FormRequest
     {
         return [
             'image' => ['nullable', 'image'],
+            'date' => ['required', 'date'],
             'vehicle_id' => ['required', 'exists:vehicles,id'],
             'fuel_service' => ['required', 'in:1,2'],
             'payment_type_id' => ['required', 'exists:payment_types,id'],
